@@ -1,4 +1,3 @@
-#vas
 URL = "https://app.stand.imot.io/ru"
 
 USER ="1userIM"
