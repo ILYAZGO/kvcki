@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-
+import pytest
+@pytest.mark.dictionaries
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''

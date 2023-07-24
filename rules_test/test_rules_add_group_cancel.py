@@ -1,8 +1,10 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+import pytest
 
 '''Create and cancel group of rules'''
 
+@pytest.mark.rules
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''

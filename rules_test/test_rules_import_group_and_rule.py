@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 import time
+import pytest
 
 '''
 Precondition
@@ -9,6 +10,7 @@ with group 11111 rule 22222 inside
 with rule 33333 without group
 user  importTo
 '''
+@pytest.mark.rules
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''

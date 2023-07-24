@@ -1,9 +1,9 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-import time
-
+import pytest
 '''Check search by length for Ecotelecom'''
 
+@pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout = timeout)
     '''login'''

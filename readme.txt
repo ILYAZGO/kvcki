@@ -5,9 +5,11 @@ how to run locally:
     from main directory:
 
     pytest --{some arg}
-    --numprocesses auto  (few processes same time - faster tests)
+    --numprocesses auto  (few processes same time - faster tests, but can cause troubles)
     --headed  (browser head)
     --slowmo 3000  (if you want to slow tests down in 3000 ms)
+
+    -m {some marker}  (you can call test-sets. look markers in pytest.ini)
 
 
 

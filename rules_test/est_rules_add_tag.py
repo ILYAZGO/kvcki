@@ -1,8 +1,10 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+import pytest
 
 '''Create tag in group and outside group'''
 
+@pytest.mark.rules
 def test_example(page: Page) -> None:
     fill="QWERTY"
     page.goto(URL, timeout=timeout)

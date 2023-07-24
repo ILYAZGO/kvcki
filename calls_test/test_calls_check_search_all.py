@@ -1,8 +1,9 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-
+import pytest
 '''Check search all calls for Ecotelecom'''
 
+@pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout = 0)
     '''login'''

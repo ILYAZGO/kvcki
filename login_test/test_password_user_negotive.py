@@ -1,6 +1,8 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+import pytest
 
+@pytest.mark.login
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     page.locator("[id='mui-1']").click()

@@ -1,9 +1,11 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.dates import *
+import pytest
 
 '''Проверяем кнопки выбора дат'''
 
+@pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout = timeout)
     '''login'''

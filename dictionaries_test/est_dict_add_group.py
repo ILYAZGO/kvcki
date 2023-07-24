@@ -3,6 +3,7 @@ from utils.variables import *
 
 '''Create and delete group of dictionaries'''
 
+@pytest.mark.dictionaries
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
