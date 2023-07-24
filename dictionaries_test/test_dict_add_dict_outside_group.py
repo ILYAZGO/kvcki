@@ -2,14 +2,14 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     page.locator("[id='mui-1']").fill(ADMIN)
     page.locator("[id='mui-2']").fill(PASSWORD)
     page.locator("[id='mui-3']").click()
     '''create dict outside group'''
     page.get_by_role("link", name="Разметка").click()
-    page.get_by_role("button", name="Словари").click()
+    page.get_by_test_id("markup_nav_dicts").click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[1]").click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/button").click()
     page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/div[2]/input").fill("77777")

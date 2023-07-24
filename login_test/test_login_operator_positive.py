@@ -3,7 +3,7 @@ from utils.variables import *
 
 
 def test_example(page: Page) -> None:
-    page.goto(URL)
+    page.goto(URL, timeout=timeout)
     page.locator("[id='mui-1']").click()
     page.locator("[id='mui-1']").fill(OPERATOR)
     page.locator("[id='mui-2']").click()

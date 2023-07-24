@@ -4,14 +4,14 @@ from utils.variables import *
 '''Create and delete group of dictionaries'''
 
 def test_example(page: Page) -> None:
-    page.goto(URL)
+    page.goto(URL, timeout=timeout)
     '''login'''
     page.locator("[id='mui-1']").fill(ADMIN)
     page.locator("[id='mui-2']").fill(PASSWORD)
     page.locator("[id='mui-3']").click()
     '''create group'''
     page.get_by_role("link", name="Разметка").click()
-    page.get_by_role("button", name="Словари").click()
+    page.get_by_test_id("markup_nav_dicts").click()
     page.locator(".styles_addBtn__fyc49").click() #Добавить группу
     page.get_by_role("textbox").fill("12345")
     page.get_by_role("button", name="Отправить").click()

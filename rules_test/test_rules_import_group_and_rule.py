@@ -10,7 +10,7 @@ with rule 33333 without group
 user  importTo
 '''
 def test_example(page: Page) -> None:
-    page.goto(URL)
+    page.goto(URL, timeout=timeout)
     '''login'''
     page.locator("[id='mui-1']").fill(ADMIN)
     page.locator("[id='mui-2']").fill(PASSWORD)
@@ -22,7 +22,7 @@ def test_example(page: Page) -> None:
 
     '''going to Razmetka and click Importirovat Pravila'''
     page.get_by_role("link", name="Разметка").click()
-    page.get_by_role("button", name="Импортировать правила").click()
+    page.get_by_test_id("markup_importTagRules").click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div[2]/input").fill("importFrom")
