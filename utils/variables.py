@@ -1,4 +1,5 @@
 URL = "https://app.stand.imot.io/ru"
+timeout = 55000
 
 USER ="1userIM"
 OPERATOR ="2operatorIM"

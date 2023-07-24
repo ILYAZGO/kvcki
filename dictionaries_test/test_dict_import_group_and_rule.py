@@ -10,7 +10,7 @@ with rule 33333 without group
 user  importTo
 '''
 def test_example(page: Page) -> None:
-    page.goto(URL)
+    page.goto(URL, timeout = timeout)
     '''login'''
     page.locator("[id='mui-1']").fill(ADMIN)
     page.locator("[id='mui-2']").fill(PASSWORD)

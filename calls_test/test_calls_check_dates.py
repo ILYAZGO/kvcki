@@ -5,7 +5,7 @@ from utils.dates import *
 '''Проверяем кнопки выбора дат'''
 
 def test_example(page: Page) -> None:
-    page.goto(URL)
+    page.goto(URL, timeout = timeout)
     '''login'''
     page.locator("[id='mui-1']").fill(ADMIN)
     page.locator("[id='mui-2']").fill(PASSWORD)

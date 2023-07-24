@@ -2,10 +2,10 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 import time
 
-'''Check search all calls for Ecotelecom'''
+'''Check search by length for Ecotelecom'''
 
 def test_example(page: Page) -> None:
-    page.goto(URL)
+    page.goto(URL, timeout = 0)
     '''login'''
     page.locator("[id='mui-1']").fill(ADMIN)
     page.locator("[id='mui-2']").fill(PASSWORD)
