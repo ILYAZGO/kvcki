@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add import test also for dict">
-      <change afterPath="$PROJECT_DIR$/calls_test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/dates.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689871645032</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add import test also for dict">
+      <option name="closed" value="true" />
+      <created>1690207727278</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1690207727278</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
