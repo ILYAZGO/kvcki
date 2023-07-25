@@ -13,7 +13,7 @@ def test_example(page: Page) -> None:
     page.locator("[id='mui-3']").click()
     '''create group'''
     page.get_by_role("link", name="Разметка").click()
-    page.get_by_test_id("markup_nav_dicts").click()
+    page.get_by_test_id("markup_nav_dicts").click() #slovari
     page.locator(".styles_addBtn__fyc49").click() #Добавить группу
     page.get_by_role("textbox").fill("12345")
     page.get_by_role("button", name="Отправить").click()

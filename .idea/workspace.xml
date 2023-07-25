@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add , timeout=timeout and testid">
-      <change afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/est_dict_add_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/est_dict_add_group.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add fixtures">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_rule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/est_rules_add_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_tag_inside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690223965309</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="add fixtures">
+      <option name="closed" value="true" />
+      <created>1690228963410</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1690228963410</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,6 +234,7 @@
     <MESSAGE value="add test by exact time +timeouts" />
     <MESSAGE value="add tests" />
     <MESSAGE value="add , timeout=timeout and testid" />
-    <option name="LAST_COMMIT_MESSAGE" value="add , timeout=timeout and testid" />
+    <MESSAGE value="add fixtures" />
+    <option name="LAST_COMMIT_MESSAGE" value="add fixtures" />
   </component>
 </project>
