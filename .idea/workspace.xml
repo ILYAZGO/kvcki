@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test">
-      <change afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test create rule outside group">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_tag_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/est_dict_add_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_edit_name_delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690290324718</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add test create rule outside group">
+      <option name="closed" value="true" />
+      <created>1690372124745</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1690372124745</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,6 +250,7 @@
     <MESSAGE value="add , timeout=timeout and testid" />
     <MESSAGE value="add fixtures" />
     <MESSAGE value="add test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test" />
+    <MESSAGE value="add test create rule outside group" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test create rule outside group" />
   </component>
 </project>
