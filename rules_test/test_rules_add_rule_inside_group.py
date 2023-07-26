@@ -23,8 +23,8 @@ def test_example(page: Page) -> None:
     page.keyboard.press('Enter') #kostil'
     #page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/div[2]/div/input')).to_have_value("88888")
-    expect(page.get_by_text("99999").nth(1)).to_have_text("99999")
+    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/div[2]/div/input')).to_have_value("88888") #check rule
+    expect(page.get_by_text("99999").nth(1)).to_have_text("99999") #check parent group
 
     '''teardown'''
     page.locator(".css-izdlur").click()
@@ -32,7 +32,7 @@ def test_example(page: Page) -> None:
     page.get_by_role("button", name="Удалить").click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
     '''check teardown'''
-    expect(page.get_by_text("99999")).not_to_be_visible()
+    expect(page.get_by_text("99999")).not_to_be_visible() #check no parent group
 
 
 
