@@ -1,7 +1,8 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+import pytest
 
-
+@pytest.mark.registration
 def test_example(page: Page) -> None:
     page.goto(URL)
     page.locator(".MuiButton-outlined").click()

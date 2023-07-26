@@ -12,6 +12,16 @@ how to run locally:
     -m {some marker}  (you can call test-sets. look markers in pytest.ini)
 
 
+    preconditions:
+    admin : login-4adminIM name-adminIM
+    user : login-1userIM name-userIM
+    manager : login-3managerIM name-managerIM
+    operator : login-2operatorIM name-operatorIM
+
+    importFrom importFrom
+    importTo importTo
+
+
 
 
 

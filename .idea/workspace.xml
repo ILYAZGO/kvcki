@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add edit group name">
-      <change afterPath="$PROJECT_DIR$/otchety_test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/otchety_test/test_otchety_check_dates.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test for reports add mark">
+      <change afterPath="$PROJECT_DIR$/adminbar_tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration_test/est_registration_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/registration_test/est_registration_positive.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +40,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/Documents/E2e Tests/otchety_test",
+    "last_opened_file_path": "/home/imustafin/Documents/E2e Tests/adminbar_tests",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/adminbar_tests" />
       <recent name="$PROJECT_DIR$/otchety_test" />
       <recent name="$PROJECT_DIR$/calls_test" />
     </key>
@@ -229,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690375597850</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="add test for reports add mark">
+      <option name="closed" value="true" />
+      <created>1690376847229</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1690376847229</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,6 +273,7 @@
     <MESSAGE value="add test" />
     <MESSAGE value="add test create rule outside group" />
     <MESSAGE value="add edit group name" />
-    <option name="LAST_COMMIT_MESSAGE" value="add edit group name" />
+    <MESSAGE value="add test for reports add mark" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test for reports add mark" />
   </component>
 </project>
