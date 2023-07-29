@@ -8,6 +8,9 @@ ADMIN = "4adminIM"
 USER_FOR_IMPORT = "importFrom"
 PASSWORD = "Qaz123wsX"
 
+ECOTELECOM = "ecotelecom"  #used for calls test
+ECOPASS = "ecopass1)"      #used for calls test
+
 LOGIN_NEGOTIVE = "1userI"
 PASSWORD_NEGOTIVE ="Qaz123ws"
 

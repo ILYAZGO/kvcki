@@ -9,42 +9,37 @@ import pytest
 def test_example(page: Page) -> None:
     page.goto(URL, timeout = timeout)
     '''login'''
-    page.locator("[id='mui-1']").fill(ADMIN)
-    page.locator("[id='mui-2']").fill(PASSWORD)
+    page.locator("[id='mui-1']").fill(ECOTELECOM)
+    page.locator("[id='mui-2']").fill(ECOPASS)
     page.locator("[id='mui-3']").click()
-    '''go to user'''
-    page.locator("#react-select-2-input").fill("Эк")
-    page.get_by_text("Экотелеком", exact=True).click()
-    '''go to calls'''
-    page.locator('//*[@id="root"]/div/div[2]/div[1]/div/div[1]/div[2]/button[1]').click()
     '''check begin and end dates in view. today by default'''
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(today)
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(today)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
     '''switch to yesterday'''
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[1]').click()
+    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[1]').click()
     '''check begin and end dates in view. '''
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(yesterday)
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(yesterday)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(yesterday)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(yesterday)
     '''switch to week'''
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[3]').click()
+    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[3]').click()
     ''''''
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(first_day_week_ago)
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(first_day_week_ago)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
     '''switch to month'''
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[4]').click()
+    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[4]').click()
     ''''''
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(first_day_month_ago)
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(first_day_month_ago)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
     '''switch to year'''
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[5]').click()
+    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[5]').click()
     ''''''
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(first_day_year_ago)
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(first_day_year_ago)
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
     '''switch to all time'''
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[6]').click()
+    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[6]').click()
     '''check begin and end dates is disabled '''
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_be_disabled()
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_be_disabled()
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_be_disabled()
+    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_be_disabled()
 
 
 

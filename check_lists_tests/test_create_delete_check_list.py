@@ -17,9 +17,9 @@ def test_example(page: Page) -> None:
     page.locator("[name='questions.0.title']").fill("123456")
     page.locator("[name='questions.0.answers.0.answer']").fill("1234567")
     '''scroll and save'''
-    page.mouse.wheel(delta_x=0,delta_y=800)
+    #page.mouse.wheel(delta_x=0,delta_y=800)
     page.locator(".MuiButton-contained").click()
-    page.mouse.wheel(delta_x=0, delta_y=-800)
+    #page.mouse.wheel(delta_x=0, delta_y=-800)
     '''check created'''
     expect(page.get_by_text("12345")).to_be_visible()
     '''delete'''
