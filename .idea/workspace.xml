@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test for adminbar + add mark">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change login and pass for calls test">
+      <change afterPath="$PROJECT_DIR$/adminbar_tests/est_admin_bar_with_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_delete_check_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690381156292</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="change login and pass for calls test">
+      <option name="closed" value="true" />
+      <created>1690655304944</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1690655304944</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -285,6 +288,7 @@
     <MESSAGE value="add edit group name" />
     <MESSAGE value="add test for reports add mark" />
     <MESSAGE value="add test for adminbar + add mark" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test for adminbar + add mark" />
+    <MESSAGE value="change login and pass for calls test" />
+    <option name="LAST_COMMIT_MESSAGE" value="change login and pass for calls test" />
   </component>
 </project>
