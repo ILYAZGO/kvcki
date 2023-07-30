@@ -1,2 +1,2 @@
-'''locators for markup'''
+'''locators fo markup'''
 
