@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+from utils.auth import *
 import pytest
 '''Check search all calls for Ecotelecom'''
 
@@ -7,9 +8,7 @@ import pytest
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
-    page.locator("[id='mui-1']").fill(ECOTELECOM)
-    page.locator("[id='mui-2']").fill(ECOPASS)
-    page.locator("[id='mui-3']").click()
+    auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
     page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[6]').click()
     '''naity zvonki'''

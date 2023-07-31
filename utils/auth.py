@@ -1,7 +1,7 @@
-from playwright.sync_api import Page, expect
-from utils.variables import *
+from playwright.sync_api import Page
 
-def auth(page: Page) -> None:
-    page.locator("[id='mui-1']").fill(OPERATOR)
-    page.locator("[id='mui-2']").fill(PASSWORD)
+
+def auth(login, password, page="page: Page"):
+    page.locator("[id='mui-1']").fill(login)
+    page.locator("[id='mui-2']").fill(password)
     page.locator("[id='mui-3']").click()

@@ -3,15 +3,14 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.dates import *
+from utils.auth import *
 import pytest
 
-@pytest.mark.adminbar
+@pytest.mark.test
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
-    page.locator("[id='mui-1']").fill(MANAGER)
-    page.locator("[id='mui-2']").fill(PASSWORD)
-    page.locator("[id='mui-3']").click()
+    auth(MANAGER, PASSWORD, page)
     '''check name have count 2 '''
     expect(page.get_by_text("managerIM")).to_have_count(2)
     '''go to user'''

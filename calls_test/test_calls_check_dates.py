@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+from utils.auth import *
 from utils.dates import *
 import pytest
 
@@ -9,9 +10,7 @@ import pytest
 def test_example(page: Page) -> None:
     page.goto(URL, timeout = timeout)
     '''login'''
-    page.locator("[id='mui-1']").fill(ECOTELECOM)
-    page.locator("[id='mui-2']").fill(ECOPASS)
-    page.locator("[id='mui-3']").click()
+    auth(ECOTELECOM, ECOPASS, page)
     '''check begin and end dates in view. today by default'''
     expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input')).to_have_value(today)
     expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input')).to_have_value(today)
