@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+from utils.auth import *
 import time
 import pytest
 
@@ -14,9 +15,7 @@ user  importTo
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
-    page.locator("[id='mui-1']").fill(ADMIN)
-    page.locator("[id='mui-2']").fill(PASSWORD)
-    page.locator("[id='mui-3']").click()
+    auth(ADMIN, PASSWORD, page)
 
     '''type in users list "import" and choose user "importTo"'''
     page.locator("#react-select-2-input").fill("import")

@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+from utils.auth import *
 import pytest
 
 '''Create,delete,update check-list'''
@@ -8,9 +9,7 @@ import pytest
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
-    page.locator("[id='mui-1']").fill(ADMIN)
-    page.locator("[id='mui-2']").fill(PASSWORD)
-    page.locator("[id='mui-3']").click()
+    auth(ADMIN, PASSWORD, page)
     '''create check-list'''
     page.locator('//*[@id="root"]/div/div[2]/div[1]/div/div[1]/div[2]/button[3]/a').click() #razmetka
     page.get_by_test_id("markup_nav_checklists").click() #4ek_list
