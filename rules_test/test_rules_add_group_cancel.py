@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
+from utils.auth import *
 import pytest
 
 '''Create and cancel group of rules'''
@@ -8,9 +9,7 @@ import pytest
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
-    page.locator("[id='mui-1']").fill(ADMIN)
-    page.locator("[id='mui-2']").fill(PASSWORD)
-    page.locator("[id='mui-3']").click()
+    auth(ADMIN, PASSWORD, page)
     '''create and cancel adding group'''
     page.get_by_role("link", name="Разметка").click() #razmetka
     page.get_by_test_id("markup_addGroup").click() #Добавить группу
