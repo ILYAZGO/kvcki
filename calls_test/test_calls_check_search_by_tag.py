@@ -1,9 +1,12 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.calls import *
 import pytest
 import time
-'''Check search all calls for Ecotelecom'''
+
+'''Check search by tag for Ecotelecom'''
+
 
 @pytest.mark.calls
 def test_example(page: Page) -> None:
@@ -11,17 +14,38 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
-    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[6]').click()
-    '''check'''
-    #expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[3]/div[1]/div/p')).to_have_text("Найдено звонков 3130 из 3130")
-    ''''''
-    page.locator("//html/body/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div/div/div/div/div/div/div/div[1]/div[2]/input").fill("Другой отдел")
+    page.locator(ALL_TIME).click()
+    '''input tag'''
+    page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
     time.sleep(3)
     page.keyboard.press("Enter")
     time.sleep(2)
-    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/div[1]/div/div/div[1]/div/h6').click()
+    page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
-    page.locator('//html/body/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[2]/div/button').click()
-    time.sleep(3)
+    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    time.sleep(4)
     '''check'''
-    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[3]/div[1]/div/p')).to_have_text("Найдено звонков 131 из 3130")
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 131 из 3130")
+    '''add tag'''
+    page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
+    time.sleep(3)
+    page.keyboard.press("Enter")
+    page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
+    '''naity zvonki'''
+    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    '''check'''
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 46 из 3130")
+    '''click to add condition'''
+    page.locator(BUTTON_DOBAVIT_USLOVIE).click()
+    '''change logic operator'''
+    page.locator(CHANGE_LOGIC_OPERATOR).click()
+    page.get_by_text("НЕТ ВСЕХ").click()
+    '''add tag'''
+    page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
+    time.sleep(2)
+    page.keyboard.press("Enter")
+    page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
+    '''naity zvonki'''
+    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    '''check'''
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 19 из 3130")
