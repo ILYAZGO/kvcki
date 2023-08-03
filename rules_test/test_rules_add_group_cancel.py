@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.markup import *
 import pytest
 
 '''Create and cancel group of rules'''
@@ -10,15 +11,17 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
-    '''create and cancel adding group'''
-    page.get_by_role("link", name="Разметка").click() #razmetka
-    page.get_by_test_id("markup_addGroup").click() #Добавить группу
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]").click() #otmena
+    '''adding group'''
+    page.locator(BUTTON_RAZMETKA).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    '''cancel add'''
+    page.locator(BUTTON_OTMENA).click()
     '''check canceled'''
-    expect(page.locator(".styles_noFound__0AI5V")).to_be_visible() #надпись Ничего не найдено
-    '''create and cancel adding group'''
-    page.locator(".styles_addBtn__fyc49").click() #Добавить группу
-    page.get_by_test_id("CloseIcon").click() #Крестик
+    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible() #надпись Ничего не найдено
+    '''adding group'''
+    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    '''cancel add by cross'''
+    page.get_by_test_id(BUTTON_KRESTIK).click()
     '''check canceled'''
-    expect(page.locator(".styles_noFound__0AI5V")).to_be_visible() #надпись Ничего не найдено
+    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible() #надпись Ничего не найдено
 

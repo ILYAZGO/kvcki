@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add pages">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="remove locators from calls tests">
+      <change afterPath="$PROJECT_DIR$/.idea/play.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_search_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_search_rule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +45,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/imustafin/Documents/E2e Tests",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
@@ -333,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691065543481</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="remove locators from calls tests">
+      <option name="closed" value="true" />
+      <created>1691075764033</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1691075764033</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -348,7 +368,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="clear vaw" />
     <MESSAGE value="add readme.txt" />
     <MESSAGE value="add var for import" />
     <MESSAGE value="rename test" />
@@ -373,6 +392,7 @@
     <MESSAGE value="add test search dict and text" />
     <MESSAGE value="add tests calls search" />
     <MESSAGE value="add pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pages" />
+    <MESSAGE value="remove locators from calls tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove locators from calls tests" />
   </component>
 </project>

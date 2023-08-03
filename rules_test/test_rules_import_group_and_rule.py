@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.markup import *
 import time
 import pytest
 
@@ -22,7 +23,7 @@ def test_example(page: Page) -> None:
     page.get_by_text("importTo", exact=True).click()
 
     '''going to Razmetka and click Importirovat Pravila'''
-    page.get_by_role("link", name="Разметка").click()
+    page.locator(BUTTON_RAZMETKA).click()
     page.get_by_test_id("markup_importTagRules").click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''

@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.markup import *
 import pytest
 
 '''Create,delete,update check-list'''
@@ -11,10 +12,10 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''create check-list'''
-    page.locator('//*[@id="root"]/div/div[2]/div[1]/div/div[1]/div[2]/button[3]/a').click() #razmetka
-    page.get_by_test_id("markup_nav_checklists").click() #4ek_list
-    page.get_by_test_id("markup_addChecklists").click() #Добавить чек-лист
-    page.locator("[name='title']").fill("12345")
+    page.locator(BUTTON_RAZMETKA).click()
+    page.get_by_test_id(BUTTON_CHECK_LIST).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_CHECK_LIST).click()
+    page.locator(INPUT_CHECK_LIST_NAME).fill("12345")
     page.locator("[name='questions.0.title']").fill("123456")
     page.locator("[name='questions.0.answers.0.answer']").fill("1234567")
     '''save'''
