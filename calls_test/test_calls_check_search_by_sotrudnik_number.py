@@ -1,7 +1,9 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.calls import *
 import pytest
+import time
 
 
 '''Check search by sotrudnik number for Ecotelecom'''
@@ -12,11 +14,11 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
-    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/button[6]').click()
-    ''''''
-    page.locator('//html/body/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div/div/div[1]/div[2]/input').fill("4995055555")
+    page.locator(ALL_TIME).click()
+    '''add sotrudnik number'''
+    page.locator(INPUT_NOMER_SOTRUDNIKA).fill("4995055555")
     '''naity zvonki'''
-    page.locator('//html/body/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[2]/div/button').click()
+    page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
-    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[3]/div[1]/div/p')).to_have_text("Найдено звонков 670 из 3130")
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 670 из 3130")
 
