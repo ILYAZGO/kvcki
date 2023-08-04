@@ -15,7 +15,7 @@ def test_example(page: Page) -> None:
     '''create group'''
     page.get_by_role("link", name="Разметка").click()
     page.get_by_test_id("markup_addTag").click()  # dobavit teg
-    page.get_by_test_id("markup_newRuleInput").type("66666")  # vvesti nazvanie j
+    page.get_by_test_id("markup_newRuleInput").type("66666")  # vvesti nazvanie l
     page.keyboard.press('Enter')  # kostil'
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
