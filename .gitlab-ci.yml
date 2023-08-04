@@ -1,18 +1,11 @@
 stages:
-  - e2e
   - test
 
 tests:
   stage: test
   image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
   script:
+    - echo "Using public URL: $PUBLIC_URL"
     - pip install -r requirements.txt
     - pytest
 
-test1:
-  stage: e2e
-  image: alpine:latest
-  script:
-    - echo "test1"
-    - echo $FRONTEND_REF
-    - echo "test2"
