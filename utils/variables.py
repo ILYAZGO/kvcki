@@ -1,4 +1,5 @@
-URL = "https://app.stand.imot.io/ru"
+import os
+URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 timeout = 55000
 
 USER ="1userIM"
