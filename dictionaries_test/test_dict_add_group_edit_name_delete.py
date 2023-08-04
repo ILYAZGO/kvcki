@@ -13,10 +13,12 @@ def test_example(page: Page) -> None:
     auth(ADMIN, PASSWORD, page)
     '''create group'''
     page.locator(BUTTON_RAZMETKA).click()
-    page.get_by_test_id("markup_nav_dicts").click() #go to slovari
-    page.get_by_test_id("markup_addGroup").click() #add group
+    '''go to slovari'''
+    page.get_by_test_id(BUTTON_SLOVARI).click()
+    '''add group'''
+    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.get_by_role("textbox").fill("12345")
-    page.locator('//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[1]').click()
+    page.locator(BUTTON_OTPRAVIT).click()
     '''edit name'''
     page.locator(BUTTON_PENCIL).click()  # pencil
     page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")  # fill

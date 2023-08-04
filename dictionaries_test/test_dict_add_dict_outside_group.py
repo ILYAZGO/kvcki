@@ -12,7 +12,7 @@ def test_example(page: Page) -> None:
     auth(ADMIN, PASSWORD, page)
     '''create dict outside group'''
     page.locator(BUTTON_RAZMETKA).click()
-    page.get_by_test_id("markup_nav_dicts").click()
+    page.get_by_test_id(BUTTON_SLOVARI).click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[1]").click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/button").click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("77777")

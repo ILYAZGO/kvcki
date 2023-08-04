@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests&#10;move locators">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="move locators &#10;fix test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -350,7 +348,23 @@
       <option name="project" value="LOCAL" />
       <updated>1691089539634</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="move locators">
+      <option name="closed" value="true" />
+      <created>1691152575156</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1691152575156</updated>
+    </task>
+    <task id="LOCAL-00038" summary="move locators &#10;fix test">
+      <option name="closed" value="true" />
+      <created>1691165812821</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1691165812821</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -365,8 +379,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add var for import" />
-    <MESSAGE value="rename test" />
     <MESSAGE value="add import test &#10;disable dict add group test" />
     <MESSAGE value="add import test also for dict" />
     <MESSAGE value="add search tests" />
@@ -390,6 +402,8 @@
     <MESSAGE value="add pages" />
     <MESSAGE value="remove locators from calls tests" />
     <MESSAGE value="fix tests&#10;move locators" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests&#10;move locators" />
+    <MESSAGE value="move locators" />
+    <MESSAGE value="move locators &#10;fix test" />
+    <option name="LAST_COMMIT_MESSAGE" value="move locators &#10;fix test" />
   </component>
 </project>
