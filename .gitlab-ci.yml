@@ -3,7 +3,7 @@ stages:
 
 tests:
   stage: test
-  image: mcr.microsoft.com/playwright/python:v1.35.0-jammy
+  image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
   script:
     - pip install -r requirements.txt
     - pytest
