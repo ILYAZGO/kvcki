@@ -13,10 +13,10 @@ def test_example(page: Page) -> None:
     auth(ADMIN, PASSWORD, page)
     '''create group'''
     page.locator(BUTTON_RAZMETKA).click()
-    page.get_by_test_id("markup_nav_dicts").click() #slovari
-    page.locator(".styles_addBtn__fyc49").click() #Добавить группу
+    page.get_by_test_id(BUTTON_SLOVARI).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.get_by_role("textbox").fill("12345")
-    page.get_by_role("button", name="Отправить").click()
+    page.locator(BUTTON_OTPRAVIT).click()
     '''create dict inside group'''
     page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div').click()
     page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/button').click()

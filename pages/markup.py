@@ -20,7 +20,7 @@ NI4EGO_NE_NAYDENO =".styles_noFound__0AI5V"
 
 '''locators for dictionaries'''
 
-
+BUTTON_SLOVARI = "markup_nav_dicts"
 
 
 
