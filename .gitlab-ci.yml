@@ -5,7 +5,7 @@ tests:
   stage: test
   image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
   script:
-    - echo "Using public URL: $PUBLIC_URL"
+    - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt
     - pytest
 
