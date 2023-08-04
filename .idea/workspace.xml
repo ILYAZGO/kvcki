@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="move locators &#10;fix test" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="mute assert (fix later)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -364,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691165812821</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="mute assert (fix later)">
+      <option name="closed" value="true" />
+      <created>1691167680810</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1691167680810</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -379,7 +390,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add import test &#10;disable dict add group test" />
     <MESSAGE value="add import test also for dict" />
     <MESSAGE value="add search tests" />
     <MESSAGE value="add test by exact time +timeouts" />
@@ -404,6 +414,7 @@
     <MESSAGE value="fix tests&#10;move locators" />
     <MESSAGE value="move locators" />
     <MESSAGE value="move locators &#10;fix test" />
-    <option name="LAST_COMMIT_MESSAGE" value="move locators &#10;fix test" />
+    <MESSAGE value="mute assert (fix later)" />
+    <option name="LAST_COMMIT_MESSAGE" value="mute assert (fix later)" />
   </component>
 </project>
