@@ -18,6 +18,13 @@ BUTTON_KORZINA = '//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[1]/div[3]/di
 
 NI4EGO_NE_NAYDENO =".styles_noFound__0AI5V"
 
+'''locators for dictionaries'''
+
+
+
+
+
+
 '''locators for check-lists'''
 INPUT_CHECK_LIST_NAME = "[name='title']"
 

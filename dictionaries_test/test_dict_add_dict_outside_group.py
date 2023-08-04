@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.markup import *
 import pytest
 
 
@@ -10,11 +11,11 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''create dict outside group'''
-    page.get_by_role("link", name="Разметка").click()
+    page.locator(BUTTON_RAZMETKA).click()
     page.get_by_test_id("markup_nav_dicts").click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[1]").click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/button").click()
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/div[2]/input").fill("77777")
+    page.locator(INPUT_NEW_GROUP_NAME).fill("77777")
     page.get_by_role('button', name="Отправить").click()
     '''check created dict outside group'''
     expect(page.locator(

@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.markup import *
 import pytest
 
 '''Create dict inside group'''
@@ -11,7 +12,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''create group'''
-    page.get_by_role("link", name="Разметка").click()
+    page.locator(BUTTON_RAZMETKA).click()
     page.get_by_test_id("markup_nav_dicts").click() #slovari
     page.locator(".styles_addBtn__fyc49").click() #Добавить группу
     page.get_by_role("textbox").fill("12345")
