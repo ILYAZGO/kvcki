@@ -10,9 +10,22 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
-    '''create dict outside group'''
+    '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
+    '''go to slovari'''
     page.get_by_test_id(BUTTON_SLOVARI).click()
+    '''pre clean'''
+    if page.get_by_text("Неотсортированные").is_visible():
+        page.get_by_text("77777").click()
+        page.locator(".css-izdlur").click()
+        page.get_by_text("Удалить", exact=True).click()
+        page.get_by_role("button", name="Удалить").click()
+        page.locator(
+            "//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
+    else:
+        pass
+
+    '''create dict outside group'''
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[1]").click()
     page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/button").click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("77777")
@@ -23,14 +36,12 @@ def test_example(page: Page) -> None:
     '''check created dict parent'''
     expect(page.get_by_text("Unsorted")).to_have_text("Unsorted")
     page.reload()
-    expect(page.get_by_text("Неотсортированные")).to_have_count(
-        count=2)  # проверяем что таких надписей две (слева и внутри словаря)
+    expect(page.get_by_text("Неотсортированные")).to_have_count(count=2)  # проверяем что таких надписей две (слева и внутри словаря)
 
     '''teardown'''
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator(
-        "//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
+    page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
     '''check teardown'''
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible()

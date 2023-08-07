@@ -5,6 +5,7 @@ BUTTON_RAZMETKA = '//*[@id="root"]/div/div/div[1]/div/div[1]/div[2]/button[3]/a'
 INPUT_POISK = '//html/body/div/div/div/div[2]/div/div/div[1]/div[2]/div[1]/form/div/div[1]/div[1]/div/input'
 INPUT_NEW_GROUP_NAME = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/div[2]/input"
 INPUT_EDIT_GROUP_NAME = '//*[@id="root"]/div[1]/div[2]/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[1]/div/div/input'
+INPUT_NAZVANIE_GRUPPI = "markup_newRuleInput"
 
 BUTTON_DOBAVIT_GRUPPU = "markup_addGroup"
 BUTTON_DOBAVIT_TEG = "markup_addTag"

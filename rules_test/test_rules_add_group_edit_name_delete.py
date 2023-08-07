@@ -13,6 +13,13 @@ def test_example(page: Page) -> None:
     auth(ADMIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
+    "pre clean"
+    if page.get_by_text("54321").is_visible():
+        page.locator(BUTTON_KORZINA).click()
+    elif page.get_by_text("12345").is_visible():
+        page.locator(BUTTON_KORZINA).click()
+    else:
+        pass
     '''add new group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")

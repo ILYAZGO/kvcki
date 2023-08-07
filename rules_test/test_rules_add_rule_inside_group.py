@@ -11,8 +11,10 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
-    '''create group'''
+    '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
+
+    '''create group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/div[2]/input").fill("99999")  # add name
     page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[1]").click()  # otpravit

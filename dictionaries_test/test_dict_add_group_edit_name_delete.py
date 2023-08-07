@@ -15,6 +15,15 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
     page.get_by_test_id(BUTTON_SLOVARI).click()
+
+    "pre clean"
+    if page.get_by_text("54321").is_visible():
+        page.locator(BUTTON_KORZINA).click()
+    elif page.get_by_text("12345").is_visible():
+        page.locator(BUTTON_KORZINA).click()
+    else:
+        pass
+
     '''add group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.get_by_role("textbox").fill("12345")
