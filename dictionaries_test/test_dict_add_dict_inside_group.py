@@ -11,20 +11,32 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
-    '''create group'''
+    '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
+    '''go to slovari'''
     page.get_by_test_id(BUTTON_SLOVARI).click()
+
+    '''pre clean'''
+    if page.get_by_text("88888").is_visible():
+        page.get_by_text("88888").click()
+        page.locator(".css-izdlur").click()
+        page.get_by_text("Удалить", exact=True).click()
+        page.get_by_role("button", name="Удалить").click()
+        page.locator(BUTTON_KORZINA_2).click()
+    else:
+        pass
+    '''create group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
-    page.get_by_role("textbox").fill("12345")
+    page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
     '''create dict inside group'''
-    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div').click()
-    page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[1]/div[2]/div[1]/div/button').click()
-    page.locator('//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/div[2]/input').fill("98765")
-    page.get_by_role('button', name="Отправить").click()
-    page.locator("//html/body/div/div/div/div[2]/div/div/div[2]/div/div/div/div[3]/div[2]/textarea").fill("random_text")
+    page.locator(CLICK_ON_GROUP).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_SLOVAR).click()
+    page.locator(INPUT_NAZVANIE_SLOVAR).fill("98765")
+    page.locator(BUTTON_OTPRAVIT).click()
+    page.locator(INPUT_SPISOK_SLOV).fill("random_text")
     '''check created dict name'''
-    expect(page.locator('//*[@id="root"]/div/div/div[2]/div/div/div[2]/div/div/div/div[1]/div[2]/div/input')).to_have_value("98765")
+    expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("98765")
     '''check created dict parent'''
     expect(page.get_by_text("12345").nth(1)).to_have_text("12345") #проверяем что есть родительская группа
 
@@ -32,7 +44,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
+    page.locator(BUTTON_KORZINA_2).click()
     '''check teardown'''
     expect(page.get_by_text("12345")).not_to_be_visible()
 

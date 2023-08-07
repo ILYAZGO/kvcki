@@ -14,15 +14,26 @@ def test_example(page: Page) -> None:
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
 
+    '''pre clean'''
+    if page.get_by_text("88888").is_visible():
+        page.get_by_text("88888").click()
+        page.locator(".css-izdlur").click()
+        page.get_by_text("Удалить", exact=True).click()
+        page.get_by_role("button", name="Удалить").click()
+        page.locator(BUTTON_KORZINA_2).click()
+    else:
+        pass
+
     '''create group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/div[2]/input").fill("99999")  # add name
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[1]").click()  # otpravit
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div').click() #pereyti na gruppu
+    page.locator(INPUT_NEW_GROUP_NAME).fill("99999")
+    page.locator(BUTTON_OTPRAVIT).click()
+    page.locator(CLICK_NEW_GROUP).click()
     page.get_by_test_id(BUTTON_DOBAVIT_TEG).click()
-    page.get_by_test_id("markup_newRuleInput").type("88888") #vvesti nazvanie
+    page.get_by_test_id(INPUT_NAZVANIE_TEGA).type("88888")
     page.keyboard.press('Enter') #kostil'
     #page.get_by_test_id("markup_newRuleApply").click() #otpravit
+
     '''check'''
     expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/div[2]/div/input')).to_have_value("88888") #check rule
     expect(page.get_by_text("99999").nth(1)).to_have_text("99999") #check parent group
@@ -31,7 +42,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
+    page.locator(BUTTON_KORZINA_2).click()
     '''check teardown'''
     expect(page.get_by_text("99999")).not_to_be_visible() #check no parent group
 

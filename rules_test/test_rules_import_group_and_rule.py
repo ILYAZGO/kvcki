@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
 
     '''going to Razmetka and click Importirovat Pravila'''
     page.locator(BUTTON_RAZMETKA).click()
-    page.get_by_test_id("markup_importTagRules").click()
+    page.get_by_test_id(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div[2]/input").fill("importFrom")

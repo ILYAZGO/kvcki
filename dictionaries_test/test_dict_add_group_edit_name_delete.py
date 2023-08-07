@@ -26,7 +26,7 @@ def test_example(page: Page) -> None:
 
     '''add group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
-    page.get_by_role("textbox").fill("12345")
+    page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
     '''edit name'''
     page.locator(BUTTON_PENCIL).click()  # pencil
