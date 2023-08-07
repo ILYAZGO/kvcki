@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add pre clean">
-      <change afterPath="$PROJECT_DIR$/integration_tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/integration_tests/est_usedesk.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users_tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users_tests/test_create_delete_admin_by_admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users_tests/test_create_delete_manager_by_admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users_tests/test_create_delete_user_by_admin.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_edit_name_delete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -414,7 +399,23 @@
       <option name="project" value="LOCAL" />
       <updated>1691396169807</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="remove locators, add tests">
+      <option name="closed" value="true" />
+      <created>1691438060739</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1691438060739</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix test">
+      <option name="closed" value="true" />
+      <created>1691438958042</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1691438958042</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,7 +430,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test by exact time +timeouts" />
     <MESSAGE value="add tests" />
     <MESSAGE value="add , timeout=timeout and testid" />
     <MESSAGE value="add fixtures" />
@@ -452,8 +452,9 @@
     <MESSAGE value="move locators" />
     <MESSAGE value="move locators &#10;fix test" />
     <MESSAGE value="mute assert (fix later)" />
-    <MESSAGE value="fix test" />
     <MESSAGE value="add pre clean" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pre clean" />
+    <MESSAGE value="remove locators, add tests" />
+    <MESSAGE value="fix test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix test" />
   </component>
 </project>

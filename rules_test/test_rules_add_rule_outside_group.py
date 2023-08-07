@@ -29,7 +29,7 @@ def test_example(page: Page) -> None:
 
     '''create group'''
     page.get_by_test_id(BUTTON_DOBAVIT_TEG).click()
-    page.get_by_test_id(INPUT_NEW_GROUP_NAME).type("66666")
+    page.get_by_test_id(INPUT_NAZVANIE_TEGA).type("66666")
     page.keyboard.press('Enter')  # kostil'
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
