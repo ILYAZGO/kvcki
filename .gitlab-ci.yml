@@ -3,6 +3,7 @@ stages:
 
 tests:
   stage: test
+  resource_group: e2e-stand-requests
   image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
   script:
     - echo Using public URL $PUBLIC_URL
