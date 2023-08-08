@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test">
+      <change afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users_tests/test_users_check_search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_create_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_create_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_create_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/est_add_delete_user_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,7 +420,23 @@
       <option name="project" value="LOCAL" />
       <updated>1691438958042</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="100% fix rule test">
+      <option name="closed" value="true" />
+      <created>1691439981320</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1691439981320</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fix test">
+      <option name="closed" value="true" />
+      <created>1691479304170</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1691479304170</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,7 +451,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests" />
     <MESSAGE value="add , timeout=timeout and testid" />
     <MESSAGE value="add fixtures" />
     <MESSAGE value="add test" />
@@ -454,6 +474,7 @@
     <MESSAGE value="mute assert (fix later)" />
     <MESSAGE value="add pre clean" />
     <MESSAGE value="remove locators, add tests" />
+    <MESSAGE value="100% fix rule test" />
     <MESSAGE value="fix test" />
     <option name="LAST_COMMIT_MESSAGE" value="fix test" />
   </component>

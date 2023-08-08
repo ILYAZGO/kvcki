@@ -8,14 +8,14 @@ import time
 def test_example(page: Page) -> None:
     page.goto("http://192.168.10.101/feature-dev-951/ru", timeout = timeout)
     '''login'''
-    auth(ADMIN, PASSWORD, page)
+    auth(MANAGER, PASSWORD, page)
     '''go to polzovateli'''
     page.locator("#root > div > div.AdminBar_root__ieqog > a").click()
     '''button create user'''
     page.locator(".header-left-flex [tabindex]").click()
     '''fill required'''
     page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='name']").fill("someName")
-    page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='login']").fill("1createUserByAdmin")
+    page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='login']").fill("1createUserByManager")
     page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='password']").fill(PASSWORD)
     page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='email']").fill("mail@mail.com")
     page.locator("textarea[name='comment']").fill("someComment")
@@ -25,14 +25,14 @@ def test_example(page: Page) -> None:
     '''press dobavit'''
     page.locator(".users_form__footer__BA3ft [tabindex='0']:nth-of-type(2)").click()
     '''go to profile'''
-    page.get_by_text("1createUserByAdmin").click()
+    page.get_by_text("1createUserByManager").click()
     time.sleep(3)
     ''''''
-    expect(page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='login']")).to_have_value("1createUserByAdmin")
+    expect(page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='login']")).to_have_value("1createUserByManager")
     expect(page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='name']")).to_have_value("someName")
     expect(page.locator(".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='email']")).to_have_value("mail@mail.com")
     expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div[1]/div/div[1]/p[1]')).to_have_text("someName")
-    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div[1]/div/div[1]/p[2]')).to_have_text("1createUserByAdmin")
+    expect(page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div[1]/div/div[1]/p[2]')).to_have_text("1createUserByManager")
     expect(page.get_by_text("Пользователь")).to_have_count(1)
 
 
