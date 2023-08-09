@@ -1,8 +1,9 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.users import *
 import pytest
-import time
+
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
@@ -10,9 +11,9 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator("#root > div > div.AdminBar_root__ieqog > a").click()
+    page.locator(BUTTON_POLZOVATELI).click()
     '''fill search'''
-    page.locator("input[name='searchString']").fill("ec")
+    page.locator(INPUT_POISK).fill("ec")
     '''check'''
     expect(page.get_by_text("ecotelecom"))
     expect(page.get_by_text("eco_op1"))

@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
+from pages.users import *
 import pytest
 
 
@@ -10,16 +11,16 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator("#root > div > div.AdminBar_root__ieqog > a").click()
+    page.locator(BUTTON_POLZOVATELI).click()
     '''button create user'''
-    page.locator(".header-left-flex [tabindex]").click()
+    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''cancel by button CANCEL'''
-    page.locator(".users_form__footer__BA3ft [tabindex='0']:nth-of-type(1)").click()
+    page.locator(BUTTON_OTMENA).click()
     '''check'''
     expect(page.get_by_text("Пароль")).not_to_be_visible()
     '''button create user'''
-    page.locator(".header-left-flex [tabindex]").click()
+    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''cancel by button KRESTIK'''
-    page.get_by_test_id("CloseIcon").click()
+    page.get_by_test_id(BUTTON_KRESTIK).click()
     '''check'''
     expect(page.get_by_text("Пароль")).not_to_be_visible()
