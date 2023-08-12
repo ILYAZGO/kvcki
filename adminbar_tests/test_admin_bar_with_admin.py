@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.dates import *
 from utils.auth import *
 import pytest
 
@@ -17,9 +16,8 @@ def test_example(page: Page) -> None:
     '''check name have count 1 and user have count 1'''
     expect(page.get_by_text("adminIM")).to_have_count(1)
     expect(page.get_by_text("importFrom")).to_have_count(1)
+    expect(page.get_by_text("Пользователи")).to_have_count(1)
     '''go back'''
     page.locator('//*[@id="root"]/div/div[1]/button/span').click()
     '''check name have count 2'''
     expect(page.get_by_text("adminIM")).to_have_count(2)
-
-    '''POLZOVATELI!!!!'''

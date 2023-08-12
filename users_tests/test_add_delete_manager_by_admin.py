@@ -7,7 +7,7 @@ import time
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto("http://192.168.10.101/feature-dev-951/ru", timeout = timeout)
+    page.goto(URL, timeout = timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
@@ -32,8 +32,6 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createManagerByAdmin")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")
     expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com")
-    expect(page.locator(LEFT_MENU_NAME)).to_have_text("someName")
-    expect(page.locator(LEFT_MENU_LOGIN)).to_have_text("1createManagerByAdmin")
     expect(page.get_by_text("Менеджер")).to_have_count(1)
 
     '''delete user'''

@@ -5,7 +5,7 @@ import pytest
 
 @pytest.mark.integration
 def test_example(page: Page) -> None:
-    page.goto("http://192.168.10.101/feature-dev-951/ru", timeout = timeout)
+    page.goto(URL, timeout = timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''

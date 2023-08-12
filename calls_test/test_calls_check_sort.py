@@ -23,6 +23,7 @@ def test_example(page: Page) -> None:
     '''change sort to NEW CALLS'''
     page.locator(CHANGE_SORT).click()
     page.get_by_text("Сначала новые").click()
+    time.sleep(2)
     '''check all calls find, NEW CALLS first'''
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("16.05.22 18:21")
 
@@ -31,10 +32,11 @@ def test_example(page: Page) -> None:
     page.get_by_text("Сначала короткие").click()
     time.sleep(3)
     '''check all calls find, SHORT CALLS first'''
-    expect(page.locator(CALL_DATE_AND_TIME_SHORT)).to_have_text("09.02.22 11:41")
+    expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 11:41")
 
     '''change sort to LONG CALLS'''
     page.locator(CHANGE_SORT).click()
     page.get_by_text("Сначала длинные").click()
+    time.sleep(3)
     '''check all calls find, LONG CALLS first'''
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 18:08")

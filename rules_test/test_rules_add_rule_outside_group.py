@@ -3,6 +3,7 @@ from utils.variables import *
 from utils.auth import *
 from pages.markup import *
 import pytest
+import time
 
 '''Create tag in group and outside group'''
 
@@ -15,15 +16,14 @@ def test_example(page: Page) -> None:
     auth(ADMIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
-
+    time.sleep(2)
     '''pre clean'''
     if page.get_by_text("Неотсортированные").is_visible():
         page.get_by_text("66666").click()
         page.locator(".css-izdlur").click()
         page.get_by_text("Удалить", exact=True).click()
         page.get_by_role("button", name="Удалить").click()
-        page.locator(
-            "//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
+        page.locator(BUTTON_KORZINA).click()
     else:
         pass
 
@@ -33,13 +33,12 @@ def test_example(page: Page) -> None:
     page.keyboard.press('Enter')  # kostil'
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
-    expect(page.locator(
-        '//*[@id="root"]/div/div[2]/div[2]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/div[2]/div/input')).to_have_value("66666")  # check rule
+    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")  # check rule
     # expect(page.get_by_text("Неотсортированные")).to_have_count(count=2)  # po4emu to valitsa
     ''''teardown'''
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator("//html/body/div/div/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button").click()
+    page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible()

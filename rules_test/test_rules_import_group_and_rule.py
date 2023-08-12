@@ -21,19 +21,20 @@ def test_example(page: Page) -> None:
     '''type in users list "import" and choose user "importTo"'''
     page.locator("#react-select-2-input").fill("import")
     page.get_by_text("importTo", exact=True).click()
-
+    time.sleep(2)
     '''going to Razmetka and click Importirovat Pravila'''
     page.locator(BUTTON_RAZMETKA).click()
     page.get_by_test_id(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div[2]/input").fill("importFrom")
+    page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")
     page.get_by_text("importFrom", exact=True).click()
 
-    '''click to switch button to import group of rules and rule'''
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[2]/div/div/div/span/input").click()
+    '''click to switch button to import group with rule'''
+    page.locator("(//input[@type='checkbox'])[3]").click()
     page.get_by_role("button", name="Продолжить").click()
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div[2]/div/div/div/span/input").click()
+    '''click to import rule'''
+    page.locator("(//input[@type='checkbox'])[5]").click()
     time.sleep(1)
     page.get_by_role("button", name="К новым правилам").click()
 
@@ -53,8 +54,9 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/button').click()
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/div[2]/div[2]/div/button').click()
+    page.locator("(//button[@type='button'])[14]").click()
+    time.sleep(1)
+    page.locator("(//button[@type='button'])[14]").click()
 
     '''check teardown'''
     expect(page.get_by_text("11111")).not_to_be_visible()

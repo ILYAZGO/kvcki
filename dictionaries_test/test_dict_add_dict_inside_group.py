@@ -3,6 +3,8 @@ from utils.variables import *
 from utils.auth import *
 from pages.markup import *
 import pytest
+import time
+
 
 '''Create dict inside group'''
 
@@ -15,14 +17,16 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
     page.get_by_test_id(BUTTON_SLOVARI).click()
-
+    time.sleep(2)
     '''pre clean'''
-    if page.get_by_text("88888").is_visible():
-        page.get_by_text("88888").click()
+    if page.get_by_text("98765").is_visible():
+
+        page.get_by_text("98765").click()
+
         page.locator(".css-izdlur").click()
         page.get_by_text("Удалить", exact=True).click()
         page.get_by_role("button", name="Удалить").click()
-        page.locator(BUTTON_KORZINA_2).click()
+        page.locator(BUTTON_KORZINA).click()
     else:
         pass
     '''create group'''
@@ -44,7 +48,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator(BUTTON_KORZINA_2).click()
+    page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("12345")).not_to_be_visible()
 

@@ -7,7 +7,7 @@ import pytest
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto("http://192.168.10.101/feature-dev-951/ru", timeout = timeout)
+    page.goto(URL, timeout = timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
@@ -15,7 +15,7 @@ def test_example(page: Page) -> None:
     '''fill search'''
     page.locator(INPUT_POISK).fill("ec")
     '''check'''
-    expect(page.get_by_text("ecotelecom"))
-    expect(page.get_by_text("eco_op1"))
-    expect(page.get_by_text("eco_op2"))
+    expect(page.get_by_text("ecotelecom")).to_be_visible()
+    expect(page.get_by_text("1userIM")).not_to_be_visible()
+
 

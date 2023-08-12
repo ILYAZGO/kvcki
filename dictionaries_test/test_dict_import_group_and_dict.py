@@ -21,6 +21,7 @@ def test_example(page: Page) -> None:
     '''type in users list "import" and choose user "importTo"'''
     page.locator("#react-select-2-input").fill("import")
     page.get_by_text("importTo", exact=True).click()
+    time.sleep(2)
 
     '''going to Razmetka/slovari and click Importirovat slovari'''
     page.locator(BUTTON_RAZMETKA).click()
@@ -28,7 +29,7 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(BUTTON_IMPORTIROVAT_SLOVARI).click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div[2]/input").fill("importFrom")
+    page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")
     page.get_by_text("importFrom", exact=True).click()
 
     '''click to switch button to import group of dict and dict'''
@@ -54,8 +55,9 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/button').click()
-    page.locator('//*[@id="root"]/div/div[2]/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/div[2]/div[2]/div/button').click()
+    page.locator("(//button[@type='button'])[14]").click()
+    time.sleep(1)
+    page.locator("(//button[@type='button'])[14]").click()
 
     '''check teardown'''
     expect(page.get_by_text("44444")).not_to_be_visible()
