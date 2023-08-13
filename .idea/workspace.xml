@@ -4,30 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="move locators to users.py">
-      <change afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users_tests/est_add_user_form_necessary_fields.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="test reanimation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integration_tests/est_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/est_usedesk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/est_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/est_add_delete_user_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_check_search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -468,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691566974363</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="test reanimation">
+      <option name="closed" value="true" />
+      <created>1691843336765</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1691843336765</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -483,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test" />
     <MESSAGE value="add test create rule outside group" />
     <MESSAGE value="add edit group name" />
     <MESSAGE value="add test for reports add mark" />
@@ -508,6 +494,7 @@
     <MESSAGE value="fix test" />
     <MESSAGE value="upgrade test add test" />
     <MESSAGE value="move locators to users.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="move locators to users.py" />
+    <MESSAGE value="test reanimation" />
+    <option name="LAST_COMMIT_MESSAGE" value="test reanimation" />
   </component>
 </project>
