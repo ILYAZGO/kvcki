@@ -42,8 +42,8 @@ def test_example(page: Page) -> None:
     '''check quota'''
     expect(page.get_by_text("00:01:00")).to_be_visible()
     '''go to profile'''
-    page.get_by_text("1createUserByAdmin").click()
-    time.sleep(3)
+    page.locator("//div[contains(text(),'1createUserByAdmin')]").click()
+    time.sleep(5)
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByAdmin")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")

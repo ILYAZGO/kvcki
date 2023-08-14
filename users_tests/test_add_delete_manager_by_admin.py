@@ -26,8 +26,8 @@ def test_example(page: Page) -> None:
     '''press dobavit'''
     page.locator(BUTTON_DOBAVIT).click()
     '''go to profile'''
-    page.get_by_text("1createManagerByAdmin").click()
-    time.sleep(3)
+    page.locator("//div[contains(text(),'1createManagerByAdmin')]").click()
+    time.sleep(5)
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createManagerByAdmin")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")
