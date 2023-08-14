@@ -3,6 +3,7 @@ from utils.variables import *
 from utils.auth import *
 from pages.markup import *
 import pytest
+import time
 
 '''Create and delete group of dictionaries'''
 
@@ -28,6 +29,7 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
+    time.sleep(1)
     '''edit name'''
     page.locator(BUTTON_PENCIL).click()  # pencil
     page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")  # fill
