@@ -7,7 +7,7 @@ import time
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto("http://192.168.10.101/feature-dev-1003/ru", timeout = timeout)
+    page.goto(URL, timeout = timeout)
     '''login'''
     auth(USER, PASSWORD, page)
     '''go to nastroiki'''

@@ -17,6 +17,7 @@ INPUT_NOMER_SOTRUDNIKA = '//html/body/div/div/div[2]/div/div/div[2]/div[1]/div/d
 INPUT_SLOVAR_ILI_TEXT_CLIENT = '//*[@id="react-select-6-input"]'
 INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '//*[@id="react-select-8-input"]'
 # buttons
+BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_NAYTI_ZVONKI = '//html/body/div/div/div[2]/div/div/div[2]/div[1]/div/div[2]/div/button'
 BUTTON_DOBAVIT_USLOVIE = '//*[@id="root"]/div/div[2]/div/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/button/p'
 # other

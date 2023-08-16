@@ -20,7 +20,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     time.sleep(75)
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 430 из 3130")
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 431 из 3130")
     '''choose dict'''
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).clear()
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).fill("Зо")

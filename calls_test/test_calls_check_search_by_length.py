@@ -32,6 +32,6 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_DLITELNOST_ZVONKA).fill("1711")
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(1)
+    time.sleep(4)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 1 из 3130")

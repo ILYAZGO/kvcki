@@ -26,13 +26,14 @@ def test_example(page: Page) -> None:
     #'''stt'''
     #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[1]/div[2]/div/div/div[1]/div[2]/input").click()
     #page.get_by_text("Русский").click()
-    #''''''
+    #'''stt engine'''
     #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[2]/div[2]/div/div/div[1]/div[2]/input").click()
     #time.sleep(2)
-    #page.get_by_text("Happyscribe").click()
-    #''''''
+    #page.get_by_text("Яндекс").click()
+    #'''stt model'''
     #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[3]/div[2]/div/div/div[1]/div[2]/input").click()
-    #page.get_by_text("detail").click()
+    #page.get_by_text("Обобщённая").click()
+
     '''add quota'''
     page.locator(INPUT_QUOTA).fill("60")
 
