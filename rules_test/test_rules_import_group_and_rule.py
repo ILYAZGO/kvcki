@@ -22,6 +22,8 @@ def test_example(page: Page) -> None:
     page.locator("#react-select-2-input").fill("import")
     page.get_by_text("importTo", exact=True).click()
     time.sleep(2)
+
+
     '''going to Razmetka and click Importirovat Pravila'''
     page.locator(BUTTON_RAZMETKA).click()
     page.get_by_test_id(BUTTON_IMPORTIROVAT_PRAVILA).click()

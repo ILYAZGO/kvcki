@@ -37,6 +37,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_NAME).fill("usedeskTest")
     page.locator(INPUT_LOGIN).fill("usedesk")
     page.locator(INPUT_PASSWORD).fill(PASSWORD)
+    time.sleep(2)
     page.locator(CHOOSE_ROLE).fill("Пользователь")
     '''press enter'''
     page.keyboard.press("Enter")
@@ -55,6 +56,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
     '''podklu4it'''
     page.locator(BUTTON_PODKLU4IT).click()
+    time.sleep(2)
     '''choose usedesk'''
     page.locator(BUTTON_USEDESK).click()
     time.sleep(2)

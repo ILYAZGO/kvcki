@@ -23,7 +23,7 @@ def test_example(page: Page) -> None:
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(4)
+    time.sleep(6)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 130 из 3130")
     '''add tag'''
