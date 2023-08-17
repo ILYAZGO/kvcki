@@ -85,7 +85,7 @@ def test_example(page: Page) -> None:
     time.sleep(60)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
-    time.sleep(3)
+    time.sleep(7)
     '''press find calls'''
     page.locator(BUTTON_FIND_CALLS).click()
     time.sleep(10)

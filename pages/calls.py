@@ -22,7 +22,7 @@ BUTTON_NAYTI_ZVONKI = '//html/body/div/div/div[2]/div/div/div[2]/div[1]/div/div[
 BUTTON_DOBAVIT_USLOVIE = '//*[@id="root"]/div/div[2]/div/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/button/p'
 # other
 NAYDENO_ZVONKOV = '//*[@id="root"]/div/div[2]/div/div/div[3]/div[1]/div/p'
-POISK_PO_FRAGMENTAM = '//*[@id="root"]/div/div[2]/div/div/div[2]/div[1]/div/div[1]/div[1]/div/div/div[1]/div/h6'
+POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по фрагментам')]"
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[1]'
 CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div/div[3]/div[2]/div[1]/div/div/div[1]/div/div[1]/div[1]/div[1]/div[3]/div/p'
 CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[1]/div'

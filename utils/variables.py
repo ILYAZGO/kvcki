@@ -24,3 +24,14 @@ REGISTRATION_EMAIL = "ilyasmustafin@imot.io"
 REGISTRATION_PHONE = "9169540252"
 
 USEDESK_TOKEN = "445ab1e8e6853d3bbedf686ab02f4cb746098a9a"
+
+
+# for multiple users
+
+name1 = "auto_test_user_1"
+name2 = "auto_test_user_2"
+name3 = "auto_test_user_3"
+
+login1 = "auto_test_user_1"
+login2 = "auto_test_user_2"
+login3 = "auto_test_user_3"

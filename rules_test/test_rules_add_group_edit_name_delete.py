@@ -3,6 +3,7 @@ from utils.variables import *
 from utils.auth import *
 from pages.markup import *
 import pytest
+import time
 
 '''Create and delete group of rules'''
 
@@ -13,6 +14,7 @@ def test_example(page: Page) -> None:
     auth(ADMIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
+    time.sleep(2)
     "pre clean"
     if page.get_by_text("54321").is_visible():
         page.locator(BUTTON_KORZINA).click()

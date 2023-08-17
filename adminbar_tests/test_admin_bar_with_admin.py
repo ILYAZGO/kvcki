@@ -14,7 +14,9 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("adminIM")).to_have_count(2)
     '''go to user'''
     page.locator('//*[@id="react-select-2-input"]').fill("importFrom")
+    time.sleep(2)
     page.get_by_text("importFrom", exact=True).click()
+    time.sleep(3)
     '''check name have count 1 and user have count 1'''
     expect(page.get_by_text("adminIM")).to_have_count(1)
     expect(page.get_by_text("importFrom")).to_have_count(1)

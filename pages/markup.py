@@ -17,8 +17,8 @@ BUTTON_KRESTIK = "CloseIcon"
 BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"
 BUTTON_OTPRAVIT = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[1]"
 BUTTON_PENCIL = "//div[@aria-label='Изменить название']//div//button[@type='button']//*[name()='svg']"
-BUTTON_SAVE_EDITED_NAME ='//*[@id="root"]/div/div[3]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[1]/div/div/button[1]'
-BUTTON_KORZINA = '//*[@id="root"]/div[1]/div[3]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]/div[2]/div[2]/div/button'
+BUTTON_SAVE_EDITED_NAME = "(//button[@type='submit'])[1]"
+BUTTON_KORZINA = "//div[@aria-label='Удалить']//div//button[@type='button']"
 BUTTON_IMPORTIROVAT_PRAVILA = "markup_importTagRules"
 
 # other
