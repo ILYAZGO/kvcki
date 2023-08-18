@@ -12,7 +12,7 @@ import time
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(ADMIN, PASSWORD, page)
+    auth(login1, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''

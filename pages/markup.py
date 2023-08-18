@@ -22,7 +22,7 @@ BUTTON_KORZINA = "//div[@aria-label='Удалить']//div//button[@type='button
 BUTTON_IMPORTIROVAT_PRAVILA = "markup_importTagRules"
 
 # other
-CLICK_NEW_GROUP = '//*[@id="root"]/div/div[3]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div[1]'
+CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NI4EGO_NE_NAYDENO =".styles_noFound__0AI5V"
 NAZVANIE_PRAVILA_TEGIROVANIYA = "//input[@name='title']"
 

@@ -10,11 +10,13 @@ def create_user(URL,LOGIN,NAME,PASSWORD,HEADERS):
     user_id = create.text.replace('"', '')
 
     if create.status_code == 200:
-        print("\nUSER CREATED SUCCESSFULLY")
+        print(f"\n>>>>> USER {NAME } CREATED SUCCESSFULLY <<<<<")
     elif create.status_code == 409:
-        print("\nUSER ALREADY CREATED")
+        print(f"\n>>>>> USER {NAME} ALREADY EXISTS <<<<")
+    elif create.status_code == 422:
+        print(f"\n>>>>> VALIDATION ERROR 422 <<<<")
     else:
-        print("\nwtf")
+        print(f"\n>>>>> ACCESS DENIED 403 <<<<")
 
     return user_id
 
@@ -23,6 +25,6 @@ def delete_user(URL,USER_ID,HEADERS):
     delete = requests.delete(url=URL + "/user/" + USER_ID, headers=HEADERS)
 
     if delete.status_code == 204:
-        print("\nUSER DELETED")
+        print(f"\n>>>>> USER {USER_ID} DELETED <<<<")
     else:
-        print("\nUSER NOT DELETED")
+        print(f"\n>>>>> USER {USER_ID} NOT DELETED <<<<")

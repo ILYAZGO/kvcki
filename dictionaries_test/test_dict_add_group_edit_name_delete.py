@@ -11,7 +11,7 @@ import time
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(ADMIN, PASSWORD, page)
+    auth(login4, PASSWORD, page)
     '''create group'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''

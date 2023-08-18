@@ -53,31 +53,13 @@ def users():
     user_id_1 = create_user(URL, name1, login1, PASSWORD, headers_create)
     user_id_2 = create_user(URL, name2, login2, PASSWORD, headers_create)
     user_id_3 = create_user(URL, name3, login3, PASSWORD, headers_create)
-
-    # data = {
-    #     'role': 'user',
-    #     'login': 'qwe',
-    #     'name': 'qwe',
-    #     'password': 'qwe'
-    # }
-    # create = requests.post(url=URL + "/user", headers=headers1, json=data)
-    # user_id = create.text.replace('"', '')
-    #
-    # if create.status_code == 200:
-    #     print("\nUSERS CREATED SUCCESSFULLY")
-    # elif create.status_code == 409:
-    #     print("\nUSERS ALREADY CREATED")
-    # else:
-    #     print("\nwtf")
+    user_id_4 = create_user(URL, name4, login4, PASSWORD, headers_create)
+    user_id_5 = create_user(URL, name5, login5, PASSWORD, headers_create)
 
     yield
 
     delete_user(URL, user_id_1, headers_delete)
     delete_user(URL, user_id_2, headers_delete)
     delete_user(URL, user_id_3, headers_delete)
-    # delete = requests.delete(url=URL + "/user/" + user_id, headers=headers_delete, json=data)
-    #
-    # if delete.status_code == 204:
-    #     print("\nUSERS DELETED")
-    # else:
-    #     print("\nUSERS NOT DELETED")
+    delete_user(URL, user_id_4, headers_delete)
+    delete_user(URL, user_id_5, headers_delete)
