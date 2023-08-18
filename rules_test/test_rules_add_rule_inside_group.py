@@ -3,6 +3,7 @@ from utils.variables import *
 from utils.auth import *
 from pages.markup import *
 import pytest
+import time
 
 '''Create tag in group and outside group'''
 
@@ -42,6 +43,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
+    time.sleep(2)
     page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("99999")).not_to_be_visible() #check no parent group

@@ -39,6 +39,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
+    time.sleep(2)
     page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible()

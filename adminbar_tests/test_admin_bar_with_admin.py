@@ -23,5 +23,6 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Пользователи")).to_have_count(1)
     '''go back'''
     page.locator('//*[@id="root"]/div/div[1]/button/span').click()
+    time.sleep(10)
     '''check name have count 2'''
     expect(page.get_by_text("adminIM")).to_have_count(2)
