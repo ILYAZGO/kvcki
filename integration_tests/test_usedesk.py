@@ -14,39 +14,8 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
-    page.locator(INPUT_USER_DROPDOWN).fill("usedeskTest")
     time.sleep(2)
-    if page.get_by_text("usedeskTest", exact=True).is_visible():
-        page.get_by_text("usedeskTest", exact=True).click()
-        time.sleep(2)
-        '''go to nastroiki'''
-        page.locator(BUTTON_NASTROIKI).click()
-        time.sleep(3)
-        '''delete user'''
-        page.locator(BUTTON_SOTRUDNIKI_KORZINA).click()
-        time.sleep(3)
-        page.locator(BUTTON_SOTRUDNIKI_UDALIT).click()
-        page.locator(BUTTON_POLZOVATELI).click()
-    else:
-        pass
-
-    '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
-    '''fill required'''
-    page.locator(INPUT_NAME).fill("usedeskTest")
-    page.locator(INPUT_LOGIN).fill("usedesk")
-    page.locator(INPUT_PASSWORD).fill(PASSWORD)
-    time.sleep(2)
-    page.locator(CHOOSE_ROLE).fill("Пользователь")
-    '''press enter'''
-    page.keyboard.press("Enter")
-    '''add quota'''
-    page.locator(INPUT_QUOTA).fill("100")
-    '''press dobavit'''
-    page.locator(BUTTON_DOBAVIT).click()
-    time.sleep(3)
-    '''go to created user'''
+    '''go to user'''
     page.locator(INPUT_USER_DROPDOWN).fill("usedeskTest")
     page.get_by_text("usedeskTest", exact=True).click()
     time.sleep(6)
@@ -56,7 +25,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
     '''podklu4it'''
     page.locator(BUTTON_PODKLU4IT).click()
-    time.sleep(2)
+    time.sleep(1)
     '''choose usedesk'''
     page.locator(BUTTON_USEDESK).click()
     time.sleep(2)
@@ -85,7 +54,7 @@ def test_example(page: Page) -> None:
     time.sleep(60)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
-    time.sleep(7)
+    time.sleep(4)
     '''go to week'''
     page.locator(WEEK).click()
     time.sleep(2)
@@ -98,13 +67,13 @@ def test_example(page: Page) -> None:
 
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
-    time.sleep(3)
-    '''delete user'''
-    page.locator(BUTTON_SOTRUDNIKI_KORZINA).click()
-    time.sleep(3)
-    page.locator(BUTTON_SOTRUDNIKI_UDALIT).click()
+    time.sleep(2)
 
-    expect(page.locator(LOGIN_IN_LEFT_MENU)).to_have_text("4adminIM")
+    page.locator(BUTTON_INTEGRACII_IN_MENU).click()
+
+    page.locator("div[class='styles_button__xgQ1q'] button[type='button']").click()
+    time.sleep(1)
+    expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
 
 
 

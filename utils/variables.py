@@ -1,5 +1,6 @@
 import os
 URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
+API_URL = "https://api.stand.imot.io"
 timeout = 55000
 
 USER ="1userIM"
@@ -33,9 +34,11 @@ name2 = "auto_test_user_2"
 name3 = "auto_test_user_3"
 name4 = "auto_test_user_4"
 name5 = "auto_test_user_5"
+name_usedesk = "usedeskTest"
 
 login1 = "auto_test_user_1"
 login2 = "auto_test_user_2"
 login3 = "auto_test_user_3"
 login4 = "auto_test_user_4"
 login5 = "auto_test_user_5"
+login_usedesk = "usedesk"
