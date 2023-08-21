@@ -51,7 +51,7 @@ def test_example(page: Page) -> None:
     '''sozdat'''
     page.get_by_test_id(BUTTON_SOZDAT).click()
     '''long wait for download'''
-    time.sleep(60)
+    time.sleep(185)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
     time.sleep(4)

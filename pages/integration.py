@@ -1,6 +1,6 @@
 INPUT_USER_DROPDOWN = "#react-select-2-input"
 INPUT_API_TOKEN = "//input[@name='api_token']"
-INPUT_CALLS_LIMIT = "//html[1]/body[1]/div[2]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/input[1]"
+INPUT_CALLS_LIMIT = "//html/body/div[2]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/input"
 
 BUTTON_INTEGRACII_IN_MENU = '//*[@id="root"]/div/div[3]/div/div[1]/div/div[2]/a[8]'
 BUTTON_PODKLU4IT = ".styles_goToIntegrationsList__KXaHU"
