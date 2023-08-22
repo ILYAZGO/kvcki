@@ -1,8 +1,16 @@
 import requests
 
 
-def get_token(URL):
-    headers = {
+'''for create user write before test :
+USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, {name}, {login}, PASSWORD)
+
+for delete user write after test :
+delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
+
+
+
+def create_user(URL,NAME,LOGIN,PASSWORD):
+    headers_for_get_token = {
         'accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
     }
@@ -14,18 +22,28 @@ def get_token(URL):
         'client_id': '',
         'client_secret': '',
     }
-    get_token = requests.post(url=URL + "/token", headers=headers, data=data)
 
-    return get_token
-
-def create_user(URL,NAME,LOGIN,PASSWORD,HEADERS):
-    data = {
+    json = {
         'role': 'user',
         'login': LOGIN,
         'name': NAME,
         'password': PASSWORD
     }
-    create = requests.post(url=URL + "/user", headers=HEADERS, json=data)
+
+
+    get_token = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data)
+
+    token = get_token.json()
+    bearer = token['token_type'].capitalize()
+    access_token = token['access_token']
+
+    headers_for_create = {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': bearer + " " + access_token,
+    }
+
+    create = requests.post(url=URL + "/user", headers=headers_for_create, json=json)
     user_id = create.text.replace('"', '')
 
     if create.status_code == 200:
@@ -41,21 +59,25 @@ def create_user(URL,NAME,LOGIN,PASSWORD,HEADERS):
         "time_nominal": 7200
     }
 
-    give_quota = requests.post(url=URL + "/user/" + user_id + "/quota", headers=HEADERS, json=quota)
+    give_quota = requests.post(url=URL + "/user/" + user_id + "/quota", headers=headers_for_create, json=quota)
 
     if give_quota.status_code == 200:
         print(f">>>>> USER {NAME} WITH user_id: {user_id} IS GIVEN A QUOTA OF 120 MINUTES <<<<<")
     else:
         print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
+    return user_id, bearer, access_token
 
 
 
-    return user_id
+def delete_user(URL,USER_ID, BEARER, ACCESS_TOKEN):
 
-def delete_user(URL,USER_ID,HEADERS):
+    headers_for_delete = {
+        'accept': '*/*',
+        'Authorization': BEARER + " " + ACCESS_TOKEN,
+    }
 
-    delete = requests.delete(url=URL + "/user/" + USER_ID, headers=HEADERS)
+    delete = requests.delete(url=URL + "/user/" + USER_ID, headers=headers_for_delete)
 
     if delete.status_code == 204:
         print(f"\n>>>>> USER {USER_ID} DELETED <<<<<")

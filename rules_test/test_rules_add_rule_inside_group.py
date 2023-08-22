@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
 from pages.markup import *
+from utils.create_delete_user import create_user, delete_user
 import pytest
 import time
 
@@ -9,21 +10,13 @@ import time
 
 @pytest.mark.rules
 def test_example(page: Page) -> None:
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name3, login3, PASSWORD)
+
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(login3, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
-
-    '''pre clean'''
-    if page.get_by_text("88888").is_visible():
-        page.get_by_text("88888").click()
-        page.locator(".css-izdlur").click()
-        page.get_by_text("Удалить", exact=True).click()
-        page.get_by_role("button", name="Удалить").click()
-        page.locator(BUTTON_KORZINA).click()
-    else:
-        pass
 
     '''create group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
@@ -48,7 +41,7 @@ def test_example(page: Page) -> None:
     '''check teardown'''
     expect(page.get_by_text("99999")).not_to_be_visible() #check no parent group
 
-
+    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 
 
 

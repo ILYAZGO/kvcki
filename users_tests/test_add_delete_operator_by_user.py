@@ -7,13 +7,14 @@ import time
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(USER, PASSWORD, page)
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
     '''go to sotrudniki'''
-    page.locator(BUTTON_SOTRUDNIKI).click()
+    page.get_by_role("link", name="Сотрудники").click()
+    #page.locator(BUTTON_SOTRUDNIKI).click()
     time.sleep(2)
 
     if page.locator(SOTRUDNIK_LOGIN).is_visible():
@@ -35,7 +36,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_LOGIN_SOTRUDNIKA).fill("NEW_OPERATOR_LOGIN")
     page.locator(INPUT_PASSWORD_SOTRUDNIKA).fill("NEW_OPERATOR_PASSWORD")
     page.locator(BUTTON_SOTRUDNIKI_DOBAVIT).click()
-    time.sleep(1)
+    time.sleep(7)
 
     expect(page.locator(SOTRUDNIK_LOGIN)).to_have_text("NEW_OPERATOR_LOGIN")
     expect(page.locator(SOTRUDNIK_NAME)).to_have_text("NEW_OPERATOR")

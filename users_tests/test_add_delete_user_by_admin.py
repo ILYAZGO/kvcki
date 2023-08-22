@@ -20,7 +20,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_PASSWORD).fill(PASSWORD)
     page.locator(INPUT_EMAIL).fill("mail@mail.com")
     page.locator(INPUT_COMMENT).fill("someComment")
-    page.locator(CHOOSE_ROLE).fill("Пользователь")
+    page.locator(CHOOSE_ROLE).fill("Компания")
     '''press enter'''
     page.keyboard.press("Enter")
     #'''stt'''
@@ -39,20 +39,20 @@ def test_example(page: Page) -> None:
 
     '''press dobavit'''
     page.locator(BUTTON_DOBAVIT).click()
-    time.sleep(1)
+    time.sleep(10)
     '''check quota'''
-    expect(page.get_by_text("00:01:00")).to_be_visible()
+    expect(page.get_by_text("60")).to_be_visible()
     '''go to profile'''
     page.locator("//div[contains(text(),'1createUserByAdmin')]").click()
-    time.sleep(5)
+    time.sleep(22)
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByAdmin")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")
     expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com")
-    expect(page.get_by_text("Пользователь")).to_have_count(1)
+    expect(page.get_by_text("Компания")).to_have_count(1)
 
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()
     page.locator(BUTTON_PODTVERDIT).click()
-
+    time.sleep(15)
     expect(page.locator(INPUT_LOGIN)).to_have_value("4adminIM")

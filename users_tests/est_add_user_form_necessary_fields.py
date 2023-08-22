@@ -41,7 +41,7 @@ def test_example(page: Page) -> None:
     '''check necessary'''
     expect(page.get_by_text("Заполните все обязательные поля")).not_to_be_visible()
     '''choose role'''
-    page.locator(CHOOSE_ROLE).fill("Пользователь")
+    page.locator(CHOOSE_ROLE).fill("Компания")
     '''press enter'''
     page.keyboard.press("Enter")
     '''press dobavit'''
@@ -53,7 +53,7 @@ def test_example(page: Page) -> None:
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByAdmin")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")
-    expect(page.get_by_text("Пользователь")).to_have_count(1)
+    expect(page.get_by_text("Компания")).to_have_count(1)
 
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()

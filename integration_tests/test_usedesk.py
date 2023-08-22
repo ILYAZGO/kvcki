@@ -5,11 +5,14 @@ from pages.users import *
 from utils.dates import yesterday
 from pages.calls import *
 from pages.integration import *
+from utils.create_delete_user import create_user, delete_user
 import pytest
 import time
 
 @pytest.mark.integration
 def test_example(page: Page) -> None:
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name_usedesk, login_usedesk, PASSWORD)
+
     page.goto(URL, timeout = timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
@@ -74,6 +77,8 @@ def test_example(page: Page) -> None:
     page.locator("div[class='styles_button__xgQ1q'] button[type='button']").click()
     time.sleep(1)
     expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
+
+    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 
 
 

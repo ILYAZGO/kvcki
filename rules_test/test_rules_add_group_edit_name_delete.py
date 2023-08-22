@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
 from pages.markup import *
+from utils.create_delete_user import create_user, delete_user
 import pytest
 import time
 
@@ -9,6 +10,8 @@ import time
 
 @pytest.mark.rules
 def test_example(page: Page) -> None:
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name2, login2, PASSWORD)
+
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(login2, PASSWORD, page)
@@ -36,5 +39,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_KORZINA).click()
     '''check deleted'''
     expect(page.get_by_text("54321")).not_to_be_visible()
+
+    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 
 

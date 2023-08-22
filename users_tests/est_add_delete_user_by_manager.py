@@ -21,7 +21,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_PASSWORD).fill(PASSWORD)
     page.locator(INPUT_EMAIL).fill("mail@mail.com")
     page.locator(INPUT_COMMENT).fill("someComment")
-    page.locator(CHOOSE_ROLE).fill("Пользователь")
+    page.locator(CHOOSE_ROLE).fill("Компания")
     '''press enter'''
     page.keyboard.press("Enter")
     '''press dobavit'''
@@ -34,7 +34,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByManager")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")
     expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com")
-    expect(page.get_by_text("Пользователь")).to_have_count(1)
+    expect(page.get_by_text("Компания")).to_have_count(1)
 
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()
