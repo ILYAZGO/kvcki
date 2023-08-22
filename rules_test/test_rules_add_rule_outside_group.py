@@ -24,6 +24,8 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(BUTTON_DOBAVIT_TEG).click()
     page.get_by_test_id(INPUT_NAZVANIE_TEGA).type("66666")
     page.keyboard.press('Enter')  # kostil'
+
+    time.sleep(3)
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
     expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")  # check rule

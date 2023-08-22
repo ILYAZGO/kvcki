@@ -34,9 +34,10 @@ def test_example(page: Page) -> None:
     #'''check updated'''
     #expect(page.get_by_text("Чек-лист обновлен")).to_be_visible()
     '''delete'''
-    page.locator("//div[@aria-label='Удалить']//div//button[@type='button']").click()
+    page.locator(BUTTON_KORZINA).click()
     page.get_by_role("button", name="Удалить").click()
+    time.sleep(4)
     '''check deleted'''
     time.sleep(2)
     #expect(page.get_by_text("Чек-лист удален")).to_be_visible()
-    expect(page.locator(".styles_noFound__0AI5V")).to_be_visible()
+    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible()
