@@ -18,7 +18,8 @@ def test_example(page: Page) -> None:
     time.sleep(3)
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(75)
+    time.sleep(110)
+    page.wait_for_selector(NAYDENO_ZVONKOV)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 152 из 3130")
     '''choose dict'''
@@ -27,5 +28,6 @@ def test_example(page: Page) -> None:
     page.get_by_text("Зомбоящик").click()
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(100)
+    time.sleep(130)
+    page.wait_for_selector(NAYDENO_ZVONKOV)
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 410 из 3130")
