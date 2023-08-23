@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests, add data-testid">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeout wait until load">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/est_admin_bar_with_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_check_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,14 +90,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689009674552</updated>
-    </task>
-    <task id="LOCAL-00015" summary="add test by exact time +timeouts">
-      <option name="closed" value="true" />
-      <created>1690220867571</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1690220867571</updated>
     </task>
     <task id="LOCAL-00016" summary="add tests">
       <option name="closed" value="true" />
@@ -488,7 +475,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692814375974</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="add timeout wait until load">
+      <option name="closed" value="true" />
+      <created>1692818636942</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1692818636943</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests calls search" />
     <MESSAGE value="add pages" />
     <MESSAGE value="remove locators from calls tests" />
     <MESSAGE value="fix tests&#10;move locators" />
@@ -528,6 +522,7 @@
     <MESSAGE value="fix tests again" />
     <MESSAGE value="magic" />
     <MESSAGE value="fix tests, add data-testid" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests, add data-testid" />
+    <MESSAGE value="add timeout wait until load" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timeout wait until load" />
   </component>
 </project>
