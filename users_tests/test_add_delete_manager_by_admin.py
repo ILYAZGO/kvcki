@@ -11,9 +11,9 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
+    page.get_by_test_id(BUTTON_POLZOVATELI).click()
     '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''fill required'''
     page.locator(INPUT_NAME).fill("someName")
     page.locator(INPUT_LOGIN).fill("1createManagerByAdmin")
@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
     '''press enter'''
     page.keyboard.press("Enter")
     '''press dobavit'''
-    page.locator(BUTTON_DOBAVIT).click()
+    page.get_by_test_id(BUTTON_DOBAVIT).click()
     time.sleep(2)
     '''go to profile'''
     page.locator("//div[contains(text(),'1createManagerByAdmin')]").click()
@@ -33,7 +33,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createManagerByAdmin")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")
     expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com")
-    #expect(page.get_by_text("Интегратор")).to_have_count(1)  slovalos potomu 4to noviy punkt menu
+    expect(page.get_by_text("Интегратор")).to_have_count(2)  #slovalos potomu 4to noviy punkt menu
     time.sleep(2)
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()

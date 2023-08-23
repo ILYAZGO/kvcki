@@ -55,16 +55,16 @@ def create_user(URL,NAME,LOGIN,PASSWORD):
     else:
         print(f"\n>>>>> ACCESS DENIED 403 <<<<<")
 
-    quota = {
-        "time_nominal": 7200
-    }
-
-    give_quota = requests.post(url=URL + "/user/" + user_id + "/quota", headers=headers_for_create, json=quota)
-
-    if give_quota.status_code == 200:
-        print(f">>>>> USER {NAME} WITH user_id: {user_id} IS GIVEN A QUOTA OF 120 MINUTES <<<<<")
-    else:
-        print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
+    # quota = {
+    #     "time_nominal": 7200
+    # }
+    #
+    # give_quota = requests.post(url=URL + "/user/" + user_id + "/quota", headers=headers_for_create, json=quota)
+    #
+    # if give_quota.status_code == 200:
+    #     print(f">>>>> USER {NAME} WITH user_id: {user_id} IS GIVEN A QUOTA OF 120 MINUTES <<<<<")
+    # else:
+    #     print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
     return user_id, bearer, access_token
 

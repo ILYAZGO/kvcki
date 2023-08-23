@@ -7,19 +7,19 @@ import pytest
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
+    page.get_by_test_id(BUTTON_POLZOVATELI).click()
     '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''cancel by button CANCEL'''
-    page.locator(BUTTON_OTMENA).click()
+    page.get_by_test_id(BUTTON_OTMENA).click()
     '''check'''
     expect(page.get_by_text("Пароль")).not_to_be_visible()
     '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''cancel by button KRESTIK'''
     page.get_by_test_id(BUTTON_KRESTIK).click()
     '''check'''

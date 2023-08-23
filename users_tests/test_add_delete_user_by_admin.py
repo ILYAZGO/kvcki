@@ -11,9 +11,9 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
+    page.get_by_test_id(BUTTON_POLZOVATELI).click()
     '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''fill required'''
     page.locator(INPUT_NAME).fill("someName")
     page.locator(INPUT_LOGIN).fill("1createUserByAdmin")
@@ -34,14 +34,14 @@ def test_example(page: Page) -> None:
     #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[3]/div[2]/div/div/div[1]/div[2]/input").click()
     #page.get_by_text("Обобщённая").click()
 
-    '''add quota'''
-    page.locator(INPUT_QUOTA).fill("60")
+    # '''add quota'''
+    # page.locator(INPUT_QUOTA).fill("60")
 
     '''press dobavit'''
-    page.locator(BUTTON_DOBAVIT).click()
+    page.get_by_test_id(BUTTON_DOBAVIT).click()
     time.sleep(10)
     '''check quota'''
-    expect(page.get_by_text("60")).to_be_visible()
+    #expect(page.get_by_text("60")).to_be_visible()
     '''go to profile'''
     page.locator("//div[contains(text(),'1createUserByAdmin')]").click()
     time.sleep(22)

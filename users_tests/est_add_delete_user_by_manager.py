@@ -25,7 +25,7 @@ def test_example(page: Page) -> None:
     '''press enter'''
     page.keyboard.press("Enter")
     '''press dobavit'''
-    page.locator(BUTTON_DOBAVIT).click()
+    page.get_by_test_id(BUTTON_DOBAVIT).click()
     time.sleep(3)
     '''go to profile'''
     page.get_by_text("1createUserByManager").click()

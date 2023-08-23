@@ -11,7 +11,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
+    page.get_by_test_id(BUTTON_POLZOVATELI).click()
     '''fill search'''
     page.locator(INPUT_POISK).fill("ec")
     '''check'''

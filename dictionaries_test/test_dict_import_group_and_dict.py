@@ -34,11 +34,11 @@ def test_example(page: Page) -> None:
     time.sleep(2)
 
     '''click to switch button to import group of dict and dict'''
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[2]/div/div/div/span/input").click()
+    page.locator("(//input[@type='checkbox'])[3]").click()
     time.sleep(1)
     page.get_by_role("button", name="Продолжить").click()
-    time.sleep(2)
-    page.locator("//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div[2]/div/div/div/span/input").click()
+    time.sleep(1)
+    page.locator("(//input[@type='checkbox'])[6]").click()
     time.sleep(1)
     page.get_by_role("button", name="К новым правилам").click()
     time.sleep(2)

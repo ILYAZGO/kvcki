@@ -30,12 +30,12 @@ def test_example(page: Page) -> None:
         pass
 
     '''add operator'''
-    page.locator(BUTTON_DOBAVIT_SOTRUDNIKA).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_SOTRUDNIKA).click()
     ''''''
     page.locator(INPUT_NAME_SOTRUDNIKA).fill("NEW_OPERATOR")
     page.locator(INPUT_LOGIN_SOTRUDNIKA).fill("NEW_OPERATOR_LOGIN")
     page.locator(INPUT_PASSWORD_SOTRUDNIKA).fill("NEW_OPERATOR_PASSWORD")
-    page.locator(BUTTON_SOTRUDNIKI_DOBAVIT).click()
+    page.locator(BUTTON_DOBAVIT).click()
     time.sleep(7)
 
     expect(page.locator(SOTRUDNIK_LOGIN)).to_have_text("NEW_OPERATOR_LOGIN")
