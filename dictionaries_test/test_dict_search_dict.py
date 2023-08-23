@@ -17,4 +17,4 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_POISK).fill("seat")
     page.locator(BUTTON_LUPA).click()
     '''check'''
-    expect(page.get_by_text("Seat")).to_have_count(1)
+    expect(page.get_by_text("Seat")).to_have_count(1, timeout=wait_until_visible)

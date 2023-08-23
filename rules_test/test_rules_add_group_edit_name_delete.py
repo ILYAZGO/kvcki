@@ -34,11 +34,11 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
     page.locator(BUTTON_SAVE_EDITED_NAME).click()
     '''check created and edited'''
-    expect(page.get_by_text("54321")).to_be_visible()
+    expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
     '''delete group'''
     page.locator(BUTTON_KORZINA).click()
     '''check deleted'''
-    expect(page.get_by_text("54321")).not_to_be_visible()
+    expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 

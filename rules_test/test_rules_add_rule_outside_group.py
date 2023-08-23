@@ -28,7 +28,7 @@ def test_example(page: Page) -> None:
     time.sleep(3)
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
-    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")  # check rule
+    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666", timeout=wait_until_visible)  # check rule
     # expect(page.get_by_text("Неотсортированные")).to_have_count(count=2)  # po4emu to valitsa
     ''''teardown'''
     page.locator(".css-izdlur").click()
@@ -37,6 +37,6 @@ def test_example(page: Page) -> None:
     time.sleep(2)
     page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
-    expect(page.get_by_text("Неотсортированные")).not_to_be_visible()
+    expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

@@ -41,11 +41,11 @@ def test_example(page: Page) -> None:
     page.get_by_role("button", name="К новым правилам").click()
 
     '''check that import successful'''
-    expect(page.get_by_text("11111")).to_be_visible()
-    expect(page.get_by_text("22222")).to_be_visible()
-    expect(page.get_by_text("33333")).to_be_visible()
-    expect(page.get_by_text("Неотсортированные")).to_be_visible()
-    expect(page.get_by_text("1 тег")).to_have_count(count=2)
+    expect(page.get_by_text("11111")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("22222")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("33333")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("Неотсортированные")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("1 тег")).to_have_count(count=2, timeout=wait_until_visible)
 
     '''teardown'''
     page.get_by_text("22222").click()
@@ -61,7 +61,7 @@ def test_example(page: Page) -> None:
     page.locator("(//button[@type='button'])[14]").click()
 
     '''check teardown'''
-    expect(page.get_by_text("11111")).not_to_be_visible()
-    expect(page.get_by_text("22222")).not_to_be_visible()
-    expect(page.get_by_text("33333")).not_to_be_visible()
-    expect(page.get_by_text("Неотсортированные")).not_to_be_visible()
+    expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)

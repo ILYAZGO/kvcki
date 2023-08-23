@@ -25,11 +25,11 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_NAZVANIE_SLOVAR).fill("77777")
     page.get_by_role('button', name="Отправить").click()
     '''check created dict outside group'''
-    expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("77777")
+    expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("77777", timeout=wait_until_visible)
     '''check created dict parent'''
     expect(page.get_by_text("Unsorted")).to_have_text("Unsorted")
     page.reload()
-    expect(page.get_by_text("Неотсортированные")).to_have_count(count=2)  # проверяем что таких надписей две (слева и внутри словаря)
+    expect(page.get_by_text("Неотсортированные")).to_have_count(count=2, timeout=wait_until_visible)  # проверяем что таких надписей две (слева и внутри словаря)
 
     '''teardown'''
     page.locator(".css-izdlur").click()
@@ -37,6 +37,6 @@ def test_example(page: Page) -> None:
     page.get_by_role("button", name="Удалить").click()
     page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
-    expect(page.get_by_text("Неотсортированные")).not_to_be_visible()
+    expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

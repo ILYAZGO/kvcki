@@ -24,12 +24,12 @@ def test_example(page: Page) -> None:
     '''cancel button'''
     page.locator(BUTTON_OTMENA).click()
     '''check canceled'''
-    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible()  # надпись Ничего не найдено
+    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
     '''create and cancel adding group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     '''cancel cross'''
     page.get_by_test_id(BUTTON_KRESTIK).click()
     '''check canceled'''
-    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible()  # надпись Ничего не найдено
+    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

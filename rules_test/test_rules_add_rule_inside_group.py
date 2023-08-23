@@ -29,8 +29,8 @@ def test_example(page: Page) -> None:
     #page.get_by_test_id("markup_newRuleApply").click() #otpravit
 
     '''check'''
-    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888") #check rule
-    expect(page.get_by_text("99999").nth(1)).to_have_text("99999") #check parent group
+    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
+    expect(page.get_by_text("99999").nth(1)).to_have_text("99999", timeout=wait_until_visible) #check parent group
 
     '''teardown'''
     page.locator(".css-izdlur").click()
@@ -39,7 +39,7 @@ def test_example(page: Page) -> None:
     time.sleep(2)
     page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
-    expect(page.get_by_text("99999")).not_to_be_visible() #check no parent group
+    expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 
