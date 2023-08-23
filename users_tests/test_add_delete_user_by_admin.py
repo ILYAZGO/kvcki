@@ -7,7 +7,7 @@ import time
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
@@ -44,15 +44,14 @@ def test_example(page: Page) -> None:
     #expect(page.get_by_text("60")).to_be_visible()
     '''go to profile'''
     page.locator("//div[contains(text(),'1createUserByAdmin')]").click()
-    time.sleep(22)
     '''check'''
-    expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByAdmin")
-    expect(page.locator(INPUT_NAME)).to_have_value("someName")
-    expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com")
-    expect(page.get_by_text("Компания")).to_have_count(1)
+    expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByAdmin", timeout=wait_until_visible)
+    expect(page.locator(INPUT_NAME)).to_have_value("someName", timeout=wait_until_visible)
+    expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com", timeout=wait_until_visible)
+    expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
 
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()
     page.locator(BUTTON_PODTVERDIT).click()
-    time.sleep(15)
-    expect(page.locator(INPUT_LOGIN)).to_have_value("4adminIM")
+
+    expect(page.locator(INPUT_LOGIN)).to_have_value("4adminIM", timeout=wait_until_visible)

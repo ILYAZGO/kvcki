@@ -36,10 +36,9 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_LOGIN_SOTRUDNIKA).fill("NEW_OPERATOR_LOGIN")
     page.locator(INPUT_PASSWORD_SOTRUDNIKA).fill("NEW_OPERATOR_PASSWORD")
     page.locator(BUTTON_DOBAVIT).click()
-    time.sleep(7)
 
-    expect(page.locator(SOTRUDNIK_LOGIN)).to_have_text("NEW_OPERATOR_LOGIN")
-    expect(page.locator(SOTRUDNIK_NAME)).to_have_text("NEW_OPERATOR")
+    expect(page.locator(SOTRUDNIK_LOGIN)).to_have_text("NEW_OPERATOR_LOGIN", timeout=wait_until_visible)
+    expect(page.locator(SOTRUDNIK_NAME)).to_have_text("NEW_OPERATOR", timeout=wait_until_visible)
     '''go inside operator'''
     page.locator(SOTRUDNIK_LOGIN).click()
     time.sleep(2)
@@ -48,7 +47,6 @@ def test_example(page: Page) -> None:
     ''''''
     page.locator(BUTTON_SOTRUDNIKI_UDALIT).click()
 
-    time.sleep(3)
 
-    expect(page.locator(SOTRUDNIK_LOGIN)).not_to_be_visible()
+    expect(page.locator(SOTRUDNIK_LOGIN, timeout=wait_until_visible)).not_to_be_visible()
 

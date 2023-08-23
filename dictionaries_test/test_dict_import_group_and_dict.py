@@ -44,11 +44,11 @@ def test_example(page: Page) -> None:
     time.sleep(2)
 
     '''check that import successful'''
-    expect(page.get_by_text("44444")).to_be_visible()
-    expect(page.get_by_text("55555")).to_be_visible()
-    expect(page.get_by_text("66666")).to_be_visible()
-    expect(page.get_by_text("Неотсортированные")).to_be_visible()
-    expect(page.get_by_text("1 словарь")).to_have_count(count=2)
+    expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("55555")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("66666")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("Неотсортированные")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("1 словарь")).to_have_count(count=2, timeout=wait_until_visible)
 
     '''teardown'''
     page.get_by_text("55555").click()
@@ -64,7 +64,7 @@ def test_example(page: Page) -> None:
     page.locator("(//button[@type='button'])[14]").click()
 
     '''check teardown'''
-    expect(page.get_by_text("44444")).not_to_be_visible()
-    expect(page.get_by_text("55555")).not_to_be_visible()
-    expect(page.get_by_text("66666")).not_to_be_visible()
-    expect(page.get_by_text("Неотсортированные")).not_to_be_visible()
+    expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("55555")).not_to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("66666")).not_to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)

@@ -2,6 +2,7 @@ import os
 URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
 timeout = 55000
+wait_until_visible = 30000
 
 USER ="1userIM"
 OPERATOR ="2operatorIM"

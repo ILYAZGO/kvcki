@@ -26,3 +26,4 @@ def test_example(page: Page) -> None:
     time.sleep(10)
     '''check name have count 2'''
     expect(page.get_by_text("adminIM")).to_have_count(2)
+    page.wa

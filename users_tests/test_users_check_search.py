@@ -15,7 +15,7 @@ def test_example(page: Page) -> None:
     '''fill search'''
     page.locator(INPUT_POISK).fill("ec")
     '''check'''
-    expect(page.get_by_text("ecotelecom")).to_be_visible()
-    expect(page.get_by_text("1userIM")).not_to_be_visible()
+    expect(page.get_by_text("ecotelecom")).to_be_visible(timeout=wait_until_visible)
+    expect(page.get_by_text("1userIM")).not_to_be_visible(timeout=wait_until_visible)
 
 
