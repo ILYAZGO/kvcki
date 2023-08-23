@@ -32,10 +32,10 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Неотсортированные")).to_have_count(count=2, timeout=wait_until_visible)  # проверяем что таких надписей две (слева и внутри словаря)
 
     '''teardown'''
-    page.locator(".css-izdlur").click()
-    page.get_by_text("Удалить", exact=True).click()
-    page.get_by_role("button", name="Удалить").click()
-    page.locator(BUTTON_KORZINA).click()
+    page.locator(".css-izdlur").click(timeout=wait_until_visible)
+    page.get_by_text("Удалить", exact=True).click(timeout=wait_until_visible)
+    page.get_by_role("button", name="Удалить").click(timeout=wait_until_visible)
+    page.locator(BUTTON_KORZINA).click(timeout=wait_until_visible)
     '''check teardown'''
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
