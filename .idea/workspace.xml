@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeouts">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -504,7 +504,6 @@
     <MESSAGE value="add pre clean" />
     <MESSAGE value="remove locators, add tests" />
     <MESSAGE value="100% fix rule test" />
-    <MESSAGE value="fix test" />
     <MESSAGE value="upgrade test add test" />
     <MESSAGE value="move locators to users.py" />
     <MESSAGE value="test reanimation" />
@@ -522,6 +521,7 @@
     <MESSAGE value="add timeout wait until load" />
     <MESSAGE value="add test" />
     <MESSAGE value="add timeouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="add timeouts" />
+    <MESSAGE value="fix test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix test" />
   </component>
 </project>
