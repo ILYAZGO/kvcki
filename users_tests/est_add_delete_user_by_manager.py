@@ -36,6 +36,6 @@ def test_example(page: Page) -> None:
 
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()
-    page.locator(BUTTON_PODTVERDIT).click()  # podtverdit
+    page.locator(BUTTON_PODTVERDIT).click()
 
     expect(page.locator(INPUT_LOGIN)).to_have_value("4adminIM", timeout=wait_until_visible)

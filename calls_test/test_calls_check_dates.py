@@ -10,7 +10,7 @@ import time
 
 @pytest.mark.calls
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     time.sleep(2)
@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(FIRST_DATE)).to_have_value(today)
     expect(page.locator(LAST_DATE)).to_have_value(today)
     '''switch to yesterday'''
-    page.locator(YESTERDAY ).click()
+    page.locator(YESTERDAY).click()
     '''check begin and end dates in view. '''
     expect(page.locator(FIRST_DATE)).to_have_value(yesterday)
     expect(page.locator(LAST_DATE)).to_have_value(yesterday)

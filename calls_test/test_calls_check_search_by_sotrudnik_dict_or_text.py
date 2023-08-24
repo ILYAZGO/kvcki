@@ -18,16 +18,14 @@ def test_example(page: Page) -> None:
     time.sleep(3)
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(110)
-    page.wait_for_selector(NAYDENO_ZVONKOV)
+    time.sleep(80)
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 431 из 3130")
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 431 из 3130", timeout=wait_until_visible)
     '''choose dict'''
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).clear()
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).fill("Зо")
     page.get_by_text("Зомбоящик").click()
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(130)
-    page.wait_for_selector(NAYDENO_ZVONKOV)
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 488 из 3130")
+    time.sleep(80)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 488 из 3130", timeout=wait_until_visible)

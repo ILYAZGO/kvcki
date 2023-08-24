@@ -7,7 +7,7 @@ import pytest
 
 @pytest.mark.calls
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
@@ -17,5 +17,5 @@ def test_example(page: Page) -> None:
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 5 из 3130")
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 5 из 3130", timeout=wait_until_visible)
 
