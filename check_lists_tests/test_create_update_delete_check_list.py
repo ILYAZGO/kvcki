@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
 from pages.markup import *
+from utils.create_delete_user import create_user, delete_user
 import pytest
 import time
 
@@ -9,9 +10,12 @@ import time
 
 @pytest.mark.check_list
 def test_example(page: Page) -> None:
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name9, login9, PASSWORD)
+
     page.goto(URL, timeout=timeout)
+
     '''login'''
-    auth(ADMIN, PASSWORD, page)
+    auth(login9, PASSWORD, page)
     '''create check-list'''
     page.locator(BUTTON_RAZMETKA).click()
     page.get_by_test_id(BUTTON_CHECK_LIST).click()
@@ -22,7 +26,7 @@ def test_example(page: Page) -> None:
     '''save'''
     page.locator(".MuiButton-contained").click()
     '''check created'''
-    expect(page.get_by_text("12345")).to_be_visible()
+    expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
     #expect(page.get_by_text("Чек-лист добавлен")).to_be_visible()
 
     '''update'''
@@ -40,4 +44,6 @@ def test_example(page: Page) -> None:
     '''check deleted'''
     time.sleep(2)
     #expect(page.get_by_text("Чек-лист удален")).to_be_visible()
-    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible()
+    expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)
+
+    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

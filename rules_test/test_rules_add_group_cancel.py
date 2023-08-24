@@ -10,7 +10,7 @@ import time
 
 @pytest.mark.rules
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name1, login1, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name1, login1, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''

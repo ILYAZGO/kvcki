@@ -11,7 +11,7 @@ import time
 
 @pytest.mark.integration
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name_usedesk, login_usedesk, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name_usedesk, login_usedesk, PASSWORD)
 
     page.goto(URL, timeout = timeout)
     '''login'''
@@ -25,7 +25,7 @@ def test_example(page: Page) -> None:
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
     '''go to integracii'''
-    page.locator(BUTTON_INTEGRACII_IN_MENU).click()
+    page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
     '''podklu4it'''
     page.locator(BUTTON_PODKLU4IT).click()
     time.sleep(1)

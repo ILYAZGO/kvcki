@@ -11,7 +11,7 @@ import time
 
 @pytest.mark.rules
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name4, login4, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name4, login4, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
@@ -34,7 +34,8 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click(timeout=wait_until_visible)
     page.get_by_text("Удалить", exact=True).click(timeout=wait_until_visible)
     page.get_by_role("button", name="Удалить").click(timeout=wait_until_visible)
-    page.locator(BUTTON_KORZINA).click(timeout=wait_until_visible)
+    page.get_by_label("Удалить").get_by_role("button").click()
+    #page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 

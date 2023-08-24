@@ -9,7 +9,7 @@ import time
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name6, login6, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name6, login6, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''

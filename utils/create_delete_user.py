@@ -9,7 +9,7 @@ delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
 
-def create_user(URL,NAME,LOGIN,PASSWORD):
+def create_user(URL,ROLE,NAME,LOGIN,PASSWORD):
     headers_for_get_token = {
         'accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -24,7 +24,7 @@ def create_user(URL,NAME,LOGIN,PASSWORD):
     }
 
     json = {
-        'role': 'user',
+        'role': ROLE,
         'login': LOGIN,
         'name': NAME,
         'password': PASSWORD

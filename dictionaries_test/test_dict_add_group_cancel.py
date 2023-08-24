@@ -10,7 +10,7 @@ import pytest
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, name7, login7, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name7, login7, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''

@@ -35,7 +35,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_NAME_SOTRUDNIKA).fill("NEW_OPERATOR")
     page.locator(INPUT_LOGIN_SOTRUDNIKA).fill("NEW_OPERATOR_LOGIN")
     page.locator(INPUT_PASSWORD_SOTRUDNIKA).fill("NEW_OPERATOR_PASSWORD")
-    page.locator(BUTTON_DOBAVIT).click()
+    page.get_by_test_id(BUTTON_DOBAVIT).click()
 
     expect(page.locator(SOTRUDNIK_LOGIN)).to_have_text("NEW_OPERATOR_LOGIN", timeout=wait_until_visible)
     expect(page.locator(SOTRUDNIK_NAME)).to_have_text("NEW_OPERATOR", timeout=wait_until_visible)
@@ -48,5 +48,5 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_SOTRUDNIKI_UDALIT).click()
 
 
-    expect(page.locator(SOTRUDNIK_LOGIN, timeout=wait_until_visible)).not_to_be_visible()
+    expect(page.locator(SOTRUDNIK_LOGIN)).not_to_be_visible(timeout=wait_until_visible)
 
