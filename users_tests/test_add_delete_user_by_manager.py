@@ -12,9 +12,9 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(MANAGER, PASSWORD, page)
     '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
+    page.get_by_test_id(BUTTON_POLZOVATELI).click()
     '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''fill required'''
     page.locator(INPUT_NAME).fill("someName")
     page.locator(INPUT_LOGIN).fill("1createUserByManager")
@@ -38,4 +38,4 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_KORZINA).click()
     page.locator(BUTTON_PODTVERDIT).click()
 
-    expect(page.locator(INPUT_LOGIN)).to_have_value("4adminIM", timeout=wait_until_visible)
+    expect(page.locator(INPUT_LOGIN)).to_have_value("3managerIM", timeout=wait_until_visible)

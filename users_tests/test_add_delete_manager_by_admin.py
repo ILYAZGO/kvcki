@@ -2,14 +2,17 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
 from pages.users import *
+from utils.create_delete_user import create_user, delete_user
 import pytest
 import time
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(ADMIN, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''go to polzovateli'''
     page.get_by_test_id(BUTTON_POLZOVATELI).click()
     '''button create user'''
@@ -37,4 +40,6 @@ def test_example(page: Page) -> None:
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()
     page.locator(BUTTON_PODTVERDIT).click()
-    expect(page.locator(INPUT_LOGIN)).to_have_value("4adminIM", timeout=wait_until_visible)
+    expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
+
+    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
