@@ -1,5 +1,5 @@
 import requests
-
+from datetime import datetime
 
 '''for create user write before test :
 USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, {name}, {login}, PASSWORD)
@@ -9,7 +9,10 @@ delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
 
-def create_user(URL,ROLE,NAME,LOGIN,PASSWORD):
+def create_user(URL, ROLE, PASSWORD):
+
+    NAME = LOGIN = f"auto_test_user_{datetime.now().microsecond}"
+
     headers_for_get_token = {
         'accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -66,7 +69,7 @@ def create_user(URL,ROLE,NAME,LOGIN,PASSWORD):
     # else:
     #     print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
-    return user_id, bearer, access_token
+    return user_id, bearer, access_token, LOGIN
 
 
 

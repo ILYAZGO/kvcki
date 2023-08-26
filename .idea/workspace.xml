@@ -4,18 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add role to create user add tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeouts">
+      <change afterPath="$PROJECT_DIR$/utils/esting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/est_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/est_add_delete_user_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_edit_name_delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_inside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +51,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/rules_test",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/rules_test&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rules_test" />
@@ -494,6 +502,9 @@
     <option name="localTasksCounter" value="67" />
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -527,10 +538,10 @@
     <MESSAGE value="fix tests, add data-testid" />
     <MESSAGE value="add timeout wait until load" />
     <MESSAGE value="add test" />
-    <MESSAGE value="add timeouts" />
     <MESSAGE value="fix test" />
     <MESSAGE value="add timeout" />
     <MESSAGE value="add role to create user add tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add role to create user add tests" />
+    <MESSAGE value="add timeouts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timeouts" />
   </component>
 </project>

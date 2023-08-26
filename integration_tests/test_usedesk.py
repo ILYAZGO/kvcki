@@ -11,16 +11,16 @@ import time
 
 @pytest.mark.integration
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name_usedesk, login_usedesk, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
     time.sleep(2)
     '''go to user'''
-    page.locator(INPUT_USER_DROPDOWN).fill("usedeskTest")
-    page.get_by_text("usedeskTest", exact=True).click()
+    page.locator(INPUT_USER_DROPDOWN).fill(LOGIN)
+    page.get_by_text(text=LOGIN, exact=True).click()
     time.sleep(6)
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()

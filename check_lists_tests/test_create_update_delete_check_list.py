@@ -10,12 +10,12 @@ import time
 
 @pytest.mark.check_list
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name9, login9, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
     '''login'''
-    auth(login9, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''create check-list'''
     page.locator(BUTTON_RAZMETKA).click()
     page.get_by_test_id(BUTTON_CHECK_LIST).click()

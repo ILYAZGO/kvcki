@@ -10,11 +10,11 @@ import time
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name8, login8, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(login8, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''create group'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
@@ -23,11 +23,11 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
-    time.sleep(1)
+    time.sleep(6)
     '''edit name'''
-    page.locator(BUTTON_PENCIL).click()  # pencil
-    page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")  # fill
-    page.locator(BUTTON_SAVE_EDITED_NAME).click()  # save
+    page.locator(BUTTON_PENCIL).click()
+    page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
+    page.locator(BUTTON_SAVE_EDITED_NAME).click()
     '''check created and edited'''
     expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
     '''delete group'''

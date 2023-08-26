@@ -8,27 +8,21 @@ import time
 
 '''Create and delete group of rules'''
 
+
 @pytest.mark.rules
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name2, login2, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(login2, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
-    time.sleep(2)
-    "pre clean"
-    if page.get_by_text("54321").is_visible():
-        page.locator(BUTTON_KORZINA).click()
-    elif page.get_by_text("12345").is_visible():
-        page.locator(BUTTON_KORZINA).click()
-    else:
-        pass
     '''add new group'''
     page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
+    time.sleep(6)
     '''edit name'''
     page.locator(BUTTON_PENCIL).click()
     page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
@@ -41,5 +35,3 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
-
-

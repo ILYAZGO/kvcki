@@ -10,11 +10,11 @@ import pytest
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name7, login7, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(login7, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''create and cancel adding group'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''

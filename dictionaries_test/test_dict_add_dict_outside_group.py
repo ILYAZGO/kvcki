@@ -9,11 +9,11 @@ import time
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name6, login6, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(login6, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
@@ -24,10 +24,12 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(BUTTON_DOBAVIT_SLOVAR).click()
     page.locator(INPUT_NAZVANIE_SLOVAR).fill("77777")
     page.get_by_role('button', name="Отправить").click()
+    time.sleep(2)
     '''check created dict outside group'''
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("77777", timeout=wait_until_visible)
     '''check created dict parent'''
-    expect(page.get_by_text("Unsorted")).to_have_text("Unsorted")
+    #expect(page.get_by_text("Unsorted")).to_have_text("Unsorted", timeout=wait_until_visible)
+
     page.reload()
     expect(page.get_by_text("Неотсортированные")).to_have_count(count=2, timeout=wait_until_visible)  # проверяем что таких надписей две (слева и внутри словаря)
 

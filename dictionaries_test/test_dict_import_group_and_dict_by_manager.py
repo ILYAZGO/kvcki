@@ -30,6 +30,7 @@ def test_example(page: Page) -> None:
 
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")
+    time.sleep(4)
     page.get_by_text("importFrom", exact=True).click()
     time.sleep(2)
 

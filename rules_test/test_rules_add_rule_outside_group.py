@@ -11,11 +11,11 @@ import time
 
 @pytest.mark.rules
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name4, login4, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(login4, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     time.sleep(2)
@@ -25,10 +25,11 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(INPUT_NAZVANIE_TEGA).type("66666", timeout=wait_until_visible)
     page.keyboard.press('Enter')  # kostil'
 
-    time.sleep(3)
+    time.sleep(5)
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
-    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666", timeout=wait_until_visible)  # check rule
+    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")  # check rule
+    time.sleep(3)
     # expect(page.get_by_text("Неотсортированные")).to_have_count(count=2)  # po4emu to valitsa
     ''''teardown'''
     page.locator(".css-izdlur").click(timeout=wait_until_visible)

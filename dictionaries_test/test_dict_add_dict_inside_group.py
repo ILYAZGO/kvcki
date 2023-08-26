@@ -11,11 +11,11 @@ import time
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_USER, name5, login5, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(login5, PASSWORD, page)
+    auth(LOGIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
@@ -40,6 +40,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
+    time.sleep(3)
     page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("12345")).not_to_be_visible()
