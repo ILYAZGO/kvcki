@@ -24,8 +24,9 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(BUTTON_DOBAVIT_SLOVAR).click()
     page.locator(INPUT_NAZVANIE_SLOVAR).fill("77777")
     page.get_by_role('button', name="Отправить").click()
-    time.sleep(2)
+    time.sleep(4)
     '''check created dict outside group'''
+
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("77777", timeout=wait_until_visible)
     '''check created dict parent'''
     #expect(page.get_by_text("Unsorted")).to_have_text("Unsorted", timeout=wait_until_visible)

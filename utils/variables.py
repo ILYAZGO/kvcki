@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 #LIST OF URLS
 
@@ -70,3 +71,8 @@ login_usedesk = "usedesk"
 ROLE_USER = 'user'
 ROLE_MANAGER = 'manager'
 ROLE_ADMIN = 'admin'
+
+# operator credentials
+
+NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().microsecond}"
+

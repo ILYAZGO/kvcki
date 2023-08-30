@@ -18,11 +18,11 @@ def test_example(page: Page) -> None:
     '''button create user'''
     page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''fill required'''
-    page.locator(INPUT_NAME).fill("someName")
+    page.locator(INPUT_NAME).fill("newUser")
     page.locator(INPUT_LOGIN).fill("1createUserByAdmin")
     page.locator(INPUT_PASSWORD).fill(PASSWORD)
     page.locator(INPUT_EMAIL).fill("mail@mail.com")
-    page.locator(INPUT_COMMENT).fill("someComment")
+    page.get_by_test_id(INPUT_COMMENT).fill("someComment")
     page.locator(CHOOSE_ROLE).fill("Компания")
     '''press enter'''
     page.keyboard.press("Enter")
@@ -49,7 +49,7 @@ def test_example(page: Page) -> None:
     page.locator("//div[contains(text(),'1createUserByAdmin')]").click()
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByAdmin", timeout=wait_until_visible)
-    expect(page.locator(INPUT_NAME)).to_have_value("someName", timeout=wait_until_visible)
+    expect(page.locator(INPUT_NAME)).to_have_value("newUser", timeout=wait_until_visible)
     expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com", timeout=wait_until_visible)
     expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
 

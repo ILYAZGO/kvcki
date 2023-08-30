@@ -29,7 +29,7 @@ def test_example(page: Page) -> None:
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
     '''check'''
     expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")  # check rule
-    time.sleep(3)
+    time.sleep(10)
     # expect(page.get_by_text("Неотсортированные")).to_have_count(count=2)  # po4emu to valitsa
     ''''teardown'''
     page.locator(".css-izdlur").click(timeout=wait_until_visible)

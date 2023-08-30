@@ -30,9 +30,9 @@ def test_example(page: Page) -> None:
 
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")
-    time.sleep(4)
+    time.sleep(3)
     page.get_by_text("importFrom", exact=True).click()
-    time.sleep(2)
+    time.sleep(3)
 
     '''click to switch button to import group of dict and dict'''
     page.locator("(//input[@type='checkbox'])[3]").click()
@@ -45,7 +45,8 @@ def test_example(page: Page) -> None:
     time.sleep(2)
 
     '''check that import successful'''
-    expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
+    expect(page.locator("//p[normalize-space()='44444']")).to_be_visible(timeout=wait_until_visible)
+    #expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("55555")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("66666")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("Неотсортированные")).to_be_visible(timeout=wait_until_visible)
@@ -60,12 +61,12 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator("(//button[@type='button'])[14]").click()
+    page.locator("(//button[@type='button'])[15]").click()
     time.sleep(1)
-    page.locator("(//button[@type='button'])[14]").click()
-
+    page.locator("(//button[@type='button'])[15]").click()
     '''check teardown'''
-    expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
+    expect(page.locator("//p[normalize-space()='44444']")).not_to_be_visible(timeout=wait_until_visible)
+    #expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("55555")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("66666")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)

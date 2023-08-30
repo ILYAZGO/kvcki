@@ -54,7 +54,7 @@ def test_example(page: Page) -> None:
     '''sozdat'''
     page.get_by_test_id(BUTTON_SOZDAT).click()
     '''long wait for download'''
-    time.sleep(185)
+    time.sleep(180)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
     time.sleep(4)
@@ -74,6 +74,8 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
 
     page.locator("div[class='styles_button__xgQ1q'] button[type='button']").click()
+    time.sleep(1)
+    page.get_by_test_id("SettingsCell_deleteBtn").click()
     time.sleep(1)
     expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
 
