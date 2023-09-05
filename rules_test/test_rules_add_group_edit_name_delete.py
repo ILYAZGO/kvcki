@@ -19,7 +19,7 @@ def test_example(page: Page) -> None:
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''add new group'''
-    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
     time.sleep(6)

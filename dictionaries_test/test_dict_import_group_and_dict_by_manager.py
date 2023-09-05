@@ -25,8 +25,9 @@ def test_example(page: Page) -> None:
 
     '''going to Razmetka/slovari and click Importirovat slovari'''
     page.locator(BUTTON_RAZMETKA).click()
-    page.get_by_test_id(BUTTON_SLOVARI).click()
-    page.get_by_test_id(BUTTON_IMPORTIROVAT_SLOVARI).click()
+    page.wait_for_selector(BUTTON_SLOVARI)
+    page.locator(BUTTON_SLOVARI).click()
+    page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")

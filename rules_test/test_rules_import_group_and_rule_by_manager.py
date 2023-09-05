@@ -28,7 +28,7 @@ def test_example(page: Page) -> None:
     '''going to Razmetka and click Importirovat Pravila'''
     page.locator(BUTTON_RAZMETKA).click()
     time.sleep(2)
-    page.get_by_test_id(BUTTON_IMPORTIROVAT_PRAVILA).click()
+    page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
     time.sleep(2)
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")

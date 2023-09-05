@@ -17,11 +17,11 @@ def test_example(page: Page) -> None:
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
-    page.get_by_test_id(BUTTON_SLOVARI).click()
+    page.locator(BUTTON_SLOVARI).click()
     time.sleep(2)
 
     '''create dict outside group'''
-    page.get_by_test_id(BUTTON_DOBAVIT_SLOVAR).click()
+    page.locator(BUTTON_DOBAVIT_SLOVAR).click()
     page.locator(INPUT_NAZVANIE_SLOVAR).fill("77777")
     page.get_by_role('button', name="Отправить").click()
     time.sleep(4)

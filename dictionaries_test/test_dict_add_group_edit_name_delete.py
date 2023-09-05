@@ -18,9 +18,9 @@ def test_example(page: Page) -> None:
     '''create group'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
-    page.get_by_test_id(BUTTON_SLOVARI).click()
+    page.locator(BUTTON_SLOVARI).click()
     '''add group'''
-    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
     time.sleep(6)

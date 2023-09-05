@@ -28,7 +28,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 130 из 3130", timeout=wait_until_visible)
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
-    time.sleep(3)
+    time.sleep(2)
     page.keyboard.press("Enter")
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''

@@ -17,17 +17,20 @@ def test_example(page: Page) -> None:
     auth(LOGIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
-
+    page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
     '''create group'''
-    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("99999")
     page.locator(BUTTON_OTPRAVIT).click()
+    page.wait_for_selector(CLICK_NEW_GROUP)
     page.locator(CLICK_NEW_GROUP).click()
-    page.get_by_test_id(BUTTON_DOBAVIT_TEG).click()
-    page.get_by_test_id(INPUT_NAZVANIE_TEGA).type("88888")
+    page.wait_for_selector(BUTTON_DOBAVIT_TEG)
+    page.locator(BUTTON_DOBAVIT_TEG).click()
+    page.wait_for_selector(INPUT_NAZVANIE_TEGA)
+    page.locator(INPUT_NAZVANIE_TEGA).type("88888")
     page.keyboard.press('Enter') #kostil'
     #page.get_by_test_id("markup_newRuleApply").click() #otpravit
-    time.sleep(3)
+    page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
     '''check'''
     expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
     #expect(page.get_by_text("99999").nth(1)).to_have_text("99999", timeout=wait_until_visible) #check parent group
@@ -35,8 +38,9 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    time.sleep(10)
-    page.locator(BUTTON_KORZINA).click()
+    page.wait_for_timeout(timeout=5000)
+    page.get_by_label("Удалить").get_by_role("button").first.click()
+    #page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
 

@@ -12,7 +12,7 @@ def test_example(page: Page) -> None:
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to dictionaries'''
-    page.get_by_test_id(BUTTON_SLOVARI).click()
+    page.locator(BUTTON_SLOVARI).click()
     '''search (should not depend on register)'''
     page.locator(INPUT_POISK).fill("seat")
     page.locator(BUTTON_LUPA).click()

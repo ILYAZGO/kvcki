@@ -18,15 +18,15 @@ def test_example(page: Page) -> None:
     '''create and cancel adding group'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
-    page.get_by_test_id(BUTTON_SLOVARI).click()
+    page.locator(BUTTON_SLOVARI).click()
     '''add group'''
-    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     '''cancel button'''
     page.locator(BUTTON_OTMENA).click()
     '''check canceled'''
     expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
     '''create and cancel adding group'''
-    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     '''cancel cross'''
     page.get_by_test_id(BUTTON_KRESTIK).click()
     '''check canceled'''

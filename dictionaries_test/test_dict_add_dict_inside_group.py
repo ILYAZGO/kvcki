@@ -19,15 +19,15 @@ def test_example(page: Page) -> None:
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
-    page.get_by_test_id(BUTTON_SLOVARI).click()
-    time.sleep(2)
+    page.locator(BUTTON_SLOVARI).click()
+    page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
     '''create group'''
-    page.get_by_test_id(BUTTON_DOBAVIT_GRUPPU).click()
+    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
     '''create dict inside group'''
     page.locator(CLICK_ON_GROUP).click()
-    page.get_by_test_id(BUTTON_DOBAVIT_SLOVAR).click()
+    page.locator(BUTTON_DOBAVIT_SLOVAR).click()
     page.locator(INPUT_NAZVANIE_SLOVAR).fill("98765")
     page.locator(BUTTON_OTPRAVIT).click()
     page.locator(INPUT_SPISOK_SLOV).fill("random_text")

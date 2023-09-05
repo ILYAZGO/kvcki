@@ -42,7 +42,7 @@ def test_example(page: Page) -> None:
 
     '''press dobavit'''
     page.get_by_test_id(BUTTON_DOBAVIT).click()
-    time.sleep(10)
+    page.wait_for_selector("//div[contains(text(),'1createUserByAdmin')]")
     '''check quota'''
     #expect(page.get_by_text("60")).to_be_visible()
     '''go to profile'''
