@@ -1,7 +1,4 @@
 import pytest
-#import requests
-#from utils.create_delete_user import create_user, delete_user
-from utils.variables import *
 
 @pytest.fixture(scope="session")
 def browser_context_args(browser_context_args):

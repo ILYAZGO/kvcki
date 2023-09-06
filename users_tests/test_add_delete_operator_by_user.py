@@ -37,7 +37,7 @@ def test_example(page: Page) -> None:
     time.sleep(2)
     ''''''
     page.locator(BUTTON_SOTRUDNIKI_UDALIT).click()
-    time.sleep(4)
+    page.wait_for_selector(SOTRUDNIK_LOGIN)
 
     expect(page.locator(SOTRUDNIK_LOGIN)).not_to_be_visible(timeout=wait_until_visible)
 

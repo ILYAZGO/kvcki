@@ -23,11 +23,11 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
-    time.sleep(6)
+    page.wait_for_selector(BUTTON_PENCIL)
     '''edit name'''
     page.locator(BUTTON_PENCIL).click()
     page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
-    page.locator(BUTTON_SAVE_EDITED_NAME).click()
+    page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
     '''check created and edited'''
     expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
     '''delete group'''

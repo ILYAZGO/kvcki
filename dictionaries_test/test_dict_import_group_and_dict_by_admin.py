@@ -28,6 +28,7 @@ def test_example(page: Page) -> None:
 
     '''going to Razmetka/slovari and click Importirovat slovari'''
     page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_timeout(3000)
     page.locator(BUTTON_SLOVARI).click()
     page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
     page.wait_for_selector(INPUT_CHOOSE_USER_FOR_IMPORT)
@@ -35,7 +36,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")
     time.sleep(3)
     page.get_by_text("importFrom", exact=True).click()
-    time.sleep(2)
+    time.sleep(3)
 
     '''click to switch button to import group of dict and dict'''
     page.locator("(//input[@type='checkbox'])[3]").click()

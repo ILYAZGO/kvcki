@@ -7,7 +7,6 @@ INPUT_POISK = '//html/body/div/div/div[2]/div/div/div[1]/div[2]/div[1]/form/div/
 INPUT_NEW_GROUP_NAME = "//input[@name='groupName']"
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'
-
 INPUT_CHOOSE_USER_FOR_IMPORT = "//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div[2]/input"
 
 # buttons
@@ -18,9 +17,9 @@ BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
 BUTTON_KRESTIK = "CloseIcon"
 BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"
 BUTTON_OTPRAVIT = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[1]"
-BUTTON_PENCIL = "//div[@aria-label='Изменить название']//div//button[@type='button']//*[name()='svg']"
-BUTTON_SAVE_EDITED_NAME = "(//button[@type='submit'])[1]"
-BUTTON_KORZINA = "//div[@aria-label='Удалить']//div//button[@type='button']"
+BUTTON_PENCIL = "//button[@aria-label='Изменить название']"
+BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
+BUTTON_KORZINA = "//button[@aria-label='Удалить']"
 
 BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
 # other
@@ -47,5 +46,6 @@ NAZVANIE_SLOVARYA = "//input[@name='title']"
 # inputs
 INPUT_CHECK_LIST_NAME = "[name='title']"
 # buttons
-BUTTON_CHECK_LIST = "markup_nav_checklists"
-BUTTON_DOBAVIT_CHECK_LIST = "markup_addChecklists"
+
+BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
+BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'

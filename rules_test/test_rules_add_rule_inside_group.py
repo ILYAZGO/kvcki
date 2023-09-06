@@ -24,6 +24,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_OTPRAVIT).click()
     page.wait_for_selector(CLICK_NEW_GROUP)
     page.locator(CLICK_NEW_GROUP).click()
+    page.wait_for_timeout(2000)
     page.wait_for_selector(BUTTON_DOBAVIT_TEG)
     page.locator(BUTTON_DOBAVIT_TEG).click()
     page.wait_for_selector(INPUT_NAZVANIE_TEGA)
@@ -38,8 +39,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(timeout=5000)
-    page.get_by_label("Удалить").get_by_role("button").first.click()
+    page.get_by_label("Удалить").first.click()
     #page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group

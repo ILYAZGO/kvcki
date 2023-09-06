@@ -10,8 +10,10 @@ BUTTON_PLAY = "//div[@class='styles_buttonsWrapper__5BGen']//div[1]//button[1]"
 BUTTON_SOZDAT = "StartTaskModalContent_submit"
 BUTTON_FIND_CALLS = "(//button[contains(text(),'Найти звонки')])[1]"
 
-BUTTON_USEDESK = '//*[@id="root"]/div/div[3]/div/div[2]/div/div/div/div[2]/div[2]/div[18]/div[2]/button'
+
+BUTTON_USEDESK = "div:nth-child(20) > .styles_body__L76ER > .MuiButtonBase-root"
+#BUTTON_USEDESK = '//*[@id="root"]/div/div[3]/div/div[2]/div/div/div/div[2]/div[2]/div[18]/div[2]/button'
 NA4ALNAYA_DATA = "//input[@placeholder='Начальная дата']"
 BUTTON_OK_IN_DATE = "button[class='ant-btn ant-btn-primary ant-btn-sm']"
-NAYDENO_ZVONKOV_INTEGRATION = '//*[@id="root"]/div/div[3]/div/div/div[3]/div[1]/div/p'
+NAYDENO_ZVONKOV_INTEGRATION = '//*[@id="root"]/div/div[3]/div/div[3]/div[1]/div/p' #'//*[@id="root"]/div/div[3]/div/div/div[3]/div[1]/div/p'
 LOGIN_IN_LEFT_MENU = ".MuiTypography-root.MuiTypography-body1.styles_headerLogin__eWAxf.css-pd9d9b"

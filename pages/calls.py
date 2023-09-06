@@ -4,8 +4,8 @@ WEEK = "button[value='week']"
 MONTH = "button[value='month']"
 YEAR = "button[value='year']"
 ALL_TIME = "button[value='allTime']"
-FIRST_DATE = '//*[@id="root"]/div/div[2]/div/div[1]/div[2]/div[1]/div/div/div/div[1]/input'
-LAST_DATE = '//*[@id="root"]/div/div[2]/div/div[1]/div[2]/div[1]/div/div/div/div[3]/input'
+FIRST_DATE = "//input[@placeholder='Начальная дата']"
+LAST_DATE = "//input[@placeholder='Конечная дата']"
 
 # inputs
 INPUT_PO_TEGAM = "#react-select-11-input"

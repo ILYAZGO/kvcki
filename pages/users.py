@@ -24,8 +24,8 @@ INPUT_LOGIN_SOTRUDNIKA = "input[placeholder='Логин']"
 INPUT_PASSWORD_SOTRUDNIKA = "input[placeholder='Пароль']"
 
 
-
-CHOOSE_ROLE = ("//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/fieldset/div[1]/div[5]/div[2]/div/div/div[1]/div[2]/input")
+CHOOSE_ROLE = "#react-select-7-input"
+#CHOOSE_ROLE = ("//html/body/div[2]/div[3]/div/div/div[2]/form/div[1]/fieldset/div[1]/div[5]/div[2]/div/div/div[1]/div[2]/input")
 
 
 ALERT ="//div/div/div/div/div/div/div/div[2]/div/p"

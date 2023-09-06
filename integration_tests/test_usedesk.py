@@ -57,7 +57,7 @@ def test_example(page: Page) -> None:
     time.sleep(180)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
-    time.sleep(4)
+    page.wait_for_selector(WEEK)
     '''go to week'''
     page.locator(WEEK).click()
     time.sleep(2)
@@ -69,7 +69,7 @@ def test_example(page: Page) -> None:
 
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
-    time.sleep(2)
+    page.wait_for_selector(BUTTON_INTEGRACII_IN_MENU)
 
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
 

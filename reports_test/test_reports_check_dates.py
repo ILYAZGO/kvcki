@@ -10,7 +10,7 @@ import pytest
 
 @pytest.mark.reports
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''go to reports'''

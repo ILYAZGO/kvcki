@@ -18,6 +18,7 @@ def test_example(page: Page) -> None:
     auth(LOGIN, PASSWORD, page)
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_timeout(5000)
     page.wait_for_selector(BUTTON_DOBAVIT_TEG)
 
     '''create group'''
@@ -38,7 +39,8 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click(timeout=wait_until_visible)
     page.get_by_text("Удалить", exact=True).click(timeout=wait_until_visible)
     page.get_by_role("button", name="Удалить").click(timeout=wait_until_visible)
-    page.get_by_label("Удалить").get_by_role("button").click()
+    page.wait_for_timeout(2000)
+    page.get_by_label("Удалить").first.click()
     #page.locator(BUTTON_KORZINA).click()
 
     '''check teardown'''

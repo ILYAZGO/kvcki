@@ -18,8 +18,10 @@ def test_example(page: Page) -> None:
     auth(LOGIN, PASSWORD, page)
     '''create check-list'''
     page.locator(BUTTON_RAZMETKA).click()
-    page.get_by_test_id(BUTTON_CHECK_LIST).click()
-    page.get_by_test_id(BUTTON_DOBAVIT_CHECK_LIST).click()
+    page.locator(BUTTON_CHECK_LIST).click()
+    page.wait_for_selector(BUTTON_DOBAVIT_CHECK_LIST)
+    page.locator(BUTTON_DOBAVIT_CHECK_LIST).click()
+    page.wait_for_selector(INPUT_CHECK_LIST_NAME)
     page.locator(INPUT_CHECK_LIST_NAME).fill("12345")
     page.locator("[name='questions.0.title']").fill("123456")
     page.locator("[name='questions.0.answers.0.answer']").fill("1234567")
@@ -34,13 +36,14 @@ def test_example(page: Page) -> None:
     page.locator("[name='questions.0.title']").clear()
     page.locator("[name='questions.0.title']").fill("654321")
     '''save'''
+    #page.locator("button[type='submit']").click()
     page.locator(".MuiButton-contained").click()
     #'''check updated'''
     #expect(page.get_by_text("Чек-лист обновлен")).to_be_visible()
     '''delete'''
-    page.locator(BUTTON_KORZINA).click()
+    page.locator("button[aria-label='Удалить']").click()
+    #page.locator(BUTTON_KORZINA).click()
     page.get_by_role("button", name="Удалить").click()
-    time.sleep(4)
     '''check deleted'''
     time.sleep(2)
     #expect(page.get_by_text("Чек-лист удален")).to_be_visible()

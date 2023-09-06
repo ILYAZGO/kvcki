@@ -23,9 +23,8 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_PASSWORD).fill(PASSWORD)
     page.locator(INPUT_EMAIL).fill("mail@mail.com")
     page.get_by_test_id(INPUT_COMMENT).fill("someComment")
-    page.locator(CHOOSE_ROLE).fill("Компания")
-    '''press enter'''
-    page.keyboard.press("Enter")
+    page.get_by_test_id("selectRole").locator("svg").click()
+    page.get_by_test_id("selectRole").get_by_text("Компания", exact=True).click()
     #'''stt'''
     #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[1]/div[2]/div/div/div[1]/div[2]/input").click()
     #page.get_by_text("Русский").click()

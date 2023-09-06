@@ -23,9 +23,8 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_PASSWORD).fill(PASSWORD)
     page.locator(INPUT_EMAIL).fill("mail@mail.com")
     page.get_by_test_id(INPUT_COMMENT).fill("someComment")
-    page.locator(CHOOSE_ROLE).fill("Интегратор")
-    '''press enter'''
-    page.keyboard.press("Enter")
+    page.get_by_test_id("selectRole").locator("svg").click()
+    page.get_by_test_id("selectRole").get_by_text("Интегратор", exact=True).click()
     '''press dobavit'''
     page.get_by_test_id(BUTTON_DOBAVIT).click()
     time.sleep(2)
