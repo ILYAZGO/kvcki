@@ -3,6 +3,7 @@ from utils.variables import *
 from utils.auth import *
 from pages.calls import *
 import pytest
+
 '''Check search all calls for Ecotelecom'''
 
 @pytest.mark.calls

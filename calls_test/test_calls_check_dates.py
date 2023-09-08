@@ -4,7 +4,6 @@ from utils.auth import *
 from utils.dates import *
 from pages.calls import *
 import pytest
-import time
 
 '''Проверяем кнопки выбора дат'''
 
@@ -13,7 +12,7 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''check begin and end dates in view. today by default'''
     expect(page.locator(FIRST_DATE)).to_have_value(today)
     expect(page.locator(LAST_DATE)).to_have_value(today)

@@ -4,7 +4,7 @@ from utils.auth import *
 from pages.users import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
+
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
@@ -25,16 +25,16 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(INPUT_COMMENT).fill("someComment")
     page.get_by_test_id("selectRole").locator("svg").click()
     page.get_by_test_id("selectRole").get_by_text("Компания", exact=True).click()
-    #'''stt'''
-    #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[1]/div[2]/div/div/div[1]/div[2]/input").click()
-    #page.get_by_text("Русский").click()
-    #'''stt engine'''
-    #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[2]/div[2]/div/div/div[1]/div[2]/input").click()
-    #time.sleep(2)
-    #page.get_by_text("Яндекс").click()
-    #'''stt model'''
-    #page.locator("//html/body/div[2]/div[3]/div/div/div[2]/form/fieldset[2]/div/div[3]/div[2]/div/div/div[1]/div[2]/input").click()
-    #page.get_by_text("Обобщённая").click()
+    '''stt'''
+    page.locator(SELECT_LANGUAGE).click()
+    page.get_by_text("Русский", exact=True).click()
+    '''stt engine'''
+    page.locator(SELECT_ENGINE).click()
+    page.get_by_text("IMOT.IO", exact=True).click()
+    '''stt model'''
+    page.locator(SELECT_MODEL).click()
+    page.wait_for_timeout(1000)
+    page.get_by_text("Стандарт", exact=True).click()
 
     # '''add quota'''
     # page.locator(INPUT_QUOTA).fill("60")

@@ -4,7 +4,6 @@ from utils.auth import *
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
 
 
 '''Create dict inside group'''
@@ -40,7 +39,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    time.sleep(3)
+    page.wait_for_timeout(3000)
     page.locator(BUTTON_KORZINA).click()
     '''check teardown'''
     expect(page.get_by_text("12345")).not_to_be_visible()

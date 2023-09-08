@@ -4,7 +4,7 @@ from utils.auth import *
 from pages.users import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
+
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
     '''go to sotrudniki'''
     page.get_by_role("link", name="Сотрудники").click()
     #page.locator(BUTTON_SOTRUDNIKI).click()
-    time.sleep(3)
+    page.wait_for_timeout(3000)
 
     '''add operator'''
     page.get_by_test_id(BUTTON_DOBAVIT_SOTRUDNIKA).click()
@@ -31,10 +31,10 @@ def test_example(page: Page) -> None:
     expect(page.locator(SOTRUDNIK_NAME)).to_have_text(NEW_OPERATOR_NAME, timeout=wait_until_visible)
     '''go inside operator'''
     page.locator(SOTRUDNIK_LOGIN).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''delete click'''
     page.locator(BUTTON_SOTRUDNIKI_KORZINA).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     ''''''
     page.locator(BUTTON_SOTRUDNIKI_UDALIT).click()
     page.wait_for_selector(SOTRUDNIK_LOGIN)

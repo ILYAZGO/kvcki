@@ -2,7 +2,6 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
 from pages.calls import *
-import time
 import pytest
 
 '''Check search by length for Ecotelecom'''
@@ -32,6 +31,6 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_DLITELNOST_ZVONKA).fill("1711")
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(4)
+    page.wait_for_timeout(4000)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 1 из 3130", timeout=wait_until_visible)

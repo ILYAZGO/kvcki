@@ -7,7 +7,7 @@ import pytest
 
 @pytest.mark.calls
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout = timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''

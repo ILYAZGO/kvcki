@@ -4,7 +4,6 @@ from utils.auth import *
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
 
 
 @pytest.mark.dictionaries
@@ -18,13 +17,13 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
     page.locator(BUTTON_SLOVARI).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
 
     '''create dict outside group'''
     page.locator(BUTTON_DOBAVIT_SLOVAR).click()
     page.locator(INPUT_NAZVANIE_SLOVAR).fill("77777")
     page.get_by_role('button', name="Отправить").click()
-    time.sleep(4)
+    page.wait_for_timeout(4000)
     '''check created dict outside group'''
 
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("77777", timeout=wait_until_visible)

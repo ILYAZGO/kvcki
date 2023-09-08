@@ -19,7 +19,7 @@ def test_example(page: Page) -> None:
     auth(MANAGER, PASSWORD, page)
 
     '''type in users list "import" and choose user "importTo"'''
-    page.locator("#react-select-2-input").fill("import")
+    page.locator(USERS_LIST).fill("import")
     page.get_by_text("importTo", exact=True).click()
     time.sleep(2)
 
@@ -30,8 +30,8 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''
-    page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")
-    time.sleep(3)
+    page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).get_by_role("combobox").fill("importFrom")
+    time.sleep(1)
     page.get_by_text("importFrom", exact=True).click()
     time.sleep(3)
 

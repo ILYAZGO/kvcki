@@ -4,7 +4,7 @@ from utils.auth import *
 from pages.users import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
+
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
@@ -27,7 +27,7 @@ def test_example(page: Page) -> None:
     page.get_by_test_id("selectRole").get_by_text("Администратор", exact=True).click()
     '''press dobavit'''
     page.get_by_test_id(BUTTON_DOBAVIT).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''go to profile'''
     page.get_by_text("newAdmin", exact=True).click()
     '''check'''
@@ -35,7 +35,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createAdminByAdmin", timeout=wait_until_visible)
     expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com", timeout=wait_until_visible)
     expect(page.get_by_text("Администратор")).to_have_count(1, timeout=wait_until_visible)
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()
     page.locator(BUTTON_PODTVERDIT).click()

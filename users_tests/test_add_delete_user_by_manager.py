@@ -23,6 +23,15 @@ def test_example(page: Page) -> None:
     page.get_by_test_id(INPUT_COMMENT).fill("someComment")
     page.get_by_test_id("selectRole").locator("svg").click()
     page.get_by_test_id("selectRole").get_by_text("Компания", exact=True).click()
+    '''stt'''
+    page.locator(SELECT_LANGUAGE).click()
+    page.get_by_text("Русский", exact=True).click()
+    '''stt engine'''
+    page.locator(SELECT_ENGINE).click()
+    page.get_by_text("IMOT.IO", exact=True).click()
+    '''stt model'''
+    page.locator(SELECT_MODEL).click()
+    page.get_by_text("Стандарт", exact=True).click()
     '''press dobavit'''
     page.get_by_test_id(BUTTON_DOBAVIT).click()
     '''go to profile'''

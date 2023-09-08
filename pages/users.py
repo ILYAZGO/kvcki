@@ -32,3 +32,7 @@ ALERT ="//div/div/div/div/div/div/div/div[2]/div/p"
 
 SOTRUDNIK_LOGIN = "div[role='rowgroup'] div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(1)"
 SOTRUDNIK_NAME = "div[role='rowgroup'] div:nth-child(2) div:nth-child(1) div:nth-child(2) div:nth-child(1)"
+
+SELECT_LANGUAGE = '[data-testid="selectSttLang"]'
+SELECT_ENGINE = '[data-testid="selectSttEngine"]'
+SELECT_MODEL ='[data-testid="selectSttModel"]'

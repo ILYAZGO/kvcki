@@ -3,7 +3,6 @@ from utils.variables import *
 from utils.auth import *
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
-import time
 import pytest
 
 '''
@@ -22,10 +21,10 @@ def test_example(page: Page) -> None:
     auth(LOGIN, PASSWORD, page)
 
     '''type in users list "import" and choose user "importTo"'''
-    page.locator("#react-select-2-input").fill("2import")
-    time.sleep(2)
+    page.locator(USERS_LIST).fill("2import")
+    page.wait_for_timeout(2000)
     page.get_by_text("2importTo", exact=True).click()
-    time.sleep(4)
+    page.wait_for_timeout(4000)
 
     '''going to Razmetka and click Importirovat Pravila'''
     page.locator(BUTTON_RAZMETKA).click()
@@ -33,21 +32,21 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
     page.wait_for_selector(INPUT_CHOOSE_USER_FOR_IMPORT)
     '''type in users list "importFrom" and choose user "importFrom"'''
-    page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).fill("importFrom")
-    time.sleep(4)
+    page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).get_by_role("combobox").fill("importFrom")
+    page.wait_for_timeout(1000)
     page.get_by_text("importFrom", exact=True).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
 
     '''click to switch button to import group with rule'''
     page.locator("(//input[@type='checkbox'])[3]").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.get_by_role("button", name="Продолжить").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     '''click to import rule'''
     page.locator("(//input[@type='checkbox'])[5]").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.get_by_role("button", name="К новым правилам").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     '''check that import successful'''
     expect(page.get_by_text("11111")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("22222")).to_be_visible(timeout=wait_until_visible)
@@ -65,7 +64,7 @@ def test_example(page: Page) -> None:
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
     page.locator("(//button[@type='button'])[15]").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.locator("(//button[@type='button'])[15]").click()
 
     '''check teardown'''
@@ -75,3 +74,4 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+

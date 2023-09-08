@@ -4,7 +4,6 @@ from utils.auth import *
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
 
 '''Create and cancel group of rules'''
 
@@ -16,7 +15,7 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''adding group'''
     page.locator(BUTTON_RAZMETKA).click()
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()

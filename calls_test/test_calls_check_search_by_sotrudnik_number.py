@@ -3,7 +3,6 @@ from utils.variables import *
 from utils.auth import *
 from pages.calls import *
 import pytest
-import time
 
 
 '''Check search by sotrudnik number for Ecotelecom'''

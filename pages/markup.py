@@ -1,4 +1,5 @@
 BUTTON_RAZMETKA = "//a[contains(text(),'Разметка')]"
+USERS_LIST = "#react-select-2-input"
 
 '''locators for rules'''
 '''---------------------------------------'''
@@ -7,7 +8,7 @@ INPUT_POISK = '//html/body/div/div/div[2]/div/div/div[1]/div[2]/div[1]/form/div/
 INPUT_NEW_GROUP_NAME = "//input[@name='groupName']"
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'
-INPUT_CHOOSE_USER_FOR_IMPORT = "//html/body/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div[2]/input"
+INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 
 # buttons
 

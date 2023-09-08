@@ -3,7 +3,6 @@ from utils.variables import *
 from utils.auth import *
 from pages.calls import *
 import pytest
-import time
 
 '''Check search by tag for Ecotelecom'''
 
@@ -17,18 +16,18 @@ def test_example(page: Page) -> None:
     page.locator(ALL_TIME).click()
     '''input tag'''
     page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
-    time.sleep(3)
+    page.wait_for_timeout(3000)
     page.keyboard.press("Enter")
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(6)
+    page.wait_for_timeout(6000)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 130 из 3130", timeout=wait_until_visible)
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     page.keyboard.press("Enter")
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
@@ -42,7 +41,7 @@ def test_example(page: Page) -> None:
     page.get_by_text("НЕТ ВСЕХ").click()
     '''add tag'''
     page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     page.keyboard.press("Enter")
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''

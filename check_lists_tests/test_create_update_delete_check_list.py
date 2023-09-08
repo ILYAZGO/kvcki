@@ -4,7 +4,6 @@ from utils.auth import *
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
 
 '''Create,delete,update check-list'''
 
@@ -45,7 +44,7 @@ def test_example(page: Page) -> None:
     #page.locator(BUTTON_KORZINA).click()
     page.get_by_role("button", name="Удалить").click()
     '''check deleted'''
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     #expect(page.get_by_text("Чек-лист удален")).to_be_visible()
     expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)
 
