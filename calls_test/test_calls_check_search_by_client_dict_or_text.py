@@ -2,9 +2,11 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
 from pages.calls import *
-import time
 import pytest
+
+
 '''Check search by client dict or text for Ecotelecom'''
+
 
 @pytest.mark.calls
 def test_example(page: Page) -> None:
@@ -15,11 +17,10 @@ def test_example(page: Page) -> None:
     page.locator(ALL_TIME).click()
     '''fill client text'''
     page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).fill("адрес")
-    time.sleep(3)
+    page.wait_for_timeout(3000)
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(80)
-    #page.wait_for_selector(NAYDENO_ZVONKOV)
+    page.wait_for_timeout(80000)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 152 из 3130", timeout=wait_until_visible)
     '''choose dict'''
@@ -28,6 +29,5 @@ def test_example(page: Page) -> None:
     page.get_by_text("Зомбоящик").click()
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
-    time.sleep(80)
-    #page.wait_for_selector(NAYDENO_ZVONKOV)
+    page.wait_for_timeout(80000)
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 410 из 3130", timeout=wait_until_visible)

@@ -2,7 +2,6 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import *
 from pages.markup import *
-import time
 import pytest
 
 '''
@@ -21,7 +20,7 @@ def test_example(page: Page) -> None:
     '''type in users list "import" and choose user "importTo"'''
     page.locator(USERS_LIST).fill("import")
     page.get_by_text("importTo", exact=True).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
 
     '''going to Razmetka/slovari and click Importirovat slovari'''
     page.locator(BUTTON_RAZMETKA).click()
@@ -31,19 +30,19 @@ def test_example(page: Page) -> None:
 
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).get_by_role("combobox").fill("importFrom")
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.get_by_text("importFrom", exact=True).click()
-    time.sleep(3)
+    page.wait_for_timeout(3000)
 
     '''click to switch button to import group of dict and dict'''
     page.locator("(//input[@type='checkbox'])[3]").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.get_by_role("button", name="Продолжить").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.locator("(//input[@type='checkbox'])[6]").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.get_by_role("button", name="К новым правилам").click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
 
     '''check that import successful'''
     expect(page.locator("//p[normalize-space()='44444']")).to_be_visible(timeout=wait_until_visible)
@@ -63,7 +62,7 @@ def test_example(page: Page) -> None:
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
     page.locator("(//button[@type='button'])[15]").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.locator("(//button[@type='button'])[15]").click()
     '''check teardown'''
     expect(page.locator("//p[normalize-space()='44444']")).not_to_be_visible(timeout=wait_until_visible)

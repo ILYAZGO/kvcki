@@ -4,7 +4,7 @@ from utils.auth import *
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
+
 
 '''Create and delete group of rules'''
 

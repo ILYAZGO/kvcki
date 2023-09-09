@@ -3,7 +3,6 @@ from utils.variables import *
 from utils.auth import *
 from pages.users import *
 import pytest
-import time
 
 '''Precondition : manager should have access_rights for create and delete user'''
 @pytest.mark.users

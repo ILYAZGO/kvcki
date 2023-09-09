@@ -7,7 +7,6 @@ from pages.calls import *
 from pages.integration import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
-import time
 
 @pytest.mark.integration
 def test_example(page: Page) -> None:
@@ -17,21 +16,21 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''go to user'''
     page.locator(INPUT_USER_DROPDOWN).fill(LOGIN)
     page.get_by_text(text=LOGIN, exact=True).click()
-    time.sleep(6)
+    page.wait_for_timeout(6000)
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
     '''go to integracii'''
     page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
     '''podklu4it'''
     page.locator(BUTTON_PODKLU4IT).click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     '''choose usedesk'''
     page.locator(BUTTON_USEDESK).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''input token'''
     page.locator(INPUT_API_TOKEN).fill(USEDESK_TOKEN)
     '''save'''
@@ -44,28 +43,27 @@ def test_example(page: Page) -> None:
     page.locator(NA4ALNAYA_DATA).click()
     page.locator(NA4ALNAYA_DATA).fill(yesterday)
     '''click OK'''
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     page.locator(BUTTON_OK_IN_DATE).click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.locator(BUTTON_OK_IN_DATE).click()
-    time.sleep(2)
+    page.wait_for_timeout(2000)
     '''fill limit'''
     page.locator(INPUT_CALLS_LIMIT).fill("3")
     '''sozdat'''
     page.get_by_test_id(BUTTON_SOZDAT).click()
     '''long wait for download'''
-    time.sleep(180)
+    page.wait_for_timeout(180000)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
     page.wait_for_selector(WEEK)
     '''go to week'''
     page.locator(WEEK).click()
-    time.sleep(2)
     '''press find calls'''
     page.locator(BUTTON_FIND_CALLS).click()
 
     expect(page.locator(NAYDENO_ZVONKOV_INTEGRATION)).to_have_text("Найдено звонков 3 из 3", timeout=wait_until_visible)
-    time.sleep(3)
+    page.wait_for_timeout(3000)
 
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
@@ -74,9 +72,9 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
 
     page.locator("div[class='styles_button__xgQ1q'] button[type='button']").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     page.get_by_test_id("SettingsCell_deleteBtn").click()
-    time.sleep(1)
+    page.wait_for_timeout(1000)
     expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
