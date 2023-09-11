@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="clear tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="delete import time">
+      <change afterPath="$PROJECT_DIR$/rules_test/est_ru.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,15 +46,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/left_menu_tests",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/rules_test",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/left_menu_tests" />
       <recent name="$PROJECT_DIR$/check_lists_tests" />
-      <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/users_tests" />
       <recent name="$PROJECT_DIR$/pages" />
     </key>
@@ -506,7 +507,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="100% fix rule test" />
     <MESSAGE value="upgrade test add test" />
     <MESSAGE value="move locators to users.py" />
     <MESSAGE value="test reanimation" />
@@ -531,6 +531,7 @@
     <MESSAGE value="fix tests a lot" />
     <MESSAGE value="add tests fix tests" />
     <MESSAGE value="clear tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="clear tests" />
+    <MESSAGE value="delete import time" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete import time" />
   </component>
 </project>

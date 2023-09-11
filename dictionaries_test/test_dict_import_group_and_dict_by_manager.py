@@ -3,23 +3,32 @@ from utils.variables import *
 from utils.auth import *
 from pages.markup import *
 import pytest
+from utils.create_delete_user import create_user, delete_user, give_user_to_manager
 
 '''
 Precondition
-user  importFrom should be available to this manager and have :
+user  importFrom  :
 group 11111 rule 22222 inside
 rule 33333 without group
-user  importTo should be available to this manager and be empty
 '''
+
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
+    '''create user for import'''
+    USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+    '''create manager'''
+    USER_ID_MANAGER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+
+    '''give manager user for import'''
+    give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
+    '''go to page'''
     page.goto(URL, timeout=timeout)
     '''login'''
-    auth(MANAGER, PASSWORD, page)
+    auth(LOGIN_MANAGER, PASSWORD, page)
 
-    '''type in users list "import" and choose user "importTo"'''
-    page.locator(USERS_LIST).fill("import")
-    page.get_by_text("importTo", exact=True).click()
+    '''go to the user to import'''
+    page.locator(USERS_LIST).fill(LOGIN_USER)
+    page.get_by_text(LOGIN_USER, exact=True).click()
     page.wait_for_timeout(2000)
 
     '''going to Razmetka/slovari and click Importirovat slovari'''
@@ -70,3 +79,8 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("55555")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("66666")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
+
+    '''delete admin'''
+    delete_user(API_URL, USER_ID_MANAGER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
+    '''delete user'''
+    delete_user(API_URL, USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER)

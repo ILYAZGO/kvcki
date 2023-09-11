@@ -10,21 +10,22 @@ Precondition
 user  importFrom 
 with group 11111 rule 22222 inside
 with rule 33333 without group
-user  importTo
 '''
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
-
+    '''create admin'''
+    USER_ID_ADMIN, BEARER_ADMIN, ACCESS_TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+    '''create user for import'''
+    USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+    '''go to page'''
     page.goto(URL, timeout=timeout)
-    '''login'''
-    auth(LOGIN, PASSWORD, page)
-
-    '''type in users list "import" and choose user "importTo"'''
-    page.locator(USERS_LIST).fill("2import")
-    page.get_by_text("2importTo", exact=True).click()
-    page.wait_for_timeout(2000)
-
+    '''login in admin'''
+    auth(LOGIN_ADMIN, PASSWORD, page)
+    '''go to the user to import'''
+    page.locator(USERS_LIST).fill(LOGIN_USER)
+    page.wait_for_timeout(1000)
+    page.get_by_text(LOGIN_USER, exact=True).click()
+    page.wait_for_timeout(3000)
     '''going to Razmetka/slovari and click Importirovat slovari'''
     page.locator(BUTTON_RAZMETKA).click()
     page.wait_for_timeout(3000)
@@ -36,7 +37,6 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(1000)
     page.get_by_text("importFrom", exact=True).click()
     page.wait_for_timeout(3000)
-
     '''click to switch button to import group of dict and dict'''
     page.locator("(//input[@type='checkbox'])[3]").click()
     page.wait_for_timeout(1000)
@@ -67,6 +67,7 @@ def test_example(page: Page) -> None:
     page.locator("(//button[@type='button'])[15]").click()
     page.wait_for_timeout(1000)
     page.locator("(//button[@type='button'])[15]").click()
+
     '''check teardown'''
     expect(page.locator("//p[normalize-space()='44444']")).not_to_be_visible(timeout=wait_until_visible)
     #expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
@@ -74,4 +75,7 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("66666")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    '''delete admin'''
+    delete_user(API_URL, USER_ID_ADMIN, BEARER_ADMIN, ACCESS_TOKEN_ADMIN)
+    '''delete user'''
+    delete_user(API_URL, USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER)

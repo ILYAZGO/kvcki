@@ -1,3 +1,5 @@
+import json
+
 import requests
 from datetime import datetime
 
@@ -86,3 +88,23 @@ def delete_user(URL,USER_ID, BEARER, ACCESS_TOKEN):
         print(f"\n>>>>> USER {USER_ID} DELETED <<<<<")
     else:
         print(f"\n>>>>> USER {USER_ID} NOT DELETED <<<<<")
+
+
+def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, BEARER, ACCESS_TOKEN):
+
+    headers_for_giving = {
+        'accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Authorization': BEARER + " " + ACCESS_TOKEN,
+    }
+    importFrom_id = '64b923905f95f6305573e619'
+    json = [USER_ID_USER, importFrom_id]
+
+    give_user = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/user_limitation", headers=headers_for_giving, json=json)
+
+
+    if give_user.status_code == 204:
+        print(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
+    else:
+        print(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER}<<<<<")
+

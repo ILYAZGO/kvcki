@@ -22,9 +22,10 @@ from main directory:
     manager : login-3managerIM name-managerIM
     operator : login-2operatorIM name-operatorIM
 
-    importFrom importFrom
-    importTo importTo
-    2importTo 2importTo
+    user for import : importFrom importFrom
+    with group 11111 rule 22222 inside
+    with rule 33333 without group
+
 
 
 
