@@ -27,7 +27,7 @@ def test_example(page: Page) -> None:
     page.get_by_test_id("selectRole").get_by_text("Интегратор", exact=True).click()
     '''press dobavit'''
     page.get_by_test_id(BUTTON_DOBAVIT).click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(4000)
     '''go to profile'''
     page.get_by_text("newManager", exact=True).click(timeout=wait_until_visible)
     '''check'''

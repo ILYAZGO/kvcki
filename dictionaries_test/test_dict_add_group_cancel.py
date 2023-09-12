@@ -16,6 +16,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''create and cancel adding group'''
+    page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
     '''go to slovari'''
     page.locator(BUTTON_SLOVARI).click()

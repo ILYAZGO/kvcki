@@ -27,7 +27,7 @@ def test_example(page: Page) -> None:
     page.get_by_test_id("selectRole").get_by_text("Администратор", exact=True).click()
     '''press dobavit'''
     page.get_by_test_id(BUTTON_DOBAVIT).click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(4000)
     '''go to profile'''
     page.get_by_text("newAdmin", exact=True).click()
     '''check'''
@@ -38,6 +38,7 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(2000)
     '''delete user'''
     page.locator(BUTTON_KORZINA).click()
+    page.wait_for_selector(BUTTON_PODTVERDIT)
     page.locator(BUTTON_PODTVERDIT).click()
 
     expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)

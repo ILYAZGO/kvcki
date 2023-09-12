@@ -4,7 +4,7 @@ USERS_LIST = "#react-select-2-input"
 '''locators for rules'''
 '''---------------------------------------'''
 # inputs
-INPUT_POISK = '//html/body/div/div/div[2]/div/div/div[1]/div[2]/div[1]/form/div/div[1]/div[1]/div/input'
+#INPUT_POISK = '//html/body/div/div/div[2]/div/div/div[1]/div[2]/div[1]/form/div/div[1]/div[1]/div/input'
 INPUT_NEW_GROUP_NAME = "//input[@name='groupName']"
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'

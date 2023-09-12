@@ -12,7 +12,7 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
-    page.wait_for_timeout(2000)
+    page.wait_for_selector(FIRST_DATE)
     '''check begin and end dates in view. today by default'''
     expect(page.locator(FIRST_DATE)).to_have_value(today)
     expect(page.locator(LAST_DATE)).to_have_value(today)

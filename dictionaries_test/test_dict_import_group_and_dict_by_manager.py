@@ -71,7 +71,7 @@ def test_example(page: Page) -> None:
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
     page.locator("(//button[@type='button'])[15]").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(2000)
     page.locator("(//button[@type='button'])[15]").click()
     '''check teardown'''
     expect(page.locator("//p[normalize-space()='44444']")).not_to_be_visible(timeout=wait_until_visible)

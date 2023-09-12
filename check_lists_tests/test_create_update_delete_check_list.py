@@ -16,6 +16,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''create check-list'''
+    page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
     page.locator(BUTTON_CHECK_LIST).click()
     page.wait_for_selector(BUTTON_DOBAVIT_CHECK_LIST)

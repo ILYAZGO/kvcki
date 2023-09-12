@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="delete import time">
-      <change afterPath="$PROJECT_DIR$/rules_test/est_ru.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add giving user to manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_search_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_search_dict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_search_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_search_rule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -507,7 +508,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="upgrade test add test" />
     <MESSAGE value="move locators to users.py" />
     <MESSAGE value="test reanimation" />
     <MESSAGE value="add test for adding sotrudnik by user" />
@@ -532,6 +532,7 @@
     <MESSAGE value="add tests fix tests" />
     <MESSAGE value="clear tests" />
     <MESSAGE value="delete import time" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete import time" />
+    <MESSAGE value="add giving user to manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="add giving user to manager" />
   </component>
 </project>

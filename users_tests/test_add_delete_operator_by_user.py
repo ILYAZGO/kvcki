@@ -37,7 +37,6 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(2000)
     ''''''
     page.locator(BUTTON_SOTRUDNIKI_UDALIT).click()
-    page.wait_for_selector(SOTRUDNIK_LOGIN)
 
     expect(page.locator(SOTRUDNIK_LOGIN)).not_to_be_visible(timeout=wait_until_visible)
 

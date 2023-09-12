@@ -12,7 +12,8 @@ def test_example(page: Page) -> None:
     '''go to razmetka'''
     page.locator(BUTTON_RAZMETKA).click()
     '''search (should not depend on register)'''
-    page.locator(INPUT_POISK).fill("mercury")
+    page.get_by_label("Поиск").fill("mercury")
+    #page.locator(INPUT_POISK).fill("mercury")
     page.locator(BUTTON_LUPA).click()
     '''check'''
     expect(page.get_by_text("Mercury")).to_have_count(1, timeout=wait_until_visible)
