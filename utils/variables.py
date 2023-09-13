@@ -48,5 +48,5 @@ ROLE_ADMIN = 'admin'
 
 # operator credentials
 
-NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().microsecond}"
+NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().microsecond}{datetime.now().hour}"
 

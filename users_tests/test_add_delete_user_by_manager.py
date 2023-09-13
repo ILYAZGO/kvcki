@@ -11,17 +11,17 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(MANAGER, PASSWORD, page)
     '''go to polzovateli'''
-    page.get_by_test_id(BUTTON_POLZOVATELI).click()
+    page.locator(BUTTON_POLZOVATELI).click()
     '''button create user'''
-    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''fill required'''
     page.locator(INPUT_NAME).fill("newOne")
     page.locator(INPUT_LOGIN).fill("1createUserByManager")
     page.locator(INPUT_PASSWORD).fill(PASSWORD)
     page.locator(INPUT_EMAIL).fill("mail@mail.com")
-    page.get_by_test_id(INPUT_COMMENT).fill("someComment")
-    page.get_by_test_id("selectRole").locator("svg").click()
-    page.get_by_test_id("selectRole").get_by_text("Компания", exact=True).click()
+    page.locator(INPUT_COMMENT).fill("someComment")
+    page.locator(SELECT_ROLE).locator("svg").click()
+    page.locator(SELECT_ROLE).get_by_text("Компания", exact=True).click()
     '''stt'''
     page.locator(SELECT_LANGUAGE).click()
     page.get_by_text("Русский", exact=True).click()
@@ -32,7 +32,7 @@ def test_example(page: Page) -> None:
     page.locator(SELECT_MODEL).click()
     page.get_by_text("Стандарт", exact=True).click()
     '''press dobavit'''
-    page.get_by_test_id(BUTTON_DOBAVIT).click()
+    page.locator(BUTTON_DOBAVIT).click()
     '''go to profile'''
     page.get_by_text("newOne", exact=True).click(timeout=wait_until_visible)
     ''''''

@@ -34,7 +34,7 @@ def test_example(page: Page) -> None:
     '''input token'''
     page.locator(INPUT_API_TOKEN).fill(USEDESK_TOKEN)
     '''save'''
-    page.get_by_test_id(BUTTON_SAVE_TOKEN).click()
+    page.locator(BUTTON_SAVE_TOKEN).click()
     '''go to integacii'''
     page.locator(BUTTON_INTEGRACII).click()
     '''play'''
@@ -51,7 +51,7 @@ def test_example(page: Page) -> None:
     '''fill limit'''
     page.locator(INPUT_CALLS_LIMIT).fill("3")
     '''sozdat'''
-    page.get_by_test_id(BUTTON_SOZDAT).click()
+    page.locator(BUTTON_SOZDAT).click()
     '''long wait for download'''
     page.wait_for_timeout(180000)
     '''go to zvonki'''
@@ -71,9 +71,9 @@ def test_example(page: Page) -> None:
 
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
 
-    page.locator("div[class='styles_button__xgQ1q'] button[type='button']").click()
+    page.locator(BUTTON_KORZINA).click()
     page.wait_for_timeout(1000)
-    page.get_by_test_id("SettingsCell_deleteBtn").click()
+    page.locator(BUTTON_UDALIT_INTEGRACIYU).click()
     page.wait_for_timeout(1000)
     expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
 

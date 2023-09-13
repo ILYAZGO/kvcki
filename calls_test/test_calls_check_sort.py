@@ -13,6 +13,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
+    page.wait_for_selector(ALL_TIME)
     page.locator(ALL_TIME).click()
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()

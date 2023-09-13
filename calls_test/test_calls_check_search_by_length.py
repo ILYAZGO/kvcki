@@ -12,6 +12,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
+    page.wait_for_selector(ALL_TIME)
     page.locator(ALL_TIME).click()
     '''fill search by length'''
     page.locator(INPUT_DLITELNOST_ZVONKA).fill("<10")

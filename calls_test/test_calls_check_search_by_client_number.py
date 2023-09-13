@@ -11,6 +11,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
+    page.wait_for_selector(ALL_TIME)
     page.locator(ALL_TIME).click()
     '''fill client number'''
     page.locator(INPUT_NOMER_CLIENTA).fill("79251579005")

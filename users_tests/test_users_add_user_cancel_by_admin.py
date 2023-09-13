@@ -11,16 +11,16 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
-    page.get_by_test_id(BUTTON_POLZOVATELI).click()
+    page.locator(BUTTON_POLZOVATELI).click()
     '''button create user'''
-    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''cancel by button CANCEL'''
-    page.get_by_test_id(BUTTON_OTMENA).click()
+    page.locator(BUTTON_OTMENA).click()
     '''check'''
     expect(page.get_by_text("Пароль")).not_to_be_visible()
     '''button create user'''
-    page.get_by_test_id(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''cancel by button KRESTIK'''
-    page.get_by_test_id(BUTTON_KRESTIK).click()
+    page.locator(BUTTON_KRESTIK).click()
     '''check'''
     expect(page.get_by_text("Пароль")).not_to_be_visible()

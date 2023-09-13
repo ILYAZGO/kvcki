@@ -10,11 +10,12 @@ import pytest
 
 @pytest.mark.reports
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-895/ru/", timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''go to reports'''
     page.locator(BUTTON_OT4ETI).click()
+    page.get_by_role("link", name="Создать отчет").click()
     '''check begin and end dates in view. today by default'''
     expect(page.locator(FIRST_DATE)).to_have_value(today)
     expect(page.locator(LAST_DATE)).to_have_value(today)

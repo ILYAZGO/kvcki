@@ -11,6 +11,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
+    page.wait_for_selector(ALL_TIME)
     page.locator(ALL_TIME).click()
     '''fill client text'''
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).fill("адрес")

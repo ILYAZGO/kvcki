@@ -25,14 +25,12 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(INPUT_NAZVANIE_TEGA)
     page.locator(INPUT_NAZVANIE_TEGA).type("66666", timeout=wait_until_visible)
     page.keyboard.press('Enter')  # kostil'
-
+    page.wait_for_timeout(2000)
     # page.get_by_test_id("markup_newRuleApply").click() #otpravit
 
     '''check'''
     page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
     expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")
-
-    # expect(page.get_by_text("Неотсортированные")).to_have_count(count=2)  # po4emu to valitsa
 
     ''''teardown'''
     page.locator(".css-izdlur").click(timeout=wait_until_visible)
