@@ -35,7 +35,6 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_RAZMETKA).click()
     page.wait_for_selector(BUTTON_SLOVARI)
     page.locator(BUTTON_SLOVARI).click()
-    page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
     page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''

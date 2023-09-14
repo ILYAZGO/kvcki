@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="changed timeouts">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix timeouts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -500,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test for adding sotrudnik by user" />
     <MESSAGE value="add sleep for users tests" />
     <MESSAGE value="add integration test. fix some problems" />
     <MESSAGE value="prikazivayu rabotat" />
@@ -525,6 +524,7 @@
     <MESSAGE value="add giving user to manager" />
     <MESSAGE value="some fixes" />
     <MESSAGE value="changed timeouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed timeouts" />
+    <MESSAGE value="fix timeouts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix timeouts" />
   </component>
 </project>
