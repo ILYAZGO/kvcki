@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="some fixes">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="changed timeouts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_import_group_and_rule_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -505,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test reanimation" />
     <MESSAGE value="add test for adding sotrudnik by user" />
     <MESSAGE value="add sleep for users tests" />
     <MESSAGE value="add integration test. fix some problems" />
@@ -530,6 +524,7 @@
     <MESSAGE value="delete import time" />
     <MESSAGE value="add giving user to manager" />
     <MESSAGE value="some fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="some fixes" />
+    <MESSAGE value="changed timeouts" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed timeouts" />
   </component>
 </project>
