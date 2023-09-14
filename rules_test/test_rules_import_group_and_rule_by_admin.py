@@ -28,7 +28,7 @@ def test_example(page: Page) -> None:
     page.locator(USERS_LIST).fill(LOGIN_USER)
     page.wait_for_timeout(2000)
     page.get_by_text(LOGIN_USER, exact=True).click()
-    page.wait_for_timeout(4000)
+    page.wait_for_timeout(6000)
     '''going to Razmetka and click Importirovat Pravila'''
     page.locator(BUTTON_RAZMETKA).click()
     page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)

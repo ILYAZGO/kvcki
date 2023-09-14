@@ -36,7 +36,7 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click(timeout=wait_until_visible)
     page.get_by_text("Удалить", exact=True).click(timeout=wait_until_visible)
     page.get_by_role("button", name="Удалить").click(timeout=wait_until_visible)
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(4000)
     page.get_by_label("Удалить").first.click()
     #page.locator(BUTTON_KORZINA).click()
 

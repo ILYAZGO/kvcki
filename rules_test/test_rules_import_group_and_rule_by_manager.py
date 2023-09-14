@@ -32,12 +32,11 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(2000)
     page.get_by_text(LOGIN_USER, exact=True).click()
     page.wait_for_timeout(4000)
-
     '''going to Razmetka and click Importirovat Pravila'''
     page.locator(BUTTON_RAZMETKA).click()
-    page.wait_for_timeout(2000)
+    page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
     page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
-    page.wait_for_timeout(2000)
+    page.wait_for_selector(INPUT_CHOOSE_USER_FOR_IMPORT)
     '''type in users list "importFrom" and choose user "importFrom"'''
     page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).get_by_role("combobox").fill("importFrom")
     page.wait_for_timeout(1000)

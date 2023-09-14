@@ -29,12 +29,13 @@ def test_example(page: Page) -> None:
     '''go to the user to import'''
     page.locator(USERS_LIST).fill(LOGIN_USER)
     page.get_by_text(LOGIN_USER, exact=True).click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(4000)
 
     '''going to Razmetka/slovari and click Importirovat slovari'''
     page.locator(BUTTON_RAZMETKA).click()
     page.wait_for_selector(BUTTON_SLOVARI)
     page.locator(BUTTON_SLOVARI).click()
+    page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
     page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
 
     '''type in users list "importFrom" and choose user "importFrom"'''
