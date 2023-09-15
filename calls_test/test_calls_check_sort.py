@@ -19,7 +19,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_NAYTI_ZVONKI).click()
 
     '''check all calls find, OLD calls first by default'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 3130 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 3130 из 3130", timeout=wait_until_visible)
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("08.02.22 00:12", timeout=wait_until_visible)
 
     '''change sort to NEW CALLS'''

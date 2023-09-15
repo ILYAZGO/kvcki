@@ -23,7 +23,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     page.wait_for_timeout(80000)
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 152 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 152 из 3130", timeout=wait_until_visible)
     '''choose dict'''
     page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).clear()
     page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).fill("Зо")
@@ -31,4 +31,4 @@ def test_example(page: Page) -> None:
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     page.wait_for_timeout(80000)
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 410 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 410 из 3130", timeout=wait_until_visible)

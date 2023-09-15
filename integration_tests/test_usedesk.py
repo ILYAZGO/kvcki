@@ -62,7 +62,7 @@ def test_example(page: Page) -> None:
     '''press find calls'''
     page.locator(BUTTON_FIND_CALLS).click()
 
-    expect(page.locator(NAYDENO_ZVONKOV_INTEGRATION)).to_have_text("Найдено звонков 3 из 3", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV_INTEGRATION)).to_have_text("Найдено диалогов 3 из 3", timeout=wait_until_visible)
     page.wait_for_timeout(3000)
 
     '''go to nastroiki'''

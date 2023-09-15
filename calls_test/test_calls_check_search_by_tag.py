@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     page.wait_for_timeout(7000)
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 130 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 130 из 3130", timeout=wait_until_visible)
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
     page.wait_for_timeout(5000)
@@ -33,7 +33,7 @@ def test_example(page: Page) -> None:
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 46 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 46 из 3130", timeout=wait_until_visible)
     '''click to add condition'''
     page.locator(BUTTON_DOBAVIT_USLOVIE).click()
     '''change logic operator'''
@@ -48,4 +48,4 @@ def test_example(page: Page) -> None:
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 19 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 19 из 3130", timeout=wait_until_visible)

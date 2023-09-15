@@ -19,14 +19,14 @@ def test_example(page: Page) -> None:
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 443 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 443 из 3130", timeout=wait_until_visible)
 
     page.locator(INPUT_DLITELNOST_ZVONKA).clear()
     page.locator(INPUT_DLITELNOST_ZVONKA).fill(">10")
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 2687 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 2687 из 3130", timeout=wait_until_visible)
 
     page.locator(INPUT_DLITELNOST_ZVONKA).clear()
     page.locator(INPUT_DLITELNOST_ZVONKA).fill("1711")
@@ -34,4 +34,4 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     page.wait_for_timeout(4000)
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено звонков 1 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 1 из 3130", timeout=wait_until_visible)
