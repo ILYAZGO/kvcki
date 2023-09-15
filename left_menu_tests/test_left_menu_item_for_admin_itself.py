@@ -8,15 +8,17 @@ import pytest
 
 @pytest.mark.left_menu
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto('http://192.168.10.101/feature-dev-1173/', timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
 
-    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияИстория задачАдресная книга'])
+    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
+    expect(page.locator(LEFT_MENU_ITEM)).to_have_count(1)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+
 

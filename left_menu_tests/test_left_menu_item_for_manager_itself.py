@@ -8,7 +8,7 @@ import pytest
 
 @pytest.mark.left_menu
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
@@ -16,7 +16,8 @@ def test_example(page: Page) -> None:
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
 
-    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиИстория задачАдресная книгаИнтеграции'])
+    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияИстория задачАдресная книга'])
+    expect(page.locator(LEFT_MENU_ITEM)).to_have_count(3)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 

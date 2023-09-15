@@ -1,5 +1,3 @@
-import json
-
 import requests
 from datetime import datetime
 
@@ -74,8 +72,60 @@ def create_user(URL, ROLE, PASSWORD):
     return user_id, bearer, access_token, LOGIN
 
 
+def create_operator(URL, PARENT_USER_ID, PASSWORD):
 
-def delete_user(URL,USER_ID, BEARER, ACCESS_TOKEN):
+    NAME = LOGIN = f"auto_test_user_{datetime.now().hour}{datetime.now().minute}{datetime.now().microsecond}"
+
+    headers_for_get_token = {
+        'accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+    }
+
+    data = {
+        'username': '4adminIM',
+        'password': 'Qaz123wsX',
+        'scope': '',
+        'client_id': '',
+        'client_secret': '',
+    }
+
+    json = {
+        'role': 'operator',
+        'login': LOGIN,
+        'name': NAME,
+        'password': PASSWORD,
+        'parentUser': PARENT_USER_ID
+    }
+
+    get_token = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data)
+
+    token = get_token.json()
+    bearer = token['token_type'].capitalize()
+    access_token = token['access_token']
+
+    headers_for_create = {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': bearer + " " + access_token,
+    }
+
+    create = requests.post(url=URL + "/user", headers=headers_for_create, json=json)
+    user_id = create.text.replace('"', '')
+
+    if create.status_code == 200:
+        print(f"\n>>>>> OPERATOR {NAME} WITH user_id: {user_id} CREATED SUCCESSFULLY <<<<<")
+    elif create.status_code == 409:
+        print(f"\n>>>>> OPERATOR {NAME} ALREADY EXISTS <<<<<")
+    elif create.status_code == 422:
+        print(f"\n>>>>> VALIDATION ERROR 422 <<<<<")
+    else:
+        print(f"\n>>>>> ACCESS DENIED 403 <<<<<")
+
+    return user_id, bearer, access_token, LOGIN
+
+
+
+def delete_user(URL, USER_ID, BEARER, ACCESS_TOKEN):
 
     headers_for_delete = {
         'accept': '*/*',

@@ -10,14 +10,14 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto('http://192.168.10.101/feature-dev-1173/', timeout=timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
 
-    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
+    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиИстория задачАдресная книгаИнтеграции'])
+    expect(page.locator(LEFT_MENU_ITEM)).to_have_count(5)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
-
 
