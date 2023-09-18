@@ -33,8 +33,9 @@ def test_example(page: Page) -> None:
     page.get_by_text("Стандарт", exact=True).click()
     '''press dobavit'''
     page.locator(BUTTON_DOBAVIT).click()
-    '''go to profile'''
-    page.get_by_text("newOne", exact=True).click(timeout=wait_until_visible)
+    page.wait_for_selector(INPUT_NAME)
+    #'''go to profile'''
+    #page.get_by_text("newOne", exact=True).click(timeout=wait_until_visible)
     ''''''
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByManager", timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value("newOne", timeout=wait_until_visible)

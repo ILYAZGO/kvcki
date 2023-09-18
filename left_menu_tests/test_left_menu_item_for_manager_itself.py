@@ -16,8 +16,8 @@ def test_example(page: Page) -> None:
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
 
-    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияИстория задачАдресная книга'])
-    expect(page.locator(LEFT_MENU_ITEM)).to_have_count(3)
+    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
+    expect(page.locator(LEFT_MENU_ITEM)).to_have_count(1)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 

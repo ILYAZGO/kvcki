@@ -27,9 +27,7 @@ def test_example(page: Page) -> None:
     page.locator(SELECT_ROLE).get_by_text("Администратор", exact=True).click()
     '''press dobavit'''
     page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_timeout(4000)
-    '''go to profile'''
-    page.get_by_text("newAdmin", exact=True).click()
+    page.wait_for_selector(INPUT_NAME)
     '''check'''
     expect(page.locator(INPUT_NAME)).to_have_value("newAdmin", timeout=wait_until_visible)
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createAdminByAdmin", timeout=wait_until_visible)

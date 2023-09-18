@@ -28,12 +28,14 @@ def test_example(page: Page) -> None:
     '''stt'''
     page.locator(SELECT_LANGUAGE).click()
     page.get_by_text("Русский", exact=True).click()
+    page.wait_for_timeout(500)
     '''stt engine'''
     page.locator(SELECT_ENGINE).click()
     page.get_by_text("IMOT.IO", exact=True).click()
+    page.wait_for_timeout(500)
     '''stt model'''
     page.locator(SELECT_MODEL).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(500)
     page.get_by_text("Стандарт", exact=True).click()
 
     # '''add quota'''
@@ -41,11 +43,7 @@ def test_example(page: Page) -> None:
 
     '''press dobavit'''
     page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_selector("//div[contains(text(),'1createUserByAdmin')]")
-    '''check quota'''
-    #expect(page.get_by_text("60")).to_be_visible()
-    '''go to profile'''
-    page.locator("//div[contains(text(),'1createUserByAdmin')]").click()
+    page.wait_for_selector(INPUT_NAME)
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value("1createUserByAdmin", timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value("newUser", timeout=wait_until_visible)
