@@ -16,10 +16,11 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(LOGIN_OPERATOR, PASSWORD, page)
     '''go to nastroiki'''
+    page.wait_for_selector(BUTTON_NASTROIKI)
     page.locator(BUTTON_NASTROIKI).click()
 
-    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияИстория задач'])
-    expect(page.locator(LEFT_MENU_ITEM)).to_have_count(2)
+    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
+    expect(page.locator(LEFT_MENU_ITEM)).to_have_count(1)
 
     delete_user(API_URL, USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER)
     delete_user(API_URL, USER_ID_OPERATOR, BEARER_OPERATOR, ACCESS_TOKEN_OPERATOR)

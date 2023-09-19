@@ -1,5 +1,5 @@
-pytest
+pytest == 7.4.2
 pytest-playwright
-pytest-xdist
+pytest-xdist == 3.3.1
 requests
-pytest-sugar
+pytest-sugar == 0.9.7

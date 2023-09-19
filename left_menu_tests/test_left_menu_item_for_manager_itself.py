@@ -14,6 +14,7 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''go to nastroiki'''
+    page.wait_for_selector(BUTTON_NASTROIKI)
     page.locator(BUTTON_NASTROIKI).click()
 
     expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
