@@ -6,7 +6,7 @@ BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
 
 BUTTON_KORZINA = ".styles_menu__tIMGQ svg"
 BUTTON_PODTVERDIT = ".FooterButtons_footer__ZUsFp [tabindex='0']:nth-of-type(2)"
-BUTTON_NASTROIKI = "//a[contains(text(),'Настройки')]"
+BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_SOTRUDNIKI = "a:nth-child(3)"
 BUTTON_SOTRUDNIKI_UDALIT = "//button[contains(text(),'Удалить')]"
 BUTTON_SOTRUDNIKI_KORZINA = ".styles_actions__6AFGJ"

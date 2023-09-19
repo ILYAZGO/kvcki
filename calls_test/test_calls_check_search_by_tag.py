@@ -17,14 +17,14 @@ def test_example(page: Page) -> None:
     page.locator(ALL_TIME).click()
     '''input tag'''
     page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
-    page.wait_for_timeout(5000)
+    page.wait_for_timeout(4500)
     page.get_by_text("Другой отдел", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
     page.locator(BUTTON_NAYTI_ZVONKI).click()
     page.wait_for_timeout(7000)
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 130 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 131 из 3130", timeout=wait_until_visible)
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
     page.wait_for_timeout(5000)

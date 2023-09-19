@@ -1,8 +1,10 @@
 INPUT_USER_DROPDOWN = "#react-select-2-input"
 INPUT_API_TOKEN = "//input[@name='api_token']"
-INPUT_CALLS_LIMIT = "//html/body/div[2]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/input"
+INPUT_CALLS_LIMIT = '[name="maxNewCalls"]'
+#INPUT_CALLS_LIMIT = "//html/body/div[2]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/input"
 
-BUTTON_INTEGRACII_IN_MENU = '//*[@id="root"]/div/div[3]/div/div[1]/div/div[2]/a[8]'
+#BUTTON_INTEGRACII_IN_MENU = '//*[@id="root"]/div/div[3]/div/div[1]/div/div[2]/a[8]'
+BUTTON_INTEGRACII_IN_MENU = "//p[contains(text(),'Интеграции')]"
 BUTTON_PODKLU4IT = ".styles_goToIntegrationsList__KXaHU"
 BUTTON_SAVE_TOKEN = '[data-testid="AccessKeysTab_submit"]'
 BUTTON_INTEGRACII = ".styles_firstTitle__iaGwm"
@@ -14,7 +16,6 @@ BUTTON_UDALIT_INTEGRACIYU = '[data-testid="SettingsCell_deleteBtn"]'
 
 
 BUTTON_USEDESK = "div:nth-child(20) > .styles_body__L76ER > .MuiButtonBase-root"
-#BUTTON_USEDESK = '//*[@id="root"]/div/div[3]/div/div[2]/div/div/div/div[2]/div[2]/div[18]/div[2]/button'
 NA4ALNAYA_DATA = "//input[@placeholder='Начальная дата']"
 BUTTON_OK_IN_DATE = "button[class='ant-btn ant-btn-primary ant-btn-sm']"
 NAYDENO_ZVONKOV_INTEGRATION = '//*[@id="root"]/div/div[3]/div/div[3]/div[1]/div/p' #'//*[@id="root"]/div/div[3]/div/div/div[3]/div[1]/div/p'

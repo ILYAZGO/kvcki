@@ -1,4 +1,4 @@
-BUTTON_RAZMETKA = "//a[contains(text(),'Разметка')]"
+BUTTON_RAZMETKA = '[value="tags"]'
 USERS_LIST = "#react-select-2-input"
 
 '''locators for rules'''
