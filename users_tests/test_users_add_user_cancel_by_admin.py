@@ -11,8 +11,10 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ADMIN, PASSWORD, page)
     '''go to polzovateli'''
+    page.wait_for_selector(BUTTON_POLZOVATELI)
     page.locator(BUTTON_POLZOVATELI).click()
     '''button create user'''
+    page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
     page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
     '''cancel by button CANCEL'''
     page.locator(BUTTON_OTMENA).click()

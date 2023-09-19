@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test + add expectation">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="delete steps">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/est_reports_create_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -504,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="prikazivayu rabotat" />
     <MESSAGE value="create/delete users, minor improvements" />
     <MESSAGE value="minor improvements" />
     <MESSAGE value="give users for tests" />
@@ -529,6 +526,7 @@
     <MESSAGE value="fix timeouts" />
     <MESSAGE value="zvonki to dialog" />
     <MESSAGE value="add test + add expectation" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test + add expectation" />
+    <MESSAGE value="delete steps" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete steps" />
   </component>
 </project>
