@@ -6,7 +6,7 @@ tests:
   resource_group: e2e-stand-requests
   image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
   script:
-    #- echo Using public URL $PUBLIC_URL
+    - echo Using public URL $PUBLIC_URL
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
     - pytest -sv -m left_menu 
