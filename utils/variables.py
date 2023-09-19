@@ -2,8 +2,8 @@ import os
 from datetime import datetime
 
 #LIST OF URLS
-
-URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
+URL = "https://app.stand.imot.io/"
+#URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
 
 # LIST OF TIMEOUTS
@@ -27,8 +27,8 @@ LOGIN_NEGOTIVE = "1userI"
 PASSWORD_NEGOTIVE ="Qaz123ws"
 
 # LIST OF USERS FOR IMPORT
-FROM_USER_IMPORT = "importFrom"
-TO_USER_IMPORT = "importTo"
+#FROM_USER_IMPORT = "importFrom"
+#TO_USER_IMPORT = "importTo"
 
 # CRED FOR REGISTRATIONS
 REGISTRATION_NAME = "John Coltrane"
