@@ -4,7 +4,7 @@ stages:
 tests:
   stage: test
   resource_group: e2e-stand-requests
-  image: mcr.microsoft.com/playwright/python:v1.37.0-jammy
+  image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt
