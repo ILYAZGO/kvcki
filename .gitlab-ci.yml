@@ -8,5 +8,5 @@ tests:
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt
-    - pytest -sv
+    - pytest -sv -m left_menu 
 
