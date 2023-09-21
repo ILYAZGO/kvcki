@@ -20,6 +20,6 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("userIM")).to_have_count(1, timeout=wait_until_visible)
     expect(page.get_by_text("Пользователи")).to_have_count(1, timeout=wait_until_visible)
     '''go back'''
-    page.get_by_test_id("adminBar").get_by_role("button").click()
+    page.locator('[data-testid="adminBar"]').get_by_role("button").click()
     '''check name have count 2'''
     expect(page.get_by_text("adminIM")).to_have_count(2, timeout=wait_until_visible)

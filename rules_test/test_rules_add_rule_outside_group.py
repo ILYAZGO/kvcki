@@ -26,7 +26,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_NAZVANIE_TEGA).type("66666", timeout=wait_until_visible)
     page.keyboard.press('Enter')  # kostil'
     page.wait_for_timeout(2000)
-    # page.get_by_test_id("markup_newRuleApply").click() #otpravit
+    #page.get_by_role("button", name="Отправить").click() #otpravit
 
     '''check'''
     page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)

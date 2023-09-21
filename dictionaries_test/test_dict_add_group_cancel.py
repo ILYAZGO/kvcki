@@ -29,7 +29,7 @@ def test_example(page: Page) -> None:
     '''create and cancel adding group'''
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     '''cancel cross'''
-    page.get_by_test_id(BUTTON_KRESTIK).click()
+    page.locator(BUTTON_KRESTIK).click()
     '''check canceled'''
     expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 

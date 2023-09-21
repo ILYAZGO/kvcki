@@ -29,8 +29,9 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_PODKLU4IT).click()
     page.wait_for_timeout(1000)
     '''choose usedesk'''
-    page.locator(BUTTON_USEDESK).click()
-    page.wait_for_timeout(2000)
+    page.locator(".styles_body__L76ER", has_text="usedesk").get_by_role("button").click()
+    #page.locator(BUTTON_USEDESK).click()
+    page.wait_for_selector(INPUT_API_TOKEN)
     '''input token'''
     page.locator(INPUT_API_TOKEN).fill(USEDESK_TOKEN)
     '''save'''
@@ -53,7 +54,7 @@ def test_example(page: Page) -> None:
     '''sozdat'''
     page.locator(BUTTON_SOZDAT).click()
     '''long wait for download'''
-    page.wait_for_timeout(180000)
+    page.wait_for_timeout(175000)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
     page.wait_for_selector(WEEK)

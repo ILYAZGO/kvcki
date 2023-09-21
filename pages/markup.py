@@ -5,7 +5,7 @@ USERS_LIST = "#react-select-2-input"
 '''---------------------------------------'''
 # inputs
 #INPUT_POISK = '//html/body/div/div/div[2]/div/div/div[1]/div[2]/div[1]/form/div/div[1]/div[1]/div/input'
-INPUT_NEW_GROUP_NAME = "//input[@name='groupName']"
+INPUT_NEW_GROUP_NAME = '[name="groupName"]'            #"//input[@name='groupName']"
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'
 INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
@@ -15,17 +15,17 @@ INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 BUTTON_DOBAVIT_GRUPPU = '[data-testid="markup_addGroup"]'
 BUTTON_DOBAVIT_TEG = '[data-testid="markup_addTag"]'
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
-BUTTON_KRESTIK = "CloseIcon"
+BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"
 BUTTON_OTPRAVIT = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[1]"
-BUTTON_PENCIL = "//button[@aria-label='Изменить название']"
+BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
-BUTTON_KORZINA = "//button[@aria-label='Удалить']"
+BUTTON_KORZINA = '[aria-label="Удалить"]'
 
 BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
 # other
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
-NI4EGO_NE_NAYDENO =".styles_noFound__0AI5V"
+NI4EGO_NE_NAYDENO = ".styles_noFound__0AI5V"
 NAZVANIE_PRAVILA_TEGIROVANIYA = "//input[@name='title']"
 
 '''locators for dictionaries'''

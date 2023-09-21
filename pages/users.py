@@ -18,9 +18,9 @@ INPUT_PASSWORD = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input 
 INPUT_EMAIL = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='email']"
 INPUT_COMMENT = '[data-testid="textAreaComment"]'
 INPUT_QUOTA = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='quotaRemindTime']"
-INPUT_NAME_SOTRUDNIKA = "input[placeholder='Имя']"
-INPUT_LOGIN_SOTRUDNIKA = "input[placeholder='Логин']"
-INPUT_PASSWORD_SOTRUDNIKA = "input[placeholder='Пароль']"
+INPUT_NAME_SOTRUDNIKA = '[name="name"]'
+INPUT_LOGIN_SOTRUDNIKA = '[name="login"]'
+INPUT_PASSWORD_SOTRUDNIKA = '[name="password"]'
 
 ALERT ="//div/div/div/div/div/div/div/div[2]/div/p"
 
