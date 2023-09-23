@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import auth
 from pages.reports import *
+from utils.dates import yesterday,today ,first_day_week_ago
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
@@ -12,7 +13,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto("http://192.168.10.101/feature-dev-893/", timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-892/", timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''go to reports'''
@@ -36,11 +37,33 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
 
-
+    '''change name'''
     page.locator('[aria-label="Изменить название"]').click()
     page.locator('[name="reportName"]').clear()
     page.locator('[name="reportName"]').fill("report-test-auto")
     page.locator('[aria-label="Сохранить"]').click()
+
+    #'''change dates'''
+    #page.get_by_text("За все время", exact=True).click()
+    #page.get_by_text("Произвольные даты", exact=True).click()
+    #'''set beginning date '''
+    #page.locator(FIRST_DATE).click()
+    #page.get_by_text("Последняя неделя").click()
+    #page.locator(FIRST_DATE).fill(yesterday)
+    #page.locator(LAST_DATE).click()
+    #page.locator(LAST_DATE).fill(today)
+
+    page.locator('[aria-label="Перейти"]').click()
+
+    #expect(page.locator(FIRST_DATE)).to_have_value(first_day_week_ago)
+    #expect(page.locator(LAST_DATE)).to_have_value(today)
+    '''click OK'''
+
+    page.locator(BUTTON_OT4ETI).click()
+
+    page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
+
+
 
     '''delete report'''
     page.wait_for_selector(BUTTON_KORZINA)

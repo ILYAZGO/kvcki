@@ -13,25 +13,28 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
-    page.wait_for_selector(ALL_TIME)
+    page.wait_for_selector(ALL_TIME, timeout=wait_until_visible)
     page.locator(ALL_TIME).click()
+    page.wait_for_selector(INPUT_PO_TEGAM)
     '''input tag'''
     page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
     page.wait_for_timeout(4500)
     page.get_by_text("Другой отдел", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
-    page.wait_for_timeout(7000)
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.wait_for_selector(FIRST_PAGE_PAGINATION)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 131 из 3130", timeout=wait_until_visible)
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
-    page.wait_for_timeout(5000)
+    page.wait_for_timeout(4500)
     page.get_by_text("Обсуждение тарифа", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 46 из 3130", timeout=wait_until_visible)
     '''click to add condition'''
@@ -46,6 +49,7 @@ def test_example(page: Page) -> None:
     page.get_by_text("Новое подключение", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 19 из 3130", timeout=wait_until_visible)

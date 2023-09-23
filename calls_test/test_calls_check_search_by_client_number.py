@@ -11,12 +11,13 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
-    page.wait_for_selector(ALL_TIME)
+    page.wait_for_selector(ALL_TIME, timeout=wait_until_visible)
     page.locator(ALL_TIME).click()
     '''fill client number'''
     page.locator(INPUT_NOMER_CLIENTA).fill("79251579005")
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 14 из 3130", timeout=wait_until_visible)
 

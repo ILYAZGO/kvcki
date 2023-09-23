@@ -19,3 +19,5 @@ PO_TEGAM_THIRD = ".css-12ol9ef"
 TUPO_CLICK = ".styles_questionTitle__WSOwz"
 
 INPUT_REPORT_NAME = '[name="report_name"]'
+INPUT_SEARCH = '[name="searchString"]'
+BUTTON_LUPA = '[type="submit"]'

@@ -30,7 +30,6 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(1000)
     '''choose usedesk'''
     page.locator(".styles_body__L76ER", has_text="usedesk").get_by_role("button").click()
-    #page.locator(BUTTON_USEDESK).click()
     page.wait_for_selector(INPUT_API_TOKEN)
     '''input token'''
     page.locator(INPUT_API_TOKEN).fill(USEDESK_TOKEN)

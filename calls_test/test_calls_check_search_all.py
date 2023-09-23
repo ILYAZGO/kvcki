@@ -14,6 +14,7 @@ def test_example(page: Page) -> None:
     '''za vse vremya'''
     page.locator(ALL_TIME).click()
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 3130 из 3130")

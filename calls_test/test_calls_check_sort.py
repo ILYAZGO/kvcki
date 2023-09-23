@@ -13,10 +13,11 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''za vse vremya'''
-    page.wait_for_selector(ALL_TIME)
+    page.wait_for_selector(ALL_TIME, timeout=wait_until_visible)
     page.locator(ALL_TIME).click()
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
 
     '''check all calls find, OLD calls first by default'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 3130 из 3130", timeout=wait_until_visible)

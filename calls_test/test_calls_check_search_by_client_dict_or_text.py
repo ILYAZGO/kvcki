@@ -20,8 +20,10 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).fill("адрес")
     page.wait_for_timeout(3000)
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
-    page.wait_for_timeout(80000)
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.wait_for_selector(FIRST_PAGE_PAGINATION)
+
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 152 из 3130", timeout=wait_until_visible)
     '''choose dict'''
@@ -29,6 +31,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).fill("Зо")
     page.get_by_text("Зомбоящик").click()
     '''naity zvonki'''
-    page.locator(BUTTON_NAYTI_ZVONKI).click()
-    page.wait_for_timeout(80000)
+    page.get_by_role("button", name="Найти диалоги").click()
+    #page.locator(BUTTON_NAYTI_ZVONKI).click()
+    page.wait_for_selector(FIRST_PAGE_PAGINATION)
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 410 из 3130", timeout=wait_until_visible)
