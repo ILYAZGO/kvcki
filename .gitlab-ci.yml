@@ -9,5 +9,6 @@ tests:
     - echo Using public URL $PUBLIC_URL
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
+    - playwright install
     - pytest -sv -m left_menu 
 
