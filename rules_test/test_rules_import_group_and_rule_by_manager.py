@@ -80,7 +80,7 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(2000)
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
-    '''delete admin'''
+    '''delete manager'''
     delete_user(API_URL, USER_ID_MANAGER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
     '''delete user'''
     delete_user(API_URL, USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER)

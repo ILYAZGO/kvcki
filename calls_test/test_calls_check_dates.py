@@ -7,6 +7,7 @@ import pytest
 
 '''Проверяем кнопки выбора дат'''
 
+
 @pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)

@@ -3,21 +3,19 @@ from utils.variables import *
 from utils.auth import *
 from pages.calls import *
 import pytest
+
 '''Check search by client number for Ecotelecom'''
+
 
 @pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
-    '''za vse vremya'''
-    page.wait_for_selector(ALL_TIME, timeout=wait_until_visible)
-    page.locator(ALL_TIME).click()
+    choose_period(ALL_TIME, page)
     '''fill client number'''
     page.locator(INPUT_NOMER_CLIENTA).fill("79251579005")
-    '''naity zvonki'''
-    page.get_by_role("button", name="Найти диалоги").click()
-    #page.locator(BUTTON_NAYTI_ZVONKI).click()
+    find_calls(page)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 14 из 3130", timeout=wait_until_visible)
 

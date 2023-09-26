@@ -12,34 +12,24 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
-    '''za vse vremya'''
-    page.wait_for_selector(ALL_TIME, timeout=wait_until_visible)
-    page.locator(ALL_TIME).click()
-    '''naity zvonki'''
-    page.get_by_role("button", name="Найти диалоги").click()
-    #page.locator(BUTTON_NAYTI_ZVONKI).click()
+    choose_period(ALL_TIME, page)
+    find_calls(page)
 
     '''check all calls find, OLD calls first by default'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 3130 из 3130", timeout=wait_until_visible)
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("08.02.22 00:12", timeout=wait_until_visible)
 
-    '''change sort to NEW CALLS'''
-    page.locator(CHANGE_SORT).click()
-    page.get_by_text("Сначала новые").click()
-    page.wait_for_timeout(2000)
+    change_sort("Сначала новые", page)
+
     '''check all calls find, NEW CALLS first'''
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("16.05.22 18:21", timeout=wait_until_visible)
 
-    '''change sort to SHORT CALLS'''
-    page.locator(CHANGE_SORT).click()
-    page.get_by_text("Сначала короткие").click()
-    page.wait_for_timeout(3000)
+    change_sort("Сначала короткие", page)
+
     '''check all calls find, SHORT CALLS first'''
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 11:41", timeout=wait_until_visible)
 
-    '''change sort to LONG CALLS'''
-    page.locator(CHANGE_SORT).click()
-    page.get_by_text("Сначала длинные").click()
-    page.wait_for_timeout(3000)
+    change_sort("Сначала длинные", page)
+
     '''check all calls find, LONG CALLS first'''
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 18:08", timeout=wait_until_visible)

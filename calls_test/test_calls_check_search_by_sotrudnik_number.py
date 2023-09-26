@@ -7,19 +7,16 @@ import pytest
 
 '''Check search by sotrudnik number for Ecotelecom'''
 
+
 @pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
-    '''za vse vremya'''
-    page.wait_for_selector(ALL_TIME, timeout=wait_until_visible)
-    page.locator(ALL_TIME).click()
+    choose_period(ALL_TIME, page)
     '''add sotrudnik number'''
     page.locator(INPUT_NOMER_SOTRUDNIKA).fill("4995055555")
-    '''naity zvonki'''
-    page.get_by_role("button", name="Найти диалоги").click()
-    #page.locator(BUTTON_NAYTI_ZVONKI).click()
+    find_calls(page)
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 670 из 3130", timeout=wait_until_visible)
 

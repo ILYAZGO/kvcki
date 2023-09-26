@@ -46,6 +46,6 @@ def test_example(page: Page) -> None:
 
     page.get_by_role("button", name="Удалить шаблон").click()
     page.get_by_role("button", name="Удалить").click()
-    expect(page.get_by_text("Сохраненные шаблоны отчетов")).to_have_count(1)
+    expect(page.get_by_text("Сохраненные отчеты")).to_have_count(1)
     #page.get_by_role("button", name="Сформировать отчет").click()
 
