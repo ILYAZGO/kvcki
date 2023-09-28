@@ -15,9 +15,7 @@ def test_example(page: Page) -> None:
     '''go to dictionaries'''
     page.locator(BUTTON_SLOVARI).click()
     '''search (should not depend on register)'''
-    page.locator('[data-testid="markup_dicts_search}"]').get_by_label("Поиск").fill("seat")
-    page.locator("form").get_by_role("button").click()
-    #page.locator(INPUT_POISK).fill("seat")
-    #page.locator(BUTTON_LUPA).click()
+    page.locator(INPUT_POISK).nth(1).fill("seat")
+    #page.locator("form").get_by_role("button").click()
     '''check'''
     expect(page.get_by_text("Seat")).to_have_count(1, timeout=wait_until_visible)

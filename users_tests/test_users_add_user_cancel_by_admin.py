@@ -10,9 +10,9 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
-    '''go to polzovateli'''
-    page.wait_for_selector(BUTTON_POLZOVATELI)
-    page.locator(BUTTON_POLZOVATELI).click()
+
+    go_to_users(page)
+
     '''button create user'''
     page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
     page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()

@@ -10,13 +10,15 @@ import pytest
 @pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(ECOTELECOM, ECOPASS, page)
+
     choose_period(ALL_TIME, page)
+
     find_calls(page)
 
     '''check all calls find, OLD calls first by default'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 3130 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 3130 из 3130", timeout=wait_until_visible)
     expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("08.02.22 00:12", timeout=wait_until_visible)
 
     change_sort("Сначала новые", page)

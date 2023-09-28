@@ -9,12 +9,15 @@ import pytest
 @pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(ECOTELECOM, ECOPASS, page)
+
     choose_period(ALL_TIME, page)
+
     '''fill exact time'''
     page.locator(INPUT_VREMYA_ZVONKA).fill("11:42")
+
     find_calls(page)
-    '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 5 из 3130", timeout=wait_until_visible)
+
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 5 из 3130", timeout=wait_until_visible)
 

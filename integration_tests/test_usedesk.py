@@ -30,30 +30,22 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(1000)
     '''choose usedesk'''
     page.locator(".styles_body__L76ER", has_text="usedesk").get_by_role("button").click()
-    page.wait_for_selector(INPUT_API_TOKEN)
-    '''input token'''
-    page.locator(INPUT_API_TOKEN).fill(USEDESK_TOKEN)
-    '''save'''
-    page.locator(BUTTON_SAVE_TOKEN).click()
+
+    input_save_api_token(page)
+
     '''go to integacii'''
     page.locator(BUTTON_INTEGRACII).click()
     '''play'''
     page.locator(BUTTON_PLAY).click()
-    '''set beginning date '''
-    page.locator(NA4ALNAYA_DATA).click()
-    page.locator(NA4ALNAYA_DATA).fill(yesterday)
-    '''click OK'''
-    page.wait_for_timeout(2000)
-    page.locator(BUTTON_OK_IN_DATE).click()
-    page.wait_for_timeout(1000)
-    page.locator(BUTTON_OK_IN_DATE).click()
-    page.wait_for_timeout(2000)
-    '''fill limit'''
-    page.locator(INPUT_CALLS_LIMIT).fill("3")
+
+    set_date(yesterday, page)
+
+    set_calls_limit("3", page)
+
     '''sozdat'''
     page.locator(BUTTON_SOZDAT).click()
     '''long wait for download'''
-    page.wait_for_timeout(175000)
+    page.wait_for_timeout(170000)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
     page.wait_for_selector(WEEK)
@@ -62,19 +54,16 @@ def test_example(page: Page) -> None:
     '''press find calls'''
     page.locator(BUTTON_FIND_CALLS).click()
 
-    expect(page.locator(NAYDENO_ZVONKOV_INTEGRATION)).to_have_text("Найдено диалогов 3 из 3", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV_INTEGRATION)).to_have_text("Найдено коммуникаций 3 из 3", timeout=wait_until_visible)
     page.wait_for_timeout(3000)
 
-    '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
-    page.wait_for_selector(BUTTON_INTEGRACII_IN_MENU)
 
+    page.wait_for_selector(BUTTON_INTEGRACII_IN_MENU)
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
 
-    page.locator(BUTTON_KORZINA).click()
-    page.wait_for_timeout(1000)
-    page.locator(BUTTON_UDALIT_INTEGRACIYU).click()
-    page.wait_for_timeout(1000)
+    delete_integration(page)
+
     expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

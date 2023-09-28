@@ -7,10 +7,10 @@ ALL_TIME = "button[value='allTime']"
 FIRST_DATE = "//input[@placeholder='Начальная дата']"
 LAST_DATE = "//input[@placeholder='Конечная дата']"
 
-BUTTON_OT4ETI = "button[value='reports']"
+BUTTON_OT4ETI = '[value="reports"]'
 BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV = '[href*="reports"]'
 BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
-BUTTON_KORZINA = '[fill="#FF4D4F"]'
+BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_UDALIT = '[data-testid="acceptButton"]'
 
 PO_TEGAM_SECOND = ".css-19bb58m"

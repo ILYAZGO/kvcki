@@ -10,9 +10,12 @@ import pytest
 @pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(ECOTELECOM, ECOPASS, page)
+
     choose_period(ALL_TIME, page)
+
     find_calls(page)
+
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 3130 из 3130")
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 3130 из 3130")

@@ -10,21 +10,25 @@ import pytest
 @pytest.mark.calls
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(ECOTELECOM, ECOPASS, page)
+
     choose_period(ALL_TIME, page)
+
     fill_search_length("<10", page)
+
     find_calls(page)
-    '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 443 из 3130", timeout=wait_until_visible)
+
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 443 из 3130", timeout=wait_until_visible)
 
     fill_search_length(">10", page)
+
     find_calls(page)
-    '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 2687 из 3130", timeout=wait_until_visible)
+
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 2687 из 3130", timeout=wait_until_visible)
 
     fill_search_length("1711", page)
+
     find_calls(page)
-    #page.wait_for_timeout(4000)
-    '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено диалогов 1 из 3130", timeout=wait_until_visible)
+
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 1 из 3130", timeout=wait_until_visible)

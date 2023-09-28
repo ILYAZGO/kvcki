@@ -13,7 +13,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto("http://192.168.10.101/feature-dev-892/", timeout=timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''go to reports'''
@@ -30,19 +30,22 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_REPORT_NAME).clear()
     page.locator(INPUT_REPORT_NAME).fill("auto-test-report")
     page.get_by_role("button", name="Сохранить").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(2000)
     '''go to reports'''
     page.locator(BUTTON_OT4ETI).click()
     '''go to report management'''
     page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
-
+    page.wait_for_selector('[aria-label="Изменить название"]')
     '''change name'''
     page.locator('[aria-label="Изменить название"]').click()
+    page.wait_for_timeout(500)
     page.locator('[name="reportName"]').clear()
+    page.wait_for_timeout(500)
     page.locator('[name="reportName"]').fill("report-test-auto")
+    page.wait_for_timeout(500)
     page.locator('[aria-label="Сохранить"]').click()
-
+    page.wait_for_timeout(1000)
     #'''change dates'''
     #page.get_by_text("За все время", exact=True).click()
     #page.get_by_text("Произвольные даты", exact=True).click()
@@ -59,19 +62,22 @@ def test_example(page: Page) -> None:
     #expect(page.locator(LAST_DATE)).to_have_value(today)
     '''click OK'''
 
+    page.wait_for_timeout(1500)
     page.locator(BUTTON_OT4ETI).click()
-
+    page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
 
 
 
     '''delete report'''
+
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator(BUTTON_KORZINA).click()
     page.wait_for_selector(BUTTON_UDALIT)
     page.locator(BUTTON_UDALIT).click()
 
     page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MANAGEMENT)
+
     expect(page.get_by_text("report-test-auto")).to_have_count(0)
     expect(page.get_by_text("auto-test-report")).to_have_count(0)
 

@@ -13,8 +13,8 @@ def test_example(page: Page) -> None:
     auth(ECOTELECOM, ECOPASS, page)
     '''go to reports'''
     page.locator(BUTTON_OT4ETI).click()
-    page.locator(INPUT_SEARCH).fill("Тест")
+    page.locator(INPUT_SEARCH).fill("Ntcn")
     page.locator(BUTTON_LUPA).click()
-    expect(page.locator(INPUT_SEARCH)).to_have_value("Тест")
-    expect(page.get_by_text("Тест")).to_have_count(1)
+    expect(page.locator(INPUT_SEARCH)).to_have_value("Ntcn")
+    expect(page.get_by_text("Ntcn")).to_have_count(1)
 

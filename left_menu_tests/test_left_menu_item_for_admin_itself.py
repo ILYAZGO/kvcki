@@ -11,11 +11,10 @@ def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN, PASSWORD, page)
-    '''go to nastroiki'''
-    page.wait_for_selector(BUTTON_NASTROIKI)
-    page.locator(BUTTON_NASTROIKI).click()
+
+    click_settings(page)
 
     expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
     expect(page.locator(LEFT_MENU_ITEM)).to_have_count(1)

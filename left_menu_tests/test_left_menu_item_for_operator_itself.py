@@ -13,11 +13,10 @@ def test_example(page: Page) -> None:
 
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN_OPERATOR, PASSWORD, page)
-    '''go to nastroiki'''
-    page.wait_for_selector(BUTTON_NASTROIKI)
-    page.locator(BUTTON_NASTROIKI).click()
+
+    click_settings(page)
 
     expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
     expect(page.locator(LEFT_MENU_ITEM)).to_have_count(1)

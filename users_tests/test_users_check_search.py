@@ -9,13 +9,14 @@ import pytest
 @pytest.mark.users
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''go to polzovateli'''
     page.locator(BUTTON_POLZOVATELI).click()
     '''fill search'''
-    page.locator(INPUT_POISK).get_by_label("Поиск").fill("ec")
+    page.locator(INPUT_POISK).fill("ec")
     '''check'''
     expect(page.get_by_text("ecotelecom")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("1userIM")).not_to_be_visible(timeout=wait_until_visible)

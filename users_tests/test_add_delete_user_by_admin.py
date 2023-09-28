@@ -13,30 +13,21 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
-    '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
-    '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
-    '''fill required'''
-    page.locator(INPUT_NAME).fill("newUser")
-    page.locator(INPUT_LOGIN).fill("1createUserByAdmin")
-    page.locator(INPUT_PASSWORD).fill(PASSWORD)
-    page.locator(INPUT_EMAIL).fill("mail@mail.com")
-    page.locator(INPUT_COMMENT).fill("someComment")
-    page.locator(SELECT_ROLE).locator("svg").click()
-    page.locator(SELECT_ROLE).get_by_text("Компания", exact=True).click()
-    '''stt'''
-    page.locator(SELECT_LANGUAGE).click()
-    page.get_by_text("Русский", exact=True).click()
-    page.wait_for_timeout(500)
-    '''stt engine'''
-    page.locator(SELECT_ENGINE).click()
-    page.get_by_text("IMOT.IO", exact=True).click()
-    page.wait_for_timeout(500)
-    '''stt model'''
-    page.locator(SELECT_MODEL).click()
-    page.wait_for_timeout(500)
-    page.get_by_text("Стандарт", exact=True).click()
+
+    go_to_users(page)
+
+    set_user("newUser",
+             "1createUserByAdmin",
+             PASSWORD,
+             "mail@mail.com",
+             "someComment",
+             "Компания",
+             page)
+
+    set_stt("Русский",
+            "IMOT.IO",
+            "Стандарт",
+            page)
 
     # '''add quota'''
     # page.locator(INPUT_QUOTA).fill("60")
@@ -50,9 +41,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_EMAIL)).to_have_value("mail@mail.com", timeout=wait_until_visible)
     expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
 
-    '''delete user'''
-    page.locator(BUTTON_KORZINA).click()
-    page.locator(BUTTON_PODTVERDIT).click()
+    delete_added_user(page)
 
     expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
 

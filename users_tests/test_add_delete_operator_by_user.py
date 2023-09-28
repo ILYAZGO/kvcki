@@ -16,9 +16,9 @@ def test_example(page: Page) -> None:
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
     '''go to sotrudniki'''
-    page.get_by_role("link", name="Сотрудники").click()
-    page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
+    page.locator(BUTTON_SOTRUDNIKI).click()
     '''add operator'''
+    page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
     page.locator(BUTTON_DOBAVIT_SOTRUDNIKA).click()
     ''''''
     page.wait_for_selector(INPUT_NAME_SOTRUDNIKA)
