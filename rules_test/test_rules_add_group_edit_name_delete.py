@@ -17,12 +17,13 @@ def test_example(page: Page) -> None:
     '''login'''
     auth(LOGIN, PASSWORD, page)
     '''go to razmetka'''
+    page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
     '''add new group'''
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
-    page.wait_for_timeout(6000)
+    page.wait_for_timeout(2000)
     page.wait_for_selector(BUTTON_PENCIL)
     '''edit name'''
     page.locator(BUTTON_PENCIL).click()

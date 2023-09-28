@@ -15,7 +15,7 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
-    page.wait_for_timeout(2000)
+    page.wait_for_selector(BUTTON_RAZMETKA)
     '''adding group'''
     page.locator(BUTTON_RAZMETKA).click()
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()

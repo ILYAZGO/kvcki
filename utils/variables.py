@@ -45,4 +45,6 @@ ROLE_ADMIN = 'admin'
 # operator credentials
 
 NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().microsecond}{datetime.now().hour}"
+NEW_NAME = NEW_LOGIN =  f"auto_test_user_{datetime.now().hour}{datetime.now().minute}{datetime.now().microsecond}"
+EMAIL = f"email_{datetime.now().microsecond}@mail.ru"
 

@@ -16,7 +16,7 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия со диалогамиОбработка текстаКвотыАдресная книгаИнтеграции'])
+    expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия с коммуникациямиОбработка текстаКвотыАдресная книгаИнтеграции'])
     expect(page.locator(LEFT_MENU_ITEM)).to_have_count(7)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

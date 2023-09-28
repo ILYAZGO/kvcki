@@ -22,7 +22,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
     page.locator(BUTTON_OTPRAVIT).click()
-    page.wait_for_timeout(6000)
+    page.wait_for_timeout(3000)
     page.wait_for_selector(BUTTON_PENCIL)
     '''edit name'''
     page.locator(BUTTON_PENCIL).click()

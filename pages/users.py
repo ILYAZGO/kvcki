@@ -4,7 +4,7 @@ BUTTON_OTMENA = '[data-testid="cancelButton"]'
 BUTTON_KRESTIK = '[data-testid="closePopupButton"]'
 BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
 
-BUTTON_KORZINA = ".styles_menu__tIMGQ svg"
+BUTTON_KORZINA = '[fill="#FF7875"]'                #".styles_menu__tIMGQ svg"
 BUTTON_PODTVERDIT = ".FooterButtons_footer__ZUsFp [tabindex='0']:nth-of-type(2)"
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_SOTRUDNIKI = '[href*="employees"]'
@@ -32,6 +32,7 @@ SELECT_ENGINE = '[data-testid="selectSttEngine"]'
 SELECT_MODEL = '[data-testid="selectSttModel"]'
 
 SELECT_ROLE = '[data-testid="selectRole"]'
+
 
 
 def go_to_users(page="page: Page"):
@@ -66,6 +67,7 @@ def set_stt(language, engine, model, page="page: Page"):
     page.get_by_text(model, exact=True).click()
 
 def delete_added_user(page="page: Page"):
+    page.wait_for_selector(BUTTON_KORZINA)
     page.locator(BUTTON_KORZINA).click()
     page.wait_for_selector(BUTTON_PODTVERDIT)
     page.locator(BUTTON_PODTVERDIT).click()

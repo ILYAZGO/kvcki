@@ -69,9 +69,9 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator("(//button[@type='button'])[15]").click()
-    page.wait_for_timeout(1000)
-    page.locator("(//button[@type='button'])[15]").click()
+    page.locator('[aria-label="Удалить"]').first.click()
+    page.wait_for_timeout(1200)
+    page.locator('[aria-label="Удалить"]').first.click()
 
     '''check teardown'''
     expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
