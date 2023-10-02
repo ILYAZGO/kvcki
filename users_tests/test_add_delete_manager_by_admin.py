@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import *
+from utils.auth import auth
 from pages.users import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
@@ -26,8 +26,9 @@ def test_example(page: Page) -> None:
 
     '''press dobavit'''
     page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_selector(INPUT_NAME)
+
     '''check'''
+    page.wait_for_selector(INPUT_NAME)
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)

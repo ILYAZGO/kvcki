@@ -5,22 +5,19 @@ BUTTON_KRESTIK = '[data-testid="closePopupButton"]'
 BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
 
 BUTTON_KORZINA = '[fill="#FF7875"]'                #".styles_menu__tIMGQ svg"
-BUTTON_PODTVERDIT = ".FooterButtons_footer__ZUsFp [tabindex='0']:nth-of-type(2)"
+BUTTON_PODTVERDIT = '[data-testid="acceptButton"]' #".FooterButtons_footer__ZUsFp [tabindex='0']:nth-of-type(2)"
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_SOTRUDNIKI = '[href*="employees"]'
 BUTTON_SOTRUDNIKI_UDALIT = "//button[contains(text(),'Удалить')]"
 BUTTON_SOTRUDNIKI_KORZINA = ".styles_actions__6AFGJ"
 
 INPUT_POISK = '[name="searchString"]'
-INPUT_NAME = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='name']"
-INPUT_LOGIN = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='login']"
-INPUT_PASSWORD = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='password']"
-INPUT_EMAIL = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='email']"
+INPUT_NAME = '[name="name"]'
+INPUT_LOGIN = '[name="login"]'
+INPUT_PASSWORD = '[name="password"]'
+INPUT_EMAIL = '[name="email"]'
 INPUT_COMMENT = '[data-testid="textAreaComment"]'
-INPUT_QUOTA = ".MuiInputBase-colorPrimary.MuiInputBase-root.css-upw9vt.input > input[name='quotaRemindTime']"
-INPUT_NAME_SOTRUDNIKA = '[name="name"]'
-INPUT_LOGIN_SOTRUDNIKA = '[name="login"]'
-INPUT_PASSWORD_SOTRUDNIKA = '[name="password"]'
+INPUT_QUOTA = '[name="quotaRemindTime"]'
 
 ALERT ="//div/div/div/div/div/div/div/div[2]/div/p"
 

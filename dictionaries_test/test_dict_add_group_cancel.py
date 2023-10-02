@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import *
+from utils.auth import auth
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
@@ -13,13 +13,11 @@ def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN, PASSWORD, page)
-    '''create and cancel adding group'''
-    page.wait_for_selector(BUTTON_RAZMETKA)
-    page.locator(BUTTON_RAZMETKA).click()
-    '''go to slovari'''
-    page.locator(BUTTON_SLOVARI).click()
+
+    go_to_dicts(page)
+
     '''add group'''
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     '''cancel button'''

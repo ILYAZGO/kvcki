@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import *
+from utils.auth import auth
 from pages.markup import *
 import pytest
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager
@@ -32,8 +32,10 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(2000)
     page.get_by_text(LOGIN_USER, exact=True).click()
     page.wait_for_timeout(4000)
-    '''going to Razmetka and click Importirovat Pravila'''
-    page.locator(BUTTON_RAZMETKA).click()
+
+    go_to_markup(page)
+
+    '''click Importirovat Pravila'''
     page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
     page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
     page.wait_for_selector(INPUT_CHOOSE_USER_FOR_IMPORT)
@@ -69,9 +71,9 @@ def test_example(page: Page) -> None:
     page.locator(".css-izdlur").click()
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
-    page.locator('[aria-label="Удалить"]').first.click()
+    page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_timeout(1200)
-    page.locator('[aria-label="Удалить"]').first.click()
+    page.locator(BUTTON_KORZINA).first.click()
 
     '''check teardown'''
     expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)

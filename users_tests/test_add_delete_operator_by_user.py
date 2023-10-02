@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import *
+from utils.auth import auth
 from pages.users import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
@@ -21,10 +21,10 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
     page.locator(BUTTON_DOBAVIT_SOTRUDNIKA).click()
     ''''''
-    page.wait_for_selector(INPUT_NAME_SOTRUDNIKA)
-    page.locator(INPUT_NAME_SOTRUDNIKA).fill(NEW_OPERATOR_NAME)
-    page.locator(INPUT_LOGIN_SOTRUDNIKA).fill(NEW_OPERATOR_LOGIN)
-    page.locator(INPUT_PASSWORD_SOTRUDNIKA).fill(PASSWORD)
+    page.wait_for_selector(INPUT_NAME)
+    page.locator(INPUT_NAME).fill(NEW_OPERATOR_NAME)
+    page.locator(INPUT_LOGIN).fill(NEW_OPERATOR_LOGIN)
+    page.locator(INPUT_PASSWORD).fill(PASSWORD)
     page.locator(BUTTON_DOBAVIT).click()
     '''go inside operator'''
     page.get_by_text(NEW_OPERATOR_NAME).first.click()

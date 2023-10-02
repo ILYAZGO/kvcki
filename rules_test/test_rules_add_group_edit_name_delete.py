@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import *
+from utils.auth import auth
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
@@ -14,25 +14,25 @@ def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN, PASSWORD, page)
-    '''go to razmetka'''
-    page.wait_for_selector(BUTTON_RAZMETKA)
-    page.locator(BUTTON_RAZMETKA).click()
-    '''add new group'''
-    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
-    page.locator(INPUT_NEW_GROUP_NAME).fill("12345")
-    page.locator(BUTTON_OTPRAVIT).click()
-    page.wait_for_timeout(2000)
-    page.wait_for_selector(BUTTON_PENCIL)
+
+    go_to_markup(page)
+
+    create_group("12345", page)
+
     '''edit name'''
+    page.wait_for_selector(BUTTON_PENCIL)
     page.locator(BUTTON_PENCIL).click()
     page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
     page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
+
     '''check created and edited'''
     expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
+
     '''delete group'''
     page.locator(BUTTON_KORZINA).click()
+
     '''check deleted'''
     expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
 

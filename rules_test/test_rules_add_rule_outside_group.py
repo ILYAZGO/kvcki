@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import *
+from utils.auth import auth
 from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
@@ -15,12 +15,12 @@ def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
-    '''go to razmetka'''
-    page.locator(BUTTON_RAZMETKA).click()
-    page.wait_for_timeout(1000)
+
+    go_to_markup(page)
+
     page.wait_for_selector(BUTTON_DOBAVIT_TEG)
 
-    '''create group'''
+    '''create rule'''
     page.locator(BUTTON_DOBAVIT_TEG).click()
     page.wait_for_selector(INPUT_NAZVANIE_TEGA)
     page.locator(INPUT_NAZVANIE_TEGA).type("66666", timeout=wait_until_visible)
@@ -32,13 +32,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
     expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")
 
-    ''''teardown'''
-    page.locator(".css-izdlur").click(timeout=wait_until_visible)
-    page.get_by_text("Удалить", exact=True).click(timeout=wait_until_visible)
-    page.get_by_role("button", name="Удалить").click(timeout=wait_until_visible)
-    page.wait_for_timeout(1000)
-    page.locator('[aria-label="Удалить"]').first.click()
-    #page.locator(BUTTON_KORZINA).click()
+    delete_group_and_rule_or_dict(page)
 
     '''check teardown'''
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)

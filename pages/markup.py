@@ -26,20 +26,19 @@ BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
 # other
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NI4EGO_NE_NAYDENO = ".styles_noFound__0AI5V"
-NAZVANIE_PRAVILA_TEGIROVANIYA = "//input[@name='title']"
+NAZVANIE_PRAVILA_TEGIROVANIYA = NAZVANIE_SLOVARYA = '[name="title"]'
 
 '''locators for dictionaries'''
 '''---------------------------------------------'''
 # inputs
-INPUT_NAZVANIE_SLOVAR = "input[name='dictName']"
-INPUT_SPISOK_SLOV = "textarea[name='phrases']"
+INPUT_NAZVANIE_SLOVAR = '[name="dictName"]'
+INPUT_SPISOK_SLOV = '[name="phrases"]'
 # buttons
 BUTTON_SLOVARI = '[data-testid="markup_nav_dicts"]'
 BUTTON_DOBAVIT_SLOVAR = '[data-testid="markup_addDict"]'
 BUTTON_IMPORTIROVAT_SLOVARI = '[data-testid="markup_importDicts"]'
 # other
 CLICK_ON_GROUP = "//p[normalize-space()='12345']"
-NAZVANIE_SLOVARYA = "//input[@name='title']"
 
 
 
@@ -50,3 +49,28 @@ INPUT_CHECK_LIST_NAME = "[name='title']"
 
 BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
 BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'
+
+
+def create_group(groupName, page="page: Page"):
+    page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
+    page.locator(BUTTON_DOBAVIT_GRUPPU).click()
+    page.locator(INPUT_NEW_GROUP_NAME).fill(groupName)
+    page.locator(BUTTON_OTPRAVIT).click()
+    page.wait_for_timeout(1500)
+
+def go_to_markup(page="page: Page"):
+    page.wait_for_selector(BUTTON_RAZMETKA)
+    page.locator(BUTTON_RAZMETKA).click()
+
+def go_to_dicts(page="page: Page"):
+    page.wait_for_selector(BUTTON_RAZMETKA)
+    page.locator(BUTTON_RAZMETKA).click()
+    page.locator(BUTTON_SLOVARI).click()
+    page.wait_for_timeout(1000)
+
+def delete_group_and_rule_or_dict(page="page: Page"):
+    page.locator(".css-izdlur").click()
+    page.get_by_text("Удалить", exact=True).click()
+    page.get_by_role("button", name="Удалить").click()
+    page.wait_for_timeout(1000)
+    page.locator(BUTTON_KORZINA).click()
