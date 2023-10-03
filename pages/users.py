@@ -16,7 +16,7 @@ INPUT_NAME = '[name="name"]'
 INPUT_LOGIN = '[name="login"]'
 INPUT_PASSWORD = '[name="password"]'
 INPUT_EMAIL = '[name="email"]'
-INPUT_COMMENT = '[data-testid="textAreaComment"]'
+INPUT_COMMENT = '[name="comment"]'
 INPUT_QUOTA = '[name="quotaRemindTime"]'
 
 ALERT ="//div/div/div/div/div/div/div/div[2]/div/p"

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="delete hardcode">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_check_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dates.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -502,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add timeout wait until load" />
     <MESSAGE value="fix test" />
     <MESSAGE value="add timeout" />
     <MESSAGE value="add role to create user add tests" />
@@ -527,6 +526,7 @@
     <MESSAGE value="add def and fix tests 2" />
     <MESSAGE value=" fix tests 3" />
     <MESSAGE value="delete hardcode" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete hardcode" />
+    <MESSAGE value="add" />
+    <option name="LAST_COMMIT_MESSAGE" value="add" />
   </component>
 </project>

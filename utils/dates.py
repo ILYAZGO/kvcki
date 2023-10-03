@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+import calendar
+
 
 current_date = datetime.now()
 
@@ -12,12 +14,15 @@ first_day_week_ago = (current_date - timedelta(days=6)).strftime("%d/%m/%Y")
 # so we need this if statement
 # ---------------------------------------------------------------------------------
 
-if current_date.strftime("%d") == "31":
-    first_day_month_ago = (current_date - timedelta(days=30)).strftime("%d/%m/%Y")
-elif current_date.strftime("%d") == "01":
+days_in_current_month = calendar.monthrange(current_date.year, current_date.month)[1]
+
+
+if days_in_current_month == "31":
+    first_day_month_ago = (current_date - timedelta(days=29)).strftime("%d/%m/%Y")
+elif days_in_current_month == "30":
     first_day_month_ago = (current_date - timedelta(days=30)).strftime("%d/%m/%Y")
 else:
-    first_day_month_ago = (current_date - timedelta(days=30)).strftime("%d/%m/%Y")
+    first_day_month_ago = (current_date - timedelta(days=29)).strftime("%d/%m/%Y")
 # ----------------------------------------------------------------------------------
 
 first_day_year_ago = (current_date - timedelta(days=364)).strftime("%d/%m/%Y")
