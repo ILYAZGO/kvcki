@@ -30,6 +30,8 @@ SELECT_MODEL = '[data-testid="selectSttModel"]'
 
 SELECT_ROLE = '[data-testid="selectRole"]'
 
+FIRST_PAGE_PAGINATION = '[aria-label="1"]'
+
 
 
 def go_to_users(page="page: Page"):

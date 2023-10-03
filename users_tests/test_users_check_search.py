@@ -15,8 +15,10 @@ def test_example(page: Page) -> None:
     auth(LOGIN, PASSWORD, page)
     '''go to polzovateli'''
     page.locator(BUTTON_POLZOVATELI).click()
+    '''wait users list to load'''
+    page.wait_for_selector(FIRST_PAGE_PAGINATION)
     '''fill search'''
-    page.locator(INPUT_POISK).fill("ec")
+    page.locator(INPUT_POISK).fill("eco")
     '''check'''
     expect(page.get_by_text("ecotelecom")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("1userIM")).not_to_be_visible(timeout=wait_until_visible)
