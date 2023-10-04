@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change dates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dates.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -502,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix test" />
     <MESSAGE value="add timeout" />
     <MESSAGE value="add role to create user add tests" />
     <MESSAGE value="add timeouts" />
@@ -527,6 +524,7 @@
     <MESSAGE value=" fix tests 3" />
     <MESSAGE value="delete hardcode" />
     <MESSAGE value="add" />
-    <option name="LAST_COMMIT_MESSAGE" value="add" />
+    <MESSAGE value="change dates" />
+    <option name="LAST_COMMIT_MESSAGE" value="change dates" />
   </component>
 </project>

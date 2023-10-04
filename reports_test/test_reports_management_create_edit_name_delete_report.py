@@ -27,8 +27,11 @@ def test_example(page: Page) -> None:
     page.locator(ALL_TIME).click()
     '''saving'''
     page.get_by_role("button", name="Сохранить как новый").click()
+    page.wait_for_timeout(500)
     page.locator(INPUT_REPORT_NAME).clear()
+    page.wait_for_timeout(500)
     page.locator(INPUT_REPORT_NAME).fill("auto-test-report")
+    page.wait_for_timeout(500)
     page.get_by_role("button", name="Сохранить").click()
     page.wait_for_timeout(2000)
     '''go to reports'''
