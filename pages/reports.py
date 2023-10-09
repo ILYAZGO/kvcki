@@ -8,7 +8,7 @@ FIRST_DATE = "//input[@placeholder='Начальная дата']"
 LAST_DATE = "//input[@placeholder='Конечная дата']"
 
 BUTTON_OT4ETI = '[value="reports"]'
-BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV = '[href*="reports"]'
+BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV = '[href*="/reports"]'
 BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_UDALIT = '[data-testid="acceptButton"]'

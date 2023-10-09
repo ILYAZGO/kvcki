@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix report test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fis tests">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -502,7 +506,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add role to create user add tests" />
     <MESSAGE value="add timeouts" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="fix tests a lot" />
@@ -527,6 +530,7 @@
     <MESSAGE value="add" />
     <MESSAGE value="change dates" />
     <MESSAGE value="fix report test" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix report test" />
+    <MESSAGE value="fis tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="fis tests" />
   </component>
 </project>

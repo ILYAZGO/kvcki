@@ -53,7 +53,7 @@ def choose_filter_value(filterValue, page="page: Page"):
 def find_calls(page="page: Page"):
     page.get_by_role("button", name="Найти коммуникации").click()
     # page.locator(BUTTON_NAYTI_ZVONKI).click()
-    page.wait_for_selector(NAYDENO_ZVONKOV)
+    page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
 
 
 def choose_period(period, page="page: Page"):

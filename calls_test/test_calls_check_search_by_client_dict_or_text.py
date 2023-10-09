@@ -22,7 +22,7 @@ def test_example(page: Page) -> None:
 
     find_calls(page)
 
-    page.wait_for_selector(FIRST_PAGE_PAGINATION)
+    page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 152 из 3130", timeout=wait_until_visible)
@@ -34,6 +34,6 @@ def test_example(page: Page) -> None:
 
     find_calls(page)
 
-    page.wait_for_selector(FIRST_PAGE_PAGINATION)
+    page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 410 из 3130", timeout=wait_until_visible)

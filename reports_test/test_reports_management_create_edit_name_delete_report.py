@@ -5,6 +5,7 @@ from pages.reports import *
 from utils.dates import yesterday,today ,first_day_week_ago
 from utils.create_delete_user import create_user, delete_user
 import pytest
+import time
 
 
 '''Cоздаем отчет и удаляем его через управление отчетами'''
@@ -33,22 +34,26 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_REPORT_NAME).fill("auto-test-report")
     page.wait_for_timeout(500)
     page.get_by_role("button", name="Сохранить").click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(5000)
     '''go to reports'''
     page.locator(BUTTON_OT4ETI).click()
+
     '''go to report management'''
     page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
-    page.wait_for_selector('[aria-label="Изменить название"]')
-    '''change name'''
-    page.locator('[aria-label="Изменить название"]').click()
-    page.wait_for_timeout(500)
-    page.locator('[name="reportName"]').clear()
-    page.wait_for_timeout(500)
-    page.locator('[name="reportName"]').fill("report-test-auto")
-    page.wait_for_timeout(500)
-    page.locator('[aria-label="Сохранить"]').click()
     page.wait_for_timeout(1000)
+    page.wait_for_selector('[aria-label="Изменить название"]', timeout=wait_until_visible)
+
+    '''change name'''
+    page.locator('[aria-label="Изменить название"]').first.click()
+
+    #page.wait_for_selector('[aria-label="Сохранить"]', timeout=wait_until_visible)
+    page.locator('[name="reportName"]').first.clear(force=True)
+
+    page.locator('[name="reportName"]').first.fill("report-test-auto")
+
+    page.locator('[aria-label="Сохранить"]').first.click()
+
     #'''change dates'''
     #page.get_by_text("За все время", exact=True).click()
     #page.get_by_text("Произвольные даты", exact=True).click()
