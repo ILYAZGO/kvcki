@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fis tests">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change some tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -506,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add timeouts" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="fix tests a lot" />
     <MESSAGE value="add tests fix tests" />
@@ -531,6 +526,7 @@
     <MESSAGE value="change dates" />
     <MESSAGE value="fix report test" />
     <MESSAGE value="fis tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fis tests" />
+    <MESSAGE value="change some tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="change some tests" />
   </component>
 </project>

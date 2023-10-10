@@ -12,6 +12,7 @@ BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV = '[href*="/reports"]'
 BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_UDALIT = '[data-testid="acceptButton"]'
+BUTTON_CREATE_REPORT_IN_MENU = '[href*="create"]'
 
 PO_TEGAM_SECOND = ".css-19bb58m"
 PO_TEGAM_THIRD = ".css-12ol9ef"
