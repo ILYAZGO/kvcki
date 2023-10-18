@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change some tests">
+      <change afterPath="$PROJECT_DIR$/notifications/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_add_user_form_necessary_fields.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
