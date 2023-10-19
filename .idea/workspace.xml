@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change some tests">
-      <change afterPath="$PROJECT_DIR$/notifications/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add extra 5 sec">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/est_add_user_form_necessary_fields.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -505,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix tests" />
     <MESSAGE value="fix tests a lot" />
     <MESSAGE value="add tests fix tests" />
     <MESSAGE value="clear tests" />
@@ -530,6 +527,7 @@
     <MESSAGE value="fix report test" />
     <MESSAGE value="fis tests" />
     <MESSAGE value="change some tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="change some tests" />
+    <MESSAGE value="add extra 5 sec" />
+    <option name="LAST_COMMIT_MESSAGE" value="add extra 5 sec" />
   </component>
 </project>

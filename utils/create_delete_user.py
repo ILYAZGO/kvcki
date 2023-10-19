@@ -69,6 +69,8 @@ def create_user(URL, ROLE, PASSWORD):
     # else:
     #     print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
+
+
     return user_id, bearer, access_token, LOGIN
 
 
@@ -157,4 +159,7 @@ def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, BEARER, ACCESS_TOKE
         print(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
     else:
         print(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER}<<<<<")
+
+
+
 
