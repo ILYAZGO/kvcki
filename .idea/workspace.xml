@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test notifications">
-      <change afterPath="$PROJECT_DIR$/notifications/test_notifications_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test notifications api">
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -503,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests fix tests" />
     <MESSAGE value="clear tests" />
     <MESSAGE value="delete import time" />
     <MESSAGE value="add giving user to manager" />
@@ -528,6 +524,7 @@
     <MESSAGE value="change some tests" />
     <MESSAGE value="add extra 5 sec" />
     <MESSAGE value="add test notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test notifications" />
+    <MESSAGE value="add test notifications api" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test notifications api" />
   </component>
 </project>
