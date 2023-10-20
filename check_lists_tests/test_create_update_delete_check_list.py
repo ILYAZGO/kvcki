@@ -23,6 +23,9 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_DOBAVIT_CHECK_LIST).click()
     page.wait_for_selector(INPUT_CHECK_LIST_NAME)
     page.locator(INPUT_CHECK_LIST_NAME).fill("12345")
+
+    page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()
+
     page.locator("[name='questions.0.title']").fill("123456")
     page.locator("[name='questions.0.answers.0.answer']").fill("1234567")
     '''save'''
