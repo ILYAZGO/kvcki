@@ -47,7 +47,7 @@ def test_example(page: Page) -> None:
     page.get_by_role("button", name="Продолжить").click()
     page.wait_for_timeout(1000)
     '''click to import rule'''
-    page.locator("(//input[@type='checkbox'])[5]").click()
+    page.locator("(//input[@type='checkbox'])[6]").click()
     page.wait_for_timeout(1000)
     page.get_by_role("button", name="К новым правилам").click()
     page.wait_for_timeout(1000)
