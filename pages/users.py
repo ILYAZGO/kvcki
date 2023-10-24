@@ -43,11 +43,17 @@ def set_user(name, login, password, mail, comment, role, page="page: Page"):
     page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()  #button create user
     '''fill required'''
     page.locator(INPUT_NAME).fill(name)
+    page.wait_for_timeout(1000)
     page.locator(INPUT_LOGIN).fill(login)
+    page.wait_for_timeout(1000)
     page.locator(INPUT_PASSWORD).fill(password)
+    page.wait_for_timeout(1000)
     page.locator(INPUT_EMAIL).fill(mail)
+    page.wait_for_timeout(1000)
     page.locator(INPUT_COMMENT).fill(comment)
+    page.wait_for_timeout(1000)
     page.locator(SELECT_ROLE).locator("svg").click()
+    page.wait_for_timeout(1000)
     page.locator(SELECT_ROLE).get_by_text(role, exact=True).click()
 
 
