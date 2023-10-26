@@ -25,7 +25,7 @@ BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
 # other
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
-NI4EGO_NE_NAYDENO = ".styles_noFound__0AI5V"
+NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 NAZVANIE_PRAVILA_TEGIROVANIYA = NAZVANIE_SLOVARYA = '[name="title"]'
 
 '''locators for dictionaries'''
@@ -42,13 +42,7 @@ CLICK_ON_GROUP = "//p[normalize-space()='12345']"
 
 
 
-'''locators for check-lists'''
-# inputs
-INPUT_CHECK_LIST_NAME = "[name='title']"
-# buttons
 
-BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
-BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'
 
 
 def create_group(groupName, page="page: Page"):
@@ -74,3 +68,54 @@ def delete_group_and_rule_or_dict(page="page: Page"):
     page.get_by_role("button", name="Удалить").click()
     page.wait_for_timeout(2000)
     page.locator(BUTTON_KORZINA).click()
+
+
+
+#  all for check-lists
+
+'''locators for check-lists'''
+# inputs
+INPUT_CHECK_LIST_NAME = "[name='title']"
+INPUT_FIRST_QUESTION = "[name='questions.0.title']"
+INPUT_SECOND_QUESTION = "[name='questions.1.title']"
+INPUT_FIRST_ANSWER = '[name="questions.0.answers.0.answer"]'
+INPUT_SECOND_ANSWER = '[name="questions.0.answers.1.answer"]'
+INPUT_THIRD_ANSWER = '[name="questions.1.answers.0.answer"]'
+INPUT_FIRST_POINTS = '[name="questions.0.answers.0.point"]'
+INPUT_SECOND_POINTS = '[name="questions.0.answers.1.point"]'
+INPUT_THIRD_POINTS = '[name="questions.1.answers.0.point"]'
+# buttons
+
+BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
+BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'
+BUTTON_SAVE = ".MuiButton-contained"
+BUTTON_ADD_ANSWER = ".styles_addBtn__fYwu9"
+BUTTON_ADD_QUESTION = ".styles_addBtn__jkLM3"
+
+
+def create_questions_and_answers(firstQustionTitle, secondQuestionTitle, page="page: Page"):
+    #  creates first question with 2 answers and points and second question with answer and points then delete second question
+    page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()  # add questions
+
+    page.locator(INPUT_FIRST_QUESTION).fill(firstQustionTitle)
+    page.locator(INPUT_FIRST_ANSWER).fill("Answer1")
+    page.locator(INPUT_FIRST_POINTS).fill("1")
+    page.locator(BUTTON_ADD_ANSWER).click()
+    page.locator(INPUT_SECOND_ANSWER).fill("Answer2")
+    page.locator(INPUT_SECOND_POINTS).fill("2")
+    page.locator(BUTTON_ADD_QUESTION).click()
+    page.locator(INPUT_SECOND_QUESTION).fill(secondQuestionTitle)
+    page.locator(INPUT_THIRD_ANSWER).fill("Answer3")
+    page.locator(INPUT_THIRD_POINTS).fill("3")
+    page.locator(".styles_deleteBtn__bPjk5").nth(1).click()
+
+def create_delete_appriser(title, page="page: Page"):
+
+    page.locator('[class*="CheckListAppraisers_addBtn"]').click()
+    page.locator('[name="appraisers.0.title"]').fill(title)
+    page.locator('[name="appraisers.0.points"]').fill("5")
+    page.locator('[class*="CheckListAppraisers_deleteBtn"]')
+
+def delete_check_list(page="page: Page"):
+    page.locator(BUTTON_KORZINA).click()
+    page.get_by_role("button", name="Удалить").click()

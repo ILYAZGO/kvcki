@@ -9,7 +9,7 @@ def test_example(page: Page) -> None:
 
 
 
-    page.goto("http://192.168.10.101/feature-dev-1354", timeout=timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(USER_FOR_IMPORT, PASSWORD, page)
 

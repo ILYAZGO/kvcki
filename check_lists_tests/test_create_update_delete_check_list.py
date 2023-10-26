@@ -21,33 +21,36 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_CHECK_LIST).click()
     page.wait_for_selector(BUTTON_DOBAVIT_CHECK_LIST)
     page.locator(BUTTON_DOBAVIT_CHECK_LIST).click()
+
+
     page.wait_for_selector(INPUT_CHECK_LIST_NAME)
     page.locator(INPUT_CHECK_LIST_NAME).fill("12345")
 
-    page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()
+    create_questions_and_answers("Question1", "Question2", page)
 
-    page.locator("[name='questions.0.title']").fill("123456")
-    page.locator("[name='questions.0.answers.0.answer']").fill("1234567")
     '''save'''
-    page.locator(".MuiButton-contained").click()
+    page.locator(BUTTON_SAVE).click()
     '''check created'''
     expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
-    #expect(page.get_by_text("Чек-лист добавлен")).to_be_visible()
 
     '''update'''
     page.get_by_text("12345").click()
-    page.locator("[name='questions.0.title']").clear()
-    page.locator("[name='questions.0.title']").fill("654321")
+    page.locator(INPUT_FIRST_QUESTION).clear()
+    page.locator(INPUT_FIRST_QUESTION).fill("654321")
+
     '''save'''
-    #page.locator("button[type='submit']").click()
-    page.locator(".MuiButton-contained").click()
-    #'''check updated'''
-    #expect(page.get_by_text("Чек-лист обновлен")).to_be_visible()
+    page.locator(BUTTON_SAVE).click()
+
+    create_delete_appriser("Appriser", page)
+
+    '''save'''
+    page.locator(BUTTON_SAVE).click()
+
     '''delete'''
-    page.locator(BUTTON_KORZINA).click()
-    page.get_by_role("button", name="Удалить").click()
+    delete_check_list(page)
+
     '''check deleted'''
-    #expect(page.get_by_text("Чек-лист удален")).to_be_visible()
+
     expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
