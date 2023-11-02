@@ -89,8 +89,9 @@ INPUT_THIRD_POINTS = '[name="questions.1.answers.0.point"]'
 BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
 BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'
 BUTTON_SAVE = ".MuiButton-contained"
-BUTTON_ADD_ANSWER = ".styles_addBtn__fYwu9"
-BUTTON_ADD_QUESTION = ".styles_addBtn__jkLM3"
+BUTTON_ADD_ANSWER = ".styles_addBtn__LzsSV"
+BUTTON_ADD_QUESTION = ".styles_addBtn__rsxfc"
+BUTTON_DELETE_QUESTION = ".styles_deleteBtn__8Tkl6"
 
 
 def create_questions_and_answers(firstQustionTitle, secondQuestionTitle, page="page: Page"):
@@ -107,7 +108,7 @@ def create_questions_and_answers(firstQustionTitle, secondQuestionTitle, page="p
     page.locator(INPUT_SECOND_QUESTION).fill(secondQuestionTitle)
     page.locator(INPUT_THIRD_ANSWER).fill("Answer3")
     page.locator(INPUT_THIRD_POINTS).fill("3")
-    page.locator(".styles_deleteBtn__bPjk5").nth(1).click()
+    page.locator(BUTTON_DELETE_QUESTION).nth(1).click()
 
 def create_delete_appriser(title, page="page: Page"):
 

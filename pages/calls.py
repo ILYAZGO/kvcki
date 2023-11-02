@@ -3,10 +3,10 @@ from utils.variables import wait_until_visible
 
 # time period
 YESTERDAY = '[value="yesterday"]'
-WEEK = '[value="week"]'
-MONTH = '[value="month"]'
-YEAR = '[value="year"]'
-ALL_TIME = '[value="allTime"]'
+WEEK = '[value="this_week"]'
+MONTH = '[value="this_month"]'
+YEAR = '[value="this_year"]'
+ALL_TIME = '[value="all_time"]'
 FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
 

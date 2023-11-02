@@ -1,9 +1,9 @@
 # time period
 YESTERDAY = "button[value='yesterday']"
-WEEK = "button[value='week']"
-MONTH = "button[value='month']"
-YEAR = "button[value='year']"
-ALL_TIME = "button[value='allTime']"
+WEEK = "button[value='this_week']"
+MONTH = "button[value='this_month']"
+YEAR = "button[value='this_year']"
+ALL_TIME = "button[value='all_time']"
 FIRST_DATE = "//input[@placeholder='Начальная дата']"
 LAST_DATE = "//input[@placeholder='Конечная дата']"
 
