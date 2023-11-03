@@ -45,7 +45,7 @@ def test_example(page: Page) -> None:
     '''sozdat'''
     page.locator(BUTTON_SOZDAT).click()
     '''long wait for download'''
-    page.wait_for_timeout(200000)
+    page.wait_for_timeout(220000)
     '''go to zvonki'''
     page.locator(BUTTON_ZVONKI).click()
     page.wait_for_selector(WEEK)
