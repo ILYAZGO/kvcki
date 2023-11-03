@@ -50,7 +50,7 @@ def test_example(page: Page) -> None:
     delete_check_list(page)
 
     '''check deleted'''
-
+    page.wait_for_selector(NI4EGO_NE_NAYDENO)
     expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

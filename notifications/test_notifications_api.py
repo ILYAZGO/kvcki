@@ -7,18 +7,16 @@ import pytest
 @pytest.mark.reports
 def test_example(page: Page) -> None:
 
-
-
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(USER_FOR_IMPORT, PASSWORD, page)
 
     add_notification("API", page)
 
-    #  fill name
-    page.locator('[placeholder="Например: Жалоба на сотрудника"]').fill("auto-test-email")
-    #  fill url
-    page.locator('[placeholder="шаблон URL"]').fill(URL)
+    set_notification_name("auto-test-api", page)
+
+    set_url_and_headers(URL, "someHeaders", page)
+
     #  send again when rull changed
     page.locator('[type="checkbox"]').nth(0).click()
 
@@ -28,8 +26,6 @@ def test_example(page: Page) -> None:
 
 
     page.locator('[class="styles_buttonsGroup__aLY1I"]').get_by_role("button").nth(0).click()
-
-    page.locator('[placeholder="Можно проставить авторизацию и content-type"]').fill("someHeaders")
 
     page.wait_for_selector(BUTTON_KORZINA)
 

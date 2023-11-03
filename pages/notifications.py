@@ -3,10 +3,15 @@ BUTTON_OPOVESHENIA = '[href*="/notifications"]'
 
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 
+INPUT_NOTIFICATION_NAME = '[placeholder="Например: Жалоба на сотрудника"]'
+
 INPUT_LETTER_THEME = '[placeholder="Укажите тему письма"]'
 INPUT_EMAIL = '[placeholder="example@mail.com"]'
+INPUT_HEADERS = '[placeholder="Можно проставить авторизацию и content-type"]'
+INPUT_URL = '[placeholder="шаблон URL"]'
 
-
+def set_notification_name(notificationName, page="page: Page"):
+    page.locator(INPUT_NOTIFICATION_NAME).fill(notificationName)
 
 def add_filter(filterType, filterName, page="page: Page"):
     #  dobavit filtr
@@ -37,3 +42,7 @@ def fill_attr_for_email(letterTheme, email, page="page: Page"):
 def fill_message(text, page="page: Page"):
     page.locator('[class="styles_textarea__+sldQ"]').fill(text)
     page.locator('[aria-label="ID звонка. Пример: 123456789012345678901234"]').click()
+
+def set_url_and_headers(url, headers, page="page: Page"):
+    page.locator(INPUT_URL).fill(url)
+    page.locator(INPUT_HEADERS).fill(headers)

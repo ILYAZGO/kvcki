@@ -7,16 +7,13 @@ import pytest
 @pytest.mark.reports
 def test_example(page: Page) -> None:
 
-
-
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(USER_FOR_IMPORT, PASSWORD, page)
 
     add_notification("Email", page)
 
-    #  fill name
-    page.locator('[placeholder="Например: Жалоба на сотрудника"]').fill("auto-test-email")
+    set_notification_name("auto-test-email", page)
 
     add_filter("По тегам", "22222", page)
 
@@ -29,7 +26,7 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector(BUTTON_KORZINA)
 
-    page.locator('[type="checkbox"]').first.click()
+    page.locator('[type="checkbox"]').nth(0).click()
 
     page.locator(BUTTON_KORZINA).click()
 
