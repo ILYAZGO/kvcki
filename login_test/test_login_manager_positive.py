@@ -7,6 +7,6 @@ import pytest
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
     auth(MANAGER, PASSWORD, page)
-    page.locator(".css-1moonrh-control > div > .MuiButtonBase-root").click()
+    page.locator('[aria-label="Профиль"]').get_by_role("button").click()
     page.get_by_text("Выйти", exact=True).click()
     expect(page.locator("[id='mui-3']")).to_be_visible()
