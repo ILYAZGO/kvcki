@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="increase timeout">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix locator\selector">
+      <change afterPath="$PROJECT_DIR$/notifications/test_notifications_first_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_test/test_login_user_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/test_login_user_positive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -503,7 +507,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="zvonki to dialog" />
     <MESSAGE value="add test + add expectation" />
     <MESSAGE value="delete steps" />
     <MESSAGE value="fix some tests" />
@@ -528,6 +531,7 @@
     <MESSAGE value="fixed tests" />
     <MESSAGE value="add def. upgrade tests" />
     <MESSAGE value="increase timeout" />
-    <option name="LAST_COMMIT_MESSAGE" value="increase timeout" />
+    <MESSAGE value="fix locator\selector" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix locator\selector" />
   </component>
 </project>

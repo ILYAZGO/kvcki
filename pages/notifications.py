@@ -13,7 +13,7 @@ INPUT_URL = '[placeholder="шаблон URL"]'
 def set_notification_name(notificationName, page="page: Page"):
     page.locator(INPUT_NOTIFICATION_NAME).fill(notificationName)
 
-def add_filter(filterType, filterName, page="page: Page"):
+def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     #  dobavit filtr
     page.locator('[style="color: rgb(146, 84, 222);"]').click()
     #  choose po tegam
@@ -21,7 +21,7 @@ def add_filter(filterType, filterName, page="page: Page"):
     #  tupo click
     page.locator(".styles_title__nLZ-h").click()
     #  fill filter
-    page.locator('[autocorrect=off]').nth(0).fill(filterName)
+    page.locator('[autocorrect=off]').nth(elementNumber).fill(filterName)
     page.wait_for_timeout(3000)
     #  choose filter
     page.get_by_text(filterName, exact=True).nth(0).click()
@@ -46,3 +46,19 @@ def fill_message(text, page="page: Page"):
 def set_url_and_headers(url, headers, page="page: Page"):
     page.locator(INPUT_URL).fill(url)
     page.locator(INPUT_HEADERS).fill(headers)
+
+def save_or_cancel_rule(buttonNumber, page="page: Page"):
+    page.locator('[class="styles_buttonsGroup__aLY1I"]').get_by_role("button").nth(buttonNumber).click()
+
+def delete_rule(page="page: Page"):
+    page.wait_for_selector(BUTTON_KORZINA)
+
+    page.locator('[type="checkbox"]').nth(0).click()
+
+    page.locator(BUTTON_KORZINA).click()
+    #  confirm deleting
+    page.locator('[class="styles_buttonsGroup__D0bLG"]').get_by_role("button").nth(1).click()
+
+def choose_block(blockNumber, page="page: Page"):
+    page.locator(BUTTON_OPOVESHENIA).click()
+    page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()

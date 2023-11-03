@@ -11,18 +11,16 @@ def test_example(page: Page) -> None:
 
     auth(USER_FOR_IMPORT, PASSWORD, page)
 
-    add_notification("API", page)
+    add_notification("Telegram", page)
 
-    set_notification_name("auto-test-api", page)
+    set_notification_name("auto-test-telegram", page)
 
-    set_url_and_headers(URL, "someHeaders", page)
-
-    #  send again when rull changed
-    page.locator('[type="checkbox"]').nth(0).click()
-
-    add_filter("По тегам", "22222", "0", page)
+    add_filter("По тегам", "22222", "1", page)
 
     fill_message("someText ", page)
+
+    #  send with call
+    page.locator('[type="checkbox"]').nth(0).click()
 
     save_or_cancel_rule("0", page)
 
