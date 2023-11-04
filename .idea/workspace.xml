@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change locator">
+      <change afterPath="$PROJECT_DIR$/pages/login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/test_login_user_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/test_login_user_positive.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="delete steps" />
     <MESSAGE value="fix some tests" />
     <MESSAGE value="change locators" />
     <MESSAGE value="add test" />
@@ -526,6 +525,7 @@
     <MESSAGE value="increase timeout" />
     <MESSAGE value="fix locator\selector" />
     <MESSAGE value="add tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests" />
+    <MESSAGE value="change locator" />
+    <option name="LAST_COMMIT_MESSAGE" value="change locator" />
   </component>
 </project>
