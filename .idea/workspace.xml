@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change locator">
-      <change afterPath="$PROJECT_DIR$/pages/login.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -501,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix some tests" />
     <MESSAGE value="change locators" />
     <MESSAGE value="add test" />
     <MESSAGE value="better" />
@@ -526,6 +526,7 @@
     <MESSAGE value="fix locator\selector" />
     <MESSAGE value="add tests" />
     <MESSAGE value="change locator" />
-    <option name="LAST_COMMIT_MESSAGE" value="change locator" />
+    <MESSAGE value="add page" />
+    <option name="LAST_COMMIT_MESSAGE" value="add page" />
   </component>
 </project>
