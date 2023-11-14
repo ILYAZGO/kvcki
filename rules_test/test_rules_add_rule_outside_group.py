@@ -5,7 +5,7 @@ from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
-'''Create tag in group and outside group'''
+'''Create rule outside group'''
 
 
 @pytest.mark.rules
@@ -18,15 +18,7 @@ def test_example(page: Page) -> None:
 
     go_to_markup(page)
 
-    page.wait_for_selector(BUTTON_DOBAVIT_TEG)
-
-    '''create rule'''
-    page.locator(BUTTON_DOBAVIT_TEG).click()
-    page.wait_for_selector(INPUT_NAZVANIE_TEGA)
-    page.locator(INPUT_NAZVANIE_TEGA).type("66666", timeout=wait_until_visible)
-    page.keyboard.press('Enter')  # kostil'
-    page.wait_for_timeout(2000)
-    #page.get_by_role("button", name="Отправить").click() #otpravit
+    create_rule("66666", page)
 
     '''check'''
     page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)

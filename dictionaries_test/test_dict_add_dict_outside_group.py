@@ -16,16 +16,10 @@ def test_example(page: Page) -> None:
 
     go_to_dicts(page)
 
-    '''create dict outside group'''
-    page.locator(BUTTON_DOBAVIT_SLOVAR).click()
-    page.locator(INPUT_NAZVANIE_SLOVAR).fill("77777")
-    page.get_by_role('button', name="Отправить").click()
-    page.wait_for_timeout(4000)
-    '''check created dict outside group'''
+    create_dict("77777", page)
 
+    '''check created dict outside group'''
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("77777", timeout=wait_until_visible)
-    '''check created dict parent'''
-    #expect(page.get_by_text("Unsorted")).to_have_text("Unsorted", timeout=wait_until_visible)
 
     page.reload()
 

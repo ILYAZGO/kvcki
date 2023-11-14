@@ -22,10 +22,8 @@ def test_example(page: Page) -> None:
 
     '''create dict inside group'''
     page.locator(CLICK_ON_GROUP).click()
-    page.locator(BUTTON_DOBAVIT_SLOVAR).click()
-    page.locator(INPUT_NAZVANIE_SLOVAR).fill("98765")
-    page.locator(BUTTON_OTPRAVIT).click()
-    page.locator(INPUT_SPISOK_SLOV).fill("random_text")
+
+    create_dict("98765", page)
 
     '''check created dict name'''
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("98765")

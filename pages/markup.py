@@ -52,6 +52,14 @@ def create_group(groupName, page="page: Page"):
     page.locator(BUTTON_OTPRAVIT).click()
     page.wait_for_timeout(1500)
 
+def create_rule(ruleName, page="page: Page"):
+    page.wait_for_selector(BUTTON_DOBAVIT_TEG)
+    page.locator(BUTTON_DOBAVIT_TEG).click()
+    page.wait_for_selector(INPUT_NAZVANIE_TEGA)
+    page.locator(INPUT_NAZVANIE_TEGA).type(ruleName)
+    page.keyboard.press('Enter')  # kostil'
+    page.wait_for_timeout(1500)
+
 def go_to_markup(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
@@ -68,6 +76,15 @@ def delete_group_and_rule_or_dict(page="page: Page"):
     page.get_by_role("button", name="Удалить").click()
     page.wait_for_timeout(2000)
     page.locator(BUTTON_KORZINA).click()
+
+
+def create_dict(dictName, page="page: Page"):
+    page.locator(BUTTON_DOBAVIT_SLOVAR).click()
+    page.locator(INPUT_NAZVANIE_SLOVAR).fill(dictName)
+    page.get_by_role('button', name="Отправить").click()
+    page.wait_for_timeout(1000)
+    page.locator(INPUT_SPISOK_SLOV).fill("random_text")
+
 
 
 

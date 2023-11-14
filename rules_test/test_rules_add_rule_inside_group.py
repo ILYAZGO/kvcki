@@ -5,30 +5,26 @@ from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
-'''Create rule in group and outside group'''
+'''Create rule inside group'''
 
 @pytest.mark.rules
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN, PASSWORD, page)
 
     go_to_markup(page)
 
     create_group("99999", page)
 
-    '''create rule inside group'''
+    '''click group'''
     page.wait_for_selector(CLICK_NEW_GROUP)
     page.locator(CLICK_NEW_GROUP).click()
     page.wait_for_timeout(2000)
-    page.wait_for_selector(BUTTON_DOBAVIT_TEG)
-    page.locator(BUTTON_DOBAVIT_TEG).click()
-    page.wait_for_selector(INPUT_NAZVANIE_TEGA)
-    page.locator(INPUT_NAZVANIE_TEGA).type("88888")
-    page.keyboard.press('Enter') #kostil'
-    #page.get_by_test_id("markup_newRuleApply").click() #otpravit
+
+    create_rule("88888", page)
 
     '''check'''
     page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
