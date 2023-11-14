@@ -31,9 +31,10 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(BUTTON_SLOVARI)
     page.locator(BUTTON_SLOVARI).click()
     page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
-    page.wait_for_selector(INPUT_CHOOSE_USER_FOR_IMPORT)
+    #page.wait_for_selector(INPUT_CHOOSE_USER_FOR_IMPORT)
     '''type in users list "importFrom" and choose user "importFrom"'''
-    page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).get_by_role("combobox").fill("importFrom")
+    #page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).get_by_role("combobox").fill("importFrom")
+    page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').fill("importFrom")
     page.wait_for_timeout(1000)
     page.get_by_text("importFrom", exact=True).click()
     page.wait_for_timeout(3000)
