@@ -66,7 +66,7 @@ def test_example(page: Page) -> None:
     page.get_by_text("Удалить", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
     page.locator(BUTTON_KORZINA).first.click()
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(1200)
     page.locator(BUTTON_KORZINA).first.click()
 
     '''check teardown'''

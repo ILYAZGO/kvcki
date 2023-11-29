@@ -21,8 +21,6 @@ def test_example(page: Page) -> None:
     '''check created dict outside group'''
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("77777", timeout=wait_until_visible)
 
-    page.reload()
-
     expect(page.get_by_text("Неотсортированные")).to_have_count(count=2, timeout=wait_until_visible)  # проверяем что таких надписей две (слева и внутри словаря)
 
     delete_group_and_rule_or_dict(page)
