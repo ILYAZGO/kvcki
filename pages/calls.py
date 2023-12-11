@@ -21,7 +21,7 @@ INPUT_SLOVAR_ILI_TEXT_CLIENT = "#react-select-6-input"
 INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = "#react-select-8-input"
 # buttons
 BUTTON_ZVONKI = "button[value='calls']"
-BUTTON_DOBAVIT_USLOVIE = '.simpleButton_icon__xKpnf'
+BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
 # other
 NAYDENO_ZVONKOV = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/p'
 POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по фрагментам')]"
@@ -56,9 +56,19 @@ def find_calls(page="page: Page"):
     page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
 
 
-def choose_period(period, page="page: Page"):
+
+def choose_period_button(period, page="page: Page"):
     page.wait_for_selector(period, timeout=wait_until_visible)
     page.locator(period).click()
+
+def choose_preiod_date(firstDate, lastDate, page="page: Page"):
+    page.locator(FIRST_DATE).click()
+    page.locator(FIRST_DATE).fill(firstDate)
+    page.wait_for_timeout(500)
+    page.locator(LAST_DATE).click()
+    page.locator(LAST_DATE).fill(lastDate)
+    page.wait_for_timeout(500)
+    page.keyboard.press("Enter")
 
 
 def remove_filter_value(filterValue, page="page: Page"):

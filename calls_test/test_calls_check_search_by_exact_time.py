@@ -12,7 +12,7 @@ def test_example(page: Page) -> None:
 
     auth(ECOTELECOM, ECOPASS, page)
 
-    choose_period(ALL_TIME, page)
+    choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     '''fill exact time'''
     page.locator(INPUT_VREMYA_ZVONKA).fill("11:42")
