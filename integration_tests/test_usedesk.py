@@ -45,21 +45,29 @@ def test_example(page: Page) -> None:
     '''sozdat'''
     page.locator(BUTTON_SOZDAT).click()
     '''long wait for download'''
-    page.wait_for_timeout(227000)
-    '''go to zvonki'''
-    page.locator(BUTTON_ZVONKI).click()
-    page.wait_for_selector(WEEK)
-    '''go to week'''
-    page.locator(WEEK).click()
-    '''press find calls'''
-    page.locator(BUTTON_FIND_CALLS).click()
+    page.wait_for_timeout(240000)
 
-    expect(page.locator(NAYDENO_ZVONKOV_INTEGRATION)).to_have_text("Найдено коммуникаций 3 из 3", timeout=wait_until_visible)
-    page.wait_for_timeout(3000)
+    page.reload()
+    expect(page.locator('[role="rowgroup"]').locator('[role="cell"]').nth(4)).to_have_text('3')
 
-    page.locator(BUTTON_NASTROIKI).click()
 
-    page.wait_for_selector(BUTTON_INTEGRACII_IN_MENU)
+
+    #'''go to zvonki'''
+    #page.locator(BUTTON_ZVONKI).click()
+    #page.wait_for_selector(WEEK)
+    #'''go to week'''
+    #page.locator(WEEK).click()
+    #'''press find calls'''
+    #page.locator(BUTTON_FIND_CALLS).click()
+
+    #expect(page.locator(NAYDENO_ZVONKOV_INTEGRATION)).to_have_text("Найдено коммуникаций 3 из 3", timeout=wait_until_visible)
+    #page.wait_for_timeout(3000)
+
+    #page.locator(BUTTON_NASTROIKI).click()
+
+    #page.wait_for_selector(BUTTON_INTEGRACII_IN_MENU)
+
+
     page.locator(BUTTON_INTEGRACII_IN_MENU).click()
 
     delete_integration(page)

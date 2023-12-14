@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix som e tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix calls tests">
+      <change afterPath="$PROJECT_DIR$/dictionaries_test/est_dict_import_dict_disabled_for_operator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_dict_disabled_for_user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules_test/test_rules_import_rule_disabled_for_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_job_title.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_job_title.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/est_dict_add_dict_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group_disabled.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/est_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group_disabled.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,23 +40,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/notifications&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/rules_test",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rules_test" />
+      <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/calls_test" />
       <recent name="$PROJECT_DIR$/reports_test" />
-      <recent name="$PROJECT_DIR$/left_menu_tests" />
-      <recent name="$PROJECT_DIR$/rules_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/left_menu_tests" />
@@ -97,7 +92,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-67fca87a943a-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.259" />
+        <option value="bundled-python-sdk-7a29c1521ef0-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.298" />
       </set>
     </attachedChunks>
   </component>
@@ -520,7 +515,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add def and fix tests 2" />
     <MESSAGE value=" fix tests 3" />
     <MESSAGE value="delete hardcode" />
     <MESSAGE value="add" />
@@ -545,6 +539,7 @@
     <MESSAGE value="add notif tests" />
     <MESSAGE value="fix import tests" />
     <MESSAGE value="fix som e tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix som e tests" />
+    <MESSAGE value="fix calls tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix calls tests" />
   </component>
 </project>

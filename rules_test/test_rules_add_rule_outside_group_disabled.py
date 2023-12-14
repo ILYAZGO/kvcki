@@ -18,15 +18,8 @@ def test_example(page: Page) -> None:
 
     go_to_markup(page)
 
-    create_rule("66666", page)
-
     '''check'''
-    page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
-    expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("66666")
-
-    delete_group_and_rule_or_dict(page)
-
-    '''check teardown'''
-    expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
+    page.wait_for_timeout(1500)
+    expect(page.locator(BUTTON_ADD_DISABLED)).to_be_visible()
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

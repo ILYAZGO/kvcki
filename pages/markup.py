@@ -21,6 +21,7 @@ BUTTON_OTPRAVIT = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[1
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 BUTTON_KORZINA = '[aria-label="Удалить"]'
+BUTTON_ADD_DISABLED = '[style="cursor: not-allowed;"]'
 
 BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
 # other
