@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix calls tests">
-      <change afterPath="$PROJECT_DIR$/dictionaries_test/est_dict_import_dict_disabled_for_operator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_import_dict_disabled_for_user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules_test/test_rules_import_rule_disabled_for_user.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix integration test&#10;add tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/est_dict_add_dict_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group_disabled.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/est_rules_add_rule_outside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_rule_outside_group_disabled.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -515,7 +508,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=" fix tests 3" />
     <MESSAGE value="delete hardcode" />
     <MESSAGE value="add" />
     <MESSAGE value="change dates" />
@@ -540,6 +532,7 @@
     <MESSAGE value="fix import tests" />
     <MESSAGE value="fix som e tests" />
     <MESSAGE value="fix calls tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix calls tests" />
+    <MESSAGE value="fix integration test&#10;add tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix integration test&#10;add tests" />
   </component>
 </project>
