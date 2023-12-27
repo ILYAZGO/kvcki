@@ -141,3 +141,21 @@ def create_delete_appriser(title, page="page: Page"):
 def delete_check_list(page="page: Page"):
     page.locator(BUTTON_KORZINA).click()
     page.get_by_role("button", name="Удалить").click()
+
+
+#  all for gpt
+
+
+BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
+BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
+BUTTON_GPT_SAVE = '[data-testid="acceptButton"]'
+
+INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
+INPUT_GPT_TEG_NAME = '[placeholder="Название тега"]'
+INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
+
+def go_to_gpt(page="page: Page"):
+    page.wait_for_selector(BUTTON_RAZMETKA)
+    page.locator(BUTTON_RAZMETKA).click()
+    page.locator(BUTTON_GPT).click()
+    page.wait_for_timeout(1000)

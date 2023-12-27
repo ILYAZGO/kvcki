@@ -4,8 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix integration test&#10;add tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeout">
+      <change afterPath="$PROJECT_DIR$/gpt/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login_test/test_login_admin_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/test_login_admin_positive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login_test/test_login_manager_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/test_login_manager_positive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login_test/test_login_user_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/test_login_user_positive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_first_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_first_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/integration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +48,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/rules_test",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/rules_test&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rules_test" />
@@ -518,7 +533,6 @@
     <MESSAGE value="add test notifications" />
     <MESSAGE value="add test notifications api" />
     <MESSAGE value="fix checklist test" />
-    <MESSAGE value="add timeout" />
     <MESSAGE value="upgrade checklist test add correct URL" />
     <MESSAGE value="fixed tests" />
     <MESSAGE value="add def. upgrade tests" />
@@ -533,6 +547,7 @@
     <MESSAGE value="fix som e tests" />
     <MESSAGE value="fix calls tests" />
     <MESSAGE value="fix integration test&#10;add tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix integration test&#10;add tests" />
+    <MESSAGE value="add timeout" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timeout" />
   </component>
 </project>

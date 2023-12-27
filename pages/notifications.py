@@ -2,7 +2,7 @@ BUTTON_OPOVESHENIA = '[href*="/notifications"]'
 USERS_LIST = "#react-select-2-input"
 
 BUTTON_KORZINA = '[aria-label="Удалить"]'
-BUTTON_IMPORT_RULES = '[class*="styles_outlined"]'
+BUTTON_IMPORT_RULES = '[class*="styles_importTagRules"]'
 
 INPUT_NOTIFICATION_NAME = '[placeholder="Например: Жалоба на сотрудника"]'
 

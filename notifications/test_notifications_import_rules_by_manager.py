@@ -26,7 +26,7 @@ def test_example(page: Page) -> None:
     page.get_by_text(LOGIN_USER, exact=True).click()
     page.wait_for_timeout(6000)
     page.locator(BUTTON_OPOVESHENIA).click()
-    page.locator(BUTTON_IMPORT_RULES).click()
+    page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
 
     page.wait_for_selector('[aria-haspopup="true"]')
     page.locator('[aria-haspopup="true"]').nth(2).fill("importFrom")

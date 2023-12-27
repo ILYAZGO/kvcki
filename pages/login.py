@@ -1,4 +1,4 @@
-BUTTON_VOITI = "[id='mui-3']"
+BUTTON_VOITI = "[type='submit']"
 
 ALERT_MESSAGE = ".MuiAlert-message"
 

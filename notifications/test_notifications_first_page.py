@@ -23,6 +23,6 @@ def test_example(page: Page) -> None:
 
     choose_block(2, page)
 
-    expect(page.get_by_text("API", exact=True)).to_have_count(2)
+    expect(page.get_by_text("API", exact=True)).to_have_count(1)
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

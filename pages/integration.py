@@ -1,7 +1,7 @@
 USEDESK_TOKEN = "445ab1e8e6853d3bbedf686ab02f4cb746098a9a"
 
 INPUT_USER_DROPDOWN = "#react-select-2-input"
-INPUT_API_TOKEN = "//input[@name='api_token']"
+INPUT_API_TOKEN = '[data-testid="api_token"]'
 INPUT_CALLS_LIMIT = '[name="maxNewCalls"]'
 
 BUTTON_INTEGRACII_IN_MENU = "//p[contains(text(),'Интеграции')]"
@@ -23,7 +23,7 @@ LOGIN_IN_LEFT_MENU = ".MuiTypography-root.MuiTypography-body1.styles_headerLogin
 
 def input_save_api_token(page="page: Page"):
     page.wait_for_selector(INPUT_API_TOKEN)
-    page.locator(INPUT_API_TOKEN).fill(USEDESK_TOKEN)
+    page.locator(INPUT_API_TOKEN).locator('[type="text"]').fill(USEDESK_TOKEN)
     page.locator(BUTTON_SAVE_TOKEN).click()
 
 
