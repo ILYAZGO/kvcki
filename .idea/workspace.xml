@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix url">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix date">
+      <change afterPath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,23 +36,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/rules_test&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/gpt",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/gpt" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/calls_test" />
-      <recent name="$PROJECT_DIR$/reports_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/left_menu_tests" />
@@ -509,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add" />
     <MESSAGE value="change dates" />
     <MESSAGE value="fix report test" />
     <MESSAGE value="fis tests" />
@@ -534,6 +535,7 @@
     <MESSAGE value="add timeout" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="fix url" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix url" />
+    <MESSAGE value="fix date" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix date" />
   </component>
 </project>

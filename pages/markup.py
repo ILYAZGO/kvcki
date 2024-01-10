@@ -159,3 +159,30 @@ def go_to_gpt(page="page: Page"):
     page.locator(BUTTON_RAZMETKA).click()
     page.locator(BUTTON_GPT).click()
     page.wait_for_timeout(1000)
+
+def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
+    page.locator(BUTTON_GPT_CREATE_RULE).click()
+    page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
+
+    page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
+    page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
+
+    page.locator(BUTTON_GPT_SAVE).click()
+
+
+# create group with 2 tags with 2 questions inside
+def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
+    page.locator(BUTTON_GPT_CREATE_RULE).click()
+    page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
+
+    page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
+    page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
+    page.get_by_role("button", name="Добавить вопрос").click()
+    page.locator(INPUT_GPT_TEG_NAME).nth(1).fill("GPTteg2")
+    page.locator(INPUT_GPT_QUESTION).nth(1).fill("GPTquestion2")
+
+    page.locator(BUTTON_GPT_SAVE).click()
+
+def turn_on_rule(page="page: Page"):
+    page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
+    page.wait_for_timeout(1500)
