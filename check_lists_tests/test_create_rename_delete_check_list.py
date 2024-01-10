@@ -5,13 +5,13 @@ from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
-'''Create,delete,update check-list'''
+'''Create, rename, delete check-list'''
 
 @pytest.mark.check_list
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1638/", timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
@@ -20,18 +20,22 @@ def test_example(page: Page) -> None:
     '''check created'''
     expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
 
-    '''update'''
+    '''rename from title'''
     page.get_by_text("12345").click()
-    page.locator(INPUT_FIRST_QUESTION).clear()
-    page.locator(INPUT_FIRST_QUESTION).fill("654321")
-
+    page.locator('[name="title"]').clear()
+    page.locator('[name="title"]').fill("654321")
+    page.wait_for_timeout(1000)
     '''save'''
     page.locator(BUTTON_SAVE).click()
 
-    create_delete_appriser("Appriser", page)
+    '''rename from left list'''
+    page.wait_for_selector(BUTTON_PENCIL)
+    page.locator(BUTTON_PENCIL).click()
+    page.locator(INPUT_LEFT_CHECK_LIST_NAME).fill("98765")
+    page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
+    page.wait_for_timeout(1000)
 
-    '''save'''
-    page.locator(BUTTON_SAVE).click()
+    expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
     '''delete'''
     delete_check_list(page)

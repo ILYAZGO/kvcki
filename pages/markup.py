@@ -102,6 +102,7 @@ INPUT_THIRD_ANSWER = '[name="questions.1.answers.0.answer"]'
 INPUT_FIRST_POINTS = '[name="questions.0.answers.0.point"]'
 INPUT_SECOND_POINTS = '[name="questions.0.answers.1.point"]'
 INPUT_THIRD_POINTS = '[name="questions.1.answers.0.point"]'
+INPUT_LEFT_CHECK_LIST_NAME = "//input[@value='12345']"
 # buttons
 
 BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
@@ -112,9 +113,18 @@ BUTTON_SAVE = ".MuiButton-contained"
 #BUTTON_DELETE_QUESTION = ".styles_deleteBtn__8Tkl6"
 
 
-def create_questions_and_answers(firstQustionTitle, secondQuestionTitle, page="page: Page"):
-    #  creates first question with 2 answers and points and second question with answer and points then delete second question
-    page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()  # add questions
+#  creates first question with 2 answers and points and second question with answer and points then delete second question
+def create_check_list_with_questions_and_answers(checkListName, firstQustionTitle, secondQuestionTitle, page="page: Page"):
+    # create check-list
+    page.wait_for_selector(BUTTON_RAZMETKA)
+    page.locator(BUTTON_RAZMETKA).click()
+    page.locator(BUTTON_CHECK_LIST).click()
+    page.wait_for_selector(BUTTON_DOBAVIT_CHECK_LIST)
+    page.locator(BUTTON_DOBAVIT_CHECK_LIST).click()
+    page.wait_for_selector(INPUT_CHECK_LIST_NAME)
+    page.locator(INPUT_CHECK_LIST_NAME).fill(checkListName)
+    # add questions
+    page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()
 
     page.locator(INPUT_FIRST_QUESTION).fill(firstQustionTitle)
     page.locator(INPUT_FIRST_ANSWER).fill("Answer1")
@@ -130,6 +140,9 @@ def create_questions_and_answers(firstQustionTitle, secondQuestionTitle, page="p
     page.locator(INPUT_THIRD_POINTS).fill("3")
     #page.locator(BUTTON_DELETE_QUESTION).nth(1).click()
     page.get_by_role("button", name="Удалить вопрос").nth(1).click()
+
+    # save
+    page.locator(BUTTON_SAVE).click()
 
 def create_delete_appriser(title, page="page: Page"):
 
