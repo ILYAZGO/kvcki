@@ -51,7 +51,7 @@ def test_example(page: Page) -> None:
     page.locator("(//input[@type='checkbox'])[6]").click()
     page.wait_for_timeout(1000)
     page.get_by_role("button", name="К новым правилам").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(2000)
 
     '''check that import successful'''
     expect(page.get_by_text("11111")).to_be_visible(timeout=wait_until_visible)
@@ -77,6 +77,7 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
+    page.wait_for_timeout(2000)
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
     '''delete admin'''

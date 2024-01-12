@@ -31,7 +31,7 @@ def test_example(page: Page) -> None:
     page.locator(USERS_LIST).fill(LOGIN_USER)
     page.wait_for_timeout(2000)
     page.get_by_text(LOGIN_USER, exact=True).click()
-    page.wait_for_timeout(4000)
+    page.wait_for_timeout(5000)
 
     go_to_markup(page)
 
