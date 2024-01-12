@@ -7,7 +7,7 @@ import pytest
 @pytest.mark.rules
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(ECOTELECOM, ECOPASS, page)
 
     go_to_markup(page)

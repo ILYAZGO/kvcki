@@ -5,7 +5,7 @@ from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
-'''Create rule outside group'''
+'''Create rule outside group should be disabled'''
 
 
 @pytest.mark.rules
@@ -19,7 +19,7 @@ def test_example(page: Page) -> None:
     go_to_markup(page)
 
     '''check'''
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(2500)
     expect(page.locator(BUTTON_ADD_DISABLED)).to_be_visible()
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)

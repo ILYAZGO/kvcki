@@ -14,16 +14,15 @@ rule 33333 without group
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    '''create user for import'''
+    # create user for import
     USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
-    '''create manager'''
+    # create manager
     USER_ID_MANAGER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
-
-    '''give manager user for import'''
+    # give manager user for import
     give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
-    '''go to page'''
+
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN_MANAGER, PASSWORD, page)
 
     '''go to the user to import'''
@@ -36,9 +35,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(BUTTON_SLOVARI)
     page.locator(BUTTON_SLOVARI).click()
     page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
-
     '''type in users list "importFrom" and choose user "importFrom"'''
-    #page.locator(INPUT_CHOOSE_USER_FOR_IMPORT).get_by_role("combobox").fill("importFrom")
     page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').fill("importFrom")
     page.wait_for_timeout(1000)
     page.get_by_text("importFrom", exact=True).click()
@@ -81,7 +78,7 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("66666")).not_to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
-    '''delete admin'''
+    # delete admin
     delete_user(API_URL, USER_ID_MANAGER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
-    '''delete user'''
+    # delete user
     delete_user(API_URL, USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER)
