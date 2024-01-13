@@ -26,7 +26,7 @@ def test_example(page: Page) -> None:
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(0).click()
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(1).click()
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(2).click()
-    page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(3).click()
+    #page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(3).click()
 
     # tupo click
     page.locator('[class="styles_title__s3M9y undefined"]').nth(0).click()
@@ -39,7 +39,7 @@ def test_example(page: Page) -> None:
 
     # work with params
     page.locator('[name="yandex_gpt_v1"]').click()
-    page.locator('[name="general"]').click()
+    #page.locator('[name="general"]').click()
     page.locator('[placeholder="..."]').fill("SomeText")
 
 
