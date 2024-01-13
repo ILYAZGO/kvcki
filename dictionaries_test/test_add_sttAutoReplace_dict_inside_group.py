@@ -29,6 +29,10 @@ def test_example(page: Page) -> None:
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("98765")
     '''check created dict parent'''
     expect(page.get_by_text("12345").nth(1)).to_have_text("12345") #проверяем что есть родительская группа
+    page.wait_for_timeout(500)
+
+    page.locator('[aria-label="Checkbox demo"]').nth(0).click()
+    page.get_by_role("button", name="Сохранить").click()
 
     delete_group_and_rule_or_dict(page)
 
