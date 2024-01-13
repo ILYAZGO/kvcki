@@ -17,7 +17,6 @@ def test_example(page: Page) -> None:
     go_to_dicts(page)
 
     '''check '''
-    page.wait_for_selector(BUTTON_IMPORTIROVAT_SLOVARI)
     expect(page.locator(BUTTON_IMPORTIROVAT_SLOVARI)).not_to_be_visible()
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
