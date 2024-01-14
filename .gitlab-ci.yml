@@ -7,6 +7,6 @@ tests:
   image: mcr.microsoft.com/playwright/python:v1.40.0-jammy
   script:
     - echo Using public URL $PUBLIC_URL
-    - pip install -r requirements.txt
+    - pip install -r requirements.txt --default-timeout=100 future
     - pytest -sv
 
