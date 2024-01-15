@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test">
-      <change afterPath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_dict_outside_group_disabled.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_outside_group_disabled.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_cancel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_add_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_edit_name_delete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_dict_disabled_for_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_dict_disabled_for_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_dict_search_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_search_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_cancel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules_add_group_edit_name_delete.py" afterDir="false" />
-    </list>
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix requirements" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -519,7 +506,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test notifications" />
     <MESSAGE value="add test notifications api" />
     <MESSAGE value="fix checklist test" />
     <MESSAGE value="upgrade checklist test add correct URL" />
@@ -539,11 +525,12 @@
     <MESSAGE value="fix tests" />
     <MESSAGE value="fix url" />
     <MESSAGE value="fix date" />
-    <MESSAGE value="add test" />
     <MESSAGE value="add timeouts in rules tests" />
     <MESSAGE value="small improvements" />
     <MESSAGE value="fix gpt additional params test" />
     <MESSAGE value="fix test" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix test" />
+    <MESSAGE value="add test" />
+    <MESSAGE value="fix requirements" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix requirements" />
   </component>
 </project>

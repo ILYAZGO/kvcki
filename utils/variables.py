@@ -13,22 +13,22 @@ wait_until_visible = 40000
 
 # LIST OF CREDENTIALS
 
-USER ="1userIM"
-OPERATOR ="2operatorIM"
+USER = "1userIM"
+OPERATOR = "2operatorIM"
 MANAGER = "3managerIM"
 ADMIN = "4adminIM"
 USER_FOR_IMPORT = "importFrom"
 PASSWORD = "Qaz123wsX"
 
-ECOTELECOM = "ecotelecom"  #used for calls and reports test
-ECOPASS = "ecopass1)"      #used for calls and reports test
+ECOTELECOM = "ecotelecom"  # used for calls and reports test
+ECOPASS = "ecopass1)"      # used for calls and reports test
 
 LOGIN_NEGOTIVE = "1userI"
-PASSWORD_NEGOTIVE ="Qaz123ws"
+PASSWORD_NEGOTIVE = "Qaz123ws"
 
 # LIST OF USERS FOR IMPORT
-#FROM_USER_IMPORT = "importFrom"
-#TO_USER_IMPORT = "importTo"
+# FROM_USER_IMPORT = "importFrom"
+# TO_USER_IMPORT = "importTo"
 
 # CRED FOR REGISTRATIONS
 REGISTRATION_NAME = "John Coltrane"
@@ -45,6 +45,6 @@ ROLE_ADMIN = 'admin'
 # operator credentials
 
 NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().microsecond}{datetime.now().hour}"
-NEW_NAME = NEW_LOGIN =  f"auto_test_user_{datetime.now().hour}{datetime.now().minute}{datetime.now().microsecond}"
+NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().hour}{datetime.now().minute}{datetime.now().microsecond}"
 EMAIL = f"email_{datetime.now().microsecond}@mail.ru"
 
