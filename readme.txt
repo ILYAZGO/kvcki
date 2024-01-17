@@ -11,7 +11,7 @@ from main directory:
 
     --headed  (browser head)
     --slowmo 3000  (if you want to slow tests down in 3000 ms)
-    !--numprocesses auto  (few processes same time - faster tests, but can cause troubles) (DON'T USE)!
+    !(DON'T USE)--numprocesses auto  (few processes same time - faster tests, but can cause troubles) (DON'T USE)!
 
     -m {some marker}  (you can call test-sets. look markers in pytest.ini)
 

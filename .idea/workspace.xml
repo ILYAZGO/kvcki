@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check timeout">
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_settings_address_book_fill_by_user.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added address-book test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/left_menu_tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/left_menu_tests/test_left_menu_item_for_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_admin_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/left_menu_tests/test_left_menu_item_for_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_manager_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/left_menu_tests/test_left_menu_item_for_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_operator_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/left_menu_tests/test_left_menu_item_for_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_user_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/left_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -516,7 +508,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix checklist test" />
     <MESSAGE value="upgrade checklist test add correct URL" />
     <MESSAGE value="fixed tests" />
     <MESSAGE value="add def. upgrade tests" />
@@ -541,6 +532,7 @@
     <MESSAGE value="add test" />
     <MESSAGE value="fix requirements" />
     <MESSAGE value="check timeout" />
-    <option name="LAST_COMMIT_MESSAGE" value="check timeout" />
+    <MESSAGE value="added address-book test" />
+    <option name="LAST_COMMIT_MESSAGE" value="added address-book test" />
   </component>
 </project>
