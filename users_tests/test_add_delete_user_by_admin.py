@@ -10,7 +10,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1644", timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
 
@@ -25,8 +25,8 @@ def test_example(page: Page) -> None:
              page)
 
     set_stt("Русский",
-            "IMOT.IO",
-            "Стандарт",
+            "Deepgram",
+            "whisper",
             page)
 
     # '''add quota'''

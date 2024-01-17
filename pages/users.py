@@ -41,6 +41,7 @@ def go_to_users(page="page: Page"):
 
 def set_user(name, login, password, mail, comment, role, page="page: Page"):
     page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()  #button create user
+    page.wait_for_timeout(1000)
     '''fill required'''
     page.locator(INPUT_NAME).fill(name)
     page.wait_for_timeout(1000)
@@ -65,7 +66,7 @@ def set_stt(language, engine, model, page="page: Page"):
 
     page.locator(SELECT_ENGINE).click()
     page.get_by_text(engine, exact=True).click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(800)
 
     page.locator(SELECT_MODEL).click()
     page.wait_for_timeout(500)

@@ -7,7 +7,7 @@ import pytest
 
 
 # check how many items in left menu for role
-@pytest.mark.left_menu
+@pytest.mark.settings
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 

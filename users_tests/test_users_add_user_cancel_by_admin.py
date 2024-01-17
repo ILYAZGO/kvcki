@@ -7,7 +7,7 @@ import pytest
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1644", timeout=timeout)
     '''login'''
     auth(ADMIN, PASSWORD, page)
 

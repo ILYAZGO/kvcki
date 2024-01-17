@@ -195,6 +195,7 @@ def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
     page.locator(INPUT_GPT_QUESTION).nth(1).fill("GPTquestion2")
 
     page.locator(BUTTON_GPT_SAVE).click()
+    page.wait_for_timeout(1000)
 
 def turn_on_rule(page="page: Page"):
     page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()

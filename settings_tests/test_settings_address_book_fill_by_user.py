@@ -11,15 +11,15 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-835", timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
     click_settings(page)
 
-    fill_address_book_and_save("PHONE;NAME;TITLE", page)
+    fill_address_book_and_save("Телефон;Должность;ФИО\n12345;IVAN;BOSS", page)
 
-    expect(page.locator(INPUT_ADDRESS_BOOK)).to_contain_text(["PHONE;NAME;TITLE"])
+    expect(page.locator(INPUT_ADDRESS_BOOK)).to_contain_text(["Телефон;Должность;ФИО\n12345;IVAN;BOSS"])
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
 

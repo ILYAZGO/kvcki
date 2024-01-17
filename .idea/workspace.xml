@@ -4,8 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added address-book test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="restart job">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_first_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_first_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_address_book_fill_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_address_book_fill_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_users_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_check_search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +51,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/settings_tests&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/settings_tests" />
@@ -508,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="upgrade checklist test add correct URL" />
     <MESSAGE value="fixed tests" />
     <MESSAGE value="add def. upgrade tests" />
     <MESSAGE value="increase timeout" />
@@ -533,6 +550,7 @@
     <MESSAGE value="fix requirements" />
     <MESSAGE value="check timeout" />
     <MESSAGE value="added address-book test" />
-    <option name="LAST_COMMIT_MESSAGE" value="added address-book test" />
+    <MESSAGE value="restart job" />
+    <option name="LAST_COMMIT_MESSAGE" value="restart job" />
   </component>
 </project>
