@@ -181,20 +181,22 @@ def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
 
     page.locator(BUTTON_GPT_SAVE).click()
+    page.wait_for_timeout(1000)
 
 
 # create group with 2 tags with 2 questions inside
 def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
+    page.wait_for_selector(INPUT_GPT_RULE_NAME)
     page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
-
+    page.wait_for_timeout(700)
     page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
     page.get_by_role("button", name="Добавить вопрос").click()
     page.locator(INPUT_GPT_TEG_NAME).nth(1).fill("GPTteg2")
     page.locator(INPUT_GPT_QUESTION).nth(1).fill("GPTquestion2")
-
-    page.locator(BUTTON_GPT_SAVE).click()
+    page.keyboard.press("PageDown")
+    page.locator(BUTTON_GPT_SAVE).click(force=True)
     page.wait_for_timeout(1000)
 
 def turn_on_rule(page="page: Page"):

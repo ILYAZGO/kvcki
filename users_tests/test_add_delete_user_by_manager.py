@@ -7,7 +7,7 @@ import pytest
 '''Precondition : manager should have access_rights for create and delete user'''
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    page.goto("http://192.168.10.101/feature-dev-1644", timeout=timeout)
+    page.goto(URL, timeout=timeout)
 
     auth(MANAGER, PASSWORD, page)
 

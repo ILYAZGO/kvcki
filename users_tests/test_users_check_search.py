@@ -16,7 +16,7 @@ def test_example(page: Page) -> None:
     '''go to polzovateli'''
     page.locator(BUTTON_POLZOVATELI).click()
     '''wait users list to load'''
-    page.wait_for_timeout(3000)
+    page.wait_for_selector('[aria-rowindex="2"]')
     '''fill search'''
     page.locator(INPUT_POISK).fill("ecot")
     '''check'''

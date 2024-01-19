@@ -16,7 +16,7 @@ def test_example(page: Page) -> None:
     '''give manager user for import'''
     give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
 
-    page.goto("http://192.168.10.101/feature-dev-1644", timeout=timeout)
+    page.goto(URL, timeout=timeout)
 
     '''login in admin'''
     auth(LOGIN_MANAGER, PASSWORD, page)

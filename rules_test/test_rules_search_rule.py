@@ -12,9 +12,11 @@ def test_example(page: Page) -> None:
 
     go_to_markup(page)
 
+
+    page.wait_for_selector('[href*="/dictionaries?group"]')
     '''search (should not depend on register)'''
-    page.locator(INPUT_POISK).nth(1).fill("mercury")
+    page.locator(INPUT_POISK).nth(1).fill("coope")
     #page.locator("form").get_by_role("button").click()
 
     '''check'''
-    expect(page.get_by_text("Mercury")).to_have_count(1, timeout=wait_until_visible)
+    expect(page.get_by_text("Cooper")).to_have_count(1, timeout=wait_until_visible)

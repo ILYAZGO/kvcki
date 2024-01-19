@@ -11,7 +11,7 @@ FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
 
 # inputs
-INPUT_PO_TEGAM = "#react-select-11-input"
+INPUT_PO_TEGAM = "#react-select-12-input"
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
 INPUT_VREMYA_ZVONKA = "#react-select-10-input"
 INPUT_DLITELNOST_ZVONKA = "#react-select-9-input"
@@ -19,6 +19,7 @@ INPUT_NOMER_CLIENTA = "#react-select-5-input"
 INPUT_NOMER_SOTRUDNIKA = "#react-select-7-input"
 INPUT_SLOVAR_ILI_TEXT_CLIENT = "#react-select-6-input"
 INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = "#react-select-8-input"
+INPUT_ID = "#react-select-11-input"
 # buttons
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
@@ -43,7 +44,7 @@ def change_filter(filterType, elementNumber, page="page: Page"):
 
 def choose_filter_value(filterValue, page="page: Page"):
     # input click
-    page.locator("(//div[contains(@class,'css-12ol9ef')])[7]").first.click()
+    page.locator("(//div[contains(@class,'css-12ol9ef')])[8]").first.click()
     # choose filter value
     page.locator(".css-1lq1yle-menu").get_by_text(filterValue).click()
     # tupo click

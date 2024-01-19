@@ -11,7 +11,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto("http://192.168.10.101/feature-dev-835", timeout=timeout)
+    page.goto(URL, timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
