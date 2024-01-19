@@ -9,7 +9,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1674", timeout=timeout)
     '''login'''
     auth(LOGIN, PASSWORD, page)
 
@@ -27,6 +27,7 @@ def test_example(page: Page) -> None:
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(1).click()
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(2).click()
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(3).click()
+    page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(4).click()
 
     # tupo click
     page.locator('[class="styles_title__s3M9y undefined"]').nth(0).click()
@@ -34,8 +35,10 @@ def test_example(page: Page) -> None:
 
     expect(page.get_by_text("Движок")).to_have_count(1)
     expect(page.get_by_text("Модель")).to_have_count(1)
-    expect(page.get_by_text("Температура %")).to_have_count(1)
+    expect(page.get_by_text("Температура")).to_have_count(1)
     expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
+    expect(page.get_by_text("Frequency Penalty")).to_have_count(1)
+    expect(page.get_by_text("Presence Penalty")).to_have_count(1)
 
     # work with params
     page.locator('[name="yandex_gpt_v1"]').click()
@@ -50,7 +53,7 @@ def test_example(page: Page) -> None:
 
     # tupo click
     page.locator('[class="styles_title__s3M9y undefined"]').nth(0).click()
-
+    page.wait_for_timeout(1000)
     page.locator(BUTTON_KORZINA).click()
     page.wait_for_timeout(1000)
 

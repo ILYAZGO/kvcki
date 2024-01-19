@@ -9,13 +9,13 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1674", timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
     go_to_gpt(page)
 
-    create_gpt_rule_with_one("GPTrule", page)
+    create_gpt_rule_with_two("GPTrule", page)
 
     expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
     expect(page.get_by_text("Вопрос 2")).to_have_count(1)
