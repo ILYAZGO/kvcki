@@ -19,7 +19,6 @@ def test_example(page: Page) -> None:
     go_to_markup(page)
 
     '''check'''
-    page.wait_for_timeout(2500)
-    expect(page.locator(BUTTON_ADD_DISABLED)).to_be_visible()
+    expect(page.locator('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]')).to_be_visible()
 
     delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
