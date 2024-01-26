@@ -29,6 +29,8 @@ SELECT_ENGINE = '[data-testid="selectSttEngine"]'
 SELECT_MODEL = '[data-testid="selectSttModel"]'
 
 SELECT_ROLE = '[data-testid="selectRole"]'
+SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
+SELECT_PARTNER = '[data-testid="selectPartner"]'
 
 FIRST_PAGE_PAGINATION = '[aria-label="1"]'
 
@@ -44,18 +46,28 @@ def set_user(name, login, password, mail, comment, role, page="page: Page"):
     page.wait_for_timeout(1000)
     '''fill required'''
     page.locator(INPUT_NAME).fill(name)
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.locator(INPUT_LOGIN).fill(login)
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.locator(INPUT_PASSWORD).fill(password)
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.locator(INPUT_EMAIL).fill(mail)
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.locator(INPUT_COMMENT).fill(comment)
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.locator(SELECT_ROLE).locator("svg").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.locator(SELECT_ROLE).get_by_text(role, exact=True).click()
+
+
+def set_industry_and_partner(industry, partner, page="page: Page"):
+    page.locator(SELECT_INDUSTRY).locator("svg").click()
+    page.wait_for_timeout(800)
+    page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
+    page.wait_for_timeout(800)
+    page.locator(SELECT_PARTNER).locator("svg").click()
+    page.wait_for_timeout(800)
+    page.locator(SELECT_PARTNER).get_by_text(partner, exact=True).click()
 
 
 def set_stt(language, engine, model, page="page: Page"):

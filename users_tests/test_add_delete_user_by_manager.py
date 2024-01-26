@@ -21,6 +21,10 @@ def test_example(page: Page) -> None:
              "Компания",
              page)
 
+    #set_industry_and_partner("Недвижимость",
+                             #"managerIM",
+                             #page)
+
     set_stt("Русский",
             "IMOT.IO",
             "Стандарт",
@@ -34,8 +38,10 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(1400)
     expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
+    #expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
+    #expect(page.get_by_text("managerIM")).to_have_count(1, timeout=wait_until_visible)
 
     delete_added_user(page)
 
