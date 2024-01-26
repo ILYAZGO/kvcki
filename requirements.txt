@@ -3,3 +3,4 @@ pytest-playwright == 0.4.3
 pytest-xdist == 3.5.0
 requests == 2.31.0
 pytest-sugar == 0.9.7
+pytest-rerunfailures == 13.0
