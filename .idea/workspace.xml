@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="little fix">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add industry and patrner to user test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
@@ -513,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix locator\selector" />
     <MESSAGE value="add tests" />
     <MESSAGE value="change locator" />
     <MESSAGE value="add page" />
@@ -538,6 +537,7 @@
     <MESSAGE value="add test" />
     <MESSAGE value="add timeouts to gpt tests" />
     <MESSAGE value="little fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="little fix" />
+    <MESSAGE value="add industry and patrner to user test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add industry and patrner to user test" />
   </component>
 </project>
