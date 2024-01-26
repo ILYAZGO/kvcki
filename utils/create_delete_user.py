@@ -11,7 +11,7 @@ delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 def create_user(URL, ROLE, PASSWORD):
 
-    NAME = LOGIN = f"auto_test_user_{datetime.now().hour}{datetime.now().minute}{datetime.now().microsecond}"
+    NAME = LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
     headers_for_get_token = {
         'accept': 'application/json',
@@ -76,7 +76,7 @@ def create_user(URL, ROLE, PASSWORD):
 
 def create_operator(URL, PARENT_USER_ID, PASSWORD):
 
-    NAME = LOGIN = f"auto_test_user_{datetime.now().hour}{datetime.now().minute}{datetime.now().microsecond}"
+    NAME = LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
     headers_for_get_token = {
         'accept': 'application/json',

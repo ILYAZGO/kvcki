@@ -9,7 +9,7 @@ API_URL = "https://api.stand.imot.io"
 # LIST OF TIMEOUTS
 
 timeout = 55000
-wait_until_visible = 40000
+wait_until_visible = 45000
 
 # LIST OF CREDENTIALS
 
@@ -43,8 +43,10 @@ ROLE_ADMIN = 'admin'
 
 
 # operator credentials
+# used in test_add_delete_operator_by_user.py
 
-NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().microsecond}{datetime.now().hour}"
-NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().hour}{datetime.now().minute}{datetime.now().microsecond}"
+
+NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 EMAIL = f"email_{datetime.now().microsecond}@mail.ru"
 
