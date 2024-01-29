@@ -11,14 +11,17 @@ def test_example(page: Page) -> None:
     USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN, PASSWORD, page)
-    '''go to polzovateli'''
-    page.locator(BUTTON_POLZOVATELI).click()
+
+    go_to_users(page)
+
     '''wait users list to load'''
     page.wait_for_selector('[aria-rowindex="2"]')
+
     '''fill search'''
     page.locator(INPUT_POISK).fill("ecot")
+
     '''check'''
     expect(page.get_by_text("ecotelecom")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("1userIM")).not_to_be_visible(timeout=wait_until_visible)

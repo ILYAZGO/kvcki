@@ -4,8 +4,8 @@ BUTTON_OTMENA = '[data-testid="cancelButton"]'
 BUTTON_KRESTIK = '[data-testid="closePopupButton"]'
 BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
 
-BUTTON_KORZINA = '[fill="#FF7875"]'                #".styles_menu__tIMGQ svg"
-BUTTON_PODTVERDIT = '[data-testid="acceptButton"]' #".FooterButtons_footer__ZUsFp [tabindex='0']:nth-of-type(2)"
+BUTTON_KORZINA = '[fill="#FF7875"]'
+BUTTON_PODTVERDIT = '[data-testid="acceptButton"]'
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_SOTRUDNIKI = '[href*="employees"]'
 BUTTON_SOTRUDNIKI_UDALIT = "//button[contains(text(),'Удалить')]"
