@@ -85,6 +85,7 @@ def create_dict(dictName, page="page: Page"):
     page.get_by_role('button', name="Отправить").click()
     page.wait_for_timeout(1000)
     page.locator(INPUT_SPISOK_SLOV).fill("random_text")
+    page.get_by_role("button", name="Сохранить").click()
 
 
 

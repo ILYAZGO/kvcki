@@ -30,8 +30,20 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
     expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
 
-    page.get_by_text("Клиент сказал").click()
+    # switch "who said?"
 
+    page.get_by_text("Любой сказал").click()
+    page.get_by_text("Клиент сказал").click()
+    page.get_by_text("Клиент сказал", exact=True).click()
+    page.get_by_text("Сотрудник сказал").click()
+    page.get_by_text("Сотрудник сказал", exact=True).click()
+    page.get_by_text("Любой не сказал").click()
+    page.get_by_text("Любой не сказал", exact=True).click()
+    page.get_by_text("Клиент не сказал").click()
+    page.get_by_text("Клиент не сказал", exact=True).click()
+    page.get_by_text("Сотрудник не сказал").click()
+    page.get_by_text("Сотрудник не сказал", exact=True).click()
+    page.get_by_text("Любой сказал", exact=True ).click()
 
 
 

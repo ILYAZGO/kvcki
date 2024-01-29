@@ -34,8 +34,10 @@ def test_example(page: Page) -> None:
     page.locator(NAZVANIE_SLOVARYA).clear()
     page.locator(NAZVANIE_SLOVARYA).fill("newName")
     page.get_by_role("button", name="Сохранить").click()
+    page.wait_for_timeout(1000)
     '''check name changed'''
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("newName")
+    expect(page.locator('[data-testid="test"]')).to_have_text("newName")
 
     delete_group_and_rule_or_dict(page)
 
