@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import auth
 from pages.users import *
-from utils.dates import yesterday
+from utils.dates import yesterday, first_day_week_ago
 from pages.calls import *
 from pages.integration import *
 from utils.create_delete_user import create_user, delete_user
@@ -38,7 +38,7 @@ def test_example(page: Page) -> None:
     '''play'''
     page.locator(BUTTON_PLAY).click()
 
-    set_date(yesterday, page)
+    set_date(first_day_week_ago, page)
 
     set_calls_limit("3", page)
 

@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add pytest-rerunfailures">
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_settings_giving_quota_by_admin.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add quota test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_check_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -518,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change locator" />
     <MESSAGE value="add page" />
     <MESSAGE value="add notif tests" />
     <MESSAGE value="fix import tests" />
@@ -543,6 +536,7 @@
     <MESSAGE value="little fix" />
     <MESSAGE value="add industry and patrner to user test" />
     <MESSAGE value="add pytest-rerunfailures" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pytest-rerunfailures" />
+    <MESSAGE value="add quota test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add quota test" />
   </component>
 </project>
