@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add quota test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/est_add_rule_inside_group_rule_for_fragments.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_rule_for_fragments.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -519,7 +522,6 @@
     <MESSAGE value="fix calls tests" />
     <MESSAGE value="fix integration test&#10;add tests" />
     <MESSAGE value="add timeout" />
-    <MESSAGE value="fix tests" />
     <MESSAGE value="fix url" />
     <MESSAGE value="fix date" />
     <MESSAGE value="add timeouts in rules tests" />
@@ -537,6 +539,7 @@
     <MESSAGE value="add industry and patrner to user test" />
     <MESSAGE value="add pytest-rerunfailures" />
     <MESSAGE value="add quota test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add quota test" />
+    <MESSAGE value="fix tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix tests" />
   </component>
 </project>

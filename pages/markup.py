@@ -43,9 +43,6 @@ CLICK_ON_GROUP = "//p[normalize-space()='12345']"
 
 
 
-
-
-
 def create_group(groupName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
@@ -60,6 +57,7 @@ def create_rule(ruleName, page="page: Page"):
     page.locator(INPUT_NAZVANIE_TEGA).type(ruleName)
     page.keyboard.press('Enter')  # kostil'
     page.wait_for_timeout(1500)
+    page.get_by_role("button", name="Сохранить").click()
 
 def go_to_markup(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
@@ -86,6 +84,22 @@ def create_dict(dictName, page="page: Page"):
     page.wait_for_timeout(1000)
     page.locator(INPUT_SPISOK_SLOV).fill("random_text")
     page.get_by_role("button", name="Сохранить").click()
+
+def fill_what_said(text, page="page: Page"):
+    page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').fill(text)
+    page.keyboard.press("Enter")
+
+def add_additional_terms(list, page="page: Page"):
+    page.locator('[data-testid="fragmentRuleAddButton"]').get_by_role("button").dblclick()
+    page.wait_for_selector('[id*="listbox"]')
+    for i in list:
+        page.locator('[id*="listbox"]').get_by_text(i).click()
+    page.locator('[data-testid="fromStart"]').click()
+    page.locator('[data-testid="onlyFirstMatch"]').click()
+    for l in range(10):
+        page.locator('[placeholder=">X, <X или X-Y. Время в секундах"]').nth(l).fill(f"{l}")
+    page.wait_for_timeout(500)
+
 
 
 
