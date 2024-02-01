@@ -32,9 +32,6 @@ def test_example(page: Page) -> None:
     page.get_by_text("Второй чеклист (тоже нужен для автотестов, не трогать)", exact=True).click()
 
 
-
-
-
     '''change groupping'''
     page.get_by_text("По дням", exact=True).click()
     page.get_by_text("По месяцам", exact=True).click()
@@ -48,7 +45,7 @@ def test_example(page: Page) -> None:
     page.locator(TUPO_CLICK).click()
     '''check checkboxes'''
     page.get_by_role("checkbox", checked=False).first.click()
-    page.get_by_role("checkbox", checked=False).first.click()
+    #page.get_by_role("checkbox", checked=False).first.click()
     # page.get_by_text("Добавить столбец").click()
     '''saving'''
     page.get_by_role("button", name="Сохранить как новый").click()
@@ -59,8 +56,8 @@ def test_example(page: Page) -> None:
     page.get_by_text("Развернуть").click()
     #page.get_by_text("Добавить столбец").click()
 
-
-    page.get_by_role("button", name="Удалить шаблон").click()
+    page.locator('[class=" css-izdlur"]').click()
+    page.get_by_text("Удалить шаблон", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
     expect(page.get_by_text("test2345")).to_have_count(0)
     #page.get_by_role("button", name="Сформировать отчет").click()
