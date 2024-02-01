@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test seq">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" afterDir="false" />
-    </list>
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix report" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -512,7 +508,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add notif tests" />
     <MESSAGE value="fix import tests" />
     <MESSAGE value="fix som e tests" />
     <MESSAGE value="fix calls tests" />
@@ -537,6 +532,7 @@
     <MESSAGE value="fix tests" />
     <MESSAGE value="add test" />
     <MESSAGE value="add test seq" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test seq" />
+    <MESSAGE value="fix report" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix report" />
   </component>
 </project>

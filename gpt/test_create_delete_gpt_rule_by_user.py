@@ -16,6 +16,7 @@ def test_example(page: Page) -> None:
     go_to_gpt(page)
 
     create_gpt_rule_with_two("GPTrule", page)
+    page.wait_for_timeout(1500)
 
     expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
     expect(page.get_by_text("Вопрос 2")).to_have_count(1)
@@ -24,6 +25,7 @@ def test_example(page: Page) -> None:
 
     page.get_by_role("button", name="Удалить вопрос").nth(1).click()
     page.locator(BUTTON_GPT_SAVE).click(force=True)
+    page.wait_for_timeout(1500)
 
     expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
     expect(page.get_by_text("Вопрос 2")).to_have_count(0)
