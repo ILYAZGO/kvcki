@@ -70,10 +70,11 @@ def go_to_dicts(page="page: Page"):
     page.wait_for_timeout(1000)
 
 def delete_group_and_rule_or_dict(page="page: Page"):
-    page.locator(".css-izdlur").click()
-    page.get_by_text("Удалить", exact=True).click()
+    #page.locator(".css-izdlur").click()
+    #page.get_by_text("Удалить", exact=True).click()
+    page.locator('[width="30"]').click()
     page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(1800)
     page.locator(BUTTON_KORZINA).click()
 
 

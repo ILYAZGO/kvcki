@@ -57,12 +57,14 @@ def test_example(page: Page) -> None:
 
     '''teardown'''
     page.get_by_text("55555").click()
-    page.locator(".css-izdlur").click()
-    page.get_by_text("Удалить", exact=True).click()
+    #page.locator(".css-izdlur").click()
+    #page.get_by_text("Удалить", exact=True).click()
+    page.locator('[width="30"]').click()
     page.get_by_role("button", name="Удалить").click()
     page.get_by_text("66666").click()
-    page.locator(".css-izdlur").click()
-    page.get_by_text("Удалить", exact=True).click()
+    #page.locator(".css-izdlur").click()
+    #page.get_by_text("Удалить", exact=True).click()
+    page.locator('[width="30"]').click()
     page.get_by_role("button", name="Удалить").click()
     page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_timeout(1200)
