@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="after tasks fix tests">
-      <change afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="move check_lists from markup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix som e tests" />
     <MESSAGE value="fix calls tests" />
     <MESSAGE value="fix integration test&#10;add tests" />
     <MESSAGE value="fix url" />
@@ -538,6 +540,7 @@
     <MESSAGE value="fix report" />
     <MESSAGE value="add timeout" />
     <MESSAGE value="after tasks fix tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="after tasks fix tests" />
+    <MESSAGE value="move check_lists from markup" />
+    <option name="LAST_COMMIT_MESSAGE" value="move check_lists from markup" />
   </component>
 </project>

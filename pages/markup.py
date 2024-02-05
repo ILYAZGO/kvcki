@@ -73,8 +73,9 @@ def delete_group_and_rule_or_dict(page="page: Page"):
     #page.locator(".css-izdlur").click()
     #page.get_by_text("Удалить", exact=True).click()
     page.locator('[width="30"]').click()
+    page.wait_for_timeout(500)
     page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(1800)
+    page.wait_for_timeout(1500)
     page.locator(BUTTON_KORZINA).click()
 
 
