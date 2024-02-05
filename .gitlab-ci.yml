@@ -10,4 +10,4 @@ tests:
     - pip install -r requirements.txt --default-timeout=100 
     - pytest -sv
   after_script:
-    - if [ $CI_JOB_STATUS == 'success' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot6657102433:AAHh07kwx3QTMcn0GlYyTGQ64_fLiDd2sN4/sendMessage"; fi
+    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot6657102433:AAHh07kwx3QTMcn0GlYyTGQ64_fLiDd2sN4/sendMessage"; fi
