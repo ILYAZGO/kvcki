@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
     '''click group'''
     page.wait_for_selector(CLICK_NEW_GROUP)
     page.locator(CLICK_NEW_GROUP).click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(1900)
 
     create_rule("tag_seq", page)
 
