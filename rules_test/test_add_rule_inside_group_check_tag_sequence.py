@@ -56,7 +56,7 @@ def test_example(page: Page) -> None:
     page.locator('[data-testid="TagSequenceDeleteItem"]').click()
     page.reload()
     page.wait_for_selector('[aria-label="Remove tag_seq"]')
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(1000)
 
     expect(page.locator('[aria-label="Remove tag_seq"]')).to_have_count(2)
     expect(page.locator('[data-testid="intervalBetweenTags"]').locator('[type="text"]')).to_have_value("1234567890")
