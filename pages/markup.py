@@ -42,7 +42,6 @@ BUTTON_IMPORTIROVAT_SLOVARI = '[data-testid="markup_importDicts"]'
 CLICK_ON_GROUP = "//p[normalize-space()='12345']"
 
 
-
 def create_group(groupName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
