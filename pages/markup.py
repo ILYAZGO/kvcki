@@ -48,7 +48,7 @@ def create_group(groupName, page="page: Page"):
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.locator(INPUT_NEW_GROUP_NAME).fill(groupName)
     page.locator(BUTTON_OTPRAVIT).click()
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(1400)
 
 def create_rule(ruleName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_TEG)
@@ -56,7 +56,7 @@ def create_rule(ruleName, page="page: Page"):
     page.wait_for_selector(INPUT_NAZVANIE_TEGA)
     page.locator(INPUT_NAZVANIE_TEGA).type(ruleName)
     page.keyboard.press('Enter')  # kostil'
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(1400)
     page.get_by_role("button", name="Сохранить").click()
 
 def go_to_markup(page="page: Page"):

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change pytest version744">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="increased timeout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_fragment_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_fragment_rule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -511,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix date" />
     <MESSAGE value="add timeouts in rules tests" />
     <MESSAGE value="small improvements" />
     <MESSAGE value="fix gpt additional params test" />
@@ -536,6 +536,7 @@
     <MESSAGE value="change pytest version" />
     <MESSAGE value="change pytest version2" />
     <MESSAGE value="change pytest version744" />
-    <option name="LAST_COMMIT_MESSAGE" value="change pytest version744" />
+    <MESSAGE value="increased timeout" />
+    <option name="LAST_COMMIT_MESSAGE" value="increased timeout" />
   </component>
 </project>
