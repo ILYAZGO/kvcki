@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add alternative search">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add alternative search2">
+      <change afterPath="$PROJECT_DIR$/check_lists_tests/test_check_old_check_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dictionaries_test/test_check_old_dict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rules_test/test_check_old_rule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_fragment_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_fragment_rule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +45,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/dictionaries_test",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/calls_test" />
-      <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/check_lists_tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -512,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="small improvements" />
     <MESSAGE value="fix gpt additional params test" />
     <MESSAGE value="fix test" />
     <MESSAGE value="fix requirements" />
@@ -537,6 +538,7 @@
     <MESSAGE value="change pytest version744" />
     <MESSAGE value="increased timeout" />
     <MESSAGE value="add alternative search" />
-    <option name="LAST_COMMIT_MESSAGE" value="add alternative search" />
+    <MESSAGE value="add alternative search2" />
+    <option name="LAST_COMMIT_MESSAGE" value="add alternative search2" />
   </component>
 </project>

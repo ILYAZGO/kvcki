@@ -25,6 +25,11 @@ BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 # other
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 
+def go_to_check_list(page="page: Page"):
+    page.wait_for_selector(BUTTON_RAZMETKA)
+    page.locator(BUTTON_RAZMETKA).click()
+    page.locator(BUTTON_CHECK_LIST).click()
+
 
 #  creates first question with 2 answers and points and second question with answer and points then delete second question
 def create_check_list_with_questions_and_answers(checkListName, firstQustionTitle, secondQuestionTitle, page="page: Page"):
