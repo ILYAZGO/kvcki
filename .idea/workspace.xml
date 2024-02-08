@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add alternative search2">
-      <change afterPath="$PROJECT_DIR$/check_lists_tests/test_check_old_check_list.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dictionaries_test/test_check_old_dict.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules_test/test_check_old_rule.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added tests for check old rules,dicts,check-lists">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
@@ -514,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix gpt additional params test" />
     <MESSAGE value="fix test" />
     <MESSAGE value="fix requirements" />
     <MESSAGE value="check timeout" />
@@ -539,6 +535,7 @@
     <MESSAGE value="increased timeout" />
     <MESSAGE value="add alternative search" />
     <MESSAGE value="add alternative search2" />
-    <option name="LAST_COMMIT_MESSAGE" value="add alternative search2" />
+    <MESSAGE value="added tests for check old rules,dicts,check-lists" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tests for check old rules,dicts,check-lists" />
   </component>
 </project>

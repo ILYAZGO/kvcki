@@ -48,6 +48,7 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(240000)
 
     page.reload()
+    page.wait_for_selector('[class*=headerRow]')
     expect(page.locator('[role="rowgroup"]').locator('[role="cell"]').nth(4)).to_have_text('3')
 
 
