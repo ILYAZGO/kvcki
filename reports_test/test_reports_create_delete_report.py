@@ -4,7 +4,6 @@ from utils.auth import auth
 from pages.reports import *
 import pytest
 
-
 '''create , delete report from main report page'''
 
 @pytest.mark.reports
@@ -31,10 +30,8 @@ def test_example(page: Page) -> None:
 
     page.get_by_text("Второй чеклист (тоже нужен для автотестов, не трогать)", exact=True).click()
 
+    change_grouping_period("По месяцам", page)
 
-    '''change groupping'''
-    page.get_by_text("По дням", exact=True).click()
-    page.get_by_text("По месяцам", exact=True).click()
     '''change tegs'''
     page.locator(PO_TEGAM_SECOND).nth(0).click()
     page.get_by_text("direction", exact=True).click()
@@ -56,9 +53,8 @@ def test_example(page: Page) -> None:
     page.get_by_text("Развернуть").click()
     #page.get_by_text("Добавить столбец").click()
 
-    page.locator('[class=" css-izdlur"]').click()
-    page.get_by_text("Удалить шаблон", exact=True).click()
-    page.get_by_role("button", name="Удалить").click()
+    delete_current_report(page)
+
     expect(page.get_by_text("test2345")).to_have_count(0)
     #page.get_by_role("button", name="Сформировать отчет").click()
 
