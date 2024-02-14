@@ -19,11 +19,11 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text(LOGIN_ADMIN)).to_have_count(2, timeout=wait_until_visible)
     '''go to user'''
     page.locator('//*[@id="react-select-2-input"]').fill(LOGIN_USER)
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(300)
     page.get_by_text(LOGIN_USER, exact=True).click()
     '''check name have count 1 and user have count 1'''
     expect(page.get_by_text(LOGIN_ADMIN)).to_have_count(1, timeout=wait_until_visible)
-    expect(page.get_by_text(LOGIN_USER)).to_have_count(1, timeout=wait_until_visible)
+    expect(page.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
     expect(page.get_by_text("Пользователи")).to_have_count(1, timeout=wait_until_visible)
     '''go back'''
     page.locator('[data-testid="adminBar"]').get_by_role("button").click()

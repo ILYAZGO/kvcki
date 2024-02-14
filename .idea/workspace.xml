@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="deleted bad expect">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="reoprts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="check timeout" />
     <MESSAGE value="added address-book test" />
     <MESSAGE value="restart job" />
     <MESSAGE value="url 1644" />
@@ -538,6 +537,7 @@
     <MESSAGE value="added tests for check old rules,dicts,check-lists" />
     <MESSAGE value="wait for selector in integr test" />
     <MESSAGE value="deleted bad expect" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted bad expect" />
+    <MESSAGE value="reoprts" />
+    <option name="LAST_COMMIT_MESSAGE" value="reoprts" />
   </component>
 </project>
