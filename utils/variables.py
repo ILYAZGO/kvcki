@@ -47,5 +47,5 @@ ROLE_ADMIN = 'admin'
 
 NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
-EMAIL = f"email_{datetime.now().microsecond}@mail.ru"
+EMAIL = f"email_{datetime.now().microsecond}{datetime.now().second}@mail.ru"
 

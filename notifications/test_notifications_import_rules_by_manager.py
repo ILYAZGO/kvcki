@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
     page.locator(USERS_LIST).fill(LOGIN_USER)
     page.wait_for_timeout(2000)
     page.get_by_text(LOGIN_USER, exact=True).click()
-    page.wait_for_timeout(6000)
+    page.wait_for_timeout(2000)
     page.locator(BUTTON_OPOVESHENIA).click()
     page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
 
@@ -53,7 +53,7 @@ def test_example(page: Page) -> None:
 
     page.locator('[aria-label="Удалить"]').nth(0).click()
     page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(3000)
+    page.wait_for_timeout(2000)
     expect(page.get_by_text("telega")).not_to_be_visible(timeout=wait_until_visible)
 
     '''delete manager'''

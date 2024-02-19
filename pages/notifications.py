@@ -37,6 +37,7 @@ def add_notification(notificationType, page="page: Page"):
     page.locator('[class=" css-164zrm5-menu"]').get_by_text(notificationType, exact=True).click()
 
 def fill_attr_for_email(letterTheme, email, page="page: Page"):
+    page.wait_for_selector(INPUT_LETTER_THEME)
     page.locator(INPUT_LETTER_THEME).fill(letterTheme)
     page.locator(INPUT_EMAIL).fill(email)
 

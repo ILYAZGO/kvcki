@@ -48,6 +48,8 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
     expect(page.get_by_text("managerIM")).to_have_count(1, timeout=wait_until_visible)
 
+
+
     delete_added_user(page)
 
     expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)

@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="reoprts">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix admin bar tests after ui optimization">
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,15 +49,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/dictionaries_test",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/rules_test" />
-      <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/calls_test" />
       <recent name="$PROJECT_DIR$/check_lists_tests" />
     </key>
@@ -513,7 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added address-book test" />
     <MESSAGE value="restart job" />
     <MESSAGE value="url 1644" />
     <MESSAGE value="add timeouts to gpt tests" />
@@ -538,6 +542,7 @@
     <MESSAGE value="wait for selector in integr test" />
     <MESSAGE value="deleted bad expect" />
     <MESSAGE value="reoprts" />
-    <option name="LAST_COMMIT_MESSAGE" value="reoprts" />
+    <MESSAGE value="fix admin bar tests after ui optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix admin bar tests after ui optimization" />
   </component>
 </project>

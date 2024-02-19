@@ -11,6 +11,10 @@ LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
+INPUT_EMAIL= '[name="email"]'
+INPUT_PHONE= '[name="phone"]'
+INPUT_COMMENT= '[name="comment"]'
+
 
 
 
@@ -38,3 +42,13 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.locator(LAST_DATE).fill(lastDate)
     page.wait_for_timeout(500)
     page.keyboard.press("Enter")
+
+def fill_personal_information(email, phone, comment , timezone, page="page: Page"):
+    page.locator(INPUT_EMAIL).fill(email)
+    page.locator(INPUT_PHONE).fill(phone)
+    page.locator(INPUT_COMMENT).fill(comment)
+    page.locator('[data-testid="selectTimezone"]').locator('[role="combobox"]').click()
+    page.get_by_text(timezone).click()
+    # save
+    page.locator('[style="text-transform: none;"]').click()
+    page.wait_for_timeout(500)

@@ -20,7 +20,7 @@ def test_example(page: Page) -> None:
     page.locator(USERS_LIST).fill(LOGIN_USER)
     page.wait_for_timeout(2000)
     page.get_by_text(LOGIN_USER, exact=True).click()
-    page.wait_for_timeout(6000)
+    page.wait_for_timeout(2000)
     page.locator(BUTTON_OPOVESHENIA).click()
     page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
 
