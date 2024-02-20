@@ -9,7 +9,7 @@ import pytest
 
 @pytest.mark.rules
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
@@ -36,7 +36,7 @@ def test_example(page: Page) -> None:
     '''check teardown'''
     expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    delete_user(API_URL, TOKEN, USER_ID)
 
 
 

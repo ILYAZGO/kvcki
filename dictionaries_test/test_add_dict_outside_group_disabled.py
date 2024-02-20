@@ -8,7 +8,7 @@ import pytest
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
@@ -20,4 +20,4 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(1500)
     expect(page.locator('[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]')).to_be_visible()
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    delete_user(API_URL, TOKEN, USER_ID)

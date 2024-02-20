@@ -8,7 +8,6 @@ for delete user write after test :
 delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
-
 def create_user(URL, ROLE, PASSWORD):
 
     NAME = LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
@@ -33,17 +32,14 @@ def create_user(URL, ROLE, PASSWORD):
         'password': PASSWORD
     }
 
+    get_token = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data).json()
 
-    get_token = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data)
-
-    token = get_token.json()
-    bearer = token['token_type'].capitalize()
-    access_token = token['access_token']
+    token = f"{get_token['token_type'].capitalize()} {get_token['access_token']}"
 
     headers_for_create = {
         'accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': bearer + " " + access_token,
+        'Authorization': token,
     }
 
     create = requests.post(url=URL + "/user", headers=headers_for_create, json=json)
@@ -69,9 +65,7 @@ def create_user(URL, ROLE, PASSWORD):
     # else:
     #     print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
-
-
-    return user_id, bearer, access_token, LOGIN
+    return user_id, token, LOGIN
 
 
 def create_operator(URL, PARENT_USER_ID, PASSWORD):
@@ -99,16 +93,13 @@ def create_operator(URL, PARENT_USER_ID, PASSWORD):
         'parentUser': PARENT_USER_ID
     }
 
-    get_token = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data)
-
-    token = get_token.json()
-    bearer = token['token_type'].capitalize()
-    access_token = token['access_token']
+    get_token = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data).json()
+    token = f"{get_token['token_type'].capitalize()} {get_token['access_token']}"
 
     headers_for_create = {
         'accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': bearer + " " + access_token,
+        'Authorization': token,
     }
 
     create = requests.post(url=URL + "/user", headers=headers_for_create, json=json)
@@ -123,15 +114,14 @@ def create_operator(URL, PARENT_USER_ID, PASSWORD):
     else:
         print(f"\n>>>>> ACCESS DENIED 403 <<<<<")
 
-    return user_id, bearer, access_token, LOGIN
+    return user_id, token, LOGIN
 
 
-
-def delete_user(URL, USER_ID, BEARER, ACCESS_TOKEN):
+def delete_user(URL, token, USER_ID ):
 
     headers_for_delete = {
         'accept': '*/*',
-        'Authorization': BEARER + " " + ACCESS_TOKEN,
+        'Authorization': token,
     }
 
     delete = requests.delete(url=URL + "/user/" + USER_ID, headers=headers_for_delete)
@@ -142,12 +132,12 @@ def delete_user(URL, USER_ID, BEARER, ACCESS_TOKEN):
         print(f"\n>>>>> USER {USER_ID} NOT DELETED <<<<<")
 
 
-def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, BEARER, ACCESS_TOKEN):
+def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, token):
 
     headers_for_giving = {
         'accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
-        'Authorization': BEARER + " " + ACCESS_TOKEN,
+        'Authorization': token,
     }
     importFrom_id = '64b923905f95f6305573e619'
     json = [USER_ID_USER, importFrom_id]

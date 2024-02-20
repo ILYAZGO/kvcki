@@ -11,7 +11,7 @@ import pytest
 
 @pytest.mark.reports
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
     '''login'''
@@ -89,4 +89,4 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("auto-test-report")).to_have_count(0)
 
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    delete_user(API_URL, TOKEN, USER_ID)

@@ -10,7 +10,7 @@ import pytest
 
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
@@ -31,4 +31,4 @@ def test_example(page: Page) -> None:
     '''check canceled'''
     expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    delete_user(API_URL, TOKEN, USER_ID)

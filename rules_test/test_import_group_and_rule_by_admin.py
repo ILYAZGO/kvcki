@@ -16,9 +16,9 @@ with rule 33333 without group
 @pytest.mark.rules
 def test_example(page: Page) -> None:
     # create admin
-    USER_ID_ADMIN, BEARER_ADMIN, ACCESS_TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+    USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
     # create user for import
-    USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
@@ -78,6 +78,6 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
     # delete admin
-    delete_user(API_URL, USER_ID_ADMIN, BEARER_ADMIN, ACCESS_TOKEN_ADMIN)
+    delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
     # delete user
-    delete_user(API_URL, USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER)
+    delete_user(API_URL, TOKEN_USER, USER_ID_USER)

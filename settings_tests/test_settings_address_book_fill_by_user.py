@@ -9,7 +9,7 @@ import pytest
 # input text to address-book, save, check that text saved
 @pytest.mark.settings
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
@@ -21,5 +21,5 @@ def test_example(page: Page) -> None:
 
     expect(page.locator(INPUT_ADDRESS_BOOK)).to_contain_text(["Телефон;Должность;ФИО\n12345;IVAN;BOSS"])
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    delete_user(API_URL, TOKEN, USER_ID)
 

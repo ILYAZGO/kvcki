@@ -9,7 +9,7 @@ import pytest
 # check how many items in left menu for role
 @pytest.mark.settings
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
@@ -20,5 +20,5 @@ def test_example(page: Page) -> None:
     expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия с коммуникациямиКвотыАдресная книгаИнтеграции'])
     expect(page.locator(LEFT_MENU_ITEM)).to_have_count(6)
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    delete_user(API_URL, TOKEN, USER_ID)
 

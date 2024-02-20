@@ -15,11 +15,11 @@ rule 33333 without group
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
     # create user for import
-    USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+    USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
     # create manager
-    USER_ID_MANAGER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+    USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
     # give manager user for import
-    give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
+    give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     page.goto(URL, timeout=timeout)
 
@@ -79,6 +79,6 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
 
     # delete admin
-    delete_user(API_URL, USER_ID_MANAGER, BEARER_MANAGER, ACCESS_TOKEN_MANAGER)
+    delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
     # delete user
-    delete_user(API_URL, USER_ID_USER, BEARER_USER, ACCESS_TOKEN_USER)
+    delete_user(API_URL, TOKEN_USER, USER_ID_USER)

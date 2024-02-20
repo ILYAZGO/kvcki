@@ -8,7 +8,7 @@ import pytest
 
 @pytest.mark.users
 def test_example(page: Page) -> None:
-    USER_ID, BEARER, ACCESS_TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+    USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     page.goto(URL, timeout=timeout)
 
@@ -30,4 +30,4 @@ def test_example(page: Page) -> None:
     '''check'''
     expect(page.get_by_text("Пароль")).not_to_be_visible()
 
-    delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)
+    delete_user(API_URL, TOKEN, USER_ID)
