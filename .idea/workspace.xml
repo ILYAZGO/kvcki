@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="notifications tests upgrade">
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_operator.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix locators after 1831 merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -521,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="little fix" />
     <MESSAGE value="add industry and patrner to user test" />
     <MESSAGE value="add pytest-rerunfailures" />
     <MESSAGE value="add quota test" />
@@ -546,6 +535,7 @@
     <MESSAGE value="added tests about personal information" />
     <MESSAGE value="refactor get_token" />
     <MESSAGE value="notifications tests upgrade" />
-    <option name="LAST_COMMIT_MESSAGE" value="notifications tests upgrade" />
+    <MESSAGE value="fix locators after 1831 merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix locators after 1831 merge" />
   </component>
 </project>
