@@ -22,7 +22,7 @@ def test_example(page: Page) -> None:
     page.reload()
     page.wait_for_selector(INPUT_EMAIL)
 
-    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
+    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL1)
     expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
     expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
     expect(page.get_by_text("Africa/Bamako")).to_be_visible()

@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added tests about personal information">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor get_token">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -515,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="url 1644" />
     <MESSAGE value="add timeouts to gpt tests" />
     <MESSAGE value="little fix" />
     <MESSAGE value="add industry and patrner to user test" />
@@ -540,6 +546,7 @@
     <MESSAGE value="reoprts" />
     <MESSAGE value="fix admin bar tests after ui optimization" />
     <MESSAGE value="added tests about personal information" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tests about personal information" />
+    <MESSAGE value="refactor get_token" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor get_token" />
   </component>
 </project>

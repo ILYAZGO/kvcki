@@ -34,8 +34,8 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
 
     #  delete manager
-    delete_user(API_URL, USER_ID_MANAGER, TOKEN_MANAGER)
+    delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
     #  delete user
-    delete_user(API_URL, USER_ID_USER, TOKEN_USER)
+    delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 

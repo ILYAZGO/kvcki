@@ -4,12 +4,13 @@ USERS_LIST = "#react-select-2-input"
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_IMPORT_RULES = '[class*="styles_importTagRules"]'
 
-INPUT_NOTIFICATION_NAME = '[placeholder="Например: Жалоба на сотрудника"]'
+INPUT_NOTIFICATION_NAME = '[name="notifyTitle"]'
 
-INPUT_LETTER_THEME = '[placeholder="Укажите тему письма"]'
+INPUT_LETTER_THEME = '[name="emailSubj"]'
 INPUT_EMAIL = '[placeholder="example@mail.com"]'
 INPUT_HEADERS = '[placeholder="Можно проставить авторизацию и content-type"]'
-INPUT_URL = '[placeholder="шаблон URL"]'
+INPUT_URL = '[name="apiUrl"]'
+INPUT_COMMENT = '[class="styles_textarea__+sldQ"]'
 
 def set_notification_name(notificationName, page="page: Page"):
     page.locator(INPUT_NOTIFICATION_NAME).fill(notificationName)
@@ -42,7 +43,7 @@ def fill_attr_for_email(letterTheme, email, page="page: Page"):
     page.locator(INPUT_EMAIL).fill(email)
 
 def fill_message(text, page="page: Page"):
-    page.locator('[class="styles_textarea__+sldQ"]').fill(text)
+    page.locator(INPUT_COMMENT).fill(text)
     page.locator('[aria-label="ID звонка. Пример: 123456789012345678901234"]').click()
 
 def set_url_and_headers(url, headers, page="page: Page"):
@@ -55,7 +56,7 @@ def save_or_cancel_rule(buttonNumber, page="page: Page"):
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
 
-    page.locator('[type="checkbox"]').nth(0).click()
+    page.locator('[class*="sidebar"]').locator('[type="checkbox"]').click()
 
     page.locator(BUTTON_KORZINA).click()
     #  confirm deleting
@@ -64,3 +65,8 @@ def delete_rule(page="page: Page"):
 def choose_block(blockNumber, page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
     page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
+
+def go_back_in_rule_after_save(notificationName, page="page: Page"):
+    page.wait_for_selector('[class*=notifyList]')
+    page.get_by_text(notificationName).click()
+    page.wait_for_selector('[name="notifyTitle"]')

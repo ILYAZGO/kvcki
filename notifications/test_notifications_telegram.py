@@ -17,14 +17,28 @@ def test_example(page: Page) -> None:
 
     set_notification_name("auto-test-telegram", page)
 
-    #add_filter("По тегам", "22222", "1", page)
+    #  send again when rull changed
+    page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(0).click()
+
+    #  expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(0)).to_be_checked()  OPEN AFTER DEV_1888 fix
+
+    page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(1).click()
+
+    #  expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(1)).to_be_checked()  OPEN AFTER DEV_1888 fix
+
+    #  add_filter("По тегам", "22222", "1", page)
 
     fill_message("someText ", page)
 
-    #  send with call
-    page.locator('[type="checkbox"]').nth(0).click()
-
     save_or_cancel_rule("0", page)
+
+    go_back_in_rule_after_save("auto-test-telegram", page)
+
+    expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(0)).to_be_checked()
+    expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(1)).to_be_checked()
+    expect(page.locator('[class*="sidebar"]').locator('[type="checkbox"]')).to_be_checked()
+    expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
+    expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-telegram")
 
     delete_rule(page)
 
