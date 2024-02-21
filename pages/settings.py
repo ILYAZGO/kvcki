@@ -11,9 +11,13 @@ LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
+INPUT_LOGIN= '[name="login"]'
+INPUT_NAME= '[name="name"]'
 INPUT_EMAIL= '[name="email"]'
-INPUT_PHONE= '[name="phone"]'
+INPUT_PHONE= '[name="phoneNumber"]'
 INPUT_COMMENT= '[name="comment"]'
+INPUT_NEW_PASSWORD= '[name="newPassword"]'
+INPUT_NEW_PASSWORD_REPEAT= '[name="newPasswordRepeat"]'
 
 
 

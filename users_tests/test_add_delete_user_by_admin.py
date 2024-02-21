@@ -19,7 +19,7 @@ def test_example(page: Page) -> None:
     set_user(NEW_NAME,
              NEW_LOGIN,
              PASSWORD,
-             EMAIL,
+             EMAIL3,
              "someComment",
              "Компания",
              page)
@@ -42,7 +42,7 @@ def test_example(page: Page) -> None:
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
-    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL3, timeout=wait_until_visible)
     page.wait_for_timeout(1400)
     expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
     expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)

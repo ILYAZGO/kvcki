@@ -17,7 +17,7 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    fill_personal_information("mail@mail.com", "1234567890", "someComment", "Africa/Bamako", page)
+    fill_personal_information(EMAIL2, "1234567890", "someComment", "Africa/Bamako", page)
 
     page.reload()
     page.wait_for_selector(INPUT_EMAIL)

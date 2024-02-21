@@ -19,7 +19,7 @@ def test_example(page: Page) -> None:
     set_user(NEW_NAME,
              NEW_LOGIN,
              PASSWORD,
-             EMAIL,
+             EMAIL2,
              "someComment",
              "Интегратор",
              page)
@@ -31,7 +31,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(INPUT_NAME)
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
-    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2, timeout=wait_until_visible)
     page.wait_for_timeout(1500)
     expect(page.get_by_text("Интегратор")).to_have_count(2, timeout=wait_until_visible)  #slovalos potomu 4to noviy punkt menu
     page.wait_for_timeout(3000)
