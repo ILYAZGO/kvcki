@@ -4,6 +4,8 @@ from utils.auth import auth
 from pages.login import *
 import pytest
 
+
+@pytest.mark.independent
 @pytest.mark.login
 def test_example(page: Page) -> None:
 

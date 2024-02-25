@@ -7,8 +7,8 @@ import pytest
 
 '''Create rule inside group, check rule for fragments'''
 
-# REMINDER add test about alternative search
 
+@pytest.mark.independent
 @pytest.mark.rules
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

@@ -7,6 +7,7 @@ import pytest
 
 
 # check impossible changing personal info for operator
+@pytest.mark.independent
 @pytest.mark.settings
 def test_example(page: Page) -> None:
     USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)

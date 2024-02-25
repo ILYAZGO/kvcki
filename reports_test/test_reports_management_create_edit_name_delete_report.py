@@ -9,6 +9,8 @@ import pytest
 
 '''Cоздаем отчет и удаляем его через управление отчетами'''
 
+
+@pytest.mark.independent
 @pytest.mark.reports
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

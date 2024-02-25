@@ -5,6 +5,7 @@ import pytest
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager
 
 
+@pytest.mark.independent
 @pytest.mark.adminbar
 def test_example(page: Page) -> None:
 

@@ -40,6 +40,7 @@ BUTTON_DOBAVIT_SLOVAR = '[data-testid="markup_addDict"]'
 BUTTON_IMPORTIROVAT_SLOVARI = '[data-testid="markup_importDicts"]'
 # other
 CLICK_ON_GROUP = "//p[normalize-space()='12345']"
+CHECKBOX_AUTOREPLACE_DIV = '[style="align-items: center; display: flex; color: rgb(115, 128, 148);"]'
 
 
 def create_group(groupName, page="page: Page"):
@@ -67,7 +68,7 @@ def go_to_dicts(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
     page.locator(BUTTON_SLOVARI).click()
-    page.wait_for_locator(BUTTON_DOBAVIT_SLOVAR)
+    page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR)
     #page.wait_for_timeout(1000)
 
 def delete_group_and_rule_or_dict(page="page: Page"):

@@ -5,6 +5,8 @@ from pages.notifications import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager
 import pytest
 
+
+@pytest.mark.independent
 @pytest.mark.notifications
 def test_example(page: Page) -> None:
 

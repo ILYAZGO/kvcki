@@ -11,6 +11,9 @@ user  importFrom
 with group 11111 rule 22222 inside
 with rule 33333 without group
 '''
+
+
+@pytest.mark.independent
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
     # create admin

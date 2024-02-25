@@ -8,6 +8,7 @@ import pytest
 
 '''Create dict inside group'''
 
+@pytest.mark.independent
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -31,8 +32,10 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("12345").nth(1)).to_have_text("12345") #проверяем что есть родительская группа
     page.wait_for_timeout(500)
 
-    page.locator('[aria-label="Checkbox demo"]').nth(0).click()
+    page.locator(CHECKBOX_AUTOREPLACE_DIV).nth(0).locator('[type="checkbox"]').click()
     page.get_by_role("button", name="Сохранить").click()
+
+    expect(page.locator(CHECKBOX_AUTOREPLACE_DIV).nth(0).locator('[type="checkbox"]')).to_be_checked()
 
     delete_group_and_rule_or_dict(page)
 

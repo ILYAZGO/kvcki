@@ -9,6 +9,7 @@ import pytest
 '''Create and delete group of rules'''
 
 
+@pytest.mark.independent
 @pytest.mark.rules
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -29,9 +30,6 @@ def test_example(page: Page) -> None:
 
     '''check created and edited'''
     expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
-
-
-
 
     '''delete group'''
     page.locator(BUTTON_KORZINA).click()

@@ -13,6 +13,7 @@ with rule 33333 without group
 '''
 
 
+@pytest.mark.independent
 @pytest.mark.rules
 def test_example(page: Page) -> None:
     # create user for import

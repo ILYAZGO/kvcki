@@ -5,6 +5,8 @@ from pages.markup import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
+
+@pytest.mark.independent
 @pytest.mark.gpt
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

@@ -5,6 +5,8 @@ from pages.login import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
+
+@pytest.mark.independent
 @pytest.mark.login
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)

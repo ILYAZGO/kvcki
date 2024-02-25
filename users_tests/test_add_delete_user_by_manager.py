@@ -5,6 +5,9 @@ from pages.users import *
 import pytest
 
 '''Precondition : manager should have access_rights for create and delete user'''
+
+
+@pytest.mark.independent
 @pytest.mark.users
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)

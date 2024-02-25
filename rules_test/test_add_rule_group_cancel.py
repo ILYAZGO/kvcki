@@ -8,6 +8,7 @@ import pytest
 '''Create and cancel group of rules'''
 
 
+@pytest.mark.independent
 @pytest.mark.rules
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

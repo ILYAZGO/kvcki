@@ -8,6 +8,8 @@ import pytest
 
 '''Create dict inside group'''
 
+
+@pytest.mark.independent
 @pytest.mark.dictionaries
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

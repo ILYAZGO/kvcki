@@ -7,6 +7,8 @@ import pytest
 
 '''Create, rename, delete check-list'''
 
+
+@pytest.mark.independent
 @pytest.mark.check_list
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

@@ -7,6 +7,7 @@ import pytest
 
 
 # check admin can change personal info for operator and save
+@pytest.mark.independent
 @pytest.mark.settings
 def test_example(page: Page) -> None:
     USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)

@@ -7,6 +7,7 @@ import pytest
 
 
 # check changing and saving personal info for user
+@pytest.mark.independent
 @pytest.mark.settings
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

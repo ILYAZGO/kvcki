@@ -7,6 +7,7 @@ import pytest
 
 
 # input text to address-book, save, check that text saved
+@pytest.mark.independent
 @pytest.mark.settings
 def test_example(page: Page) -> None:
     # create admin
