@@ -4,29 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add tests and improvements">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="mark independent tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_rename_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_rename_delete_check_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/est_dict_import_dict_disabled_for_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_cancel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_edit_name_delete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_outside_group_disabled.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_outside_group_disabled.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_group_of_rules_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_group_of_rules_edit_name_delete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_group_cancel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_fragment_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_fragment_rule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_tag_sequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_tag_sequence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_outside_group_disabled.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_outside_group_disabled.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_rule_disabled_for_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_rule_disabled_for_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -532,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add quota test" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="add test" />
     <MESSAGE value="add test seq" />
@@ -557,6 +536,7 @@
     <MESSAGE value="fix locators after 1831 merge" />
     <MESSAGE value="fix timeouts" />
     <MESSAGE value="add tests and improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests and improvements" />
+    <MESSAGE value="mark independent tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="mark independent tests" />
   </component>
 </project>
