@@ -14,7 +14,7 @@ def test_example(page: Page) -> None:
 
     auth(LOGIN, PASSWORD, page)
 
-    go_to_users(page)
+    go_to_users(wait_until_visible, page)
 
     '''wait users list to load'''
     page.wait_for_selector('[aria-rowindex="2"]')

@@ -11,6 +11,8 @@ LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
+BUTTON_EMPLOYEES= '[href*="settings/employees"]'
+
 INPUT_LOGIN= '[name="login"]'
 INPUT_NAME= '[name="name"]'
 INPUT_EMAIL= '[name="email"]'
@@ -47,7 +49,8 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.wait_for_timeout(500)
     page.keyboard.press("Enter")
 
-def fill_personal_information(email, phone, comment , timezone, page="page: Page"):
+def fill_personal_information(name, email, phone, comment , timezone, page="page: Page"):
+    page.locator(INPUT_NAME).fill(name)
     page.locator(INPUT_EMAIL).fill(email)
     page.locator(INPUT_PHONE).fill(phone)
     page.locator(INPUT_COMMENT).fill(comment)
@@ -56,3 +59,9 @@ def fill_personal_information(email, phone, comment , timezone, page="page: Page
     # save
     page.locator('[style="text-transform: none;"]').click()
     page.wait_for_timeout(500)
+
+def go_to_user(name, page="page: Page"):
+    page.locator('//*[@id="react-select-2-input"]').fill(name)
+    page.wait_for_timeout(300)
+    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector('[class*="CallsHeader"]')

@@ -61,12 +61,14 @@ def create_rule(ruleName, page="page: Page"):
 def go_to_markup(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
 
 def go_to_dicts(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
     page.locator(BUTTON_SLOVARI).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_locator(BUTTON_DOBAVIT_SLOVAR)
+    #page.wait_for_timeout(1000)
 
 def delete_group_and_rule_or_dict(page="page: Page"):
     #page.locator(".css-izdlur").click()

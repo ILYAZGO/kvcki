@@ -21,6 +21,7 @@ def test_example(page: Page) -> None:
     page.locator('//*[@id="react-select-2-input"]').fill(LOGIN_USER)
     page.wait_for_timeout(300)
     page.get_by_text(LOGIN_USER, exact=True).click()
+    page.wait_for_selector('[class*="CallsHeader"]')
     '''check name have count 1 and user have count 1'''
     expect(page.get_by_text(LOGIN_ADMIN)).to_have_count(1, timeout=wait_until_visible)
     expect(page.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)

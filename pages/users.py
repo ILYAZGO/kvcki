@@ -36,27 +36,28 @@ FIRST_PAGE_PAGINATION = '[aria-label="1"]'
 
 
 
-def go_to_users(page="page: Page"):
+def go_to_users(timeout, page="page: Page"):
     page.wait_for_selector(BUTTON_POLZOVATELI)
     page.locator(BUTTON_POLZOVATELI).click()
+    page.wait_for_selector('[aria-rowindex="2"]', timeout=timeout)
 
 
 def set_user(name, login, password, mail, comment, role, page="page: Page"):
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()  #button create user
-    page.wait_for_timeout(1000)
+    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.wait_for_selector(INPUT_NAME)
     '''fill required'''
     page.locator(INPUT_NAME).fill(name)
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(200)
     page.locator(INPUT_LOGIN).fill(login)
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(200)
     page.locator(INPUT_PASSWORD).fill(password)
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(200)
     page.locator(INPUT_EMAIL).fill(mail)
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(200)
     page.locator(INPUT_COMMENT).fill(comment)
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(200)
     page.locator(SELECT_ROLE).locator("svg").click()
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(200)
     page.locator(SELECT_ROLE).get_by_text(role, exact=True).click()
 
 

@@ -4,8 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix locators after 1831 merge">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix timeouts">
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_save_operator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_address_book_fill_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_address_book_fill_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_change_personal_information_save_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_giving_quota_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_operator_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings_left_menu_items_for_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_user_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_users_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users_check_search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +67,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -511,7 +535,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add industry and patrner to user test" />
     <MESSAGE value="add pytest-rerunfailures" />
     <MESSAGE value="add quota test" />
     <MESSAGE value="fix tests" />
@@ -536,6 +559,7 @@
     <MESSAGE value="refactor get_token" />
     <MESSAGE value="notifications tests upgrade" />
     <MESSAGE value="fix locators after 1831 merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix locators after 1831 merge" />
+    <MESSAGE value="fix timeouts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix timeouts" />
   </component>
 </project>
