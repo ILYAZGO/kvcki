@@ -30,6 +30,7 @@ def test_example(page: Page) -> None:
     fill_personal_information("someName", EMAIL1, "1234567890", "someComment", "Africa/Bamako", page)
     page.reload()
     page.wait_for_selector(INPUT_NAME)
+    page.wait_for_timeout(300)
 
     expect(page.locator('[class*="LeftMenuLayout_content"]')).not_to_contain_text("Редактировать ")
     expect(page.locator(INPUT_NAME)).to_have_value("someName")

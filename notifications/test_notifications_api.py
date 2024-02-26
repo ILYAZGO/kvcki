@@ -11,7 +11,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1888/", timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
     #  send again when rull changed
     page.locator('[class*="mainArea"]').locator('[type="checkbox"]').click()
 
-    #  expect(page.locator('[type="checkbox"]')).to_be_checked()  OPEN AFTER DEV_1888 fix
+    expect(page.locator('[type="checkbox"]')).to_be_checked()
 
     #  add_filter("По тегам", "22222", "0", page)  uncomment later
 

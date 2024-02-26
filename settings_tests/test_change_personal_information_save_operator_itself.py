@@ -13,7 +13,7 @@ def test_example(page: Page) -> None:
     USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
     USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1885/", timeout=timeout)
 
     auth(LOGIN_OPERATOR, PASSWORD, page)
 
@@ -27,7 +27,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_NEW_PASSWORD)).to_be_disabled()
     expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_disabled()
 
-    expect(page.locator('[class*="typography--variant-body2"]')).to_contain_text("Редектировать персональную информацию может только алминистратор")
+    expect(page.locator('[class*="typography--variant-body2"]')).to_contain_text("Редактировать персональную информацию может только администратор")
 
     delete_user(API_URL, TOKEN_USER, USER_ID_USER)
     delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)

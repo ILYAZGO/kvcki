@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="mark independent tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change assert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_save_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_save_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -512,7 +520,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix tests" />
     <MESSAGE value="add test" />
     <MESSAGE value="add test seq" />
     <MESSAGE value="fix report" />
@@ -537,6 +544,7 @@
     <MESSAGE value="fix timeouts" />
     <MESSAGE value="add tests and improvements" />
     <MESSAGE value="mark independent tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="mark independent tests" />
+    <MESSAGE value="change assert" />
+    <option name="LAST_COMMIT_MESSAGE" value="change assert" />
   </component>
 </project>
