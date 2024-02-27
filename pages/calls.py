@@ -53,7 +53,6 @@ def choose_filter_value(filterValue, page="page: Page"):
 
 def find_calls(page="page: Page"):
     page.get_by_role("button", name="Найти коммуникации").click()
-    # page.locator(BUTTON_NAYTI_ZVONKI).click()
     page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
 
 
@@ -65,10 +64,10 @@ def choose_period_button(period, page="page: Page"):
 def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.locator(FIRST_DATE).click()
     page.locator(FIRST_DATE).fill(firstDate)
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(300)
     page.locator(LAST_DATE).click()
     page.locator(LAST_DATE).fill(lastDate)
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(300)
     page.keyboard.press("Enter")
 
 

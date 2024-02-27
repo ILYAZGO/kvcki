@@ -40,7 +40,7 @@ BUTTON_DOBAVIT_SLOVAR = '[data-testid="markup_addDict"]'
 BUTTON_IMPORTIROVAT_SLOVARI = '[data-testid="markup_importDicts"]'
 # other
 CLICK_ON_GROUP = "//p[normalize-space()='12345']"
-CHECKBOX_AUTOREPLACE_DIV = '[style="align-items: center; display: flex; color: rgb(115, 128, 148);"]'
+
 
 
 def create_group(groupName, page="page: Page"):
@@ -55,8 +55,9 @@ def create_rule(ruleName, page="page: Page"):
     page.locator(BUTTON_DOBAVIT_TEG).click()
     page.wait_for_selector(INPUT_NAZVANIE_TEGA)
     page.locator(INPUT_NAZVANIE_TEGA).type(ruleName)
+    #page.locator('[role="dialog"]').locator('[type="submit"]').click()
     page.keyboard.press('Enter')  # kostil'
-    page.wait_for_timeout(1400)
+    page.wait_for_timeout(1300)
     page.get_by_role("button", name="Сохранить").click()
 
 def go_to_markup(page="page: Page"):

@@ -32,10 +32,11 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("12345").nth(1)).to_have_text("12345") #проверяем что есть родительская группа
     page.wait_for_timeout(500)
 
-    page.locator(CHECKBOX_AUTOREPLACE_DIV).nth(0).locator('[type="checkbox"]').click()
+    page.locator("label").filter(has_text="Автозамена").get_by_label("Checkbox demo").check()
+
     page.get_by_role("button", name="Сохранить").click()
 
-    expect(page.locator(CHECKBOX_AUTOREPLACE_DIV).nth(0).locator('[type="checkbox"]')).to_be_checked()
+    expect(page.locator("label").filter(has_text="Автозамена").get_by_label("Checkbox demo")).to_be_checked()
 
     delete_group_and_rule_or_dict(page)
 
