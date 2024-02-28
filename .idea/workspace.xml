@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="edited notification tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix sttAutoReplace test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test seq" />
     <MESSAGE value="fix report" />
     <MESSAGE value="add timeout" />
     <MESSAGE value="after tasks fix tests" />
@@ -539,6 +538,7 @@
     <MESSAGE value="mark independent tests" />
     <MESSAGE value="change assert" />
     <MESSAGE value="edited notification tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="edited notification tests" />
+    <MESSAGE value="fix sttAutoReplace test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sttAutoReplace test" />
   </component>
 </project>
