@@ -2,7 +2,6 @@ USERS_LIST = "#react-select-2-input"
 FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
 
-
 BUTTON_NASTROIKI = '[value="settings"]'
 BLOCK_LEFT_MENU = ".styles_list__3M7-K"
 
@@ -49,6 +48,10 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.wait_for_timeout(500)
     page.keyboard.press("Enter")
 
+def change_login(login, page="page: Page"):
+    page.wait_for_selector(INPUT_LOGIN)
+    page.locator(INPUT_LOGIN).fill(login)
+
 def fill_personal_information(name, email, phone, comment , timezone, page="page: Page"):
     page.locator(INPUT_NAME).fill(name)
     page.locator(INPUT_EMAIL).fill(email)
@@ -60,8 +63,17 @@ def fill_personal_information(name, email, phone, comment , timezone, page="page
     page.locator('[style="text-transform: none;"]').click()
     page.wait_for_timeout(500)
 
+
 def go_to_user(name, page="page: Page"):
-    page.locator('//*[@id="react-select-2-input"]').fill(name)
+    page.locator(USERS_LIST).fill(name)
     page.wait_for_timeout(300)
     page.get_by_text(name, exact=True).click()
     page.wait_for_selector('[class*="CallsHeader"]')
+
+def go_to_admin_or_manager(name, page="page: Page"):
+    page.wait_for_selector('[class*="styles_placeholder"]')
+    page.locator(USERS_LIST).fill(name)
+    page.wait_for_timeout(300)
+    page.get_by_text(name, exact=True).click()
+    page.wait_for_timeout(1500)
+
