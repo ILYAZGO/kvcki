@@ -21,9 +21,9 @@ def test_example(page: Page) -> None:
 
 
     page.locator(".css-b62m3t-container").get_by_text("Изменить фильтры").click()
-
-    page.locator(".css-woue3h-menu").get_by_text("По чеклистам", exact=True).nth(1).click()
-
+    page.locator('[id="Фильтровать по числовым тегам"]').click()
+    page.mouse.wheel(delta_x=0, delta_y=10000)
+    page.get_by_text("По чеклистам").nth(1).click()
     page.locator(TUPO_CLICK).click()
 
     page.locator('[autocorrect=off]').nth(0).fill("чеклист")
