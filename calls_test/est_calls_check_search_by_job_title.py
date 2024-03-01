@@ -4,7 +4,9 @@ from utils.auth import auth
 from pages.calls import *
 import pytest
 
-'''Поиск по Должность'''
+'''N/A 
+Поиск по Должность  '''
+
 
 
 @pytest.mark.calls
