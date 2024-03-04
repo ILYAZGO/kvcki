@@ -4,7 +4,7 @@ BUTTON_OTMENA = '[data-testid="cancelButton"]'
 BUTTON_KRESTIK = '[data-testid="closePopupButton"]'
 BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
 
-BUTTON_KORZINA = '[fill="#FF7875"]'
+BUTTON_KORZINA = '[class*="styles_actions"]'
 BUTTON_PODTVERDIT = '[data-testid="acceptButton"]'
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_SOTRUDNIKI = '[href*="settings/employees"]'
