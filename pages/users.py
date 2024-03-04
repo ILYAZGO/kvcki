@@ -7,7 +7,7 @@ BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
 BUTTON_KORZINA = '[fill="#FF7875"]'
 BUTTON_PODTVERDIT = '[data-testid="acceptButton"]'
 BUTTON_NASTROIKI = '[value="settings"]'
-BUTTON_SOTRUDNIKI = '[href*="employees"]'
+BUTTON_SOTRUDNIKI = '[href*="settings/employees"]'
 BUTTON_SOTRUDNIKI_UDALIT = "//button[contains(text(),'Удалить')]"
 BUTTON_SOTRUDNIKI_KORZINA = ".styles_actions__6AFGJ"
 

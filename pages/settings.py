@@ -10,15 +10,16 @@ LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
-BUTTON_EMPLOYEES= '[href*="settings/employees"]'
+BUTTON_EMPLOYEES = '[href*="settings/employees"]'
+BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
 
-INPUT_LOGIN= '[name="login"]'
-INPUT_NAME= '[name="name"]'
-INPUT_EMAIL= '[name="email"]'
-INPUT_PHONE= '[name="phoneNumber"]'
-INPUT_COMMENT= '[name="comment"]'
-INPUT_NEW_PASSWORD= '[name="newPassword"]'
-INPUT_NEW_PASSWORD_REPEAT= '[name="newPasswordRepeat"]'
+INPUT_LOGIN = '[name="login"]'
+INPUT_NAME = '[name="name"]'
+INPUT_EMAIL = '[name="email"]'
+INPUT_PHONE = '[name="phoneNumber"]'
+INPUT_COMMENT = '[name="comment"]'
+INPUT_NEW_PASSWORD = '[name="newPassword"]'
+INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 
 
@@ -50,7 +51,10 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
 
 def change_login(login, page="page: Page"):
     page.wait_for_selector(INPUT_LOGIN)
+    page.locator(INPUT_LOGIN).clear()
     page.locator(INPUT_LOGIN).fill(login)
+    page.locator('[style="text-transform: none;"]').click()
+    page.wait_for_timeout(500)
 
 def fill_personal_information(name, email, phone, comment , timezone, page="page: Page"):
     page.locator(INPUT_NAME).fill(name)

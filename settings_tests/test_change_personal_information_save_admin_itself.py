@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    change_login("newLogin", page)
+    change_login(NEW_LOGIN, page)
 
     fill_personal_information("someName", EMAIL1, "1234567890", "someComment", "Africa/Bamako", page)
 
@@ -26,7 +26,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(INPUT_EMAIL)
     page.wait_for_timeout(300)
 
-    expect(page.locator(INPUT_LOGIN)).to_have_value("newLogin")
+    expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN)
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL1)
     expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
     expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")

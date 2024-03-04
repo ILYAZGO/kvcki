@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="delete some timeouts">
-      <change afterPath="$PROJECT_DIR$/adminbar_tests/test_language_change_by_user.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="remove N/A test">
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_login_for_user_and_operator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/est_admin_change_login_for_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_login_for_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,14 +48,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/adminbar_tests",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/adminbar_tests" />
       <recent name="$PROJECT_DIR$/settings_tests" />
+      <recent name="$PROJECT_DIR$/adminbar_tests" />
       <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/calls_test" />
@@ -514,8 +517,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="after tasks fix tests" />
-    <MESSAGE value="move check_lists from markup" />
     <MESSAGE value="change pytest version" />
     <MESSAGE value="change pytest version2" />
     <MESSAGE value="change pytest version744" />
@@ -539,6 +540,8 @@
     <MESSAGE value="fix sttAutoReplace test" />
     <MESSAGE value="remove feature_dev in url" />
     <MESSAGE value="delete some timeouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete some timeouts" />
+    <MESSAGE value="add language test" />
+    <MESSAGE value="remove N/A test" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove N/A test" />
   </component>
 </project>
