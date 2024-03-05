@@ -21,13 +21,13 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    change_login(NEW_LOGIN, page)
+    change_login(CHANGED_LOGIN, page)
 
     page.reload()
     page.wait_for_selector(INPUT_LOGIN)
     page.wait_for_timeout(300)
 
-    expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN)
+    expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
 
     #
 
