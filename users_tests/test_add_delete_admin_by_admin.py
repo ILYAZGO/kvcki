@@ -12,7 +12,7 @@ def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN, PASSWORD, page)
 
     go_to_users(wait_until_visible, page)

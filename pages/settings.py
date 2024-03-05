@@ -60,11 +60,16 @@ def change_login(login, page="page: Page"):
 
 def fill_personal_information(name, email, phone, comment , timezone, page="page: Page"):
     page.locator(INPUT_NAME).fill(name)
+    page.wait_for_timeout(300)
     page.locator(INPUT_EMAIL).fill(email)
+    page.wait_for_timeout(300)
     page.locator(INPUT_PHONE).fill(phone)
+    page.wait_for_timeout(300)
     page.locator(INPUT_COMMENT).fill(comment)
+    page.wait_for_timeout(200)
     page.locator('[data-testid="selectTimezone"]').locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
+    page.wait_for_timeout(1000)
     # save
     page.locator('[style="text-transform: none;"]').click()
     page.wait_for_timeout(500)

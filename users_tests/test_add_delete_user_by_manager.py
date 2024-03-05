@@ -40,7 +40,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2, timeout=wait_until_visible)
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(2000)
     expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
     #expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
     #expect(page.get_by_text("managerIM")).to_have_count(1, timeout=wait_until_visible)

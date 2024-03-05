@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add changed login">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_login_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_login_for_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="increased timeout" />
     <MESSAGE value="add alternative search" />
     <MESSAGE value="add alternative search2" />
     <MESSAGE value="added tests for check old rules,dicts,check-lists" />
@@ -539,6 +536,7 @@
     <MESSAGE value="add test for admin change login" />
     <MESSAGE value="change locator" />
     <MESSAGE value="add changed login" />
-    <option name="LAST_COMMIT_MESSAGE" value="add changed login" />
+    <MESSAGE value="add timeout" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timeout" />
   </component>
 </project>

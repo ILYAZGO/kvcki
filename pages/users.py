@@ -86,7 +86,9 @@ def set_stt(language, engine, model, page="page: Page"):
     page.get_by_text(model, exact=True).click()
 
 def delete_added_user(page="page: Page"):
+    page.wait_for_timeout(500)
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator(BUTTON_KORZINA).click()
+    page.wait_for_timeout(500)
     page.wait_for_selector(BUTTON_PODTVERDIT)
     page.locator(BUTTON_PODTVERDIT).click()
