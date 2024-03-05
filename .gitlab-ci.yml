@@ -8,6 +8,6 @@ tests:
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt --default-timeout=100 
-    - pytest -sv --reruns=2
+    - pytest --reruns=2 -sv
   after_script:
     - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
