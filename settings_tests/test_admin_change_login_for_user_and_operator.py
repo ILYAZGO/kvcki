@@ -37,6 +37,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
 
     page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
+    page.wait_for_timeout(500)
     page.wait_for_selector(INPUT_LOGIN)
 
     change_login(NEW_OPERATOR_LOGIN,page)

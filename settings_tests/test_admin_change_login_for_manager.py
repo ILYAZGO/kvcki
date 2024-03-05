@@ -21,6 +21,8 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
+    expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN_MANAGER)
+
     change_login(CHANGED_LOGIN, page)
 
     page.reload()
