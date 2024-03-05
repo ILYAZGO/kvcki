@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="increased timeouts">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="retry rerun">
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_manager_cant_change_login_for_user_and_operator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_user_cant_change_login_for_operator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_login_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_login_for_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -518,8 +515,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add alternative search2" />
-    <MESSAGE value="added tests for check old rules,dicts,check-lists" />
     <MESSAGE value="wait for selector in integr test" />
     <MESSAGE value="deleted bad expect" />
     <MESSAGE value="reoprts" />
@@ -543,6 +538,8 @@
     <MESSAGE value="add changed login" />
     <MESSAGE value="add timeout" />
     <MESSAGE value="increased timeouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="increased timeouts" />
+    <MESSAGE value="rerun" />
+    <MESSAGE value="retry rerun" />
+    <option name="LAST_COMMIT_MESSAGE" value="retry rerun" />
   </component>
 </project>
