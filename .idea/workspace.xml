@@ -4,28 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="udate docker 1.42">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_job_title.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_job_title.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_operator_by_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_add_user_cancel_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_user_cancel_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_users_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_check_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/integration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -531,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="reoprts" />
     <MESSAGE value="fix admin bar tests after ui optimization" />
     <MESSAGE value="added tests about personal information" />
     <MESSAGE value="refactor get_token" />
@@ -556,6 +538,7 @@
     <MESSAGE value="retry rerun" />
     <MESSAGE value="add tests" />
     <MESSAGE value="udate docker 1.42" />
-    <option name="LAST_COMMIT_MESSAGE" value="udate docker 1.42" />
+    <MESSAGE value="small refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="small refactor" />
   </component>
 </project>

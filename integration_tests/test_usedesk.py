@@ -8,6 +8,8 @@ from pages.integration import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 
+'''user making integration with usedesk'''
+
 
 @pytest.mark.independent
 @pytest.mark.integration
@@ -15,21 +17,17 @@ def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
-    auth(ADMIN, PASSWORD, page)
-    '''go to polzovateli'''
-    page.wait_for_timeout(2000)
-    '''go to user'''
-    page.locator(INPUT_USER_DROPDOWN).fill(LOGIN)
-    page.get_by_text(text=LOGIN, exact=True).click()
-    page.wait_for_timeout(6000)
+
+    auth(LOGIN, PASSWORD, page)
+
     '''go to nastroiki'''
     page.locator(BUTTON_NASTROIKI).click()
     '''go to integracii'''
     page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
     '''podklu4it'''
     page.locator(BUTTON_PODKLU4IT).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_selector('[alt="AmoCRM"]')
+
     '''choose usedesk'''
     page.locator(".styles_body__L76ER", has_text="usedesk").get_by_role("button").click()
 
@@ -37,6 +35,7 @@ def test_example(page: Page) -> None:
 
     '''go to integacii'''
     page.locator(BUTTON_INTEGRACII).click()
+    page.wait_for_selector(BUTTON_PLAY)
     '''play'''
     page.locator(BUTTON_PLAY).click()
 
@@ -71,7 +70,7 @@ def test_example(page: Page) -> None:
     #page.wait_for_selector(BUTTON_INTEGRACII_IN_MENU)
 
 
-    page.locator(BUTTON_INTEGRACII_IN_MENU).click()
+    #page.locator(BUTTON_INTEGRACII_IN_MENU).click()
 
     delete_integration(page)
 
