@@ -15,7 +15,7 @@ def test_example(page: Page) -> None:
 
     auth(LOGIN, PASSWORD, page)
 
-    go_to_users(wait_until_visible, page)
+    go_to_users(page)
 
     set_user(NEW_NAME,
              NEW_LOGIN,
@@ -37,9 +37,8 @@ def test_example(page: Page) -> None:
     # '''add quota'''
     # page.locator(INPUT_QUOTA).fill("60")
 
-    '''press dobavit'''
-    page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_selector(INPUT_NAME)
+    press_add_button(page)
+
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
@@ -48,8 +47,6 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
     expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
     expect(page.get_by_text("managerIM")).to_have_count(1, timeout=wait_until_visible)
-
-
 
     delete_added_user(page)
 

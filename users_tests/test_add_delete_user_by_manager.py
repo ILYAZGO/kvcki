@@ -14,7 +14,7 @@ def test_example(page: Page) -> None:
 
     auth(MANAGER, PASSWORD, page)
 
-    go_to_users(wait_until_visible, page)
+    go_to_users(page)
 
     set_user(NEW_NAME,
              NEW_LOGIN,
@@ -33,9 +33,7 @@ def test_example(page: Page) -> None:
             "Стандарт",
             page)
 
-    '''press dobavit'''
-    page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_selector(INPUT_NAME)
+    press_add_button(page)
 
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)

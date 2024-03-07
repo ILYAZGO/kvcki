@@ -1,3 +1,5 @@
+from utils.variables import wait_until_visible
+
 BUTTON_POLZOVATELI = '[data-testid="userLink"]'
 BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
 BUTTON_OTMENA = '[data-testid="cancelButton"]'
@@ -36,10 +38,10 @@ FIRST_PAGE_PAGINATION = '[aria-label="1"]'
 
 
 
-def go_to_users(timeout, page="page: Page"):
+def go_to_users(page="page: Page"):
     page.wait_for_selector(BUTTON_POLZOVATELI)
     page.locator(BUTTON_POLZOVATELI).click()
-    page.wait_for_selector('[aria-rowindex="2"]', timeout=timeout)
+    page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
 
 
 def set_user(name, login, password, mail, comment, role, page="page: Page"):
@@ -92,3 +94,7 @@ def delete_added_user(page="page: Page"):
     page.wait_for_timeout(500)
     page.wait_for_selector(BUTTON_PODTVERDIT)
     page.locator(BUTTON_PODTVERDIT).click()
+
+def press_add_button(page="page: Page"):
+    page.locator(BUTTON_DOBAVIT).click()
+    page.wait_for_selector(INPUT_LOGIN, timeout=wait_until_visible)

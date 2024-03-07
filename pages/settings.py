@@ -22,8 +22,6 @@ INPUT_NEW_PASSWORD = '[name="newPassword"]'
 INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 
-
-
 def click_settings(page="page: Page"):
     #  go to nastroiki
     page.wait_for_selector(BUTTON_NASTROIKI)

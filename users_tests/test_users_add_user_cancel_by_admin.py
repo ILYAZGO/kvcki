@@ -15,7 +15,7 @@ def test_example(page: Page) -> None:
 
     auth(LOGIN, PASSWORD, page)
 
-    go_to_users(wait_until_visible, page)
+    go_to_users(page)
 
     '''button create user'''
     page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
