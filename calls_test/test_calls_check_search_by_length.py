@@ -17,18 +17,18 @@ def test_example(page: Page) -> None:
 
     fill_search_length("<10", page)
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 443 из 3130", timeout=wait_until_visible)
 
     fill_search_length(">10", page)
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 2687 из 3130", timeout=wait_until_visible)
 
     fill_search_length("1711", page)
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 1 из 3130", timeout=wait_until_visible)

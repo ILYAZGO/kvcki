@@ -17,7 +17,7 @@ def test_example(page: Page) -> None:
     '''fill exact time'''
     page.locator(INPUT_VREMYA_ZVONKA).fill("11:42")
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 5 из 3130", timeout=wait_until_visible)
 

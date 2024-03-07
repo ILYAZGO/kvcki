@@ -17,18 +17,18 @@ def test_example(page: Page) -> None:
 
     go_to_users(page)
 
-    '''button create user'''
-    page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    press_button_add_user(page)
+
     '''cancel by button CANCEL'''
     page.locator(BUTTON_OTMENA).click()
-    '''check'''
-    expect(page.get_by_text("Пароль")).not_to_be_visible()
-    '''button create user'''
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+
+    expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
+
+    press_button_add_user(page)
+
     '''cancel by button KRESTIK'''
     page.locator(BUTTON_KRESTIK).click()
-    '''check'''
-    expect(page.get_by_text("Пароль")).not_to_be_visible()
+
+    expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
 
     delete_user(API_URL, TOKEN, USER_ID)

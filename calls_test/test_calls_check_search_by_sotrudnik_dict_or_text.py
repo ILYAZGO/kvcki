@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).fill("адрес")
     page.wait_for_timeout(3000)
 
-    find_calls(page)
+    press_find_communications(page)
 
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
@@ -29,7 +29,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).fill("Зо")
     page.get_by_text("Зомбоящик").click()
 
-    find_calls(page)
+    press_find_communications(page)
 
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 

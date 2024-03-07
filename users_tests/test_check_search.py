@@ -17,9 +17,6 @@ def test_example(page: Page) -> None:
 
     go_to_users(page)
 
-    '''wait users list to load'''
-    page.wait_for_selector('[aria-rowindex="2"]')
-
     '''fill search'''
     page.locator(INPUT_POISK).fill("ecot")
 

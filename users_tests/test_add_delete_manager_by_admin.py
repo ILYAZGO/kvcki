@@ -17,6 +17,8 @@ def test_example(page: Page) -> None:
 
     go_to_users(page)
 
+    press_button_add_user(page)
+
     set_user(NEW_NAME,
              NEW_LOGIN,
              PASSWORD,
@@ -24,13 +26,15 @@ def test_example(page: Page) -> None:
              "someComment",
              "Интегратор",
              page)
-    press_add_button(page)
+
+    press_button_add_in_modal(page)
 
     '''check'''
     expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
     expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2, timeout=wait_until_visible)
-    expect(page.locator('[data-testid="selectRole"]').get_by_text("Интегратор")).to_have_count(1, timeout=wait_until_visible)
+    expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
+    expect(page.locator(SELECT_ROLE)).to_have_text("Интегратор", timeout=wait_until_visible)
 
     delete_added_user(page)
 

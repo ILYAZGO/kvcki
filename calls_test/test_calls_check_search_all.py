@@ -4,7 +4,7 @@ from utils.auth import auth
 from pages.calls import *
 import pytest
 
-'''Check search all calls for Ecotelecom'''
+'''Check searching all calls for Ecotelecom'''
 
 
 @pytest.mark.calls
@@ -15,7 +15,6 @@ def test_example(page: Page) -> None:
 
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
-    find_calls(page)
+    press_find_communications(page)
 
-    '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 3130 из 3130")

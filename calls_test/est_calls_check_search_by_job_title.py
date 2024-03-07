@@ -21,21 +21,19 @@ def test_example(page: Page) -> None:
 
     choose_filter_value("Бухгалтер", page)
 
-    find_calls(page)
-
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 8 из 3130", timeout=wait_until_visible)
 
     '''add extra value'''
     choose_filter_value("Координатор", page)
 
-    find_calls(page)
+    press_find_communications(page)
 
-    '''check'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 362 из 3130", timeout=wait_until_visible)
 
     remove_filter_value("Координатор", page)
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 8 из 3130", timeout=wait_until_visible)

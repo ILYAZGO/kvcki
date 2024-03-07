@@ -18,11 +18,11 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(INPUT_PO_TEGAM)
     '''input tag'''
     page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
-    page.wait_for_timeout(3500)
+    page.wait_for_timeout(3000)
     page.get_by_text("Другой отдел", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
-    find_calls(page)
+    press_find_communications(page)
 
     page.wait_for_selector(FIRST_PAGE_PAGINATION)
 
@@ -30,11 +30,11 @@ def test_example(page: Page) -> None:
 
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
-    page.wait_for_timeout(3500)
+    page.wait_for_timeout(3000)
     page.get_by_text("Обсуждение тарифа", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 46 из 3130", timeout=wait_until_visible)
 
@@ -48,10 +48,10 @@ def test_example(page: Page) -> None:
     '''add tag'''
     page.wait_for_selector(INPUT_PO_TEGAM_NEW)
     page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
-    page.wait_for_timeout(5000)
+    page.wait_for_timeout(3000)
     page.get_by_text("Новое подключение", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 19 из 3130", timeout=wait_until_visible)

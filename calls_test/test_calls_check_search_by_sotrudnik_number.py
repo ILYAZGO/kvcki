@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
 
     page.locator(INPUT_NOMER_SOTRUDNIKA).fill("4995055555")
 
-    find_calls(page)
+    press_find_communications(page)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 670 из 3130", timeout=wait_until_visible)
 
