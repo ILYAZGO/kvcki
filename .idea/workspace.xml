@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor integrations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_usedesk.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/integration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix admin bar tests after ui optimization" />
     <MESSAGE value="added tests about personal information" />
     <MESSAGE value="refactor get_token" />
     <MESSAGE value="notifications tests upgrade" />
@@ -539,6 +537,7 @@
     <MESSAGE value="add tests" />
     <MESSAGE value="udate docker 1.42" />
     <MESSAGE value="small refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="small refactor" />
+    <MESSAGE value="small refactor integrations" />
+    <option name="LAST_COMMIT_MESSAGE" value="small refactor integrations" />
   </component>
 </project>
