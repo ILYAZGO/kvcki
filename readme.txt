@@ -7,9 +7,13 @@ install requirements and browsers:
 
 from main directory:
 
-    pytest -sv
+    pytest
 
-    --headed  (browser head)
+   !PROFIT!
+
+you can add some parameteres:
+
+    --headed  (with browser head)
     --slowmo 3000  (if you want to slow tests down in 3000 ms)
     !(DON'T USE)--numprocesses auto  (few processes same time - faster tests, but can cause troubles) (DON'T USE)!
 

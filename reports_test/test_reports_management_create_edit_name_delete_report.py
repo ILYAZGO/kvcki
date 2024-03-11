@@ -76,8 +76,6 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
 
-
-
     '''delete report'''
 
     page.wait_for_selector(BUTTON_KORZINA)

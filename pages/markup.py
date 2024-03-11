@@ -13,7 +13,7 @@ INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 # buttons
 
 BUTTON_DOBAVIT_GRUPPU = '[data-testid="markup_addGroup"]'
-BUTTON_DOBAVIT_TEG = '[data-testid="markup_addTag"]'
+BUTTON_DOBAVIT_TEG = '[data-testid="markup_addTaggingRule"]'
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
 BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"

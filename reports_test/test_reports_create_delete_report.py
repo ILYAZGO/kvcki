@@ -13,12 +13,10 @@ def test_example(page: Page) -> None:
     auth(ECOTELECOM, ECOPASS, page)
     '''go to reports'''
     page.locator(BUTTON_OT4ETI).click()
-    '''create report'''
+    '''click create report'''
     page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
     '''switch to all time'''
     page.locator(ALL_TIME).click()
-
-
 
     page.locator(".css-b62m3t-container").get_by_text("Изменить фильтры").click()
     page.locator('[id="Фильтровать по числовым тегам"]').click()
