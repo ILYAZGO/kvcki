@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="-sv removed to pytest ini">
-      <change afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_set_tag_block.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test set tag block">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_management_create_edit_name_delete_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -518,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor get_token" />
     <MESSAGE value="notifications tests upgrade" />
     <MESSAGE value="fix locators after 1831 merge" />
     <MESSAGE value="fix timeouts" />
@@ -543,6 +537,7 @@
     <MESSAGE value="small refactor" />
     <MESSAGE value="small refactor integrations" />
     <MESSAGE value="-sv removed to pytest ini" />
-    <option name="LAST_COMMIT_MESSAGE" value="-sv removed to pytest ini" />
+    <MESSAGE value="add test set tag block" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test set tag block" />
   </component>
 </project>

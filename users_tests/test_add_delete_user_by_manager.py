@@ -16,6 +16,8 @@ def test_example(page: Page) -> None:
 
     go_to_users(page)
 
+    press_button_add_user(page)
+
     set_user(NEW_NAME,
              NEW_LOGIN,
              PASSWORD,

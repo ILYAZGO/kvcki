@@ -25,6 +25,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MANAGEMENT)
     '''create report'''
     page.locator(BUTTON_CREATE_REPORT_IN_MANAGEMENT).click()
+    page.wait_for_timeout(2000)
     '''switch to all time'''
     page.locator(ALL_TIME).click()
     '''saving'''
