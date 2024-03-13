@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test set tag block">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test">
+      <change afterPath="$PROJECT_DIR$/notifications/test_notifications_api_method_change.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,17 +45,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/rules_test",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/notifications",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/adminbar_tests" />
       <recent name="$PROJECT_DIR$/dictionaries_test" />
-      <recent name="$PROJECT_DIR$/calls_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/left_menu_tests" />
@@ -513,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="notifications tests upgrade" />
     <MESSAGE value="fix locators after 1831 merge" />
     <MESSAGE value="fix timeouts" />
     <MESSAGE value="add tests and improvements" />
@@ -538,6 +538,7 @@
     <MESSAGE value="small refactor integrations" />
     <MESSAGE value="-sv removed to pytest ini" />
     <MESSAGE value="add test set tag block" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test set tag block" />
+    <MESSAGE value="fix test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix test" />
   </component>
 </project>

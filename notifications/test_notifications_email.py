@@ -30,7 +30,7 @@ def test_example(page: Page) -> None:
 
     fill_attr_for_email('letterTheme', 'mail@.mail.com', page)
 
-    save_or_cancel_rule("0", page)
+    save_rule(page)
 
     go_back_in_rule_after_save("auto-test-email", page)
 

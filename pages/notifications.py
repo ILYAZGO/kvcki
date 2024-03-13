@@ -12,6 +12,8 @@ INPUT_HEADERS = '[placeholder="Можно проставить авториза�
 INPUT_URL = '[name="apiUrl"]'
 INPUT_COMMENT = '[class="styles_textarea__+sldQ"]'
 
+BlOCK_API = '[class*="InputWithSelect_root"]'
+
 def set_notification_name(notificationName, page="page: Page"):
     page.locator(INPUT_NOTIFICATION_NAME).fill(notificationName)
 
@@ -30,11 +32,14 @@ def add_filter(filterType, filterName, elementNumber, page="page: Page"):
 
 def add_notification(notificationType, page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
+    page.wait_for_timeout(400)
     #  add new
     page.locator(".styles_addNewRule__zhZVC").get_by_role("button").click()
+    page.wait_for_timeout(400)
     #  click to list
     page.locator('[class="css-8mmkcg"]').first.click()
-    #  choose email
+    page.wait_for_timeout(400)
+    #  choose type
     page.locator('[class=" css-164zrm5-menu"]').get_by_text(notificationType, exact=True).click()
 
 def fill_attr_for_email(letterTheme, email, page="page: Page"):
@@ -50,8 +55,9 @@ def set_url_and_headers(url, headers, page="page: Page"):
     page.locator(INPUT_URL).fill(url)
     page.locator(INPUT_HEADERS).fill(headers)
 
-def save_or_cancel_rule(buttonNumber, page="page: Page"):
-    page.locator('[class="styles_buttonsGroup__aLY1I"]').get_by_role("button").nth(buttonNumber).click()
+def save_rule(page="page: Page"):
+    page.get_by_role("button", name="Сохранить правило").click()
+    page.wait_for_timeout(400)
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
