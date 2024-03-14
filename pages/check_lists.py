@@ -63,8 +63,9 @@ def create_check_list_with_questions_and_answers(checkListName, firstQustionTitl
     page.locator(BUTTON_SAVE).click()
 
 def create_delete_appriser(title, page="page: Page"):
-
-    page.locator('[class*="CheckListAppraisers_addBtn"]').click()
+    page.wait_for_timeout(200)
+    page.get_by_role("button", name = "Добавить оценку").click()
+    #page.locator('[class*="CheckListAppraisers_addBtn"]').click()
     page.locator('[name="appraisers.0.title"]').fill(title)
     page.locator('[name="appraisers.0.points"]').fill("5")
     page.locator('[class*="CheckListAppraisers_deleteBtn"]')
