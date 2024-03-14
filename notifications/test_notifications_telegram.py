@@ -15,6 +15,8 @@ def test_example(page: Page) -> None:
 
     auth(LOGIN, PASSWORD, page)
 
+    go_to_notifications_page(page)
+
     add_notification("Telegram", page)
 
     set_notification_name("auto-test-telegram", page)

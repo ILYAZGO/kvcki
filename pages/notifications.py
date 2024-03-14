@@ -13,6 +13,12 @@ INPUT_URL = '[name="apiUrl"]'
 INPUT_COMMENT = '[class="styles_textarea__+sldQ"]'
 
 BlOCK_API = '[class*="InputWithSelect_root"]'
+BLOCK_ADD_NEW_RULE = '[class*="styles_addNewRule_"]'
+
+
+def go_to_notifications_page(page="page: Page"):
+    page.locator(BUTTON_OPOVESHENIA).click()
+    page.wait_for_selector(BLOCK_ADD_NEW_RULE)
 
 def set_notification_name(notificationName, page="page: Page"):
     page.locator(INPUT_NOTIFICATION_NAME).fill(notificationName)
@@ -31,14 +37,12 @@ def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     page.get_by_text(filterName, exact=True).nth(0).click()
 
 def add_notification(notificationType, page="page: Page"):
-    page.locator(BUTTON_OPOVESHENIA).click()
-    page.wait_for_timeout(400)
     #  add new
-    page.locator(".styles_addNewRule__zhZVC").get_by_role("button").click()
-    page.wait_for_timeout(400)
+    page.locator(BLOCK_ADD_NEW_RULE).get_by_role("button").click()
+    page.wait_for_selector(INPUT_NOTIFICATION_NAME)
     #  click to list
     page.locator('[class="css-8mmkcg"]').first.click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(300)
     #  choose type
     page.locator('[class=" css-164zrm5-menu"]').get_by_text(notificationType, exact=True).click()
 
@@ -61,18 +65,28 @@ def save_rule(page="page: Page"):
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
-
-    page.locator('[class*="sidebar"]').locator('[type="checkbox"]').click()
-
-    page.locator(BUTTON_KORZINA).click()
+    page.locator('[class*="sidebar"]').locator('[type="checkbox"]').first.click()
+    page.locator(BUTTON_KORZINA).first.click()
     #  confirm deleting
-    page.locator('[class="styles_buttonsGroup__D0bLG"]').get_by_role("button").nth(1).click()
+    page.get_by_role("button", name="Удалить").click()
+    page.wait_for_timeout(400)
 
 def choose_block(blockNumber, page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
     page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
+    page.wait_for_selector(INPUT_NOTIFICATION_NAME)
 
 def go_back_in_rule_after_save(notificationName, page="page: Page"):
     page.wait_for_selector('[class*=notifyList]')
     page.get_by_text(notificationName).click()
     page.wait_for_selector('[name="notifyTitle"]')
+
+def change_api_method(originalMethod, newMethod, page="page: Page"):
+    page.locator(BlOCK_API).get_by_text(originalMethod).click()
+    page.get_by_text(newMethod, exact=True).click()
+
+def go_to_user(name, page="page: Page"):
+    page.locator(USERS_LIST).fill(name)
+    page.wait_for_timeout(300)
+    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector('[class*="CallsHeader"]')
