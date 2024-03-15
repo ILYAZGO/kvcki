@@ -7,6 +7,10 @@ BLOCK_LEFT_MENU = ".styles_list__3M7-K"
 
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 
+BUTTON_RIGHTS = '[href*="/access-rights"]'
+BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
+BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
+
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
@@ -85,3 +89,21 @@ def go_to_admin_or_manager(name, page="page: Page"):
     page.get_by_text(name, exact=True).click()
     page.wait_for_timeout(1500)
 
+def press_save_in_rights(page="page: Page"):
+    page.locator('[data-testid="acceptButton"]').click()
+    page.wait_for_timeout(400)
+
+def click_all_checkboxes_on_page(page="page: Page"):
+    # Находим все чекбоксы на странице
+    checkboxes = page.query_selector_all('input[type="checkbox"]')
+    # Выполняем клик на каждом чекбоксе
+    for checkbox in checkboxes:
+        if not checkbox.is_checked():
+            checkbox.click()
+
+def all_checkboxes_to_be_checked(page="page: Page"):
+    # Находим все чекбоксы на странице
+    checkboxes = page.query_selector_all('input[type="checkbox"]')
+    # Проверяем состояние каждого чекбокса
+    all_checked = all(checkbox.is_checked() for checkbox in checkboxes)
+    return all_checked

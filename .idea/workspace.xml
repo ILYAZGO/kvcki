@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix checklist test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor notifications tests">
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_user_and_operator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_api_method_change.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_api_method_change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,15 +46,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/notifications",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/rules_test" />
-      <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/adminbar_tests" />
       <recent name="$PROJECT_DIR$/dictionaries_test" />
     </key>
@@ -519,7 +515,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests and improvements" />
     <MESSAGE value="mark independent tests" />
     <MESSAGE value="change assert" />
     <MESSAGE value="edited notification tests" />
@@ -544,6 +539,7 @@
     <MESSAGE value="fix test" />
     <MESSAGE value="add test api method notification" />
     <MESSAGE value="fix checklist test" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix checklist test" />
+    <MESSAGE value="refactor notifications tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor notifications tests" />
   </component>
 </project>
