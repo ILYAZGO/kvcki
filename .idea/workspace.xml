@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add tests for changing rights">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -512,8 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change assert" />
-    <MESSAGE value="edited notification tests" />
     <MESSAGE value="fix sttAutoReplace test" />
     <MESSAGE value="remove feature_dev in url" />
     <MESSAGE value="delete some timeouts" />
@@ -537,6 +535,8 @@
     <MESSAGE value="fix checklist test" />
     <MESSAGE value="refactor notifications tests" />
     <MESSAGE value="add tests for changing rights" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests for changing rights" />
+    <MESSAGE value="add tests for changing rights user oper" />
+    <MESSAGE value="experiment" />
+    <option name="LAST_COMMIT_MESSAGE" value="experiment" />
   </component>
 </project>
