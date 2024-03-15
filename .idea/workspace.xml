@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor notifications tests">
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_user_and_operator.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add tests for changing rights">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -515,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mark independent tests" />
     <MESSAGE value="change assert" />
     <MESSAGE value="edited notification tests" />
     <MESSAGE value="fix sttAutoReplace test" />
@@ -540,6 +536,7 @@
     <MESSAGE value="add test api method notification" />
     <MESSAGE value="fix checklist test" />
     <MESSAGE value="refactor notifications tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor notifications tests" />
+    <MESSAGE value="add tests for changing rights" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests for changing rights" />
   </component>
 </project>
