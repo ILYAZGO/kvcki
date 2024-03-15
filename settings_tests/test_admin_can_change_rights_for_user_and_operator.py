@@ -43,9 +43,7 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_EMPLOYEES).click()
     page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
 
-    page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
-    page.wait_for_timeout(500)
-    page.wait_for_selector(INPUT_LOGIN)
+    go_to_operator_from_table(page)
 
     page.locator(BUTTON_RIGHTS).click()
 

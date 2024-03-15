@@ -20,11 +20,13 @@ def test_example(page: Page) -> None:
     click_settings(page)
 
     page.locator(BUTTON_EMPLOYEES).click()
-    page.wait_for_selector('[role="gridcell"]')
-    page.get_by_text(LOGIN_OPERATOR).first.click()
-    page.wait_for_selector(INPUT_NAME)
+
+    go_to_operator_from_table(page)
 
     fill_personal_information("someName", EMAIL1, "1234567890", "someComment", "Africa/Bamako", page)
+
+    press_save(page)
+
     page.reload()
     page.wait_for_selector(INPUT_NAME)
 

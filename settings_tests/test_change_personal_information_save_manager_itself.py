@@ -20,6 +20,8 @@ def test_example(page: Page) -> None:
 
     fill_personal_information("someName", EMAIL2, "1234567890", "someComment", "Africa/Bamako", page)
 
+    press_save(page)
+
     page.reload()
     page.wait_for_selector(INPUT_EMAIL)
     page.wait_for_timeout(300)

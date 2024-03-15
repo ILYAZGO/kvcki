@@ -27,21 +27,18 @@ INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 
 def click_settings(page="page: Page"):
-    #  go to nastroiki
     page.wait_for_selector(BUTTON_NASTROIKI)
     page.locator(BUTTON_NASTROIKI).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.wait_for_selector(INPUT_LOGIN)
 
-def fill_address_book_and_save(Text, page="page: Page"):
+def fill_address_book(Text, page="page: Page"):
     page.locator(BUTTON_ADDRESS_BOOK).click()
     page.wait_for_selector(INPUT_ADDRESS_BOOK)
     page.locator(INPUT_ADDRESS_BOOK).clear()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(800)
     page.locator(INPUT_ADDRESS_BOOK).fill(Text)
-    page.wait_for_timeout(1000)
-    page.get_by_role("button", name="Сохранить").click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(800)
 
 
 def choose_preiod_date(firstDate, lastDate, page="page: Page"):
@@ -57,8 +54,7 @@ def change_login(login, page="page: Page"):
     page.wait_for_selector(INPUT_LOGIN)
     page.locator(INPUT_LOGIN).clear()
     page.locator(INPUT_LOGIN).fill(login)
-    page.locator('[style="text-transform: none;"]').click()
-    page.wait_for_timeout(1000)
+
 
 def fill_personal_information(name, email, phone, comment , timezone, page="page: Page"):
     page.locator(INPUT_NAME).fill(name)
@@ -72,9 +68,6 @@ def fill_personal_information(name, email, phone, comment , timezone, page="page
     page.locator('[data-testid="selectTimezone"]').locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
     page.wait_for_timeout(1000)
-    # save
-    page.locator('[style="text-transform: none;"]').click()
-    page.wait_for_timeout(500)
 
 
 def go_to_user(name, page="page: Page"):
@@ -83,11 +76,21 @@ def go_to_user(name, page="page: Page"):
     page.get_by_text(name, exact=True).click()
     page.wait_for_selector('[class*="CallsHeader"]')
 
+def go_to_operator_from_table(page="page: Page"):
+    page.wait_for_selector('[role="gridcell"]')
+    page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
+    page.wait_for_timeout(500)
+    page.wait_for_selector(INPUT_LOGIN)
+
 def go_to_admin_or_manager(name, page="page: Page"):
     page.locator(USERS_LIST).fill(name)
     page.wait_for_timeout(300)
     page.get_by_text(name, exact=True).click()
     page.wait_for_timeout(1500)
+
+def press_save(page="page: Page"):
+    page.get_by_role("button", name="Сохранить").click()
+    page.wait_for_timeout(800)
 
 def press_save_in_rights(page="page: Page"):
     page.locator('[data-testid="acceptButton"]').click()

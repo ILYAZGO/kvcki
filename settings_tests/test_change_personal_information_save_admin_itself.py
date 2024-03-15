@@ -20,7 +20,11 @@ def test_example(page: Page) -> None:
 
     change_login(NEW_LOGIN, page)
 
+    press_save(page)
+
     fill_personal_information("someName", EMAIL1, "1234567890", "someComment", "Africa/Bamako", page)
+
+    press_save(page)
 
     page.reload()
     page.wait_for_selector(INPUT_EMAIL)

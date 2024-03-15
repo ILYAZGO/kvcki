@@ -25,14 +25,13 @@ def test_example(page: Page) -> None:
 
     change_login(CHANGED_LOGIN, page)
 
+    press_save(page)
+
     page.reload()
     page.wait_for_selector(INPUT_LOGIN)
     page.wait_for_timeout(300)
 
     expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
-
-    #
-
 
     delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
     delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)

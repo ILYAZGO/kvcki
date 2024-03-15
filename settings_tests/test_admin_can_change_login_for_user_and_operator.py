@@ -25,6 +25,8 @@ def test_example(page: Page) -> None:
 
     change_login(CHANGED_LOGIN, page)
 
+    press_save(page)
+
     page.reload()
     page.wait_for_selector(INPUT_LOGIN)
     page.wait_for_timeout(300)
@@ -36,11 +38,11 @@ def test_example(page: Page) -> None:
     page.locator(BUTTON_EMPLOYEES).click()
     page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
 
-    page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
-    page.wait_for_timeout(500)
-    page.wait_for_selector(INPUT_LOGIN)
+    go_to_operator_from_table(page)
 
-    change_login(NEW_OPERATOR_LOGIN,page)
+    change_login(NEW_OPERATOR_LOGIN, page)
+
+    press_save(page)
 
     page.reload()
     page.wait_for_selector(INPUT_LOGIN)

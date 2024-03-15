@@ -18,7 +18,12 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    fill_address_book_and_save("Телефон;Должность;ФИО\n12345;IVAN;BOSS", page)
+    fill_address_book("Телефон;Должность;ФИО\n12345;IVAN;BOSS", page)
+
+    press_save(page)
+
+    page.reload()
+    page.wait_for_selector(INPUT_ADDRESS_BOOK)
 
     expect(page.locator(INPUT_ADDRESS_BOOK)).to_contain_text(["Телефон;Должность;ФИО\n12345;IVAN;BOSS"])
 

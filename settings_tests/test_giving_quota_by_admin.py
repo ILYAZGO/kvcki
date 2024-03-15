@@ -12,7 +12,7 @@ import pytest
 def test_example(page: Page) -> None:
     # create admin
     USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
-    # create user for import
+    # create user
     USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
@@ -22,7 +22,6 @@ def test_example(page: Page) -> None:
     go_to_user(LOGIN_USER, page)
 
     click_settings(page)
-
 
     page.locator('[href*="settings/quotas"]').click()
     page.get_by_role("button", name="Добавить").click()
