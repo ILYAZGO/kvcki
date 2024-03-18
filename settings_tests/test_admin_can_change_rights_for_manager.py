@@ -21,7 +21,7 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    page.locator(BUTTON_RIGHTS).click()
+    click_rights(page)
 
     expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(4)
 

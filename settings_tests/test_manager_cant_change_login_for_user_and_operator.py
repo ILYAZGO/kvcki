@@ -28,8 +28,7 @@ def test_example(page: Page) -> None:
 
     # check disabled for operator
 
-    page.locator(BUTTON_EMPLOYEES).click()
-    page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
+    click_employees(page)
 
     go_to_operator_from_table(page)
 

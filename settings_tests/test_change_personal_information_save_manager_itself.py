@@ -12,7 +12,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1917/", timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
@@ -22,11 +22,23 @@ def test_example(page: Page) -> None:
 
     press_save(page)
 
+    click_notifications(page)
+
+    click_settings(page)
+
+    expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+    expect(page.locator(INPUT_NAME)).to_have_value("someName")
+    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2)
+    expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
+    expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+    expect(page.get_by_text("Africa/Bamako")).to_be_visible()
+
     page.reload()
     page.wait_for_selector(INPUT_EMAIL)
     page.wait_for_timeout(300)
 
     expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+    expect(page.locator(INPUT_NAME)).to_have_value("someName")
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2)
     expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
     expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")

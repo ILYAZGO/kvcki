@@ -23,7 +23,7 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    page.locator(BUTTON_RIGHTS).click()
+    click_rights(page)
 
     expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(3)
 
@@ -40,12 +40,11 @@ def test_example(page: Page) -> None:
 
     # change rights for operator
 
-    page.locator(BUTTON_EMPLOYEES).click()
-    page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
+    click_employees(page)
 
     go_to_operator_from_table(page)
 
-    page.locator(BUTTON_RIGHTS).click()
+    click_rights(page)
 
     expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(22)
 

@@ -23,12 +23,23 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    page.locator('[href*="settings/quotas"]').click()
-    page.get_by_role("button", name="Добавить").click()
-    page.locator('[aria-label="Checkbox demo"]').click()
-    page.locator('[name="time"]').clear()
-    page.locator('[name="time"]').fill("100")
-    page.get_by_role("button", name="Добавить", exact=True).click()
+    click_quota(page)
+
+    press_add_in_quotas(page)
+
+    page.locator('[type="checkbox"]').click()
+
+    expect(page.locator('[type="checkbox"]')).to_be_checked()
+    # check that dates disabled
+    expect(page.locator('[class*="ant-picker-disabled"]')).to_be_visible()
+
+    fill_quota_time("100", page)
+
+    press_add_in_quotas(page)
+
+    page.wait_for_selector('[aria-rowindex="2"]')
+
+    page.reload()
 
     page.wait_for_selector('[aria-rowindex="2"]')
 
@@ -39,17 +50,17 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
 
-    page.locator('[href*="settings/profile"]').click()
-    page.locator('[href*="settings/quotas"]').click()
-
-    page.get_by_role("button", name="Добавить").click()
+    press_add_in_quotas(page)
 
     choose_preiod_date("30/12/2024", "31/12/2024", page)
 
-    page.locator('[name="time"]').clear()
-    page.locator('[name="time"]').fill("100")
+    fill_quota_time("100", page)
 
-    page.get_by_role("button", name="Добавить", exact=True).click()
+    press_add_in_quotas(page)
+
+    page.wait_for_selector('[aria-rowindex="2"]')
+
+    page.reload()
 
     page.wait_for_selector('[aria-rowindex="2"]')
 

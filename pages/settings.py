@@ -3,13 +3,19 @@ FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
 
 BUTTON_NASTROIKI = '[value="settings"]'
+BUTTON_OPOVESHENIA = '[href*="/notifications"]'
 BLOCK_LEFT_MENU = ".styles_list__3M7-K"
 
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 
+BUTTON_PERSONAL_INFO = '[href*="/profile"]'
+
 BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
+
+BUTTON_QUOTAS = '[href*="settings/quotas"]'
+INPUT_QUOTA_TIME = '[name="time"]'
 
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
@@ -32,9 +38,43 @@ def click_settings(page="page: Page"):
     page.wait_for_timeout(800)
     page.wait_for_selector(INPUT_LOGIN)
 
-def fill_address_book(Text, page="page: Page"):
+
+def click_notifications(page="page: Page"):
+    page.locator(BUTTON_OPOVESHENIA).click()
+    page.wait_for_timeout(500)
+
+
+def click_personal_info(page="page: Page"):
+    page.locator(BUTTON_PERSONAL_INFO).click()
+    page.wait_for_selector(INPUT_LOGIN)
+
+def click_employees(page="page: Page"):
+    page.locator(BUTTON_EMPLOYEES).click()
+    page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
+
+
+def click_rights(page="page: Page"):
+    page.locator(BUTTON_RIGHTS).click()
+    page.wait_for_selector('[class*="FooterButtons"]')
+
+
+def click_quota(page="page: Page"):
+    page.locator(BUTTON_QUOTAS).click()
+    page.wait_for_selector('[class="rs-table-body-info"]')
+
+def click_address_book(page="page: Page"):
     page.locator(BUTTON_ADDRESS_BOOK).click()
     page.wait_for_selector(INPUT_ADDRESS_BOOK)
+
+
+def fill_quota_time(minutes, page="page: Page"):
+    page.locator(INPUT_QUOTA_TIME).clear()
+    page.locator(INPUT_QUOTA_TIME).fill(minutes)
+
+def press_add_in_quotas(page="page: Page"):
+    page.get_by_role("button", name="Добавить", exact=True).click()
+
+def fill_address_book(Text, page="page: Page"):
     page.locator(INPUT_ADDRESS_BOOK).clear()
     page.wait_for_timeout(800)
     page.locator(INPUT_ADDRESS_BOOK).fill(Text)

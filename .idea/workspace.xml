@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="settings refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_address_book_fill_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_address_book_fill_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_can_change_rights_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_user_can_change_rights_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix sttAutoReplace test" />
     <MESSAGE value="remove feature_dev in url" />
     <MESSAGE value="delete some timeouts" />
     <MESSAGE value="add language test" />
@@ -538,6 +545,7 @@
     <MESSAGE value="add tests for changing rights" />
     <MESSAGE value="add tests for changing rights user oper" />
     <MESSAGE value="experiment" />
-    <option name="LAST_COMMIT_MESSAGE" value="experiment" />
+    <MESSAGE value="settings refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="settings refactor" />
   </component>
 </project>

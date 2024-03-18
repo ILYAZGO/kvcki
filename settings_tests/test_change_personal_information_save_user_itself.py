@@ -12,7 +12,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-1917/", timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
@@ -21,6 +21,16 @@ def test_example(page: Page) -> None:
     fill_personal_information("someName", EMAIL3, "1234567890", "someComment", "Africa/Bamako", page)
 
     press_save(page)
+
+    click_notifications(page)
+
+    click_settings(page)
+
+    expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+    expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL3)
+    expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
+    expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+    expect(page.get_by_text("Africa/Bamako")).to_be_visible()
 
     page.reload()
     page.wait_for_selector(INPUT_EMAIL)
