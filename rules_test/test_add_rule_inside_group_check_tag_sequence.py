@@ -13,7 +13,7 @@ import pytest
 def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-2013/", timeout=timeout)
 
     auth(LOGIN, PASSWORD, page)
 
@@ -33,35 +33,39 @@ def test_example(page: Page) -> None:
     expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("tag_seq", timeout=wait_until_visible) #check rule
 
     # add 2 rules for tag sequence and delete one
-    page.locator('[data-testid="addNewTagSequenceItemBtn"]').click()
+    page.locator(BUTTON_ADD_SEQUENCE).click()
 
-    page.locator('[data-testid="addNewTagSequenceItemBtn"]').click()
-    page.locator('[data-testid="TagSequenceDeleteItem"]').nth(0).click()
-    expect(page.locator('[data-testid="TagSequenceDeleteItem"]')).to_have_count(1)
+    page.locator(BUTTON_ADD_SEQUENCE).click()
+    page.locator(BUTTON_DELETE_SEQUENCE).nth(0).click()
 
-    page.locator('[data-testid="presenceOfOneOfTags"]').click()
-    page.locator('[data-testid="presenceOfOneOfTags"]').get_by_text("tag_seq", exact=True).click()
+    expect(page.locator(BUTTON_DELETE_SEQUENCE)).to_have_count(1)
+
+    page.locator(LIST_PRESENCE_ONE_OF_TAGS).click()
+    page.locator(LIST_PRESENCE_ONE_OF_TAGS).get_by_text("tag_seq", exact=True).click()
     page.locator('[class*="styles_ruleItemHeader"]').click()
 
-    page.locator('[data-testid="intervalBetweenTags"]').locator('[type="text"]').fill("1234567890")
+    page.locator(INPUT_INTERVAL_BETWEEN_TAGS).locator('[type="text"]').fill("1234567890")
 
-    page.locator('[data-testid="triggeredInAbsenceOfTags"]').click()
+    page.locator(CHECK_BOX_ABSENCE_OF_TAGS).click()
+    page.locator(CHECK_BOX_REVERSE_LOGIC).click()
 
-    page.locator('[data-testid="presenceOfOneOfTagsInSpecifiedIntervalAfter"]').click()
-    page.locator('[data-testid="presenceOfOneOfTagsInSpecifiedIntervalAfter"]').get_by_text("tag_seq", exact=True).click()
+    expect(page.locator(CHECK_BOX_ABSENCE_OF_TAGS)).to_be_checked()
+    expect(page.locator(CHECK_BOX_REVERSE_LOGIC)).to_be_checked()
+
+    page.locator(LIST_PRESENCE_ONE_OF_TAGS_IN_INTERVAL_AFTER).click()
+    page.locator(LIST_PRESENCE_ONE_OF_TAGS_IN_INTERVAL_AFTER).get_by_text("tag_seq", exact=True).click()
 
     page.get_by_role("button", name="Сохранить").click()
     page.wait_for_timeout(1000)
 
-    page.locator('[data-testid="TagSequenceDeleteItem"]').click()
+    page.locator(BUTTON_DELETE_SEQUENCE).click()
     page.reload()
-    page.wait_for_selector('[aria-label="Remove tag_seq"]', timeout=wait_until_visible)
-    page.wait_for_timeout(2000)
+    page.wait_for_selector('[data-testid="TagSequenceItem"]', timeout=wait_until_visible)
 
-    #expect(page.locator('[aria-label="Remove tag_seq"]')).to_have_count(2, timeout=wait_until_visible)
-
-    expect(page.locator('[data-testid="intervalBetweenTags"]').locator('[type="text"]')).to_have_value("1234567890")
-
+    expect(page.locator(CHECK_BOX_ABSENCE_OF_TAGS)).to_be_checked()
+    expect(page.locator(CHECK_BOX_REVERSE_LOGIC)).to_be_checked()
+    expect(page.locator(INPUT_INTERVAL_BETWEEN_TAGS).locator('[type="text"]')).to_have_value("1234567890")
+    expect(page.locator('[data-testid="TagSequenceItem"]').get_by_text("tag_seq")).to_have_count(2)
 
     delete_group_and_rule_or_dict(page)
 
