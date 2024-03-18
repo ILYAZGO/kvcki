@@ -22,13 +22,13 @@ def test_example(page: Page) -> None:
     set_notification_name("auto-test-telegram", page)
 
     #  send again when rull changed
-    page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(0).click()
+    page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0).click()
 
-    expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(0)).to_be_checked()
+    expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
 
-    page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(1).click()
+    page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1).click()
 
-    expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(1)).to_be_checked()
+    expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
 
     #  add_filter("По тегам", "22222", "1", page)
 
@@ -38,9 +38,9 @@ def test_example(page: Page) -> None:
 
     go_back_in_rule_after_save("auto-test-telegram", page)
 
-    expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(0)).to_be_checked()
-    expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]').nth(1)).to_be_checked()
-    expect(page.locator('[class*="sidebar"]').locator('[type="checkbox"]')).to_be_checked()
+    expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
+    expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+    expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
     expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
     expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-telegram")
 

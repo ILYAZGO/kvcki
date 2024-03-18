@@ -12,6 +12,8 @@ INPUT_HEADERS = '[placeholder="Можно проставить авториза�
 INPUT_URL = '[name="apiUrl"]'
 INPUT_COMMENT = '[class="styles_textarea__+sldQ"]'
 
+BLOCK_RULE_MAIN_AREA = '[class*="mainArea"]'
+BLOCK_RULES_LIST = '[class*="sidebar"]'
 BlOCK_API = '[class*="InputWithSelect_root"]'
 BLOCK_ADD_NEW_RULE = '[class*="styles_addNewRule_"]'
 

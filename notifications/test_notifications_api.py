@@ -23,10 +23,10 @@ def test_example(page: Page) -> None:
 
     set_url_and_headers("https://www.google.com/", "someHeaders", page)
 
-    #  send again when rull changed
-    page.locator('[class*="mainArea"]').locator('[type="checkbox"]').click()
+    #  send again when rule changed
+    page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').click()
 
-    expect(page.locator('[type="checkbox"]')).to_be_checked()
+    expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
 
     #  add_filter("По тегам", "22222", "0", page)  uncomment later
 
@@ -36,8 +36,8 @@ def test_example(page: Page) -> None:
 
     go_back_in_rule_after_save("auto-test-api", page)
 
-    expect(page.locator('[class*="mainArea"]').locator('[type="checkbox"]')).to_be_checked()
-    expect(page.locator('[class*="sidebar"]').locator('[type="checkbox"]')).to_be_checked()
+    expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
+    expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
     expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
     expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-api")
     expect(page.locator(INPUT_URL)).to_have_value("https://www.google.com/")

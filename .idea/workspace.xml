@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="settings add step in few tests  and refactor">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add step &#10;checkbox in teg sequence">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_tag_sequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_tag_sequence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_telegram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,7 +517,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="delete some timeouts" />
     <MESSAGE value="add language test" />
     <MESSAGE value="remove N/A test" />
     <MESSAGE value="add test for admin change login" />
@@ -538,6 +541,7 @@
     <MESSAGE value="experiment" />
     <MESSAGE value="settings refactor" />
     <MESSAGE value="settings add step in few tests  and refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="settings add step in few tests  and refactor" />
+    <MESSAGE value="add step &#10;checkbox in teg sequence" />
+    <option name="LAST_COMMIT_MESSAGE" value="add step &#10;checkbox in teg sequence" />
   </component>
 </project>

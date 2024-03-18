@@ -1,5 +1,3 @@
-from utils.variables import wait_until_visible
-
 BUTTON_POLZOVATELI = '[data-testid="userLink"]'
 BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
 BUTTON_OTMENA = '[data-testid="cancelButton"]'
@@ -11,7 +9,6 @@ BUTTON_PODTVERDIT = '[data-testid="acceptButton"]'
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_SOTRUDNIKI = '[href*="settings/employees"]'
 BUTTON_SOTRUDNIKI_UDALIT = "//button[contains(text(),'Удалить')]"
-#BUTTON_SOTRUDNIKI_KORZINA = ".styles_actions__6AFGJ"
 
 INPUT_POISK = '[name="searchString"]'
 INPUT_NAME = '[name="name"]'
@@ -40,7 +37,7 @@ FIRST_ROW_IN_USERS_LIST = '[aria-rowindex="2"]'
 def go_to_users(page="page: Page"):
     page.wait_for_selector(BUTTON_POLZOVATELI)
     page.locator(BUTTON_POLZOVATELI).click()
-    page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
+    page.wait_for_selector(FIRST_ROW_IN_USERS_LIST)
 
 def press_button_add_user(page="page: Page"):
     #page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
@@ -110,15 +107,15 @@ def set_stt(language, engine, model, page="page: Page"):
 
 
 def delete_added_user(page="page: Page"):
-    page.wait_for_timeout(300)
+    #page.wait_for_timeout(300)
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator(BUTTON_KORZINA).click()
-    page.wait_for_timeout(300)
+    #page.wait_for_timeout(300)
     page.wait_for_selector(BUTTON_PODTVERDIT)
     page.locator(BUTTON_PODTVERDIT).click()
 
 
 def press_button_add_in_modal(page="page: Page"):
     page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_selector(INPUT_LOGIN, timeout=wait_until_visible)
+    page.wait_for_selector(INPUT_LOGIN)
 
