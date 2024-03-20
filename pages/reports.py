@@ -1,3 +1,4 @@
+
 # time period
 YESTERDAY = "button[value='yesterday']"
 WEEK = "button[value='this_week']"
@@ -14,6 +15,11 @@ BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_UDALIT = '[data-testid="acceptButton"]'
 BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
 
+BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
+BUTTON_CHANGE_FILTERS = '[data-testid="report_filters_addCriterias"]'
+BUTTON_COLLAPSE_EXPAND = '[class*="ShowHideCheck_checkTitle"]'
+BUTTON_ADD_COLUMN = '[data-testid="report_rows_addColumn"]'
+
 PO_TEGAM_SECOND = ".css-19bb58m"
 PO_TEGAM_THIRD = ".css-12ol9ef"
 
@@ -24,11 +30,82 @@ INPUT_SEARCH = '[name="searchString"]'
 BUTTON_LUPA = '[type="submit"]'
 
 
+def choose_preiod_date(firstDate, lastDate, page="page: Page"):
+    page.wait_for_selector('[data-testid="reportMake"]')
+    page.locator(FIRST_DATE).click()
+    page.locator(FIRST_DATE).fill(firstDate)
+    page.wait_for_timeout(500)
+    page.locator(LAST_DATE).click()
+    page.locator(LAST_DATE).fill(lastDate)
+    page.wait_for_timeout(500)
+    page.keyboard.press("Enter")
+    page.wait_for_timeout(500)
+
+
+def press_add_column(page="page: Page"):
+    page.locator(BUTTON_ADD_COLUMN).click()
+
+
+def click_checkbox_in_tag_and_value(number, page="page: Page"):
+    page.locator(f'[data-testid="report_columns_column_{number}_tagCheckbox"]').click()
+
+def click_checkbox_in_tag_list(number, page="page: Page"):
+    page.locator(f'[data-testid="report_columns_column_{number}_tagListCheckbox"]').click()
+
+
+def press_generate_report(page="page: Page"):
+    page.locator(BUTTON_GENERATE_REPORT).click()
+    page.wait_for_selector('[data-id="0"]')
+
+
+def collapse_expand_report(page="page: Page"):
+    page.locator(BUTTON_COLLAPSE_EXPAND).click()
+
+
 def change_grouping_period(period, page="page: Page"):
     page.get_by_text("По дням", exact=True).click()
     page.get_by_text(period, exact=True).click()
+
 
 def delete_current_report(page="page: Page"):
     page.locator('[class=" css-izdlur"]').click()
     page.get_by_text("Удалить шаблон", exact=True).click()
     page.get_by_role("button", name="Удалить").click()
+
+
+def fill_column_by_tag_and_value(number, tagName, tagValue, page="page: Page"):
+
+    page.locator(f'[data-testid="report_columns_column_{number}_tagSelect"]').click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="menu"]').get_by_text(tagName, exact=True).click()
+    page.wait_for_timeout(200)
+    page.locator(f'[data-testid="report_columns_column_{number}_tagValues"]').click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="menu"]').get_by_text(tagValue, exact=True).click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+
+def fill_column_by_tag_list(number, *args, page="page: Page"):
+    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text("По списку тегов", exact=True).click()
+    page.locator(f'[data-testid="report_columns_column_{number}__tagListValues"]').click()
+    for i in args:
+        page.locator('[class*="menu"]').get_by_text(i, exact=True).click()
+    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Page"):
+    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text("Точный фильтр", exact=True).click()
+    page.locator(f'[data-testid="report_columns_column_{number}_searchInput"]').locator('[type="text"]').fill(columnName)
+    page.locator(f'[data-testid="report_columns_column_{number}_searchFilters"]').click()
+    page.wait_for_timeout(300)
+    page.locator('[class*="menu"]').get_by_text(tagName, exact=True).click()
+    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+    page.locator('[data-testid="report_columns"]').get_by_text("Все").click()
+    page.locator('[class*="menu"]').get_by_text(tagValue, exact=True).click()
+    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+def fill_column_by_communication(number, page="page: Page"):
+    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text("По количеству коммуникаций", exact=True).click()

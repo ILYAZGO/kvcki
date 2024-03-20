@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix quota.status_code">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="dont give quota">
+      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_1_column_communications.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_4_column_filter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_and_value.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_list.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_create_delete_report.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,17 +48,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/reports_test",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/reports_test" />
       <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/adminbar_tests" />
-      <recent name="$PROJECT_DIR$/dictionaries_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/left_menu_tests" />
@@ -512,7 +517,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add changed login" />
     <MESSAGE value="add timeout" />
     <MESSAGE value="increased timeouts" />
     <MESSAGE value="rerun" />
@@ -537,6 +541,7 @@
     <MESSAGE value="pytest version upgrade" />
     <MESSAGE value="delete feature-url for settings test" />
     <MESSAGE value="fix quota.status_code" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix quota.status_code" />
+    <MESSAGE value="dont give quota" />
+    <option name="LAST_COMMIT_MESSAGE" value="dont give quota" />
   </component>
 </project>
