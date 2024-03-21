@@ -8,7 +8,7 @@ import pytest
 
 @pytest.mark.reports
 def test_example(page: Page) -> None:
-    page.goto('http://192.168.10.101/feature-dev-1834/', timeout=timeout)
+    page.goto(URL, timeout=timeout)
     '''login'''
     auth(ECOTELECOM, ECOPASS, page)
     '''go to reports'''
