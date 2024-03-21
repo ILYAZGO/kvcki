@@ -109,3 +109,13 @@ def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Pag
 def fill_column_by_communication(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
     page.locator('[class*="menu"]').get_by_text("По количеству коммуникаций", exact=True).click()
+
+def fill_row_by_date(number, select, time, page="page: Page"):
+    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
+    page.locator(f'[data-testid="report_rows_row_{number}_time"]').click()
+    page.locator('[class*="menu"]').get_by_text(time, exact=True).click()
+
+def fill_row_operator_phone(number, select, page="page: Page"):
+    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
