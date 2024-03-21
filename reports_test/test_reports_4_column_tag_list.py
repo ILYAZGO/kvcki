@@ -4,7 +4,7 @@ from utils.auth import auth
 from pages.reports import *
 import pytest
 
-'''generate report with filter, 4 columns with tag list, few checkboxes and check all that possible'''
+'''generate report with filter, 4 columns with tag list, few checkboxes and check all that possible.'''
 
 @pytest.mark.reports
 def test_example(page: Page) -> None:
