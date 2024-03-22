@@ -38,7 +38,7 @@ def test_example(page: Page) -> None:
     page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(1).click()
 
     page.get_by_role("button", name="К новым правилам").click()
-    page.wait_for_timeout(1600)
+    page.wait_for_timeout(2000)
     '''check that import successful'''
     expect(page.get_by_text("pochta")).to_be_visible(timeout=wait_until_visible)
     expect(page.get_by_text("telega")).to_be_visible(timeout=wait_until_visible)

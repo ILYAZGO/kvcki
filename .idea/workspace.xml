@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add 2 tests reports">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="upgrade tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_user_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,7 +515,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests" />
     <MESSAGE value="udate docker 1.42" />
     <MESSAGE value="small refactor" />
     <MESSAGE value="small refactor integrations" />
@@ -539,6 +539,7 @@
     <MESSAGE value="delete feature-dev" />
     <MESSAGE value="." />
     <MESSAGE value="add 2 tests reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="add 2 tests reports" />
+    <MESSAGE value="upgrade tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgrade tests" />
   </component>
 </project>

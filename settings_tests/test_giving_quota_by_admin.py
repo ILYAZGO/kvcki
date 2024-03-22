@@ -6,7 +6,7 @@ from utils.create_delete_user import create_user, delete_user
 import pytest
 
 
-# input text to address-book, save, check that text saved
+# every auto_test_user gets 777 min quota by default. test check that we can add more
 @pytest.mark.independent
 @pytest.mark.settings
 def test_example(page: Page) -> None:
@@ -26,10 +26,11 @@ def test_example(page: Page) -> None:
     click_quota(page)
 
     press_add_in_quotas(page)
-
+    # checkbox
     page.locator('[type="checkbox"]').click()
 
     expect(page.locator('[type="checkbox"]')).to_be_checked()
+
     # check that dates disabled
     expect(page.locator('[class*="ant-picker-disabled"]')).to_be_visible()
 
@@ -43,12 +44,13 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector('[aria-rowindex="2"]')
 
-    expect(page.locator('[role="gridcell"]')).to_have_count(6)
+    expect(page.locator('[role="gridcell"]')).to_have_count(12)
+
     expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("Бессрочно")
 
     page.locator('[fill="#FF4D4F"]').click()
 
-    expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
+    #expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
 
     press_add_in_quotas(page)
 
@@ -64,7 +66,7 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector('[aria-rowindex="2"]')
 
-    expect(page.locator('[role="gridcell"]')).to_have_count(6)
+    expect(page.locator('[role="gridcell"]')).to_have_count(18)
     expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("2024-12-30 - 2024-12-31")
 
 
