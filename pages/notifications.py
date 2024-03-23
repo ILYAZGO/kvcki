@@ -69,9 +69,10 @@ def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator('[class*="sidebar"]').locator('[type="checkbox"]').first.click()
     page.locator(BUTTON_KORZINA).first.click()
+    page.wait_for_timeout(500)
     #  confirm deleting
     page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(800)
 
 def choose_block(blockNumber, page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
