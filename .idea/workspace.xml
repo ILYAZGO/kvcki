@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix failed test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/gpt.py" afterDir="false" />
@@ -527,7 +527,6 @@
     <MESSAGE value="settings refactor" />
     <MESSAGE value="settings add step in few tests  and refactor" />
     <MESSAGE value="add step &#10;checkbox in teg sequence" />
-    <MESSAGE value="refactor" />
     <MESSAGE value="pytest version upgrade" />
     <MESSAGE value="delete feature-url for settings test" />
     <MESSAGE value="fix quota.status_code" />
@@ -539,6 +538,7 @@
     <MESSAGE value="upgrade tests" />
     <MESSAGE value="add quota to user" />
     <MESSAGE value="fix failed test" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix failed test" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
 </project>

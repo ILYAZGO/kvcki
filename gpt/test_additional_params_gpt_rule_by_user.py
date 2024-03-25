@@ -44,7 +44,7 @@ def test_example(page: Page) -> None:
 
     # work with params
     page.locator('[name="yandex_gpt"]').click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(400)
     page.get_by_role("button", name="Добавить настройки").click()
     page.wait_for_timeout(500)
     page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(1).click()
