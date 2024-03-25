@@ -18,9 +18,11 @@ def go_to_gpt(page="page: Page"):
     page.wait_for_selector(BUTTON_GPT)
     page.locator(BUTTON_GPT).click()
     page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]')
+    page.wait_for_timeout(500)
 
 def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
+    page.wait_for_timeout(300)
     page.wait_for_selector(INPUT_GPT_RULE_NAME)
     page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
     page.wait_for_timeout(300)
@@ -36,7 +38,7 @@ def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
 # create group with 2 tags with 2 questions inside
 def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
-    page.wait_for_selector(INPUT_GPT_RULE_NAME)
+    page.wait_for_timeout(300)
     page.wait_for_selector(INPUT_GPT_RULE_NAME)
     page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
     page.wait_for_timeout(300)

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests4">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/gpt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor notifications tests" />
     <MESSAGE value="add tests for changing rights" />
     <MESSAGE value="add tests for changing rights user oper" />
     <MESSAGE value="experiment" />
@@ -538,6 +536,7 @@
     <MESSAGE value="fix tests2" />
     <MESSAGE value="fix tests3" />
     <MESSAGE value="fix tests4" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests4" />
+    <MESSAGE value="fix tests5" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix tests5" />
   </component>
 </project>
