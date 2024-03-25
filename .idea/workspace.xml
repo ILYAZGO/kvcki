@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor2">
-      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_4_row_tag_and_value.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add reports test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/gpt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -515,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-sv removed to pytest ini" />
     <MESSAGE value="add test set tag block" />
     <MESSAGE value="fix test" />
     <MESSAGE value="add test api method notification" />
@@ -540,6 +536,7 @@
     <MESSAGE value="fix failed test" />
     <MESSAGE value="refactor" />
     <MESSAGE value="refactor2" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor2" />
+    <MESSAGE value="add reports test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add reports test" />
   </component>
 </project>

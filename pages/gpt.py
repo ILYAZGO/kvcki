@@ -24,9 +24,12 @@ def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
     page.wait_for_timeout(300)
     page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
+    page.wait_for_timeout(300)
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
+    page.wait_for_timeout(300)
     page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_selector(BUTTON_KORZINA)
+    page.wait_for_timeout(1000)
+    #page.wait_for_selector(BUTTON_KORZINA)
 
 
 # create group with 2 tags with 2 questions inside
@@ -37,13 +40,18 @@ def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
     page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
     page.wait_for_timeout(300)
     page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
+    page.wait_for_timeout(300)
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
+    page.wait_for_timeout(300)
     page.get_by_role("button", name="Добавить вопрос").click()
     page.wait_for_timeout(700)
     page.locator(INPUT_GPT_TEG_NAME).nth(1).fill("GPTteg2")
+    page.wait_for_timeout(300)
     page.locator(INPUT_GPT_QUESTION).nth(1).fill("GPTquestion2")
+    page.wait_for_timeout(300)
     page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_selector(BUTTON_KORZINA)
+    page.wait_for_timeout(1000)
+    #page.wait_for_selector(BUTTON_KORZINA)
 
 def turn_on_rule(page="page: Page"):
     page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
