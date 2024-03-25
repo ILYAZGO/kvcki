@@ -15,6 +15,7 @@ INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопр
 def go_to_gpt(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_selector(BUTTON_GPT)
     page.locator(BUTTON_GPT).click()
     page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]')
 
@@ -28,7 +29,7 @@ def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
     page.wait_for_timeout(300)
     page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_timeout(1300)
+    page.wait_for_timeout(1000)
     #page.wait_for_selector(BUTTON_KORZINA)
 
 
