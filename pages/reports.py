@@ -19,6 +19,7 @@ BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
 BUTTON_CHANGE_FILTERS = '[data-testid="report_filters_addCriterias"]'
 BUTTON_COLLAPSE_EXPAND = '[class*="ShowHideCheck_checkTitle"]'
 BUTTON_ADD_COLUMN = '[data-testid="report_rows_addColumn"]'
+BUTTON_ADD_ROW = '[data-testid="report_rows_addRow"]'
 
 PO_TEGAM_SECOND = ".css-19bb58m"
 PO_TEGAM_THIRD = ".css-12ol9ef"
@@ -44,6 +45,10 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
 
 def press_add_column(page="page: Page"):
     page.locator(BUTTON_ADD_COLUMN).click()
+
+def press_add_row(page="page: Page"):
+    page.locator(BUTTON_ADD_ROW).click()
+
 
 
 def click_checkbox_in_tag_and_value(number, page="page: Page"):
@@ -119,3 +124,21 @@ def fill_row_by_date(number, select, time, page="page: Page"):
 def fill_row_operator_phone(number, select, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
     page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
+
+
+def fill_row_by_tag_and_value(number, select, tagName, tagValue, page="page: Page"):
+    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
+    page.wait_for_timeout(200)
+    page.locator(f'[data-testid="report_rows_row_{number}_tagSelect"]').click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="menu"]').get_by_text(tagName, exact=True).click()
+    page.wait_for_timeout(200)
+    page.locator(f'[data-testid="report_rows_row_{number}_tagValues"]').click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="menu"]').get_by_text(tagValue, exact=True).click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+def click_checkbox_row_in_tag_and_value(number, page="page: Page"):
+    page.locator(f'[data-testid="report_rows_row_{number}_tagCheckbox"]').click()

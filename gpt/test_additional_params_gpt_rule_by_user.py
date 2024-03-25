@@ -12,19 +12,19 @@ def test_example(page: Page) -> None:
     USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     page.goto(URL, timeout=timeout)
-    '''login'''
+
     auth(LOGIN, PASSWORD, page)
 
     go_to_gpt(page)
 
     create_gpt_rule_with_one("addParams", page)
 
-    expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
+    expect(page.locator('[class*="FooterButtons"]').locator('[tabindex="-1"]')).to_have_count(2)  # check that buttons save and cancel disabled
 
     # add params
     page.get_by_role("button", name="Добавить настройки").click()
-    page.wait_for_timeout(500)
-
+    page.wait_for_selector('[class=" css-woue3h-menu"]')
+    # click for all parameters
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(0).click()
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(1).click()
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(2).click()
@@ -33,7 +33,7 @@ def test_example(page: Page) -> None:
 
     # tupo click
     page.locator('[value="gpt"]').click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(300)
 
     expect(page.get_by_text("Движок")).to_have_count(1)
     expect(page.get_by_text("Модель")).to_have_count(1)
@@ -53,15 +53,16 @@ def test_example(page: Page) -> None:
 
 
     page.locator(BUTTON_GPT_SAVE).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(600)
 
     turn_on_rule(page)
 
     # tupo click
     page.locator('[value="gpt"]').click()
-    page.wait_for_timeout(600)
+    page.wait_for_timeout(500)
     page.locator(BUTTON_KORZINA).click()
-    page.wait_for_timeout(600)
+    page.wait_for_timeout(500)
 
+    expect(page.locator('[class*="styles_dpBothBox_"]').get_by_text("addParams")).not_to_be_visible()
 
     delete_user(API_URL, TOKEN, USER_ID)
