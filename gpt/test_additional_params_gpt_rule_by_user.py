@@ -18,8 +18,8 @@ def test_example(page: Page) -> None:
     go_to_gpt(page)
 
     create_gpt_rule_with_one("addParams", page)
-
-    #expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
+    page.wait_for_timeout(2500)
+    expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
 
     # add params
     page.get_by_role("button", name="Добавить настройки").click()
