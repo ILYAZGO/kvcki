@@ -37,7 +37,7 @@ def test_example(page: Page) -> None:
     fill_quota_time("100", page)
 
     press_add_in_quotas(page)
-
+    #wait
     page.wait_for_selector('[aria-rowindex="2"]')
 
     page.reload()
@@ -49,6 +49,10 @@ def test_example(page: Page) -> None:
     expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("Бессрочно")
 
     page.locator('[fill="#FF4D4F"]').click()
+
+    page.wait_for_timeout(500)
+
+    expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible()
 
     #expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
 
@@ -68,6 +72,11 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[role="gridcell"]')).to_have_count(18)
     expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("2024-12-30 - 2024-12-31")
+    page.locator('[fill="#FF4D4F"]').click()
+
+    page.wait_for_timeout(500)
+
+    expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible()
 
 
     # delete admin

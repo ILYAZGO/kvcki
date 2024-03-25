@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="upgrade tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix failed test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/test_notifications_import_rules_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/gpt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_user_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -515,8 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="udate docker 1.42" />
-    <MESSAGE value="small refactor" />
     <MESSAGE value="small refactor integrations" />
     <MESSAGE value="-sv removed to pytest ini" />
     <MESSAGE value="add test set tag block" />
@@ -540,6 +537,8 @@
     <MESSAGE value="." />
     <MESSAGE value="add 2 tests reports" />
     <MESSAGE value="upgrade tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="upgrade tests" />
+    <MESSAGE value="add quota to user" />
+    <MESSAGE value="fix failed test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix failed test" />
   </component>
 </project>

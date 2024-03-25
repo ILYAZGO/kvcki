@@ -49,4 +49,4 @@ def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
 
 def turn_on_rule(page="page: Page"):
     page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
-    page.wait_for_timeout(1400)
+    page.wait_for_timeout(1200)

@@ -32,8 +32,8 @@ def test_example(page: Page) -> None:
     page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(4).click()
 
     # tupo click
-    page.locator('[class="styles_title__s3M9y undefined"]').nth(0).click()
-    page.wait_for_timeout(500)
+    page.locator('[value="gpt"]').click()
+    page.wait_for_timeout(400)
 
     expect(page.get_by_text("Движок")).to_have_count(1)
     expect(page.get_by_text("Модель")).to_have_count(1)
@@ -43,8 +43,12 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("Presence Penalty")).to_have_count(1)
 
     # work with params
-    page.locator('[name="yandex_gpt_v1"]').click()
-    #page.locator('[name="general"]').click()
+    page.locator('[name="yandex_gpt"]').click()
+    page.wait_for_timeout(500)
+    page.get_by_role("button", name="Добавить настройки").click()
+    page.wait_for_timeout(500)
+    page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(1).click()
+    page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(2).click()
     page.locator('[placeholder="..."]').fill("SomeText")
 
 
@@ -54,10 +58,10 @@ def test_example(page: Page) -> None:
     turn_on_rule(page)
 
     # tupo click
-    page.locator('[class="styles_title__s3M9y undefined"]').nth(0).click()
-    page.wait_for_timeout(1000)
+    page.locator('[value="gpt"]').click()
+    page.wait_for_timeout(600)
     page.locator(BUTTON_KORZINA).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(600)
 
 
     delete_user(API_URL, TOKEN, USER_ID)
