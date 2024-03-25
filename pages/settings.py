@@ -60,8 +60,8 @@ def click_rights(page="page: Page"):
 
 def click_quota(page="page: Page"):
     page.locator(BUTTON_QUOTAS).click()
-    page.wait_for_timeout(800)
-    page.wait_for_selector('[class="rs-table-body-info"]')
+    page.wait_for_timeout(500)
+    page.wait_for_selector('[aria-colcount="6"]')
 
 def click_address_book(page="page: Page"):
     page.locator(BUTTON_ADDRESS_BOOK).click()

@@ -19,7 +19,7 @@ def test_example(page: Page) -> None:
 
     create_gpt_rule_with_one("addParams", page)
 
-    expect(page.locator('[class*="FooterButtons"]').locator('[tabindex="-1"]')).to_have_count(2)  # check that buttons save and cancel disabled
+    expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
 
     # add params
     page.get_by_role("button", name="Добавить настройки").click()
