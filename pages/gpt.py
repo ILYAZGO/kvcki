@@ -28,7 +28,7 @@ def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
     page.wait_for_timeout(300)
     page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(1300)
     #page.wait_for_selector(BUTTON_KORZINA)
 
 
