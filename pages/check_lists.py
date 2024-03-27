@@ -10,7 +10,7 @@ INPUT_THIRD_ANSWER = '[name="questions.1.answers.0.answer"]'
 INPUT_FIRST_POINTS = '[name="questions.0.answers.0.point"]'
 INPUT_SECOND_POINTS = '[name="questions.0.answers.1.point"]'
 INPUT_THIRD_POINTS = '[name="questions.1.answers.0.point"]'
-INPUT_LEFT_CHECK_LIST_NAME = "[value='654321']"
+INPUT_LEFT_CHECK_LIST_NAME = '[class*="styles_input_"]'
 
 # buttons
 BUTTON_RAZMETKA = '[value="tags"]'

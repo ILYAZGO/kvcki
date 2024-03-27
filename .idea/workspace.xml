@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests6">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change locator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_check_old_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_check_old_check_list.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_rename_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_rename_delete_check_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -515,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests for changing rights user oper" />
     <MESSAGE value="experiment" />
     <MESSAGE value="settings refactor" />
     <MESSAGE value="settings add step in few tests  and refactor" />
@@ -540,6 +536,7 @@
     <MESSAGE value="fix tests4" />
     <MESSAGE value="fix tests5" />
     <MESSAGE value="fix tests6" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests6" />
+    <MESSAGE value="change locator" />
+    <option name="LAST_COMMIT_MESSAGE" value="change locator" />
   </component>
 </project>
