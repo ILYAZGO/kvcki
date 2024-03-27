@@ -25,6 +25,7 @@ def test_example(page: Page) -> None:
     page.locator(TUPO_CLICK).click()
     page.locator('[autocorrect=off]').nth(0).fill("чеклист")
     page.get_by_text("Второй чеклист (тоже нужен для автотестов, не трогать)", exact=True).click()
+    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
     # 0
     fill_column_by_tag_and_value("0", "direction", "outgoing", page)

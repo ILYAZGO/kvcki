@@ -79,7 +79,9 @@ def delete_current_report(page="page: Page"):
 
 
 def fill_column_by_tag_and_value(number, tagName, tagValue, page="page: Page"):
-
+    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text("Тегу и значениям", exact=True).click()
+    page.wait_for_timeout(200)
     page.locator(f'[data-testid="report_columns_column_{number}_tagSelect"]').click()
     page.wait_for_timeout(200)
     page.locator('[class*="menu"]').get_by_text(tagName, exact=True).click()
