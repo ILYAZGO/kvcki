@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change locator">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change locator2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_rename_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/test_create_rename_delete_check_list.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -512,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="experiment" />
     <MESSAGE value="settings refactor" />
     <MESSAGE value="settings add step in few tests  and refactor" />
     <MESSAGE value="add step &#10;checkbox in teg sequence" />
@@ -537,6 +535,7 @@
     <MESSAGE value="fix tests5" />
     <MESSAGE value="fix tests6" />
     <MESSAGE value="change locator" />
-    <option name="LAST_COMMIT_MESSAGE" value="change locator" />
+    <MESSAGE value="change locator2" />
+    <option name="LAST_COMMIT_MESSAGE" value="change locator2" />
   </component>
 </project>
