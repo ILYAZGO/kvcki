@@ -5,7 +5,7 @@ from datetime import datetime
 #LIST OF URLS
 URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
-
+URL2 = "http://192.168.10.101/feature-dev-2100/"
 # LIST OF TIMEOUTS
 
 timeout = 55000
@@ -29,11 +29,6 @@ PASSWORD_NEGOTIVE = "Qaz123ws"
 # LIST OF USERS FOR IMPORT
 # FROM_USER_IMPORT = "importFrom"
 # TO_USER_IMPORT = "importTo"
-
-# CRED FOR REGISTRATIONS
-REGISTRATION_NAME = "John Coltrane"
-REGISTRATION_EMAIL = "ilyasmustafin@imot.io"
-REGISTRATION_PHONE = "9169540252"
 
 # LIST OF ROLES
 

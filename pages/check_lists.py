@@ -1,6 +1,5 @@
 #  all for check-lists
 
-'''locators for check-lists'''
 # inputs
 INPUT_CHECK_LIST_NAME = "[name='title']"
 INPUT_FIRST_QUESTION = "[name='questions.0.title']"
@@ -11,7 +10,7 @@ INPUT_THIRD_ANSWER = '[name="questions.1.answers.0.answer"]'
 INPUT_FIRST_POINTS = '[name="questions.0.answers.0.point"]'
 INPUT_SECOND_POINTS = '[name="questions.0.answers.1.point"]'
 INPUT_THIRD_POINTS = '[name="questions.1.answers.0.point"]'
-INPUT_LEFT_CHECK_LIST_NAME = "//input[@value='12345']"
+INPUT_LEFT_CHECK_LIST_NAME = "[value='654321']"
 
 # buttons
 BUTTON_RAZMETKA = '[value="tags"]'
@@ -20,7 +19,7 @@ BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'
 BUTTON_SAVE = ".MuiButton-contained"
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
-BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
+BUTTON_SAVE_EDITED_NAME = '[class*="checkButton"]'
 
 # other
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'

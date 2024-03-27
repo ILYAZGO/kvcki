@@ -33,9 +33,11 @@ def test_example(page: Page) -> None:
     '''rename from left list'''
     page.wait_for_selector(BUTTON_PENCIL)
     page.locator(BUTTON_PENCIL).click()
-    page.locator(INPUT_LEFT_CHECK_LIST_NAME).fill("98765")
-    page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(500)
+    page.locator('[class*="styles_titleBlock"]').locator(INPUT_LEFT_CHECK_LIST_NAME).fill("98765")
+    page.wait_for_timeout(500)
+    page.locator(BUTTON_SAVE_EDITED_NAME).click()
+    page.wait_for_timeout(500)
 
     expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 

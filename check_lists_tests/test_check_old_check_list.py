@@ -19,5 +19,5 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector(INPUT_CHECK_LIST_NAME)
 
-    expect(page.locator('[class*=CheckListAppraisers_title]')).to_be_visible()
+    expect(page.locator('[name="appraisers.0.title"]')).to_be_visible()
 
