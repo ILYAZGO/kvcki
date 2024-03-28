@@ -16,6 +16,8 @@ BUTTON_UDALIT = '[data-testid="acceptButton"]'
 BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
 
 BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
+BUTTON_SAVE_AS_NEW = '[data-testid="reportNewSave"]'
+BUTTON_REPORT_UPDATE = '[data-testid="reportUpdate"]'
 BUTTON_CHANGE_FILTERS = '[data-testid="report_filters_addCriterias"]'
 BUTTON_COLLAPSE_EXPAND = '[class*="ShowHideCheck_checkTitle"]'
 BUTTON_ADD_COLUMN = '[data-testid="report_rows_addColumn"]'
@@ -61,6 +63,14 @@ def click_checkbox_in_tag_list(number, page="page: Page"):
 def press_generate_report(page="page: Page"):
     page.locator(BUTTON_GENERATE_REPORT).click()
     page.wait_for_selector('[data-id="0"]')
+
+def press_save_as_new(page="page: Page"):
+    page.locator(BUTTON_SAVE_AS_NEW).click()
+    page.wait_for_selector('[class="modal-btns"]')
+
+def press_save_current(page="page: Page"):
+    page.locator(BUTTON_REPORT_UPDATE).click()
+    page.wait_for_selector('[class="modal-btns"]')
 
 
 def collapse_expand_report(page="page: Page"):
