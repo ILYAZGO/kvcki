@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change locator3">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change locator4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_column_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_1_column_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_operator_phone.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_1_row_operator_phone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_time_4_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_1_row_time_4_values.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_4_column_filter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_and_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_row_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_4_row_tag_and_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_management_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_management_check_search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -522,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="settings add step in few tests  and refactor" />
     <MESSAGE value="add step &#10;checkbox in teg sequence" />
     <MESSAGE value="pytest version upgrade" />
     <MESSAGE value="delete feature-url for settings test" />
@@ -547,6 +538,7 @@
     <MESSAGE value="change locator" />
     <MESSAGE value="change locator2" />
     <MESSAGE value="change locator3" />
-    <option name="LAST_COMMIT_MESSAGE" value="change locator3" />
+    <MESSAGE value="change locator4" />
+    <option name="LAST_COMMIT_MESSAGE" value="change locator4" />
   </component>
 </project>
