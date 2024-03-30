@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(INPUT_PO_TEGAM)
     '''input tag'''
     page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
-    page.wait_for_timeout(3000)
+    page.wait_for_timeout(2500)
     page.get_by_text("Другой отдел", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
@@ -30,7 +30,7 @@ def test_example(page: Page) -> None:
 
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
-    page.wait_for_timeout(3000)
+    page.wait_for_timeout(2500)
     page.get_by_text("Обсуждение тарифа", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
@@ -48,7 +48,7 @@ def test_example(page: Page) -> None:
     '''add tag'''
     page.wait_for_selector(INPUT_PO_TEGAM_NEW)
     page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
-    page.wait_for_timeout(3000)
+    page.wait_for_timeout(2500)
     page.get_by_text("Новое подключение", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 

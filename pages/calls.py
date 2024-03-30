@@ -11,15 +11,15 @@ FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
 
 # inputs
-INPUT_PO_TEGAM = "#react-select-12-input"
+INPUT_PO_TEGAM = "#react-select-15-input"
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
-INPUT_VREMYA_ZVONKA = "#react-select-10-input"
-INPUT_DLITELNOST_ZVONKA = "#react-select-9-input"
-INPUT_NOMER_CLIENTA = "#react-select-5-input"
-INPUT_NOMER_SOTRUDNIKA = "#react-select-7-input"
-INPUT_SLOVAR_ILI_TEXT_CLIENT = "#react-select-6-input"
-INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = "#react-select-8-input"
-INPUT_ID = "#react-select-11-input"
+INPUT_VREMYA_ZVONKA = "#react-select-13-input"
+INPUT_DLITELNOST_ZVONKA = "#react-select-12-input"
+INPUT_NOMER_CLIENTA = "#react-select-8-input"
+INPUT_NOMER_SOTRUDNIKA = "#react-select-10-input"
+INPUT_SLOVAR_ILI_TEXT_CLIENT = "#react-select-9-input"
+INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = "#react-select-11-input"
+INPUT_ID = "#react-select-14-input"
 # buttons
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
