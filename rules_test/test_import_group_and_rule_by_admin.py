@@ -21,7 +21,7 @@ def test_example(page: Page) -> None:
     # create user for import
     USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto(URL, timeout=timeout)
+    page.goto("http://192.168.10.101/feature-dev-2134/", timeout=timeout)
 
     auth(LOGIN_ADMIN, PASSWORD, page)
 
@@ -40,7 +40,16 @@ def test_example(page: Page) -> None:
     page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').fill("importFrom")
     page.wait_for_timeout(1000)
     page.get_by_text("importFrom", exact=True).click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(1000)
+
+    page.wait_for_selector('[data-testid="markup_tags_importSearch}"]')
+
+    expect(page.locator('[data-testid="markup_importNav_tags"]')).to_be_visible()
+    expect(page.locator('[data-testid="markup_importNav_dicts"]')).to_be_visible()
+    expect(page.locator('[data-testid="markup_tags_importSearch}"]')).to_be_visible()
+    expect(page.locator('[data-testid="markup_importNav_gpt"]')).not_to_be_visible()
+
+
     '''click to switch button to import group with rule'''
     page.locator("(//input[@type='checkbox'])[3]").click()
     page.wait_for_timeout(1000)
