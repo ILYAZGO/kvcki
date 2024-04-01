@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test reports">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update selectors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dates.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -512,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="delete feature-url for settings test" />
     <MESSAGE value="fix quota.status_code" />
     <MESSAGE value="dont give quota" />
     <MESSAGE value="add tests for columns" />
@@ -537,6 +537,7 @@
     <MESSAGE value="change locator4" />
     <MESSAGE value="check" />
     <MESSAGE value="add test reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test reports" />
+    <MESSAGE value="update selectors" />
+    <option name="LAST_COMMIT_MESSAGE" value="update selectors" />
   </component>
 </project>
