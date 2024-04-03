@@ -61,7 +61,7 @@ def create_rule(ruleName, page="page: Page"):
     page.locator(BUTTON_DOBAVIT_TEG).click()
     page.wait_for_selector(INPUT_NAZVANIE_TEGA)
     page.locator(INPUT_NAZVANIE_TEGA).type(ruleName)
-    #page.locator('[role="dialog"]').locator('[type="submit"]').click()
+    #page.get_by_role("button", name="Отправить").click()
     page.keyboard.press('Enter')  # kostil'
     page.wait_for_timeout(1300)
     page.get_by_role("button", name="Сохранить").click()

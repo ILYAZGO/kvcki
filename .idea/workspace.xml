@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fuck dates">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="https://task.imot.io/browse/DEV-2134">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -512,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dont give quota" />
     <MESSAGE value="add tests for columns" />
     <MESSAGE value="delete feature-dev" />
     <MESSAGE value="." />
@@ -537,6 +537,7 @@
     <MESSAGE value="add test reports" />
     <MESSAGE value="update selectors" />
     <MESSAGE value="fuck dates" />
-    <option name="LAST_COMMIT_MESSAGE" value="fuck dates" />
+    <MESSAGE value="https://task.imot.io/browse/DEV-2134" />
+    <option name="LAST_COMMIT_MESSAGE" value="https://task.imot.io/browse/DEV-2134" />
   </component>
 </project>

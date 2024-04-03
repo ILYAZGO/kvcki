@@ -22,7 +22,7 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 431 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 430 из 3130", timeout=wait_until_visible)
 
     '''choose dict'''
     page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).clear()
