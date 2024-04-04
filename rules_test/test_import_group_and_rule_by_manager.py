@@ -23,7 +23,7 @@ def test_example(page: Page) -> None:
     # give manager user for import
     give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
-    page.goto("http://192.168.10.101/feature-dev-2134/", timeout=timeout)
+    page.goto(URL, timeout=timeout)
 
     auth(LOGIN_MANAGER, PASSWORD, page)
 

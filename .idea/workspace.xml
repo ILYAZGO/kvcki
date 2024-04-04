@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="https://task.imot.io/browse/DEV-2134">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -520,7 +522,6 @@
     <MESSAGE value="upgrade tests" />
     <MESSAGE value="add quota to user" />
     <MESSAGE value="fix failed test" />
-    <MESSAGE value="refactor" />
     <MESSAGE value="refactor2" />
     <MESSAGE value="add reports test" />
     <MESSAGE value="fix tests" />
@@ -538,6 +539,7 @@
     <MESSAGE value="update selectors" />
     <MESSAGE value="fuck dates" />
     <MESSAGE value="https://task.imot.io/browse/DEV-2134" />
-    <option name="LAST_COMMIT_MESSAGE" value="https://task.imot.io/browse/DEV-2134" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
 </project>

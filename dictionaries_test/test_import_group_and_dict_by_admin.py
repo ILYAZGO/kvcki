@@ -21,7 +21,7 @@ def test_example(page: Page) -> None:
     # create user for import
     USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    page.goto("http://192.168.10.101/feature-dev-2134/", timeout=timeout)
+    page.goto(URL, timeout=timeout)
 
     auth(LOGIN_ADMIN, PASSWORD, page)
 

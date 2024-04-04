@@ -57,7 +57,7 @@ def test_example(page: Page) -> None:
 
     press_generate_report(page)
 
-    expect(page.locator('[aria-label="6 Неделя, 2022"]')).to_be_visible()
+    expect(page.locator('[aria-label="6 неделя, 2022"]')).to_be_visible()
     expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
     expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
