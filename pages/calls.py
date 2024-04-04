@@ -52,6 +52,7 @@ def choose_filter_value(filterValue, page="page: Page"):
 
 def press_find_communications(page="page: Page"):
     page.get_by_role("button", name="Найти коммуникации").click()
+    page.wait_for_timeout(300)
     page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
 
 
@@ -69,7 +70,7 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.locator(LAST_DATE).fill(lastDate)
     page.wait_for_timeout(300)
     page.keyboard.press("Enter")
-
+    page.wait_for_timeout(300)
 
 def remove_filter_value(filterValue, page="page: Page"):
     page.locator(f'[aria-label="Remove {filterValue}"]').click()

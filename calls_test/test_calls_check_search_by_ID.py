@@ -14,8 +14,9 @@ def test_example(page: Page) -> None:
 
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
-    '''fill exact time'''
+    '''fill exact id'''
     page.locator(INPUT_ID).fill("1644474236.14425")
+    page.wait_for_timeout(500)
 
     press_find_communications(page)
 

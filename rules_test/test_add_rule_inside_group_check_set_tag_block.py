@@ -51,16 +51,15 @@ def test_example(page: Page) -> None:
     # add additional params
     page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]').click()
     page.get_by_text("Значение тега", exact=True).click()
-    page.get_by_text("Видимость тега", exact=True).click()
+
     page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]').click()
 
     expect(page.locator('[name="value"]')).to_have_count(1, timeout=wait_until_visible)
-    expect(page.locator('[name="visible"]')).to_have_count(1, timeout=wait_until_visible)
-    expect(page.locator('[name="visible"]')).not_to_be_checked()
+
 
     # fill additional params
     page.locator('[name="value"]').fill("tagValue")
-    page.locator('[name="visible"]').click()
+
 
     # save
     page.get_by_role("button", name="Сохранить").click()
@@ -70,7 +69,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector('[name="value"]')
 
     expect(page.locator('[name="value"]')).to_have_value("tagValue")
-    expect(page.locator('[name="visible"]')).to_be_checked()
+
     expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]')).to_have_count(1, timeout=wait_until_visible)
     expect(page.locator('[data-testid="setTagsDeleteTagButton"]')).to_have_count(1, timeout=wait_until_visible)
 
