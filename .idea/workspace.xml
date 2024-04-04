@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_set_tag_block.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_set_tag_block.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -515,7 +515,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests for columns" />
     <MESSAGE value="delete feature-dev" />
     <MESSAGE value="." />
     <MESSAGE value="add 2 tests reports" />
@@ -540,6 +539,7 @@
     <MESSAGE value="fuck dates" />
     <MESSAGE value="https://task.imot.io/browse/DEV-2134" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="fix test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix test" />
   </component>
 </project>
