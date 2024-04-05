@@ -32,6 +32,8 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
     expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
     expect(page.get_by_text("Africa/Bamako")).to_be_visible()
+    expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+    expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     page.reload()
     page.wait_for_selector(INPUT_EMAIL)
@@ -43,6 +45,8 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
     expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
     expect(page.get_by_text("Africa/Bamako")).to_be_visible()
+    expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+    expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     delete_user(API_URL, TOKEN, USER_ID)
 

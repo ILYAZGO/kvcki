@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test3">
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings_tests/test_manager_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_set_tag_block.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_set_tag_block.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dates.executor&quot;: &quot;Run&quot;,
-    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/reports_test&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.pytest for test_usedesk.test_example.executor": "Run",
+    "Python.dates.executor": "Run",
+    "Python.erer.executor": "Run",
+    "Python.variables.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/reports_test" />
       <recent name="$PROJECT_DIR$/settings_tests" />
+      <recent name="$PROJECT_DIR$/reports_test" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/adminbar_tests" />
@@ -515,8 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="delete feature-dev" />
-    <MESSAGE value="." />
     <MESSAGE value="add 2 tests reports" />
     <MESSAGE value="upgrade tests" />
     <MESSAGE value="add quota to user" />
@@ -540,6 +546,8 @@
     <MESSAGE value="https://task.imot.io/browse/DEV-2134" />
     <MESSAGE value="refactor" />
     <MESSAGE value="fix test" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix test" />
+    <MESSAGE value="fix test2" />
+    <MESSAGE value="fix test3" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix test3" />
   </component>
 </project>

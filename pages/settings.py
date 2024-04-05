@@ -31,6 +31,8 @@ INPUT_COMMENT = '[name="comment"]'
 INPUT_NEW_PASSWORD = '[name="newPassword"]'
 INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
+SELECT_PARTNER = '[data-testid="selectPartner"]'
+SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 
 def click_settings(page="page: Page"):
     page.wait_for_selector(BUTTON_NASTROIKI)
@@ -109,6 +111,14 @@ def fill_personal_information(name, email, phone, comment , timezone, page="page
     page.locator('[data-testid="selectTimezone"]').locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
     page.wait_for_timeout(1000)
+
+
+def change_industry(industry, page="page: Page"):
+    page.locator(SELECT_INDUSTRY).click()
+    page.locator('[class*="menu"]').get_by_text(industry, exact=True).click()
+def change_partner(partner, page="page: Page"):
+    page.locator(SELECT_PARTNER).click()
+    page.locator('[class*="menu"]').get_by_text(partner, exact=True).click()
 
 
 def go_to_user(name, page="page: Page"):

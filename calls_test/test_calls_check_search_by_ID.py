@@ -16,7 +16,6 @@ def test_example(page: Page) -> None:
 
     '''fill exact id'''
     page.locator(INPUT_ID).fill("1644474236.14425")
-    page.wait_for_timeout(500)
 
     press_find_communications(page)
 

@@ -16,7 +16,6 @@ def test_example(page: Page) -> None:
 
     '''fill exact time'''
     page.locator(INPUT_VREMYA_ZVONKA).fill("11:42")
-    page.wait_for_timeout(500)
 
     press_find_communications(page)
 

@@ -26,6 +26,8 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_NAME)).to_be_disabled()
     expect(page.locator(INPUT_NEW_PASSWORD)).to_be_disabled()
     expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_disabled()
+    expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+    expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     expect(page.locator('[class*="typography--variant-body2"]')).to_contain_text("Редактировать персональную информацию может только администратор")
 
