@@ -47,6 +47,9 @@ def test_example(page: Page) -> None:
     expect(page.locator(SELECT_ROLE)).to_have_text("Компания", timeout=wait_until_visible)
     expect(page.locator(SELECT_INDUSTRY)).to_have_text("Недвижимость", timeout=wait_until_visible)
     expect(page.locator(SELECT_PARTNER)).to_have_text("managerIM", timeout=wait_until_visible)
+    expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+    expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
+    expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     delete_added_user(page)
 

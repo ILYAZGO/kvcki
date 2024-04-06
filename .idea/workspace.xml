@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="before release">
-      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_1_row_without_grouping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor +add test">
+      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_admin_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_manager_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -518,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add quota to user" />
     <MESSAGE value="fix failed test" />
     <MESSAGE value="refactor2" />
     <MESSAGE value="add reports test" />
@@ -543,6 +540,7 @@
     <MESSAGE value="fix test3" />
     <MESSAGE value="added tests" />
     <MESSAGE value="before release" />
-    <option name="LAST_COMMIT_MESSAGE" value="before release" />
+    <MESSAGE value="refactor +add test" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor +add test" />
   </component>
 </project>

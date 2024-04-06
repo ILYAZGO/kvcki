@@ -35,6 +35,9 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2, timeout=wait_until_visible)
     expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
     expect(page.locator(SELECT_ROLE)).to_have_text("Интегратор", timeout=wait_until_visible)
+    expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+    expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
+    expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     delete_added_user(page)
 

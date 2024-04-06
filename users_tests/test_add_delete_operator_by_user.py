@@ -36,6 +36,9 @@ def test_example(page: Page) -> None:
     #expect(page.locator(INPUT_PHONE)).to_have_value(EMAIL1, timeout=wait_until_visible)  open after https://task.imot.io/browse/DEV-1982
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2, timeout=wait_until_visible)
     expect(page.locator(INPUT_COMMENT)).to_have_text(EMAIL3, timeout=wait_until_visible)
+    expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+    expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
+    expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     delete_added_user(page)
 

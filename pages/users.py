@@ -18,6 +18,8 @@ INPUT_EMAIL = '[name="email"]'
 INPUT_PHONE = '[name="phoneNumber"]'
 INPUT_COMMENT = '[name="comment"]'
 INPUT_QUOTA = '[name="quotaRemindTime"]'
+INPUT_NEW_PASSWORD = '[name="newPassword"]'
+INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 
 USER_LOGIN_IN_LEFT_MENU = '[class*="headerName"]'
@@ -79,6 +81,13 @@ def set_operator(name, login, password, phone, mail, comment, page="page: Page")
     page.locator(INPUT_PASSWORD).fill(password)
     page.wait_for_timeout(200)
     page.locator(INPUT_COMMENT).fill(comment)
+
+def set_industry(industry, page="page: Page"):
+    page.locator(SELECT_INDUSTRY).locator("svg").click()
+    page.wait_for_timeout(500)
+    page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
+    page.wait_for_timeout(500)
+
 
 
 def set_industry_and_partner(industry, partner, page="page: Page"):
