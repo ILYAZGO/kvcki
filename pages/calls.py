@@ -65,9 +65,11 @@ def choose_period_button(period, page="page: Page"):
 def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.wait_for_selector(INPUT_PO_TEGAM)
     page.locator(FIRST_DATE).click()
+    page.wait_for_timeout(100)
     page.locator(FIRST_DATE).fill(firstDate)
     page.wait_for_timeout(300)
     page.locator(LAST_DATE).click()
+    page.wait_for_timeout(100)
     page.locator(LAST_DATE).fill(lastDate)
     page.wait_for_timeout(300)
     page.keyboard.press("Enter")
@@ -79,8 +81,11 @@ def remove_filter_value(filterValue, page="page: Page"):
 
 
 def fill_search_length(value, page="page: Page"):
+    page.wait_for_timeout(200)
     page.locator(INPUT_DLITELNOST_ZVONKA).clear()
+    page.wait_for_timeout(300)
     page.locator(INPUT_DLITELNOST_ZVONKA).fill(value)
+    page.wait_for_timeout(300)
 
 
 def change_sort(sortType, page="page: Page"):

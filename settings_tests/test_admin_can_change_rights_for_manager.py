@@ -23,7 +23,7 @@ def test_example(page: Page) -> None:
 
     click_rights(page)
 
-    expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(4)
+    expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(5)
 
     click_all_checkboxes_on_page(page)
 

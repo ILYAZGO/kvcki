@@ -138,6 +138,11 @@ def fill_row_operator_phone(number, select, page="page: Page"):
     page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
 
 
+def fill_row_without_grouping(number, select, page="page: Page"):
+    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
+
+
 def fill_row_by_tag_and_value(number, select, tagName, tagValue, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
     page.locator('[class*="menu"]').get_by_text(select, exact=True).click()

@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test3">
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_manager_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="before release">
+      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_1_row_without_grouping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,14 +49,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/settings_tests",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/reports_test",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/reports_test" />
+      <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/adminbar_tests" />
@@ -523,8 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add 2 tests reports" />
-    <MESSAGE value="upgrade tests" />
     <MESSAGE value="add quota to user" />
     <MESSAGE value="fix failed test" />
     <MESSAGE value="refactor2" />
@@ -548,6 +541,8 @@
     <MESSAGE value="fix test" />
     <MESSAGE value="fix test2" />
     <MESSAGE value="fix test3" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix test3" />
+    <MESSAGE value="added tests" />
+    <MESSAGE value="before release" />
+    <option name="LAST_COMMIT_MESSAGE" value="before release" />
   </component>
 </project>
