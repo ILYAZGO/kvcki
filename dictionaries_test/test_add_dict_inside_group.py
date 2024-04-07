@@ -29,9 +29,11 @@ def test_example(page: Page) -> None:
 
     '''check created dict name'''
     expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("98765")
+
     '''check created dict parent'''
     expect(page.get_by_text("12345").nth(1)).to_have_text("12345") #проверяем что есть родительская группа
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(300)
+
     '''rename dict'''
     page.locator(NAZVANIE_SLOVARYA).clear()
     page.locator(NAZVANIE_SLOVARYA).fill("newName")

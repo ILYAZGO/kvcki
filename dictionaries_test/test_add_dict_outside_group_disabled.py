@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
     go_to_dicts(page)
 
     '''check '''
-    page.wait_for_timeout(1500)
+    #page.wait_for_timeout(1500)
     expect(page.locator('[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]')).to_be_visible()
 
     delete_user(API_URL, TOKEN, USER_ID)

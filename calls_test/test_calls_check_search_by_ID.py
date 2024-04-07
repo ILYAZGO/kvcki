@@ -15,6 +15,7 @@ def test_example(page: Page) -> None:
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     '''fill exact id'''
+    page.wait_for_selector(INPUT_ID)
     page.locator(INPUT_ID).fill("1644474236.14425")
 
     press_find_communications(page)
