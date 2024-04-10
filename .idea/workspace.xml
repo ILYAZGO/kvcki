@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="docker update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_edit_name_delete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_outside_group_disabled.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_dict_outside_group_disabled.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_add_delete_user_by_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -516,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add reports test" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="fix tests2" />
     <MESSAGE value="fix tests3" />
@@ -541,6 +537,7 @@
     <MESSAGE value="refactor +add test" />
     <MESSAGE value="added some expects to users tests" />
     <MESSAGE value="small refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="small refactor" />
+    <MESSAGE value="docker update" />
+    <option name="LAST_COMMIT_MESSAGE" value="docker update" />
   </component>
 </project>
