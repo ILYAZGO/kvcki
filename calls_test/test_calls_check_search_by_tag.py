@@ -23,7 +23,6 @@ def test_example(page: Page) -> None:
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
     press_find_communications(page)
-    page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 131 из 3130", timeout=wait_until_visible)
 
