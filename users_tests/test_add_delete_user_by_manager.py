@@ -26,6 +26,8 @@ def test_example(page: Page) -> None:
              "Компания",
              page)
 
+    expect(page.locator(SELECT_PARTNER)).not_to_be_visible(timeout=wait_until_visible)
+
     set_industry("Недвижимость", page)
 
     set_stt("Русский",

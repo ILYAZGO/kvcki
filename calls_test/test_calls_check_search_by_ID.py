@@ -3,7 +3,7 @@ from utils.variables import *
 from utils.auth import auth
 from pages.calls import *
 import pytest
-'''Check search by length for Ecotelecom'''
+'''Check search by ID for Ecotelecom'''
 
 
 @pytest.mark.calls
@@ -19,6 +19,7 @@ def test_example(page: Page) -> None:
     page.locator(INPUT_ID).fill("1644474236.14425")
 
     press_find_communications(page)
+
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 1 из 3130", timeout=wait_until_visible)
 

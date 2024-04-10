@@ -3,7 +3,7 @@ from utils.variables import *
 from utils.auth import auth
 from pages.calls import *
 import pytest
-'''Check search by length for Ecotelecom'''
+'''Check search by exact time for Ecotelecom'''
 
 
 @pytest.mark.calls

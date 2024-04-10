@@ -5,7 +5,7 @@ from utils.dates import *
 from pages.calls import *
 import pytest
 
-'''Проверяем кнопки выбора дат'''
+'''Check dates buttons'''
 
 
 @pytest.mark.calls

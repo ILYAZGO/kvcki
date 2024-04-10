@@ -21,7 +21,6 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(3000)
 
     press_find_communications(page)
-
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     '''check'''
@@ -33,7 +32,6 @@ def test_example(page: Page) -> None:
     page.get_by_text("Зомбоящик").click()
 
     press_find_communications(page)
-
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 410 из 3130", timeout=wait_until_visible)

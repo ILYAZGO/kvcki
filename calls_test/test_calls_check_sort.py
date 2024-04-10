@@ -16,6 +16,7 @@ def test_example(page: Page) -> None:
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     press_find_communications(page)
+    page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     '''check all calls find, OLD calls first by default'''
     expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 3130 из 3130", timeout=wait_until_visible)
