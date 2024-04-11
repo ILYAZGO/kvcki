@@ -45,8 +45,8 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector('[data-testid="markup_dicts_importSearch}"]')
 
-    expect(page.locator('[data-testid="markup_importNav_tags"]')).to_be_visible()
-    expect(page.locator('[data-testid="markup_importNav_dicts"]')).to_be_visible()
+    expect(page.locator('[data-testid="markup_importNav_tags"]')).not_to_be_visible()
+    expect(page.locator('[data-testid="markup_importNav_dicts"]')).not_to_be_visible()
     expect(page.locator('[data-testid="markup_dicts_importSearch}"]')).to_be_visible()
     expect(page.locator('[data-testid="markup_importNav_gpt"]')).not_to_be_visible()
 
