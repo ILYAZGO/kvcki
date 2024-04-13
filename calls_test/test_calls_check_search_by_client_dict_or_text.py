@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 152 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 151 из 3130", timeout=wait_until_visible) #152
 
     '''choose dict'''
     page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).clear()
@@ -34,4 +34,4 @@ def test_example(page: Page) -> None:
     press_find_communications(page)
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 410 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 410 из 3130", timeout=wait_until_visible) #410

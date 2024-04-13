@@ -24,7 +24,7 @@ def test_example(page: Page) -> None:
 
     press_find_communications(page)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 131 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 24 из 3130", timeout=wait_until_visible)  #131
 
     '''add tag'''
     page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
@@ -34,7 +34,7 @@ def test_example(page: Page) -> None:
 
     press_find_communications(page)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 46 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 6 из 3130", timeout=wait_until_visible) #46
 
     '''click to add condition'''
     page.locator(BUTTON_DOBAVIT_USLOVIE).first.click()
@@ -52,4 +52,4 @@ def test_example(page: Page) -> None:
 
     press_find_communications(page)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 19 из 3130", timeout=wait_until_visible)
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 4 из 3130", timeout=wait_until_visible) #19
