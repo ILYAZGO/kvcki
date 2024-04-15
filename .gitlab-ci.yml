@@ -10,7 +10,7 @@ tests:
     when: always
     expire_in: 2 days
     paths:
-      - ./allure-report
+      - allure-report
   before_script:
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
     - apt-get install wget
@@ -18,10 +18,10 @@ tests:
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt --default-timeout=100 
-    - pytest --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m adminbar --reruns=${RERUNS_NUMBER} --alluredir=allure-results
   after_script:
     - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
-
+    - allure generate -c allure-results -o allure-report
 
 pages:
     stage: report
