@@ -1,5 +1,6 @@
 stages:
   - test
+  - pages
 
 tests:
   stage: test
