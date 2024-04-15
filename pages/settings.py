@@ -34,6 +34,7 @@ INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 SELECT_PARTNER = '[data-testid="selectPartner"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 
+
 def click_settings(page="page: Page"):
     page.wait_for_selector(BUTTON_NASTROIKI)
     page.locator(BUTTON_NASTROIKI).click()
@@ -50,6 +51,7 @@ def click_personal_info(page="page: Page"):
     page.locator(BUTTON_PERSONAL_INFO).click()
     page.wait_for_selector(INPUT_LOGIN)
 
+
 def click_employees(page="page: Page"):
     page.locator(BUTTON_EMPLOYEES).click()
     page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
@@ -65,6 +67,7 @@ def click_quota(page="page: Page"):
     page.wait_for_timeout(500)
     page.wait_for_selector('[aria-colcount="6"]')
 
+
 def click_address_book(page="page: Page"):
     page.locator(BUTTON_ADDRESS_BOOK).click()
     page.wait_for_selector(INPUT_ADDRESS_BOOK)
@@ -74,8 +77,10 @@ def fill_quota_time(minutes, page="page: Page"):
     page.locator(INPUT_QUOTA_TIME).clear()
     page.locator(INPUT_QUOTA_TIME).fill(minutes)
 
+
 def press_add_in_quotas(page="page: Page"):
     page.get_by_role("button", name="Добавить", exact=True).click()
+
 
 def fill_address_book(Text, page="page: Page"):
     page.locator(INPUT_ADDRESS_BOOK).clear()
@@ -93,13 +98,15 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.wait_for_timeout(500)
     page.keyboard.press("Enter")
 
+
 def change_login(login, page="page: Page"):
     page.wait_for_selector(INPUT_LOGIN)
     page.locator(INPUT_LOGIN).clear()
     page.locator(INPUT_LOGIN).fill(login)
 
 
-def fill_personal_information(name, email, phone, comment , timezone, page="page: Page"):
+def fill_personal_information_admin_and_manager(name, email, phone, comment , timezone, page="page: Page"):
+    #  admin and manager can see and write comment
     page.locator(INPUT_NAME).fill(name)
     page.wait_for_timeout(300)
     page.locator(INPUT_EMAIL).fill(email)
@@ -113,9 +120,24 @@ def fill_personal_information(name, email, phone, comment , timezone, page="page
     page.wait_for_timeout(1000)
 
 
+def fill_personal_information_user_and_operator(name, email, phone, timezone, page="page: Page"):
+    #  user and operator cant see and write comment
+    page.locator(INPUT_NAME).fill(name)
+    page.wait_for_timeout(300)
+    page.locator(INPUT_EMAIL).fill(email)
+    page.wait_for_timeout(300)
+    page.locator(INPUT_PHONE).fill(phone)
+    page.wait_for_timeout(200)
+    page.locator('[data-testid="selectTimezone"]').locator('[role="combobox"]').click()
+    page.get_by_text(timezone).click()
+    page.wait_for_timeout(1000)
+
+
 def change_industry(industry, page="page: Page"):
     page.locator(SELECT_INDUSTRY).click()
     page.locator('[class*="menu"]').get_by_text(industry, exact=True).click()
+
+
 def change_partner(partner, page="page: Page"):
     page.locator(SELECT_PARTNER).click()
     page.locator('[class*="menu"]').get_by_text(partner, exact=True).click()
@@ -127,11 +149,13 @@ def go_to_user(name, page="page: Page"):
     page.get_by_text(name, exact=True).click()
     page.wait_for_selector('[class*="CallsHeader"]')
 
+
 def go_to_operator_from_table(page="page: Page"):
     page.wait_for_selector('[role="gridcell"]')
     page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
     page.wait_for_timeout(500)
     page.wait_for_selector(INPUT_LOGIN)
+
 
 def go_to_admin_or_manager(name, page="page: Page"):
     page.locator(USERS_LIST).fill(name)
@@ -139,13 +163,16 @@ def go_to_admin_or_manager(name, page="page: Page"):
     page.get_by_text(name, exact=True).click()
     page.wait_for_timeout(1500)
 
+
 def press_save(page="page: Page"):
     page.get_by_role("button", name="Сохранить").click()
     page.wait_for_timeout(800)
 
+
 def press_save_in_rights(page="page: Page"):
     page.locator('[data-testid="acceptButton"]').click()
     page.wait_for_timeout(400)
+
 
 def click_all_checkboxes_on_page(page="page: Page"):
     # Находим все чекбоксы на странице
@@ -154,6 +181,7 @@ def click_all_checkboxes_on_page(page="page: Page"):
     for checkbox in checkboxes:
         if not checkbox.is_checked():
             checkbox.click()
+
 
 def all_checkboxes_to_be_checked(page="page: Page"):
     # Находим все чекбоксы на странице

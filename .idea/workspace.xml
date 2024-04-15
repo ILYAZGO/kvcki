@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests1">
-      <change afterPath="$PROJECT_DIR$/calls_test/test_calls_check_open_call_in_new_tab.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -533,11 +541,11 @@
     <MESSAGE value="docker update" />
     <MESSAGE value="increase timeout" />
     <MESSAGE value="small refactoring" />
-    <MESSAGE value="add test" />
     <MESSAGE value="fix" />
     <MESSAGE value="at" />
     <MESSAGE value="at1" />
     <MESSAGE value="fix tests1" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests1" />
+    <MESSAGE value="add test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test" />
   </component>
 </project>

@@ -21,7 +21,7 @@ def test_example(page: Page) -> None:
 
     expect(page.locator(INPUT_EMAIL)).to_be_disabled()
     expect(page.locator(INPUT_PHONE)).to_be_disabled()
-    expect(page.locator(INPUT_COMMENT)).to_be_disabled()
+    expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
     expect(page.locator(INPUT_LOGIN)).to_be_disabled()
     expect(page.locator(INPUT_NAME)).to_be_disabled()
     expect(page.locator(INPUT_NEW_PASSWORD)).to_be_disabled()

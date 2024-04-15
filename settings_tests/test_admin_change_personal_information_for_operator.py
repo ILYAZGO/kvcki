@@ -26,7 +26,7 @@ def test_example(page: Page) -> None:
 
     go_to_operator_from_table(page)
 
-    fill_personal_information("someName", EMAIL1, "1234567890", "someComment", "Africa/Bamako", page)
+    fill_personal_information_admin_and_manager("someName", EMAIL1, "1234567890", "someComment", "Africa/Bamako", page)
 
     press_save(page)
 

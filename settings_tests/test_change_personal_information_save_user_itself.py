@@ -18,7 +18,7 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    fill_personal_information("someName", EMAIL3, "1234567890", "someComment", "Africa/Bamako", page)
+    fill_personal_information_user_and_operator("someName", EMAIL3, "1234567890", "Africa/Bamako", page)
 
     press_save(page)
 
@@ -29,7 +29,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_be_disabled()
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL3)
     expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-    expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+    expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
     expect(page.get_by_text("Africa/Bamako")).to_be_visible()
     expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
     expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
@@ -41,7 +41,7 @@ def test_example(page: Page) -> None:
     expect(page.locator(INPUT_LOGIN)).to_be_disabled()
     expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL3)
     expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-    expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+    expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
     expect(page.get_by_text("Africa/Bamako")).to_be_visible()
     expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
     expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
