@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
@@ -521,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change locator2" />
     <MESSAGE value="change locator3" />
     <MESSAGE value="change locator4" />
     <MESSAGE value="check" />
@@ -546,6 +546,7 @@
     <MESSAGE value="at1" />
     <MESSAGE value="fix tests1" />
     <MESSAGE value="add test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test" />
+    <MESSAGE value="update yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml" />
   </component>
 </project>
