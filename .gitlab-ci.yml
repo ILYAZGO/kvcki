@@ -5,6 +5,11 @@ tests:
   stage: test
   resource_group: e2e-stand-requests
   image: mcr.microsoft.com/playwright/python:v1.43.0-jammy
+  artifacts:
+    when: always
+    expire_in: 7 days
+    paths:
+      - allure-report
   before_script:
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
     - apt-get install wget
@@ -12,6 +17,20 @@ tests:
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt --default-timeout=100 
-    - pytest --reruns=${RERUNS_NUMBER}
+    - pytest --reruns=${RERUNS_NUMBER} --alluredir=allure-results
   after_script:
     - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
+
+
+pages:
+    stage: report
+    needs:
+        - run_tests
+    script:
+        - mkdir public
+        - cp -r allure-report/* public
+    artifacts:
+        when: on_success
+        expire_in: never
+        paths:
+            - public
