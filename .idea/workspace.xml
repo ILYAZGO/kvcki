@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml6">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml7">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -512,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fuck dates" />
     <MESSAGE value="https://task.imot.io/browse/DEV-2134" />
     <MESSAGE value="refactor" />
     <MESSAGE value="fix test" />
@@ -537,6 +537,7 @@
     <MESSAGE value="update yaml4" />
     <MESSAGE value="update yaml5" />
     <MESSAGE value="update yaml6" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml6" />
+    <MESSAGE value="update yaml7" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml7" />
   </component>
 </project>
