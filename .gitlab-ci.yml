@@ -14,7 +14,7 @@ tests:
   before_script:
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
     - apt-get install wget
-    - wget https://github.com/allure-framework/allure2/releases/download/2.28.0/allure-2.28.0.tgz && tar -zxvf allure-2.28.0.tgz -C /opt/ && ln -s /opt/allure-2.28.0/bin/allure /usr/bin/allure
+    - wget https://github.com/allure-framework/allure2/releases/download/{ALLURE_VERSION}/allure-{ALLURE_VERSION}.tgz && tar -zxvf allure-{ALLURE_VERSION}.tgz -C /opt/ && ln -s /opt/allure-{ALLURE_VERSION}/bin/allure /usr/bin/allure
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt --default-timeout=100 
