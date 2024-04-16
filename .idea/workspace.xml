@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml11">
-      <change afterPath="$PROJECT_DIR$/pages/adminbar.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml12">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix test3" />
     <MESSAGE value="added tests" />
     <MESSAGE value="before release" />
     <MESSAGE value="refactor +add test" />
@@ -539,6 +536,7 @@
     <MESSAGE value="update yaml9" />
     <MESSAGE value="update yaml10" />
     <MESSAGE value="update yaml11" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml11" />
+    <MESSAGE value="update yaml12" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml12" />
   </component>
 </project>
