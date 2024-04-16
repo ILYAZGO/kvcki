@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml8">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml9">
+      <change afterPath="$PROJECT_DIR$/adminbar_tests/test_admin_bar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/est_admin_bar_with_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_admin_bar_with_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/est_admin_bar_with_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/test_language_change_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminbar_tests/est_language_change_by_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,17 +47,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/calls_test",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/adminbar_tests",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/adminbar_tests" />
       <recent name="$PROJECT_DIR$/calls_test" />
       <recent name="$PROJECT_DIR$/reports_test" />
       <recent name="$PROJECT_DIR$/settings_tests" />
       <recent name="$PROJECT_DIR$/notifications" />
-      <recent name="$PROJECT_DIR$/rules_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/left_menu_tests" />
@@ -513,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor" />
     <MESSAGE value="fix test" />
     <MESSAGE value="fix test2" />
     <MESSAGE value="fix test3" />
@@ -538,6 +540,7 @@
     <MESSAGE value="update yaml6" />
     <MESSAGE value="update yaml7" />
     <MESSAGE value="update yaml8" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml8" />
+    <MESSAGE value="update yaml9" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml9" />
   </component>
 </project>

@@ -3,10 +3,14 @@ from utils.variables import *
 from utils.auth import auth
 import pytest
 from utils.create_delete_user import create_user, delete_user
+import allure
 
 
 @pytest.mark.independent
 @pytest.mark.adminbar
+@allure.title("test_admin_bar_with_admin")
+@allure.severity(allure.severity_level.NORMAL)
+
 def test_example(page: Page) -> None:
     #  create admin
     USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
