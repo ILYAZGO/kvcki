@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml22">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml23">
+      <change afterPath="$PROJECT_DIR$/check_lists_tests/test_check_lists.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_check_old_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/est_check_old_check_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_rename_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/est_create_rename_delete_check_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_lists_tests/test_create_update_delete_check_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_lists_tests/est_create_update_delete_check_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_tests/test_usedesk.py" beforeDir="false" afterPath="$PROJECT_DIR$/integration_tests/test_integrations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/integration.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,17 +50,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/users_tests",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/check_lists_tests",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/check_lists_tests" />
       <recent name="$PROJECT_DIR$/users_tests" />
       <recent name="$PROJECT_DIR$/adminbar_tests" />
       <recent name="$PROJECT_DIR$/calls_test" />
       <recent name="$PROJECT_DIR$/reports_test" />
-      <recent name="$PROJECT_DIR$/settings_tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/left_menu_tests" />
@@ -64,7 +70,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="pytest for test_usedesk.test_example" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for integration_tests.test_integrations" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="e2e-tests" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,13 +83,13 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_usedesk.test_example&quot;" />
+      <option name="_new_target" value="&quot;integration_tests.test_integrations&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for test_usedesk.test_example" />
+        <item itemvalue="Python tests.pytest for integration_tests.test_integrations" />
       </list>
     </recent_temporary>
   </component>
@@ -513,7 +519,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="at1" />
     <MESSAGE value="fix tests1" />
     <MESSAGE value="add test" />
     <MESSAGE value="update yaml" />
@@ -538,6 +543,7 @@
     <MESSAGE value="update yaml20" />
     <MESSAGE value="update yaml21" />
     <MESSAGE value="update yaml22" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml22" />
+    <MESSAGE value="update yaml23" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml23" />
   </component>
 </project>

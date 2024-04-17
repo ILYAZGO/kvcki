@@ -4,6 +4,7 @@ USERS_LIST = "#react-select-2-input"
 INPUT_API_TOKEN = '[data-testid="api_token"]'
 INPUT_CALLS_LIMIT = '[name="maxNewCalls"]'
 
+BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_INTEGRACII_IN_MENU = '[href*="settings/integrations"]'
 BUTTON_PODKLU4IT = ".styles_goToIntegrationsList__KXaHU"
 BUTTON_SAVE_TOKEN = '[data-testid="AccessKeysTab_submit"]'
@@ -19,6 +20,11 @@ NA4ALNAYA_DATA = "//input[@placeholder='Начальная дата']"
 BUTTON_OK_IN_DATE = "button[class='ant-btn ant-btn-primary ant-btn-sm']"
 NAYDENO_ZVONKOV_INTEGRATION = '//*[@id="root"]/div/div[3]/div/div[3]/div[1]/div/p'
 LOGIN_IN_LEFT_MENU = ".MuiTypography-root.MuiTypography-body1.styles_headerLogin__eWAxf.css-pd9d9b"
+
+
+def go_to_settings(page="page: Page"):
+    page.wait_for_selector(BUTTON_NASTROIKI)
+    page.locator(BUTTON_NASTROIKI).click()
 
 
 def go_to_user(name, page="page: Page"):
