@@ -18,7 +18,7 @@ tests:
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt --default-timeout=100 
-    - pytest -m adminbar --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m users --reruns=${RERUNS_NUMBER} --alluredir=allure-results
   after_script:
     - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
     - allure generate -c allure-results -o allure-report
