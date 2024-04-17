@@ -25,6 +25,8 @@ tests:
 
 pages:
     stage: report
+    when:
+      always
     needs:
         - tests
     script:
