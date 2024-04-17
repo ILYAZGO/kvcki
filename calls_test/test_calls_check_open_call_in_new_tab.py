@@ -36,3 +36,5 @@ def test_example(page: Page, context: BrowserContext) -> None:
     expect(new_tab.locator('[aria-label="Скопировать публичную ссылку"]')).to_have_count(1)
     expect(new_tab.locator('[class*="styles_withAllComments_"]')).to_have_count(1)
     expect(new_tab.get_by_text("Добавить комментарий")).to_have_count(1)
+
+    new_tab.close()
