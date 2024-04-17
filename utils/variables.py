@@ -40,12 +40,12 @@ ROLE_ADMIN = 'admin'
 
 NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
-NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
-NEW_NAME1 = NEW_LOGIN1 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
-NEW_NAME2 = NEW_LOGIN2 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
-NEW_NAME3 = NEW_LOGIN3 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
-NEW_NAME4 = NEW_LOGIN4 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
-NEW_NAME5 = NEW_LOGIN5 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}0_{datetime.now().microsecond}0"
+NEW_NAME1 = NEW_LOGIN1 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}1_{datetime.now().microsecond}1"
+NEW_NAME2 = NEW_LOGIN2 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}2_{datetime.now().microsecond}2"
+NEW_NAME3 = NEW_LOGIN3 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}3_{datetime.now().microsecond}3"
+NEW_NAME4 = NEW_LOGIN4 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}4_{datetime.now().microsecond}4"
+NEW_NAME5 = NEW_LOGIN5 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}5_{datetime.now().microsecond}5"
 
 CHANGED_LOGIN = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
 

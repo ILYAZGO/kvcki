@@ -154,6 +154,7 @@ def test_add_delete_user_by_admin(page: Page) -> None:
                 "Deepgram",
                 "whisper",
                 page)
+
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
 
