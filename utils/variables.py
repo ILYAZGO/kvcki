@@ -37,9 +37,6 @@ ROLE_MANAGER = 'manager'
 ROLE_ADMIN = 'admin'
 
 
-# operator credentials
-# used in test_add_delete_operator_by_user.py
-
 
 NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"

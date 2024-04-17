@@ -11,7 +11,6 @@ import allure
 @pytest.mark.adminbar
 @allure.title("test_admin_bar_with_admin")
 @allure.severity(allure.severity_level.NORMAL)
-
 def test_admin_bar_with_admin(page: Page) -> None:
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -47,6 +46,7 @@ def test_admin_bar_with_admin(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
 
 @pytest.mark.independent
 @pytest.mark.adminbar
