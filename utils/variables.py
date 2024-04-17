@@ -39,9 +39,20 @@ ROLE_ADMIN = 'admin'
 
 
 NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+
 NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+NEW_NAME1 = NEW_LOGIN1 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+NEW_NAME2 = NEW_LOGIN2 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+NEW_NAME3 = NEW_LOGIN3 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+NEW_NAME4 = NEW_LOGIN4 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+NEW_NAME5 = NEW_LOGIN5 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+
 CHANGED_LOGIN = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
 
 EMAIL1 = f"email_{datetime.now().microsecond}{random.randint(100,200)}@mail.ru"
 EMAIL2 = f"email_{datetime.now().microsecond}{random.randint(200,300)}@mail.ru"
 EMAIL3 = f"email_{datetime.now().microsecond}{random.randint(300,400)}@mail.ru"
+EMAIL4 = f"email_{datetime.now().microsecond}{random.randint(400,500)}@mail.ru"
+EMAIL5 = f"email_{datetime.now().microsecond}{random.randint(500,600)}@mail.ru"
+EMAIL6 = f"email_{datetime.now().microsecond}{random.randint(600,700)}@mail.ru"
+EMAIL7 = f"email_{datetime.now().microsecond}{random.randint(700,800)}@mail.ru"
