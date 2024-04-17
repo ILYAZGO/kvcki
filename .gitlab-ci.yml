@@ -31,7 +31,7 @@ pages:
         - mkdir public
         - cp -r allure-report/* public
     artifacts:
-        when: on_success
-        expire_in: never
+        when: always
+        expire_in: 7 days
         paths:
             - public
