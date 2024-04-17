@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml21">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml22">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -512,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="at" />
     <MESSAGE value="at1" />
     <MESSAGE value="fix tests1" />
     <MESSAGE value="add test" />
@@ -537,6 +537,7 @@
     <MESSAGE value="update yaml19" />
     <MESSAGE value="update yaml20" />
     <MESSAGE value="update yaml21" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml21" />
+    <MESSAGE value="update yaml22" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml22" />
   </component>
 </project>
