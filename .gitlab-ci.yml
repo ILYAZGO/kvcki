@@ -25,8 +25,6 @@ tests:
 
 pages:
     stage: report
-    needs:
-        - tests
     script:
         - mkdir public
         - cp -r allure-report/* public
