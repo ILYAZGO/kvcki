@@ -182,7 +182,7 @@ def test_add_delete_user_by_admin(page: Page) -> None:
 @pytest.mark.users
 @allure.title("test_add_user_cancel_by_admin")
 @allure.severity(allure.severity_level.NORMAL)
-def test_example(page: Page) -> None:
+def test_add_user_cancel_by_admin(page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)

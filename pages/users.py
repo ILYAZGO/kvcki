@@ -126,5 +126,6 @@ def delete_added_user(page="page: Page"):
 
 def press_button_add_in_modal(page="page: Page"):
     page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_selector(INPUT_LOGIN)
+    page.wait_for_timeout(1000)
+    page.wait_for_selector(INPUT_PHONE)
 

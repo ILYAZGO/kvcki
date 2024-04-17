@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml24">
-      <change afterPath="$PROJECT_DIR$/login_test/est_login_operator_positive.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_login.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml26">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_open_call_in_new_tab.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_open_call_in_new_tab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/test_login_admin_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/est_login_admin_positive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/test_login_manager_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/est_login_manager_positive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/test_login_operator_positive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/test_login_user_negotive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/est_login_user_negotive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/test_login_user_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/est_login_user_positive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/test_password_user_negotive.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_test/est_password_user_negotive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -522,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test" />
     <MESSAGE value="update yaml" />
     <MESSAGE value="update yaml1" />
     <MESSAGE value="update yaml3" />
@@ -547,6 +538,7 @@
     <MESSAGE value="update yaml22" />
     <MESSAGE value="update yaml23" />
     <MESSAGE value="update yaml24" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml24" />
+    <MESSAGE value="update yaml26" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml26" />
   </component>
 </project>
