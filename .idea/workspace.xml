@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml17">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml18">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users_tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/users_tests/test_users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -512,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="docker update" />
     <MESSAGE value="increase timeout" />
     <MESSAGE value="small refactoring" />
     <MESSAGE value="fix" />
@@ -537,6 +537,7 @@
     <MESSAGE value="update yaml15" />
     <MESSAGE value="update yaml16" />
     <MESSAGE value="update yaml17" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml17" />
+    <MESSAGE value="update yaml18" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml18" />
   </component>
 </project>
