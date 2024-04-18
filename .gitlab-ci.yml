@@ -25,7 +25,8 @@ tests:
 
 pages:
     stage: report
-    image: alpine:latest
+    tags:
+      - stand
     when:
       always
     needs:
@@ -33,10 +34,12 @@ pages:
     script:
         - mkdir public
         - cp -r allure-report/* public
-        - chmod og= $STAND_KEY
-        - apk add --update openssh-client bash
-        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
-        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
+#        - chmod og= $STAND_KEY
+#        - apk add --update openssh-client bash
+#        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
+#        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
+        - rm -rf /home/frontend/public/e2e_report/*
+        - mv allure-report/* /home/frontend/public/e2e_report/
 
     artifacts:
         when: always
