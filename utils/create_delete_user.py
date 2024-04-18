@@ -1,4 +1,5 @@
 import requests
+import random
 from datetime import datetime
 
 '''for create user write before test :
@@ -10,7 +11,7 @@ delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 def create_user(URL, ROLE, PASSWORD):
 
-    NAME = LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    NAME = LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{random.randint(100,999)}"
 
     headers_for_get_token = {
         'accept': 'application/json',
