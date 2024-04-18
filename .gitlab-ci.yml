@@ -25,6 +25,7 @@ tests:
 
 pages:
     stage: report
+    image: alpine:latest
     when:
       always
     needs:
