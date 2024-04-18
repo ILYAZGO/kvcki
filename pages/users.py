@@ -78,9 +78,10 @@ def set_operator(name, login, password, phone, mail, comment, page="page: Page")
     page.wait_for_timeout(200)
     page.locator(INPUT_EMAIL).fill(mail)
     page.wait_for_timeout(200)
-    page.locator(INPUT_PASSWORD).fill(password)
-    page.wait_for_timeout(200)
     page.locator(INPUT_COMMENT).fill(comment)
+    page.wait_for_timeout(200)
+    page.locator(INPUT_PASSWORD).fill(password)
+
 
 def set_industry(industry, page="page: Page"):
     page.locator(SELECT_INDUSTRY).locator("svg").click()
@@ -127,5 +128,5 @@ def delete_added_user(page="page: Page"):
 def press_button_add_in_modal(page="page: Page"):
     page.locator(BUTTON_DOBAVIT).click()
     page.wait_for_timeout(1000)
-    page.wait_for_selector(INPUT_PHONE)
+    #page.wait_for_selector(INPUT_PHONE)
 
