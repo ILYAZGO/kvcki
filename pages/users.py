@@ -67,6 +67,7 @@ def set_user(name, login, password, mail, comment, role, page="page: Page"):
     page.locator(SELECT_ROLE).locator("svg").click()
     page.wait_for_timeout(200)
     page.locator(SELECT_ROLE).get_by_text(role, exact=True).click()
+    page.wait_for_timeout(200)
 
 
 def set_operator(name, login, password, phone, mail, comment, page="page: Page"):
@@ -126,6 +127,7 @@ def delete_added_user(page="page: Page"):
 
 
 def press_button_add_in_modal(page="page: Page"):
+    page.wait_for_timeout(500)
     page.locator(BUTTON_DOBAVIT).click()
     page.wait_for_timeout(1000)
     #page.wait_for_selector(INPUT_PHONE)
