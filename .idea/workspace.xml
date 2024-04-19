@@ -4,21 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml33">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml34">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_open_call_in_new_tab.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_open_call_in_new_tab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_clear_all_fields.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_clear_all_fields.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_tag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/calls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_address_book_fill_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_address_book_fill_by_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_login_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_admin_can_change_login_for_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_login_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_admin_can_change_login_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_admin_can_change_rights_for_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_can_change_rights_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_admin_can_change_rights_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_admin_change_personal_information_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_admin_check_industry_and_partner_for_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_admin_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_operator_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_user_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_giving_quota_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_manager_cant_change_login_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_manager_cant_change_login_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_manager_check_industry_and_partner_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_manager_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_can_change_rights_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_user_can_change_rights_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_cant_change_login_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_user_cant_change_login_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_user_change_personal_information_save_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -556,7 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml8" />
     <MESSAGE value="update yaml9" />
     <MESSAGE value="update yaml10" />
     <MESSAGE value="update yaml11" />
@@ -581,6 +588,7 @@
     <MESSAGE value="update yaml31" />
     <MESSAGE value="update yaml32" />
     <MESSAGE value="update yaml33" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml33" />
+    <MESSAGE value="update yaml34" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml34" />
   </component>
 </project>

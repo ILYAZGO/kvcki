@@ -30,17 +30,19 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
 
     with allure.step("Set admin 2 info"):
         set_user(NEW_NAME1,
-                 NEW_LOGIN1,
-                 PASSWORD,
-                 EMAIL1,
-                 "someComment",
-                 "Администратор",
-                 page)
+                NEW_LOGIN1,
+                PASSWORD,
+                EMAIL1,
+                "someComment",
+                "Администратор",
+                page)
 
+    page.screenshot(path="screenshot1.png", full_page=True)
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
+        page.screenshot(path="screenshot2.png", full_page=True)
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
-
+        page.screenshot(path="screenshot3.png", full_page=True)
     with allure.step("Check"):
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME1, timeout=wait_until_visible)
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN1, timeout=wait_until_visible)
