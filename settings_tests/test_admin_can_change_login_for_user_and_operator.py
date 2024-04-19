@@ -23,7 +23,7 @@ def test_example(page: Page) -> None:
 
     click_settings(page)
 
-    change_login(CHANGED_LOGIN, page)
+    change_login(CHANGED_LOGIN2, page)
 
     press_save(page)
 
@@ -31,7 +31,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(INPUT_LOGIN)
     page.wait_for_timeout(300)
 
-    expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
+    expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN2)
 
     # change for operator
 

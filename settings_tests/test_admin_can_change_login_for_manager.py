@@ -23,7 +23,7 @@ def test_example(page: Page) -> None:
 
     expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN_MANAGER)
 
-    change_login(CHANGED_LOGIN, page)
+    change_login(CHANGED_LOGIN1, page)
 
     press_save(page)
 
@@ -31,7 +31,7 @@ def test_example(page: Page) -> None:
     page.wait_for_selector(INPUT_LOGIN)
     page.wait_for_timeout(300)
 
-    expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
+    expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN1)
 
     delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
     delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
