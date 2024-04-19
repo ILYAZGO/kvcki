@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml32">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml33">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_open_call_in_new_tab.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_open_call_in_new_tab.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_clear_all_fields.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/test_calls_check_clear_all_fields.py" afterDir="false" />
@@ -556,7 +556,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml7" />
     <MESSAGE value="update yaml8" />
     <MESSAGE value="update yaml9" />
     <MESSAGE value="update yaml10" />
@@ -581,6 +580,7 @@
     <MESSAGE value="update yaml30" />
     <MESSAGE value="update yaml31" />
     <MESSAGE value="update yaml32" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml32" />
+    <MESSAGE value="update yaml33" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml33" />
   </component>
 </project>
