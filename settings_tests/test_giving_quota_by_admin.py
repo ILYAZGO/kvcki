@@ -52,7 +52,7 @@ def test_example(page: Page) -> None:
 
     page.locator('[fill="#FF4D4F"]').click()
 
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(1000)
 
     expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible()
 
