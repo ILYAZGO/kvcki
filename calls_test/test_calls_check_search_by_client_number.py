@@ -16,7 +16,7 @@ def test_example(page: Page) -> None:
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     '''fill client number'''
-    page.locator(INPUT_NOMER_CLIENTA).fill("79251579005")
+    page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').fill("79251579005")
 
     press_find_communications(page)
 

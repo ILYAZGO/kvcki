@@ -16,12 +16,12 @@ def test_example(page: Page, context: BrowserContext) -> None:
 
     '''fill exact id'''
     page.wait_for_selector(INPUT_ID)
-    page.locator(INPUT_ID).fill("1644268426.90181")
+    page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
 
     press_find_communications(page)
     # open
     with context.expect_page() as new_tab_event:
-        page.locator('[id="62050bec113619d283d9d584"]').get_by_role("button").nth(1).click()
+        page.locator('[data-testid="call_share"]').get_by_role("button").click()
         new_tab=new_tab_event.value
 
     expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)

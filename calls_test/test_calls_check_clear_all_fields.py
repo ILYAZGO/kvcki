@@ -15,28 +15,28 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector(INPUT_ID)
 
-    page.locator(INPUT_NOMER_CLIENTA).fill("79251579005")
+    page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').fill("79251579005")
     page.locator(POISK_PO_FRAGMENTAM).click()
-    page.locator(INPUT_NOMER_SOTRUDNIKA).fill("4995055555")
+    page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').fill("4995055555")
     page.locator(POISK_PO_FRAGMENTAM).click()
 
-    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).fill("адрес")
+    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').fill("адрес")
     page.wait_for_timeout(2600)
     page.locator(POISK_PO_FRAGMENTAM).click()
 
-    page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).fill("2223")
+    page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').fill("2223")
     page.wait_for_timeout(2600)
     page.locator(POISK_PO_FRAGMENTAM).click()
 
     fill_search_length(">10", page)
     page.locator(POISK_PO_FRAGMENTAM).click()
-    page.locator(INPUT_VREMYA_ZVONKA).fill("11:42")
+    page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').fill("11:42")
     page.locator(POISK_PO_FRAGMENTAM).click()
-    page.locator(INPUT_ID).fill("1644474236.14425")
+    page.locator(INPUT_ID).locator('[type="text"]').fill("1644474236.14425")
     page.locator(POISK_PO_FRAGMENTAM).click()
 
     page.wait_for_selector(INPUT_PO_TEGAM)
-    page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
+    page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Другой отдел")
     page.wait_for_timeout(2600)
     page.get_by_text("Другой отдел", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()

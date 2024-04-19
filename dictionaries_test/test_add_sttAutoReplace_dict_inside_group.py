@@ -38,6 +38,12 @@ def test_example(page: Page) -> None:
 
     expect(page.locator("label").filter(has_text="Автозамена").get_by_label("Checkbox demo")).to_be_checked()
 
+    page.reload()
+
+    page.wait_for_selector('[name="phrases"]')
+
+    expect(page.locator("label").filter(has_text="Автозамена").get_by_label("Checkbox demo")).to_be_checked()
+
     delete_group_and_rule_or_dict(page)
 
     expect(page.get_by_text("12345")).not_to_be_visible()

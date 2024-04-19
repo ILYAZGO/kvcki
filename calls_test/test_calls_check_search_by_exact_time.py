@@ -15,7 +15,7 @@ def test_example(page: Page) -> None:
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     '''fill exact time'''
-    page.locator(INPUT_VREMYA_ZVONKA).fill("11:42")
+    page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').fill("11:42")
 
     press_find_communications(page)
 

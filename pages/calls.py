@@ -11,15 +11,15 @@ FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
 
 # inputs
-INPUT_PO_TEGAM = "#react-select-12-input"
+INPUT_PO_TEGAM = '[data-testid="filters_search_by_tags"]'
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
-INPUT_VREMYA_ZVONKA = "#react-select-10-input"
-INPUT_DLITELNOST_ZVONKA = "#react-select-9-input"
-INPUT_NOMER_CLIENTA = "#react-select-5-input"
-INPUT_NOMER_SOTRUDNIKA = "#react-select-7-input"
-INPUT_SLOVAR_ILI_TEXT_CLIENT = "#react-select-6-input"
-INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = "#react-select-8-input"
-INPUT_ID = "#react-select-11-input"
+INPUT_VREMYA_ZVONKA = '[data-testid="filters_call_time_interval"]'
+INPUT_DLITELNOST_ZVONKA = '[data-testid="filters_call_duration"]'
+INPUT_NOMER_CLIENTA = '[data-testid="filters_client_phone"]'
+INPUT_NOMER_SOTRUDNIKA = '[data-testid="filters_operator_phone"]'
+INPUT_SLOVAR_ILI_TEXT_CLIENT = '[data-testid="filters_client_phrases"]'
+INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '[data-testid="filters_operator_phrases"]'
+INPUT_ID = '[data-testid="filters_any_id"]'
 # buttons
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
@@ -52,8 +52,8 @@ def choose_filter_value(filterValue, page="page: Page"):
 
 
 def press_find_communications(page="page: Page"):
-    page.wait_for_timeout(300)
-    page.get_by_role("button", name="Найти коммуникации").click()
+    page.wait_for_timeout(200)
+    page.locator('[data-testid="calls_btns_find"]').click()
     page.wait_for_timeout(300)
     page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
 
@@ -83,10 +83,10 @@ def remove_filter_value(filterValue, page="page: Page"):
 
 def fill_search_length(value, page="page: Page"):
     page.wait_for_timeout(200)
-    page.locator(INPUT_DLITELNOST_ZVONKA).clear()
-    page.wait_for_timeout(300)
-    page.locator(INPUT_DLITELNOST_ZVONKA).fill(value)
-    page.wait_for_timeout(300)
+    page.locator(INPUT_DLITELNOST_ZVONKA).locator('[type="text"]').clear()
+    page.wait_for_timeout(200)
+    page.locator(INPUT_DLITELNOST_ZVONKA).locator('[type="text"]').fill(value)
+    page.wait_for_timeout(200)
 
 
 def change_sort(sortType, page="page: Page"):

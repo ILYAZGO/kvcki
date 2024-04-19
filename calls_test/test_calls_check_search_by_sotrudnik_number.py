@@ -16,7 +16,7 @@ def test_example(page: Page) -> None:
 
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
-    page.locator(INPUT_NOMER_SOTRUDNIKA).fill("4995055555")
+    page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').fill("4995055555")
 
     press_find_communications(page)
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)

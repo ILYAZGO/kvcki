@@ -16,7 +16,7 @@ def test_example(page: Page) -> None:
 
     '''fill exact id'''
     page.wait_for_selector(INPUT_ID)
-    page.locator(INPUT_ID).fill("1644474236.14425")
+    page.locator(INPUT_ID).locator('[type="text"]').fill("1644474236.14425")
 
     press_find_communications(page)
 

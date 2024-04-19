@@ -44,6 +44,7 @@ def go_to_users(page="page: Page"):
 def press_button_add_user(page="page: Page"):
     #page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
     page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+    page.wait_for_selector(INPUT_NAME)
 
 def press_button_add_employee(page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
@@ -67,7 +68,7 @@ def set_user(name, login, password, mail, comment, role, page="page: Page"):
     page.locator(SELECT_ROLE).locator("svg").click()
     page.wait_for_timeout(200)
     page.locator(SELECT_ROLE).get_by_text(role, exact=True).click()
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(300)
 
 
 def set_operator(name, login, password, phone, mail, comment, page="page: Page"):

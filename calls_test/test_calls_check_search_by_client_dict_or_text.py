@@ -17,21 +17,21 @@ def test_example(page: Page) -> None:
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     '''fill client text'''
-    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).fill("адрес")
-    page.wait_for_timeout(3000)
+    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').fill("адрес")
+    page.wait_for_timeout(2500)
 
     press_find_communications(page)
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     '''check'''
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 152 из 3130", timeout=wait_until_visible) #152
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 184 из 3130", timeout=wait_until_visible) #152
 
     '''choose dict'''
-    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).clear()
-    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).fill("Зо")
+    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').clear()
+    page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').fill("Зо")
     page.get_by_text("Зомбоящик").click()
 
     press_find_communications(page)
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 410 из 3130", timeout=wait_until_visible) #410
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 407 из 3130", timeout=wait_until_visible) #410

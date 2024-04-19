@@ -17,24 +17,24 @@ def test_example(page: Page) -> None:
 
     '''input tag'''
     page.wait_for_selector(INPUT_PO_TEGAM)
-    page.locator(INPUT_PO_TEGAM).fill("Другой отдел")
+    page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Другой отдел")
     page.wait_for_timeout(2600)
     page.get_by_text("Другой отдел", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
     press_find_communications(page)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 24 из 3130", timeout=wait_until_visible)  #131
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 127 из 3130", timeout=wait_until_visible)  #131
 
     '''add tag'''
-    page.locator(INPUT_PO_TEGAM).fill("Обсуждение тарифа")
+    page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Обсуждение тарифа")
     page.wait_for_timeout(2900)
     page.get_by_text("Обсуждение тарифа", exact=True).first.click()
     page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
     press_find_communications(page)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 6 из 3130", timeout=wait_until_visible) #46
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 46 из 3130", timeout=wait_until_visible) #46
 
     '''click to add condition'''
     page.locator(BUTTON_DOBAVIT_USLOVIE).first.click()
@@ -52,4 +52,4 @@ def test_example(page: Page) -> None:
 
     press_find_communications(page)
 
-    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 4 из 3130", timeout=wait_until_visible) #19
+    expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 19 из 3130", timeout=wait_until_visible) #19
