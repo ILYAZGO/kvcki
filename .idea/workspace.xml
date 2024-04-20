@@ -4,41 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml38">
-      <change afterPath="$PROJECT_DIR$/gpt/test_gpt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_clear_all_fields.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_dates.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_open_call_in_new_tab.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_all.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_ID.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_client_dict_or_text.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_client_number.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_exact_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_length.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_sotrudnik_number.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_tag.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_sort.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/st_calls_check_search_by_job_title.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calls_test/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/est_check_old_check_list.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/est_create_rename_delete_check_list.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_lists_tests/est_create_update_delete_check_list.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gpt/test_additional_params_gpt_rule_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt/est_additional_params_gpt_rule_by_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gpt/test_create_delete_gpt_rule_by_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/integration_tests/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/est_login_admin_positive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/est_login_manager_positive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/est_login_operator_positive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/est_login_user_negotive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/est_login_user_positive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_test/est_password_user_negotive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/gpt.py" afterDir="false" />
-    </list>
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml39" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -575,7 +541,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml13" />
     <MESSAGE value="update yaml14" />
     <MESSAGE value="update yaml15" />
     <MESSAGE value="update yaml16" />
@@ -600,6 +565,7 @@
     <MESSAGE value="update yaml36" />
     <MESSAGE value="update yaml37" />
     <MESSAGE value="update yaml38" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml38" />
+    <MESSAGE value="update yaml39" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml39" />
   </component>
 </project>

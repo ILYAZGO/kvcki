@@ -121,7 +121,7 @@ def test_additional_params_gpt_rule_by_user(page: Page) -> None:
         expect(page.get_by_text("Presence Penalty")).to_have_count(1)
 
     with allure.step("Change to yandex and add parameters for yandex"):
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(900)
         page.locator('[name="yandex_gpt"]').click()
         page.wait_for_timeout(400)
         page.get_by_role("button", name="Добавить настройки").click()
