@@ -20,6 +20,11 @@ def go_to_gpt(page="page: Page"):
     page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]')
     page.wait_for_timeout(500)
 
+def press_save_in_gpt(page="page: Page"):
+    page.locator(BUTTON_GPT_SAVE).click(force=True)
+    page.wait_for_timeout(1500)
+    # page.wait_for_selector(BUTTON_KORZINA)
+
 def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
     page.wait_for_timeout(300)
@@ -30,8 +35,8 @@ def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.wait_for_timeout(300)
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
     page.wait_for_timeout(300)
-    page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_timeout(1000)
+    #page.locator(BUTTON_GPT_SAVE).click(force=True)
+    #page.wait_for_timeout(1000)
     #page.wait_for_selector(BUTTON_KORZINA)
 
 
@@ -52,8 +57,8 @@ def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
     page.wait_for_timeout(300)
     page.locator(INPUT_GPT_QUESTION).nth(1).fill("GPTquestion2")
     page.wait_for_timeout(300)
-    page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_timeout(1000)
+    #page.locator(BUTTON_GPT_SAVE).click(force=True)
+    #page.wait_for_timeout(1000)
     #page.wait_for_selector(BUTTON_KORZINA)
 
 def turn_on_rule(page="page: Page"):
