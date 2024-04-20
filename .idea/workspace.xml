@@ -4,7 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml36" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml37">
+      <change afterPath="$PROJECT_DIR$/calls_test/test_communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/est_admin_bar_with_admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/est_admin_bar_with_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminbar_tests/est_language_change_by_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_job_title.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/st_calls_check_search_by_job_title.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_clear_all_fields.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_clear_all_fields.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_dates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_open_call_in_new_tab.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_open_call_in_new_tab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_all.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_ID.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_ID.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_client_dict_or_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_client_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_client_number.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_exact_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_exact_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_length.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_dict_or_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_sotrudnik_dict_or_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_search_by_sotrudnik_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_search_by_sotrudnik_number.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calls_test/test_calls_check_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/calls_test/est_calls_check_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_admin_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_admin_bar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_add_delete_admin_by_admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_add_delete_manager_by_admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_add_delete_operator_by_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_add_delete_user_by_admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_add_delete_user_by_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_add_user_cancel_by_admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users_tests/est_check_search.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,17 +74,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/tests/test_pass.py",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/calls_test",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/calls_test" />
       <recent name="$PROJECT_DIR$/login_test" />
       <recent name="$PROJECT_DIR$/check_lists_tests" />
       <recent name="$PROJECT_DIR$/users_tests" />
       <recent name="$PROJECT_DIR$/adminbar_tests" />
-      <recent name="$PROJECT_DIR$/calls_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -541,7 +571,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml11" />
     <MESSAGE value="update yaml12" />
     <MESSAGE value="update yaml13" />
     <MESSAGE value="update yaml14" />
@@ -566,6 +595,7 @@
     <MESSAGE value="update yaml34" />
     <MESSAGE value="update yaml35" />
     <MESSAGE value="update yaml36" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml36" />
+    <MESSAGE value="update yaml37" />
+    <option name="LAST_COMMIT_MESSAGE" value="update yaml37" />
   </component>
 </project>

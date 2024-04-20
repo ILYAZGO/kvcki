@@ -41,7 +41,7 @@ def test_admin_bar_with_admin(page: Page) -> None:
     with allure.step("Check admin name have count 2"):
          expect(page.get_by_text(LOGIN_ADMIN)).to_have_count(2, timeout=wait_until_visible)
 
-    with allure.step("Delete manager"):
+    with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
 
     with allure.step("Delete user"):
