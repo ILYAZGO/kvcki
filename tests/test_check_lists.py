@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import auth
 from pages.check_lists import *
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager
+from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
 import pytest
 import allure
 
@@ -180,7 +180,7 @@ def test_import_check_list_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto("http://192.168.10.101/feature-dev-2225/", timeout=timeout)
+        page.goto(URL, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -259,7 +259,7 @@ def test_import_check_list_by_manager(page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto("http://192.168.10.101/feature-dev-2225/", timeout=timeout)
+        page.goto(URL, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -316,6 +316,31 @@ def test_import_check_list_by_manager(page: Page) -> None:
 
     with allure.step("Delete manager"):
         delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.independent
+@pytest.mark.check_list
+@allure.title("test_import_check_list_disabled_for_user")
+@allure.severity(allure.severity_level.NORMAL)
+def test_import_check_list_disabled_for_user(page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(LOGIN_USER, PASSWORD, page)
+
+    with allure.step("Go to check-lists"):
+        go_to_check_list(page)
+
+    with allure.step("Check that for user check-list import disabled"):
+        expect(page.locator('[data-testid="markup_importDicts"]')).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)

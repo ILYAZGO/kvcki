@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update yaml40">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add tests for import check-lists">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_lists.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -546,7 +544,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml15" />
     <MESSAGE value="update yaml16" />
     <MESSAGE value="update yaml17" />
     <MESSAGE value="update yaml18" />
@@ -571,6 +568,7 @@
     <MESSAGE value="update yaml38" />
     <MESSAGE value="update yaml39" />
     <MESSAGE value="update yaml40" />
-    <option name="LAST_COMMIT_MESSAGE" value="update yaml40" />
+    <MESSAGE value="add tests for import check-lists" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests for import check-lists" />
   </component>
 </project>
