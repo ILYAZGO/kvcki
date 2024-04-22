@@ -55,7 +55,7 @@ def test_example(page: Page) -> None:
     page.wait_for_timeout(1000)
     page.locator("(//input[@type='checkbox'])[6]").click()
     page.wait_for_timeout(1000)
-    page.get_by_role("button", name="К новым правилам").click()
+    page.get_by_role("button", name="К новым словарям").click()
     page.wait_for_timeout(2000)
 
     '''check that import successful'''
