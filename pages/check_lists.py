@@ -1,5 +1,7 @@
 #  all for check-lists
 
+USERS_LIST = "#react-select-2-input"
+
 # inputs
 INPUT_CHECK_LIST_NAME = '[name="title"]'
 INPUT_FIRST_QUESTION = "[name='questions.0.title']"
@@ -78,3 +80,13 @@ def delete_check_list(page="page: Page"):
     page.wait_for_timeout(200)
     page.locator(BUTTON_KORZINA).click()
     page.get_by_role("button", name="Удалить").click()
+
+def delete_rule(page="page: Page"):
+    page.wait_for_selector(BUTTON_KORZINA)
+    page.locator('[class*="styles_groupItem__B425x"]').nth(0).locator('[type="checkbox"]').first.click()
+    page.locator(BUTTON_CHECK_LIST).click()
+    page.locator(BUTTON_KORZINA).first.click()
+    page.wait_for_timeout(400)
+    #  confirm deleting
+    page.get_by_role("button", name="Удалить").click()
+    page.wait_for_timeout(800)

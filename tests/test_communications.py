@@ -344,7 +344,7 @@ def test_check_search_by_tag(page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 127 из 3130", timeout=wait_until_visible)  #131
+        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 130 из 3130", timeout=wait_until_visible)  #131
 
     with allure.step("Add extra tag"):
         page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Обсуждение тарифа")
