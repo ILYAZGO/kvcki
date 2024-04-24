@@ -52,9 +52,9 @@ def test_example(page: Page) -> None:
 
     page.locator('[fill="#FF4D4F"]').click()
 
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(3500)
 
-    expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible()
+    expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
 
     #expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
 
