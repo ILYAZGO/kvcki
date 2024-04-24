@@ -61,6 +61,8 @@ def test_create_rename_delete_gpt_rule_by_user(page: Page) -> None:
     with allure.step("Delete rule"):
         page.locator(BUTTON_KORZINA).click()
         page.wait_for_timeout(1000)
+        page.get_by_role("button", name="Удалить").click()
+        page.wait_for_timeout(800)
 
     with allure.step("Check that rule was deleted"):
         expect(page.get_by_text("ruleGPT")).not_to_be_visible(timeout=wait_until_visible)
@@ -145,6 +147,8 @@ def test_additional_params_gpt_rule_by_user(page: Page) -> None:
     with allure.step("Delete rule"):
         page.locator(BUTTON_KORZINA).click()
         page.wait_for_timeout(1000)
+        page.get_by_role("button", name="Удалить").click()
+        page.wait_for_timeout(800)
 
     with allure.step("Check deleted"):
         expect(page.locator('[class*="styles_dpBothBox_"]').get_by_text("addParams")).not_to_be_visible()

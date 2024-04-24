@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check import gpt2">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check import gpt3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/gpt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
     </list>
@@ -546,7 +545,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml21" />
     <MESSAGE value="update yaml22" />
     <MESSAGE value="update yaml23" />
     <MESSAGE value="update yaml24" />
@@ -571,6 +569,7 @@
     <MESSAGE value="refactor" />
     <MESSAGE value="check import gpt" />
     <MESSAGE value="check import gpt2" />
-    <option name="LAST_COMMIT_MESSAGE" value="check import gpt2" />
+    <MESSAGE value="check import gpt3" />
+    <option name="LAST_COMMIT_MESSAGE" value="check import gpt3" />
   </component>
 </project>
