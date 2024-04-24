@@ -3,7 +3,7 @@ import random
 from datetime import datetime
 
 #LIST OF URLS
-URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
+URL = "http://192.168.10.101/feature-dev-2285/" #os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
 #URL2 = "http://192.168.10.101/feature-dev-2075/"
 # LIST OF TIMEOUTS
@@ -28,15 +28,13 @@ PASSWORD_NEGOTIVE = "Qaz123ws"
 
 # LIST OF USERS FOR IMPORT
 # FROM_USER_IMPORT = "importFrom"
-# TO_USER_IMPORT = "importTo"
+
 
 # LIST OF ROLES
 
 ROLE_USER = 'user'
 ROLE_MANAGER = 'manager'
 ROLE_ADMIN = 'admin'
-
-
 
 NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 

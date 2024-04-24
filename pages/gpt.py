@@ -1,5 +1,6 @@
 #  all for gpt
 BUTTON_RAZMETKA = '[value="tags"]'
+USERS_LIST = "#react-select-2-input"
 
 BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
@@ -64,3 +65,13 @@ def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
 def turn_on_rule(page="page: Page"):
     page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
     page.wait_for_timeout(1200)
+
+def delete_rule(page="page: Page"):
+    page.wait_for_selector(BUTTON_KORZINA)
+    page.locator('[class*="styles_groupItem__B425x"]').nth(0).locator('[type="checkbox"]').first.click()
+    page.locator(BUTTON_GPT).click()
+    page.locator(BUTTON_KORZINA).first.click()
+    page.wait_for_timeout(400)
+    #  confirm deleting
+    page.get_by_role("button", name="Удалить").click()
+    page.wait_for_timeout(800)
