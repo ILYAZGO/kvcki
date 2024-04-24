@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check import gpt">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check import gpt2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/gpt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,17 +49,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/notifications",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/dictionaries_test",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/calls_test" />
       <recent name="$PROJECT_DIR$/login_test" />
       <recent name="$PROJECT_DIR$/check_lists_tests" />
-      <recent name="$PROJECT_DIR$/users_tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -543,7 +546,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml20" />
     <MESSAGE value="update yaml21" />
     <MESSAGE value="update yaml22" />
     <MESSAGE value="update yaml23" />
@@ -568,6 +570,7 @@
     <MESSAGE value="fix tests" />
     <MESSAGE value="refactor" />
     <MESSAGE value="check import gpt" />
-    <option name="LAST_COMMIT_MESSAGE" value="check import gpt" />
+    <MESSAGE value="check import gpt2" />
+    <option name="LAST_COMMIT_MESSAGE" value="check import gpt2" />
   </component>
 </project>

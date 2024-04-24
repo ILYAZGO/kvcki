@@ -84,6 +84,7 @@ def delete_check_list(page="page: Page"):
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator('[class*="styles_groupItem__B425x"]').nth(0).locator('[type="checkbox"]').first.click()
+    page.wait_for_timeout(400)
     page.locator(BUTTON_CHECK_LIST).click()
     page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_timeout(400)

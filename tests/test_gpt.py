@@ -221,7 +221,6 @@ def test_import_gpt_rule_by_admin(page: Page) -> None:
     with allure.step("Check that deleted"):
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
 
-
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
 
