@@ -166,7 +166,7 @@ def test_import_gpt_rule_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto("http://192.168.10.101/feature-dev-2285/", timeout=timeout)
+        page.goto(URL, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -201,21 +201,21 @@ def test_import_gpt_rule_by_admin(page: Page) -> None:
     with allure.step("Import second"):
         page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()
 
-    with allure.step("Go to new chec-lists"):
-        page.get_by_role("button", name="К новым чек-листам").click()
+    with allure.step("Go to new gpt rules"):
+        page.get_by_role("button", name="К новым правилам GPT").click()
         page.wait_for_timeout(2000)
 
-    with allure.step("Check that check-lists imported"):
+    with allure.step("Check that gpt rules imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
-    with allure.step("Delete first check-list"):
+    with allure.step("Delete first gpt rule"):
         delete_rule(page)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
-    with allure.step("Delete second check-list"):
+    with allure.step("Delete second gpt rule"):
         delete_rule(page)
 
     with allure.step("Check that deleted"):
@@ -245,7 +245,7 @@ def test_import_gpt_rule_by_manager(page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto("http://192.168.10.101/feature-dev-2285/", timeout=timeout)
+        page.goto(URL, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -256,7 +256,7 @@ def test_import_gpt_rule_by_manager(page: Page) -> None:
         page.get_by_text(LOGIN_USER, exact=True).click()
         page.wait_for_timeout(6000)
 
-    with allure.step("Go to check-lists"):
+    with allure.step("Go to gpt"):
         go_to_gpt(page)
 
     with allure.step("Press import button"):
@@ -280,21 +280,21 @@ def test_import_gpt_rule_by_manager(page: Page) -> None:
     with allure.step("Import second"):
         page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()
 
-    with allure.step("Go to new chec-lists"):
-        page.get_by_role("button", name="К новым чек-листам").click()
+    with allure.step("Go to new gpt rules"):
+        page.get_by_role("button", name="К новым правилам GPT").click()
         page.wait_for_timeout(2000)
 
-    with allure.step("Check that check-lists imported"):
+    with allure.step("Check that gpt rules imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
-    with allure.step("Delete first check-list"):
+    with allure.step("Delete first gpt rule"):
         delete_rule(page)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
-    with allure.step("Delete second check-list"):
+    with allure.step("Delete second gpt rule"):
         delete_rule(page)
 
     with allure.step("Check that deleted"):
@@ -325,7 +325,7 @@ def test_import_gpt_rules_disabled_for_user(page: Page) -> None:
     with allure.step("Go to gpt"):
         go_to_gpt(page)
 
-    with allure.step("Check that for user check-list import disabled"):
+    with allure.step("Check that for user gpt rules import disabled"):
         expect(page.locator('[data-testid="markup_importDicts"]')).not_to_be_visible()
 
     with allure.step("Delete user"):
