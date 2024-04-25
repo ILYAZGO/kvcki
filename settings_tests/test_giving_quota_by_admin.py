@@ -44,7 +44,7 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector('[aria-rowindex="2"]')
 
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(1500)
 
     expect(page.locator('[role="gridcell"]')).to_have_count(12)
 
@@ -72,7 +72,7 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector('[aria-rowindex="2"]')
 
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(1500)
 
     expect(page.locator('[role="gridcell"]')).to_have_count(18)
     expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("2024-12-30 - 2024-12-31")

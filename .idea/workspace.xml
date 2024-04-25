@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change url">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_sttAutoReplace_dict_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionaries_test/test_check_dict_type.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -562,7 +561,6 @@
     <MESSAGE value="update yaml40" />
     <MESSAGE value="add tests for import check-lists" />
     <MESSAGE value="add tests for import check-lists2" />
-    <MESSAGE value="fix tests" />
     <MESSAGE value="refactor" />
     <MESSAGE value="check import gpt" />
     <MESSAGE value="check import gpt2" />
@@ -570,6 +568,7 @@
     <MESSAGE value="add extra delete modal window" />
     <MESSAGE value="fix test" />
     <MESSAGE value="change url" />
-    <option name="LAST_COMMIT_MESSAGE" value="change url" />
+    <MESSAGE value="fix tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix tests" />
   </component>
 </project>

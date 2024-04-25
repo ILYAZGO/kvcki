@@ -62,7 +62,7 @@ def test_example(page: Page) -> None:
     page.get_by_role("button", name="Сохранить").click()
 
     page.reload()
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(2500)
     page.locator('[data-testid="test"]').click()
     page.wait_for_selector('[name="phrases"]')
 
