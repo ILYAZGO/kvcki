@@ -41,6 +41,9 @@ def test_example(page: Page) -> None:
     expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_be_enabled()
 
     page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
+
+    press_generate_report(page)
+
     page.wait_for_selector('[data-id="0"]')
 
 
@@ -71,6 +74,9 @@ def test_example(page: Page) -> None:
     expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_have_text("Обновить")
 
     page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
+
+    press_generate_report(page)
+
     page.wait_for_selector('[data-id="0"]')
 
     expect(page.locator('[data-testid="templatesReports"]').locator('[class*="body1"]')).to_have_text("auto_test_report")

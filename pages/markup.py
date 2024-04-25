@@ -110,3 +110,8 @@ def add_additional_terms(list, page="page: Page"):
     for l in range(10):
         page.locator('[placeholder=">X, <X или X-Y. Время в секундах"]').nth(l).fill(f"{l}")
     page.wait_for_timeout(500)
+
+
+def change_dict_type(currentType, nextType, page="page: Page"):
+    page.get_by_text(currentType, exact=True).click()
+    page.locator('[class*="-menu"]').get_by_text(nextType, exact=True).click()

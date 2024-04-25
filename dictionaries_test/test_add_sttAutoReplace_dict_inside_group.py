@@ -32,17 +32,55 @@ def test_example(page: Page) -> None:
     expect(page.get_by_text("12345").nth(1)).to_have_text("12345") #проверяем что есть родительская группа
     page.wait_for_timeout(500)
 
-    page.locator("label").filter(has_text="Автозамена").get_by_label("Checkbox demo").check()
+
+    change_dict_type("Обычный словарь", "Словарь автозамен", page)
 
     page.get_by_role("button", name="Сохранить").click()
 
-    expect(page.locator("label").filter(has_text="Автозамена").get_by_label("Checkbox demo")).to_be_checked()
-
     page.reload()
-
+    page.wait_for_timeout(1500)
+    page.locator('[data-testid="test"]').click()
     page.wait_for_selector('[name="phrases"]')
 
-    expect(page.locator("label").filter(has_text="Автозамена").get_by_label("Checkbox demo")).to_be_checked()
+    expect(page.get_by_text("Словарь автозамен")).to_have_count(1)
+
+
+    change_dict_type("Словарь автозамен", "Словарь грамматики", page)
+
+    page.get_by_role("button", name="Сохранить").click()
+
+    page.reload()
+    page.wait_for_timeout(1500)
+    page.locator('[data-testid="test"]').click()
+    page.wait_for_selector('[name="phrases"]')
+
+    expect(page.get_by_text("Словарь грамматики")).to_have_count(1)
+
+
+    change_dict_type("Словарь грамматики", "Словарь правил грамматики", page)
+
+    page.get_by_role("button", name="Сохранить").click()
+
+    page.reload()
+    page.wait_for_timeout(1500)
+    page.locator('[data-testid="test"]').click()
+    page.wait_for_selector('[name="phrases"]')
+
+    expect(page.get_by_text("Словарь правил грамматики")).to_have_count(1)
+
+
+    change_dict_type("Словарь правил грамматики", "Обычный словарь", page)
+
+    page.get_by_role("button", name="Сохранить").click()
+
+    page.reload()
+    page.wait_for_timeout(1500)
+    page.locator('[data-testid="test"]').click()
+    page.wait_for_selector('[name="phrases"]')
+
+    expect(page.get_by_text("Обычный словарь")).to_have_count(1)
+
+
 
     delete_group_and_rule_or_dict(page)
 
