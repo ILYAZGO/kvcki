@@ -52,7 +52,7 @@ def press_button_add_employee(page="page: Page"):
     page.wait_for_selector(INPUT_NAME)
 
 
-def set_user(name, login, password, mail, comment, role, page="page: Page"):
+def set_user(name, login, password, mail, phone, comment, role, page="page: Page"):
     page.wait_for_selector(INPUT_NAME)
     '''fill required'''
     page.locator(INPUT_NAME).fill(name)
@@ -62,6 +62,8 @@ def set_user(name, login, password, mail, comment, role, page="page: Page"):
     page.locator(INPUT_PASSWORD).fill(password)
     page.wait_for_timeout(200)
     page.locator(INPUT_EMAIL).fill(mail)
+    page.wait_for_timeout(200)
+    page.locator(INPUT_PHONE).fill(phone)
     page.wait_for_timeout(200)
     page.locator(INPUT_COMMENT).fill(comment)
     page.wait_for_timeout(200)
@@ -119,10 +121,10 @@ def set_stt(language, engine, model, page="page: Page"):
 
 
 def delete_added_user(page="page: Page"):
-    #page.wait_for_timeout(300)
+    page.wait_for_timeout(300)
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator(BUTTON_KORZINA).click()
-    #page.wait_for_timeout(300)
+    page.wait_for_timeout(300)
     page.wait_for_selector(BUTTON_PODTVERDIT)
     page.locator(BUTTON_PODTVERDIT).click()
 

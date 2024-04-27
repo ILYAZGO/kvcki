@@ -30,12 +30,13 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
 
     with allure.step("Set admin 2 info"):
         set_user(NEW_NAME1,
-                NEW_LOGIN1,
-                PASSWORD,
-                EMAIL1,
-                "someComment",
-                "Администратор",
-                page)
+                 NEW_LOGIN1,
+                 PASSWORD,
+                 EMAIL1,
+                 "89169870367",
+                 "someComment",
+                 "Администратор",
+                 page)
 
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
@@ -47,7 +48,7 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL1, timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Администратор", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -87,9 +88,10 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
                  NEW_LOGIN2,
                  PASSWORD,
                  EMAIL2,
+                 "89169870367",
                  "someComment",
                  "Интегратор",
-                  page)
+                 page)
 
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
@@ -101,7 +103,7 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2, timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Интегратор", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -141,6 +143,7 @@ def test_add_delete_user_by_admin(page: Page) -> None:
                  NEW_LOGIN3,
                  PASSWORD,
                  EMAIL3,
+                 "89169870367",
                  "someComment",
                  "Компания",
                  page)
@@ -168,7 +171,7 @@ def test_add_delete_user_by_admin(page: Page) -> None:
         expect(page.locator(SELECT_ROLE)).to_have_text("Компания", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).to_have_text("Недвижимость", timeout=wait_until_visible)
         expect(page.locator(SELECT_PARTNER)).to_have_text("managerIM", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -246,6 +249,7 @@ def test_add_delete_user_by_manager(page: Page) -> None:
                  NEW_LOGIN4,
                  PASSWORD,
                  EMAIL4,
+                 "89169870367",
                  "someComment",
                  "Компания",
                  page)
@@ -273,7 +277,7 @@ def test_add_delete_user_by_manager(page: Page) -> None:
         page.wait_for_timeout(3500)
         expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -322,7 +326,7 @@ def test_add_delete_operator_by_user(page: Page) -> None:
     with allure.step("Check"):
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN, timeout=wait_until_visible)
-        #expect(page.locator(INPUT_PHONE)).to_have_value(EMAIL5, timeout=wait_until_visible)  open after https://task.imot.io/browse/DEV-1982
+        expect(page.locator(INPUT_PHONE)).to_have_value(EMAIL5, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL6, timeout=wait_until_visible)
         #expect(page.locator(INPUT_COMMENT)).to_have_text(EMAIL7, timeout=wait_until_visible)
         expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
