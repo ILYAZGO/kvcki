@@ -3,7 +3,7 @@ import random
 from datetime import datetime
 
 #LIST OF URLS
-URL = "http://192.168.10.101/feature-dev-1987/" #os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
+URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
 #URL2 = ""
 # LIST OF TIMEOUTS
@@ -36,7 +36,7 @@ ROLE_USER = 'user'
 ROLE_MANAGER = 'manager'
 ROLE_ADMIN = 'admin'
 
-NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+#NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
 #NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}0_{datetime.now().microsecond}0"
 NEW_NAME1 = NEW_LOGIN1 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}1_{datetime.now().microsecond}1"
@@ -49,10 +49,4 @@ NEW_NAME6 = NEW_LOGIN6 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}6
 CHANGED_LOGIN1 = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}1"
 CHANGED_LOGIN2 = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}2"
 
-EMAIL1 = f"email_{datetime.now().microsecond}{random.randint(100,200)}@mail.ru"
-EMAIL2 = f"email_{datetime.now().microsecond}{random.randint(200,300)}@mail.ru"
-EMAIL3 = f"email_{datetime.now().microsecond}{random.randint(300,400)}@mail.ru"
-EMAIL4 = f"email_{datetime.now().microsecond}{random.randint(400,500)}@mail.ru"
-EMAIL5 = f"email_{datetime.now().microsecond}{random.randint(500,600)}@mail.ru"
-EMAIL6 = f"email_{datetime.now().microsecond}{random.randint(600,700)}@mail.ru"
-EMAIL7 = f"email_{datetime.now().microsecond}{random.randint(700,800)}@mail.ru"
+#EMAIL1 = f"email_{datetime.now().microsecond}{random.randint(100,200)}@mail.ru"

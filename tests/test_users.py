@@ -5,6 +5,7 @@ from pages.users import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 import allure
+import random
 
 
 @pytest.mark.independent
@@ -12,6 +13,9 @@ import allure
 @allure.title("test_add_delete_admin_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_delete_admin_by_admin(page: Page) -> None:
+    NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
+    EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
+    PHONE = str(random.randint(10000000000, 99999999999))
 
     with allure.step("Create admin 1"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -29,11 +33,11 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
         press_button_add_user(page)
 
     with allure.step("Set admin 2 info"):
-        set_user(NEW_NAME1,
-                 NEW_LOGIN1,
+        set_user(NEW_NAME,
+                 NEW_LOGIN,
                  PASSWORD,
-                 EMAIL1,
-                 "89169870367",
+                 EMAIL,
+                 PHONE,
                  "someComment",
                  "Администратор",
                  page)
@@ -43,12 +47,12 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME1, timeout=wait_until_visible)
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN1, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL1, timeout=wait_until_visible)
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Администратор", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
+        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -67,6 +71,10 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
 @allure.title("test_add_delete_manager_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_delete_manager_by_admin(page: Page) -> None:
+    NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
+    EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
+    PHONE = str(random.randint(10000000000, 99999999999))
+
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -84,11 +92,11 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
         press_button_add_user(page)
 
     with allure.step("Set manager info"):
-        set_user(NEW_NAME2,
-                 NEW_LOGIN2,
+        set_user(NEW_NAME,
+                 NEW_LOGIN,
                  PASSWORD,
-                 EMAIL2,
-                 "89169870367",
+                 EMAIL,
+                 PHONE,
                  "someComment",
                  "Интегратор",
                  page)
@@ -98,12 +106,12 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN2, timeout=wait_until_visible)
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME2, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL2, timeout=wait_until_visible)
+        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Интегратор", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
+        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -122,6 +130,9 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
 @allure.title("test_add_delete_user_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_delete_user_by_admin(page: Page) -> None:
+    NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
+    EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
+    PHONE = str(random.randint(10000000000, 99999999999))
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -139,11 +150,11 @@ def test_add_delete_user_by_admin(page: Page) -> None:
         press_button_add_user(page)
 
     with allure.step("Set user info"):
-        set_user(NEW_NAME3,
-                 NEW_LOGIN3,
+        set_user(NEW_NAME,
+                 NEW_LOGIN,
                  PASSWORD,
-                 EMAIL3,
-                 "89169870367",
+                 EMAIL,
+                 PHONE,
                  "someComment",
                  "Компания",
                  page)
@@ -163,15 +174,15 @@ def test_add_delete_user_by_admin(page: Page) -> None:
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN3, timeout=wait_until_visible)
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME3, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL3, timeout=wait_until_visible)
+        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
         #page.wait_for_timeout(2300)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Компания", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).to_have_text("Недвижимость", timeout=wait_until_visible)
         expect(page.locator(SELECT_PARTNER)).to_have_text("managerIM", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
+        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -231,6 +242,9 @@ def test_add_user_cancel_by_admin(page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition : manager should have access_rights for create and delete user")
 def test_add_delete_user_by_manager(page: Page) -> None:
+    NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
+    EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
+    PHONE = str(random.randint(10000000000, 99999999999))
 
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
@@ -245,11 +259,11 @@ def test_add_delete_user_by_manager(page: Page) -> None:
         press_button_add_user(page)
 
     with allure.step("Set user info"):
-        set_user(NEW_NAME4,
-                 NEW_LOGIN4,
+        set_user(NEW_NAME,
+                 NEW_LOGIN,
                  PASSWORD,
-                 EMAIL4,
-                 "89169870367",
+                 EMAIL,
+                 PHONE,
                  "someComment",
                  "Компания",
                  page)
@@ -271,13 +285,13 @@ def test_add_delete_user_by_manager(page: Page) -> None:
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN4, timeout=wait_until_visible)
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME4, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL4, timeout=wait_until_visible)
+        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
         page.wait_for_timeout(3500)
         expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value("89169870367")
+        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -293,6 +307,9 @@ def test_add_delete_user_by_manager(page: Page) -> None:
 @allure.title("test_add_delete_operator_by_user")
 @allure.severity(allure.severity_level.NORMAL)
 def test_add_delete_operator_by_user(page: Page) -> None:
+    NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
+    PHONE = str(random.randint(10000000000, 99999999999))
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -316,9 +333,9 @@ def test_add_delete_operator_by_user(page: Page) -> None:
         set_operator(NEW_OPERATOR_NAME,
                      NEW_OPERATOR_LOGIN,
                      PASSWORD,
-                     EMAIL5,
-                     EMAIL6,
-                     EMAIL7,
+                     PHONE,
+                     EMAIL,
+                     EMAIL,
                      page)
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
@@ -326,12 +343,13 @@ def test_add_delete_operator_by_user(page: Page) -> None:
     with allure.step("Check"):
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN, timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value(EMAIL5, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL6, timeout=wait_until_visible)
+        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE, timeout=wait_until_visible)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
         #expect(page.locator(INPUT_COMMENT)).to_have_text(EMAIL7, timeout=wait_until_visible)
         expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
+
     with allure.step("Delete added employee"):
         delete_added_user(page)
 
