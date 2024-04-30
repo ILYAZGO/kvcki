@@ -64,7 +64,8 @@ def create_rule(ruleName, page="page: Page"):
     #page.get_by_role("button", name="Отправить").click()
     page.keyboard.press('Enter')  # kostil'
     page.wait_for_timeout(1300)
-    page.get_by_role("button", name="Сохранить").click()
+    #page.get_by_role("button", name="Сохранить").click()
+    page.wait_for_selector('[data-testid="tagSequenceBlock"]')
 
 def go_to_markup(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
