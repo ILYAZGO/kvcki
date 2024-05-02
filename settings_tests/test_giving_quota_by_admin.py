@@ -44,7 +44,7 @@ def test_example(page: Page) -> None:
 
     page.wait_for_selector('[aria-rowindex="2"]')
 
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(2000)
 
     expect(page.locator('[role="gridcell"]')).to_have_count(12)
 
