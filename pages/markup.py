@@ -47,7 +47,11 @@ BUTTON_IMPORTIROVAT_SLOVARI = '[data-testid="markup_importDicts"]'
 # other
 CLICK_ON_GROUP = "//p[normalize-space()='12345']"
 
-
+def go_to_user(name:str, page="page: Page"):
+    page.locator(USERS_LIST).fill(name)
+    page.wait_for_timeout(500)
+    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector('[class*="CallsHeader"]')
 
 def create_group(groupName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
@@ -75,6 +79,7 @@ def go_to_markup(page="page: Page"):
 def go_to_dicts(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_selector(BUTTON_SLOVARI)
     page.locator(BUTTON_SLOVARI).click()
     page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR)
     #page.wait_for_timeout(1000)
