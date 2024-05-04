@@ -259,13 +259,12 @@ def test_check_dict_type(page: Page) -> None:
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(1500)
+        page.wait_for_timeout(2000)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
     with allure.step("Check that dict type changed and saved"):
         expect(page.get_by_text("Обычный словарь")).to_have_count(1)
-
 
     with allure.step("Delete dict and group"):
         delete_group_and_rule_or_dict(page)
@@ -275,6 +274,7 @@ def test_check_dict_type(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
+
 
 @pytest.mark.independent
 @pytest.mark.dictionaries
