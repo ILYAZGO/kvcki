@@ -4,22 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="move dict test to module">
-      <change afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeout to dict type test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/est_dicts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_cancel.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_group_edit_name_delete.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_inside_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_add_dict_outside_group_disabled.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_check_dict_type.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_check_old_dict.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_dict_disabled_for_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_import_group_and_dict_by_manager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionaries_test/test_search_dict.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -557,7 +543,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml33" />
     <MESSAGE value="update yaml34" />
     <MESSAGE value="update yaml35" />
     <MESSAGE value="update yaml36" />
@@ -582,6 +567,7 @@
     <MESSAGE value="add wait" />
     <MESSAGE value="add wait2" />
     <MESSAGE value="move dict test to module" />
-    <option name="LAST_COMMIT_MESSAGE" value="move dict test to module" />
+    <MESSAGE value="add timeout to dict type test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timeout to dict type test" />
   </component>
 </project>
