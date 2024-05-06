@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeout to dict type test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check">
+      <change afterPath="$PROJECT_DIR$/rules_test/test_rules.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_add_group_of_rules_edit_name_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_add_group_of_rules_edit_name_delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_group_cancel.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_add_rule_group_cancel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_add_rule_inside_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_outside_group_disabled.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_add_rule_outside_group_disabled.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_check_old_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_check_old_rule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rules_test/test_search_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_search_rule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,30 +41,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.pytest for test_usedesk.test_example.executor": "Run",
-    "Python tests.pytest in test_pass.py.executor": "Run",
-    "Python.Unnamed.executor": "Run",
-    "Python.dates.executor": "Run",
-    "Python.erer.executor": "Run",
-    "Python.test_pass.executor": "Run",
-    "Python.variables.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/dictionaries_test",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_pass.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dates.executor&quot;: &quot;Run&quot;,
+    &quot;Python.erer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/rules_test&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/calls_test" />
       <recent name="$PROJECT_DIR$/login_test" />
-      <recent name="$PROJECT_DIR$/check_lists_tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -66,7 +74,7 @@
       <recent name="$PROJECT_DIR$/login" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test_pass">
     <configuration name="test_pass" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="e2e-tests" />
       <option name="ENV_FILES" value="" />
@@ -120,7 +128,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
       </set>
     </attachedChunks>
   </component>
@@ -543,7 +551,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml34" />
     <MESSAGE value="update yaml35" />
     <MESSAGE value="update yaml36" />
     <MESSAGE value="update yaml37" />
@@ -568,6 +575,7 @@
     <MESSAGE value="add wait2" />
     <MESSAGE value="move dict test to module" />
     <MESSAGE value="add timeout to dict type test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add timeout to dict type test" />
+    <MESSAGE value="check" />
+    <option name="LAST_COMMIT_MESSAGE" value="check" />
   </component>
 </project>
