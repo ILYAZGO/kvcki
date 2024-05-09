@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="moved some rules test to test_rules.py">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="moved rules tests to tests2">
+      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_operator_phone.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_set_tag_block.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_add_rule_inside_group_check_set_tag_block.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_add_rule_inside_group_check_tag_sequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_add_rule_inside_group_check_tag_sequence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_import_group_and_rule_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_group_and_rule_by_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_import_group_and_rule_by_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_import_rule_disabled_for_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/est_import_rule_disabled_for_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules_test/test_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules_test/test_rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_column_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_1_communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_operator_phone.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_time_4_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_time_4_values.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_without_grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_without_grouping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_filter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_and_value.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_row_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_4_tag_and_value.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,30 +44,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_pass.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dates.executor&quot;: &quot;Run&quot;,
-    &quot;Python.erer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_pass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/rules_test&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.pytest for test_usedesk.test_example.executor": "Run",
+    "Python tests.pytest in test_pass.py.executor": "Run",
+    "Python.Unnamed.executor": "Run",
+    "Python.dates.executor": "Run",
+    "Python.erer.executor": "Run",
+    "Python.test_pass.executor": "Run",
+    "Python.variables.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/reports_test",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/reports_test" />
       <recent name="$PROJECT_DIR$/rules_test" />
       <recent name="$PROJECT_DIR$/dictionaries_test" />
       <recent name="$PROJECT_DIR$/notifications" />
       <recent name="$PROJECT_DIR$/calls_test" />
-      <recent name="$PROJECT_DIR$/login_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -550,8 +554,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml36" />
-    <MESSAGE value="update yaml37" />
     <MESSAGE value="update yaml38" />
     <MESSAGE value="update yaml39" />
     <MESSAGE value="update yaml40" />
@@ -575,6 +577,8 @@
     <MESSAGE value="add timeout to dict type test" />
     <MESSAGE value="check" />
     <MESSAGE value="moved some rules test to test_rules.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved some rules test to test_rules.py" />
+    <MESSAGE value="moved rules tests to tests" />
+    <MESSAGE value="moved rules tests to tests2" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved rules tests to tests2" />
   </component>
 </project>

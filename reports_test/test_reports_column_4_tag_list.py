@@ -18,14 +18,7 @@ def test_example(page: Page) -> None:
 
     choose_preiod_date("01/01/2022", "31/12/2022", page)
 
-    page.locator(BUTTON_CHANGE_FILTERS).click()
-    page.locator('[id="Фильтровать по числовым тегам"]').click()
-    page.mouse.wheel(delta_x=0, delta_y=10000)
-    page.get_by_text("По чеклистам").nth(1).click()
-    page.locator(TUPO_CLICK).click()
-    page.locator('[autocorrect=off]').nth(0).fill("чеклист")
-    page.get_by_text("Второй чеклист (тоже нужен для автотестов, не трогать)", exact=True).click()
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+    add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     # 0
     fill_column_by_tag_list("0", "11", "asterisk_context", page=page)
