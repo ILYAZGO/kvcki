@@ -168,8 +168,21 @@ def fill_row_by_tag_and_value(number, select, tagName, tagValue, page="page: Pag
     page.wait_for_timeout(200)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
+def fill_row_by_tag_list(number, select, tagName, page="page: Page"):
+    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
+    page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
+    page.wait_for_timeout(200)
+    page.locator(f'[data-testid="report_rows_row_{number}__tagListValues"]').click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="menu"]').get_by_text(tagName, exact=True).click()
+    page.wait_for_timeout(200)
+    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
 def click_checkbox_row_in_tag_and_value(number, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_tagCheckbox"]').click()
+
+def click_checkbox_row_in_tag_list(number, page="page: Page"):
+    page.locator(f'[data-testid="report_rows_row_{number}_tagListCheckbox"]').click()
 
 
 def add_checklist_to_report(checkListName, page="page: Page"):
