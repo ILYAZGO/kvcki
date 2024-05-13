@@ -538,3 +538,64 @@ def test_check_open_call_in_new_tab(page: Page, context: BrowserContext) -> None
 
     with allure.step("Close context"):
         new_tab.close()
+
+
+@pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_check_content_button_calls_actions")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_content_button_calls_actions (...)")
+def test_check_content_button_calls_actions(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID)
+        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Press button (Calls action)"):
+        page.locator('[data-testid="calls_actions_actions-btn"]').nth(0).click()
+
+    with allure.step("Check content of button (...) calls action"):
+        expect(page.locator('[class*="menu"]')).to_have_text("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов")
+
+
+
+@pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_check_content_button_calls_download")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_content_button_calls (download)")
+def test_check_content_button_calls_download(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID)
+        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Press button (Download)"):
+        page.locator('[data-testid="calls_actions_download"]').nth(0).click()
+
+    with allure.step("Check content of button download"):
+        expect(page.locator('[class*="menu"]')).to_have_text("Экспорт аудиоЭкспорт расшифровкиЭкспорт коммуникаций")

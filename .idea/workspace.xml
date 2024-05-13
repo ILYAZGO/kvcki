@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="moved rules tests to tests2">
-      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_operator_phone.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test ro reports">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_column_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_1_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_operator_phone.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_time_4_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_time_4_values.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_1_row_without_grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_without_grouping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_filter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_and_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_column_tag_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_4_row_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_4_tag_and_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -554,7 +545,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update yaml38" />
     <MESSAGE value="update yaml39" />
     <MESSAGE value="update yaml40" />
     <MESSAGE value="add tests for import check-lists" />
@@ -579,6 +569,7 @@
     <MESSAGE value="moved some rules test to test_rules.py" />
     <MESSAGE value="moved rules tests to tests" />
     <MESSAGE value="moved rules tests to tests2" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved rules tests to tests2" />
+    <MESSAGE value="add test ro reports" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test ro reports" />
   </component>
 </project>

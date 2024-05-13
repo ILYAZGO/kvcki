@@ -48,9 +48,9 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
 def press_add_column(page="page: Page"):
     page.locator(BUTTON_ADD_COLUMN).click()
 
+
 def press_add_row(page="page: Page"):
     page.locator(BUTTON_ADD_ROW).click()
-
 
 
 def click_checkbox_in_tag_and_value(number, page="page: Page"):
@@ -64,9 +64,11 @@ def press_generate_report(page="page: Page"):
     page.locator(BUTTON_GENERATE_REPORT).click()
     page.wait_for_selector('[data-id="0"]')
 
+
 def press_save_as_new(page="page: Page"):
     page.locator(BUTTON_SAVE_AS_NEW).click()
     page.wait_for_selector('[class="modal-btns"]')
+
 
 def press_save_current(page="page: Page"):
     page.locator(BUTTON_REPORT_UPDATE).click()
@@ -111,6 +113,7 @@ def fill_column_by_tag_list(number, *args, page="page: Page"):
         page.locator('[class*="menu"]').get_by_text(i, exact=True).click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
+
 def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
     page.locator('[class*="menu"]').get_by_text("Точный фильтр", exact=True).click()
@@ -123,15 +126,18 @@ def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Pag
     page.locator('[class*="menu"]').get_by_text(tagValue, exact=True).click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
+
 def fill_column_by_communication(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
     page.locator('[class*="menu"]').get_by_text("По количеству коммуникаций", exact=True).click()
+
 
 def fill_row_by_date(number, select, time, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
     page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
     page.locator(f'[data-testid="report_rows_row_{number}_time"]').click()
     page.locator('[class*="menu"]').get_by_text(time, exact=True).click()
+
 
 def fill_row_operator_phone(number, select, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
@@ -141,6 +147,7 @@ def fill_row_operator_phone(number, select, page="page: Page"):
 def fill_row_without_grouping(number, select, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
     page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
+
 
 def fill_row_communications(number, select, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
