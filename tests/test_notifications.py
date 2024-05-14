@@ -351,6 +351,7 @@ def test_notifications_import_rules_by_admin(page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
     with allure.step("Create user for import"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
@@ -487,3 +488,28 @@ def test_notifications_import_rules_by_manager(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.independent
+@pytest.mark.notifications
+@allure.title("test_check_old_notification")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_check_old_notification for ecotelecom")
+def test_check_old_notification(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to notifications"):
+        go_to_notifications_page(page)
+
+    with allure.step("Click at first Ecotelecom rule"):
+        page.locator(BLOCK_RULES_LIST).locator('[class*="styles_content__"]').first.click()
+        page.wait_for_selector(INPUT_COMMENT)
+
+    with allure.step("Check that first ecotelecom rule opened"):
+        expect(page.locator(INPUT_COMMENT)).to_be_visible()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA)).to_be_visible()

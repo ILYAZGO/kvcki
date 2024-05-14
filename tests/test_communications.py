@@ -599,3 +599,45 @@ def test_check_content_button_calls_download(page: Page) -> None:
 
     with allure.step("Check content of button download"):
         expect(page.locator('[class*="menu"]')).to_have_text("Экспорт аудиоЭкспорт расшифровкиЭкспорт коммуникаций")
+
+
+@pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_check_buttons_in_open_call")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_buttons_in_open_call")
+def test_check_buttons_in_open_call(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID)
+        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Expand call"):
+        page.locator('[data-testid="call_expand"]').click()
+        page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
+
+    with allure.step("Check that all 6 buttons in expanded call visible"):
+        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Применение GPT правила"]')).to_be_visible()
+        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Перетегировать"]')).to_be_visible()
+        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Скачать"]')).to_be_visible()
+        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Excel экспорт"]')).to_be_visible()
+        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Скопировать публичную ссылку"]')).to_be_visible()
+        expect(page.locator('[class="MuiAccordion-region"]').locator('[data-testid="calls_actions_actions-btn"]')).to_be_visible()
+
+    with allure.step("Click button (calls action)"):
+        page.locator('[class="MuiAccordion-region"]').locator('[data-testid="calls_actions_actions-btn"]').click()
+
+    with (allure.step("Check content in opened menu")):
+        expect(page.locator('[class="MuiAccordion-region"]').locator('[class*="menu"]')).to_have_text("Мета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения ")
