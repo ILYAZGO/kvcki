@@ -333,3 +333,30 @@ def test_import_gpt_rules_disabled_for_user(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.independent
+@pytest.mark.gpt
+@allure.title("test_check_old_gpt_rule")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_check_old_gpt_rule for ecotelecom")
+def test_check_old_gpt_rule(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to GPT"):
+        page.wait_for_selector(BUTTON_RAZMETKA)
+        page.locator(BUTTON_RAZMETKA).click()
+        page.wait_for_selector(BUTTON_GPT)
+        page.locator(BUTTON_GPT).click()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check that rule opened"):
+        expect(page.locator(INPUT_GPT_RULE_NAME)).to_be_visible()
+        expect(page.locator(INPUT_GPT_TEG_NAME)).to_be_visible()
+        expect(page.locator(INPUT_GPT_QUESTION))
+

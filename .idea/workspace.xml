@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add row tag_list test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add tests^&#10;check old notification rule&#10;check buttons inside expanded call">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_4_tag_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_2_tag_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -546,7 +544,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests for import check-lists" />
     <MESSAGE value="add tests for import check-lists2" />
     <MESSAGE value="refactor" />
     <MESSAGE value="check import gpt" />
@@ -571,6 +568,7 @@
     <MESSAGE value="add test ro reports" />
     <MESSAGE value="add tests" />
     <MESSAGE value="add row tag_list test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add row tag_list test" />
+    <MESSAGE value="add tests^&#10;check old notification rule&#10;check buttons inside expanded call" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests^&#10;check old notification rule&#10;check buttons inside expanded call" />
   </component>
 </project>
