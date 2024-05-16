@@ -574,10 +574,10 @@ def test_check_content_button_calls_actions(page: Page) -> None:
 
 @pytest.mark.calls
 @pytest.mark.independent
-@allure.title("test_check_content_button_calls_download")
+@allure.title("test_check_download_button_in_calls_list")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_content_button_calls (download)")
-def test_check_content_button_calls_download(page: Page) -> None:
+def test_check_download_button_in_calls_list(page: Page) -> None:
 
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
@@ -600,6 +600,51 @@ def test_check_content_button_calls_download(page: Page) -> None:
 
     with allure.step("Check content of button download"):
         expect(page.locator('[class*="menu"]')).to_have_text("Экспорт аудиоЭкспорт расшифровкиЭкспорт коммуникаций")
+
+    with allure.step("Choose (Export audio) option from opened menu"):
+        # Start waiting for the download
+        with page.expect_download(timeout=50000) as download_info:
+            # Perform the action that initiates download
+            page.locator('[class*="menu"]').get_by_text("Экспорт аудио", exact=True).click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that export (zip) downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+
+    with allure.step("Remove downloaded export (zip)"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that downloaded export (zip) removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+    #with allure.step("Press button (Download)"):
+    #    page.locator('[data-testid="calls_actions_download"]').nth(0).click()
+
+    #with allure.step("Choose (Export transcribe) option from opened menu"):
+        # Start waiting for the download
+    #    with page.expect_download(timeout=50000) as download_info:
+            # Perform the action that initiates download
+    #        page.locator('[class*="menu"]').get_by_text("Экспорт расшифровки", exact=True).click()
+    #    download = download_info.value
+    #    path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+    #    download.save_as(path + download.suggested_filename)
+
+    #with allure.step("Check that export (zip) downloaded"):
+   #     assert os.path.isfile(path + download.suggested_filename) == True
+
+    #with allure.step("Remove downloaded export (zip)"):
+    #    os.remove(path + download.suggested_filename)
+
+    #with allure.step("Check that downloaded export (zip) removed"):
+    #    assert os.path.isfile(path + download.suggested_filename) == False
+
+
 
 
 @pytest.mark.calls
@@ -736,3 +781,5 @@ def test_check_download_excel_from_expanded_call(page: Page) -> None:
 
     with allure.step("Check that excel export removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
+
+
