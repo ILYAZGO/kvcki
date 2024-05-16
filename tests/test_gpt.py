@@ -356,7 +356,8 @@ def test_check_old_gpt_rule(page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Check that rule opened"):
+        page.wait_for_selector(INPUT_GPT_RULE_NAME)
         expect(page.locator(INPUT_GPT_RULE_NAME)).to_be_visible()
         expect(page.locator(INPUT_GPT_TEG_NAME)).to_be_visible()
-        expect(page.locator(INPUT_GPT_QUESTION))
+        expect(page.locator(INPUT_GPT_QUESTION)).to_be_visible()
 
