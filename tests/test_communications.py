@@ -1,3 +1,5 @@
+import os
+
 from playwright.sync_api import Page, expect, BrowserContext
 from utils.variables import *
 from utils.auth import auth
@@ -570,7 +572,6 @@ def test_check_content_button_calls_actions(page: Page) -> None:
         expect(page.locator('[class*="menu"]')).to_have_text("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов")
 
 
-
 @pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_content_button_calls_download")
@@ -641,3 +642,97 @@ def test_check_buttons_in_open_call(page: Page) -> None:
 
     with (allure.step("Check content in opened menu")):
         expect(page.locator('[class="MuiAccordion-region"]').locator('[class*="menu"]')).to_have_text("Мета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения ")
+
+
+@pytest.mark.independent
+@allure.title("test_check_download_call_from_expanded_call")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_download_call_from_expanded_call")
+def test_check_download_call_from_expanded_call(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID)
+        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Expand call"):
+        page.locator('[data-testid="call_expand"]').click()
+        page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
+
+    with allure.step("Press (Download) button and download file"):
+        # Start waiting for the download
+        with page.expect_download(timeout=50000) as download_info:
+            # Perform the action that initiates download
+            page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Скачать"]').locator('[type="button"]').click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that file downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+
+    with allure.step("Remove downloaded file"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that file removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+
+@pytest.mark.independent
+@allure.title("test_check_download_excel_from_expanded_call")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_download_excel_from_expanded_call")
+def test_check_download_excel_from_expanded_call(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID)
+        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Expand call"):
+        page.locator('[data-testid="call_expand"]').click()
+        page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
+
+    with allure.step("Press (EX) button and download excel"):
+        # Start waiting for the download
+        with page.expect_download(timeout=50000) as download_info:
+            # Perform the action that initiates download
+            page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Excel экспорт"]').locator('[type="button"]').click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that excel export downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+
+    with allure.step("Remove downloaded excel export"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that excel export removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
