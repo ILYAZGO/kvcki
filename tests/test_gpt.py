@@ -345,7 +345,7 @@ def test_check_old_gpt_rule(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth to ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
 
     with allure.step("Go to GPT"):
