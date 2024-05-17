@@ -339,7 +339,7 @@ def test_import_gpt_rules_disabled_for_user(page: Page) -> None:
 @pytest.mark.gpt
 @allure.title("test_check_old_gpt_rule")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_check_old_gpt_rule for ecotelecom")
+@allure.description("Check first old gpt rule for ecotelecom")
 def test_check_old_gpt_rule(page: Page) -> None:
 
     with allure.step("Go to url"):
@@ -359,6 +359,7 @@ def test_check_old_gpt_rule(page: Page) -> None:
     with allure.step("Check that rule opened"):
 
         expect(page.locator(INPUT_GPT_RULE_NAME)).to_be_visible()
+        expect(page.get_by_text("Вопрос 1")).to_have_count(1)
         #expect(page.locator(INPUT_GPT_TEG_NAME)).to_be_visible()
         #expect(page.locator(INPUT_GPT_QUESTION)).to_be_visible()
 
