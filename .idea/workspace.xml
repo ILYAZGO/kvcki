@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor2">
-      <change afterPath="$PROJECT_DIR$/reports_test/test_reports_download_report.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test report download">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -545,7 +543,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix test" />
     <MESSAGE value="change url" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="check before release" />
@@ -570,6 +567,7 @@
     <MESSAGE value="added tests for download files" />
     <MESSAGE value="refactor" />
     <MESSAGE value="refactor2" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor2" />
+    <MESSAGE value="add test report download" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test report download" />
   </component>
 </project>
