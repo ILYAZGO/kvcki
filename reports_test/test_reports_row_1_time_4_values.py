@@ -21,7 +21,7 @@ def test_example(page: Page) -> None:
     add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     '''value 0'''
-    fill_row_by_date("0", "Времени", "По дням", page)
+    fill_row_by_date("1", "Времени", "По дням", page)
 
     fill_column_by_communication("0", page)
 
@@ -40,13 +40,13 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
     # check row
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("Времени")
-    expect(page.locator('[data-testid="report_rows_row_0_time"]')).to_have_text("По дням")
+    expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+    expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По дням")
     # check column
     expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
     '''value 1'''
-    fill_row_by_date("0", "Времени", "По неделям", page)
+    fill_row_by_date("1", "Времени", "По неделям", page)
 
     press_generate_report(page)
 
@@ -59,13 +59,13 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
     # check row
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("Времени")
-    expect(page.locator('[data-testid="report_rows_row_0_time"]')).to_have_text("По неделям")
+    expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+    expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По неделям")
     # check column
     expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
     '''value 2'''
-    fill_row_by_date("0", "Времени", "По месяцам", page)
+    fill_row_by_date("1", "Времени", "По месяцам", page)
 
     press_generate_report(page)
 
@@ -78,13 +78,13 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
     # check row
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("Времени")
-    expect(page.locator('[data-testid="report_rows_row_0_time"]')).to_have_text("По месяцам")
+    expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+    expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По месяцам")
     # check column
     expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
     '''value 3'''
-    fill_row_by_date("0", "Времени", "По часам", page)
+    fill_row_by_date("1", "Времени", "По часам", page)
 
     press_generate_report(page)
 
@@ -102,8 +102,8 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
     # check row
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("Времени")
-    expect(page.locator('[data-testid="report_rows_row_0_time"]')).to_have_text("По часам")
+    expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+    expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По часам")
     # check column
     expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 

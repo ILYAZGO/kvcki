@@ -20,7 +20,7 @@ def test_example(page: Page) -> None:
 
     add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
-    fill_row_communications("0", "Коммуникации", page)
+    fill_row_communications("1", "Коммуникации", page)
 
     press_generate_report(page)
 
@@ -31,7 +31,7 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
     # check row
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("Коммуникации")
+    expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Коммуникации")
     # check column
     expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 

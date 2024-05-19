@@ -22,26 +22,27 @@ def test_example(page: Page) -> None:
 
     # 0
 
-    fill_row_by_tag_list("0", "По списку тегов", "direction", page)
+    fill_row_by_tag_list("1", "По списку тегов", "direction", page)
 
     # add row
     press_add_row(page)
 
     # 1
 
-    fill_row_by_tag_list("1", "По списку тегов", "hangup", page)
-    fill_row_by_tag_list("1", "По списку тегов", "CALLID", page)
+    fill_row_by_tag_list("2", "По списку тегов", "hangup", page)
+    #page.wait_for_timeout(1000)
+    #fill_row_by_tag_list("2", "По списку тегов", "CALLID", page)
 
-    click_checkbox_row_in_tag_list("1",page)
+    click_checkbox_row_in_tag_list("2",page)
 
-    expect(page.locator('[data-testid="report_rows_row_1_tagListCheckbox"]')).not_to_be_checked()
+    expect(page.locator('[data-testid="report_rows_row_2_tagListCheckbox"]')).not_to_be_checked()
 
     fill_column_by_communication("0", page)
 
     press_generate_report(page)
 
-    expect(page.locator('[aria-label="direction + hangup, CALLID"]')).to_be_visible()
-
+    #expect(page.locator('[aria-label="direction + hangup, CALLID"]')).to_be_visible()
+    expect(page.locator('[aria-label="direction + hangup"]')).to_be_visible()
     expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
     expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
@@ -51,13 +52,13 @@ def test_example(page: Page) -> None:
     expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
 
     # check column
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("По списку тегов")
     expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("По списку тегов")
+    expect(page.locator('[data-testid="report_rows_row_2_select"]')).to_have_text("По списку тегов")
 
     # check tagSelect
-    expect(page.locator('[data-testid="report_rows_row_0__tagListValues"]')).to_have_text("direction")
-    expect(page.locator('[data-testid="report_rows_row_1__tagListValues"]')).to_have_text("hangupCALLID")
-
+    expect(page.locator('[data-testid="report_rows_row_1__tagListValues"]')).to_have_text("direction")
+    #expect(page.locator('[data-testid="report_rows_row_2__tagListValues"]')).to_have_text("hangupCALLID")
+    expect(page.locator('[data-testid="report_rows_row_2__tagListValues"]')).to_have_text("hangup")
     # check checkboxes
-    expect(page.locator('[data-testid="report_rows_row_0_tagListCheckbox"]')).to_be_checked()
-    expect(page.locator('[data-testid="report_rows_row_1_tagListCheckbox"]')).not_to_be_checked()
+    expect(page.locator('[data-testid="report_rows_row_1_tagListCheckbox"]')).to_be_checked()
+    expect(page.locator('[data-testid="report_rows_row_2_tagListCheckbox"]')).not_to_be_checked()

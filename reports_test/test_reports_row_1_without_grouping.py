@@ -21,7 +21,7 @@ def test_example(page: Page) -> None:
     add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     ''''''
-    fill_row_without_grouping("0", "Без группировки", page)
+    fill_row_without_grouping("1", "Без группировки", page)
 
     #fill_column_by_communication("0", page)
 
@@ -38,7 +38,7 @@ def test_example(page: Page) -> None:
 
     expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
     # check row
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("Без группировки")
+    expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Без группировки")
     # check column
     expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 

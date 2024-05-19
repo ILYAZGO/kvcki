@@ -21,34 +21,34 @@ def test_example(page: Page) -> None:
     add_checklist_to_report("Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)", page)
 
     # 0
-    fill_row_by_tag_and_value("0", "Тегу и значениям", "direction", "incoming", page)
+    fill_row_by_tag_and_value("1", "Тегу и значениям", "direction", "incoming", page)
 
     # add column
     press_add_row(page)
 
     # 1
 
-    fill_row_by_tag_and_value("1", "Тегу и значениям", "hangup", "operator", page)
+    fill_row_by_tag_and_value("2", "Тегу и значениям", "hangup", "operator", page)
 
     # add column
     press_add_row(page)
 
     # 2
-    fill_row_by_tag_and_value("2", "Тегу и значениям", "CALLID", "Выбрать все", page)
+    fill_row_by_tag_and_value("3", "Тегу и значениям", "CALLID", "Выбрать все", page)
 
-    click_checkbox_row_in_tag_and_value("2",page)
+    click_checkbox_row_in_tag_and_value("3",page)
 
-    expect(page.locator('[data-testid="report_rows_row_2_tagCheckbox"]')).not_to_be_checked()
+    expect(page.locator('[data-testid="report_rows_row_3_tagCheckbox"]')).not_to_be_checked()
 
     # add column
     press_add_row(page)
 
     # 3
-    fill_row_by_tag_and_value("3", "Тегу и значениям", "queue", "Выбрать все", page)
+    fill_row_by_tag_and_value("4", "Тегу и значениям", "queue", "Выбрать все", page)
 
-    click_checkbox_row_in_tag_and_value("3",page)
+    click_checkbox_row_in_tag_and_value("4",page)
 
-    expect(page.locator('[data-testid="report_rows_row_3_tagCheckbox"]')).not_to_be_checked()
+    expect(page.locator('[data-testid="report_rows_row_4_tagCheckbox"]')).not_to_be_checked()
 
     fill_column_by_communication("0", page)
 
@@ -65,22 +65,22 @@ def test_example(page: Page) -> None:
     expect(page.locator('[aria-label="Remove Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)"]')).to_be_visible()
 
     # check column
-    expect(page.locator('[data-testid="report_rows_row_0_select"]')).to_have_text("Тегу и значениям")
     expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Тегу и значениям")
     expect(page.locator('[data-testid="report_rows_row_2_select"]')).to_have_text("Тегу и значениям")
     expect(page.locator('[data-testid="report_rows_row_3_select"]')).to_have_text("Тегу и значениям")
+    expect(page.locator('[data-testid="report_rows_row_4_select"]')).to_have_text("Тегу и значениям")
     # check tagSelect
-    expect(page.locator('[data-testid="report_rows_row_0_tagSelect"]')).to_have_text("direction")
-    expect(page.locator('[data-testid="report_rows_row_1_tagSelect"]')).to_have_text("hangup")
-    expect(page.locator('[data-testid="report_rows_row_2_tagSelect"]')).to_have_text("CALLID")
-    expect(page.locator('[data-testid="report_rows_row_3_tagSelect"]')).to_have_text("queue")
+    expect(page.locator('[data-testid="report_rows_row_1_tagSelect"]')).to_have_text("direction")
+    expect(page.locator('[data-testid="report_rows_row_2_tagSelect"]')).to_have_text("hangup")
+    expect(page.locator('[data-testid="report_rows_row_3_tagSelect"]')).to_have_text("CALLID")
+    expect(page.locator('[data-testid="report_rows_row_4_tagSelect"]')).to_have_text("queue")
     # check tagValues
-    expect(page.locator('[data-testid="report_rows_row_0_tagValues"]')).to_have_text("incoming")
-    expect(page.locator('[data-testid="report_rows_row_1_tagValues"]')).to_have_text("operator")
-    expect(page.locator('[data-testid="report_rows_row_2_tagValues"]')).to_have_text("Выбрать все")
+    expect(page.locator('[data-testid="report_rows_row_1_tagValues"]')).to_have_text("incoming")
+    expect(page.locator('[data-testid="report_rows_row_2_tagValues"]')).to_have_text("operator")
     expect(page.locator('[data-testid="report_rows_row_3_tagValues"]')).to_have_text("Выбрать все")
+    expect(page.locator('[data-testid="report_rows_row_4_tagValues"]')).to_have_text("Выбрать все")
     # check checkboxes
-    expect(page.locator('[data-testid="report_rows_row_0_tagCheckbox"]')).to_be_checked()
     expect(page.locator('[data-testid="report_rows_row_1_tagCheckbox"]')).to_be_checked()
-    expect(page.locator('[data-testid="report_rows_row_2_tagCheckbox"]')).not_to_be_checked()
+    expect(page.locator('[data-testid="report_rows_row_2_tagCheckbox"]')).to_be_checked()
     expect(page.locator('[data-testid="report_rows_row_3_tagCheckbox"]')).not_to_be_checked()
+    expect(page.locator('[data-testid="report_rows_row_4_tagCheckbox"]')).not_to_be_checked()
