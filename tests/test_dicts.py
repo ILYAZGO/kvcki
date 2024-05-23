@@ -211,10 +211,11 @@ def test_check_dict_type(page: Page) -> None:
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
+        page.wait_for_timeout(2000)
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(4800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -226,10 +227,11 @@ def test_check_dict_type(page: Page) -> None:
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
+        page.wait_for_timeout(2000)
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(4800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -241,10 +243,11 @@ def test_check_dict_type(page: Page) -> None:
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
+        page.wait_for_timeout(2000)
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(2500)
+        page.wait_for_timeout(4800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -256,10 +259,11 @@ def test_check_dict_type(page: Page) -> None:
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
+        page.wait_for_timeout(2000)
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(4800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
