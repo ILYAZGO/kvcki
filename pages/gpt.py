@@ -23,15 +23,15 @@ def go_to_gpt(page="page: Page"):
 
 def press_save_in_gpt(page="page: Page"):
     page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(1700)
     # page.wait_for_selector(BUTTON_KORZINA)
 
 def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(500)
     page.wait_for_selector(INPUT_GPT_RULE_NAME)
     page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(800)
     page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
     page.wait_for_timeout(300)
     page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
@@ -68,12 +68,12 @@ def turn_on_rule(page="page: Page"):
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
-    page.locator('[class*="styles_groupItem__B425x"]').nth(0).locator('[type="checkbox"]').first.click()
-    page.wait_for_timeout(400)
-    page.mouse.move(0, 100)
-    page.wait_for_timeout(300)
+    #page.locator('[class*="styles_groupItem__B425x"]').nth(0).locator('[type="checkbox"]').first.click()
+    #page.wait_for_timeout(800)
+    #page.mouse.move(100, 0)
+    #page.wait_for_timeout(600)
     page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_timeout(600)
     #  confirm deleting
     page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(2000)

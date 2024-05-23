@@ -200,6 +200,7 @@ def test_import_gpt_rule_by_admin(page: Page) -> None:
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
 
     with allure.step("Press (Go on)"):
+        page.wait_for_timeout(400)
         page.get_by_role("button", name="Продолжить").click()
 
     with allure.step("Import second"):
@@ -207,7 +208,7 @@ def test_import_gpt_rule_by_admin(page: Page) -> None:
 
     with allure.step("Go to new gpt rules"):
         page.get_by_role("button", name="К новым правилам GPT").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(1800)
 
     with allure.step("Check that gpt rules imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
@@ -278,6 +279,7 @@ def test_import_gpt_rule_by_manager(page: Page) -> None:
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
 
     with allure.step("Press (Go on)"):
+        page.wait_for_timeout(400)
         page.get_by_role("button", name="Продолжить").click()
 
     with allure.step("Import second"):
