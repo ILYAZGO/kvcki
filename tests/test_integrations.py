@@ -78,3 +78,35 @@ def test_usedesk(page: Page) -> None:
 
 
 
+@pytest.mark.independent
+@pytest.mark.integration
+@allure.title("test_search_string")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_search_string")
+def test_search_string(page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth"):
+        auth(LOGIN, PASSWORD, page)
+
+    with allure.step("Go to settings"):
+        go_to_settings(page)
+
+    with allure.step("Go to integrations"):
+        page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
+
+    with allure.step("Press (Connect)"):
+        page.locator(BUTTON_PODKLU4IT).click()
+        page.wait_for_selector('[alt="AmoCRM"]')
+
+    with allure.step("Fill search string"):
+        page.get_by_role("textbox", name="Поиск").fill("za")
+        page.wait_for_timeout(500)
+
+    with allure.step("Check that search string found something"):
+        expect(page.locator('[class*="styles_listItem_"]')).to_have_count(1)

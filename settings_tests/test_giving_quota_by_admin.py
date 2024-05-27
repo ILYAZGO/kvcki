@@ -26,6 +26,9 @@ def test_example(page: Page) -> None:
     click_quota(page)
 
     press_add_in_quotas(page)
+
+    expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("777")
+
     # checkbox
     page.locator('[type="checkbox"]').click()
 
@@ -37,6 +40,7 @@ def test_example(page: Page) -> None:
     fill_quota_time("100", page)
 
     press_add_in_quotas(page)
+
     #wait
     page.wait_for_selector('[aria-rowindex="2"]')
 
@@ -59,6 +63,8 @@ def test_example(page: Page) -> None:
     #expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
 
     press_add_in_quotas(page)
+
+    expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("100")
 
     choose_preiod_date("30/12/2024", "31/12/2024", page)
 
