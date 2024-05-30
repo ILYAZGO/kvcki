@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests3">
-      <change afterPath="$PROJECT_DIR$/settings_tests/est_address_book_fill_by_user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings_tests/test_settings.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check 2467">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_address_book_fill_by_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_integrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_integrations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +29,16 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2SOFMm96nlPOmSS0yZ4GcsvDVvH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_pass.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
@@ -549,8 +547,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add wait2" />
-    <MESSAGE value="move dict test to module" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="add timeout to dict type test" />
     <MESSAGE value="check" />
     <MESSAGE value="moved some rules test to test_rules.py" />
@@ -574,6 +571,8 @@
     <MESSAGE value="fix tests" />
     <MESSAGE value="fix tests2" />
     <MESSAGE value="fix tests3" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests3" />
+    <MESSAGE value="change url to preprod" />
+    <MESSAGE value="check 2467" />
+    <option name="LAST_COMMIT_MESSAGE" value="check 2467" />
   </component>
 </project>
