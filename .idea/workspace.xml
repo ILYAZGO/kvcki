@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check 2467">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="back url" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -548,7 +546,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add timeout to dict type test" />
     <MESSAGE value="check" />
     <MESSAGE value="moved some rules test to test_rules.py" />
     <MESSAGE value="moved rules tests to tests" />
@@ -573,6 +570,7 @@
     <MESSAGE value="fix tests3" />
     <MESSAGE value="change url to preprod" />
     <MESSAGE value="check 2467" />
-    <option name="LAST_COMMIT_MESSAGE" value="check 2467" />
+    <MESSAGE value="back url" />
+    <option name="LAST_COMMIT_MESSAGE" value="back url" />
   </component>
 </project>
