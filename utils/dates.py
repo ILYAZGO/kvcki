@@ -14,7 +14,7 @@ first_day_week_ago = (current_date - timedelta(days=6)).strftime("%d/%m/%Y")
 
 days_in_current_month = calendar.monthrange(current_date.year, current_date.month)[1]
 
-first_day_month_ago = (current_date - timedelta(days=29)).strftime("%d/%m/%Y") #(current_date + relativedelta(weeks=-4)).strftime("%d/%m/%Y")                   #(current_date - timedelta(days=30)).strftime("%d/%m/%Y")
+first_day_month_ago = (current_date - timedelta(days=30)).strftime("%d/%m/%Y") #(current_date + relativedelta(weeks=-4)).strftime("%d/%m/%Y")                   #(current_date - timedelta(days=30)).strftime("%d/%m/%Y")
 print(first_day_month_ago)
 
 #if days_in_current_month == 31:
