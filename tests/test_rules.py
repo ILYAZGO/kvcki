@@ -358,7 +358,7 @@ def test_add_rule_inside_group_check_set_tag_block(page: Page) -> None:
 
     with allure.step("Check that teg was added"):
         expect(page.locator('[data-testid="setTagsItem_name"]')).to_have_count(2, timeout=wait_until_visible)
-        expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]')).to_have_count(2, timeout=wait_until_visible)
+        expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Добавить значение тега"]')).to_have_count(2, timeout=wait_until_visible)
         expect(page.locator('[data-testid="setTagsDeleteTagButton"]')).to_have_count(2, timeout=wait_until_visible)
         expect(page.locator('[data-testid="setTagsItem_name"]').nth(1).locator('[name="name"]')).to_have_value("set_tags", timeout=wait_until_visible)
 
@@ -367,13 +367,12 @@ def test_add_rule_inside_group_check_set_tag_block(page: Page) -> None:
 
     with allure.step("Check that teg deleted"):
         expect(page.locator('[data-testid="setTagsItem_name"]')).to_have_count(1, timeout=wait_until_visible)
-        expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]')).to_have_count(1, timeout=wait_until_visible)
+        expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Добавить значение тега"]')).to_have_count(1, timeout=wait_until_visible)
         expect(page.locator('[data-testid="setTagsDeleteTagButton"]')).to_have_count(1, timeout=wait_until_visible)
 
     with allure.step("Add additional params (tag value)"):
-        page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]').click()
+        page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Добавить значение тега"]').click()
         page.get_by_text("Значение тега", exact=True).click()
-        page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]').click()
 
     with allure.step("Check that tag value added"):
         expect(page.locator('[name="value"]')).to_have_count(1, timeout=wait_until_visible)
@@ -391,7 +390,7 @@ def test_add_rule_inside_group_check_set_tag_block(page: Page) -> None:
 
     with allure.step("Check tag value still exists and have value"):
         expect(page.locator('[name="value"]')).to_have_value("tagValue")
-        expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Дополнительные условия"]')).to_have_count(1, timeout=wait_until_visible)
+        expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Убрать значение тега"]')).to_have_count(1, timeout=wait_until_visible)
         expect(page.locator('[data-testid="setTagsDeleteTagButton"]')).to_have_count(1, timeout=wait_until_visible)
 
     with allure.step("Delete group and rule"):
