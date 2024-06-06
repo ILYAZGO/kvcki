@@ -4,10 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix date">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="usedesk test disabled and change url">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/integration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_operator_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_change_personal_information_save_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_user_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_admin_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_admin_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_manager_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_manager_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_operator_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_operator_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_left_menu_items_for_user_itself.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_user_itself.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_can_change_rights_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_user_can_change_rights_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_cant_change_login_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/est_user_cant_change_login_for_operator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_integrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_integrations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_rules.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -550,7 +562,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved rules tests to tests2" />
     <MESSAGE value="add test ro reports" />
     <MESSAGE value="add tests" />
     <MESSAGE value="add row tag_list test" />
@@ -575,6 +586,7 @@
     <MESSAGE value="check 401 branch" />
     <MESSAGE value="revert url" />
     <MESSAGE value="fix date" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix date" />
+    <MESSAGE value="usedesk test disabled and change url" />
+    <option name="LAST_COMMIT_MESSAGE" value="usedesk test disabled and change url" />
   </component>
 </project>

@@ -14,7 +14,7 @@ import allure
 @allure.title("test_usedesk")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User making integration with usedesk")
-def est_usedesk(page: Page) -> None:
+def test_usedesk(page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
