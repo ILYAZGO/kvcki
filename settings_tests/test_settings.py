@@ -5,6 +5,7 @@ from pages.settings import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
 import pytest
 import allure
+import random
 
 # input text to address-book, save, check that text saved
 @pytest.mark.independent
