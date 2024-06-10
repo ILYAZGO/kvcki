@@ -23,6 +23,7 @@ INPUT_ID = '[data-testid="filters_any_id"]'
 # buttons
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
+BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 # other
 AUDIO_PLAYER = '[class*="react-audio-player"]'
 NAYDENO_ZVONKOV = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/p'

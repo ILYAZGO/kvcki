@@ -426,7 +426,6 @@ def test_user_can_change_rights_for_operator(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-
 @pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_change_personal_information_save_admin_itself")

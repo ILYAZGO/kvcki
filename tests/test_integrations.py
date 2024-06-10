@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import auth
 from utils.dates import first_day_week_ago
-from pages.calls import *
+from pages.communications import *
 from pages.integration import *
 from utils.create_delete_user import create_user, delete_user
 import pytest

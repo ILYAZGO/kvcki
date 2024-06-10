@@ -41,10 +41,12 @@ def go_to_users(page="page: Page"):
     page.locator(BUTTON_POLZOVATELI).click()
     page.wait_for_selector(FIRST_ROW_IN_USERS_LIST)
 
+
 def press_button_add_user(page="page: Page"):
     #page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
     page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
     page.wait_for_selector(INPUT_NAME)
+
 
 def press_button_add_employee(page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
@@ -92,7 +94,6 @@ def set_industry(industry, page="page: Page"):
     page.wait_for_timeout(500)
     page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
     page.wait_for_timeout(500)
-
 
 
 def set_industry_and_partner(industry, partner, page="page: Page"):

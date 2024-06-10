@@ -20,7 +20,7 @@ def test_notifications_first_page(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Click on block 0 from first page"):
@@ -58,7 +58,7 @@ def test_notifications_api_method_change(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to notifications"):
@@ -150,7 +150,6 @@ def test_notifications_api_method_change(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-
 @pytest.mark.independent
 @pytest.mark.notifications
 @allure.title("test_notifications_api")
@@ -164,7 +163,7 @@ def test_notifications_api(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to notifications"):
@@ -228,7 +227,7 @@ def test_notifications_email(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to notifications"):
@@ -291,7 +290,7 @@ def test_notifications_telegram(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to notifications"):
@@ -494,13 +493,13 @@ def test_notifications_import_rules_by_manager(page: Page) -> None:
 @pytest.mark.notifications
 @allure.title("test_check_old_notification")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_check_old_notification for ecotelecom")
+@allure.description("test_check_old_notification for Ecotelecom")
 def test_check_old_notification(page: Page) -> None:
 
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
 
     with allure.step("Go to notifications"):
@@ -510,6 +509,6 @@ def test_check_old_notification(page: Page) -> None:
         page.locator(BLOCK_RULES_LIST).locator('[class*="styles_content__"]').first.click()
         page.wait_for_selector(INPUT_COMMENT)
 
-    with allure.step("Check that first ecotelecom rule opened"):
+    with allure.step("Check that first Ecotelecom rule opened"):
         expect(page.locator(INPUT_COMMENT)).to_be_visible()
         expect(page.locator(BLOCK_RULE_MAIN_AREA)).to_be_visible()

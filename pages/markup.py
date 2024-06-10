@@ -11,7 +11,6 @@ INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'
 INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 
 # buttons
-
 BUTTON_DOBAVIT_GRUPPU = '[data-testid="markup_addGroup"]'
 BUTTON_DOBAVIT_TEG = '[data-testid="markup_addTaggingRule"]'
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
@@ -47,11 +46,13 @@ BUTTON_IMPORTIROVAT_SLOVARI = '[data-testid="markup_importDicts"]'
 # other
 CLICK_ON_GROUP = "//p[normalize-space()='12345']"
 
+
 def go_to_user(name:str, page="page: Page"):
     page.locator(USERS_LIST).fill(name)
     page.wait_for_timeout(500)
     page.get_by_text(name, exact=True).click()
     page.wait_for_selector('[class*="CallsHeader"]')
+
 
 def create_group(groupName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
@@ -59,6 +60,7 @@ def create_group(groupName, page="page: Page"):
     page.locator(INPUT_NEW_GROUP_NAME).fill(groupName)
     page.locator(BUTTON_OTPRAVIT).click()
     page.wait_for_timeout(1400)
+
 
 def create_rule(ruleName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_TEG)
@@ -71,10 +73,12 @@ def create_rule(ruleName, page="page: Page"):
     #page.get_by_role("button", name="Сохранить").click()
     page.wait_for_selector('[data-testid="tagSequenceBlock"]')
 
+
 def go_to_markup(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
     page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
+
 
 def go_to_dicts(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
@@ -83,6 +87,7 @@ def go_to_dicts(page="page: Page"):
     page.locator(BUTTON_SLOVARI).click()
     page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR)
     #page.wait_for_timeout(1000)
+
 
 def delete_group_and_rule_or_dict(page="page: Page"):
     #page.locator(".css-izdlur").click()
@@ -102,9 +107,11 @@ def create_dict(dictName, page="page: Page"):
     page.locator(INPUT_SPISOK_SLOV).fill("random_text")
     page.get_by_role("button", name="Сохранить").click()
 
+
 def fill_what_said(text, page="page: Page"):
     page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').fill(text)
     page.keyboard.press("Enter")
+
 
 def add_additional_terms(list, page="page: Page"):
     page.locator('[data-testid="fragmentRuleAddButton"]').get_by_role("button").dblclick()

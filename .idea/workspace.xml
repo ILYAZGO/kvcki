@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change usedesk token, moved some settings tests">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="revert url">
+      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -548,7 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add tests" />
     <MESSAGE value="add row tag_list test" />
     <MESSAGE value="add tests^&#10;check old notification rule&#10;check buttons inside expanded call" />
     <MESSAGE value="add test old gpt rule" />
@@ -569,10 +568,11 @@
     <MESSAGE value="check 2467" />
     <MESSAGE value="back url" />
     <MESSAGE value="check 401 branch" />
-    <MESSAGE value="revert url" />
     <MESSAGE value="fix date" />
     <MESSAGE value="usedesk test disabled and change url" />
     <MESSAGE value="change usedesk token, moved some settings tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="change usedesk token, moved some settings tests" />
+    <MESSAGE value="change url 2499" />
+    <MESSAGE value="revert url" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert url" />
   </component>
 </project>

@@ -1,4 +1,3 @@
-#  all for gpt
 BUTTON_RAZMETKA = '[value="tags"]'
 USERS_LIST = "#react-select-2-input"
 
@@ -13,6 +12,7 @@ INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
 INPUT_GPT_TEG_NAME = '[placeholder="Название тега"]'
 INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
 
+
 def go_to_gpt(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
@@ -21,10 +21,12 @@ def go_to_gpt(page="page: Page"):
     page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]')
     page.wait_for_timeout(500)
 
+
 def press_save_in_gpt(page="page: Page"):
     page.locator(BUTTON_GPT_SAVE).click(force=True)
     page.wait_for_timeout(1700)
     # page.wait_for_selector(BUTTON_KORZINA)
+
 
 def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
@@ -62,9 +64,11 @@ def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
     #page.wait_for_timeout(1000)
     #page.wait_for_selector(BUTTON_KORZINA)
 
+
 def turn_on_rule(page="page: Page"):
     page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
     page.wait_for_timeout(1200)
+
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)

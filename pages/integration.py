@@ -1,4 +1,4 @@
-USEDESK_TOKEN = "979be5305c275d4e3bce559f3c563e5721e66c61" #"445ab1e8e6853d3bbedf686ab02f4cb746098a9a"
+USEDESK_TOKEN = "979be5305c275d4e3bce559f3c563e5721e66c61"
 
 USERS_LIST = "#react-select-2-input"
 INPUT_API_TOKEN = '[data-testid="api_token"]'

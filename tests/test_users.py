@@ -23,7 +23,7 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with admin 1"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to users"):
@@ -82,7 +82,7 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to users"):
@@ -140,7 +140,7 @@ def test_add_delete_user_by_admin(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to users"):
@@ -208,7 +208,7 @@ def test_add_user_cancel_by_admin(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to users"):
@@ -249,7 +249,7 @@ def test_add_delete_user_by_manager(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with manager"):
         auth(MANAGER, PASSWORD, page)
 
     with allure.step("Go to users"):
@@ -317,7 +317,7 @@ def test_add_delete_operator_by_user(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to settings"):
@@ -373,7 +373,7 @@ def test_check_search(page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
 
-    with allure.step("Auth"):
+    with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to users"):

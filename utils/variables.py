@@ -1,11 +1,10 @@
 import os
-import random
 from datetime import datetime
 
 #LIST OF URLS
 URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
-#URL2 = ""
+
 # LIST OF TIMEOUTS
 
 timeout = 55000
