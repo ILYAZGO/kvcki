@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change url">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change url1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
     </list>
@@ -549,7 +549,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add test old gpt rule3" />
     <MESSAGE value="added tests for download files" />
     <MESSAGE value="refactor" />
     <MESSAGE value="refactor2" />
@@ -574,6 +573,7 @@
     <MESSAGE value="small fix2" />
     <MESSAGE value="small fix3" />
     <MESSAGE value="change url" />
-    <option name="LAST_COMMIT_MESSAGE" value="change url" />
+    <MESSAGE value="change url1" />
+    <option name="LAST_COMMIT_MESSAGE" value="change url1" />
   </component>
 </project>
