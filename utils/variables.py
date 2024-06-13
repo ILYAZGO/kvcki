@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 #LIST OF URLS
-URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
+URL = "http://192.168.10.101/feature-dev-2529/" #os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
 
 # LIST OF TIMEOUTS
