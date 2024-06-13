@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 #LIST OF URLS
-URL = "http://192.168.10.101/feature-dev-2529/" #os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
+URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
 
 # LIST OF TIMEOUTS
@@ -17,6 +17,7 @@ OPERATOR = "2operatorIM"
 MANAGER = "3managerIM"
 ADMIN = "4adminIM"
 USER_FOR_IMPORT = "importFrom"
+USER_FOR_CHECK = "comparelogin"
 PASSWORD = "Qaz123wsX"
 
 ECOTELECOM = "ecotelecom"  # used for calls and reports test
