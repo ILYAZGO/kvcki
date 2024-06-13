@@ -95,7 +95,7 @@ def test_admin_can_change_login_for_manager(page: Page) -> None:
     with allure.step("Reload page"):
         page.reload()
         page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(350)
     
     with allure.step("Check that login changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
