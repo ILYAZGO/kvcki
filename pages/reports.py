@@ -192,5 +192,5 @@ def add_checklist_to_report(checkListName, page="page: Page"):
     page.get_by_text("По чеклистам").nth(1).click()
     page.locator(TUPO_CLICK).click()
     page.locator('[autocorrect=off]').nth(0).fill("автотест")
-    page.get_by_text(checkListName, exact=True).click()
+    page.get_by_text(checkListName, exact=True).first.click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()

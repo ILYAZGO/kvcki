@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="revert url">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="revert url2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -548,7 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor" />
     <MESSAGE value="refactor2" />
     <MESSAGE value="add test report download" />
     <MESSAGE value="update docker and requirements" />
@@ -573,6 +572,7 @@
     <MESSAGE value="change url1" />
     <MESSAGE value="change url2" />
     <MESSAGE value="revert url" />
-    <option name="LAST_COMMIT_MESSAGE" value="revert url" />
+    <MESSAGE value="revert url2" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert url2" />
   </component>
 </project>
