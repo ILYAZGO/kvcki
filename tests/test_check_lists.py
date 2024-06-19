@@ -344,3 +344,48 @@ def test_import_check_list_disabled_for_user(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.check_list
+@allure.title("test_compare_check_lists_by_user")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("User has two check lists with different parameters. when he switch between them, all parameters changing")
+def test_compare_check_lists_by_user(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with user for check comparelogin"):
+        auth(USER_FOR_CHECK, PASSWORD, page)
+
+    with allure.step("Go to check-lists"):
+        go_to_check_list(page)
+
+    with allure.step("Select first available check-list"):
+        page.locator('[class*="styles_dpBothBox_"]').get_by_text("firstchecklist").click()
+        page.wait_for_selector(INPUT_CHECK_LIST_NAME)
+
+    with allure.step("Check parameters for first check list"):
+        expect(page.locator(INPUT_CHECK_LIST_NAME)).to_have_value("firstchecklist")
+        expect(page.locator('[value="CALL"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Remove secondrule"]')).to_have_count(2)
+        expect(page.locator('[name="appraisers.0.title"]')).to_have_value("mark1")
+        expect(page.locator('[name="appraisers.0.points"]')).to_have_value("1")
+        expect(page.locator('[name="questions.0.title"]')).to_have_value("question1")
+        expect(page.locator('[name="questions.0.answers.0.answer"]')).to_have_value("answer1")
+        expect(page.locator('[name="questions.0.answers.0.point"]')).to_have_value("2")
+
+    with allure.step("Switch to second check-list"):
+        page.locator('[class*="styles_dpBothBox_"]').get_by_text("secondchecklist").click()
+
+    with allure.step("Check that parameters changed"):
+        expect(page.locator(INPUT_CHECK_LIST_NAME)).to_have_value("secondchecklist")
+        expect(page.locator('[value="DEAL"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Remove >100"]')).to_have_count(1)
+        expect(page.locator('[name="appraisers.0.title"]')).to_have_value("mark2")
+        expect(page.locator('[name="appraisers.0.points"]')).to_have_value("7")
+        expect(page.locator('[name="questions.0.title"]')).to_have_value("question2")
+        expect(page.locator('[name="questions.0.answers.0.answer"]')).to_have_value("answer2")
+        expect(page.locator('[name="questions.0.answers.0.point"]')).to_have_value("9")
