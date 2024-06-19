@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add new tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_rules.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -551,7 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor2" />
     <MESSAGE value="add test report download" />
     <MESSAGE value="update docker and requirements" />
     <MESSAGE value="fix reports tests" />
@@ -576,6 +572,7 @@
     <MESSAGE value="revert url" />
     <MESSAGE value="revert url2" />
     <MESSAGE value="fix tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests" />
+    <MESSAGE value="add new tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new tests" />
   </component>
 </project>

@@ -100,7 +100,7 @@ def fill_column_by_tag_and_value(number, tagName, tagValue, page="page: Page"):
     page.wait_for_timeout(200)
     page.locator(f'[data-testid="report_columns_column_{number}_tagValues"]').click()
     page.wait_for_timeout(200)
-    page.locator('[class*="menu"]').get_by_text(tagValue, exact=True).click()
+    page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagValue, exact=True).click()
     page.wait_for_timeout(200)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
@@ -164,7 +164,7 @@ def fill_row_by_tag_and_value(number, select, tagName, tagValue, page="page: Pag
     page.wait_for_timeout(200)
     page.locator(f'[data-testid="report_rows_row_{number}_tagValues"]').click()
     page.wait_for_timeout(200)
-    page.locator('[class*="menu"]').get_by_text(tagValue, exact=True).click()
+    page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagValue, exact=True).click()
     page.wait_for_timeout(200)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
