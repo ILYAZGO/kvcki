@@ -702,7 +702,7 @@ def test_import_rule_disabled_for_user(page: Page) -> None:
 @pytest.mark.rules
 @allure.title("test_compare_rules_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("User has two rules. when he switch between them, all parameters changing")
+@allure.description("User has three rules with different parameters. when he switch between them, all parameters changing")
 def test_compare_rules_by_user(page: Page) -> None:
 
     with allure.step("Go to url"):
@@ -714,11 +714,11 @@ def test_compare_rules_by_user(page: Page) -> None:
     with allure.step("Go to markup"):
         go_to_markup(page)
 
-    with allure.step(""):
+    with allure.step("Go to first rule"):
         page.get_by_text("firstrule").click()
         page.wait_for_selector('[data-testid="fragmentRuleBlock"]')
 
-    with allure.step(""):
+    with allure.step("Check filters and other inside rule"):
         expect(page.locator('[aria-label="Remove >100"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove Словарь: firstdict"]')).to_be_visible()
         expect(page.locator('[data-testid="TagSequenceItem"]').locator('[aria-label="Remove firstrule"]')).to_have_count(2)
@@ -730,10 +730,20 @@ def test_compare_rules_by_user(page: Page) -> None:
         page.get_by_text("secondrule").click()
         page.wait_for_timeout(2000)
 
-    with allure.step(""):
+    with allure.step("Check filters and other inside rule was changed"):
         expect(page.locator('[aria-label="Remove >2222"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove Словарь: seconddict"]')).to_be_visible()
         expect(page.locator('[data-testid="TagSequenceItem"]').locator('[aria-label="Remove secondrule"]')).to_have_count(2)
         expect(page.locator('[data-testid="intervalBetweenTags"]').locator('[value=">2222"]')).to_have_count(1)
         expect(page.locator('[data-testid="setTagsBlock"]').locator('[name="name"]')).to_have_value("secondrule")
         expect(page.locator('[data-testid="setTagsBlock"]').locator('[name="value"]')).to_have_value("secondrulevalue")
+
+    with allure.step("Change rule"):
+        page.get_by_text("thirdrule").click()
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check that tagname still the same, but tagvalue changed"):
+        expect(page.locator('[aria-label="Remove firstrule: firstrulevalue"]')).to_be_visible()
+        expect(page.locator('[aria-label="Remove word"]')).to_be_visible()
+        expect(page.locator('[data-testid="setTagsBlock"]').locator('[name="name"]')).to_have_value("secondrule")
+        expect(page.locator('[data-testid="setTagsBlock"]').locator('[name="value"]')).to_have_value("thirdrulevalue")

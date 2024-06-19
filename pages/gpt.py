@@ -81,3 +81,10 @@ def delete_rule(page="page: Page"):
     #  confirm deleting
     page.get_by_role("button", name="Удалить").click()
     page.wait_for_timeout(2000)
+
+def all_checkboxes_to_be_checked(page="page: Page"):
+    # Находим все чекбоксы на странице
+    checkboxes = page.query_selector_all('input[type="checkbox"]')
+    # Проверяем состояние каждого чекбокса
+    all_checked = all(checkbox.is_checked() for checkbox in checkboxes)
+    return all_checked

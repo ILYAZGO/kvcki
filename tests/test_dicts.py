@@ -532,3 +532,39 @@ def test_import_group_and_dict_by_manager(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+
+@pytest.mark.independent
+@pytest.mark.dictionaries
+@allure.title("test_compare_dicts_by_user")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("User has two dicts with different parameters. when he switch between them, all parameters changing")
+def test_compare_dicts_by_user(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with user for check comparelogin"):
+        auth(USER_FOR_CHECK, PASSWORD, page)
+
+    with allure.step("Go to dicts"):
+        go_to_dicts(page)
+
+    with allure.step("Go to first rule"):
+        page.get_by_text("firstdict").click()
+        page.wait_for_selector(INPUT_SPISOK_SLOV)
+
+    with allure.step("Check filters and other inside rule"):
+        expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("firstdict")
+        expect(page.locator(INPUT_SPISOK_SLOV)).to_have_text("few words")
+        expect(page.get_by_text("Обычный словарь")).to_have_count(1)
+
+    with allure.step("Change rule"):
+        page.get_by_text("seconddict").click()
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check filters and other inside rule was changed"):
+        expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("seconddict")
+        expect(page.locator(INPUT_SPISOK_SLOV)).to_have_text("some text")
+        expect(page.get_by_text("Словарь автозамен")).to_have_count(1)

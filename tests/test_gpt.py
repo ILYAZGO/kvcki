@@ -365,3 +365,50 @@ def test_check_old_gpt_rule(page: Page) -> None:
         #expect(page.locator(INPUT_GPT_TEG_NAME)).to_be_visible()
         #expect(page.locator(INPUT_GPT_QUESTION)).to_be_visible()
 
+
+@pytest.mark.independent
+@pytest.mark.gpt
+@allure.title("test_compare_gpt_rules_by_user")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("User has two gpt rules with different parameters. when he switch between them, all parameters changing")
+def test_compare_gpt_rules_by_user(page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with user for check comparelogin"):
+        auth(USER_FOR_CHECK, PASSWORD, page)
+
+    with allure.step("Go to GPT"):
+        page.wait_for_selector(BUTTON_RAZMETKA)
+        page.locator(BUTTON_RAZMETKA).click()
+        page.wait_for_selector(BUTTON_GPT)
+        page.locator(BUTTON_GPT).click()
+        page.wait_for_selector(INPUT_GPT_RULE_NAME)
+        page.wait_for_timeout(3000)
+
+    with allure.step("Check parameters"):
+        expect(page.locator(INPUT_GPT_RULE_NAME)).to_have_value("firstgptrule")
+        expect(page.locator('[class*="styles_entityType"]')).to_have_text("Тип правилаКоммуникация")
+        expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1)
+        expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("firsttag")
+        expect(page.locator(INPUT_GPT_QUESTION).nth(0)).to_have_value("firstquestion")
+        expect(page.locator(INPUT_GPT_TEG_NAME).nth(1)).to_have_value("secondtag")
+        expect(page.locator(INPUT_GPT_QUESTION).nth(1)).to_have_value("secondquestion")
+
+    with allure.step("Change gpt rule"):
+        page.get_by_text("secondgptrule").click()
+        page.wait_for_timeout(3000)
+
+    with allure.step("Check that parameters changed"):
+        expect(page.locator(INPUT_GPT_RULE_NAME)).to_have_value("secondgptrule")
+        expect(page.locator('[class*="styles_entityType"]')).to_have_text("Тип правилаСделка")
+        expect(page.locator('[aria-label="Remove >100"]')).to_have_count(1)
+        expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("sadecesoru")
+        expect(page.locator(INPUT_GPT_QUESTION).nth(0)).to_have_value("nasilsin")
+
+    with allure.step("Check all checkboxes to be checked (include on/off rules)"):
+        all_checkboxes_to_be_checked(page)
+
+        assert all_checkboxes_to_be_checked(page) == True
+
