@@ -110,7 +110,7 @@ def fill_column_by_tag_list(number, *args, page="page: Page"):
     page.locator('[class*="menu"]').get_by_text("По списку тегов", exact=True).click()
     page.locator(f'[data-testid="report_columns_column_{number}__tagListValues"]').click()
     for i in args:
-        page.locator('[class*="menu"]').get_by_text(i, exact=True).click()
+        page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(i, exact=True).click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
 
@@ -174,7 +174,7 @@ def fill_row_by_tag_list(number, select, tagName, page="page: Page"):
     page.wait_for_timeout(200)
     page.locator(f'[data-testid="report_rows_row_{number}__tagListValues"]').click()
     page.wait_for_timeout(200)
-    page.locator('[class*="menu"]').get_by_text(tagName, exact=True).click()
+    page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagName, exact=True).click()
     page.wait_for_timeout(200)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 

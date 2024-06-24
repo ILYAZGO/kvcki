@@ -24,6 +24,9 @@ def test_example(page: Page) -> None:
 
     press_generate_report(page)
 
+    page.locator('[class*="MuiDataGrid-scrollbar--vertical"]').click()
+    page.mouse.wheel(delta_x=0, delta_y=10000)
+
     expect(page.locator('[data-id="63"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     collapse_expand_report(page)

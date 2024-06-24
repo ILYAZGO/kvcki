@@ -94,6 +94,10 @@ def test_example(page: Page) -> None:
     expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("2")
     expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("1")
     expect(page.locator('[data-id="4"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("3")
+
+    page.locator('[class*="MuiDataGrid-scrollbar--vertical"]').click()
+    page.mouse.wheel(delta_x=0, delta_y=10000)
+
     expect(page.locator('[data-id="17"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("7")
     expect(page.locator('[data-id="18"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 

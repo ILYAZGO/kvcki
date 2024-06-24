@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests with tag and value">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added test compare checklist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -549,7 +551,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update docker and requirements" />
     <MESSAGE value="fix reports tests" />
     <MESSAGE value="autotests need" />
     <MESSAGE value="2421" />
@@ -574,6 +575,7 @@
     <MESSAGE value="fix tests" />
     <MESSAGE value="add new tests" />
     <MESSAGE value="fix tests with tag and value" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests with tag and value" />
+    <MESSAGE value="added test compare checklist" />
+    <option name="LAST_COMMIT_MESSAGE" value="added test compare checklist" />
   </component>
 </project>
