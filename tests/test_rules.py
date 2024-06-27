@@ -719,7 +719,7 @@ def test_compare_rules_by_user(page: Page) -> None:
         page.wait_for_selector('[data-testid="fragmentRuleBlock"]')
 
     with allure.step("Check filters and other inside rule"):
-        expect(page.locator('[aria-label="Remove >100"]')).to_be_visible()
+        expect(page.locator('[aria-label="Remove >100"]')).to_be_visible(timeout=timeout)
         expect(page.locator('[aria-label="Remove Словарь: firstdict"]')).to_be_visible()
         expect(page.locator('[data-testid="TagSequenceItem"]').locator('[aria-label="Remove firstrule"]')).to_have_count(2)
         expect(page.locator('[data-testid="intervalBetweenTags"]').locator('[value=">100"]')).to_have_count(1)
