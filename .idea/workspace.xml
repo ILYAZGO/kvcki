@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change url">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="revert url">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_operator_phone.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_operator_phone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_time_4_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_time_4_values.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -571,13 +566,13 @@
     <MESSAGE value="small fix3" />
     <MESSAGE value="change url1" />
     <MESSAGE value="change url2" />
-    <MESSAGE value="revert url" />
     <MESSAGE value="revert url2" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="add new tests" />
     <MESSAGE value="fix tests with tag and value" />
     <MESSAGE value="added test compare checklist" />
     <MESSAGE value="change url" />
-    <option name="LAST_COMMIT_MESSAGE" value="change url" />
+    <MESSAGE value="revert url" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert url" />
   </component>
 </project>

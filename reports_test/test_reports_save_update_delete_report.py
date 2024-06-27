@@ -27,11 +27,11 @@ def test_example(page: Page) -> None:
     press_save_as_new(page)
 
     expect(page.locator(INPUT_REPORT_NAME)).to_be_empty()
-    expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_be_disabled()
+    expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_be_disabled(timeout=wait_until_visible)
 
     page.locator(INPUT_REPORT_NAME).fill("auto_test_report")
 
-    expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_be_enabled()
+    expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_be_enabled(timeout=wait_until_visible)
 
     page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
 
