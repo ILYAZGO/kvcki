@@ -129,7 +129,7 @@ def test_create_update_delete_check_list(page: Page) -> None:
 
     with allure.step("Check that appriser deleted"):
         page.reload()
-        page.wait_for_selector(INPUT_CHECK_LIST_NAME)
+        page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=wait_until_visible)
         expect(page.locator('[name="appraisers.0.title"]')).not_to_be_visible()
 
     with allure.step("Delete created check-list"):
@@ -161,7 +161,7 @@ def test_check_old_check_list(page: Page) -> None:
 
     with allure.step("Select first available check-list"):
         page.locator('[class*=groupItem]').first.click()
-        page.wait_for_selector(INPUT_CHECK_LIST_NAME)
+        page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=wait_until_visible)
 
     with allure.step("Check that first available check-list have appriser (seems strange, but works)"):
         expect(page.locator('[name="appraisers.0.title"]')).to_be_visible()
@@ -363,7 +363,7 @@ def test_compare_check_lists_by_user(page: Page) -> None:
 
     with allure.step("Select first available check-list"):
         page.locator('[class*="styles_dpBothBox_"]').get_by_text("firstchecklist").click()
-        page.wait_for_selector(INPUT_CHECK_LIST_NAME)
+        page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=timeout)
 
     with allure.step("Check parameters for first check list"):
         expect(page.locator(INPUT_CHECK_LIST_NAME)).to_have_value("firstchecklist")

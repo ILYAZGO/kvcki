@@ -102,14 +102,14 @@ def test_additional_params_gpt_rule_by_user(page: Page) -> None:
 
     with allure.step("Press (Add settings)"):
         page.get_by_role("button", name="Добавить настройки").click()
-        page.wait_for_selector('[class=" css-woue3h-menu"]')
+        page.wait_for_selector('[class*="-menu"]', timeout=timeout)  #css-woue3h
 
     with allure.step("Click all parameters"):
-        page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(0).click()
-        page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(1).click()
-        page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(2).click()
-        page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(3).click()
-        page.locator('[class=" css-woue3h-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(4).click()
+        page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(0).click()
+        page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(1).click()
+        page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(2).click()
+        page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(3).click()
+        page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(4).click()
         # tupo click
         page.locator('[value="gpt"]').click()
         page.wait_for_timeout(300)
@@ -390,7 +390,7 @@ def test_compare_gpt_rules_by_user(page: Page) -> None:
     with allure.step("Check parameters"):
         expect(page.locator(INPUT_GPT_RULE_NAME)).to_have_value("firstgptrule")
         expect(page.locator('[class*="styles_entityType"]')).to_have_text("Тип правилаКоммуникация")
-        expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1, timeout=timeout)
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("firsttag")
         expect(page.locator(INPUT_GPT_QUESTION).nth(0)).to_have_value("firstquestion")
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(1)).to_have_value("secondtag")

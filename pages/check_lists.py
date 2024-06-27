@@ -1,3 +1,4 @@
+from utils.variables import wait_until_visible
 #  all for check-lists
 
 USERS_LIST = "#react-select-2-input"
@@ -37,7 +38,7 @@ def create_check_list_with_questions_and_answers(checkListName, firstQustionTitl
     # create check-list
     page.wait_for_selector(BUTTON_DOBAVIT_CHECK_LIST)
     page.locator(BUTTON_DOBAVIT_CHECK_LIST).click()
-    page.wait_for_selector(INPUT_CHECK_LIST_NAME)
+    page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=wait_until_visible)
     page.locator(INPUT_CHECK_LIST_NAME).fill(checkListName)
     # add questions
     page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()

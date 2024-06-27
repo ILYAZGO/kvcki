@@ -437,7 +437,7 @@ def test_check_clear_all_fields(page: Page) -> None:
         auth(ECOTELECOM, ECOPASS, page)
 
     with allure.step("Fill all default fields"):
-        page.wait_for_selector(INPUT_ID)
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
 
         page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').fill("79251579005")
         page.locator(POISK_PO_FRAGMENTAM).click()
@@ -553,7 +553,7 @@ def test_check_content_button_calls_actions(page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID)
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
@@ -583,7 +583,7 @@ def test_check_download_button_in_calls_list(page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID)
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
@@ -660,7 +660,7 @@ def test_check_buttons_in_open_call(page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID)
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
@@ -701,7 +701,7 @@ def test_check_download_call_from_expanded_call(page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID)
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
@@ -748,7 +748,7 @@ def test_check_download_excel_from_expanded_call(page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID)
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
