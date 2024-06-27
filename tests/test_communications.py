@@ -335,7 +335,7 @@ def test_check_search_by_tag(page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill by tag"):
-        page.wait_for_selector(INPUT_PO_TEGAM)
+        page.wait_for_selector(INPUT_PO_TEGAM,timeout=wait_until_visible)
         page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Другой отдел")
         page.wait_for_timeout(2600)
         page.get_by_text("Другой отдел", exact=True).first.click()
@@ -367,7 +367,7 @@ def test_check_search_by_tag(page: Page) -> None:
         page.get_by_text("НЕТ ВСЕХ").click()
 
     with allure.step("Add new tag"):
-        page.wait_for_selector(INPUT_PO_TEGAM_NEW)
+        page.wait_for_selector(INPUT_PO_TEGAM_NEW, timeout=wait_until_visible)
         page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
         page.wait_for_timeout(2800)
         page.get_by_text("Новое подключение", exact=True).first.click()
@@ -378,10 +378,6 @@ def test_check_search_by_tag(page: Page) -> None:
 
     with allure.step("Check"):
         expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 19 из 3130", timeout=wait_until_visible) #19
-
-
-
-
 
 
 @pytest.mark.calls
@@ -427,7 +423,6 @@ def test_check_sort(page: Page) -> None:
         expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 18:08", timeout=wait_until_visible)
 
 
-
 @pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_clear_all_fields")
@@ -464,7 +459,7 @@ def test_check_clear_all_fields(page: Page) -> None:
         page.locator(INPUT_ID).locator('[type="text"]').fill("1644474236.14425")
         page.locator(POISK_PO_FRAGMENTAM).click()
 
-        page.wait_for_selector(INPUT_PO_TEGAM)
+        page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
         page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Другой отдел")
         page.wait_for_timeout(2600)
         page.get_by_text("Другой отдел", exact=True).first.click()
@@ -512,7 +507,7 @@ def test_check_open_call_in_new_tab(page: Page, context: BrowserContext) -> None
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID)
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):

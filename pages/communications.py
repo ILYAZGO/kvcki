@@ -65,7 +65,7 @@ def choose_period_button(period, page="page: Page"):
 
 
 def choose_preiod_date(firstDate, lastDate, page="page: Page"):
-    page.wait_for_selector(INPUT_PO_TEGAM)
+    page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
     page.locator(FIRST_DATE).click()
     page.wait_for_timeout(100)
     page.locator(FIRST_DATE).fill(firstDate)

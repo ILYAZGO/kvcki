@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="revert url">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add timeout1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +125,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-48aec45f0201-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17011.127" />
+        <option value="bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82" />
       </set>
     </attachedChunks>
   </component>
@@ -548,7 +549,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix reports tests" />
     <MESSAGE value="autotests need" />
     <MESSAGE value="2421" />
     <MESSAGE value="fix tests2" />
@@ -573,6 +573,7 @@
     <MESSAGE value="added test compare checklist" />
     <MESSAGE value="change url" />
     <MESSAGE value="revert url" />
-    <option name="LAST_COMMIT_MESSAGE" value="revert url" />
+    <MESSAGE value="add timeout1" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timeout1" />
   </component>
 </project>
