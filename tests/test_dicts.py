@@ -400,12 +400,12 @@ def test_import_group_and_dict_by_admin(page: Page) -> None:
 
     with allure.step("Import dict and group with dict"):
         page.wait_for_timeout(1000)
-        page.locator("(//input[@type='checkbox'])[3]").click()
-        #page.locator('[class*="CopyMode_copyModeContent__block_"]').get_by_role("checkbox").nth(0).click()
+        #page.locator("(//input[@type='checkbox'])[3]").click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(1).click()
         page.get_by_role("button", name="Продолжить").click()
         page.wait_for_timeout(1000)
-        #page.locator('[class*="CopyMode_copyModeContent__block_"]').get_by_role("checkbox").nth(1).click()
-        page.locator("(//input[@type='checkbox'])[5]").click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(3).click()
+        #page.locator("(//input[@type='checkbox'])[6]").click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым словарям").click()
         page.wait_for_timeout(2000)
@@ -491,11 +491,11 @@ def test_import_group_and_dict_by_manager(page: Page) -> None:
         expect(page.locator('[data-testid="markup_importNav_gpt"]')).not_to_be_visible()
 
     with allure.step("Import dict and group with dict"):
-        page.locator("(//input[@type='checkbox'])[3]").click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(1).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
         page.wait_for_timeout(1000)
-        page.locator("(//input[@type='checkbox'])[5]").click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(3).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым словарям").click()
         page.wait_for_timeout(2000)
