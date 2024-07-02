@@ -544,7 +544,7 @@ def test_import_group_and_rule_by_admin(page: Page) -> None:
         page.wait_for_timeout(2000)
 
     with allure.step("Import rule"):
-        page.locator("(//input[@type='checkbox'])[6]").click()
+        page.locator("(//input[@type='checkbox'])[5]").click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым правилам").click()
         page.wait_for_timeout(2000)
@@ -634,7 +634,7 @@ def test_import_group_and_rule_by_manager(page: Page) -> None:
         page.wait_for_timeout(2000)
 
     with allure.step("Import rule"):
-        page.locator("(//input[@type='checkbox'])[6]").click()
+        page.locator("(//input[@type='checkbox'])[5]").click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым правилам").click()
         page.wait_for_timeout(2000)
