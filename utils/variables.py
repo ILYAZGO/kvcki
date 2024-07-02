@@ -49,4 +49,4 @@ NEW_NAME6 = NEW_LOGIN6 = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}6
 CHANGED_LOGIN1 = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}1"
 CHANGED_LOGIN2 = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}2"
 
-#EMAIL1 = f"email_{datetime.now().microsecond}{random.randint(100,200)}@mail.ru"
+#EMAIL12 = f"email_{datetime.now().microsecond}{random.randint(100,200)}@mail.ru"
