@@ -5,7 +5,7 @@ stages:
 tests:
   stage: test
   resource_group: e2e-stand-requests
-  image: mcr.microsoft.com/playwright/python:v1.44.0-jammy
+  image: mcr.microsoft.com/playwright/python:v1.45.0-jammy
   artifacts:
     when: always
     expire_in: 1 days
