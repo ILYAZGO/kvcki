@@ -27,7 +27,7 @@ BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 # other
 AUDIO_PLAYER = '[class*="react-audio-player"]'
 NAYDENO_ZVONKOV = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/p'
-POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по фрагментам')]"
+POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по коммуникациям')]"
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div/p'
 

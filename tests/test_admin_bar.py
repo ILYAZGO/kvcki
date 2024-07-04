@@ -113,25 +113,25 @@ def test_language_change_by_user(page: Page) -> None:
         change_lang("RU", "EN", page)
 
     with allure.step("Check that lang changed"):
-        expect(page.get_by_text("Additional parameters")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Additional filters")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Change lang from EN to ES"):
         change_lang("EN", "ES", page)
 
     with allure.step("Check that lang changed"):
-        expect(page.get_by_text("Parámetros adicionales")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Filtros adicionales")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Change lang from ES to PT"):
         change_lang("ES", "PT", page)
 
     with allure.step("Check that lang changed"):
-        expect(page.get_by_text("Parâmetros adicionais")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Filtros adicionais")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Change lang from PT to RU"):
         change_lang("PT", "RU", page)
 
     with allure.step("Check that lang changed"):
-        expect(page.get_by_text("Дополнительные параметры")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Дополнительные фильтры")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
