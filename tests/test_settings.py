@@ -226,6 +226,58 @@ def test_user_cant_change_login_for_operator(page: Page) -> None:
     with allure.step("Delete operator"):
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_manager_cant_change_login_for_user_and_operator")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_manager_cant_change_login_for_user_and_operator")
+def test_manager_cant_change_login_for_user_and_operator(page: Page) -> None:
+    with allure.step("Create manager"):
+        USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+
+    with allure.step("Create operator"):
+        USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with manager"):
+        auth(LOGIN_MANAGER, PASSWORD, page)
+
+    with allure.step("Go to user"):
+        # check disabled for user
+        go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Check that login field disabled"):
+        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+
+    with allure.step("Go to employees"):
+        # check disabled for operator
+        click_employees(page)
+
+    with allure.step("Go to operator from table"):
+        go_to_operator_from_table(page)
+
+    with allure.step("Check that login field disabled"):
+        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+
+    with allure.step("Delete manager"):
+        delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+    with allure.step("Delete operator"):
+        delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
+
+
 
 @pytest.mark.independent
 @pytest.mark.settings
@@ -660,8 +712,162 @@ def test_change_personal_information_save_operator_itself(page: Page) -> None:
     with allure.step("Delete operator"):
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_change_personal_information_save_operator_by_admin")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("Check changing and saving personal info for operator by admin")
+def test_change_personal_information_save_operator_by_admin(page: Page) -> None:
 
+    NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
 
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Create operator"):
+        USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN_ADMIN, PASSWORD, page)
+
+    with allure.step("Go to user"):
+        go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Go to employees"):
+        click_employees(page)
+
+    with allure.step("Go to operator from table"):
+        go_to_operator_from_table(page)
+
+    with allure.step("Fill personal information"):
+        fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
+
+    with allure.step("Press (save)"):
+        press_save(page)
+
+    with allure.step("Go to rights"):
+        click_rights(page)
+
+    with allure.step("Go to personal info"):
+        click_personal_info(page)
+
+    with allure.step("Check that personal information saved"):
+        expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
+        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
+        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(page.get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Page reload"):
+        page.reload()
+        page.wait_for_selector(INPUT_NAME)
+        page.wait_for_timeout(300)
+
+    with allure.step("Check that personal information saved"):
+        expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
+        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
+        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(page.get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+    with allure.step("Delete operator"):
+        delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_change_personal_information_save_operator_by_user")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("Check changing and saving personal info for operator by user")
+def test_change_personal_information_save_operator_by_user(page: Page) -> None:
+
+    NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Create operator"):
+        USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with user"):
+        auth(LOGIN_USER, PASSWORD, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Go to employees"):
+        click_employees(page)
+
+    with allure.step("Go to operator from table"):
+        go_to_operator_from_table(page)
+
+    with allure.step("Fill personal information"):
+        fill_personal_information_user_and_operator(NEW_OPERATOR_NAME, EMAIL, "1234567890", "Africa/Bamako", page)
+
+    with allure.step("Press (save)"):
+        press_save(page)
+
+    with allure.step("Go to rights"):
+        click_rights(page)
+
+    with allure.step("Go to personal info"):
+        click_personal_info(page)
+
+    with allure.step("Check that personal information saved"):
+        expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
+        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
+        expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
+        expect(page.get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Page reload"):
+        page.reload()
+        page.wait_for_selector(INPUT_NAME)
+        page.wait_for_timeout(300)
+
+    with allure.step("Check that personal information saved"):
+        expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
+        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
+        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
+        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
+        expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
+        expect(page.get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+    with allure.step("Delete operator"):
+        delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
 @pytest.mark.independent
@@ -778,3 +984,284 @@ def test_left_menu_items_for_operator_itself(page: Page) -> None:
 
     with allure.step("Delete operator"):
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_admin_check_industry_and_partner_for_manager")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_admin_check_industry_and_partner_for_manager")
+def test_admin_check_industry_and_partner_for_manager(page: Page) -> None:
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create manager"):
+        USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN_ADMIN, PASSWORD, page)
+
+    with allure.step("Go to manager"):
+        go_to_admin_or_manager(LOGIN_MANAGER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Check that industry and partner not visible"):
+        expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete mamager"):
+        delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_admin_check_industry_and_partner_for_user_and_operator")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_admin_check_industry_and_partner_for_user_and_operator")
+def test_admin_check_industry_and_partner_for_user_and_operator(page: Page) -> None:
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Create operator"):
+        USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN_ADMIN, PASSWORD, page)
+
+    with allure.step("Go to user"):
+        # check and change for user
+        go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Check that industry and partner visible"):
+        expect(page.locator(SELECT_INDUSTRY)).to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).to_be_visible()
+
+    with allure.step("Change industry"):
+        change_industry('Ed-tech', page)
+
+    with allure.step("Change partner"):
+        change_partner('managerIM', page)
+
+    with allure.step("Press (save)"):
+        press_save(page)
+
+    with allure.step("Page reload"):
+        page.reload()
+        page.wait_for_selector(INPUT_LOGIN)
+        page.wait_for_timeout(300)
+
+    with allure.step("Check that industry and partner changed"):
+        expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
+        expect(page.locator(SELECT_PARTNER)).to_have_text('managerIM')
+
+    with allure.step("Go to employees"):
+        # check for operator
+        click_employees(page)
+
+    with allure.step("Go to operator from table"):
+        go_to_operator_from_table(page)
+
+    with allure.step("Check that industry and partner NOT visible"):
+        expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+    with allure.step("Delete operator"):
+        delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_manager_check_industry_and_partner_for_user_and_operator")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_manager_check_industry_and_partner_for_user_and_operator")
+def test_manager_check_industry_and_partner_for_user_and_operator(page: Page) -> None:
+
+    with allure.step("Create manager"):
+        USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+
+    with allure.step("Create operator"):
+        USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with manager"):
+        auth(LOGIN_MANAGER, PASSWORD, page)
+
+    with allure.step("Go to user"):
+        # check and change for user
+        go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Check that industry visible and partner NOT visible"):
+        expect(page.locator(SELECT_INDUSTRY)).to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Change industry"):
+        change_industry('Ed-tech', page)
+
+    with allure.step("Press (save)"):
+        press_save(page)
+
+    with allure.step("Page reload"):
+        page.reload()
+        page.wait_for_selector(INPUT_LOGIN)
+        page.wait_for_timeout(300)
+
+    with allure.step("Check that industry changed and partner NOT visible"):
+        expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Go to employees"):
+        # check for operator
+        click_employees(page)
+
+    with allure.step("Go to operator from table"):
+        go_to_operator_from_table(page)
+
+    with allure.step("Check that industry and partner NOT visible"):
+        expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
+        expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+
+    with allure.step("Delete manager"):
+        delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+    with allure.step("Delete operator"):
+        delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
+
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_giving_quota_by_admin")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
+def test_giving_quota_by_admin(page: Page) -> None:
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN_ADMIN, PASSWORD, page)
+
+    with allure.step("Go to user"):
+        go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Go to quotas"):
+        click_quota(page)
+
+    with allure.step("Click (add quota)"):
+        press_add_in_quotas(page)
+
+    with allure.step("Check that system will recommend last gived quota (777)"):
+        expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("777")
+
+    with allure.step("Click checkbox (bessro4no)"):
+        page.locator('[role="dialog"]').locator('[type="checkbox"]').click()
+
+    with allure.step("Check that checkbox was checked"):
+        expect(page.locator('[role="dialog"]').locator('[type="checkbox"]')).to_be_checked()
+
+    with allure.step("Check that dates disabled"):
+        expect(page.locator('[class*="ant-picker-disabled"]')).to_be_visible()
+
+    with allure.step("Fill quota 100"):
+        fill_quota_time("100", page)
+
+    with allure.step("press (add)"):
+        press_add_in_quotas(page)
+        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+
+    with allure.step("Reload page"):
+        page.reload()
+        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check that quota added"):
+        expect(page.locator('[role="gridcell"]')).to_have_count(12)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("Бессрочно")
+
+    with allure.step("Delete added quota"):
+        page.locator('[fill="#FF4D4F"]').click()
+        page.wait_for_timeout(3500)
+
+    with allure.step("Check that quota deleted"):
+        expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
+        #expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
+
+    with allure.step("Click (add quota)"):
+        press_add_in_quotas(page)
+
+    with allure.step("Check that system will recommend last gived quota (100)"):
+        expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("100")
+
+    with allure.step("Choose period for quota"):
+        choose_preiod_date("30/12/2024", "31/12/2024", page)
+
+    with allure.step("Fill quota 100"):
+        fill_quota_time("100", page)
+
+    with allure.step("press (add)"):
+        press_add_in_quotas(page)
+        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+
+    with allure.step("Reload page"):
+        page.reload()
+        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+        page.wait_for_timeout(1500)
+
+    with allure.step("Check that quota added"):
+        expect(page.locator('[role="gridcell"]')).to_have_count(18)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("2024-12-30 - 2024-12-31")
+
+    with allure.step("Delete added quota"):
+        page.locator('[fill="#FF4D4F"]').click()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check that quota deleted"):
+        expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)

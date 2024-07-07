@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix some tests2">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix some tests3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/77est_admin_change_personal_information_for_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/77est_admin_check_industry_and_partner_for_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/77est_admin_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/77est_giving_quota_by_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_manager_cant_change_login_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/77est_manager_cant_change_login_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_manager_check_industry_and_partner_for_user_and_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/77est_manager_check_industry_and_partner_for_user_and_operator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/test_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_tests/77est_user_change_personal_information_save_operator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -548,7 +557,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change url 2499" />
     <MESSAGE value="small fix" />
     <MESSAGE value="small fix2" />
     <MESSAGE value="small fix3" />
@@ -573,6 +581,7 @@
     <MESSAGE value="update image and dependenceis" />
     <MESSAGE value="fix some tests" />
     <MESSAGE value="fix some tests2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix some tests2" />
+    <MESSAGE value="fix some tests3" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix some tests3" />
   </component>
 </project>
