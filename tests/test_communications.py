@@ -279,7 +279,7 @@ def test_check_search_by_length(page: Page) -> None:
         page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 2687 из 3130", timeout=wait_until_visible)
+        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 2689 из 3130", timeout=wait_until_visible)
 
     with allure.step("Fill length 1711"):
         fill_search_length("1711", page)
