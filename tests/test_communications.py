@@ -4,6 +4,7 @@ from utils.variables import *
 from utils.auth import auth
 from pages.communications import *
 from utils.dates import *
+from utils.create_delete_user import create_user, delete_user
 import pytest
 import allure
 
@@ -317,7 +318,6 @@ def test_check_search_by_ID(page: Page) -> None:
         expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 1 из 3130", timeout=wait_until_visible)
 
 
-
 @pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_search_by_tag")
@@ -489,7 +489,6 @@ def test_check_clear_all_fields(page: Page) -> None:
         expect(page.locator('[aria-label="Remove Другой отдел"]')).not_to_be_visible()
 
 
-
 @pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_open_call_in_new_tab")
@@ -641,8 +640,6 @@ def test_check_download_button_in_calls_list(page: Page) -> None:
     #    assert os.path.isfile(path + download.suggested_filename) == False
 
 
-
-
 @pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_buttons_in_open_call")
@@ -778,4 +775,76 @@ def test_check_download_excel_from_expanded_call(page: Page) -> None:
     with allure.step("Check that excel export removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
 
+@pytest.mark.independent
+@allure.title("test_check_search_template")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_search_template")
+def test_check_search_template(page: Page) -> None:
 
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
+        page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
+
+    with allure.step("Save template"):
+        press_save_template(page)
+
+    with allure.step("Check that (add) button disabled"):
+        expect(page.locator('[role="dialog"]').locator('[type="submit"]')).to_be_disabled()
+
+    with allure.step("Fill template name"):
+        page.locator(INPUT_TEMPLATE_NAME).fill("firstTemplate")
+
+    with allure.step("Check that (add) button enabled"):
+        expect(page.locator('[role="dialog"]').locator('[type="submit"]')).to_be_enabled()
+
+    with allure.step("Press (add)"):
+        page.locator('[role="dialog"]').locator('[type="submit"]').click()
+
+    with allure.step("Check that template saved"):
+        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("firstTemplate(1)")
+
+    with allure.step("Rename template"):
+        press_rename_template(page)
+
+    with allure.step("Check that (add) button disabled"):
+        expect(page.locator('[role="dialog"]').locator('[type="submit"]')).to_be_disabled()
+
+    with allure.step("Fill template name"):
+        page.locator(INPUT_TEMPLATE_NAME).fill("renameTemplate")
+
+    with allure.step("Check that (add) button enabled"):
+        expect(page.locator('[role="dialog"]').locator('[type="submit"]')).to_be_enabled()
+
+    with allure.step("Press (add)"):
+        page.locator('[role="dialog"]').locator('[type="submit"]').click()
+
+    with allure.step("Check that template saved"):
+        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("renameTemplate(1)")
+
+    with allure.step("Delete template"):
+        press_delete_template(page)
+
+    with allure.step("Press (cancel)"):
+        page.get_by_role("button", name="Отмена").click()
+
+    with allure.step("Delete template"):
+        press_delete_template(page)
+
+    with allure.step("Confirm delete"):
+        page.locator('[role="dialog"]').locator('[type="submit"]').click()
+        page.wait_for_timeout(300)
+
+    with allure.step("Check that template saved"):
+        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("Сохраненные шаблоны поиска(0)")
+
+    with allure.step("Check stupid text"):
+        expect(page.locator('[style="font-size: 13px; margin-top: 15px;"]').get_by_text("Поиск пуст. Добавить фильтры можно с помощь 'Изменить фильтры'")).to_be_visible()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)

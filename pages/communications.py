@@ -20,11 +20,15 @@ INPUT_NOMER_SOTRUDNIKA = '[data-testid="filters_operator_phone"]'
 INPUT_SLOVAR_ILI_TEXT_CLIENT = '[data-testid="filters_client_phrases"]'
 INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '[data-testid="filters_operator_phrases"]'
 INPUT_ID = '[data-testid="filters_any_id"]'
+INPUT_TEMPLATE_NAME = '[id="name"]'
 # buttons
+BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
+BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 # other
+CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
 NAYDENO_ZVONKOV = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/p'
 POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по коммуникациям')]"
@@ -34,6 +38,7 @@ CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/di
 CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div'
 
 FIRST_PAGE_PAGINATION = '[aria-label="page 1"]'
+
 
 
 def change_filter(filterType, elementNumber, page="page: Page"):
@@ -54,7 +59,7 @@ def choose_filter_value(filterValue, page="page: Page"):
 
 def press_find_communications(page="page: Page"):
     page.wait_for_timeout(200)
-    page.locator('[data-testid="calls_btns_find"]').click()
+    page.locator(BUTTON_FIND_COMMUNICATIONS).click()
     page.wait_for_timeout(300)
     page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
 
@@ -95,3 +100,17 @@ def change_sort(sortType, page="page: Page"):
     page.get_by_text(sortType).click()
     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
+def press_save_template(page="page: Page"):
+    page.locator(BUTTON_SAVE_TEMPLATE).click()
+    page.wait_for_timeout(200)
+    page.wait_for_selector('[role="dialog"]', timeout=wait_until_visible)
+
+def press_rename_template(page="page: Page"):
+    page.locator('[class=" css-izdlur"]').click()
+    page.get_by_text("Переименовать", exact=True).click()
+    page.wait_for_selector('[role="dialog"]', timeout=wait_until_visible)
+
+def press_delete_template(page="page: Page"):
+    page.locator('[class=" css-izdlur"]').click()
+    page.get_by_text("Удалить", exact=True).click()
+    page.wait_for_selector('[role="dialog"]', timeout=wait_until_visible)

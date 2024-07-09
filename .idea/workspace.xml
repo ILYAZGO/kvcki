@@ -4,33 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="move settings test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix commun test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_address_book_fill_by_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_admin_can_change_login_for_manager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_admin_can_change_login_for_user_and_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_admin_can_change_rights_for_manager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_admin_can_change_rights_for_user_and_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_admin_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_manager_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_operator_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_change_personal_information_save_user_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_admin_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_manager_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_operator_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_left_menu_items_for_user_itself.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_user_can_change_rights_for_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/est_user_cant_change_login_for_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_change_personal_information_for_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_manager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_admin_check_industry_and_partner_for_user_and_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_giving_quota_by_admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_manager_cant_change_login_for_user_and_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_manager_check_industry_and_partner_for_user_and_operator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings_tests/test_user_change_personal_information_save_operator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -573,7 +550,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="small fix2" />
     <MESSAGE value="small fix3" />
     <MESSAGE value="change url1" />
     <MESSAGE value="change url2" />
@@ -598,6 +574,7 @@
     <MESSAGE value="fix some tests2" />
     <MESSAGE value="fix some tests3" />
     <MESSAGE value="move settings test" />
-    <option name="LAST_COMMIT_MESSAGE" value="move settings test" />
+    <MESSAGE value="fix commun test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix commun test" />
   </component>
 </project>
