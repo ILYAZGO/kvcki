@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add rule group and rule to user">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_notifications.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -553,7 +550,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change url1" />
     <MESSAGE value="change url2" />
     <MESSAGE value="revert url2" />
     <MESSAGE value="fix tests" />
@@ -578,6 +574,7 @@
     <MESSAGE value="move settings test" />
     <MESSAGE value="fix commun test" />
     <MESSAGE value="add test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test" />
+    <MESSAGE value="add rule group and rule to user" />
+    <option name="LAST_COMMIT_MESSAGE" value="add rule group and rule to user" />
   </component>
 </project>

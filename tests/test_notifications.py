@@ -512,3 +512,58 @@ def test_check_old_notification(page: Page) -> None:
     with allure.step("Check that first Ecotelecom rule opened"):
         expect(page.locator(INPUT_COMMENT)).to_be_visible()
         expect(page.locator(BLOCK_RULE_MAIN_AREA)).to_be_visible()
+
+
+
+
+@pytest.mark.independent
+@pytest.mark.notifications
+@allure.title("test_notifications_filter")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_notifications_filter after DEV-2652")
+def test_notifications_filter(page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
+
+    with allure.step("Go to notifications"):
+        go_to_notifications_page(page)
+
+    with allure.step("Create telegram notification rule"):
+        add_notification("Telegram", page)
+
+    with allure.step("Set notification name"):
+        set_notification_name("auto-test-telegram-filter", page)
+
+    with allure.step("Fill message"):
+        fill_message("someText ", page)
+
+    with allure.step("add filter"):
+        add_filter("По тегам", "auto_rule", "1", page)
+
+
+    with allure.step("Save rule"):
+        save_rule(page)
+
+    with allure.step("Go back in rule after save"):
+        go_back_in_rule_after_save("auto-test-telegram-filter", page)
+
+    with allure.step("Check"):
+        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
+        expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
+        expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-telegram-filter")
+
+    with allure.step("Delete rule"):
+        delete_rule(page)
+
+    with allure.step("Check that rule deleted"):
+        expect(page.locator(BUTTON_KORZINA)).not_to_be_visible()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
