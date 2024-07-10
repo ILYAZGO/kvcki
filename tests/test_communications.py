@@ -791,6 +791,9 @@ def test_check_search_template(page: Page) -> None:
         auth(LOGIN, PASSWORD, page)
         page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
 
+    with allure.step("Check that no any templates"):
+        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("Сохраненные шаблоны поиска(0)")
+
     with allure.step("Save template"):
         press_save_template(page)
 

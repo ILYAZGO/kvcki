@@ -30,6 +30,8 @@ CHECK_BOX_REVERSE_LOGIC = '[data-testid="reverseLogic"]'
 
 BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
 # other
+GROUP_LIST = '[class*="styles_dpBothBox_"]'
+ACTIVE_GROUP = '[class*="styles_isActive_"]'
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 NAZVANIE_PRAVILA_TEGIROVANIYA = NAZVANIE_SLOVARYA = '[name="title"]'
@@ -96,7 +98,7 @@ def delete_group_and_rule_or_dict(page="page: Page"):
     page.wait_for_timeout(500)
     page.get_by_role("button", name="Удалить").click()
     page.wait_for_timeout(1500)
-    page.locator(BUTTON_KORZINA).click()
+    page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
 
 
 def create_dict(dictName, page="page: Page"):

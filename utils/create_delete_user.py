@@ -56,6 +56,8 @@ def create_user(URL, ROLE, PASSWORD):
         print(f"\n>>>>> ACCESS DENIED 403 <<<<<")
 
     if ROLE == 'user':
+
+        # giving quota if user
         quota = {
             "time_nominal": 46620
         }
@@ -66,6 +68,63 @@ def create_user(URL, ROLE, PASSWORD):
             print(f">>>>> USER {NAME} WITH user_id: {user_id} IS GIVEN A QUOTA OF 777 MINUTES <<<<<")
         else:
             print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
+
+        # get token for user and greate group and rule for user
+
+        data_for_user = {
+            'username': NAME,
+            'password': PASSWORD,
+            'scope': '',
+            'client_id': '',
+            'client_secret': '',
+        }
+        get_token_for_user = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data_for_user).json()
+
+        token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
+
+        headers_for_user = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': token_for_user,
+        }
+        rule_group = {
+            "title": "auto_rule_group",
+            "enabled": True
+        }
+        add_rule_group = requests.post(url=URL + "/tag_rule_group/", headers=headers_for_user, json=rule_group)
+
+        group_id = add_rule_group.text.replace('"', '')
+
+        if add_rule_group.status_code == 201:
+            print(f">>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE GROUP {group_id} <<<<<")
+        else:
+            print(f">>>>> ERROR CREATING RULE GROUP {add_rule_group.status_code} <<<<<")
+
+        rule = {
+            "owner": user_id,
+            "title": "auto_rule",
+            "group": group_id,
+            "enabled": True,
+            "calculatedRulePriority": 0,
+            "globalFilter": [],
+            "fragmentRules": [{"phrasesAndDicts": [], "phrases": [], "dicts": [],
+                              "direction": "", "fromStart": False, "silentBefore": "",
+                              "silentAfter": "", "interruptTime": "", "talkBefore": "",
+                               "talkAfter": "", "onlyFirstMatch": False, "fragmentsBefore": "",
+                               "fragmentsAfter": "", "distancePrevRuleTime": "", "distancePrevRuleFragmentCount": "",
+                               "orPhrasesAndDicts": [], "orPhrases": [], "orDicts": [], "orDirection": ""}],
+            "setTags": [{"name": "auto_rule", "value": "", "visible": False}],
+            "allowedActions": [],
+            "timeTagRules": []}
+
+        add_rule = requests.post(url=URL + "/tag_rule/", headers=headers_for_user, json=rule)
+
+        rule_id = add_rule.text.replace('"', '')
+
+        if add_rule.status_code == 201:
+            print(f">>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE {rule_id} INSIDE GROUP {group_id} <<<<<")
+        else:
+            print(f">>>>> ERROR CREATING RULE {add_rule.status_code} <<<<<")
 
     return user_id, token, LOGIN
 

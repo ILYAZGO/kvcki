@@ -31,9 +31,8 @@ def test_add_rule_inside_group(page: Page) -> None:
         create_group("99999", page)
 
     with allure.step("Click at new group"):
-        page.wait_for_selector(CLICK_NEW_GROUP)
-        page.locator(CLICK_NEW_GROUP).click()
-        page.wait_for_timeout(2000)
+        page.locator(GROUP_LIST).get_by_text("99999").click()
+        page.wait_for_timeout(500)
 
     with allure.step("Create rule"):
         create_rule("88888", page)
@@ -41,7 +40,7 @@ def test_add_rule_inside_group(page: Page) -> None:
     with allure.step("Check that rule and group created"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
         expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
-        #expect(page.get_by_text("99999").nth(1)).to_have_text("99999", timeout=wait_until_visible) #check parent group
+        #expect(page.locator(GROUP_LIST)).to_have_text("99999", timeout=wait_until_visible) #check parent group
 
     with allure.step("Delete rule and group"):
         delete_group_and_rule_or_dict(page)
@@ -75,20 +74,24 @@ def test_add_group_of_rules_edit_name_delete(page: Page) -> None:
     with allure.step("Create group"):
         create_group("12345", page)
 
+    with allure.step("Click at new group"):
+        page.locator(GROUP_LIST).get_by_text("12345").click()
+        page.wait_for_timeout(500)
+
     with allure.step("Rename group"):
         page.wait_for_selector(BUTTON_PENCIL)
-        page.locator(BUTTON_PENCIL).click()
+        page.locator(ACTIVE_GROUP).locator(BUTTON_PENCIL).click()
         page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
-        page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
+        page.locator(ACTIVE_GROUP).locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
 
     with allure.step("Check group created and have edited name"):
         expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).click()
+        page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
 
     with allure.step("Check group deleted"):
-        expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(GROUP_LIST).get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -116,8 +119,8 @@ def test_add_rule_outside_group_disabled(page: Page) -> None:
     with allure.step("Check that creating rule - disabled and alert exists"):
         expect(page.locator('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]')).to_be_visible()
 
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN, USER_ID)
+    #with allure.step("Delete user"):
+      #  delete_user(API_URL, TOKEN, USER_ID)
 
 
 @pytest.mark.independent
@@ -146,7 +149,8 @@ def test_add_rule_group_cancel(page: Page) -> None:
         page.locator(BUTTON_OTMENA).click()
 
     with allure.step("Check cancelled"):
-        expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
+        expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
+        #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 
     with allure.step("Press (Add group) button"):
         page.locator(BUTTON_DOBAVIT_GRUPPU).click()
@@ -155,7 +159,8 @@ def test_add_rule_group_cancel(page: Page) -> None:
         page.locator(BUTTON_KRESTIK).click()
 
     with allure.step("Check cancelled"):
-        expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
+        expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
+        #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -234,9 +239,8 @@ def test_add_rule_inside_group_check_fragment_rule(page: Page) -> None:
         create_group("99999", page)
 
     with allure.step("Click at group"):
-        page.wait_for_selector(CLICK_NEW_GROUP)
-        page.locator(CLICK_NEW_GROUP).click()
-        page.wait_for_timeout(2000)
+        page.locator(GROUP_LIST).get_by_text("99999").click()
+        page.wait_for_timeout(500)
 
     with allure.step("Create rule"):
         create_rule("88888", page)
@@ -344,9 +348,8 @@ def test_add_rule_inside_group_check_set_tag_block(page: Page) -> None:
         create_group("99999", page)
 
     with allure.step("Click at group"):
-        page.wait_for_selector(CLICK_NEW_GROUP)
-        page.locator(CLICK_NEW_GROUP).click()
-        page.wait_for_timeout(1600)
+        page.locator(GROUP_LIST).get_by_text("99999").click()
+        page.wait_for_timeout(500)
 
     with allure.step("Create rule"):
         create_rule("set_tags", page)
@@ -430,9 +433,8 @@ def test_add_rule_inside_group_check_tag_sequence(page: Page) -> None:
         create_group("99999", page)
 
     with allure.step("Click at group"):
-        page.wait_for_selector(CLICK_NEW_GROUP)
-        page.locator(CLICK_NEW_GROUP).click()
-        page.wait_for_timeout(1900)
+        page.locator(GROUP_LIST).get_by_text("99999").click()
+        page.wait_for_timeout(500)
 
     with allure.step("Create rule"):
         create_rule("tag_seq", page)
@@ -558,8 +560,8 @@ def test_import_group_and_rule_by_admin(page: Page) -> None:
         expect(page.get_by_text("11111")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).to_be_visible(timeout=wait_until_visible)
-        expect(page.get_by_text("Неотсортированные")).to_be_visible(timeout=wait_until_visible)
-        expect(page.get_by_text("1 тег")).to_have_count(count=2, timeout=wait_until_visible)
+        expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("1 тег")).to_have_count(count=3, timeout=wait_until_visible)
 
     with allure.step("Delete groups and rules"):
         page.get_by_text("22222").click()
@@ -567,7 +569,7 @@ def test_import_group_and_rule_by_admin(page: Page) -> None:
         page.get_by_role("button", name="Удалить").click()
         page.locator(BUTTON_KORZINA).first.click()
         page.wait_for_timeout(700)
-        page.get_by_text("33333").click()
+        page.get_by_text("44444").click()
         page.locator('[width="30"]').click()
         page.get_by_role("button", name="Удалить").click()
         page.locator(BUTTON_KORZINA).first.click()
@@ -578,7 +580,7 @@ def test_import_group_and_rule_by_admin(page: Page) -> None:
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
         page.wait_for_timeout(2600)
-        expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
@@ -650,8 +652,8 @@ def test_import_group_and_rule_by_manager(page: Page) -> None:
         expect(page.get_by_text("11111")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).to_be_visible(timeout=wait_until_visible)
-        expect(page.get_by_text("Неотсортированные")).to_be_visible(timeout=wait_until_visible)
-        expect(page.get_by_text("1 тег")).to_have_count(count=2, timeout=wait_until_visible)
+        expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("1 тег")).to_have_count(count=3, timeout=wait_until_visible)
 
     with allure.step("Delete groups and rules"):
         page.get_by_text("22222").click()
@@ -659,7 +661,7 @@ def test_import_group_and_rule_by_manager(page: Page) -> None:
         page.get_by_role("button", name="Удалить").click()
         page.locator(BUTTON_KORZINA).first.click()
         page.wait_for_timeout(700)
-        page.get_by_text("33333").click()
+        page.get_by_text("44444").click()
         page.locator('[width="30"]').click()
         page.get_by_role("button", name="Удалить").click()
         page.locator(BUTTON_KORZINA).first.click()
@@ -670,7 +672,7 @@ def test_import_group_and_rule_by_manager(page: Page) -> None:
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
         page.wait_for_timeout(2600)
-        expect(page.get_by_text("Неотсортированные")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete manager"):
         delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
