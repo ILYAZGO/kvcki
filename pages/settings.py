@@ -34,6 +34,7 @@ INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 SELECT_PARTNER = '[data-testid="selectPartner"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
+SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 
 
 def click_settings(page="page: Page"):
@@ -116,7 +117,7 @@ def fill_personal_information_admin_and_manager(name, email, phone, comment , ti
     page.wait_for_timeout(300)
     page.locator(INPUT_COMMENT).fill(comment)
     page.wait_for_timeout(200)
-    page.locator('[data-testid="selectTimezone"]').locator('[role="combobox"]').click()
+    page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
     page.wait_for_timeout(1000)
 
@@ -129,7 +130,7 @@ def fill_personal_information_user_and_operator(name, email, phone, timezone, pa
     page.wait_for_timeout(300)
     page.locator(INPUT_PHONE).fill(phone)
     page.wait_for_timeout(200)
-    page.locator('[data-testid="selectTimezone"]').locator('[role="combobox"]').click()
+    page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
     page.wait_for_timeout(1000)
 
