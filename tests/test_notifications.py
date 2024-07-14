@@ -184,7 +184,8 @@ def test_notifications_api(page: Page) -> None:
     with allure.step("Check that checkbox clicked"):
         expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
 
-    #  add_filter("По тегам", "22222", "0", page)  uncomment later
+    with allure.step("add filter"):
+        add_filter("По тегам", "auto_rule", "1", page)
 
     with allure.step("Fill message"):
         fill_message("someText ", page)
@@ -198,6 +199,7 @@ def test_notifications_api(page: Page) -> None:
     with allure.step("Check"):
         expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
         expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
         expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-api")
         expect(page.locator(INPUT_URL)).to_have_value("https://www.google.com/")
@@ -245,7 +247,8 @@ def test_notifications_email(page: Page) -> None:
     with allure.step("Check that checkbox clicked"):
         expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
 
-    #  add_filter("По тегам", "22222", "0", page)
+    with allure.step("add filter"):
+        add_filter("По тегам", "auto_rule", "1", page)
 
     with allure.step("Fill message"):
         fill_message("someText ", page)
@@ -262,6 +265,7 @@ def test_notifications_email(page: Page) -> None:
     with allure.step("Check"):
         expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
         expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
         expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-email")
         expect(page.locator(INPUT_LETTER_THEME)).to_have_value("letterTheme")
@@ -314,7 +318,9 @@ def test_notifications_telegram(page: Page) -> None:
     with allure.step("Check that checkbox clicked"):
         expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
 
-    #  add_filter("По тегам", "22222", "1", page)
+    with allure.step("add filter"):
+        add_filter("По тегам", "auto_rule", "1", page)
+
     with allure.step("Fill message"):
         fill_message("someText ", page)
 
@@ -327,6 +333,7 @@ def test_notifications_telegram(page: Page) -> None:
     with allure.step("Check"):
         expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
         expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
         expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
         expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
         expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-telegram")
@@ -368,26 +375,26 @@ def test_notifications_import_rules_by_admin(page: Page) -> None:
 
     with allure.step("Press button import notifications"):
         page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
-        page.wait_for_selector('[data-testid="NotifyRuleCopyMode_search"]')
+        page.wait_for_selector(SEARCH_IN_IMPORT_MODAL)
 
     with allure.step("Choose user import from"):
-        page.locator('[aria-haspopup="true"]').nth(2).fill("importFrom")
-        page.wait_for_timeout(600)
-        page.get_by_text("importFrom", exact=True).click()
+        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
+        page.wait_for_timeout(300)
+        page.locator('[class*="menu"]').get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(800)
 
     with allure.step("Import first rule"):
         page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(0).click()
 
     with allure.step("Press (Go on) button"):
-        page.get_by_role("button", name="Продолжить").click()
+        page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="Продолжить").click()
 
     with allure.step("Import second rule"):
         page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(1).click()
 
     with allure.step("Go to new rules"):
-        page.get_by_role("button", name="К новым правилам").click()
-        page.wait_for_timeout(2000)
+        page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="К новым правилам").click()
+        page.wait_for_timeout(1800)
 
     with allure.step("Check that import was successful"):
         expect(page.get_by_text("pochta")).to_be_visible(timeout=wait_until_visible)
@@ -397,12 +404,14 @@ def test_notifications_import_rules_by_admin(page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
+        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("pochta")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second rule"):
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
+        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("telega")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
@@ -445,25 +454,25 @@ def test_notifications_import_rules_by_manager(page: Page) -> None:
         page.wait_for_selector('[data-testid="NotifyRuleCopyMode_search"]')
 
     with allure.step("Choose user import from"):
-        page.locator('[aria-haspopup="true"]').nth(2).fill("importFrom")
-        page.wait_for_timeout(500)
-        page.get_by_text("importFrom", exact=True).click()
+        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
+        page.wait_for_timeout(300)
+        page.locator('[class*="menu"]').get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(800)
 
     with allure.step("Import first rule"):
         page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(0).click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(300)
 
     with allure.step("Press (Go on) button"):
-        page.get_by_role("button", name="Продолжить").click()
-        page.wait_for_timeout(800)
+        page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="Продолжить").click()
+        page.wait_for_timeout(300)
 
     with allure.step("Import second rule"):
         page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(1).click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(300)
 
     with allure.step("Go to new rules"):
-        page.get_by_role("button", name="К новым правилам").click()
+        page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="К новым правилам").click()
         page.wait_for_timeout(1600)
 
     with allure.step("Check that import was successful"):
@@ -474,12 +483,14 @@ def test_notifications_import_rules_by_manager(page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
+        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("pochta")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second rule"):
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
+        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("telega")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete manager"):
@@ -507,63 +518,8 @@ def test_check_old_notification(page: Page) -> None:
 
     with allure.step("Click at first Ecotelecom rule"):
         page.locator(BLOCK_RULES_LIST).locator('[class*="styles_content__"]').first.click()
-        page.wait_for_selector(INPUT_COMMENT)
+        page.wait_for_selector(INPUT_COMMENT, timeout=wait_until_visible)
 
     with allure.step("Check that first Ecotelecom rule opened"):
         expect(page.locator(INPUT_COMMENT)).to_be_visible()
         expect(page.locator(BLOCK_RULE_MAIN_AREA)).to_be_visible()
-
-
-
-
-@pytest.mark.independent
-@pytest.mark.notifications
-@allure.title("test_notifications_filter")
-@allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_notifications_filter after DEV-2652")
-def test_notifications_filter(page: Page) -> None:
-
-    with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-
-    with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
-
-    with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
-
-    with allure.step("Go to notifications"):
-        go_to_notifications_page(page)
-
-    with allure.step("Create telegram notification rule"):
-        add_notification("Telegram", page)
-
-    with allure.step("Set notification name"):
-        set_notification_name("auto-test-telegram-filter", page)
-
-    with allure.step("Fill message"):
-        fill_message("someText ", page)
-
-    with allure.step("add filter"):
-        add_filter("По тегам", "auto_rule", "1", page)
-
-
-    with allure.step("Save rule"):
-        save_rule(page)
-
-    with allure.step("Go back in rule after save"):
-        go_back_in_rule_after_save("auto-test-telegram-filter", page)
-
-    with allure.step("Check"):
-        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
-        expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-telegram-filter")
-
-    with allure.step("Delete rule"):
-        delete_rule(page)
-
-    with allure.step("Check that rule deleted"):
-        expect(page.locator(BUTTON_KORZINA)).not_to_be_visible()
-
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN, USER_ID)

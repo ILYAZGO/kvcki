@@ -1,3 +1,5 @@
+from utils.variables import wait_until_visible
+
 BUTTON_OPOVESHENIA = '[href*="/notifications"]'
 USERS_LIST = "#react-select-2-input"
 
@@ -17,10 +19,15 @@ BLOCK_RULES_LIST = '[class*="sidebar"]'
 BlOCK_API = '[class*="InputWithSelect_root"]'
 BLOCK_ADD_NEW_RULE = '[class*="styles_addNewRule_"]'
 
+SEARCH_IN_IMPORT_MODAL = '[data-testid="NotifyRuleCopyMode_search"]'
+BLOCK_AFTER_IMPORT = '[class*="styles_btns"]'
+MODAL = '[role="dialog"]'
+
 
 def go_to_notifications_page(page="page: Page"):
+    page.wait_for_selector(BUTTON_OPOVESHENIA, timeout=wait_until_visible)
     page.locator(BUTTON_OPOVESHENIA).click()
-    page.wait_for_selector(BLOCK_ADD_NEW_RULE)
+    page.wait_for_selector(BLOCK_ADD_NEW_RULE, timeout=wait_until_visible)
 
 
 def set_notification_name(notificationName, page="page: Page"):
@@ -75,17 +82,19 @@ def save_rule(page="page: Page"):
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
-    page.locator('[class*="sidebar"]').locator('[type="checkbox"]').first.click()
+    page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]').first.click()
     page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_timeout(500)
     #  confirm deleting
-    page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(800)
+    page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
+    page.wait_for_timeout(1000)
 
 
 def choose_block(blockNumber, page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
-    page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
+    page.wait_for_timeout(1000)
+    #page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
+    page.locator('[class*="styles_notifyList"]').locator(".styles_root__cx1Gi").nth(blockNumber).click()
     page.wait_for_selector(INPUT_NOTIFICATION_NAME)
 
 
@@ -101,6 +110,7 @@ def change_api_method(originalMethod, newMethod, page="page: Page"):
 
 
 def go_to_user(name, page="page: Page"):
+    page.wait_for_selector(USERS_LIST)
     page.locator(USERS_LIST).fill(name)
     page.wait_for_timeout(300)
     page.get_by_text(name, exact=True).click()

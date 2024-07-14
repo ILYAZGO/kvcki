@@ -29,12 +29,16 @@ def test_create_rename_delete_gpt_rule_by_user(page: Page) -> None:
     with allure.step("Create GPT rule with 2 questions"):
         create_gpt_rule_with_two("GPTrule", page)
 
+    with allure.step("add filter"):
+        add_filter("По тегам", "auto_rule", page)
+
     with allure.step("Press (Save) button"):
         press_save_in_gpt(page)
 
     with allure.step("Check that created and have 2 questions"):
         expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
         expect(page.get_by_text("Вопрос 2")).to_have_count(1)
+        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
 
     with allure.step("Turn on rule"):
         turn_on_rule(page)
@@ -59,10 +63,7 @@ def test_create_rename_delete_gpt_rule_by_user(page: Page) -> None:
         expect(page.get_by_text("ruleGPT")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete rule"):
-        page.locator(BUTTON_KORZINA).click()
-        page.wait_for_timeout(1000)
-        page.get_by_role("button", name="Удалить").click()
-        page.wait_for_timeout(800)
+        delete_rule(page)
 
     with allure.step("Check that rule was deleted"):
         expect(page.get_by_text("ruleGPT")).not_to_be_visible(timeout=wait_until_visible)
@@ -145,10 +146,7 @@ def test_additional_params_gpt_rule_by_user(page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Delete rule"):
-        page.locator(BUTTON_KORZINA).click()
-        page.wait_for_timeout(1000)
-        page.get_by_role("button", name="Удалить").click()
-        page.wait_for_timeout(800)
+        delete_rule(page)
 
     with allure.step("Check deleted"):
         expect(page.locator('[class*="styles_dpBothBox_"]').get_by_text("addParams")).not_to_be_visible()
@@ -185,7 +183,7 @@ def test_import_gpt_rule_by_admin(page: Page) -> None:
         go_to_gpt(page)
 
     with allure.step("Press import button"):
-        page.locator('[data-testid="markup_importDicts"]').click()
+        page.locator(BUTTON_IMPORT_GPT).click()
         page.wait_for_selector('[data-testid="closePopupButton"]')
 
     with allure.step("Fill user for import"):
@@ -264,7 +262,7 @@ def test_import_gpt_rule_by_manager(page: Page) -> None:
         go_to_gpt(page)
 
     with allure.step("Press import button"):
-        page.locator('[data-testid="markup_importDicts"]').click()
+        page.locator(BUTTON_IMPORT_GPT).click()
         page.wait_for_selector('[data-testid="closePopupButton"]')
 
     with allure.step("Fill user for import"):
