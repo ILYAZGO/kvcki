@@ -9,9 +9,10 @@ import allure
 
 @pytest.mark.independent
 @pytest.mark.check_list
-@allure.title("test_create_rename_delete_check_list")
+@allure.title("test_create_rename_update_delete_check_list")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_create_rename_delete_check_list(page: Page) -> None:
+@allure.description("create,rename, update,delete check-list")
+def test_create_update_delete_check_list(page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -28,11 +29,18 @@ def test_create_rename_delete_check_list(page: Page) -> None:
     with allure.step("Create check-list with 2 questions and 2 answers"):
         create_check_list_with_questions_and_answers("12345", "Question1", "Question2", page)
 
+    with allure.step("Fill filter"):
+        add_filter("По тегам", "auto_rule", page)
+
     with allure.step("Press button (Save)"):
+        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         press_button_save(page)
 
     with allure.step("Check created"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
+        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
+
+        #  added block with renaming from other test
 
     with allure.step("Change title"):
         page.get_by_text("12345").click()
@@ -41,6 +49,7 @@ def test_create_rename_delete_check_list(page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Save)"):
+        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         press_button_save(page)
 
     with allure.step("Check that title changed"):
@@ -59,72 +68,49 @@ def test_create_rename_delete_check_list(page: Page) -> None:
     with allure.step("Check rename was successful"):
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
-    with allure.step("Delete created check-list"):
-        delete_check_list(page)
-
-    with allure.step("Check that deleted"):
-        page.wait_for_selector(NI4EGO_NE_NAYDENO)
-        expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)
-
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN, USER_ID)
-
-
-@pytest.mark.independent
-@pytest.mark.check_list
-@allure.title("test_create_update_delete_check_list")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_create_update_delete_check_list(page: Page) -> None:
-
-    with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-
-    with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
-
-    with allure.step("Auth"):
-        auth(LOGIN, PASSWORD, page)
-
-    with allure.step("Go to check-lists"):
-        go_to_check_list(page)
-
-    with allure.step("Create check-list with 2 questions and 2 answers"):
-        create_check_list_with_questions_and_answers("12345", "Question1", "Question2", page)
-
-    with allure.step("Press button (Save)"):
-        press_button_save(page)
-
-    with allure.step("Check created"):
-        expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
+        #
 
     with allure.step("Update check-list (change first question)"):
-        page.get_by_text("12345").click()
+        page.get_by_text("98765").click()
         page.locator(INPUT_FIRST_QUESTION).clear()
         page.locator(INPUT_FIRST_QUESTION).fill("654321")
+        page.wait_for_timeout(500)
+
+    with allure.step("Uncheck autogerenate report checkbox"):
+        page.locator('[id="checklistGenerateReport"]').click()
 
     with allure.step("Press button (Save)"):
+        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         press_button_save(page)
 
     with allure.step("Reload page and check that update saved"):
         page.reload()
         page.wait_for_selector(INPUT_FIRST_QUESTION)
         expect(page.locator(INPUT_FIRST_QUESTION)).to_have_value("654321")
+        expect(page.locator(CHECK_BOX_AUTOGENEREATE_REPORT)).not_to_be_checked()
+        expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
 
     with allure.step("Create appriser"):
         create_appriser("Appriser", "5", page)
 
+    with allure.step("Check autogerenate report checkbox"):
+        page.locator(CHECK_BOX_AUTOGENEREATE_REPORT).click()
+
     with allure.step("Press button (Save)"):
+        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         press_button_save(page)
 
     with allure.step("Check that appriser created"):
         page.reload()
         page.wait_for_selector('[name="appraisers.0.title"]')
         expect(page.locator('[name="appraisers.0.title"]')).to_have_value("Appriser")
+        expect(page.locator(CHECK_BOX_AUTOGENEREATE_REPORT)).to_be_checked()
 
     with allure.step("Delete appriser"):
         delete_appriser(page)
 
     with allure.step("Press button (Save)"):
+        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         press_button_save(page)
 
     with allure.step("Check that appriser deleted"):

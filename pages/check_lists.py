@@ -26,6 +26,8 @@ BUTTON_SAVE_EDITED_NAME = '[class*="checkButton"]'
 
 # other
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
+CHECK_BOX_AUTOGENEREATE_REPORT = '[id="checklistGenerateReport"]'
+
 
 def go_to_check_list(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
@@ -40,6 +42,7 @@ def create_check_list_with_questions_and_answers(checkListName, firstQustionTitl
     page.locator(BUTTON_DOBAVIT_CHECK_LIST).click()
     page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=wait_until_visible)
     page.locator(INPUT_CHECK_LIST_NAME).fill(checkListName)
+    page.wait_for_timeout(400)
     # add questions
     page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()
 
@@ -57,6 +60,18 @@ def create_check_list_with_questions_and_answers(checkListName, firstQustionTitl
     page.locator(INPUT_THIRD_POINTS).fill("3")
     #page.locator(BUTTON_DELETE_QUESTION).nth(1).click()
     page.get_by_role("button", name="Удалить вопрос").nth(1).click()
+    page.wait_for_timeout(400)
+
+
+def add_filter(filterType, filterName, page="page: Page"):
+    page.locator('[class*="styles_btnTitle_"]').click()
+    page.locator('[class*="-menu"]').get_by_text(filterType, exact=True).nth(1).click()
+    page.wait_for_timeout(500)
+    page.locator('[for="title"]').click()
+    page.wait_for_timeout(500)
+    page.locator('[data-testid="filters_search_by_tags"]').locator('[autocorrect=off]').fill(filterName)
+    page.wait_for_timeout(2300)
+    page.get_by_text(filterName, exact=True).nth(0).click()
 
 
 def press_button_save(page="page: Page"):
@@ -71,8 +86,9 @@ def create_appriser(title, points, page="page: Page"):
     page.locator('[name="appraisers.0.title"]').fill(title)
     page.locator('[name="appraisers.0.points"]').fill(points)
 
+
 def delete_appriser(page="page: Page"):
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(500)
     page.locator('[class*="CheckListAppraisers_deleteBtn"]').click()
     page.wait_for_timeout(300)
 
@@ -81,6 +97,7 @@ def delete_check_list(page="page: Page"):
     page.wait_for_timeout(200)
     page.locator(BUTTON_KORZINA).click()
     page.get_by_role("button", name="Удалить").click()
+
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)

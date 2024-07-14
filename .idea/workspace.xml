@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add rule group and rule to user">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add test filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_lists.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -550,7 +551,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change url2" />
     <MESSAGE value="revert url2" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="add new tests" />
@@ -575,6 +575,7 @@
     <MESSAGE value="fix commun test" />
     <MESSAGE value="add test" />
     <MESSAGE value="add rule group and rule to user" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rule group and rule to user" />
+    <MESSAGE value="add test filter" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test filter" />
   </component>
 </project>
