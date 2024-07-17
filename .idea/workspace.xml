@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add tests quota">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="joined tests, made faster">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -550,7 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="revert url" />
     <MESSAGE value="add timeout1" />
     <MESSAGE value="add timeout2" />
     <MESSAGE value="add timeout3" />
@@ -575,6 +572,7 @@
     <MESSAGE value="upgrade test" />
     <MESSAGE value="test before release" />
     <MESSAGE value="add tests quota" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests quota" />
+    <MESSAGE value="joined tests, made faster" />
+    <option name="LAST_COMMIT_MESSAGE" value="joined tests, made faster" />
   </component>
 </project>

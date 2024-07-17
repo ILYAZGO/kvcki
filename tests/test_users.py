@@ -146,6 +146,26 @@ def test_add_delete_user_by_admin(page: Page) -> None:
     with allure.step("Go to users"):
         go_to_users(page)
 
+    #
+    with allure.step("Press button (Add User)"):
+        press_button_add_user(page)
+
+    with allure.step("Cancel by button CANCEL"):
+        page.locator(BUTTON_OTMENA).click()
+
+    with allure.step("Check"):
+        expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
+
+    with allure.step("Press button (Add User)"):
+        press_button_add_user(page)
+
+    with allure.step("Cancel by button KRESTIK"):
+        page.locator(BUTTON_KRESTIK).click()
+
+    with allure.step("Check"):
+        expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
+    #
+
     with allure.step("Press button (Add User)"):
         press_button_add_user(page)
 
@@ -163,6 +183,7 @@ def test_add_delete_user_by_admin(page: Page) -> None:
         set_industry_and_partner("Недвижимость",
                                  "managerIM",
                                  page)
+
     with allure.step("Set STT for user"):
         set_stt("Русский",
                 "Deepgram",
@@ -191,46 +212,6 @@ def test_add_delete_user_by_admin(page: Page) -> None:
 
     with allure.step("Check that user deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
-
-    with allure.step("Delete admin"):
-        delete_user(API_URL, TOKEN, USER_ID)
-
-
-@pytest.mark.independent
-@pytest.mark.users
-@allure.title("test_add_user_cancel_by_admin")
-@allure.severity(allure.severity_level.NORMAL)
-def test_add_user_cancel_by_admin(page: Page) -> None:
-
-    with allure.step("Create admin"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
-
-    with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
-
-    with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
-
-    with allure.step("Go to users"):
-        go_to_users(page)
-
-    with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
-
-    with allure.step("Cancel by button CANCEL"):
-        page.locator(BUTTON_OTMENA).click()
-
-    with allure.step("Check"):
-        expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
-
-    with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
-
-    with allure.step("Cancel by button KRESTIK"):
-        page.locator(BUTTON_KRESTIK).click()
-
-    with allure.step("Check"):
-        expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
