@@ -1164,10 +1164,10 @@ def test_manager_check_industry_and_partner_for_user_and_operator(page: Page) ->
 
 @pytest.mark.independent
 @pytest.mark.settings
-@allure.title("test_giving_quota_by_admin")
+@allure.title("test_giving_communications_quota_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
-def test_giving_quota_by_admin(page: Page) -> None:
+def test_giving_communications_quota_by_admin(page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1263,6 +1263,145 @@ def test_giving_quota_by_admin(page: Page) -> None:
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_giving_gpt_quota_by_admin")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
+def test_giving_gpt_quota_by_admin(page: Page) -> None:
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN_ADMIN, PASSWORD, page)
+
+    with allure.step("Go to user"):
+        go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Go to quotas"):
+        click_quota(page)
+
+    with allure.step("Click to (GPT) tab"):
+        page.locator(BUTTON_GPT_QUOTAS).click()
+        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+
+        # gpt
+
+    with allure.step("Check negative value"):
+        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("-1")
+
+    with allure.step("Check that (save) button disabled"):
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check value more than limit"):
+        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).clear()
+        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("151")
+
+    with allure.step("Check that (save) button disabled"):
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check value more than limit"):
+        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).clear()
+        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("150")
+
+    with allure.step("Click (save)"):
+        page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
+
+    with allure.step("Reload page and check that saved and have residue"):
+        page.reload()
+        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("150")
+        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("150")
+
+        # yandex
+
+    with allure.step("Check negative value"):
+        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("-1")
+
+    with allure.step("Check that (save) button disabled"):
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check value more than limit"):
+        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).clear()
+        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("15001")
+
+    with allure.step("Check that (save) button disabled"):
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check value more than limit"):
+        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).clear()
+        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("15000")
+
+    with allure.step("Click (save)"):
+        page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
+
+    with allure.step("Reload page and check that saved and have residue"):
+        page.reload()
+        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("15000")
+        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("15000")
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_user_cant_change_quotas")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
+def test_user_cant_change_quotas(page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN_USER, PASSWORD, page)
+
+    #with allure.step("Go to user"):
+    #    go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Go to quotas"):
+        click_quota(page)
+
+    with allure.step("Check that button (Add) not visible for user"):
+        expect(page.get_by_role("button", name="Добавить", exact=True)).not_to_be_visible()
+
+    with allure.step("Click to (GPT) tab"):
+        page.locator(BUTTON_GPT_QUOTAS).click()
+        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+
+    with allure.step("Check that button (save) and input for new amount - disabled"):
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        expect(page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
+        expect(page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)

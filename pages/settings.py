@@ -18,6 +18,16 @@ BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 BUTTON_QUOTAS = '[href*="settings/quotas"]'
 INPUT_QUOTA_TIME = '[name="time"]'
 
+BUTTON_GPT_QUOTAS = '[href*="quotas/gpt-quotas"]'
+BLOCK_GPT_QUOTAS = '[class*="styles_quotasWrapper"]'
+BLOCK_CHAT_GPT = '[class*="styles_ChatGPTwrapper"]'
+BLOCK_YANDEX_GPT = '[class*="styles_YandexGPTwrapper"]'
+INPUT_NEW_QUOTA = '[placeholder="Новое значение"]'
+BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
+BUTTON_SAVE = '[type="submit"]'
+BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
+
+
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
