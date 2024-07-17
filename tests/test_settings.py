@@ -307,8 +307,8 @@ def test_admin_can_change_rights_for_manager(page: Page) -> None:
     with allure.step("Go to rights"):
         click_rights(page)
     
-    with allure.step("Check that manager have 5 right"):
-        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(5)
+    with allure.step("Check that manager have 6 right"):
+        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(6)
     
     with allure.step("Click to all rights and check all checkboxes"):
         click_all_checkboxes_on_page(page)
@@ -394,8 +394,8 @@ def test_admin_can_change_rights_for_user_and_operator(page: Page) -> None:
     with allure.step("Go to rights"):
         click_rights(page)
     
-    with allure.step("Check that operator have 22 rights"):
-        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(22)
+    with allure.step("Check that operator have 23 rights"):
+        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(23)
     
     with allure.step("Click to all rights and check all checkboxes"):
         click_all_checkboxes_on_page(page)
@@ -454,8 +454,8 @@ def test_user_can_change_rights_for_operator(page: Page) -> None:
     with allure.step("Go to rights"):
         click_rights(page)
 
-    with allure.step("Check that operator have 22 rights in list"):
-        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(22)
+    with allure.step("Check that operator have 23 rights in list"):
+        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(23)
 
     with allure.step("Click to all rights and check all checkboxes"):
         click_all_checkboxes_on_page(page)

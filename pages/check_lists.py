@@ -14,6 +14,7 @@ INPUT_FIRST_POINTS = '[name="questions.0.answers.0.point"]'
 INPUT_SECOND_POINTS = '[name="questions.0.answers.1.point"]'
 INPUT_THIRD_POINTS = '[name="questions.1.answers.0.point"]'
 INPUT_LEFT_CHECK_LIST_NAME = '[class*="styles_input_"]'
+INPUT_SORT_ORDER = '[name="priority"]'
 
 # buttons
 BUTTON_RAZMETKA = '[value="tags"]'

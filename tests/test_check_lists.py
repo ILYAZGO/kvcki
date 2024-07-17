@@ -32,6 +32,11 @@ def test_create_update_delete_check_list(page: Page) -> None:
     with allure.step("Fill filter"):
         add_filter("По тегам", "auto_rule", page)
 
+    with allure.step("Change sort order"):
+        expect(page.locator(INPUT_SORT_ORDER)).to_have_value("0")
+        page.locator(INPUT_SORT_ORDER).clear()
+        page.locator(INPUT_SORT_ORDER).fill("1000")
+
     with allure.step("Press button (Save)"):
         page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         press_button_save(page)
@@ -39,6 +44,7 @@ def test_create_update_delete_check_list(page: Page) -> None:
     with allure.step("Check created"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
+        expect(page.locator(INPUT_SORT_ORDER)).to_have_value("1000")
 
         #  added block with renaming from other test
 
