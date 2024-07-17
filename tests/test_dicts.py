@@ -107,48 +107,7 @@ def test_add_dict_group_rename_delete(page: Page) -> None:
     with allure.step("Go to dicts"):
         go_to_dicts(page)
 
-    with allure.step("Create group"):
-        create_group("12345", page)
-
-    with allure.step("Rename group"):
-        page.wait_for_selector(BUTTON_PENCIL)
-        page.locator(BUTTON_PENCIL).click()
-        page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
-        page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
-
-    with allure.step("Check group created and renamed"):
-        expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
-
-    with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).click()
-
-    with allure.step("Check deleted"):
-        expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
-
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN, USER_ID)
-
-
-
-@pytest.mark.independent
-@pytest.mark.dictionaries
-@allure.title("test_add_dict_group_cancel")
-@allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_add_dict_group_cancel")
-def test_example(page: Page) -> None:
-
-    with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-
-    with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
-
-    with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
-
-    with allure.step("Go to dicts"):
-        go_to_dicts(page)
-
+    #
     with allure.step("Press (Add group)"):
         page.locator(BUTTON_DOBAVIT_GRUPPU).click()
 
@@ -166,6 +125,25 @@ def test_example(page: Page) -> None:
 
     with allure.step("Check canceled"):
         expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
+    #
+
+    with allure.step("Create group"):
+        create_group("12345", page)
+
+    with allure.step("Rename group"):
+        page.wait_for_selector(BUTTON_PENCIL)
+        page.locator(BUTTON_PENCIL).click()
+        page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
+        page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
+
+    with allure.step("Check group created and renamed"):
+        expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Delete group"):
+        page.locator(BUTTON_KORZINA).click()
+
+    with allure.step("Check deleted"):
+        expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

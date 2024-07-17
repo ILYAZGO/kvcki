@@ -71,6 +71,28 @@ def test_add_group_of_rules_edit_name_delete(page: Page) -> None:
     with allure.step("Go to markup"):
         go_to_markup(page)
 
+    #
+    with allure.step("Press (Add group) button"):
+        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
+
+    with allure.step("Press (Cancel) button"):
+        page.locator(BUTTON_OTMENA).click()
+
+    with allure.step("Check cancelled"):
+        expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
+        #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
+
+    with allure.step("Press (Add group) button"):
+        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
+
+    with allure.step("Press (X) button"):
+        page.locator(BUTTON_KRESTIK).click()
+
+    with allure.step("Check cancelled"):
+        expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
+        #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
+    #
+
     with allure.step("Create group"):
         create_group("12345", page)
 
@@ -118,49 +140,6 @@ def test_add_rule_outside_group_disabled(page: Page) -> None:
 
     with allure.step("Check that creating rule - disabled and alert exists"):
         expect(page.locator('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]')).to_be_visible()
-
-    #with allure.step("Delete user"):
-      #  delete_user(API_URL, TOKEN, USER_ID)
-
-
-@pytest.mark.independent
-@pytest.mark.rules
-@allure.title("test_add_rule_group_cancel")
-@allure.severity(allure.severity_level.CRITICAL)
-@allure.description("Create and cancel group of rules")
-def test_add_rule_group_cancel(page: Page) -> None:
-
-    with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-
-    with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
-
-    with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
-
-    with allure.step("Go to markup"):
-        go_to_markup(page)
-
-    with allure.step("Press (Add group) button"):
-        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
-
-    with allure.step("Press (Cancel) button"):
-        page.locator(BUTTON_OTMENA).click()
-
-    with allure.step("Check cancelled"):
-        expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
-        #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
-
-    with allure.step("Press (Add group) button"):
-        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
-
-    with allure.step("Press (X) button"):
-        page.locator(BUTTON_KRESTIK).click()
-
-    with allure.step("Check cancelled"):
-        expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
-        #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
