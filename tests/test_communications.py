@@ -1,9 +1,9 @@
-import os
 from playwright.sync_api import Page, expect, BrowserContext
 from utils.variables import *
 from utils.auth import auth
 from pages.communications import *
 from utils.dates import *
+from datetime import datetime
 from utils.create_delete_user import create_user, delete_user
 import pytest
 import allure
@@ -664,7 +664,7 @@ def test_check_buttons_in_open_call(page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Expand call"):
-        page.locator('[data-testid="call_expand"]').click()
+        page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
 
     with allure.step("Check that all 6 buttons in expanded call visible"):
@@ -752,7 +752,7 @@ def test_check_download_excel_from_expanded_call(page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Expand call"):
-        page.locator('[data-testid="call_expand"]').click()
+        page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
 
     with allure.step("Press (EX) button and download excel"):
@@ -851,3 +851,113 @@ def test_check_search_template(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
+
+
+
+
+
+@pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_check_communication_comment")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_communication_comment")
+def test_check_communication_comment(page: Page) -> None:
+
+    today = datetime.now().strftime("%d.%m.%Y, %H:")  # %M can fail test if minutes changed while test running
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with Ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
+        page.locator(INPUT_ID).locator('[type="text"]').fill("1644295919.90300")
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Expand call"):
+        page.locator(BUTTON_EXPAND_CALL).click()
+        page.wait_for_selector('[class*="styles_withAllComments_"]')
+
+    with allure.step("Press (add comment)"):
+        page.locator(BUTTON_ADD_COMMENT).click()
+
+    with allure.step("Check that comment form openned"):
+        page.wait_for_selector('[class*="styles_textareaWrapper"]')
+        expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1)).to_be_disabled()
+        expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="checkbox"]')).not_to_be_checked()
+
+    with allure.step("Check that we can close comment form with X"):
+        page.locator('[data-testid="CloseIcon"]').click()
+
+    with allure.step("Press (add comment)"):
+        page.locator(BUTTON_ADD_COMMENT).click()
+
+    with allure.step("Check checkbox (hidden)"):
+        page.locator('[class*="styles_withAllComments_"]').locator('[type="checkbox"]').check()
+
+    with allure.step("Add title"):
+        page.locator(BUTTON_ADD_COMMENT_TITLE).click()
+
+    with allure.step("Fill title"):
+        page.locator('[class*="styles_title_"]').fill("CommentTitle")
+
+    with allure.step("Check that button (add comment) still disabled"):
+        expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1)).to_be_disabled()
+
+    with allure.step("Fill comment"):
+        page.locator('[class*="styles_textareaWrapper"]').locator('[class*="styles_textarea_"]').fill("CommentText")
+
+    with allure.step("Press (add comment)"):
+        page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1).click()
+
+    with allure.step("Check that comment saved and saved right"):
+        expect(page.locator('[class*="styles_author_"]')).to_have_text("ecotelecom")
+        expect(page.locator('[class*="styles_time_"]')).to_contain_text(today)
+        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_head_"]').locator('[height="18"]')).to_have_count(1)
+        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_title_"]')).to_have_text("CommentTitle")
+        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_message_"]')).to_have_text("CommentText")
+
+    with allure.step("Press to (...) comment options"):
+        page.locator('[class*="styles_optionsSelect_"]').click()
+
+    with allure.step("Choose and click (edit)"):
+        page.locator('[class*="-menu"]').get_by_text("Редактировать", exact=True).click()
+        page.wait_for_selector('[class*="styles_checkButton_"]')
+        expect(page.locator('[class*="styles_checkButton_"]')).to_be_disabled()
+
+    with allure.step("Edit title"):
+        page.locator('[class*="styles_editableInput"]').clear()
+        page.locator('[class*="styles_editableInput"]').fill("EditedTitle")
+
+    with allure.step("Edit comment text"):
+        page.locator('[class*="styles_editableTextarea"]').clear()
+        page.locator('[class*="styles_editableTextarea"]').fill("EditedText")
+
+    with allure.step("Save edited comment"):
+        page.locator('[class*="styles_checkButton_"]').click()
+
+    with allure.step("Check that edition comment saved"):
+        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_title_"]')).to_have_text("EditedTitle")
+        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_message_"]')).to_have_text("EditedText")
+
+    with allure.step("Press to (...) comment options"):
+        page.locator('[class*="styles_optionsSelect_"]').click()
+
+    with allure.step("Choose and click (delete)"):
+        page.locator('[class*="-menu"]').get_by_text("Удалить комментарий", exact=True).click()
+        page.wait_for_timeout(1000)
+
+    with allure.step("Check that comment was deleted"):
+        expect(page.locator('[class*="styles_content_"]')).not_to_be_visible()
+
+
+
+
+

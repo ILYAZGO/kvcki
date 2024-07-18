@@ -1,6 +1,5 @@
 from utils.variables import wait_until_visible
 
-
 # time period
 YESTERDAY = '[value="yesterday"]'
 WEEK = '[value="this_week"]'
@@ -27,6 +26,12 @@ BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
+
+BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
+BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
+
+
+
 # other
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
