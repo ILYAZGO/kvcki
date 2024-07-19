@@ -885,13 +885,15 @@ def test_check_communication_comment(page: Page) -> None:
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector('[class*="styles_withAllComments_"]')
 
+        expect(page.locator('[class*="styles_message_"]')).not_to_be_visible()
+
     with allure.step("Press (add comment)"):
         page.locator(BUTTON_ADD_COMMENT).click()
 
     with allure.step("Check that comment form openned"):
         page.wait_for_selector('[class*="styles_textareaWrapper"]')
-        #page.wait_for_timeout(500)
-        #expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1)).to_be_disabled()
+        page.wait_for_timeout(500)
+        expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1)).to_be_disabled()
         expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="checkbox"]')).not_to_be_checked()
 
     with allure.step("Check that we can close comment form with X"):
