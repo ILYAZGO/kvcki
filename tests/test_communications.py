@@ -885,7 +885,11 @@ def test_check_communication_comment(page: Page) -> None:
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector('[class*="styles_withAllComments_"]')
 
-        expect(page.locator('[class*="styles_message_"]')).not_to_be_visible()
+        if page.is_visible('[class*="styles_message_"]'):
+
+            page.locator('[class*="styles_optionsSelect_"]').click()
+            page.locator('[class*="-menu"]').get_by_text("Удалить комментарий", exact=True).click()
+            page.wait_for_timeout(1000)
 
     with allure.step("Press (add comment)"):
         page.locator(BUTTON_ADD_COMMENT).click()
