@@ -890,6 +890,7 @@ def test_check_communication_comment(page: Page) -> None:
 
     with allure.step("Check that comment form openned"):
         page.wait_for_selector('[class*="styles_textareaWrapper"]')
+        page.wait_for_timeout(500)
         expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1)).to_be_disabled()
         expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="checkbox"]')).not_to_be_checked()
 
