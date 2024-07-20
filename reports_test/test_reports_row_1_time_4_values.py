@@ -6,6 +6,8 @@ import pytest
 
 '''generate report with filter with communications and check all that possible'''
 
+
+@pytest.mark.independent
 @pytest.mark.reports
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)

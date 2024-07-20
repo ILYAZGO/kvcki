@@ -6,6 +6,8 @@ import pytest
 
 '''create report , save , change, save current, delete'''
 
+
+@pytest.mark.independent
 @pytest.mark.reports
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)

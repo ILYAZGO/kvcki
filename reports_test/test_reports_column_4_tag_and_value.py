@@ -6,6 +6,8 @@ import pytest
 
 '''generate report with filter, 4 columns with tag and value, few checkboxes and check all that possible'''
 
+
+@pytest.mark.independent
 @pytest.mark.reports
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)

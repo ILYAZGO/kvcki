@@ -8,6 +8,8 @@ import pytest
 
 '''Проверяем кнопки выбора дат'''
 
+
+@pytest.mark.independent
 @pytest.mark.reports
 def test_example(page: Page) -> None:
     page.goto(URL, timeout=timeout)
