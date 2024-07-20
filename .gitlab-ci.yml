@@ -33,6 +33,7 @@ pages:
         - tests
     script:
         - pwd
+        - ls
 #        - mv exec.log /home/frontend/public/e2e_report/
         - mkdir public
         - cp -r allure-report/* public

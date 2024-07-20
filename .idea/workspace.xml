@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment2">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment3">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -551,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update image and dependenceis" />
     <MESSAGE value="fix some tests" />
     <MESSAGE value="fix some tests2" />
     <MESSAGE value="fix some tests3" />
@@ -576,6 +576,7 @@
     <MESSAGE value="predelete2" />
     <MESSAGE value="experiment1" />
     <MESSAGE value="experiment2" />
-    <option name="LAST_COMMIT_MESSAGE" value="experiment2" />
+    <MESSAGE value="experiment3" />
+    <option name="LAST_COMMIT_MESSAGE" value="experiment3" />
   </component>
 </project>
