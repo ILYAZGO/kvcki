@@ -35,7 +35,7 @@ pages:
     script:
         - pwd
         - ls -l
-        - mv exec.log /home/frontend/public/e2e_log/
+        - mv exec.log /home/frontend/public/
         - mkdir public
         - cp -r allure-report/* public
 #        - chmod og= $STAND_KEY
