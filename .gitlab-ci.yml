@@ -35,8 +35,8 @@ pages:
     script:
         - pwd
         - ls -l
-        - mv exec.log /home/frontend/public/
         - mkdir public
+        - mv exec.log /home/frontend/public/
         - cp -r allure-report/* public
 #        - chmod og= $STAND_KEY
 #        - apk add --update openssh-client bash
