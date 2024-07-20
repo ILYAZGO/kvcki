@@ -10,7 +10,7 @@ import random
 # input text to address-book, save, check that text saved
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_address_book_fill_by_user")
 @allure.severity(allure.severity_level.NORMAL)
@@ -58,7 +58,7 @@ def test_address_book_fill_by_user(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_admin_can_change_login_for_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -109,7 +109,7 @@ def test_admin_can_change_login_for_manager(page: Page) -> None:
         delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_admin_can_change_login_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -151,14 +151,14 @@ def test_admin_can_change_login_for_user_and_operator(page: Page) -> None:
     with allure.step("Reload page"):
         page.reload()
         page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
     
     with allure.step("Check that login changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
 
     # change for operator
     
-    with allure.step("Go to employees from ltfy menu"):
+    with allure.step("Go to employees from left menu"):
         page.locator(BUTTON_EMPLOYEES).click()
         page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
     
@@ -174,7 +174,7 @@ def test_admin_can_change_login_for_user_and_operator(page: Page) -> None:
     with allure.step("Page reload"):
         page.reload()
         page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
     
     with allure.step("Check that login changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN)
@@ -189,7 +189,7 @@ def test_admin_can_change_login_for_user_and_operator(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_user_cant_change_login_for_operator")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -228,12 +228,13 @@ def test_user_cant_change_login_for_operator(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_manager_cant_change_login_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_manager_cant_change_login_for_user_and_operator")
 def test_manager_cant_change_login_for_user_and_operator(page: Page) -> None:
+
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
@@ -280,7 +281,7 @@ def test_manager_cant_change_login_for_user_and_operator(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_admin_can_change_rights_for_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -333,7 +334,7 @@ def test_admin_can_change_rights_for_manager(page: Page) -> None:
         delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_admin_can_change_rights_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -423,7 +424,7 @@ def test_admin_can_change_rights_for_user_and_operator(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_user_can_change_rights_for_operator")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -480,7 +481,7 @@ def test_user_can_change_rights_for_operator(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_change_personal_information_save_admin_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -532,7 +533,7 @@ def test_change_personal_information_save_admin_itself(page: Page) -> None:
     with allure.step("Page reload"):
         page.reload()
         page.wait_for_selector(INPUT_EMAIL)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Check that personal information still have after reboot"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN)
@@ -547,7 +548,7 @@ def test_change_personal_information_save_admin_itself(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_change_personal_information_save_manager_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -557,7 +558,7 @@ def test_change_personal_information_save_manager_itself(page: Page) -> None:
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
 
-    with allure.step("Create admin"):
+    with allure.step("Create manager"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to page"):
@@ -594,7 +595,7 @@ def test_change_personal_information_save_manager_itself(page: Page) -> None:
     with allure.step("Page reload"):
         page.reload()
         page.wait_for_selector(INPUT_EMAIL)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Check that personal information still have after reboot"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -610,7 +611,7 @@ def test_change_personal_information_save_manager_itself(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_change_personal_information_save_user_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -671,7 +672,7 @@ def test_change_personal_information_save_user_itself(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_change_personal_information_save_operator_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -714,7 +715,7 @@ def test_change_personal_information_save_operator_itself(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_change_personal_information_save_operator_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -798,7 +799,7 @@ def test_change_personal_information_save_operator_by_admin(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_change_personal_information_save_operator_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -873,7 +874,7 @@ def test_change_personal_information_save_operator_by_user(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_left_menu_items_for_admin_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -900,7 +901,7 @@ def test_left_menu_items_for_admin_itself(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_left_menu_items_for_manager_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -928,7 +929,7 @@ def test_left_menu_items_for_manager_itself(page: Page) -> None:
 
 
 # check how many items in left menu for role
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_left_menu_items_for_user_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -956,7 +957,7 @@ def test_left_menu_items_for_user_itself(page: Page) -> None:
 
 
 # check how many items in left menu for role
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_left_menu_items_for_operator_itself")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -989,7 +990,7 @@ def test_left_menu_items_for_operator_itself(page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_admin_check_industry_and_partner_for_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1025,7 +1026,7 @@ def test_admin_check_industry_and_partner_for_manager(page: Page) -> None:
         delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_admin_check_industry_and_partner_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1097,7 +1098,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(page: Page) -> N
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_manager_check_industry_and_partner_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1167,7 +1168,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(page: Page) ->
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_giving_communications_quota_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1273,7 +1274,7 @@ def test_giving_communications_quota_by_admin(page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_giving_gpt_quota_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1372,7 +1373,7 @@ def test_giving_gpt_quota_by_admin(page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_user_cant_change_quotas")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1387,9 +1388,6 @@ def test_user_cant_change_quotas(page: Page) -> None:
 
     with allure.step("Auth with admin"):
         auth(LOGIN_USER, PASSWORD, page)
-
-    #with allure.step("Go to user"):
-    #    go_to_user(LOGIN_USER, page)
 
     with allure.step("Go to settings"):
         click_settings(page)

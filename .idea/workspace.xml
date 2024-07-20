@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment15">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment17">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_integrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_integrations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -555,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="upgrade test" />
     <MESSAGE value="test before release" />
     <MESSAGE value="add tests quota" />
     <MESSAGE value="joined tests, made faster" />
@@ -580,6 +576,7 @@
     <MESSAGE value="experiment12" />
     <MESSAGE value="experiment13" />
     <MESSAGE value="experiment15" />
-    <option name="LAST_COMMIT_MESSAGE" value="experiment15" />
+    <MESSAGE value="experiment17" />
+    <option name="LAST_COMMIT_MESSAGE" value="experiment17" />
   </component>
 </project>

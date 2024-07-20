@@ -34,8 +34,6 @@ pages:
     needs:
         - tests
     script:
-        - pwd
-        - ls -l
 #        - mkdir public vanya
 #        - cp -r allure-report/* public vanya
 
