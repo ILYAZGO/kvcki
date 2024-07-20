@@ -34,8 +34,8 @@ pages:
     needs:
         - tests
     script:
-#        - mkdir public vanya
-#        - cp -r allure-report/* public vanya
+        - mkdir public
+        - cp -r allure-report/* public
 
 #        - chmod og= $STAND_KEY
 #        - apk add --update openssh-client bash
