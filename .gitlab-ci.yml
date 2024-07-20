@@ -18,9 +18,10 @@ tests:
     - wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz && tar -zxvf allure-${ALLURE_VERSION}.tgz -C /opt/ && ln -s /opt/allure-${ALLURE_VERSION}/bin/allure /usr/bin/allure
   script:
     - echo Using public URL $PUBLIC_URL
-    - pip install -r requirements.txt --default-timeout=100 
-    - pytest -m independent -n 24 --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pip install -r requirements.txt --default-timeout=100
     - pytest -m dependent --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m independent -n 12 --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+
   after_script:
     - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
     - allure generate -c allure-results -o allure-report
