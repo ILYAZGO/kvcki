@@ -863,7 +863,8 @@ def test_check_search_template(page: Page) -> None:
 @allure.description("test_check_communication_comment")
 def test_check_communication_comment(page: Page) -> None:
 
-    today = datetime.now().strftime("%d.%m.%Y, %H:")  # %M can fail test if minutes changed while test running
+    today = datetime.now().strftime("%d.%m.%Y, ")  # %H:%M can fail test if minutes changed while test running
+    call_id = "1644295919.90300"
 
     with allure.step("Go to url"):
         page.goto(URL, timeout=timeout)
@@ -876,7 +877,7 @@ def test_check_communication_comment(page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644295919.90300")
+        page.locator(INPUT_ID).locator('[type="text"]').fill(call_id)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
