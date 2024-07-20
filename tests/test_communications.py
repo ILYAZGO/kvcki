@@ -640,6 +640,7 @@ def test_check_download_button_in_calls_list(page: Page) -> None:
     #    assert os.path.isfile(path + download.suggested_filename) == False
 
 
+
 @pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_buttons_in_open_call")
@@ -681,7 +682,7 @@ def test_check_buttons_in_open_call(page: Page) -> None:
     with (allure.step("Check content in opened menu")):
         expect(page.locator('[class="MuiAccordion-region"]').locator('[class*="menu"]')).to_have_text("Мета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения ")
 
-
+@pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_download_call_from_expanded_call")
 @allure.severity(allure.severity_level.NORMAL)
@@ -728,7 +729,7 @@ def test_check_download_call_from_expanded_call(page: Page) -> None:
     with allure.step("Check that file removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
 
-
+@pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_download_excel_from_expanded_call")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -775,6 +776,8 @@ def test_check_download_excel_from_expanded_call(page: Page) -> None:
     with allure.step("Check that excel export removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
 
+
+@pytest.mark.calls
 @pytest.mark.independent
 @allure.title("test_check_search_template")
 @allure.severity(allure.severity_level.NORMAL)
@@ -851,9 +854,6 @@ def test_check_search_template(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
-
-
-
 
 
 @pytest.mark.calls

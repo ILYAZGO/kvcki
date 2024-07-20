@@ -333,7 +333,6 @@ def test_import_dict_disabled_for_user(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-
 @pytest.mark.independent
 @pytest.mark.dictionaries
 @allure.title("test_import_group_and_dict_by_admin")
@@ -420,7 +419,6 @@ def test_import_group_and_dict_by_admin(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-
 
 
 @pytest.mark.independent
@@ -510,7 +508,6 @@ def test_import_group_and_dict_by_manager(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-
 
 
 @pytest.mark.independent

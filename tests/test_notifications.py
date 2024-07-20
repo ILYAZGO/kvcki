@@ -215,7 +215,6 @@ def test_notifications_api(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-
 @pytest.mark.independent
 @pytest.mark.notifications
 @allure.title("test_notifications_email")

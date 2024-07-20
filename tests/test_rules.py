@@ -388,7 +388,6 @@ def test_add_rule_inside_group_check_set_tag_block(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-
 @pytest.mark.independent
 @pytest.mark.rules
 @allure.title("test_add_rule_inside_group_check_tag_sequence")
@@ -566,6 +565,7 @@ def test_import_group_and_rule_by_admin(page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
 
 @pytest.mark.independent
 @pytest.mark.rules

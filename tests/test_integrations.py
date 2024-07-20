@@ -9,7 +9,7 @@ import pytest
 import allure
 
 
-@pytest.mark.independent
+
 @pytest.mark.integration
 @allure.title("test_usedesk")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -77,8 +77,6 @@ def test_usedesk(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-
-@pytest.mark.independent
 @pytest.mark.integration
 @allure.title("test_search_string")
 @allure.severity(allure.severity_level.CRITICAL)
