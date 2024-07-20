@@ -7,7 +7,7 @@ import pytest
 import allure
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.gpt
 @allure.title("test_create_rename_delete_gpt_rule_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -72,7 +72,7 @@ def test_create_rename_delete_gpt_rule_by_user(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.gpt
 @allure.title("test_additional_params_gpt_rule_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -155,7 +155,7 @@ def test_additional_params_gpt_rule_by_user(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.gpt
 @allure.title("test_import_gpt_rule_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -231,7 +231,7 @@ def test_import_gpt_rule_by_admin(page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.gpt
 @allure.title("test_import_gpt_rule_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -310,7 +310,7 @@ def test_import_gpt_rule_by_manager(page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.gpt
 @allure.title("test_import_gpt_rules_disabled_for_user")
 @allure.severity(allure.severity_level.NORMAL)
@@ -335,7 +335,7 @@ def test_import_gpt_rules_disabled_for_user(page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.gpt
 @allure.title("test_check_old_gpt_rule")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -364,7 +364,7 @@ def test_check_old_gpt_rule(page: Page) -> None:
         #expect(page.locator(INPUT_GPT_QUESTION)).to_be_visible()
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.gpt
 @allure.title("test_compare_gpt_rules_by_user")
 @allure.severity(allure.severity_level.CRITICAL)

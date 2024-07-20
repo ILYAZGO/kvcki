@@ -77,7 +77,7 @@ def test_usedesk(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.integration
 @allure.title("test_search_string")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -109,3 +109,6 @@ def test_search_string(page: Page) -> None:
 
     with allure.step("Check that search string found something"):
         expect(page.locator('[class*="styles_listItem_"]')).to_have_count(1)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
