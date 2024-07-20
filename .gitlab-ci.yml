@@ -37,7 +37,7 @@ pages:
         - ls -l
         - mkdir public
         - mkdir public/e2e-log
-        - mv exec.log /home/frontend/public/e2e-log
+        - mv exec.log /home/frontend/public/e2e-log/
         - cp -r allure-report/* public
 #        - chmod og= $STAND_KEY
 #        - apk add --update openssh-client bash
