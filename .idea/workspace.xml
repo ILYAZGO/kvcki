@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment12">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="experiment13">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -551,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="upgrade gpt and notifications tests with filter" />
     <MESSAGE value="update dependecies" />
     <MESSAGE value="upgrade test" />
     <MESSAGE value="test before release" />
@@ -576,6 +576,7 @@
     <MESSAGE value="experiment10" />
     <MESSAGE value="experiment11" />
     <MESSAGE value="experiment12" />
-    <option name="LAST_COMMIT_MESSAGE" value="experiment12" />
+    <MESSAGE value="experiment13" />
+    <option name="LAST_COMMIT_MESSAGE" value="experiment13" />
   </component>
 </project>
