@@ -1,5 +1,3 @@
-import sys
-
 import requests
 import random
 from datetime import datetime
@@ -177,10 +175,8 @@ def create_operator(URL, PARENT_USER_ID, PASSWORD):
     user_id = create_operator.text.replace('"', '')
 
     if create_operator.status_code == 200:
-        #print(f"\n>>>>> OPERATOR {NAME} WITH user_id: {user_id} CREATED SUCCESSFULLY <<<<<")
         logger.opt(depth=1).info(f"\n>>>>> OPERATOR {NAME} WITH user_id: {user_id} CREATED SUCCESSFULLY <<<<<")
     else:
-        #print(f"\n>>>>> ACCESS DENIED 403 <<<<<")
         logger.opt(depth=1).info(f"\n>>>>> ERROR CREATE OPERATOR {create_operator.status_code} <<<<<")
 
     return user_id, token, LOGIN
@@ -196,10 +192,8 @@ def delete_user(URL, token, USER_ID ):
     delete = requests.delete(url=URL + "/user/" + USER_ID, headers=headers_for_delete)
 
     if delete.status_code == 204:
-        #print(f"\n>>>>> USER {USER_ID} DELETED <<<<<")
         logger.opt(depth=1).info(f"\n>>>>> USER {USER_ID} DELETED <<<<<")
     else:
-        #print(f"\n>>>>> USER {USER_ID} NOT DELETED <<<<<")
         logger.opt(depth=1).info(f"\n>>>>> USER {USER_ID} NOT DELETED <<<<<")
 
 

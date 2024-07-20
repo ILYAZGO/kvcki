@@ -82,7 +82,7 @@ def test_add_dict_outside_group_disabled(page: Page) -> None:
         go_to_dicts(page)
 
     with allure.step("Check that disabled"):
-        expect(page.locator('[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]')).to_be_visible()
+        expect(page.locator('[aria-label="Чтобы добвить словарь, выберите или добавьте гgруппу."]')).to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
