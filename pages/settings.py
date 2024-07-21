@@ -4,7 +4,7 @@ LAST_DATE = '[placeholder="Конечная дата"]'
 
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_OPOVESHENIA = '[href*="/notifications"]'
-BLOCK_LEFT_MENU = ".styles_list__3M7-K"
+BLOCK_LEFT_MENU = '[class*="styles_list_"]' #".styles_list__3M7-K"
 
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
@@ -50,7 +50,7 @@ SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 def click_settings(page="page: Page"):
     page.wait_for_selector(BUTTON_NASTROIKI)
     page.locator(BUTTON_NASTROIKI).click()
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(500)
     page.wait_for_selector(INPUT_LOGIN)
 
 
@@ -173,7 +173,7 @@ def go_to_admin_or_manager(name, page="page: Page"):
     page.locator(USERS_LIST).fill(name)
     page.wait_for_timeout(300)
     page.get_by_text(name, exact=True).click()
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(1400)
 
 
 def press_save(page="page: Page"):
