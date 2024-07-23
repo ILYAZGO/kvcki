@@ -347,6 +347,88 @@ def test_notifications_telegram(page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
+
+@pytest.mark.independent
+@pytest.mark.notifications
+@allure.title("test_notifications_amo_crm")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_notifications_amo_crm")
+def test_notifications_api(page: Page) -> None:
+
+    with allure.step("Create admin"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(URL, timeout=timeout)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN, PASSWORD, page)
+
+    with allure.step("Go to user IMOT.IO"):
+        go_to_user("IMOT.IO", page)
+
+    with allure.step("Go to notifications"):
+        go_to_notifications_page(page)
+
+    with allure.step("Check that notification auto-test-amoCRM deleted before"):
+        if page.get_by_text("auto-test-amoCRM").is_visible():
+            go_back_in_rule_after_save("auto-test-amoCRM", page)
+            page.locator('[class*="styles_selected_"]').locator(BUTTON_KORZINA).click()
+            page.wait_for_timeout(500)
+            page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
+            page.wait_for_timeout(2000)
+
+    with allure.step("Create api notification rule"):
+        add_notification("AmoCRM", page)
+
+    with allure.step("Set notification name"):
+        set_notification_name("auto-test-amoCRM", page)
+
+    with allure.step("Checkbox Send again when rule changed"):
+        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0).click()
+
+    with allure.step("Check that checkbox clicked"):
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
+
+    with allure.step("Checkbox Allow overwriting fields from CRM"):
+        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1).click()
+
+    with allure.step("Check that checkbox clicked"):
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+
+    with allure.step("add filter"):
+        add_filter("По тегам", "Бренд", "1", page)
+
+    with allure.step("Fill message"):
+        fill_message("someText ", page)
+
+    with allure.step("Save rule"):
+        save_rule(page)
+
+    with allure.step("Go back in rule after save"):
+        go_back_in_rule_after_save("auto-test-amoCRM", page)
+
+    with allure.step("Check"):
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+        expect(page.locator('[aria-label="Remove Бренд"]')).to_have_count(1)
+        expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
+        expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-amoCRM")
+
+    with allure.step("Delete rule"):
+        #delete_rule(page)
+        page.locator('[class*="styles_selected_"]').locator(BUTTON_KORZINA).click()
+        page.wait_for_timeout(500)
+        page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
+        page.wait_for_timeout(1000)
+
+    with allure.step("Check that rule deleted"):
+        expect(page.locator(BUTTON_KORZINA)).to_have_count(2)
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
 @pytest.mark.independent
 @pytest.mark.notifications
 @allure.title("test_notifications_import_rules_by_admin")

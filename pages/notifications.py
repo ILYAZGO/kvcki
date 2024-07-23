@@ -53,10 +53,10 @@ def add_notification(notificationType, page="page: Page"):
     page.locator(BLOCK_ADD_NEW_RULE).get_by_role("button").click()
     page.wait_for_selector(INPUT_NOTIFICATION_NAME)
     #  click to list
-    page.locator('[class="css-8mmkcg"]').first.click()
+    page.locator(BLOCK_RULE_MAIN_AREA).locator('[class="css-8mmkcg"]').first.click()
     page.wait_for_timeout(300)
     #  choose type
-    page.locator('[class=" css-164zrm5-menu"]').get_by_text(notificationType, exact=True).click()
+    page.locator(BLOCK_RULE_MAIN_AREA).locator('[class*="-menu"]').get_by_text(notificationType, exact=True).click()
 
 
 def fill_attr_for_email(letterTheme, email, page="page: Page"):
