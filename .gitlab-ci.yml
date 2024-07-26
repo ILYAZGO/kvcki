@@ -19,7 +19,7 @@ tests:
   script:
     - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt --default-timeout=100
-    - pytest -m dependent --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+#    - pytest -m dependent --reruns=${RERUNS_NUMBER} --alluredir=allure-results
     - pytest -m independent -n 12 --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
@@ -43,8 +43,8 @@ pages:
 #        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
 #        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
         - rm -rf /home/frontend/public/e2e_report/*
-        - mv -p allure-report/* /home/frontend/public/E2E/e2e_report/
-        - mv -p exec.log /home/frontend/public/E2E/
+        - mv allure-report/* /home/frontend/public/E2E/e2e_report/
+        - mv exec.log /home/frontend/public/E2E/
 
     artifacts:
         when: always
