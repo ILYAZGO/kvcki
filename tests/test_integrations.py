@@ -14,13 +14,13 @@ import allure
 @allure.title("test_usedesk")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User making integration with usedesk")
-def test_usedesk(page: Page) -> None:
+def test_usedesk(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -82,13 +82,13 @@ def test_usedesk(page: Page) -> None:
 @allure.title("test_search_string")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_search_string")
-def test_search_string(page: Page) -> None:
+def test_search_string(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)

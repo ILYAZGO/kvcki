@@ -14,10 +14,10 @@ import allure
 @allure.title("test_check_dates")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Check dates buttons. Test not stabile because of expected date")
-def test_check_dates(page: Page) -> None:
+def test_check_dates(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -68,10 +68,10 @@ def test_check_dates(page: Page) -> None:
 @allure.title("test_check_search_all")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Searching all communications for Ecotelecom")
-def test_check_search_all(page: Page) -> None:
+def test_check_search_all(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -92,10 +92,10 @@ def test_check_search_all(page: Page) -> None:
 @allure.title("test_check_search_by_client_number")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by client number for Ecotelecom")
-def test_check_search_by_client_number(page: Page) -> None:
+def test_check_search_by_client_number(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -118,10 +118,10 @@ def test_check_search_by_client_number(page: Page) -> None:
 @allure.title("test_check_search_by_employee_number")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by employee's number for Ecotelecom")
-def test_check_search_by_employee_number(page: Page) -> None:
+def test_check_search_by_employee_number(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -145,10 +145,10 @@ def test_check_search_by_employee_number(page: Page) -> None:
 @allure.title("test_check_search_by_client_dict_or_text")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by client dict or text for Ecotelecom")
-def test_check_search_by_client_dict_or_text(page: Page) -> None:
+def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -185,10 +185,10 @@ def test_check_search_by_client_dict_or_text(page: Page) -> None:
 @allure.title("test_check_search_by_employee_dict_or_text")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by employee's dict or text for Ecotelecom")
-def test_check_search_by_employee_dict_or_text(page: Page) -> None:
+def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -225,10 +225,10 @@ def test_check_search_by_employee_dict_or_text(page: Page) -> None:
 @allure.title("test_check_search_by_exact_time")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by exact time for Ecotelecom")
-def test_check_search_by_exact_time(page: Page) -> None:
+def test_check_search_by_exact_time(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -251,10 +251,10 @@ def test_check_search_by_exact_time(page: Page) -> None:
 @allure.title("test_check_search_by_length")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by length for Ecotelecom")
-def test_check_search_by_length(page: Page) -> None:
+def test_check_search_by_length(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -297,10 +297,10 @@ def test_check_search_by_length(page: Page) -> None:
 @allure.title("test_check_search_by_ID")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by ID for Ecotelecom")
-def test_check_search_by_ID(page: Page) -> None:
+def test_check_search_by_ID(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -323,10 +323,10 @@ def test_check_search_by_ID(page: Page) -> None:
 @allure.title("test_check_search_by_tag")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by tag for Ecotelecom")
-def test_check_search_by_tag(page: Page) -> None:
+def test_check_search_by_tag(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -385,10 +385,10 @@ def test_check_search_by_tag(page: Page) -> None:
 @allure.title("test_check_sort")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Check sort (4 type) all calls for Ecotelecom")
-def test_check_sort(page: Page) -> None:
+def test_check_sort(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -428,10 +428,10 @@ def test_check_sort(page: Page) -> None:
 @allure.title("test_check_clear_all_fields")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Check clear all fields by button for Ecotelecom")
-def test_check_clear_all_fields(page: Page) -> None:
+def test_check_clear_all_fields(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -494,10 +494,10 @@ def test_check_clear_all_fields(page: Page) -> None:
 @allure.title("test_check_open_call_in_new_tab")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_open_call_in_new_tab")
-def test_check_open_call_in_new_tab(page: Page, context: BrowserContext) -> None:
+def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContext) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -540,10 +540,10 @@ def test_check_open_call_in_new_tab(page: Page, context: BrowserContext) -> None
 @allure.title("test_check_content_button_calls_actions")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_content_button_calls_actions (...)")
-def test_check_content_button_calls_actions(page: Page) -> None:
+def test_check_content_button_calls_actions(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -570,10 +570,10 @@ def test_check_content_button_calls_actions(page: Page) -> None:
 @allure.title("test_check_download_button_in_calls_list")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_content_button_calls (download)")
-def test_check_download_button_in_calls_list(page: Page) -> None:
+def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -646,10 +646,10 @@ def test_check_download_button_in_calls_list(page: Page) -> None:
 @allure.title("test_check_buttons_in_open_call")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_buttons_in_open_call")
-def test_check_buttons_in_open_call(page: Page) -> None:
+def test_check_buttons_in_open_call(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -687,10 +687,10 @@ def test_check_buttons_in_open_call(page: Page) -> None:
 @allure.title("test_check_download_call_from_expanded_call")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_download_call_from_expanded_call")
-def test_check_download_call_from_expanded_call(page: Page) -> None:
+def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -734,10 +734,10 @@ def test_check_download_call_from_expanded_call(page: Page) -> None:
 @allure.title("test_check_download_excel_from_expanded_call")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_download_excel_from_expanded_call")
-def test_check_download_excel_from_expanded_call(page: Page) -> None:
+def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -782,13 +782,13 @@ def test_check_download_excel_from_expanded_call(page: Page) -> None:
 @allure.title("test_check_search_template")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_search_template")
-def test_check_search_template(page: Page) -> None:
+def test_check_search_template(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -861,13 +861,13 @@ def test_check_search_template(page: Page) -> None:
 @allure.title("test_check_communication_comment")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_communication_comment")
-def test_check_communication_comment(page: Page) -> None:
+def test_check_communication_comment(base_url, page: Page) -> None:
 
     today = datetime.now().strftime("%d.%m.%Y, ")  # %H:%M can fail test if minutes changed while test running
     call_id = "1644295919.90300"
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)

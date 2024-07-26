@@ -12,13 +12,13 @@ import allure
 @allure.title("test_notifications_first_page")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_first_page")
-def test_notifications_first_page(page: Page) -> None:
+def test_notifications_first_page(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -50,13 +50,13 @@ def test_notifications_first_page(page: Page) -> None:
 @allure.title("test_notifications_api_method_change")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_notifications_api_method_change")
-def test_notifications_api_method_change(page: Page) -> None:
+def test_notifications_api_method_change(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -155,13 +155,13 @@ def test_notifications_api_method_change(page: Page) -> None:
 @allure.title("test_notifications_api")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_api")
-def test_notifications_api(page: Page) -> None:
+def test_notifications_api(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -220,13 +220,13 @@ def test_notifications_api(page: Page) -> None:
 @allure.title("test_notifications_email")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_email")
-def test_notifications_email(page: Page) -> None:
+def test_notifications_email(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -285,13 +285,13 @@ def test_notifications_email(page: Page) -> None:
 @allure.title("test_notifications_telegram")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_telegram")
-def test_notifications_telegram(page: Page) -> None:
+def test_notifications_telegram(base_url,page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -353,13 +353,13 @@ def test_notifications_telegram(page: Page) -> None:
 @allure.title("test_notifications_amo_crm")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_amo_crm")
-def test_notifications_amo_crm(page: Page) -> None:
+def test_notifications_amo_crm(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -434,7 +434,7 @@ def test_notifications_amo_crm(page: Page) -> None:
 @allure.title("test_notifications_import_rules_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_import_rules_by_admin")
-def test_notifications_import_rules_by_admin(page: Page) -> None:
+def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -443,7 +443,7 @@ def test_notifications_import_rules_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -507,7 +507,7 @@ def test_notifications_import_rules_by_admin(page: Page) -> None:
 @allure.title("test_notifications_import_rules_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_import_rules_by_manager")
-def test_notifications_import_rules_by_manager(page: Page) -> None:
+def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -519,7 +519,7 @@ def test_notifications_import_rules_by_manager(page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with manager"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -586,10 +586,10 @@ def test_notifications_import_rules_by_manager(page: Page) -> None:
 @allure.title("test_check_old_notification")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_old_notification for Ecotelecom")
-def test_check_old_notification(page: Page) -> None:
+def test_check_old_notification(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)

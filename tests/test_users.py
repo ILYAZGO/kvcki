@@ -12,7 +12,7 @@ import random
 @pytest.mark.users
 @allure.title("test_add_delete_admin_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_add_delete_admin_by_admin(page: Page) -> None:
+def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -21,7 +21,7 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin 1"):
         auth(LOGIN, PASSWORD, page)
@@ -70,7 +70,7 @@ def test_add_delete_admin_by_admin(page: Page) -> None:
 @pytest.mark.users
 @allure.title("test_add_delete_manager_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_add_delete_manager_by_admin(page: Page) -> None:
+def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -80,7 +80,7 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -129,7 +129,7 @@ def test_add_delete_manager_by_admin(page: Page) -> None:
 @pytest.mark.users
 @allure.title("test_add_delete_user_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_add_delete_user_by_admin(page: Page) -> None:
+def test_add_delete_user_by_admin(base_url, page: Page) -> None:
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -138,7 +138,7 @@ def test_add_delete_user_by_admin(page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -222,13 +222,13 @@ def test_add_delete_user_by_admin(page: Page) -> None:
 @allure.title("test_add_delete_user_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition : manager should have access_rights for create and delete user")
-def test_add_delete_user_by_manager(page: Page) -> None:
+def test_add_delete_user_by_manager(base_url, page: Page) -> None:
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with manager"):
         auth(MANAGER, PASSWORD, page)
@@ -287,7 +287,7 @@ def test_add_delete_user_by_manager(page: Page) -> None:
 @pytest.mark.users
 @allure.title("test_add_delete_operator_by_user")
 @allure.severity(allure.severity_level.NORMAL)
-def test_add_delete_operator_by_user(page: Page) -> None:
+def test_add_delete_operator_by_user(base_url, page: Page) -> None:
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -296,7 +296,7 @@ def test_add_delete_operator_by_user(page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -346,13 +346,13 @@ def test_add_delete_operator_by_user(page: Page) -> None:
 @pytest.mark.users
 @allure.title("test_check_search")
 @allure.severity(allure.severity_level.NORMAL)
-def test_check_search(page: Page) -> None:
+def test_check_search(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)

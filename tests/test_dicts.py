@@ -12,13 +12,13 @@ import allure
 @allure.title("test_add_dict_inside_group")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create dict inside group by user")
-def test_add_dict_inside_group(page: Page) -> None:
+def test_add_dict_inside_group(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -67,13 +67,13 @@ def test_add_dict_inside_group(page: Page) -> None:
 @allure.title("test_add_dict_outside_group_disabled")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_dict_outside_group_disabled")
-def test_add_dict_outside_group_disabled(page: Page) -> None:
+def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -93,13 +93,13 @@ def test_add_dict_outside_group_disabled(page: Page) -> None:
 @allure.title("test_add_dict_group_rename_delete")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_dict_group_rename_delete")
-def test_add_dict_group_rename_delete(page: Page) -> None:
+def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -154,13 +154,13 @@ def test_add_dict_group_rename_delete(page: Page) -> None:
 @allure.title("test_check_dict_type")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_dict_type")
-def test_check_dict_type(page: Page) -> None:
+def test_check_dict_type(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -263,10 +263,10 @@ def test_check_dict_type(page: Page) -> None:
 @allure.title("test_check_old_dict")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("https://task.imot.io/browse/DEV-1784   check old dict from ecotelecom")
-def test_check_old_dict(page: Page) -> None:
+def test_check_old_dict(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with ECOTELECOM"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -288,10 +288,10 @@ def test_check_old_dict(page: Page) -> None:
 @allure.title("test_search_dict")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_search_dict")
-def test_search_dict(page: Page) -> None:
+def test_search_dict(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with ECOTELECOM"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -312,13 +312,13 @@ def test_search_dict(page: Page) -> None:
 @allure.title("test_import_dict_disabled_for_user")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_import_dict_disabled_for_user")
-def test_import_dict_disabled_for_user(page: Page) -> None:
+def test_import_dict_disabled_for_user(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -338,7 +338,7 @@ def test_import_dict_disabled_for_user(page: Page) -> None:
 @allure.title("test_import_group_and_dict_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside, with rule 33333 without group")
-def test_import_group_and_dict_by_admin(page: Page) -> None:
+def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -347,7 +347,7 @@ def test_import_group_and_dict_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -426,7 +426,7 @@ def test_import_group_and_dict_by_admin(page: Page) -> None:
 @allure.title("test_import_group_and_dict_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside, with rule 33333 without group")
-def test_import_group_and_dict_by_manager(page: Page) -> None:
+def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -438,7 +438,7 @@ def test_import_group_and_dict_by_manager(page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with manager"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -515,10 +515,10 @@ def test_import_group_and_dict_by_manager(page: Page) -> None:
 @allure.title("test_compare_dicts_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User has two dicts with different parameters. when he switch between them, all parameters changing")
-def test_compare_dicts_by_user(page: Page) -> None:
+def test_compare_dicts_by_user(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user for check comparelogin"):
         auth(USER_FOR_CHECK, PASSWORD, page)

@@ -12,13 +12,13 @@ import allure
 @allure.title("test_create_rename_update_delete_check_list")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("create,rename, update,delete check-list")
-def test_create_update_delete_check_list(page: Page) -> None:
+def test_create_update_delete_check_list(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -141,10 +141,10 @@ def test_create_update_delete_check_list(page: Page) -> None:
 @allure.title("test_check_old_check_list")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check old checklist from ecotelecom")
-def test_check_old_check_list(page: Page) -> None:
+def test_check_old_check_list(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth like Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -164,7 +164,7 @@ def test_check_old_check_list(page: Page) -> None:
 @pytest.mark.check_list
 @allure.title("test_import_check_list_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_import_check_list_by_admin(page: Page) -> None:
+def test_import_check_list_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -173,7 +173,7 @@ def test_import_check_list_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -240,7 +240,7 @@ def test_import_check_list_by_admin(page: Page) -> None:
 @pytest.mark.check_list
 @allure.title("test_import_check_list_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_import_check_list_by_manager(page: Page) -> None:
+def test_import_check_list_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -252,7 +252,7 @@ def test_import_check_list_by_manager(page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -318,13 +318,13 @@ def test_import_check_list_by_manager(page: Page) -> None:
 @pytest.mark.check_list
 @allure.title("test_import_check_list_disabled_for_user")
 @allure.severity(allure.severity_level.NORMAL)
-def test_import_check_list_disabled_for_user(page: Page) -> None:
+def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -344,10 +344,10 @@ def test_import_check_list_disabled_for_user(page: Page) -> None:
 @allure.title("test_compare_check_lists_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User has two check lists with different parameters. when he switch between them, all parameters changing")
-def test_compare_check_lists_by_user(page: Page) -> None:
+def test_compare_check_lists_by_user(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user for check comparelogin"):
         auth(USER_FOR_CHECK, PASSWORD, page)

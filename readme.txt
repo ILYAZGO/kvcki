@@ -7,7 +7,7 @@ install requirements and browsers:
 
 from main directory:
 
-    pytest
+    pytest --base-url https://app.stand.imot.io/ru
 
    !PROFIT!
 

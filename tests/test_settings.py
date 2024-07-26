@@ -15,13 +15,13 @@ import random
 @allure.title("test_address_book_fill_by_user")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("input text to address-book, save, check that text saved")
-def test_address_book_fill_by_user(page: Page) -> None:
+def test_address_book_fill_by_user(base_url, page: Page) -> None:
     
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
     
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
     
     with allure.step("Auth as user"):
         auth(LOGIN, PASSWORD, page)
@@ -63,7 +63,7 @@ def test_address_book_fill_by_user(page: Page) -> None:
 @allure.title("test_admin_can_change_login_for_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change login for manager")
-def test_admin_can_change_login_for_manager(page: Page) -> None:
+def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
 
     CHANGED_LOGIN = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     
@@ -74,7 +74,7 @@ def test_admin_can_change_login_for_manager(page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
     
     with allure.step("Auth as admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -114,7 +114,7 @@ def test_admin_can_change_login_for_manager(page: Page) -> None:
 @allure.title("test_admin_can_change_login_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change login for user and operator")
-def test_admin_can_change_login_for_user_and_operator(page: Page) -> None:
+def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> None:
 
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     CHANGED_LOGIN = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
@@ -129,7 +129,7 @@ def test_admin_can_change_login_for_user_and_operator(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
     
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
     
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -194,7 +194,7 @@ def test_admin_can_change_login_for_user_and_operator(page: Page) -> None:
 @allure.title("test_user_cant_change_login_for_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check that changing login disabled for operator")
-def test_user_cant_change_login_for_operator(page: Page) -> None:
+def test_user_cant_change_login_for_operator(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -203,7 +203,7 @@ def test_user_cant_change_login_for_operator(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -233,7 +233,7 @@ def test_user_cant_change_login_for_operator(page: Page) -> None:
 @allure.title("test_manager_cant_change_login_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_manager_cant_change_login_for_user_and_operator")
-def test_manager_cant_change_login_for_user_and_operator(page: Page) -> None:
+def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -> None:
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -246,7 +246,7 @@ def test_manager_cant_change_login_for_user_and_operator(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with manager"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -286,7 +286,7 @@ def test_manager_cant_change_login_for_user_and_operator(page: Page) -> None:
 @allure.title("test_admin_can_change_rights_for_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change rights for manager")
-def test_admin_can_change_rights_for_manager(page: Page) -> None:
+def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
     
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -295,7 +295,7 @@ def test_admin_can_change_rights_for_manager(page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
     
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth as admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -339,7 +339,7 @@ def test_admin_can_change_rights_for_manager(page: Page) -> None:
 @allure.title("test_admin_can_change_rights_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change rights for user and operator")
-def test_admin_can_change_rights_for_user_and_operator(page: Page) -> None:
+def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -351,7 +351,7 @@ def test_admin_can_change_rights_for_user_and_operator(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth as admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -429,7 +429,7 @@ def test_admin_can_change_rights_for_user_and_operator(page: Page) -> None:
 @allure.title("test_user_can_change_rights_for_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check user can change rights for operator")
-def test_user_can_change_rights_for_operator(page: Page) -> None:
+def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -438,7 +438,7 @@ def test_user_can_change_rights_for_operator(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -486,7 +486,7 @@ def test_user_can_change_rights_for_operator(page: Page) -> None:
 @allure.title("test_change_personal_information_save_admin_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for admin")
-def test_change_personal_information_save_admin_itself(page: Page) -> None:
+def test_change_personal_information_save_admin_itself(base_url, page: Page) -> None:
 
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
@@ -495,7 +495,7 @@ def test_change_personal_information_save_admin_itself(page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -553,7 +553,7 @@ def test_change_personal_information_save_admin_itself(page: Page) -> None:
 @allure.title("test_change_personal_information_save_manager_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for manager")
-def test_change_personal_information_save_manager_itself(page: Page) -> None:
+def test_change_personal_information_save_manager_itself(base_url, page: Page) -> None:
 
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -562,7 +562,7 @@ def test_change_personal_information_save_manager_itself(page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -616,7 +616,7 @@ def test_change_personal_information_save_manager_itself(page: Page) -> None:
 @allure.title("test_change_personal_information_save_user_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for user")
-def test_change_personal_information_save_user_itself(page: Page) -> None:
+def test_change_personal_information_save_user_itself(base_url, page: Page) -> None:
 
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -625,7 +625,7 @@ def test_change_personal_information_save_user_itself(page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -677,7 +677,7 @@ def test_change_personal_information_save_user_itself(page: Page) -> None:
 @allure.title("test_change_personal_information_save_operator_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for operator")
-def test_change_personal_information_save_operator_itself(page: Page) -> None:
+def test_change_personal_information_save_operator_itself(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -686,7 +686,7 @@ def test_change_personal_information_save_operator_itself(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with operator"):
         auth(LOGIN_OPERATOR, PASSWORD, page)
@@ -720,7 +720,7 @@ def test_change_personal_information_save_operator_itself(page: Page) -> None:
 @allure.title("test_change_personal_information_save_operator_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for operator by admin")
-def test_change_personal_information_save_operator_by_admin(page: Page) -> None:
+def test_change_personal_information_save_operator_by_admin(base_url, page: Page) -> None:
 
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -735,7 +735,7 @@ def test_change_personal_information_save_operator_by_admin(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -804,7 +804,7 @@ def test_change_personal_information_save_operator_by_admin(page: Page) -> None:
 @allure.title("test_change_personal_information_save_operator_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for operator by user")
-def test_change_personal_information_save_operator_by_user(page: Page) -> None:
+def test_change_personal_information_save_operator_by_user(base_url, page: Page) -> None:
 
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -816,7 +816,7 @@ def test_change_personal_information_save_operator_by_user(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -879,13 +879,13 @@ def test_change_personal_information_save_operator_by_user(page: Page) -> None:
 @allure.title("test_left_menu_items_for_admin_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
-def test_left_menu_items_for_admin_itself(page: Page) -> None:
+def test_left_menu_items_for_admin_itself(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -906,13 +906,13 @@ def test_left_menu_items_for_admin_itself(page: Page) -> None:
 @allure.title("test_left_menu_items_for_manager_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
-def test_left_menu_items_for_manager_itself(page: Page) -> None:
+def test_left_menu_items_for_manager_itself(base_url, page: Page) -> None:
 
     with allure.step("Create manager"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with manager"):
         auth(LOGIN, PASSWORD, page)
@@ -934,13 +934,13 @@ def test_left_menu_items_for_manager_itself(page: Page) -> None:
 @allure.title("test_left_menu_items_for_user_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
-def test_left_menu_items_for_user_itself(page: Page) -> None:
+def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -962,7 +962,7 @@ def test_left_menu_items_for_user_itself(page: Page) -> None:
 @allure.title("test_left_menu_items_for_operator_itself")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
-def test_left_menu_items_for_operator_itself(page: Page) -> None:
+def test_left_menu_items_for_operator_itself(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -971,7 +971,7 @@ def test_left_menu_items_for_operator_itself(page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL,USER_ID_USER,PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with operator"):
         auth(LOGIN_OPERATOR, PASSWORD, page)
@@ -995,7 +995,7 @@ def test_left_menu_items_for_operator_itself(page: Page) -> None:
 @allure.title("test_admin_check_industry_and_partner_for_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_admin_check_industry_and_partner_for_manager")
-def test_admin_check_industry_and_partner_for_manager(page: Page) -> None:
+def test_admin_check_industry_and_partner_for_manager(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1004,7 +1004,7 @@ def test_admin_check_industry_and_partner_for_manager(page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -1031,7 +1031,7 @@ def test_admin_check_industry_and_partner_for_manager(page: Page) -> None:
 @allure.title("test_admin_check_industry_and_partner_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_admin_check_industry_and_partner_for_user_and_operator")
-def test_admin_check_industry_and_partner_for_user_and_operator(page: Page) -> None:
+def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1043,7 +1043,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(page: Page) -> N
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -1103,7 +1103,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(page: Page) -> N
 @allure.title("test_manager_check_industry_and_partner_for_user_and_operator")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_manager_check_industry_and_partner_for_user_and_operator")
-def test_manager_check_industry_and_partner_for_user_and_operator(page: Page) -> None:
+def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page: Page) -> None:
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -1116,7 +1116,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(page: Page) ->
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with manager"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -1173,7 +1173,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(page: Page) ->
 @allure.title("test_giving_communications_quota_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
-def test_giving_communications_quota_by_admin(page: Page) -> None:
+def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1182,7 +1182,7 @@ def test_giving_communications_quota_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -1279,7 +1279,7 @@ def test_giving_communications_quota_by_admin(page: Page) -> None:
 @allure.title("test_giving_gpt_quota_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
-def test_giving_gpt_quota_by_admin(page: Page) -> None:
+def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1288,7 +1288,7 @@ def test_giving_gpt_quota_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -1378,13 +1378,13 @@ def test_giving_gpt_quota_by_admin(page: Page) -> None:
 @allure.title("test_user_cant_change_quotas")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
-def test_user_cant_change_quotas(page: Page) -> None:
+def test_user_cant_change_quotas(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_USER, PASSWORD, page)

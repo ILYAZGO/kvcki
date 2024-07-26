@@ -13,13 +13,13 @@ import allure
 @allure.title("test_add_rule_inside_group")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create rule inside group by user")
-def test_add_rule_inside_group(page: Page) -> None:
+def test_add_rule_inside_group(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -57,13 +57,13 @@ def test_add_rule_inside_group(page: Page) -> None:
 @allure.title("test_add_group_of_rules_edit_name_delete")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create, rename and delete group of rules")
-def test_add_group_of_rules_edit_name_delete(page: Page) -> None:
+def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -124,13 +124,13 @@ def test_add_group_of_rules_edit_name_delete(page: Page) -> None:
 @allure.title("test_add_rule_outside_group_disabled")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Creating rule outside group should be disabled")
-def test_add_rule_outside_group_disabled(page: Page) -> None:
+def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -150,10 +150,10 @@ def test_add_rule_outside_group_disabled(page: Page) -> None:
 @allure.title("test_check_old_rule")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("DEV-1784   check old rule from Ecotelecom")
-def test_check_old_rule(page: Page) -> None:
+def test_check_old_rule(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -175,10 +175,10 @@ def test_check_old_rule(page: Page) -> None:
 @allure.title("test_search_rule")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_search_rule for Ecotelecom")
-def test_search_rule(page: Page) -> None:
+def test_search_rule(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -200,13 +200,13 @@ def test_search_rule(page: Page) -> None:
 @allure.title("test_add_rule_inside_group_check_fragment_rule")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create rule inside group, check rule for fragments")
-def test_add_rule_inside_group_check_fragment_rule(page: Page) -> None:
+def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -309,13 +309,13 @@ def test_add_rule_inside_group_check_fragment_rule(page: Page) -> None:
 @allure.title("test_add_rule_inside_group_check_set_tag_block")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create rule inside group, check tag block")
-def test_add_rule_inside_group_check_set_tag_block(page: Page) -> None:
+def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -393,13 +393,13 @@ def test_add_rule_inside_group_check_set_tag_block(page: Page) -> None:
 @allure.title("test_add_rule_inside_group_check_tag_sequence")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_rule_inside_group_check_tag_sequence")
-def test_add_rule_inside_group_check_tag_sequence(page: Page) -> None:
+def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -482,7 +482,7 @@ def test_add_rule_inside_group_check_tag_sequence(page: Page) -> None:
 @allure.title("test_import_group_and_rule_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside with rule 33333 without group")
-def test_import_group_and_rule_by_admin(page: Page) -> None:
+def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -491,7 +491,7 @@ def test_import_group_and_rule_by_admin(page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -572,7 +572,7 @@ def test_import_group_and_rule_by_admin(page: Page) -> None:
 @allure.title("test_import_group_and_rule_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside with rule 33333 without group")
-def test_import_group_and_rule_by_manager(page: Page) -> None:
+def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -584,7 +584,7 @@ def test_import_group_and_rule_by_manager(page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with manager"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -665,13 +665,13 @@ def test_import_group_and_rule_by_manager(page: Page) -> None:
 @allure.title("test_import_rule_disabled_for_user")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_import_rule_disabled_for_user")
-def test_import_rule_disabled_for_user(page: Page) -> None:
+def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -691,10 +691,10 @@ def test_import_rule_disabled_for_user(page: Page) -> None:
 @allure.title("test_compare_rules_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User has three rules with different parameters. when he switch between them, all parameters changing")
-def test_compare_rules_by_user(page: Page) -> None:
+def test_compare_rules_by_user(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth with user for check comparelogin"):
         auth(USER_FOR_CHECK, PASSWORD, page)

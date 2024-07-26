@@ -11,7 +11,7 @@ import allure
 @pytest.mark.adminbar
 @allure.title("test_admin_bar_with_admin")
 @allure.severity(allure.severity_level.NORMAL)
-def test_admin_bar_with_admin(page: Page) -> None:
+def test_admin_bar_with_admin(base_url, page: Page) -> None:
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
@@ -19,7 +19,7 @@ def test_admin_bar_with_admin(page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -52,7 +52,7 @@ def test_admin_bar_with_admin(page: Page) -> None:
 @pytest.mark.adminbar
 @allure.title("test_admin_bar_with_manager")
 @allure.severity(allure.severity_level.NORMAL)
-def test_admin_bar_with_manager(page: Page) -> None:
+def test_admin_bar_with_manager(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -64,7 +64,7 @@ def test_admin_bar_with_manager(page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -97,13 +97,13 @@ def test_admin_bar_with_manager(page: Page) -> None:
 @pytest.mark.adminbar
 @allure.title("test_language_change_by_user")
 @allure.severity(allure.severity_level.NORMAL)
-def test_language_change_by_user(page: Page) -> None:
+def test_language_change_by_user(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(URL, timeout=timeout)
+        page.goto(base_url, timeout=timeout)
 
     with allure.step("Auth"):
         auth(LOGIN_USER, PASSWORD, page)
