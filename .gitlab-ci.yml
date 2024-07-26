@@ -37,6 +37,7 @@ pages:
     script:
         - mkdir public
         - cp -r allure-report/* public
+
 #        - chmod og= $STAND_KEY
 #        - apk add --update openssh-client bash
 #        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
