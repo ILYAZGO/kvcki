@@ -16,11 +16,11 @@ tests:
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
     - apt-get install wget
     - wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz && tar -zxvf allure-${ALLURE_VERSION}.tgz -C /opt/ && ln -s /opt/allure-${ALLURE_VERSION}/bin/allure /usr/bin/allure
-  script:
-    - echo Using public URL $PUBLIC_URL
     - pip install -r requirements.txt --default-timeout=100
-    - pytest -m dependent --base-url ${DEV_STAND_URL} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
-    - pytest -m independent -n 12 --base-url ${DEV_STAND_URL} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+
+  script:
+    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m independent -n 12 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
     - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
@@ -37,7 +37,6 @@ pages:
     script:
         - mkdir public
         - cp -r allure-report/* public
-
 #        - chmod og= $STAND_KEY
 #        - apk add --update openssh-client bash
 #        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"

@@ -11,8 +11,8 @@ import pytest
 
 @pytest.mark.independent
 @pytest.mark.reports
-def test_example(page: Page) -> None:
-    page.goto(URL, timeout=timeout)
+def test_example(base_url, page: Page) -> None:
+    page.goto(base_url, timeout=timeout)
 
     auth(ECOTELECOM, ECOPASS, page)
 

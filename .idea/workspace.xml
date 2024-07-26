@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url5">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
@@ -552,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="experiment17" />
     <MESSAGE value="experiment18" />
     <MESSAGE value="experiment19" />
     <MESSAGE value="experiment20" />
@@ -577,6 +576,7 @@
     <MESSAGE value="added base url2" />
     <MESSAGE value="added base url3" />
     <MESSAGE value="added base url5" />
-    <option name="LAST_COMMIT_MESSAGE" value="added base url5" />
+    <MESSAGE value="added base url6" />
+    <option name="LAST_COMMIT_MESSAGE" value="added base url6" />
   </component>
 </project>
