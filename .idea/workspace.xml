@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check stand1">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="change dirs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -552,7 +549,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="experiment4" />
     <MESSAGE value="experiment5" />
     <MESSAGE value="experiment6" />
     <MESSAGE value="experiment7" />
@@ -577,6 +573,7 @@
     <MESSAGE value="revert url" />
     <MESSAGE value="check stand" />
     <MESSAGE value="check stand1" />
-    <option name="LAST_COMMIT_MESSAGE" value="check stand1" />
+    <MESSAGE value="change dirs" />
+    <option name="LAST_COMMIT_MESSAGE" value="change dirs" />
   </component>
 </project>
