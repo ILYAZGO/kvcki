@@ -43,8 +43,8 @@ pages:
 #        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
 #        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
         - rm -rf /home/frontend/public/e2e_report/*
-        - mv allure-report/* /home/frontend/public/e2e_report/
-        - mv exec.log /home/frontend/public/backend_coverage/
+        - mv allure-report/* /home/frontend/public/E2E/e2e_report/
+        - mv exec.log /home/frontend/public/E2E/
 
     artifacts:
         when: always
