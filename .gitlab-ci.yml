@@ -13,18 +13,25 @@ tests:
       - exec.log
       - allure-report
   before_script:
+    - echo "Download and install java"
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
+    - echo "Download and install wget"
     - apt-get install wget
+    - echo "Download and install allure"
     - wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz && tar -zxvf allure-${ALLURE_VERSION}.tgz -C /opt/ && ln -s /opt/allure-${ALLURE_VERSION}/bin/allure /usr/bin/allure
+    - echo "Download and install requirements"
     - pip install -r requirements.txt --default-timeout=100
 
   script:
     - echo $URL_FOR_TEST
+    - echo "Execute tests"
     - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
     - pytest -m independent -n 12 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
-    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! \n $URL_FOR_TEST '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
+    - echo "Send notification to telegram"
+    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!!%0A%0A$URL_FOR_TEST '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
+    - echo "Generate allure report"
     - allure generate -c allure-results -o allure-report
 
 pages:
@@ -44,7 +51,7 @@ pages:
 #        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
         - URL_FOR_TEST_ENCODED=$(echo "$URL_FOR_TEST" | sed 's/\//|/g')
         - mkdir -p "/home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/allure"
-#        - rm -rf /home/frontend/public/E2E/e2e_report/*
+        - rm -rf /home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/*
         - mv -v allure-report/* "/home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/allure"
         - mv -v exec.log /home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/
 
