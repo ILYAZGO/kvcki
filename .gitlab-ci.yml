@@ -20,11 +20,11 @@ tests:
 
   script:
     - echo $URL_FOR_TEST
-#    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
     - pytest -m independent -n 12 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
-    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
+    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!! \n $URL_FOR_TEST '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
     - allure generate -c allure-results -o allure-report
 
 pages:
@@ -42,7 +42,7 @@ pages:
 #        - apk add --update openssh-client bash
 #        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
 #        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
-        - URL_FOR_TEST_ENCODED=$(echo "$URL_FOR_TEST" | sed 's/\//-/g')
+        - URL_FOR_TEST_ENCODED=$(echo "$URL_FOR_TEST" | sed 's/\//|/g')
         - mkdir -p "/home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/allure"
 #        - rm -rf /home/frontend/public/E2E/e2e_report/*
         - mv -v allure-report/* "/home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/allure"
