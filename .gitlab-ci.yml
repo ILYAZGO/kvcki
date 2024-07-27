@@ -10,7 +10,7 @@ tests:
     when: always
     expire_in: 1 days
     paths:
-      - exec.log
+      - exec_${URL_FOR_TEST}.log
       - allure-report
   before_script:
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
@@ -20,7 +20,7 @@ tests:
 
   script:
     - echo $URL_FOR_TEST
-    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+#    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
     - pytest -m independent -n 12 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
@@ -42,9 +42,10 @@ pages:
 #        - apk add --update openssh-client bash
 #        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
 #        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
-        - rm -rf /home/frontend/public/E2E/e2e_report/*
-        - mv -v allure-report/* /home/frontend/public/E2E/e2e_report/
-        - mv -v exec.log /home/frontend/public/E2E/
+        - mkdir -p /home/frontend/public/E2E/e2e_report/e2e_${URL_FOR_TEST}
+#        - rm -rf /home/frontend/public/E2E/e2e_report/*
+        - mv -v allure-report/* /home/frontend/public/E2E/e2e_${URL_FOR_TEST}/
+        - mv -v exec_${URL_FOR_TEST}.log /home/frontend/public/E2E/
 
     artifacts:
         when: always

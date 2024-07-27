@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url10">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url11">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -552,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="experiment21" />
     <MESSAGE value="experiment22" />
     <MESSAGE value="experiment23" />
     <MESSAGE value="experiment24" />
@@ -577,6 +576,7 @@
     <MESSAGE value="added base url7" />
     <MESSAGE value="added base url9" />
     <MESSAGE value="added base url10" />
-    <option name="LAST_COMMIT_MESSAGE" value="added base url10" />
+    <MESSAGE value="added base url11" />
+    <option name="LAST_COMMIT_MESSAGE" value="added base url11" />
   </component>
 </project>
