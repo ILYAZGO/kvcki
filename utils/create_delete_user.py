@@ -1,8 +1,8 @@
 import requests
 import random
 from datetime import datetime
-#
 from loguru import logger
+
 logger.remove()
 logger.add(sink='exec.log', level='INFO', rotation='10 MB', compression='zip', diagnose=True)
 
