@@ -50,8 +50,8 @@ pages:
 #        - ssh -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME "rm -rf /home/${STAND_USER}/public/e2e_report/"
 #        - scp -r -i $STAND_KEY -o StrictHostKeyChecking=no $STAND_USER@$STAND_HOSTNAME allure-report  /home/${STAND_USER}/public/e2e_report
         - URL_FOR_TEST_ENCODED=$(echo "$URL_FOR_TEST" | sed 's/\//|/g')
-        - mkdir -p "/home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/allure"
         - rm -rf /home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/*
+        - mkdir -p "/home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/allure"
         - mv -v allure-report/* "/home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/allure"
         - mv -v exec.log /home/frontend/public/E2E/e2e_${URL_FOR_TEST_ENCODED}/
 
