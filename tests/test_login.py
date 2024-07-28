@@ -17,7 +17,7 @@ def test_login_admin_positive(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -42,7 +42,7 @@ def test_login_manager_positive(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -67,7 +67,7 @@ def test_login_user_positive(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -95,7 +95,7 @@ def test_login_operator_positive(base_url, page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_OPERATOR, PASSWORD, page)
@@ -120,7 +120,7 @@ def test_login_operator_positive(base_url, page: Page) -> None:
 def test_login_user_negotive(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_NEGOTIVE, PASSWORD, page)
@@ -135,7 +135,7 @@ def test_login_user_negotive(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.NORMAL)
 def test_password_user_negotive(base_url, page: Page) -> None:
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(USER, PASSWORD_NEGOTIVE, page)

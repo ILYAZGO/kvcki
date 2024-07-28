@@ -19,7 +19,7 @@ def test_admin_bar_with_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -64,7 +64,7 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -103,7 +103,7 @@ def test_language_change_by_user(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_USER, PASSWORD, page)

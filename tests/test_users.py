@@ -21,7 +21,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin 1"):
         auth(LOGIN, PASSWORD, page)
@@ -80,7 +80,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -138,7 +138,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -228,7 +228,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
     PHONE = str(random.randint(10000000000, 99999999999))
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with manager"):
         auth(MANAGER, PASSWORD, page)
@@ -296,7 +296,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -352,7 +352,7 @@ def test_check_search(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)

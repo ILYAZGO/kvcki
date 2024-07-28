@@ -19,7 +19,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -63,7 +63,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -130,7 +130,7 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -153,7 +153,7 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
 def test_check_old_rule(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -178,7 +178,7 @@ def test_check_old_rule(base_url, page: Page) -> None:
 def test_search_rule(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -206,7 +206,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -315,7 +315,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -399,7 +399,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -491,7 +491,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -584,7 +584,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with manager"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -671,7 +671,7 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -694,7 +694,7 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
 def test_compare_rules_by_user(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user for check comparelogin"):
         auth(USER_FOR_CHECK, PASSWORD, page)
@@ -707,7 +707,7 @@ def test_compare_rules_by_user(base_url, page: Page) -> None:
         page.wait_for_selector('[data-testid="fragmentRuleBlock"]')
 
     with allure.step("Check filters and other inside rule"):
-        expect(page.locator('[aria-label="Remove >100"]')).to_be_visible(timeout=timeout)
+        expect(page.locator('[aria-label="Remove >100"]')).to_be_visible(timeout=wait_until_visible)
         expect(page.locator('[aria-label="Remove Словарь: firstdict"]')).to_be_visible()
         expect(page.locator('[data-testid="TagSequenceItem"]').locator('[aria-label="Remove firstrule"]')).to_have_count(2)
         expect(page.locator('[data-testid="intervalBetweenTags"]').locator('[value=">100"]')).to_have_count(1)

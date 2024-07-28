@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url19">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url21">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_integrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_integrations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -552,8 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="check stand" />
-    <MESSAGE value="check stand1" />
     <MESSAGE value="change dirs" />
     <MESSAGE value="change dirs1" />
     <MESSAGE value="change dirs2" />
@@ -577,6 +575,8 @@
     <MESSAGE value="added base url17" />
     <MESSAGE value="added base url18" />
     <MESSAGE value="added base url19" />
-    <option name="LAST_COMMIT_MESSAGE" value="added base url19" />
+    <MESSAGE value="added base url20" />
+    <MESSAGE value="added base url21" />
+    <option name="LAST_COMMIT_MESSAGE" value="added base url21" />
   </component>
 </project>

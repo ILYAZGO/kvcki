@@ -20,7 +20,7 @@ def test_usedesk(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -88,7 +88,7 @@ def test_search_string(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)

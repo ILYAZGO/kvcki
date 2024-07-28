@@ -18,7 +18,7 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -73,7 +73,7 @@ def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -99,7 +99,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -160,7 +160,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -266,7 +266,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
 def test_check_old_dict(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with ECOTELECOM"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -291,7 +291,7 @@ def test_check_old_dict(base_url, page: Page) -> None:
 def test_search_dict(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with ECOTELECOM"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -318,7 +318,7 @@ def test_import_dict_disabled_for_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
@@ -347,7 +347,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -438,7 +438,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with manager"):
         auth(LOGIN_MANAGER, PASSWORD, page)

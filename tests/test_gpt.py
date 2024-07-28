@@ -18,7 +18,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -83,7 +83,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -103,7 +103,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
 
     with allure.step("Press (Add settings)"):
         page.get_by_role("button", name="Добавить настройки").click()
-        page.wait_for_selector('[class*="-menu"]', timeout=timeout)  #css-woue3h
+        page.wait_for_selector('[class*="-menu"]', timeout=wait_until_visible)  #css-woue3h
 
     with allure.step("Click all parameters"):
         page.locator('[class*="-menu"]').locator('[class="customStyles_option__raDTJ"]').nth(0).click()
@@ -168,7 +168,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -247,7 +247,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -320,7 +320,7 @@ def test_import_gpt_rules_disabled_for_user(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -343,7 +343,7 @@ def test_import_gpt_rules_disabled_for_user(base_url, page: Page) -> None:
 def test_check_old_gpt_rule(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth to ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -372,7 +372,7 @@ def test_check_old_gpt_rule(base_url, page: Page) -> None:
 def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user for check comparelogin"):
         auth(USER_FOR_CHECK, PASSWORD, page)
@@ -388,7 +388,7 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
     with allure.step("Check parameters"):
         expect(page.locator(INPUT_GPT_RULE_NAME)).to_have_value("firstgptrule")
         expect(page.locator('[class*="styles_entityType"]')).to_have_text("Тип правилаКоммуникация")
-        expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1, timeout=timeout)
+        expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1, timeout=wait_until_visible)
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("firsttag")
         expect(page.locator(INPUT_GPT_QUESTION).nth(0)).to_have_value("firstquestion")
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(1)).to_have_value("secondtag")

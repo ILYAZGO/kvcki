@@ -12,7 +12,7 @@ import pytest
 @pytest.mark.independent
 @pytest.mark.reports
 def test_example(base_url, page: Page) -> None:
-    page.goto(base_url, timeout=timeout)
+    page.goto(base_url, timeout=wait_until_visible)
 
     auth(ECOTELECOM, ECOPASS, page)
 

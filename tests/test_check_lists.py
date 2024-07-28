@@ -18,7 +18,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN, PASSWORD, page)
@@ -144,7 +144,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
 def test_check_old_check_list(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth like Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -173,7 +173,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -252,7 +252,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_MANAGER, PASSWORD, page)
@@ -324,7 +324,7 @@ def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -347,7 +347,7 @@ def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
 def test_compare_check_lists_by_user(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user for check comparelogin"):
         auth(USER_FOR_CHECK, PASSWORD, page)
@@ -357,7 +357,7 @@ def test_compare_check_lists_by_user(base_url, page: Page) -> None:
 
     with allure.step("Select first available check-list"):
         page.locator('[class*="styles_dpBothBox_"]').get_by_text("firstchecklist").click()
-        page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=timeout)
+        page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=wait_until_visible)
 
     with allure.step("Check parameters for first check list"):
         expect(page.locator(INPUT_CHECK_LIST_NAME)).to_have_value("firstchecklist")
