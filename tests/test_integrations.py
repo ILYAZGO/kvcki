@@ -9,7 +9,7 @@ import pytest
 import allure
 
 
-@pytest.mark.dependent
+@pytest.mark.independent
 @pytest.mark.integration
 @allure.title("test_usedesk")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -58,7 +58,7 @@ def test_usedesk(base_url, page: Page) -> None:
         page.locator(BUTTON_SOZDAT).click()
 
     with allure.step("Wait 240 seconds"):
-        page.wait_for_timeout(60000)
+        page.wait_for_timeout(20000)
 
     with allure.step("Reload page"):
         page.reload()

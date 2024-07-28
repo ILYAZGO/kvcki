@@ -1,3 +1,4 @@
+import os
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.auth import auth

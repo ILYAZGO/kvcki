@@ -518,7 +518,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
 def test_compare_dicts_by_user(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=timeout)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user for check comparelogin"):
         auth(USER_FOR_CHECK, PASSWORD, page)
