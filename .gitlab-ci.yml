@@ -30,7 +30,7 @@ tests:
 
   after_script:
     - echo "Send notification to telegram"
-    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!!%0A%0A$URL_FOR_TEST '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
+    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! E2E tests failed !!!%0A%0A$URL_FOR_TEST%0A%0AREPORT http://192.168.10.101/E2E/ '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
     - echo "Generate allure report"
     - allure generate -c allure-results -o allure-report
 

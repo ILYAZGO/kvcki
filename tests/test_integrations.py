@@ -51,21 +51,21 @@ def test_usedesk(base_url, page: Page) -> None:
     with allure.step("Set period (first_day_week_ago)"):
         set_date(first_day_week_ago, page)
 
-    with allure.step("Set calls limit (3)"):
-        set_calls_limit("3", page)
+    with allure.step("Set calls limit (2)"):
+        set_calls_limit("2", page)
 
     with allure.step("Press button create"):
         page.locator(BUTTON_SOZDAT).click()
 
     with allure.step("Wait 240 seconds"):
-        page.wait_for_timeout(240000)
+        page.wait_for_timeout(60000)
 
     with allure.step("Reload page"):
         page.reload()
 
-    with allure.step("Check that 3 communications downloaded"):
+    with allure.step("Check that 2 communications downloaded"):
         page.wait_for_selector('[class*=headerRow]')
-        expect(page.locator('[role="rowgroup"]').locator('[role="cell"]').nth(4)).to_have_text('3')
+        expect(page.locator('[role="rowgroup"]').locator('[role="cell"]').nth(4)).to_have_text('2')
 
     with allure.step("Delete integration"):
         delete_integration(page)
