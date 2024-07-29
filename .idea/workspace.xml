@@ -4,34 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url22">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base url23">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_check_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_column_1_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_1_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_column_4_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_filter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_and_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_column_4_tag_list.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reports_test/test_reports_download_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_download_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_management_check_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_management_check_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_operator_phone.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_operator_phone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_time_4_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_time_4_values.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_without_grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_1_without_grouping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_2_tag_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_2_tag_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_4_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_row_4_tag_and_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports_save_update_delete_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_admin_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_admin_bar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_lists.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_integrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_integrations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_notifications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -577,7 +555,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change dirs1" />
     <MESSAGE value="change dirs2" />
     <MESSAGE value="change dirs3" />
     <MESSAGE value="change dirs4" />
@@ -602,6 +579,7 @@
     <MESSAGE value="added base url20" />
     <MESSAGE value="added base url21" />
     <MESSAGE value="added base url22" />
-    <option name="LAST_COMMIT_MESSAGE" value="added base url22" />
+    <MESSAGE value="added base url23" />
+    <option name="LAST_COMMIT_MESSAGE" value="added base url23" />
   </component>
 </project>
