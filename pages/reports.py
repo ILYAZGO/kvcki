@@ -33,6 +33,14 @@ INPUT_SEARCH = '[name="searchString"]'
 BUTTON_LUPA = '[type="submit"]'
 
 
+def go_to_reports(page="page: Page"):
+    page.wait_for_selector(BUTTON_OT4ETI)
+    page.locator(BUTTON_OT4ETI).click()
+
+def press_create_report(page="page: Page"):
+    page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
+    page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
+
 def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.wait_for_selector('[data-testid="reportMake"]')
     page.locator(FIRST_DATE).click()

@@ -37,7 +37,7 @@ def test_example(base_url, page: Page) -> None:
 
 
         # Start waiting for the download
-    with page.expect_download(timeout=50000) as download_info:
+    with page.expect_download(timeout=wait_until_visible) as download_info:
             # Perform the action that initiates download
         page.get_by_text("Экспорт в Excel").click()
     download = download_info.value
