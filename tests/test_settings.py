@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Route
 from utils.variables import *
 from utils.auth import auth
 from pages.settings import *
@@ -6,8 +6,6 @@ from utils.create_delete_user import create_user, delete_user, give_user_to_mana
 import pytest
 import allure
 import random
-
-# input text to address-book, save, check that text saved
 
 
 @pytest.mark.independent
@@ -1386,7 +1384,7 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
     with allure.step("Go to page"):
         page.goto(base_url, timeout=wait_until_visible)
 
-    with allure.step("Auth with admin"):
+    with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
 
     with allure.step("Go to settings"):
@@ -1406,6 +1404,134 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
         expect(page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
         expect(page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_user_consumption_history")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
+def test_user_consumption_history(base_url, page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    # mocks
+    def handle_calls(route: Route):
+        json_calls = [
+            {"callDate": "2024-07-30", "fromServices": ["service1"], "callCount": 111, "sumDuration": 395},
+            {"callDate": "2024-07-29", "fromServices": ["service2"], "callCount": 222, "sumDuration": 678}
+        ]
+        # fulfill the route with the mock data
+        route.fulfill(json=json_calls)
+        # Intercept the route
+    page.route("**/history/calls?**", handle_calls)
+
+    def handle_gpt(route: Route):
+        json = [
+            {"gptDate": "2024-07-30", "engine": "yandex_gpt", "model": "yandexgpt-lite", "communicationType": "call",
+             "gptRequestId": "66A8B7129D963878D93D73CD", "gptRequestTitle": "title1", "requestCount": "200",
+             "communicationCount": "111", "totalAmmount": "7.468260013125836"},
+            {"gptDate": "2024-07-29", "engine": "chat_gpt", "model": "gpt-3.5-turbo", "communicationType": "call",
+             "gptRequestId": "66A8B7129D963878D93D73CF", "gptRequestTitle": "title2", "requestCount": "299",
+             "communicationCount": "222", "totalAmmount": "7.418260013125836"}
+        ]
+        # fulfill the route with the mock data
+        route.fulfill(json=json)
+        # Intercept the route
+    page.route("**/history/gpt?**", handle_gpt)
+
+    def handle_chats(route: Route):
+        json_calls = [
+            {"chatDate": "2024-07-29", "fromServices": ["chat1"], "chatCount": 999},
+            {"chatDate": "2024-07-30", "fromServices": ["chat2"], "chatCount": 9002}
+        ]
+        # fulfill the route with the mock data
+        route.fulfill(json=json_calls)
+        # Intercept the route
+    page.route("**/history/chats?**", handle_chats)
+
+    with allure.step("Go to page"):
+        page.goto("http://192.168.10.101/feature-dev-2678/", timeout=wait_until_visible)
+
+    with allure.step("Auth with user"):
+        auth(LOGIN_USER, PASSWORD, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Go to consumption history"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+        #  check first row
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("service1")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("111")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_contain_text("395")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="5"]')).to_contain_text("6:35")
+        #  check second row
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("29.07.2024")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("service2")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("222")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="4"]')).to_contain_text("678")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="5"]')).to_contain_text("11:18")
+        #  check total count
+        expect(page.locator(TOTAL_AUDIO_MIN)).to_contain_text("1073")
+        expect(page.locator(TOTAL_AUDIO_HOURS)).to_contain_text("17:53")
+
+    with allure.step("Go to consumption history GPT"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+        #  check first row
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("yandex_gpt")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("yandexgpt-lite")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_contain_text("call")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="5"]')).to_contain_text("title1")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="6"]')).to_contain_text("200")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="7"]')).to_contain_text("111")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="8"]')).to_contain_text("7.47")
+        #  check second row
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("29.07.2024")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("chat_gpt")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("gpt-3.5-turbo")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="4"]')).to_contain_text("call")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="5"]')).to_contain_text("title2")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="6"]')).to_contain_text("299")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="7"]')).to_contain_text("222")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="8"]')).to_contain_text("7.42")
+        #  check total count
+        expect(page.locator(TOTAL_GPT_MONEY)).to_contain_text("14.89")
+
+    with allure.step("Go to consumption history GPT"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator(SEARCH_IN_CONSUMPTION_CHATS)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+        #  check first row
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("29.07.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("chat1")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("999")
+        #  check second row
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("chat2")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("9002")
+        #  check total count
+        expect(page.locator(TOTAL_CHATS)).to_contain_text("10001")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
