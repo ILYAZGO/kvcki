@@ -1492,7 +1492,7 @@ def test_user_consumption_history(base_url, page: Page) -> None:
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
         expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
-        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по движку, модели, типу коммуникации или запросу"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
         #  check first row
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
