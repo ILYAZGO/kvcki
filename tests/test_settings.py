@@ -1414,7 +1414,7 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
 @pytest.mark.settings
 @allure.title("test_user_consumption_history")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
+@allure.description("test_user_consumption_history. mocked")
 def test_user_consumption_history(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
@@ -1487,6 +1487,12 @@ def test_user_consumption_history(base_url, page: Page) -> None:
         expect(page.locator(TOTAL_AUDIO_MIN)).to_contain_text("1073")
         expect(page.locator(TOTAL_AUDIO_HOURS)).to_contain_text("17:53")
 
+    with allure.step("Fill search by service1"):
+        page.locator(SEARCH_IN_CONSUMPTION_AUDIO).locator('[type="text"]').fill("service1")
+
+    with allure.step("Check search that service2 not visible"):
+        expect(page.locator('[class*="communicationsStyles_table_"]')).not_to_contain_text("service2")
+
     with allure.step("Go to consumption history GPT"):
         page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
 
@@ -1515,7 +1521,13 @@ def test_user_consumption_history(base_url, page: Page) -> None:
         #  check total count
         expect(page.locator(TOTAL_GPT_MONEY)).to_contain_text("14.89")
 
-    with allure.step("Go to consumption history GPT"):
+    with allure.step("Fill search by ya"):
+        page.locator(SEARCH_IN_CONSUMPTION_GPT).locator('[type="text"]').fill("ya")
+
+    with allure.step("Check search that chat_gpt not visible"):
+        expect(page.locator('[class*="communicationsStyles_table_"]')).not_to_contain_text("chat_gpt")
+
+    with allure.step("Go to consumption history chats"):
         page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
@@ -1532,6 +1544,64 @@ def test_user_consumption_history(base_url, page: Page) -> None:
         expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("9002")
         #  check total count
         expect(page.locator(TOTAL_CHATS)).to_contain_text("10001")
+
+    with allure.step("Fill search by chat1"):
+        page.locator(SEARCH_IN_CONSUMPTION_CHATS).locator('[type="text"]').fill("chat1")
+
+    with allure.step("Check search that chat_gpt not visible"):
+        expect(page.locator('[class*="communicationsStyles_table_"]')).not_to_contain_text("chat2")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_user_consumption_history_if_empty")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_user_consumption_history. mocked. check have warning if []")
+def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        page.goto("http://192.168.10.101/feature-dev-2678/", timeout=wait_until_visible)
+
+    with allure.step("Auth with user"):
+        auth(LOGIN_USER, PASSWORD, page)
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Go to consumption history"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1) # warning message
+        expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+
+    with allure.step("Go to consumption history GPT"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1)  # warning message
+        expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по движку, модели, типу коммуникации или запросу"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+
+    with allure.step("Go to consumption history chats"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1)  # warning message
+        expect(page.locator(SEARCH_IN_CONSUMPTION_CHATS)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
