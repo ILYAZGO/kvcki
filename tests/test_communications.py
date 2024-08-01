@@ -385,11 +385,11 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
 @pytest.mark.independent
 @allure.title("test_check_sort")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("Check sort (4 type) all calls for Ecotelecom")
+@allure.description("Check sort (6 type) all calls for Ecotelecom")
 def test_check_sort(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        page.goto("http://192.168.10.101/feature-dev-2650/", timeout=wait_until_visible)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
@@ -422,6 +422,18 @@ def test_check_sort(base_url, page: Page) -> None:
 
     with allure.step("Check LONG FIRST in list"):
         expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 18:08", timeout=wait_until_visible)
+    #
+    with allure.step("Change sort to MORE POINTS"):
+        change_sort("Сначала много баллов", page)
+
+    with allure.step("Check SHORT FIRST in list"):
+        expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 21:23", timeout=wait_until_visible)
+
+    with allure.step("Change sort to LESS POINTS"):
+        change_sort("Сначала мало баллов", page)
+
+    with allure.step("Check LONG FIRST in list"):
+        expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("10.02.22 10:57", timeout=wait_until_visible)
 
 
 @pytest.mark.calls
