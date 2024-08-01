@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="update test_check_sort" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check devstand">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -568,12 +570,12 @@
     <MESSAGE value="added base url22" />
     <MESSAGE value="added base url23" />
     <MESSAGE value="added base url24" />
-    <MESSAGE value="check devstand" />
     <MESSAGE value="add consumption test" />
     <MESSAGE value="dates again" />
     <MESSAGE value="update consumption" />
     <MESSAGE value="added test when consumption empty and added filter check" />
     <MESSAGE value="update test_check_sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="update test_check_sort" />
+    <MESSAGE value="check devstand" />
+    <option name="LAST_COMMIT_MESSAGE" value="check devstand" />
   </component>
 </project>
