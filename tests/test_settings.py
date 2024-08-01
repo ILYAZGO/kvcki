@@ -947,7 +947,7 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
         click_settings(page)
 
     with allure.step("Check items in left menu"):
-        expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия с коммуникациямиКвоты777Адресная книгаИнтеграции'])
+        expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия с коммуникациямиКвоты777История потребления услугАдресная книгаИнтеграции'])
         expect(page.locator(LEFT_MENU_ITEM)).to_have_count(6)
 
     with allure.step("Delete user"):
@@ -1456,7 +1456,7 @@ def test_user_consumption_history(base_url, page: Page) -> None:
     page.route("**/history/chats?**", handle_chats)
 
     with allure.step("Go to page"):
-        page.goto("http://192.168.10.101/feature-dev-2678/", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -1567,7 +1567,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto("http://192.168.10.101/feature-dev-2678/", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
