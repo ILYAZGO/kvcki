@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check devstand">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check devstand2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -551,7 +552,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added base url3" />
     <MESSAGE value="added base url5" />
     <MESSAGE value="added base url6" />
     <MESSAGE value="added base url7" />
@@ -576,6 +576,7 @@
     <MESSAGE value="added test when consumption empty and added filter check" />
     <MESSAGE value="update test_check_sort" />
     <MESSAGE value="check devstand" />
-    <option name="LAST_COMMIT_MESSAGE" value="check devstand" />
+    <MESSAGE value="check devstand2" />
+    <option name="LAST_COMMIT_MESSAGE" value="check devstand2" />
   </component>
 </project>
