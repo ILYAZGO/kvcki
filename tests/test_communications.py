@@ -575,7 +575,7 @@ def test_check_content_button_calls_actions(base_url, page: Page) -> None:
         page.locator('[data-testid="calls_actions_actions-btn"]').nth(0).click()
 
     with allure.step("Check content of button (...) calls action"):
-        expect(page.locator('[class*="menu"]')).to_have_text("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов")
+        expect(page.locator(MENU)).to_have_text("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов")
 
 
 @pytest.mark.calls
@@ -605,13 +605,13 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         page.locator('[data-testid="calls_actions_download"]').nth(0).click()
 
     with allure.step("Check content of button download"):
-        expect(page.locator('[class*="menu"]')).to_have_text("Экспорт аудиоЭкспорт расшифровкиЭкспорт коммуникаций")
+        expect(page.locator(MENU)).to_have_text("Экспорт аудиоЭкспорт расшифровкиЭкспорт коммуникаций")
 
     with allure.step("Choose (Export audio) option from opened menu"):
         # Start waiting for the download
         with page.expect_download(timeout=50000) as download_info:
             # Perform the action that initiates download
-            page.locator('[class*="menu"]').get_by_text("Экспорт аудио", exact=True).click()
+            page.locator(MENU).get_by_text("Экспорт аудио", exact=True).click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -693,7 +693,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
         page.locator('[class="MuiAccordion-region"]').locator('[data-testid="calls_actions_actions-btn"]').click()
 
     with (allure.step("Check content in opened menu")):
-        expect(page.locator('[class="MuiAccordion-region"]').locator('[class*="menu"]')).to_have_text("Мета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения ")
+        expect(page.locator('[class="MuiAccordion-region"]').locator(MENU)).to_have_text("Мета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения ")
 
 @pytest.mark.calls
 @pytest.mark.independent
@@ -897,12 +897,12 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Expand call"):
         page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector('[class*="styles_withAllComments_"]')
+        page.wait_for_selector(ALL_COMMENTS_AREA)
 
         if page.is_visible('[class*="styles_message_"]'):
 
             page.locator('[class*="styles_optionsSelect_"]').click()
-            page.locator('[class*="-menu"]').get_by_text("Удалить комментарий", exact=True).click()
+            page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
             page.wait_for_selector(CONFIRM_MODAL_WINDOW)
             page.locator(CONFIRM_MODAL_WINDOW).get_by_role("button", name="Удалить").click()
 
@@ -914,8 +914,8 @@ def test_check_communication_comment(base_url, page: Page) -> None:
     with allure.step("Check that comment form openned"):
         page.wait_for_selector('[class*="styles_textareaWrapper"]')
         page.wait_for_timeout(500)
-        expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1)).to_be_disabled()
-        expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="checkbox"]')).not_to_be_checked()
+        expect(page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1)).to_be_disabled()
+        expect(page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]')).not_to_be_checked()
 
     with allure.step("Check that we can close comment form with X"):
         page.locator('[data-testid="CloseIcon"]').click()
@@ -924,7 +924,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator(BUTTON_ADD_COMMENT).click()
 
     with allure.step("Check checkbox (hidden)"):
-        page.locator('[class*="styles_withAllComments_"]').locator('[type="checkbox"]').check()
+        page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]').check()
 
     with allure.step("Add title"):
         page.locator(BUTTON_ADD_COMMENT_TITLE).click()
@@ -933,26 +933,26 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator('[class*="styles_title_"]').fill("CommentTitle")
 
     with allure.step("Check that button (add comment) still disabled"):
-        expect(page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1)).to_be_disabled()
+        expect(page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1)).to_be_disabled()
 
     with allure.step("Fill comment"):
         page.locator('[class*="styles_textareaWrapper"]').locator('[class*="styles_textarea_"]').fill("CommentText")
 
     with allure.step("Press (add comment)"):
-        page.locator('[class*="styles_withAllComments_"]').locator('[type="button"]').nth(1).click()
+        page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1).click()
 
     with allure.step("Check that comment saved and saved right"):
         expect(page.locator('[class*="styles_author_"]')).to_have_text("ecotelecom")
         expect(page.locator('[class*="styles_time_"]')).to_contain_text(today)
-        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_head_"]').locator('[height="18"]')).to_have_count(1)
-        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_title_"]')).to_have_text("CommentTitle")
-        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_message_"]')).to_have_text("CommentText")
+        expect(page.locator(COMMENT_AREA).locator('[class*="styles_head_"]').locator('[height="18"]')).to_have_count(1)
+        expect(page.locator(COMMENT_AREA).locator('[class*="styles_title_"]')).to_have_text("CommentTitle")
+        expect(page.locator(COMMENT_AREA).locator('[class*="styles_message_"]')).to_have_text("CommentText")
 
     with allure.step("Press to (...) comment options"):
         page.locator('[class*="styles_optionsSelect_"]').click()
 
     with allure.step("Choose and click (edit)"):
-        page.locator('[class*="-menu"]').get_by_text("Редактировать", exact=True).click()
+        page.locator(MENU).get_by_text("Редактировать", exact=True).click()
         page.wait_for_selector('[class*="styles_checkButton_"]')
         expect(page.locator('[class*="styles_checkButton_"]')).to_be_disabled()
 
@@ -968,22 +968,22 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator('[class*="styles_checkButton_"]').click()
 
     with allure.step("Check that edition comment saved"):
-        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_title_"]')).to_have_text("EditedTitle")
-        expect(page.locator('[class*="styles_content_"]').locator('[class*="styles_message_"]')).to_have_text("EditedText")
+        expect(page.locator(COMMENT_AREA).locator('[class*="styles_title_"]')).to_have_text("EditedTitle")
+        expect(page.locator(COMMENT_AREA).locator('[class*="styles_message_"]')).to_have_text("EditedText")
 
     with allure.step("Press to (...) comment options"):
         page.locator('[class*="styles_optionsSelect_"]').click()
 
     with allure.step("Choose and click (delete)"):
-        page.locator('[class*="-menu"]').get_by_text("Удалить комментарий", exact=True).click()
+        page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
         page.wait_for_selector(CONFIRM_MODAL_WINDOW)
 
     with allure.step("Confirm deleting"):
         page.locator(CONFIRM_MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(800)
 
     with allure.step("Check that comment was deleted"):
-        expect(page.locator('[class*="styles_content_"]')).not_to_be_visible()
+        expect(page.locator(COMMENT_AREA)).not_to_be_visible()
 
 
 
