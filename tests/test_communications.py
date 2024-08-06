@@ -880,7 +880,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
     call_id = "1644295919.90300"
 
     with allure.step("Go to url"):
-        page.goto("http://192.168.10.101/feature-dev-2731", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)

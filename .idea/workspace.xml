@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="test communication comment upgrade">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="checkstand">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +53,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/fletApp",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -551,7 +551,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added base url7" />
     <MESSAGE value="added base url9" />
     <MESSAGE value="added base url10" />
     <MESSAGE value="added base url11" />
@@ -576,6 +575,7 @@
     <MESSAGE value="check devstand2" />
     <MESSAGE value="check devstand3" />
     <MESSAGE value="test communication comment upgrade" />
-    <option name="LAST_COMMIT_MESSAGE" value="test communication comment upgrade" />
+    <MESSAGE value="checkstand" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkstand" />
   </component>
 </project>
