@@ -906,7 +906,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
             page.wait_for_selector(CONFIRM_MODAL_WINDOW)
             page.locator(CONFIRM_MODAL_WINDOW).get_by_role("button", name="Удалить").click()
 
-            page.wait_for_timeout(1000)
+            page.wait_for_timeout(950)
 
     with allure.step("Press (add comment)"):
         page.locator(BUTTON_ADD_COMMENT).click()
