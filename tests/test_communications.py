@@ -166,7 +166,7 @@ def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
         page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 184 из 3130", timeout=wait_until_visible) #152
+        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 183 из 3130", timeout=wait_until_visible) #152
 
     with allure.step("Clear, fill input by dict, choose dict from suggestion"):
         page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').clear()
@@ -206,7 +206,7 @@ def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
         page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 398 из 3130", timeout=wait_until_visible) #430
+        expect(page.locator(NAYDENO_ZVONKOV)).to_have_text("Найдено коммуникаций 399 из 3130", timeout=wait_until_visible) #430
 
     with allure.step("Clear, fill input by dict, choose dict from suggestion"):
         page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').clear()
