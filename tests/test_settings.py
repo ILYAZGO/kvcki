@@ -1389,7 +1389,7 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
 
     with allure.step("Go to settings"):
         click_settings(page)
-
+#
     with allure.step("Go to quotas"):
         click_quota(page)
 
