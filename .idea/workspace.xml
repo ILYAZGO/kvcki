@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="upgrade tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check stand">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +53,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/fletApp",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -553,7 +551,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added base url11" />
     <MESSAGE value="added base url13" />
     <MESSAGE value="added base url14" />
     <MESSAGE value="added base url15" />
@@ -578,6 +575,7 @@
     <MESSAGE value="checkstand" />
     <MESSAGE value="checkstand2" />
     <MESSAGE value="upgrade tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="upgrade tests" />
+    <MESSAGE value="check stand" />
+    <option name="LAST_COMMIT_MESSAGE" value="check stand" />
   </component>
 </project>
