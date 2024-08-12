@@ -235,6 +235,8 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
         expect(page.locator(INPUT_SEARCH)).to_have_value("Ntcn")
         expect(page.get_by_text("Ntcn")).to_have_count(1)
 
+# rows
+
 
 @pytest.mark.independent
 @pytest.mark.reports
@@ -287,3 +289,559 @@ def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
 
     with allure.step("Check column is by communications"):
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_row_1_time_4_values")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_row_1_time_4_values")
+def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Choose first option (by days)"):
+        fill_row_by_date("1", "Времени", "По дням", page)
+
+    with allure.step("Fill column (by communications) by default"):
+        fill_column_by_communication("0", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("10")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("38")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("15")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+        # check row
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+        expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По дням")
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+    with allure.step("Choose second option (by weeks)"):
+        fill_row_by_date("1", "Времени", "По неделям", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="6 неделя, 2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+        # check row
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+        expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По неделям")
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+    with allure.step("Choose second option (by month)"):
+        fill_row_by_date("1", "Времени", "По месяцам", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="02-2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+        # check row
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+        expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По месяцам")
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+    with allure.step("Choose second option (by hours)"):
+        fill_row_by_date("1", "Времени", "По часам", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="08-02-2022 10:00 - 11:00"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("4")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("3")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("2")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("1")
+        expect(page.locator('[data-id="4"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("3")
+
+    with allure.step("Scroll down"):
+        page.locator('[class*="MuiDataGrid-scrollbar--vertical"]').click()
+        page.mouse.wheel(delta_x=0, delta_y=10000)
+
+    with allure.step("Check that report generated and all values okey (last)"):
+        expect(page.locator('[data-id="17"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("7")
+        expect(page.locator('[data-id="18"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+        # check row
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Времени")
+        expect(page.locator('[data-testid="report_rows_row_1_time"]')).to_have_text("По часам")
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_row_1_communications")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_row_1_communications")
+def test_reports_row_1_communications(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Choose row by communications"):
+        fill_row_communications("1", "Коммуникации", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Scroll down"):
+        page.locator('[class*="MuiDataGrid-scrollbar--vertical"]').click()
+        page.mouse.wheel(delta_x=0, delta_y=10000)
+
+    with allure.step("Check that report generated and all values okey (last)"):
+        expect(page.locator('[data-id="63"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+        # check row
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Коммуникации")
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_row_1_operator_phone")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_row_1_operator_phone")
+def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Fill row by operators phone"):
+        fill_row_operator_phone("1", "Номеру сотрудника", page)
+
+    with allure.step("Fill column by communication"):
+        fill_column_by_communication("0", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="251"]')).to_be_visible()
+        expect(page.locator('[aria-label="266"]')).to_be_visible()
+        expect(page.locator('[aria-label="122"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("10")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("5")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("1")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("4")
+
+    with allure.step("Scroll down"):
+        page.locator('[class*="MuiDataGrid-scrollbar--vertical"]').click()
+        page.mouse.wheel(delta_x=0, delta_y=10000)
+
+    with allure.step("Check that report generated and all values okey (last)"):
+        expect(page.locator('[data-id="20"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("1")
+        expect(page.locator('[data-id="21"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+        # check row
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Номеру сотрудника")
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_row_2_tag_list")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_row_2_tag_list")
+def test_reports_row_2_tag_list(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Add first row by tag list"):
+        fill_row_by_tag_list("1", "По списку тегов", "direction", page)
+
+    with allure.step("Press (Add row)"):
+        press_add_row(page)
+
+    with allure.step("Add second row by tag list"):
+        fill_row_by_tag_list("2", "По списку тегов", "hangup", page)
+
+    with allure.step("Uncheck check box in 2nd row"):
+        click_checkbox_row_in_tag_list("2", page)
+
+        expect(page.locator('[data-testid="report_rows_row_2_tagListCheckbox"]')).not_to_be_checked()
+
+    with allure.step("Fill column by communications"):
+        fill_column_by_communication("0", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        #expect(page.locator('[aria-label="direction + hangup, CALLID"]')).to_be_visible()
+        expect(page.locator('[aria-label="direction + hangup"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_ROW)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+
+        # check column
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("По списку тегов")
+        expect(page.locator('[data-testid="report_rows_row_2_select"]')).to_have_text("По списку тегов")
+
+        # check tagSelect
+        expect(page.locator('[data-testid="report_rows_row_1__tagListValues"]')).to_have_text("direction")
+        #expect(page.locator('[data-testid="report_rows_row_2__tagListValues"]')).to_have_text("hangupCALLID")
+        expect(page.locator('[data-testid="report_rows_row_2__tagListValues"]')).to_have_text("hangup")
+        # check checkboxes
+        expect(page.locator('[data-testid="report_rows_row_1_tagListCheckbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="report_rows_row_2_tagListCheckbox"]')).not_to_be_checked()
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_row_4_tag_and_value")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_row_4_tag_and_value")
+def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)"):
+        add_checklist_to_report("Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)", page)
+
+    with allure.step("Add row with Tag and value"):
+        fill_row_by_tag_and_value("1", "Тегу и значениям", "direction", "incoming", page)
+
+    with allure.step("Press (Add row)"):
+        press_add_row(page)
+
+    with allure.step("Add row with Tag and value"):
+        fill_row_by_tag_and_value("2", "Тегу и значениям", "hangup", "operator", page)
+
+    with allure.step("Press (Add row)"):
+        press_add_row(page)
+
+    with allure.step("Add row with Tag and value"):
+        fill_row_by_tag_and_value("3", "Тегу и значениям", "CALLID", "Выбрать все", page)
+
+    with allure.step("Uncheck checkbox in 3d row"):
+        click_checkbox_row_in_tag_and_value("3",page)
+
+        expect(page.locator('[data-testid="report_rows_row_3_tagCheckbox"]')).not_to_be_checked()
+
+    with allure.step("Press (Add row)"):
+        press_add_row(page)
+
+    with allure.step("Add row with Tag and value"):
+        fill_row_by_tag_and_value("4", "Тегу и значениям", "queue", "Выбрать все", page)
+
+    with allure.step("Uncheck checkbox in 4th row"):
+        click_checkbox_row_in_tag_and_value("4",page)
+
+        expect(page.locator('[data-testid="report_rows_row_4_tagCheckbox"]')).not_to_be_checked()
+
+    with allure.step("Fill column with communications"):
+        fill_column_by_communication("0", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="incoming + operator + CALLID + queue"]')).to_be_visible()
+
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("193")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("193")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_ROW)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)"]')).to_be_visible()
+
+        # check column
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Тегу и значениям")
+        expect(page.locator('[data-testid="report_rows_row_2_select"]')).to_have_text("Тегу и значениям")
+        expect(page.locator('[data-testid="report_rows_row_3_select"]')).to_have_text("Тегу и значениям")
+        expect(page.locator('[data-testid="report_rows_row_4_select"]')).to_have_text("Тегу и значениям")
+        # check tagSelect
+        expect(page.locator('[data-testid="report_rows_row_1_tagSelect"]')).to_have_text("direction")
+        expect(page.locator('[data-testid="report_rows_row_2_tagSelect"]')).to_have_text("hangup")
+        expect(page.locator('[data-testid="report_rows_row_3_tagSelect"]')).to_have_text("CALLID")
+        expect(page.locator('[data-testid="report_rows_row_4_tagSelect"]')).to_have_text("queue")
+        # check tagValues
+        expect(page.locator('[data-testid="report_rows_row_1_tagValues"]')).to_have_text("incoming")
+        expect(page.locator('[data-testid="report_rows_row_2_tagValues"]')).to_have_text("operator")
+        expect(page.locator('[data-testid="report_rows_row_3_tagValues"]')).to_have_text("Выбрать все")
+        expect(page.locator('[data-testid="report_rows_row_4_tagValues"]')).to_have_text("Выбрать все")
+        # check checkboxes
+        expect(page.locator('[data-testid="report_rows_row_1_tagCheckbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="report_rows_row_2_tagCheckbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="report_rows_row_3_tagCheckbox"]')).not_to_be_checked()
+        expect(page.locator('[data-testid="report_rows_row_4_tagCheckbox"]')).not_to_be_checked()
+
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_column_1_communications")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_column_1_communications")
+def test_reports_column_1_communications(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Add column with communications"):
+        fill_column_by_communication("0",page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("10")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("38")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("15")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_column_4_filter")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_column_4_filter")
+def test_reports_column_4_filter(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    # 0
+    with allure.step("Fill 0 column fith filter"):
+        fill_column_by_filter("0", "zero", "test tag", "test q", page)
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 1
+    with allure.step("Fill 1 column fith filter"):
+        fill_column_by_filter("1", "first", "Клиент-должность", "Монтажник Восток", page)
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 2
+    with allure.step("Fill 2 column fith filter"):
+        fill_column_by_filter("2", "second", "Должность", "Бухгалтер", page)
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 3
+    with allure.step("Fill 3 column fith filter"):
+        fill_column_by_filter("3", "third", "Клиент", "Customer", page)
+
+    with allure.step("Press generate report"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated"):
+        expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("5")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("8")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("19")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("Точный фильтр")
+        expect(page.locator('[data-testid="report_columns_column_1_select"]')).to_have_text("Точный фильтр")
+        expect(page.locator('[data-testid="report_columns_column_2_select"]')).to_have_text("Точный фильтр")
+        expect(page.locator('[data-testid="report_columns_column_3_select"]')).to_have_text("Точный фильтр")
+        # check tagSelect
+        expect(page.locator('[data-testid="report_columns_column_0_searchInput"]').locator('[type="text"]')).to_have_value("zero")
+        expect(page.locator('[data-testid="report_columns_column_1_searchInput"]').locator('[type="text"]')).to_have_value("first")
+        expect(page.locator('[data-testid="report_columns_column_2_searchInput"]').locator('[type="text"]')).to_have_value("second")
+        expect(page.locator('[data-testid="report_columns_column_3_searchInput"]').locator('[type="text"]')).to_have_value("third")
+
+        # check tags
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("test q")).to_be_visible()
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("Монтажник Восток")).to_be_visible()
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("Бухгалтер")).to_be_visible()
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("Customer")).to_be_visible()

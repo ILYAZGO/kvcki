@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check stand">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="revert gpt quota test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/test_reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_column_1_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/st_reports_column_1_communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/st_reports_row_1_communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_operator_phone.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/st_reports_row_1_operator_phone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_1_time_4_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/st_reports_row_1_time_4_values.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_2_tag_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/st_reports_row_2_tag_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports_test/test_reports_row_4_tag_and_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/reports_test/st_reports_row_4_tag_and_value.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +29,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPENED",
+    "assignee": {
+      "type": "org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue",
+      "username": "i.mustafin",
+      "fullname": "Ilyas Mustafin"
+    }
+  }
+}]]></component>
+  <component name="GitLabMergeRequestsSettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "first": "https://gitlab.imot.io/imot.io/e2e-tests",
+    "second": "2b264cbc-6402-49ad-909f-2241820a295c"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -53,7 +76,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/fletApp",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -551,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added base url13" />
     <MESSAGE value="added base url14" />
     <MESSAGE value="added base url15" />
     <MESSAGE value="added base url16" />
@@ -576,6 +598,7 @@
     <MESSAGE value="checkstand2" />
     <MESSAGE value="upgrade tests" />
     <MESSAGE value="check stand" />
-    <option name="LAST_COMMIT_MESSAGE" value="check stand" />
+    <MESSAGE value="revert gpt quota test" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert gpt quota test" />
   </component>
 </project>
