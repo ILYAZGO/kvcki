@@ -845,3 +845,204 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Монтажник Восток")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Бухгалтер")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Customer")).to_be_visible()
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_column_4_tag_and_value")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_column_4_tag_and_value")
+def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    # 0
+    with allure.step("Add row with Tag and value"):
+        fill_column_by_tag_and_value("0", "direction", "outgoing", page)
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 1
+    with allure.step("Add row with Tag and value"):
+        fill_column_by_tag_and_value("1","hangup", "operator", page)
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 2
+    with allure.step("Add row with Tag and value"):
+        fill_column_by_tag_and_value("2","CALLID", "Выбрать все", page)
+
+    with allure.step("Uncheck checkbox in 2rd row"):
+        click_checkbox_in_tag_and_value("2",page)
+
+        expect(page.locator('[data-testid="report_columns_column_2_tagCheckbox"]')).not_to_be_checked()
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 3
+    with allure.step("Add column with Tag and value"):
+        fill_column_by_tag_and_value("3", "queue", "Выбрать все", page)
+
+    with allure.step("Uncheck checkbox in 3rd column"):
+        click_checkbox_in_tag_and_value("3",page)
+
+        expect(page.locator('[data-testid="report_columns_column_3_tagCheckbox"]')).not_to_be_checked()
+
+    with allure.step("Press generate report"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated"):
+        expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("9")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("36")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("13")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("58")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("Тегу и значениям")
+        expect(page.locator('[data-testid="report_columns_column_1_select"]')).to_have_text("Тегу и значениям")
+        expect(page.locator('[data-testid="report_columns_column_2_select"]')).to_have_text("Тегу и значениям")
+        expect(page.locator('[data-testid="report_columns_column_3_select"]')).to_have_text("Тегу и значениям")
+        # check tagSelect
+        expect(page.locator('[data-testid="report_columns_column_0_tagSelect"]')).to_have_text("direction")
+        expect(page.locator('[data-testid="report_columns_column_1_tagSelect"]')).to_have_text("hangup")
+        expect(page.locator('[data-testid="report_columns_column_2_tagSelect"]')).to_have_text("CALLID")
+        expect(page.locator('[data-testid="report_columns_column_3_tagSelect"]')).to_have_text("queue")
+        # check tagValues
+        expect(page.locator('[data-testid="report_columns_column_0_tagValues"]')).to_have_text("outgoing")
+        expect(page.locator('[data-testid="report_columns_column_1_tagValues"]')).to_have_text("operator")
+        expect(page.locator('[data-testid="report_columns_column_2_tagValues"]')).to_have_text("Выбрать все")
+        expect(page.locator('[data-testid="report_columns_column_3_tagValues"]')).to_have_text("Выбрать все")
+        # check checkboxes
+        expect(page.locator('[data-testid="report_columns_column_0_tagCheckbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="report_columns_column_1_tagCheckbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="report_columns_column_2_tagCheckbox"]')).not_to_be_checked()
+        expect(page.locator('[data-testid="report_columns_column_3_tagCheckbox"]')).not_to_be_checked()
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_column_4_tag_list")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_column_4_tag_list")
+def test_reports_column_4_tag_list(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    # 0
+    with allure.step("Add first row by tag list"):
+        fill_column_by_tag_list("0", "11", "asterisk_context", page=page)
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 1
+    with allure.step("Add column with Tag list"):
+        fill_column_by_tag_list("1", "CALLID", "direction", page=page)
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 2
+    with allure.step("Add column with Tag list"):
+        fill_column_by_tag_list("2", "hangup", "k", page=page)
+
+    with allure.step("Uncheck checkbox in 2nd column"):
+        click_checkbox_in_tag_list("2",page)
+
+        expect(page.locator('[data-testid="report_columns_column_2_tagListCheckbox"]')).not_to_be_checked()
+
+    with allure.step("Press (Add column)"):
+        press_add_column(page)
+
+    # 3
+    with allure.step("Add column with Tag list"):
+        fill_column_by_tag_list("3", "multi value", "multi value number", page=page)
+
+    with allure.step("Uncheck checkbox in 3rd column"):
+        click_checkbox_in_tag_list("3",page)
+
+        expect(page.locator('[data-testid="report_columns_column_3_tagListCheckbox"]')).not_to_be_checked()
+
+    with allure.step("Press generate report"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated"):
+        expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("10")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("38")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("15")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По списку тегов")
+        expect(page.locator('[data-testid="report_columns_column_1_select"]')).to_have_text("По списку тегов")
+        expect(page.locator('[data-testid="report_columns_column_2_select"]')).to_have_text("По списку тегов")
+        expect(page.locator('[data-testid="report_columns_column_3_select"]')).to_have_text("По списку тегов")
+        # check tagSelect
+        expect(page.locator('[data-testid="report_columns_column_0__tagListValues"]')).to_have_text("11asterisk_context")
+        expect(page.locator('[data-testid="report_columns_column_1__tagListValues"]')).to_have_text("CALLIDdirection")
+        expect(page.locator('[data-testid="report_columns_column_2__tagListValues"]')).to_have_text("hangupk")
+        expect(page.locator('[data-testid="report_columns_column_3__tagListValues"]')).to_have_text("multi valuemulti value number")
+
+        # check checkboxes
+        expect(page.locator('[data-testid="report_columns_column_0_tagListCheckbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="report_columns_column_1_tagListCheckbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="report_columns_column_2_tagListCheckbox"]')).not_to_be_checked()
+        expect(page.locator('[data-testid="report_columns_column_3_tagListCheckbox"]')).not_to_be_checked()
+
+        expect(page.locator('[data-testid="report_columns_column_2_tagListInput"]').locator('[type="text"]')).to_have_value("hangup, k")
+        expect(page.locator('[data-testid="report_columns_column_3_tagListInput"]').locator('[type="text"]')).to_have_value("multi value, multi value number")
