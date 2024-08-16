@@ -58,7 +58,7 @@ def test_usedesk(base_url, page: Page) -> None:
         page.locator(BUTTON_SOZDAT).click()
 
     with allure.step("Wait 240 seconds"):
-        page.wait_for_timeout(21000)
+        page.wait_for_timeout(35000)
 
     with allure.step("Reload page"):
         page.reload()
