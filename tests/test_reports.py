@@ -6,6 +6,7 @@ from utils.auth import auth
 from pages.reports import *
 import pytest
 import allure
+from utils.create_delete_user import create_user, delete_user
 
 
 @pytest.mark.independent
@@ -234,6 +235,69 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
     with allure.step("Check that search was successful"):
         expect(page.locator(INPUT_SEARCH)).to_have_value("Ntcn")
         expect(page.get_by_text("Ntcn")).to_have_count(1)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_management_check")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_management_check")
+def test_reports_management_check(base_url, page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Go to report management"):
+        press_report_management(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report_in_management(page)
+
+    with allure.step("Press (save as new)"):
+        press_save_as_new(page)
+
+    with allure.step("Fill report name"):
+        page.locator(INPUT_REPORT_NAME).fill("auto_test_report")
+
+    with allure.step("Press (submit)"):
+        page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
+        page.wait_for_timeout(1000)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Go to report management"):
+        press_report_management(page)
+
+    with allure.step("Check table"):
+        expect(page.locator('[role="columnheader"]')).to_have_count(4)
+        expect(page.locator('[title="Toggle SortBy"]')).to_have_count(1)
+        expect(page.locator('[aria-label="auto_test_report"]')).to_have_count(1)
+        expect(page.locator('[class*="styles_buttons"]').locator('[aria-label="Скачать"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Создать копию"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Удалить"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Перейти"]')).to_have_count(1)
+
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+
+
+
+
+
+
 
 # rows
 

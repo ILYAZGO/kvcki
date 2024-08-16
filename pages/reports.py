@@ -37,9 +37,20 @@ def go_to_reports(page="page: Page"):
     page.wait_for_selector(BUTTON_OT4ETI)
     page.locator(BUTTON_OT4ETI).click()
 
+
 def press_create_report(page="page: Page"):
     page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
     page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
+
+def press_create_report_in_management(page="page: Page"):
+    page.locator(BUTTON_CREATE_REPORT_IN_MANAGEMENT).click()
+    page.wait_for_selector(BUTTON_GENERATE_REPORT)
+
+def press_report_management(page="page: Page"):
+    page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
+    page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
+    page.wait_for_selector('[class*="ReportsListPage_reportListSaved"]')
+
 
 def choose_preiod_date(firstDate, lastDate, page="page: Page"):
     page.wait_for_selector('[data-testid="reportMake"]')
@@ -63,6 +74,7 @@ def press_add_row(page="page: Page"):
 
 def click_checkbox_in_tag_and_value(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_tagCheckbox"]').click()
+
 
 def click_checkbox_in_tag_list(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_tagListCheckbox"]').click()

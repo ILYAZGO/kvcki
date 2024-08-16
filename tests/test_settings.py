@@ -1331,8 +1331,8 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
         page.wait_for_selector(BLOCK_GPT_QUOTAS)
-        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("150")
-        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("150")
+        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("150.00")
+        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("150.00")
 
         # yandex
 
@@ -1361,8 +1361,8 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
         page.wait_for_selector(BLOCK_GPT_QUOTAS)
-        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("15000")
-        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("15000")
+        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("15000.00")
+        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("15000.00")
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
