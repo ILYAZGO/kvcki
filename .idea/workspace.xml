@@ -24,22 +24,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPENED",
-    "assignee": {
-      "type": "org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue",
-      "username": "i.mustafin",
-      "fullname": "Ilyas Mustafin"
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;i.mustafin&quot;,
+      &quot;fullname&quot;: &quot;Ilyas Mustafin&quot;
     }
   }
-}]]></component>
-  <component name="GitLabMergeRequestsSettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "first": "https://gitlab.imot.io/imot.io/e2e-tests",
-    "second": "2b264cbc-6402-49ad-909f-2241820a295c"
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.imot.io/imot.io/e2e-tests&quot;,
+    &quot;second&quot;: &quot;2b264cbc-6402-49ad-909f-2241820a295c&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -57,24 +57,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python tests.pytest for test_usedesk.test_example.executor": "Run",
-    "Python tests.pytest in test_pass.py.executor": "Run",
-    "Python.Unnamed.executor": "Run",
-    "Python.dates.executor": "Run",
-    "Python.erer.executor": "Run",
-    "Python.test_pass.executor": "Run",
-    "Python.variables.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/PROD",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_pass.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dates.executor&quot;: &quot;Run&quot;,
+    &quot;Python.erer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/PROD&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/reports_test" />

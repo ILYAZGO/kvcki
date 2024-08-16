@@ -250,8 +250,8 @@ def test_reports_management_check(base_url, page: Page) -> None:
     with allure.step("Go to url"):
         page.goto(base_url, timeout=wait_until_visible)
 
-    with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
