@@ -1,4 +1,4 @@
-
+from utils.variables import wait_until_visible
 # time period
 YESTERDAY = "button[value='yesterday']"
 WEEK = "button[value='this_week']"
@@ -12,7 +12,7 @@ BUTTON_OT4ETI = '[value="reports"]'
 BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV = '[href*="/reports"]'
 BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
-BUTTON_UDALIT = '[data-testid="acceptButton"]'
+BUTTON_UDALIT= BUTTON_CREATE = '[data-testid="acceptButton"]'
 BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
 
 BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
@@ -49,11 +49,11 @@ def press_create_report_in_management(page="page: Page"):
 def press_report_management(page="page: Page"):
     page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
-    page.wait_for_selector('[class*="ReportsListPage_reportListSaved"]')
+    page.wait_for_selector('[role="table"]', timeout=wait_until_visible)
 
 
 def choose_preiod_date(firstDate, lastDate, page="page: Page"):
-    page.wait_for_selector('[data-testid="reportMake"]')
+    page.wait_for_selector(FIRST_DATE)
     page.locator(FIRST_DATE).click()
     page.locator(FIRST_DATE).fill(firstDate)
     page.wait_for_timeout(500)

@@ -282,11 +282,100 @@ def test_reports_management_check(base_url, page: Page) -> None:
         expect(page.locator('[role="columnheader"]')).to_have_count(4)
         expect(page.locator('[title="Toggle SortBy"]')).to_have_count(1)
         expect(page.locator('[aria-label="auto_test_report"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Изменить название"]')).to_have_count(1)
         expect(page.locator('[class*="styles_buttons"]').locator('[aria-label="Скачать"]')).to_have_count(1)
         expect(page.locator('[aria-label="Создать копию"]')).to_have_count(1)
         expect(page.locator('[aria-label="Удалить"]')).to_have_count(1)
         expect(page.locator('[aria-label="Перейти"]')).to_have_count(1)
 
+    with allure.step("Change report name"):
+        page.locator('[class*="styles_nameCell_"]').locator('[type="button"]').click()
+        page.locator('[class*="styles_nameCell_"]').locator('[aria-label="Сбросить"]').click()
+        page.locator('[class*="styles_nameCell_"]').locator('[type="button"]').click()
+        page.locator('[name="reportName"]').clear()
+        page.locator('[name="reportName"]').fill("changedReportName")
+        page.locator('[aria-label="Сохранить"]').click()
+
+    with allure.step("Check that report name changed"):
+        expect(page.locator('[aria-label="changedReportName"]')).to_have_count(1)
+
+    with allure.step("Click to period menu"):
+        page.locator('[class*="styles_periodCell_"]').get_by_text("Сегодня").click()
+
+    with allure.step("Check content of period options"):
+        expect(page.locator('[class*="styles_periodCell_"]').locator('[class*="-menu"]')
+               ).to_have_text("СегодняВчераТекущая неделяТекущий месяцТекущий годЗа все времяПроизвольные даты")
+
+    with allure.step("Choose arbitrary dates"):
+        page.get_by_text("Произвольные даты", exact=True).click()
+        page.wait_for_selector('[class="ant-space-item"]')
+
+    with allure.step("Choose dates"):
+        choose_preiod_date(today, today, page)
+
+    with allure.step("Reload page"):
+        page.reload()
+        page.wait_for_selector('[class="ant-space-item"]')
+        page.wait_for_timeout(500)
+
+    with allure.step("Check that all changes saved"):
+        expect(page.locator('[aria-label="changedReportName"]')).to_have_count(1)
+        expect(page.locator('[placeholder="Начальная дата"]')).to_have_value(today)
+        expect(page.locator('[placeholder="Конечная дата"]')).to_have_value(today)
+
+    # with allure.step("Press (Download) and wait until file will be saved"):
+    #     # Start waiting for the download
+    #     with page.expect_download(timeout=wait_until_visible) as download_info:
+    #         # Perform the action that initiates download
+    #         page.locator('[aria-label="Скачать"]').click()
+    #     download = download_info.value
+    #     path = f'{os.getcwd()}/'
+    #
+    #     # Wait for the download process to complete and save the downloaded file somewhere
+    #     download.save_as(path + download.suggested_filename)
+    #
+    # with allure.step("Check that file was downloaded"):
+    #     assert os.path.isfile(path + download.suggested_filename) == True
+    #     page.wait_for_timeout(500)
+    #
+    # with allure.step("Remove downloaded file"):
+    #     os.remove(path + download.suggested_filename)
+    #     page.wait_for_timeout(500)
+    #
+    # with allure.step("Check that file was removed"):
+    #     assert os.path.isfile(path + download.suggested_filename) == False
+
+    with allure.step("Make report copy. After create going to main report page"):
+        page.locator('[aria-label="Создать копию"]').click()
+        page.wait_for_selector('[role="dialog"]')
+        page.locator('[name="newReportName"]').fill("reportCopy")
+        page.locator(BUTTON_CREATE).click()
+        page.wait_for_selector(BUTTON_GENERATE_REPORT)
+
+
+    with allure.step("Go back to reports"):
+        go_to_reports(page)
+
+    with allure.step("Go back to report management"):
+        press_report_management(page)
+
+    with allure.step("Check that we have two reports"):
+        expect(page.locator('[role="row"]')).to_have_count(3)
+        expect(page.locator('[aria-label="changedReportName"]')).to_have_count(1)
+        expect(page.locator('[aria-label="reportCopy"]')).to_have_count(1)
+
+    with allure.step("Delete reports"):
+        page.locator(BUTTON_KORZINA).nth(0).click()
+        page.wait_for_selector(BUTTON_UDALIT)
+        page.locator(BUTTON_UDALIT).click()
+        page.wait_for_timeout(900)
+        page.locator(BUTTON_KORZINA).nth(0).click()
+        page.wait_for_selector(BUTTON_UDALIT)
+        page.locator(BUTTON_UDALIT).click()
+        page.wait_for_timeout(800)
+
+    with allure.step("Check that reports deleted"):
+        expect(page.locator('[role="row"]')).to_have_count(1)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
