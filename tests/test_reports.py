@@ -1213,7 +1213,7 @@ def test_flying_additional_params(base_url, page: Page) -> None:
 
     with allure.step("Go to user"):
         page.locator("#react-select-2-input").fill("Novostroi_test")
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(350)
         page.get_by_text("Novostroi_test", exact=True).click()
         page.wait_for_selector('[class*="CallsHeader"]')
 

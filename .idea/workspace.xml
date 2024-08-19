@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check stand">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add BINGO test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
     </list>
@@ -568,7 +568,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added base url19" />
     <MESSAGE value="added base url20" />
     <MESSAGE value="added base url21" />
     <MESSAGE value="added base url22" />
@@ -593,6 +592,7 @@
     <MESSAGE value="add timeout integration test" />
     <MESSAGE value="check report management test" />
     <MESSAGE value="check stand" />
-    <option name="LAST_COMMIT_MESSAGE" value="check stand" />
+    <MESSAGE value="add BINGO test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add BINGO test" />
   </component>
 </project>
