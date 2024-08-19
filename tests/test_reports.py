@@ -7,6 +7,7 @@ from pages.reports import *
 import pytest
 import allure
 from utils.create_delete_user import create_user, delete_user
+import random
 
 
 @pytest.mark.independent
@@ -352,7 +353,6 @@ def test_reports_management_check(base_url, page: Page) -> None:
         page.locator(BUTTON_CREATE).click()
         page.wait_for_selector(BUTTON_GENERATE_REPORT)
 
-
     with allure.step("Go back to reports"):
         go_to_reports(page)
 
@@ -379,14 +379,6 @@ def test_reports_management_check(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
-
-
-
-
-
-
-
-
 
 # rows
 
@@ -1199,3 +1191,95 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
 
         expect(page.locator('[data-testid="report_columns_column_2_tagListInput"]').locator('[type="text"]')).to_have_value("hangup, k")
         expect(page.locator('[data-testid="report_columns_column_3_tagListInput"]').locator('[type="text"]')).to_have_value("multi value, multi value number")
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_flying_additional_params")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_flying_additional_params")
+def test_flying_additional_params(base_url, page: Page) -> None:
+
+    report_name=f"flying_report_{today}_{random.randint(100, 200)}"
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN, PASSWORD, page)
+
+    with allure.step("Go to user"):
+        page.locator("#react-select-2-input").fill("Novostroi_test")
+        page.wait_for_timeout(300)
+        page.get_by_text("Novostroi_test", exact=True).click()
+        page.wait_for_selector('[class*="CallsHeader"]')
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period"):
+        choose_preiod_date(first_day_month_ago, today, page)
+
+    with allure.step("Add row with Tag and value"):
+        fill_row_by_tag_and_value("1", "Тегу и значениям", "Сотрудник", "Лиза", page)
+
+    with allure.step("add additional param"):
+        page.locator('[data-testid="report_columns"]').locator('[width="24"]').click()
+        page.locator('[data-testid="checklistQuestionChange"]').click()
+        page.locator('[class*="AdditionalParams_search_"]').locator(".css-12ol9ef").click()
+        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-5"]').click()
+        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-6"]').click()
+        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-7"]').click()
+        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-8"]').click()
+        page.get_by_role("button", name="Применить").click()
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="333 / 333"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
+
+    with allure.step("Save report"):
+        page.locator(BUTTON_SAVE_AS_NEW).click()
+        page.wait_for_selector('[class="modal-btns"]')
+        page.locator(INPUT_REPORT_NAME).fill(report_name)
+        page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
+        page.wait_for_timeout(1000)
+        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+
+    with allure.step("Go to settings"):
+        page.wait_for_selector('[value="settings"]')
+        page.locator('[value="settings"]').click()
+        page.wait_for_timeout(500)
+        page.wait_for_selector('[name="login"]')
+
+    with allure.step("Reload page"):
+        page.reload()
+        page.wait_for_timeout(500)
+
+    with allure.step("Go back to reports"):
+        go_to_reports(page)
+
+    with allure.step("Choose report"):
+        page.locator('[name="searchString"]').fill(report_name)
+        page.wait_for_timeout(500)
+        page.get_by_text(report_name).nth(0).click()
+        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+
+    with allure.step("BINGO"):
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="333 / 333"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
