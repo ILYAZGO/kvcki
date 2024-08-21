@@ -31,6 +31,10 @@ TUPO_CLICK = ".styles_questionTitle__WSOwz"
 INPUT_REPORT_NAME = '[name="report_name"]'
 INPUT_SEARCH = '[name="searchString"]'
 BUTTON_LUPA = '[type="submit"]'
+BUTTON_CROSS = '[data-testid="CloseIcon"]'
+MODAL_WINDOW = '[role="dialog"]'
+
+BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS = '[data-testid="tagNameChange"]'
 
 
 def go_to_reports(page="page: Page"):
@@ -214,3 +218,9 @@ def add_checklist_to_report(checkListName, page="page: Page"):
     page.locator('[autocorrect=off]').nth(0).fill("автотест")
     page.get_by_text(checkListName, exact=True).first.click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+
+# additional params
+def click_gear_in(row_or_column, page="page: Page"):
+    page.locator(f'[data-testid="report_{row_or_column}s"]').locator('[viewBox="0 0 24 24"]').click()
+    page.wait_for_selector(MODAL_WINDOW)

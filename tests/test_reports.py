@@ -1283,3 +1283,161 @@ def test_flying_additional_params(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
+
+
+# additional params
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_content")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_content")
+def test_reports_additional_params_content(base_url, page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with admin"):
+        auth(LOGIN, PASSWORD, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Click additional params for rows"):
+        click_gear_in("row", page)
+
+    with allure.step("Check content of modal window for rows. 21 checkbox, 7 add params, 2 buttons"):
+        expect(page.locator('[role="dialog"]').locator('[type="checkbox"]')).to_have_count(21)
+        expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
+        expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistQuestionChange"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistQuestionChangePercent"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistAnswerAvg"]')).to_have_count(1)
+        expect(page.locator('[data-testid="commentary"]')).to_have_count(1)
+        expect(page.get_by_role("button", name="Применить")).to_have_count(1)
+        expect(page.get_by_role("button", name="Применить")).to_have_attribute("tabindex", "0")
+        expect(page.get_by_role("button", name="Отмена")).to_have_count(1)
+        expect(page.get_by_role("button", name="Отмена")).to_have_attribute("tabindex", "0")
+
+    with allure.step("Close modal window"):
+        page.locator(BUTTON_CROSS).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Click additional params for columns"):
+        click_gear_in("column", page)
+
+    with allure.step("Check content of modal window for columns. 22 checkbox, 8 add params, 2 buttons"):
+        expect(page.locator('[role="dialog"]').locator('[type="checkbox"]')).to_have_count(22)
+        expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
+        expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistQuestionChange"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistQuestionChangePercent"]')).to_have_count(1)
+        expect(page.locator('[data-testid="checklistAnswerAvg"]')).to_have_count(1)
+        expect(page.locator('[data-testid="commentary"]')).to_have_count(1)
+        expect(page.locator('[data-testid="percentSource"]')).to_have_count(1)
+        expect(page.get_by_role("button", name="Применить")).to_have_count(1)
+        expect(page.get_by_role("button", name="Применить")).to_have_attribute("tabindex", "0")
+        expect(page.get_by_role("button", name="Отмена")).to_have_count(1)
+        expect(page.get_by_role("button", name="Отмена")).to_have_attribute("tabindex", "0")
+
+    with allure.step("Close modal window"):
+        page.locator(BUTTON_CROSS).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+# additional params for rows
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_tag_value")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_tag_value. For rows and columns")
+def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+    #     add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in("row", page)
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
+        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        page.locator(MODAL_WINDOW).locator('[viewBox="0 0 18 18"]').click()
+        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]', state="hidden")
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
+        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+
+    with allure.step("Choose tag in select"):
+        page.locator('[class*="AdditionalParams_additionalSelect_"]').locator('[type="text"]').click()
+        page.locator('[class*="-menu"]').get_by_text("asterisk_context", exact=True).click()
+
+    with allure.step("Click (Accept)"):
+        page.get_by_role("button", name="Применить").click()
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in("column", page)
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
+        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        page.locator(MODAL_WINDOW).locator('[viewBox="0 0 18 18"]').click()
+        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]', state="hidden")
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
+        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+
+    with allure.step("Choose tag in select"):
+        page.locator('[class*="AdditionalParams_additionalSelect_"]').locator('[type="text"]').click()
+        page.locator('[class*="-menu"]').get_by_text("asterisk_context", exact=True).click()
+
+    with allure.step("Click (Accept)"):
+        page.get_by_role("button", name="Применить").click()
+
+    # generate report
+
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+
+
+
+    with allure.step("check"):
+        expect(page.locator('[data-field="calls_count_asterisk_context_0_0"]')).to_have_count(6)
+
