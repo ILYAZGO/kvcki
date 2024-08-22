@@ -1327,6 +1327,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
+        page.wait_for_timeout(500)
 
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
@@ -1357,6 +1358,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
+        page.wait_for_timeout(500)
 
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
