@@ -1431,13 +1431,15 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         page.get_by_role("button", name="Применить").click()
 
     # generate report
-
     with allure.step("Generate report"):
         press_generate_report(page)
 
-
-
-
     with allure.step("check"):
         expect(page.locator('[data-field="calls_count_asterisk_context_0_0"]')).to_have_count(6)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="asterisk_context"]')).to_have_count(2)
+        # check that contain text
+        expect(page.get_by_text("ecotelecom-support")).to_have_count(7)
 
