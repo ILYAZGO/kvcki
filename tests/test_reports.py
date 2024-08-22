@@ -1380,27 +1380,24 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
     with allure.step("Choose period 01/01/2022-31/12/2022"):
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
-    # with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-    #     add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
-
     # for row
     with allure.step("Click additional params for rows"):
         click_gear_in("row", page)
 
     with allure.step("Click tag value in additional params and wait for select"):
         page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
 
     with allure.step("Delete select by using basket button and wait until deleted"):
         page.locator(MODAL_WINDOW).locator('[viewBox="0 0 18 18"]').click()
-        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]', state="hidden")
+        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM, state="hidden")
 
     with allure.step("Click tag value in additional params and wait for select"):
         page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
 
     with allure.step("Choose tag in select"):
-        page.locator('[class*="AdditionalParams_additionalSelect_"]').locator('[type="text"]').click()
+        page.locator(SELECT_WITH_ADDITIONAL_PARAM).locator('[type="text"]').click()
         page.locator('[class*="-menu"]').get_by_text("asterisk_context", exact=True).click()
 
     with allure.step("Click (Accept)"):
@@ -1413,18 +1410,18 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
 
     with allure.step("Click tag value in additional params and wait for select"):
         page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
 
     with allure.step("Delete select by using basket button and wait until deleted"):
         page.locator(MODAL_WINDOW).locator('[viewBox="0 0 18 18"]').click()
-        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]', state="hidden")
+        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM, state="hidden")
 
     with allure.step("Click tag value in additional params and wait for select"):
         page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector('[class*="AdditionalParams_additionalSelect_"]')
+        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
 
     with allure.step("Choose tag in select"):
-        page.locator('[class*="AdditionalParams_additionalSelect_"]').locator('[type="text"]').click()
+        page.locator(SELECT_WITH_ADDITIONAL_PARAM).locator('[type="text"]').click()
         page.locator('[class*="-menu"]').get_by_text("asterisk_context", exact=True).click()
 
     with allure.step("Click (Accept)"):

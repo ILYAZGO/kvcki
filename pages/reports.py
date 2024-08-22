@@ -36,6 +36,8 @@ MODAL_WINDOW = '[role="dialog"]'
 
 BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS = '[data-testid="tagNameChange"]'
 
+SELECT_WITH_ADDITIONAL_PARAM = '[class*="AdditionalParams_additionalSelect_"]'
+
 
 def go_to_reports(page="page: Page"):
     page.wait_for_selector(BUTTON_OT4ETI)

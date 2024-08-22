@@ -82,7 +82,7 @@ def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
         go_to_dicts(page)
 
     with allure.step("Check that disabled"):
-        expect(page.locator('[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]')).to_be_visible()
+        expect(page.locator(TOOLTIP_BUTTON_DOBAVIT_SLOVAR)).to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -189,11 +189,12 @@ def test_check_dict_type(base_url, page: Page) -> None:
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(1800)
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(4800)
+        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_timeout(600)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -205,11 +206,12 @@ def test_check_dict_type(base_url, page: Page) -> None:
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(1800)
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(4800)
+        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_timeout(600)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -221,11 +223,12 @@ def test_check_dict_type(base_url, page: Page) -> None:
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(1800)
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(4800)
+        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_timeout(600)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -241,7 +244,8 @@ def test_check_dict_type(base_url, page: Page) -> None:
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_timeout(4800)
+        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_timeout(600)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
