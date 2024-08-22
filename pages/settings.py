@@ -59,6 +59,7 @@ INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 SELECT_PARTNER = '[data-testid="selectPartner"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
+SELECT_MENU = '[class*="-menu"]'
 
 
 def click_settings(page="page: Page"):
@@ -70,7 +71,7 @@ def click_settings(page="page: Page"):
 
 def click_notifications(page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(600)
 
 
 def click_personal_info(page="page: Page"):
@@ -131,48 +132,50 @@ def change_login(login, page="page: Page"):
     page.locator(INPUT_LOGIN).fill(login)
 
 
-def fill_personal_information_admin_and_manager(name, email, phone, comment , timezone, page="page: Page"):
+def fill_personal_information_admin_and_manager(name, email, phone, comment, timezone, page="page: Page"):
     #  admin and manager can see and write comment
     page.locator(INPUT_NAME).fill(name)
-    page.wait_for_timeout(300)
+    page.wait_for_selector(f'[value="{name}"]')
     page.locator(INPUT_EMAIL).fill(email)
-    page.wait_for_timeout(300)
+    page.wait_for_selector(f'[value="{email}"]')
     page.locator(INPUT_PHONE).fill(phone)
-    page.wait_for_timeout(300)
+    page.wait_for_selector(f'[value="{phone}"]')
     page.locator(INPUT_COMMENT).fill(comment)
     page.wait_for_timeout(200)
     page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
 
 
 def fill_personal_information_user_and_operator(name, email, phone, timezone, page="page: Page"):
     #  user and operator cant see and write comment
     page.locator(INPUT_NAME).fill(name)
-    page.wait_for_timeout(300)
+    page.wait_for_selector(f'[value="{name}"]')
     page.locator(INPUT_EMAIL).fill(email)
-    page.wait_for_timeout(300)
+    page.wait_for_selector(f'[value="{email}"]')
     page.locator(INPUT_PHONE).fill(phone)
-    page.wait_for_timeout(200)
+    page.wait_for_selector(f'[value="{phone}"]')
     page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
-    page.wait_for_timeout(1000)
+    page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
 
 
 def change_industry(industry, page="page: Page"):
     page.locator(SELECT_INDUSTRY).click()
-    page.locator('[class*="menu"]').get_by_text(industry, exact=True).click()
+    page.wait_for_selector(SELECT_MENU)
+    page.locator(SELECT_MENU).get_by_text(industry, exact=True).click()
 
 
 def change_partner(partner, page="page: Page"):
     page.locator(SELECT_PARTNER).click()
-    page.locator('[class*="menu"]').get_by_text(partner, exact=True).click()
+    page.wait_for_selector(SELECT_MENU)
+    page.locator(SELECT_MENU).get_by_text(partner, exact=True).click()
 
 
 def go_to_user(name, page="page: Page"):
     page.locator(USERS_LIST).fill(name)
-    page.wait_for_timeout(300)
-    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector(SELECT_MENU)
+    page.locator(SELECT_MENU).get_by_text(name, exact=True).click()
     page.wait_for_selector('[class*="CallsHeader"]')
 
 
@@ -185,8 +188,8 @@ def go_to_operator_from_table(page="page: Page"):
 
 def go_to_admin_or_manager(name, page="page: Page"):
     page.locator(USERS_LIST).fill(name)
-    page.wait_for_timeout(300)
-    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector(SELECT_MENU)
+    page.locator(SELECT_MENU).get_by_text(name, exact=True).click()
     page.wait_for_timeout(1400)
 
 
@@ -196,8 +199,8 @@ def press_save(page="page: Page"):
 
 
 def press_save_in_rights(page="page: Page"):
-    page.locator('[data-testid="acceptButton"]').click()
-    page.wait_for_timeout(400)
+    page.locator(BUTTON_SAVE_IN_RIGHTS).click()
+    page.wait_for_timeout(500)
 
 
 def click_all_checkboxes_on_page(page="page: Page"):
