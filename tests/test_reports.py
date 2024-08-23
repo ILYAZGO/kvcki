@@ -1233,10 +1233,10 @@ def test_flying_additional_params(base_url, page: Page) -> None:
         page.locator('[data-testid="report_columns"]').locator('[width="24"]').click()
         page.locator('[data-testid="checklistQuestionChange"]').click()
         page.locator('[class*="AdditionalParams_search_"]').locator(".css-12ol9ef").click()
+        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-4"]').click()
         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-5"]').click()
         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-6"]').click()
         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-7"]').click()
-        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-8"]').click()
         page.get_by_role("button", name="Применить").click()
 
     with allure.step("Press (Generate report)"):
@@ -1244,7 +1244,7 @@ def test_flying_additional_params(base_url, page: Page) -> None:
 
     with allure.step("Check that report generated and all values okey"):
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="333 / 333"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
 
@@ -1277,7 +1277,7 @@ def test_flying_additional_params(base_url, page: Page) -> None:
 
     with allure.step("BINGO"):
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="333 / 333"]')).to_have_count(1)
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
 
