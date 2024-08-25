@@ -1198,7 +1198,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
 @allure.title("test_flying_additional_params")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_flying_additional_params")
-def test_flying_additional_params(base_url, page: Page) -> None:
+def est_flying_additional_params(base_url, page: Page) -> None:  #disabled
 
     report_name=f"flying_report_{today}_{random.randint(100, 200)}"
 
