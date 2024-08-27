@@ -1425,13 +1425,26 @@ def test_user_consumption_history(base_url, page: Page) -> None:
     # mocks
     def handle_calls(route: Route):
         json_calls = [
-            {"callDate": "2024-07-30", "fromServices": ["service1"], "callCount": 111, "sumDuration": 395},
-            {"callDate": "2024-07-29", "fromServices": ["service2"], "callCount": 222, "sumDuration": 678}
+            {"callDate": "2024-07-28", "fromServices": ["service1"], "callCount": 111, "sumDuration": 395},
+            {"callDate": "2024-07-29", "fromServices": ["service2"], "callCount": 222, "sumDuration": 678},
+            {"callDate": "2024-07-30", "fromServices": [], "callCount": 444, "sumDuration": 777}
         ]
         # fulfill the route with the mock data
         route.fulfill(json=json_calls)
         # Intercept the route
     page.route("**/history/calls?**", handle_calls)
+
+    def handle_chats(route: Route):
+        json_calls = [
+            {"chatDate": "2024-07-28", "fromServices": [""], "chatCount": 100},
+            {"chatDate": "2024-07-29", "fromServices": ["chat1"], "chatCount": 999},
+            {"chatDate": "2024-07-30", "fromServices": ["chat2"], "chatCount": 9002}
+
+        ]
+        # fulfill the route with the mock data
+        route.fulfill(json=json_calls)
+        # Intercept the route
+    page.route("**/history/chats?**", handle_chats)
 
     def handle_gpt(route: Route):
         json = [
@@ -1447,18 +1460,8 @@ def test_user_consumption_history(base_url, page: Page) -> None:
         # Intercept the route
     page.route("**/history/gpt?**", handle_gpt)
 
-    def handle_chats(route: Route):
-        json_calls = [
-            {"chatDate": "2024-07-29", "fromServices": ["chat1"], "chatCount": 999},
-            {"chatDate": "2024-07-30", "fromServices": ["chat2"], "chatCount": 9002}
-        ]
-        # fulfill the route with the mock data
-        route.fulfill(json=json_calls)
-        # Intercept the route
-    page.route("**/history/chats?**", handle_chats)
-
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        page.goto("http://192.168.10.101/feature-dev-2827/", timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -1469,12 +1472,12 @@ def test_user_consumption_history(base_url, page: Page) -> None:
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
 
-    with allure.step("Check exist search, calendar, mocked data and total count"):
+    with allure.step("Check existing search for audio, calendar, mocked data and total count"):
         expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
         #  check first row
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("28.07.2024")
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("service1")
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("111")
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_contain_text("395")
@@ -1485,9 +1488,15 @@ def test_user_consumption_history(base_url, page: Page) -> None:
         expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("222")
         expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="4"]')).to_contain_text("678")
         expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="5"]')).to_contain_text("11:18")
+        #  check third row
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="2"]')).to_contain_text("")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="3"]')).to_contain_text("444")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="4"]')).to_contain_text("777")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="5"]')).to_contain_text("12:57")
         #  check total count
-        expect(page.locator(TOTAL_AUDIO_MIN)).to_contain_text("1073")
-        expect(page.locator(TOTAL_AUDIO_HOURS)).to_contain_text("17:53")
+        expect(page.locator(TOTAL_AUDIO_MIN)).to_contain_text("1850")
+        expect(page.locator(TOTAL_AUDIO_HOURS)).to_contain_text("30:50")
 
     with allure.step("Fill search by service1"):
         page.locator(SEARCH_IN_CONSUMPTION_AUDIO).locator('[type="text"]').fill("service1")
@@ -1498,7 +1507,7 @@ def test_user_consumption_history(base_url, page: Page) -> None:
     with allure.step("Go to consumption history GPT"):
         page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
 
-    with allure.step("Check exist search, calendar, mocked data and total count"):
+    with allure.step("Check exist search for chats, calendar, mocked data and total count"):
         expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по движку, модели, типу коммуникации или запросу"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
@@ -1537,15 +1546,19 @@ def test_user_consumption_history(base_url, page: Page) -> None:
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
         #  check first row
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("29.07.2024")
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("chat1")
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("999")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("28.07.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("100")
         #  check second row
-        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
-        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("chat2")
-        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("9002")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("29.07.2024")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("chat1")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("999")
+        #  check third row
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="2"]')).to_contain_text("chat2")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="3"]')).to_contain_text("9002")
         #  check total count
-        expect(page.locator(TOTAL_CHATS)).to_contain_text("10001")
+        expect(page.locator(TOTAL_CHATS)).to_contain_text("10101")
 
     with allure.step("Fill search by chat1"):
         page.locator(SEARCH_IN_CONSUMPTION_CHATS).locator('[type="text"]').fill("chat1")
