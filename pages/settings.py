@@ -1,10 +1,11 @@
 USERS_LIST = "#react-select-2-input"
 FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
+ALERT = '[role="alert"]'
 
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_OPOVESHENIA = '[href*="/notifications"]'
-BLOCK_LEFT_MENU = '[class*="styles_list_"]' #".styles_list__3M7-K"
+BLOCK_LEFT_MENU = '[class*="styles_list_"]'
 
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
@@ -14,6 +15,20 @@ BUTTON_PERSONAL_INFO = '[href*="/profile"]'
 BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
+
+BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
+SELECT_LANGUAGE = '[data-testid="stt_language"]'
+SELECT_ENGINE = '[data-testid="stt_engine"]'
+SELECT_MODEL = '[data-testid="stt_model"]'
+
+CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
+RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
+CHECKBOX_DIARIZATION = '[name="diarization"]'
+CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
+CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
+CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
+CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
+BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 
 BUTTON_QUOTAS = '[href*="settings/quotas"]'
 INPUT_QUOTA_TIME = '[name="time"]'
@@ -88,6 +103,18 @@ def click_rights(page="page: Page"):
     page.locator(BUTTON_RIGHTS).click()
     page.wait_for_selector('[class*="FooterButtons"]')
 
+
+def click_word_processing(page="page: Page"):
+    page.locator(BUTTON_WORD_PROCESSING).click()
+    page.wait_for_selector(SELECT_LANGUAGE)
+
+
+def choose_option(optionNumber, page="page: Page"):
+    page.locator(SELECT_MENU).locator(f'[id$="-option-{optionNumber}"]').click()
+
+def click_submit_in_word_processing(page="page: Page"):
+    page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SAVE).click()
+    page.wait_for_timeout(500)
 
 def click_quota(page="page: Page"):
     page.locator(BUTTON_QUOTAS).click()
