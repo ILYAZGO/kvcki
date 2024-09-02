@@ -29,6 +29,7 @@ BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
+BUTTON_SUBMIT = '[type="submit"]'
 
 
 

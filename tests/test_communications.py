@@ -814,16 +814,16 @@ def test_check_search_template(base_url, page: Page) -> None:
         press_save_template(page)
 
     with allure.step("Check that (add) button disabled"):
-        expect(page.locator(CONFIRM_MODAL_WINDOW).locator('[type="submit"]')).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
         page.locator(INPUT_TEMPLATE_NAME).fill("firstTemplate")
 
     with allure.step("Check that (add) button enabled"):
-        expect(page.locator(CONFIRM_MODAL_WINDOW).locator('[type="submit"]')).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
 
     with allure.step("Press (add)"):
-        page.locator(CONFIRM_MODAL_WINDOW).locator('[type="submit"]').click()
+        page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
 
     with allure.step("Check that template saved"):
         expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("firstTemplate(1)")
@@ -832,16 +832,16 @@ def test_check_search_template(base_url, page: Page) -> None:
         press_rename_template(page)
 
     with allure.step("Check that (add) button disabled"):
-        expect(page.locator(CONFIRM_MODAL_WINDOW).locator('[type="submit"]')).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
         page.locator(INPUT_TEMPLATE_NAME).fill("renameTemplate")
 
     with allure.step("Check that (add) button enabled"):
-        expect(page.locator(CONFIRM_MODAL_WINDOW).locator('[type="submit"]')).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
 
     with allure.step("Press (add)"):
-        page.locator(CONFIRM_MODAL_WINDOW).locator('[type="submit"]').click()
+        page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
 
     with allure.step("Check that template saved"):
         expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("renameTemplate(1)")
@@ -856,7 +856,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         press_delete_template(page)
 
     with allure.step("Confirm delete"):
-        page.locator(CONFIRM_MODAL_WINDOW).locator('[type="submit"]').click()
+        page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
         page.wait_for_timeout(300)
 
     with allure.step("Check that template saved"):
@@ -903,8 +903,8 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
             page.locator('[class*="styles_optionsSelect_"]').click()
             page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
-            page.wait_for_selector(CONFIRM_MODAL_WINDOW)
-            page.locator(CONFIRM_MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+            page.wait_for_selector(MODAL_WINDOW)
+            page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
 
             page.wait_for_timeout(950)
 
@@ -976,10 +976,10 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Choose and click (delete)"):
         page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
-        page.wait_for_selector(CONFIRM_MODAL_WINDOW)
+        page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Confirm deleting"):
-        page.locator(CONFIRM_MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
         page.wait_for_timeout(800)
 
     with allure.step("Check that comment was deleted"):
