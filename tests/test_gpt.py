@@ -36,7 +36,8 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         press_save_in_gpt(page)
 
     with allure.step("Check that created and have 2 questions"):
-        expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
+        expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled(timeout=wait_until_visible)
+        expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled(timeout=wait_until_visible)
         expect(page.get_by_text("Вопрос 2")).to_have_count(1)
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
 

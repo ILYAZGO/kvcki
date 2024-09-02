@@ -33,7 +33,7 @@ BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 
 
 # other
-CONFIRM_MODAL_WINDOW = '[role="dialog"]'
+MODAL_WINDOW = '[role="dialog"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
 NAYDENO_ZVONKOV = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/p'
@@ -111,14 +111,14 @@ def change_sort(sortType, page="page: Page"):
 def press_save_template(page="page: Page"):
     page.locator(BUTTON_SAVE_TEMPLATE).click()
     page.wait_for_timeout(200)
-    page.wait_for_selector(CONFIRM_MODAL_WINDOW, timeout=wait_until_visible)
+    page.wait_for_selector(MODAL_WINDOW, timeout=wait_until_visible)
 
 def press_rename_template(page="page: Page"):
     page.locator('[class=" css-izdlur"]').click()
     page.get_by_text("Переименовать", exact=True).click()
-    page.wait_for_selector(CONFIRM_MODAL_WINDOW, timeout=wait_until_visible)
+    page.wait_for_selector(MODAL_WINDOW, timeout=wait_until_visible)
 
 def press_delete_template(page="page: Page"):
     page.locator('[class=" css-izdlur"]').click()
     page.get_by_text("Удалить", exact=True).click()
-    page.wait_for_selector(CONFIRM_MODAL_WINDOW, timeout=wait_until_visible)
+    page.wait_for_selector(MODAL_WINDOW, timeout=wait_until_visible)
