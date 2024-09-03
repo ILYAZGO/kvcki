@@ -51,10 +51,8 @@ def create_user(URL, ROLE, PASSWORD):
     user_id = create.text.replace('"', '')
 
     if create.status_code == 200:
-        #print(f"\n>>>>> USER {NAME} WITH user_id: {user_id} CREATED SUCCESSFULLY <<<<<")
         logger.opt(depth=1).info(f"\n>>>>> USER {NAME} WITH user_id: {user_id} CREATED SUCCESSFULLY <<<<<")
     else:
-        #print(f"\n>>>>> ACCESS DENIED 403 <<<<<")
         logger.opt(depth=1).info(f"\n>>>>> ERROR CREATE USER {create.status_code} <<<<<")
 
     if ROLE == 'user':
@@ -67,10 +65,8 @@ def create_user(URL, ROLE, PASSWORD):
         give_quota = requests.post(url=URL + "/user/" + user_id + "/quota", headers=headers_for_create, json=quota)
 
         if give_quota.status_code == 200:
-            #print(f">>>>> USER {NAME} WITH user_id: {user_id} IS GIVEN A QUOTA OF 777 MINUTES <<<<<")
             logger.opt(depth=1).info(f"\n>>>>> USER {NAME} WITH user_id: {user_id} IS GIVEN A QUOTA OF 777 MINUTES <<<<<")
         else:
-            #print(f">>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
             logger.opt(depth=1).info(f"\n>>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
         # get token for user and greate group and rule for user
@@ -100,10 +96,8 @@ def create_user(URL, ROLE, PASSWORD):
         group_id = add_rule_group.text.replace('"', '')
 
         if add_rule_group.status_code == 201:
-            #print(f">>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE GROUP {group_id} <<<<<")
             logger.opt(depth=1).info(f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE GROUP {group_id} <<<<<")
         else:
-            #print(f">>>>> ERROR CREATING RULE GROUP {add_rule_group.status_code} <<<<<")
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE GROUP {add_rule_group.status_code} <<<<<")
 
         rule = {
@@ -128,11 +122,36 @@ def create_user(URL, ROLE, PASSWORD):
         rule_id = add_rule.text.replace('"', '')
 
         if add_rule.status_code == 201:
-            #print(f">>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE {rule_id} INSIDE GROUP {group_id} <<<<<")
             logger.opt(depth=1).info(f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE {rule_id} INSIDE GROUP {group_id} <<<<<")
         else:
-            #print(f">>>>> ERROR CREATING RULE {add_rule.status_code} <<<<<")
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} <<<<<")
+
+
+        # # send audio file
+        # headers_for_audio = {
+        #     'accept': 'application/json',
+        #     'Content-Type': 'multipart/form-data',
+        #     'Authorization': token_for_user,
+        # }
+        #
+        # parameters = {"operator_filename": "string", "bitrix_deal_id": "string", "telegram_chat_id": "string",
+        #               "bitrix_crm_phone_number": "string", "stereo_url": "string", "speaker_names": ["string"],
+        #               "unique_id": "string", "bitrix_crm_entity_type": "string", "bitrix_crm_entity_id": "string",
+        #               "bitrix_entity_type": "string", "amo_note_id": "string", "hangup": "client",
+        #               "call_time": "2024-09-02T09:34:29.349Z", "stereo_audio_md5": "string",
+        #               "answer_time": "2024-09-02T09:34:29.349Z", "client_channel": "0", "has_audio": "true",
+        #               "telegram_message_id": "string", "bitrix_call_id": "string",
+        #               "end_time": "2024-09-02T09:34:29.349Z",
+        #               "amo_url_md5": "string", "operator_phone": "string", "operator_url": "string",
+        #               "integration_data": {"integration_id": "string", "task_id": "string", "service_name": "string"},
+        #               "is_only_new_tags": "false", "crm_entity_id": "string", "unanswered": "false",
+        #               "conversation_id": "string", "is_mono": "false", "language": "string",
+        #               "tags": [{"tag_type": "upload", "name": "string", "value": "string", "visible": "true"}],
+        #               "client_phone": "string",
+        #               "multichannel_params": [{"speaker_name": "string", "is_operator": "false", "unique_id": "string"}],
+        #               "client_url": "string", "client_filename": "string", "amo_event_id": "string",
+        #               "is_multichannel": "false", "direction": "income"}
+
 
     return user_id, token, LOGIN
 
@@ -211,11 +230,9 @@ def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, token):
 
 
     if give_user.status_code == 204:
-        #print(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
         logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
     else:
-        #print(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER}<<<<<")
-        logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER}<<<<<")
+        logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
 
 
 

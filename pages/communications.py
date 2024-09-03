@@ -1,4 +1,5 @@
 from utils.variables import wait_until_visible
+USERS_LIST = "#react-select-2-input"
 
 # time period
 YESTERDAY = '[value="yesterday"]'
@@ -22,6 +23,8 @@ INPUT_ID = '[data-testid="filters_any_id"]'
 INPUT_TEMPLATE_NAME = '[id="name"]'
 # buttons
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
+BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
+BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
@@ -30,14 +33,14 @@ BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 BUTTON_SUBMIT = '[type="submit"]'
-
-
+BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 
 # other
+ALERT = '[role="alert"]'
 MODAL_WINDOW = '[role="dialog"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
-NAYDENO_ZVONKOV = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/p'
+NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
 POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по коммуникациям')]"
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div/p'
@@ -45,9 +48,27 @@ MENU = '[class*="-menu"]'
 COMMENT_AREA = '[class*="styles_content_"]'
 ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
 CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div'
+SELECT_LANGUAGE = '[data-testid="stt_language"]'
+SELECT_ENGINE = '[data-testid="stt_engine"]'
+SELECT_MODEL = '[data-testid="stt_model"]'
 
 FIRST_PAGE_PAGINATION = '[aria-label="page 1"]'
 
+CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
+RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
+CHECKBOX_DIARIZATION = '[name="diarization"]'
+CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
+CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
+CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
+CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
+BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
+
+
+def go_to_user(name, page="page: Page"):
+    page.locator(USERS_LIST).fill(name)
+    page.wait_for_timeout(300)
+    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector('[class*="CallsHeader"]')
 
 
 def change_filter(filterType, elementNumber, page="page: Page"):
@@ -123,3 +144,18 @@ def press_delete_template(page="page: Page"):
     page.locator('[class=" css-izdlur"]').click()
     page.get_by_text("Удалить", exact=True).click()
     page.wait_for_selector(MODAL_WINDOW, timeout=wait_until_visible)
+
+def press_calls_action_button_in_list(number, page="page: Page"):
+    page.locator(BUTTON_CALLS_ACTION).nth(number).click()
+    page.wait_for_selector(MENU)
+
+def press_calls_list_download_button(number, page="page: Page"):
+    page.locator(BUTTON_CALLS_LIST_DOWNLOAD).nth(number).click()
+    page.wait_for_selector(MENU)
+
+def click_submit_in_word_processing(page="page: Page"):
+    page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT).click()
+    page.wait_for_timeout(500)
+
+def choose_option(optionNumber, page="page: Page"):
+    page.locator(MENU).locator(f'[id$="-option-{optionNumber}"]').click()
