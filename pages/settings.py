@@ -16,6 +16,9 @@ BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
+BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
+BLOCK_ACTION_SELECT = '[class="action-block"]'
+
 BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
@@ -103,11 +106,21 @@ def click_rights(page="page: Page"):
     page.locator(BUTTON_RIGHTS).click()
     page.wait_for_selector('[class*="FooterButtons"]')
 
+def click_actions_with_calls(page="page: Page"):
+    page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
+    page.wait_for_selector(BLOCK_ACTION_SELECT)
 
 def click_word_processing(page="page: Page"):
     page.locator(BUTTON_WORD_PROCESSING).click()
     page.wait_for_selector(SELECT_LANGUAGE)
 
+def click_engine_select(page="page: Page"):
+    page.locator(SELECT_ENGINE).locator('[type="text"]').click()
+    page.wait_for_selector(SELECT_MENU)
+
+def click_model_select(page="page: Page"):
+    page.locator(SELECT_MODEL).locator('[type="text"]').click()
+    page.wait_for_selector(SELECT_MENU)
 
 def choose_option(optionNumber, page="page: Page"):
     page.locator(SELECT_MENU).locator(f'[id$="-option-{optionNumber}"]').click()
