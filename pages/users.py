@@ -1,5 +1,7 @@
 from utils.variables import wait_until_visible
 
+ALERT = '[role="alert"]'
+
 BUTTON_POLZOVATELI = '[data-testid="userLink"]'
 BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
 BUTTON_OTMENA = '[data-testid="cancelButton"]'
@@ -26,9 +28,22 @@ INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 USER_LOGIN_IN_LEFT_MENU = '[class*="headerName"]'
 
-SELECT_LANGUAGE = '[data-testid="selectSttLang"]'
-SELECT_ENGINE = '[data-testid="selectSttEngine"]'
-SELECT_MODEL = '[data-testid="selectSttModel"]'
+# SELECT_LANGUAGE = '[data-testid="selectSttLang"]'
+# SELECT_ENGINE = '[data-testid="selectSttEngine"]'
+# SELECT_MODEL = '[data-testid="selectSttModel"]'
+
+SELECT_LANGUAGE = '[data-testid="stt_language"]'
+SELECT_ENGINE = '[data-testid="stt_engine"]'
+SELECT_MODEL = '[data-testid="stt_model"]'
+
+CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
+RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
+CHECKBOX_DIARIZATION = '[name="diarization"]'
+CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
+CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
+CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
+CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
+BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 
 SELECT_ROLE = '[data-testid="selectRole"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
@@ -37,12 +52,13 @@ SELECT_MENU = '[class*="-menu"]'
 
 FIRST_PAGE_PAGINATION = '[aria-label="1"]'
 FIRST_ROW_IN_USERS_LIST = '[aria-rowindex="2"]'
+USERS_TABLE = '[class="rs-table-body-wheel-area"]'
 
 
 def go_to_users(page="page: Page"):
     page.wait_for_selector(BUTTON_POLZOVATELI)
     page.locator(BUTTON_POLZOVATELI).click()
-    page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
+    page.wait_for_selector(USERS_TABLE, timeout=wait_until_visible)
 
 
 def press_button_add_user(page="page: Page"):
@@ -112,16 +128,19 @@ def set_industry_and_partner(industry, partner, page="page: Page"):
 def set_stt(language, engine, model, page="page: Page"):
 
     page.locator(SELECT_LANGUAGE).click()
+    page.wait_for_selector(SELECT_MENU)
     page.get_by_text(language, exact=True).click()
     page.wait_for_timeout(500)
 
     page.locator(SELECT_ENGINE).click()
+    page.wait_for_selector(SELECT_MENU)
     page.get_by_text(engine, exact=True).click()
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(600)
 
     page.locator(SELECT_MODEL).click()
-    page.wait_for_timeout(500)
+    page.wait_for_selector(SELECT_MENU)
     page.get_by_text(model, exact=True).click()
+    page.wait_for_timeout(500)
 
 
 def delete_added_user(page="page: Page"):
@@ -139,3 +158,13 @@ def press_button_add_in_modal(page="page: Page"):
     page.wait_for_timeout(1000)
     #page.wait_for_selector(INPUT_PHONE)
 
+def click_engine_select(page="page: Page"):
+    page.locator(SELECT_ENGINE).locator('[type="text"]').click()
+    page.wait_for_selector(SELECT_MENU)
+
+def click_model_select(page="page: Page"):
+    page.locator(SELECT_MODEL).locator('[type="text"]').click()
+    page.wait_for_selector(SELECT_MENU)
+
+def choose_option(optionNumber, page="page: Page"):
+    page.locator(SELECT_MENU).locator(f'[id$="-option-{optionNumber}"]').click()

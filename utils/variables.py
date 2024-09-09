@@ -1,7 +1,7 @@
 from datetime import datetime
 
-#LIST OF URLS
-#URL = os.getenv('PUBLIC_URL') or "https://app.stand.imot.io/ru"
+# LIST OF URLS
+#URL = "https://app.stand.imot.io/ru"
 API_URL = "https://api.stand.imot.io"
 
 # LIST OF TIMEOUTS
@@ -11,10 +11,10 @@ wait_until_visible = 50000
 # LIST OF CREDENTIALS
 
 USER = "1userIM"
-OPERATOR = "2operatorIM"
-MANAGER = "3managerIM"
-ADMIN = "4adminIM"
-USER_FOR_IMPORT = "importFrom"
+#OPERATOR = "2operatorIM"
+#MANAGER = "3managerIM"
+#ADMIN = "4adminIM"
+#USER_FOR_IMPORT = "importFrom"
 USER_FOR_CHECK = "comparelogin"
 PASSWORD = "Qaz123wsX"
 
@@ -23,9 +23,6 @@ ECOPASS = "ecopass1)"      # used for calls and reports test
 
 LOGIN_NEGOTIVE = "1userI"
 PASSWORD_NEGOTIVE = "Qaz123ws"
-
-# LIST OF USERS FOR IMPORT
-# FROM_USER_IMPORT = "importFrom"
 
 # LIST OF ROLES
 

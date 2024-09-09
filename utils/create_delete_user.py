@@ -235,5 +235,24 @@ def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, token):
         logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
 
 
+def give_manager_all_rights(URL, USER_ID_MANAGER, token ):
+    headers = {
+        'accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Authorization': token,
+    }
+    json = {'restt': 'true','delete_user': 'true', 'add_user': 'true','set_default_engine': 'true',
+            'quota_edit': 'true', 'gpt_quota': 'true','user_modules_setup': 'true'}
+
+    give_rights = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/access_rights", headers=headers, json=json)
+
+    if give_rights.status_code == 204:
+        logger.opt(depth=1).info(f"\n>>>>> MANAGER {USER_ID_MANAGER} NOW HAVE ALL RIGHTS <<<<<")
+    else:
+        logger.opt(depth=1).info(f"\n>>>>> MANAGER {USER_ID_MANAGER} FAILED TO GET ALL RIGHTS <<<<<")
+
+
+
+
 
 
