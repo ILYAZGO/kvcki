@@ -140,7 +140,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        page.goto("http://192.168.10.101/feature-dev-2848/", timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
@@ -264,7 +264,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         give_manager_all_rights(API_URL, USER_ID, TOKEN)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        page.goto("http://192.168.10.101/feature-dev-2848/", timeout=wait_until_visible)
 
     with allure.step("Auth with manager"):
         auth(LOGIN, PASSWORD, page)
@@ -438,7 +438,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        page.goto("http://192.168.10.101/feature-dev-2848/", timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN, PASSWORD, page)
