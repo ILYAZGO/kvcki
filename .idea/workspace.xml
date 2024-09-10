@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added test mistic">
-      <change afterPath="$PROJECT_DIR$/tests/test_mistic.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added test mistic2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_mistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_mistic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -568,7 +568,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update docker container and reports test to allure" />
     <MESSAGE value="reports tests to allure and /tests" />
     <MESSAGE value="add .00" />
     <MESSAGE value="add timeout integration test" />
@@ -593,6 +592,7 @@
     <MESSAGE value="added test stt add user" />
     <MESSAGE value="added test stt add user2" />
     <MESSAGE value="added test mistic" />
-    <option name="LAST_COMMIT_MESSAGE" value="added test mistic" />
+    <MESSAGE value="added test mistic2" />
+    <option name="LAST_COMMIT_MESSAGE" value="added test mistic2" />
   </component>
 </project>
