@@ -1376,7 +1376,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
             expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
             expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
             expect(page.locator('[type="checkbox"]')).to_have_count(3)
-        #
+
         with allure.step("Click to engine"):
             page.locator(SELECT_ENGINE).locator('[type="text"]').click()
             page.wait_for_selector(MENU)
