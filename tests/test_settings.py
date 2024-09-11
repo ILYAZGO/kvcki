@@ -554,7 +554,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
 @allure.description("Check changing and saving personal info for manager")
 def test_change_personal_information_save_manager_itself(base_url, page: Page) -> None:
 
-    NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    NEW_NAME = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
 
     with allure.step("Create manager"):
@@ -569,7 +569,7 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
     with allure.step("Go to settings"):
         click_settings(page)
 
-    with allure.step("Change person al information"):
+    with allure.step("Change personal information"):
         fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
 
     with allure.step("Press (Save) button"):

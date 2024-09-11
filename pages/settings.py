@@ -85,6 +85,7 @@ def click_settings(page="page: Page"):
     page.locator(BUTTON_NASTROIKI).click()
     page.wait_for_timeout(500)
     page.wait_for_selector(INPUT_LOGIN)
+    page.wait_for_timeout(300)
 
 
 def click_notifications(page="page: Page"):
@@ -253,8 +254,10 @@ def click_all_checkboxes_on_page(page="page: Page"):
 
 
 def all_checkboxes_to_be_checked(page="page: Page"):
+    page.wait_for_timeout(500)
     # Находим все чекбоксы на странице
     checkboxes = page.query_selector_all('input[type="checkbox"]')
+    page.wait_for_timeout(500)
     # Проверяем состояние каждого чекбокса
     all_checked = all(checkbox.is_checked() for checkbox in checkboxes)
     return all_checked

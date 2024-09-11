@@ -194,7 +194,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
     with allure.step("Reload page and go to dict"):
         page.reload()
         page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -211,7 +211,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
     with allure.step("Reload page and go to dict"):
         page.reload()
         page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -228,7 +228,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
     with allure.step("Reload page and go to dict"):
         page.reload()
         page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 
@@ -245,7 +245,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
     with allure.step("Reload page and go to dict"):
         page.reload()
         page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_SPISOK_SLOV)
 

@@ -22,7 +22,9 @@ def test_check_dates(base_url, page: Page) -> None:
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
-        page.wait_for_selector(FIRST_DATE)
+        #page.wait_for_selector(FIRST_DATE)
+        page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
+        page.wait_for_timeout(1000)
 
     with allure.step("Check first and last dates in view. Today by default"):
         expect(page.locator(FIRST_DATE)).to_have_value(today)
