@@ -61,6 +61,10 @@ CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
 CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
 CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
 CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
+CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
+CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
+CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
+CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 
 

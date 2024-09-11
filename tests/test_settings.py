@@ -1634,8 +1634,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
                           "(Бразилия)Португальский (Португалия)РусскийТурецкий (Турция)УкраинскийУзбекскийАвто")
 
-    expected_engines = ("any2textassembly_aiClaritySpeechDeepgramHappyscribeNLab SpeechSova "
-                        "ASRIMOT.IOwhisperЯндексyandex_v3")
+    expected_engines = "DeepgramHappyscribeNLab SpeechIMOT.IOЯндексyandex_v3"
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1644,7 +1643,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto("http://192.168.10.101/feature-dev-2644/", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -2018,7 +2017,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto("http://192.168.10.101/feature-dev-2644/", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)
@@ -2125,8 +2124,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
                           "(Бразилия)Португальский (Португалия)РусскийТурецкий (Турция)УкраинскийУзбекскийАвто")
 
-    expected_engines = ("any2textassembly_aiClaritySpeechDeepgramHappyscribeNLab SpeechSova "
-                        "ASRIMOT.IOwhisperЯндексyandex_v3")
+    expected_engines = "DeepgramHappyscribeNLab SpeechIMOT.IOЯндексyandex_v3"
 
     alert_merge = "Опция 'Объединить дорожки в один файл' не может быть выбрана одновременно с любой из диаризаций"
 
@@ -2143,7 +2141,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto("http://192.168.10.101/feature-dev-2848/", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with admin"):
         auth(LOGIN_ADMIN, PASSWORD, page)

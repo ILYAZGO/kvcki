@@ -53,7 +53,7 @@ def create_user(URL, ROLE, PASSWORD):
     if create.status_code == 200:
         logger.opt(depth=1).info(f"\n>>>>> USER {NAME} WITH user_id: {user_id} CREATED SUCCESSFULLY <<<<<")
     else:
-        logger.opt(depth=1).info(f"\n>>>>> ERROR CREATE USER {create.status_code} <<<<<")
+        logger.opt(depth=1).info(f"\n>>>>> ERROR CREATE USER {create.status_code} {create.text}<<<<<")
 
     if ROLE == 'user':
 
