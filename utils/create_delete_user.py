@@ -34,7 +34,11 @@ def create_user(URL, ROLE, PASSWORD):
         'role': ROLE,
         'login': LOGIN,
         'name': NAME,
-        'password': PASSWORD
+        'password': PASSWORD,
+        "sttOptions": {
+            "sttEconomize": False,
+            "sttOptionsMap": {}
+        }
     }
 
     get_token = requests.post(url=URL + "/token", headers=headers_for_get_token, data=data).json()

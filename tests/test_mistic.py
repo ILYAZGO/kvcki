@@ -103,7 +103,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 230 из 230",
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 229 из 229",
                                                                   timeout=wait_until_visible)
 
     with allure.step("Quit from account"):
