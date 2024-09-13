@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor stt tests7">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="refactor stt tests8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_mistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_mistic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/PROD",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -567,7 +568,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="check stand" />
     <MESSAGE value="add BINGO test" />
     <MESSAGE value="add BINGO test2" />
     <MESSAGE value="add tests: add params check and add params tag value" />
@@ -592,6 +592,7 @@
     <MESSAGE value="some small refactorig" />
     <MESSAGE value="refactor stt tests" />
     <MESSAGE value="refactor stt tests7" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor stt tests7" />
+    <MESSAGE value="refactor stt tests8" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor stt tests8" />
   </component>
 </project>
