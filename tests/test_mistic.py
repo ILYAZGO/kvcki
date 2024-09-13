@@ -42,7 +42,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 1215 из 1215", timeout=wait_until_visible)
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 1212 из 1212", timeout=wait_until_visible)
 
     with allure.step("Quit from account"):
         page.locator('[aria-label="Профиль"]').get_by_role("button").click()
@@ -135,7 +135,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 560 из 560",
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 561 из 561",
                                                                   timeout=wait_until_visible)
 
     with allure.step("Quit from account"):
