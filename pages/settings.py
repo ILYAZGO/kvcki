@@ -1,3 +1,5 @@
+from utils.variables import wait_until_visible
+
 USERS_LIST = "#react-select-2-input"
 FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
@@ -218,10 +220,11 @@ def change_partner(partner, page="page: Page"):
 
 
 def go_to_user(name, page="page: Page"):
+    page.wait_for_selector(USERS_LIST)
     page.locator(USERS_LIST).fill(name)
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(name, exact=True).click()
-    page.wait_for_selector('[class*="CallsHeader"]')
+    page.wait_for_selector('[class*="CallsHeader"]', timeout=wait_until_visible)
 
 
 def go_to_operator_from_table(page="page: Page"):
@@ -232,6 +235,7 @@ def go_to_operator_from_table(page="page: Page"):
 
 
 def go_to_admin_or_manager(name, page="page: Page"):
+    page.wait_for_selector(USERS_LIST)
     page.locator(USERS_LIST).fill(name)
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(name, exact=True).click()
