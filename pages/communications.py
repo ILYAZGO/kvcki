@@ -157,6 +157,14 @@ def press_calls_list_download_button(number, page="page: Page"):
     page.locator(BUTTON_CALLS_LIST_DOWNLOAD).nth(number).click()
     page.wait_for_selector(MENU)
 
+def press_ex_button_in_expanded_call(page="page: Page"):
+    page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Excel экспорт"]').locator(
+        '[type="button"]').click()
+    page.wait_for_selector(MODAL_WINDOW)
+
+def press_export_button(page="page: Page"):
+    page.locator
+
 def click_submit_in_word_processing(page="page: Page"):
     page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT).click()
     page.wait_for_timeout(500)

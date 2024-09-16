@@ -622,6 +622,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Check that export (zip) downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
+        assert os.path.getsize(path + download.suggested_filename) > 41000
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
@@ -771,11 +772,19 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
 
-    with allure.step("Press (EX) button and download excel"):
+    with allure.step("Press (EX) button"):
+        press_ex_button_in_expanded_call(page)
+
+    with allure.step("Check content of modal window"):
+        expect(page.locator(MODAL_WINDOW).get_by_text("Теги без значений")).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).get_by_text("Теги со значениями")).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).get_by_text("Параметры коммуникаций")).to_have_count(1)
+
+    with allure.step(" and download excel"):
         # Start waiting for the download
         with page.expect_download(timeout=50000) as download_info:
             # Perform the action that initiates download
-            page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Excel экспорт"]').locator('[type="button"]').click()
+            page.locator(MODAL_WINDOW).locator('[class*="buttonsBlock_"]').get_by_role("button", name="Экспортировать").click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -784,6 +793,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check that excel export downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
+        assert os.path.getsize(path + download.suggested_filename) > 7300
 
     with allure.step("Remove downloaded excel export"):
         os.remove(path + download.suggested_filename)
