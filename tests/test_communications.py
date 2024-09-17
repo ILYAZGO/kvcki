@@ -738,6 +738,7 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check that file downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
+        assert os.path.getsize(path + download.suggested_filename) == 690604
 
     with allure.step("Remove downloaded file"):
         os.remove(path + download.suggested_filename)
