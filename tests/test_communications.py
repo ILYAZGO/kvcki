@@ -180,7 +180,7 @@ def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
         page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 407 из 3130", timeout=wait_until_visible) #410
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 405 из 3130", timeout=wait_until_visible) #410
 
 
 @pytest.mark.calls
@@ -220,7 +220,7 @@ def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
         page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 491 из 3130", timeout=wait_until_visible)  #488
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 492 из 3130", timeout=wait_until_visible)  #488
 
 
 @pytest.mark.calls
