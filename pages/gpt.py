@@ -16,6 +16,8 @@ INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
 INPUT_GPT_TEG_NAME = '[placeholder="Название тега"]'
 INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
 MODAL_WINDOW = '[role="dialog"]'
+ALERT = '[role="alert"]'
+MENU = '[class*="-menu"]'
 
 
 def go_to_gpt(page="page: Page"):
@@ -30,6 +32,10 @@ def go_to_gpt(page="page: Page"):
 def press_save_in_gpt(page="page: Page"):
     page.locator(BUTTON_GPT_SAVE).click(force=True)
     page.wait_for_timeout(500)
+
+def press_add_settings(page="page: Page"):
+    page.get_by_role("button", name="Добавить настройки").click()
+    page.wait_for_selector(MENU, timeout=wait_until_visible)
 
 def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
@@ -83,7 +89,7 @@ def delete_rule(page="page: Page"):
     page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_selector(MODAL_WINDOW)
     page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
 def all_checkboxes_to_be_checked(page="page: Page"):
     # Находим все чекбоксы на странице
