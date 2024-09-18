@@ -49,7 +49,7 @@ def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
     page.wait_for_timeout(300)
 
 
-# create group with 2 tags with 2 questions inside#
+# create group with 2 tags with 2 questions inside
 def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
     page.locator(BUTTON_GPT_CREATE_RULE).click()
     page.wait_for_timeout(400)
