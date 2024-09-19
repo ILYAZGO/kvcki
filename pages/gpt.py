@@ -90,6 +90,7 @@ def delete_rule(page="page: Page"):
     page.wait_for_selector(MODAL_WINDOW)
     page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
     page.wait_for_selector(MODAL_WINDOW, state="hidden")
+    page.wait_for_timeout(500)
 
 def all_checkboxes_to_be_checked(page="page: Page"):
     # Находим все чекбоксы на странице

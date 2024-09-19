@@ -217,7 +217,8 @@ def add_checklist_to_report(checkListName, page="page: Page"):
     page.mouse.wheel(delta_x=0, delta_y=10000)
     page.get_by_text("По чеклистам").nth(1).click()
     page.locator(TUPO_CLICK).click()
-    page.locator('[autocorrect=off]').nth(0).fill("автотест")
+    page.locator('[autocorrect=off]').nth(0).type("автотест", delay=100)
+    page.wait_for_timeout(500)
     page.get_by_text(checkListName, exact=True).first.click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
