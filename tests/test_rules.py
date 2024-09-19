@@ -279,8 +279,9 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         page.locator('[data-testid="fragmentRuleBlock"]').get_by_text("Любой сказал", exact=True).nth(1).click()
 
     with allure.step("Fill alternative search (what said)"):
-        page.locator('[data-testid="fragmentRuleBlock"]').locator('[autocorrect="off"]').nth(1).fill("againSomeText")
-        page.keyboard.press("Enter")
+        page.locator('[data-testid="fragmentRuleBlock"]').locator('[autocorrect="off"]').nth(1).type("againSomeText", delay=100)
+        page.keyboard.press("Enter", delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press (Save) button"):
         page.get_by_role("button", name="Сохранить").click()
@@ -288,11 +289,12 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
 
     with allure.step("Page reload"):
         page.reload()
+        page.wait_for_selector('[data-testid="fragmentRuleBlock"]')
 
     with allure.step("Check that all saved"):
-        expect(page.get_by_text("Любой сказал")).to_have_count(2)
-        expect(page.get_by_text("Искать с начала разговора")).to_have_count(1)
-        expect(page.get_by_text("Тегировать только первое совпадение")).to_have_count(1)
+        expect(page.locator('[data-testid="fragmentRuleBlock"]').get_by_text("Любой сказал")).to_have_count(2)
+        expect(page.locator('[data-testid="fragmentRuleBlock"]').get_by_text("Искать с начала разговора")).to_have_count(1)
+        expect(page.locator('[data-testid="fragmentRuleBlock"]').get_by_text("Тегировать только первое совпадение")).to_have_count(1)
 
     with allure.step("Delete rule and group"):
         delete_group_and_rule_or_dict(page)

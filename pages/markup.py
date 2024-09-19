@@ -115,15 +115,16 @@ def create_dict(dictName, page="page: Page"):
 
 
 def fill_what_said(text, page="page: Page"):
-    page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').fill(text)
-    page.keyboard.press("Enter")
+    page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').type(text, delay=100)
+    page.keyboard.press("Enter", delay=100)
+    page.wait_for_timeout(500)
 
 
 def add_additional_terms(list, page="page: Page"):
     page.locator('[data-testid="fragmentRuleAddButton"]').get_by_role("button").dblclick()
-    page.wait_for_selector('[id*="listbox"]')
+    page.wait_for_selector('[class*="-menu"]')
     for i in list:
-        page.locator('[id*="listbox"]').get_by_text(i).click()
+        page.locator('[class*="-menu"]').get_by_text(i).click()
     page.locator('[data-testid="fromStart"]').click()
     page.locator('[data-testid="onlyFirstMatch"]').click()
     for l in range(10):
