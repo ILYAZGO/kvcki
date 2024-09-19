@@ -107,7 +107,8 @@ def test_check_search_by_client_number(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill client number"):
-        page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').fill("79251579005")
+        page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').type("79251579005", delay=100)
+        page.wait_for_timeout(300)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -133,7 +134,8 @@ def test_check_search_by_employee_number(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill employee number"):
-        page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').fill("4995055555")
+        page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').type("4995055555", delay=100)
+        page.wait_for_timeout(300)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -240,7 +242,8 @@ def test_check_search_by_exact_time(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill exact time"):
-        page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').fill("11:42")
+        page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').type("11:42", delay=100)
+        page.wait_for_timeout(300)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -312,7 +315,8 @@ def test_check_search_by_ID(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644474236.14425")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644474236.14425", delay=100)
+        page.wait_for_timeout(300)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -339,10 +343,11 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
 
     with allure.step("Fill by tag"):
         page.wait_for_selector(INPUT_PO_TEGAM,timeout=wait_until_visible)
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Другой отдел")
+        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=100)
         page.wait_for_timeout(2600)
         page.get_by_text("Другой отдел", exact=True).first.click()
         page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
+        page.wait_for_timeout(300)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -355,6 +360,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         page.wait_for_timeout(2900)
         page.get_by_text("Обсуждение тарифа", exact=True).first.click()
         page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
+        page.wait_for_timeout(300)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -454,28 +460,32 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
     with allure.step("Fill all default fields"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
 
-        page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').fill("79251579005")
+        page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').type("79251579005", delay=100)
+        page.wait_for_timeout(500)
         page.locator(POISK_PO_FRAGMENTAM).click()
-        page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').fill("4995055555")
+        page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').type("4995055555", delay=100)
+        page.wait_for_timeout(500)
         page.locator(POISK_PO_FRAGMENTAM).click()
 
-        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').fill("адрес")
+        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=100)
         page.wait_for_timeout(2600)
         page.locator(POISK_PO_FRAGMENTAM).click()
 
-        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').fill("2223")
+        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').type("2223", delay=100)
         page.wait_for_timeout(2600)
         page.locator(POISK_PO_FRAGMENTAM).click()
 
         fill_search_length(">10", page)
         page.locator(POISK_PO_FRAGMENTAM).click()
-        page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').fill("11:42")
+        page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').type("11:42", delay=100)
+        page.wait_for_timeout(500)
         page.locator(POISK_PO_FRAGMENTAM).click()
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644474236.14425")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644474236.14425", delay=100)
+        page.wait_for_timeout(500)
         page.locator(POISK_PO_FRAGMENTAM).click()
 
         page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Другой отдел")
+        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=100)
         page.wait_for_timeout(2600)
         page.get_by_text("Другой отдел", exact=True).first.click()
         page.locator(POISK_PO_FRAGMENTAM).click()
@@ -522,7 +532,8 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -598,7 +609,8 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -675,7 +687,8 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -716,7 +729,8 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -764,7 +778,8 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -903,7 +918,8 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill(call_id)
+        page.locator(INPUT_ID).locator('[type="text"]').type(call_id, delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -1034,7 +1050,8 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644396067.1832")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=100)
+        page.wait_for_timeout(300)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -1529,7 +1546,8 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644396067.1832")
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=100)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)

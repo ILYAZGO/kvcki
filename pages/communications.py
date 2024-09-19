@@ -125,8 +125,8 @@ def fill_search_length(value, page="page: Page"):
     page.wait_for_timeout(200)
     page.locator(INPUT_DLITELNOST_ZVONKA).locator('[type="text"]').clear()
     page.wait_for_timeout(200)
-    page.locator(INPUT_DLITELNOST_ZVONKA).locator('[type="text"]').fill(value)
-    page.wait_for_timeout(200)
+    page.locator(INPUT_DLITELNOST_ZVONKA).locator('[type="text"]').type(value, delay=100)
+    page.wait_for_timeout(400)
 
 
 def change_sort(sortType, page="page: Page"):

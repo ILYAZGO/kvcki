@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="gpt rules tests3" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check stand">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/communications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +71,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/PROD",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -565,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update tests" />
     <MESSAGE value="added 2 tests" />
     <MESSAGE value="small refactor" />
     <MESSAGE value="small refactor2" />
@@ -590,6 +593,7 @@
     <MESSAGE value="small refactor gpt rules tests" />
     <MESSAGE value="gpt rules tests2" />
     <MESSAGE value="gpt rules tests3" />
-    <option name="LAST_COMMIT_MESSAGE" value="gpt rules tests3" />
+    <MESSAGE value="check stand" />
+    <option name="LAST_COMMIT_MESSAGE" value="check stand" />
   </component>
 </project>
