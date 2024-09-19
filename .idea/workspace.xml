@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="gpt rules tests2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="gpt rules tests3" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,24 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_pass.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dates.executor&quot;: &quot;Run&quot;,
-    &quot;Python.erer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_pass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python tests.pytest for test_usedesk.test_example.executor": "Run",
+    "Python tests.pytest in test_pass.py.executor": "Run",
+    "Python.Unnamed.executor": "Run",
+    "Python.dates.executor": "Run",
+    "Python.erer.executor": "Run",
+    "Python.test_pass.executor": "Run",
+    "Python.variables.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/PROD",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/reports_test" />
@@ -567,7 +565,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="disabled flying add params test" />
     <MESSAGE value="update tests" />
     <MESSAGE value="added 2 tests" />
     <MESSAGE value="small refactor" />
@@ -592,6 +589,7 @@
     <MESSAGE value="upgrade download test4" />
     <MESSAGE value="small refactor gpt rules tests" />
     <MESSAGE value="gpt rules tests2" />
-    <option name="LAST_COMMIT_MESSAGE" value="gpt rules tests2" />
+    <MESSAGE value="gpt rules tests3" />
+    <option name="LAST_COMMIT_MESSAGE" value="gpt rules tests3" />
   </component>
 </project>
