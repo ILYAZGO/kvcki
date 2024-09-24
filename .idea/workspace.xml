@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added upload audio for user4">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added upload audio for user5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -571,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added test mistic" />
     <MESSAGE value="added test mistic2" />
     <MESSAGE value="added test mistic3" />
     <MESSAGE value="some small refactorig" />
@@ -596,6 +593,7 @@
     <MESSAGE value="added upload audio for user2" />
     <MESSAGE value="added upload audio for user3" />
     <MESSAGE value="added upload audio for user4" />
-    <option name="LAST_COMMIT_MESSAGE" value="added upload audio for user4" />
+    <MESSAGE value="added upload audio for user5" />
+    <option name="LAST_COMMIT_MESSAGE" value="added upload audio for user5" />
   </component>
 </project>
