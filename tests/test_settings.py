@@ -948,7 +948,7 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
         click_settings(page)
 
     with allure.step("Check items in left menu"):
-        expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия с коммуникациямиКвоты777История потребления услугАдресная книгаИнтеграции'])
+        expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия с коммуникациямиКвоты776История потребления услугАдресная книгаИнтеграции'])
         expect(page.locator(LEFT_MENU_ITEM)).to_have_count(7)
 
     with allure.step("Delete user"):

@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check stand3">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added upload audio for user">
       <change afterPath="$PROJECT_DIR$/audio/count-in.wav" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/audio/count-out.wav" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/send_file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/communications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
@@ -576,7 +575,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added tests stt" />
     <MESSAGE value="added test re recognize actions in calls" />
     <MESSAGE value="added test stt add user" />
     <MESSAGE value="added test stt add user2" />
@@ -601,6 +599,7 @@
     <MESSAGE value="check stand1" />
     <MESSAGE value="check stand2" />
     <MESSAGE value="check stand3" />
-    <option name="LAST_COMMIT_MESSAGE" value="check stand3" />
+    <MESSAGE value="added upload audio for user" />
+    <option name="LAST_COMMIT_MESSAGE" value="added upload audio for user" />
   </component>
 </project>
