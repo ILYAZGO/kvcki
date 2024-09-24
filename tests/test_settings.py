@@ -1593,6 +1593,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
 
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
+        page.wait_for_selector('[aria-rowindex="2"]')
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
         #expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1) # warning message
