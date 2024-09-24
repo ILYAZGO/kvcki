@@ -1595,7 +1595,8 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1) # warning message
+        #expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1) # warning message
+        expect(page.locator('[aria-rowindex="2"]')).to_have_count(1)
         expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
