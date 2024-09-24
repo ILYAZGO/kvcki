@@ -202,8 +202,9 @@ def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill input with text"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').fill("адрес")
-        page.wait_for_timeout(2000)
+        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').type("адрес", delay=100)
+        page.wait_for_timeout(300)
+        page.locator(MENU).locator('[id*="option-0"]').get_by_text("адрес").click()
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -344,8 +345,8 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
     with allure.step("Fill by tag"):
         page.wait_for_selector(INPUT_PO_TEGAM,timeout=wait_until_visible)
         page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=100)
-        page.wait_for_timeout(2600)
-        page.get_by_text("Другой отдел", exact=True).first.click()
+        page.wait_for_timeout(700)
+        page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Другой отдел", exact=True).click()
         page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
         page.wait_for_timeout(300)
 
@@ -356,9 +357,9 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 131 из 3130", timeout=wait_until_visible)  #131
 
     with allure.step("Add extra tag"):
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').fill("Обсуждение тарифа")
-        page.wait_for_timeout(2900)
-        page.get_by_text("Обсуждение тарифа", exact=True).first.click()
+        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Обсуждение тарифа", delay=100)
+        page.wait_for_timeout(700)
+        page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Обсуждение тарифа", exact=True).click()
         page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
         page.wait_for_timeout(300)
 
@@ -378,8 +379,8 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
     with allure.step("Add new tag"):
         page.wait_for_selector(INPUT_PO_TEGAM_NEW, timeout=wait_until_visible)
         page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
-        page.wait_for_timeout(2800)
-        page.get_by_text("Новое подключение", exact=True).first.click()
+        page.wait_for_timeout(800)
+        page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Новое подключение", exact=True).click()
         page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
 
     with allure.step("Press button (Find communications)"):
@@ -568,18 +569,14 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
 @allure.description("test_check_content_button_calls_actions (...)")
 def test_check_content_button_calls_actions(base_url, page: Page) -> None:
 
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
     with allure.step("Go to url"):
         page.goto(base_url, timeout=wait_until_visible)
 
-    with allure.step("Auth with Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
-
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
-
-    with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').fill("1644268426.90181")
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -589,6 +586,9 @@ def test_check_content_button_calls_actions(base_url, page: Page) -> None:
 
     with allure.step("Check content of button (...) calls action"):
         expect(page.locator(MENU)).to_have_text("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
 
 @pytest.mark.calls
