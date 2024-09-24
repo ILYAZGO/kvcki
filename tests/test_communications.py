@@ -386,7 +386,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 19 из 3130", timeout=wait_until_visible) #19
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 19 из 3130", timeout=wait_until_visible)
 
 
 @pytest.mark.calls
@@ -905,21 +905,15 @@ def test_check_search_template(base_url, page: Page) -> None:
 def test_check_communication_comment(base_url, page: Page) -> None:
 
     today = datetime.now().strftime("%d.%m.%Y, ")  # %H:%M can fail test if minutes changed while test running
-    call_id = "1644295919.90300"
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         page.goto(base_url, timeout=wait_until_visible)
 
-    with allure.step("Auth with Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
-
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
-
-    with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type(call_id, delay=100)
-        page.wait_for_timeout(500)
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -971,7 +965,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1).click()
 
     with allure.step("Check that comment saved and saved right"):
-        expect(page.locator('[class*="styles_author_"]')).to_have_text("ecotelecom")
+        expect(page.locator('[class*="styles_author_"]')).to_have_text(LOGIN)
         expect(page.locator('[class*="styles_time_"]')).to_contain_text(today)
         expect(page.locator(COMMENT_AREA).locator('[class*="styles_head_"]').locator('[height="18"]')).to_have_count(1)
         expect(page.locator(COMMENT_AREA).locator('[class*="styles_title_"]')).to_have_text("CommentTitle")
@@ -1014,6 +1008,9 @@ def test_check_communication_comment(base_url, page: Page) -> None:
     with allure.step("Check that comment was deleted"):
         expect(page.locator(COMMENT_AREA)).not_to_be_visible()
 
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
 
 @pytest.mark.calls
 @pytest.mark.independent
@@ -1035,7 +1032,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
     action_started = "Действие начато"
 
     with allure.step("Create admin"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+        USER_ID, TOKEN, LOGIN= create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
         page.goto(base_url, timeout=wait_until_visible)

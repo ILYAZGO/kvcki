@@ -1,6 +1,9 @@
 import requests
 import random
-from datetime import datetime
+import json
+import os
+import time
+from datetime import datetime, timedelta, timezone
 from loguru import logger
 
 logger.remove()
@@ -30,7 +33,7 @@ def create_user(URL, ROLE, PASSWORD):
         'client_secret': '',
     }
 
-    json = {
+    json_for_create = {
         'role': ROLE,
         'login': LOGIN,
         'name': NAME,
@@ -51,7 +54,7 @@ def create_user(URL, ROLE, PASSWORD):
         'Authorization': token,
     }
 
-    create = requests.post(url=URL + "/user", headers=headers_for_create, json=json)
+    create = requests.post(url=URL + "/user", headers=headers_for_create, json=json_for_create)
     user_id = create.text.replace('"', '')
 
     if create.status_code == 200:
@@ -130,31 +133,105 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} <<<<<")
 
+        # upload call
 
-        # # send audio file
-        # headers_for_audio = {
-        #     'accept': 'application/json',
-        #     'Content-Type': 'multipart/form-data',
-        #     'Authorization': token_for_user,
-        # }
-        #
-        # parameters = {"operator_filename": "string", "bitrix_deal_id": "string", "telegram_chat_id": "string",
-        #               "bitrix_crm_phone_number": "string", "stereo_url": "string", "speaker_names": ["string"],
-        #               "unique_id": "string", "bitrix_crm_entity_type": "string", "bitrix_crm_entity_id": "string",
-        #               "bitrix_entity_type": "string", "amo_note_id": "string", "hangup": "client",
-        #               "call_time": "2024-09-02T09:34:29.349Z", "stereo_audio_md5": "string",
-        #               "answer_time": "2024-09-02T09:34:29.349Z", "client_channel": "0", "has_audio": "true",
-        #               "telegram_message_id": "string", "bitrix_call_id": "string",
-        #               "end_time": "2024-09-02T09:34:29.349Z",
-        #               "amo_url_md5": "string", "operator_phone": "string", "operator_url": "string",
-        #               "integration_data": {"integration_id": "string", "task_id": "string", "service_name": "string"},
-        #               "is_only_new_tags": "false", "crm_entity_id": "string", "unanswered": "false",
-        #               "conversation_id": "string", "is_mono": "false", "language": "string",
-        #               "tags": [{"tag_type": "upload", "name": "string", "value": "string", "visible": "true"}],
-        #               "client_phone": "string",
-        #               "multichannel_params": [{"speaker_name": "string", "is_operator": "false", "unique_id": "string"}],
-        #               "client_url": "string", "client_filename": "string", "amo_event_id": "string",
-        #               "is_multichannel": "false", "direction": "income"}
+        client_audio_path = os.path.join('audio', 'count-in.wav')
+        operator_audio_path = os.path.join('audio', 'count-out.wav')
+
+        # time for call
+        current_time = datetime.now(timezone.utc)
+        delta_ten = current_time + timedelta(minutes=10)
+        # delta_one = current_time + timedelta(minutes=1)
+        now = current_time.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
+        # one_min_later = delta_one.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
+        ten_min_later = delta_ten.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
+
+        headers_for_upload = {
+            'accept': 'application/json',
+            'Authorization': token_for_user,
+        }
+
+        # json
+        json_data = {
+            # "operator_filename": "string",
+            # "bitrix_deal_id": "string",
+            # "telegram_chat_id": "string",
+            # "bitrix_crm_phone_number": "string",
+            # "stereo_url": "string",
+            # "speaker_names": ["first", "second"],
+            "unique_id": f"2ceb2380baed63d{random.randint(100000, 999999)}a96",
+            # "bitrix_crm_entity_type": "string",
+            # "bitrix_crm_entity_id": "string",
+            # "bitrix_entity_type": "string",
+            # "amo_note_id": "string",
+            # "hangup": "client",
+            "call_time": now,
+            # "stereo_audio_md5": "string",
+            # "answer_time": one_min_later ,
+            "client_channel": 1,
+            "has_audio": True,
+            # "telegram_message_id": "string",
+            # "bitrix_call_id": "string",
+            "end_time": ten_min_later,
+            # "amo_url_md5": "string",
+            "operator_phone": "1234567890",
+            # "operator_url": "string",
+            "integration_data": {
+                "integration_id": f"63ac6380baed63d{random.randint(100000, 999999)}a96",
+                "task_id": f"2c0bfb31-2596-49a3-8a92-19a93dbc078f",
+                "service_name": "auto_test"
+            },
+            "is_only_new_tags": False,
+            # "crm_entity_id": "string",
+            "unanswered": False,
+            # "conversation_id": f"{random.randint(100000,999999)}",
+            "is_mono": False,
+            # "language": "ru",
+            "tags": [
+                {
+                    "tag_type": "upload",
+                    "name": "auto",
+                    "value": "test",
+                    "visible": True
+                }
+            ],
+            "client_phone": "0987654321",
+            # "multichannel_params": [
+            #     {
+            #         "speaker_name": "Alex",
+            #         "is_operator": False,
+            #         "unique_id": f"{random.randint(100000,999999)}"
+            #     }
+            # ],
+            # "client_url": "string",
+            # "client_filename": "string",
+            # "amo_event_id": "string",
+            "is_multichannel": False,
+            "direction": "income"
+        }
+
+        # move json to string
+        json_str = json.dumps(json_data)
+
+        params_for_upload = {'params': (None, json_str)}
+
+        upload = requests.post(url=URL + "/call/", headers=headers_for_upload, data=params_for_upload,
+                               files=
+                               {
+                                   'client_audio': ('count-in.wav',
+                                                    open(client_audio_path, 'rb'),
+                                                    'audio/wav'),
+                                   'operator_audio': ('count-out.wav',
+                                                      open(operator_audio_path, 'rb'),
+                                                      'audio/wav')
+                               })
+
+        if upload.status_code == 200:
+            logger.opt(depth=1).info(f"\n>>>>> WAV id:{upload.text} uploaded  {URL}/call/ <<<<<")
+        else:
+            logger.opt(depth=1).info(f"\n>>>>> WAV upload error {upload.status_code} text {upload.text} <<<<<")
+
+        time.sleep(5)
 
 
     return user_id, token, LOGIN
@@ -228,9 +305,9 @@ def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, token):
         'Authorization': token,
     }
     importFrom_id = '64b923905f95f6305573e619'
-    json = [USER_ID_USER, importFrom_id]
+    json_with_id = [USER_ID_USER, importFrom_id]
 
-    give_user = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/user_limitation", headers=headers_for_giving, json=json)
+    give_user = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/user_limitation", headers=headers_for_giving, json=json_with_id)
 
 
     if give_user.status_code == 204:
@@ -245,18 +322,15 @@ def give_manager_all_rights(URL, USER_ID_MANAGER, token ):
         'Content-Type': 'application/json',
         'Authorization': token,
     }
-    json = {'restt': 'true','delete_user': 'true', 'add_user': 'true','set_default_engine': 'true',
+    json_with_rights = {'restt': 'true','delete_user': 'true', 'add_user': 'true','set_default_engine': 'true',
             'quota_edit': 'true', 'gpt_quota': 'true','user_modules_setup': 'true'}
 
-    give_rights = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/access_rights", headers=headers, json=json)
+    give_rights = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/access_rights", headers=headers, json=json_with_rights)
 
     if give_rights.status_code == 204:
         logger.opt(depth=1).info(f"\n>>>>> MANAGER {USER_ID_MANAGER} NOW HAVE ALL RIGHTS <<<<<")
     else:
         logger.opt(depth=1).info(f"\n>>>>> MANAGER {USER_ID_MANAGER} FAILED TO GET ALL RIGHTS <<<<<")
-
-
-
 
 
 

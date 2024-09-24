@@ -162,8 +162,8 @@ def press_ex_button_in_expanded_call(page="page: Page"):
         '[type="button"]').click()
     page.wait_for_selector(MODAL_WINDOW)
 
-def press_export_button(page="page: Page"):
-    page.locator
+# def press_export_button(page="page: Page"):
+#     page.locator
 
 def click_submit_in_word_processing(page="page: Page"):
     page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT).click()
