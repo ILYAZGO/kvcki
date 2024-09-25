@@ -2005,3 +2005,83 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_check_communication_manual_tag")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_communication_manual_tag")
+def test_check_communication_manual_tag(base_url, page: Page) -> None:
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Expand call"):
+        page.locator(BUTTON_EXPAND_CALL).click()
+        page.wait_for_selector(ALL_COMMENTS_AREA)
+
+    with allure.step("Press (add manual tag)"):
+        page.locator('[class*="_manualGroup_"]').locator('[type="button"]').click()
+        page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
+
+    with allure.step("Press (add comment)"):
+        page.keyboard.press("Enter")
+
+    with allure.step("Wait for alert and check alert message"):
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Укажите название тега")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+
+    # with allure.step("Press (add manual tag)"):
+    #     page.locator('[class*="_manualGroup_"]').locator('[type="button"]').click()
+    #     page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
+
+    with allure.step("Press (add manual tag)"):
+        page.locator('[data-testid="CustomSelectWithSearch"]').locator('[class*="_tagGhost_"]').click()
+        page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
+
+    with allure.step("Add manual tag name"):
+        page.locator('[data-testid="CustomSelectWithSearch"]').locator('[role="combobox"]').type("manual_tag", delay=100)
+
+    with allure.step("Press (add comment)"):
+        page.keyboard.press("Enter")
+
+    with allure.step("Wait for alert and check alert message"):
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Тег успешно добавлен")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+
+    with allure.step("Check that we can see 2 manual tags"):
+        expect(page.locator('[data-testid*="tag-"]')).to_have_count(2)
+
+    with allure.step("Press pencil button in tag"):
+        page.locator('[fill="#d9f7be"]').nth(0).click()
+        page.wait_for_selector('[role="tooltip"]')
+
+    with allure.step("Press delete"):
+        page.locator('[role="tooltip"]').get_by_text("Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW)
+
+    with allure.step(""):
+        page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
+
+    with allure.step("Wait for alert and check alert message"):
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Тег удален")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+
+    with allure.step("Check that we can see 2 manual tags"):
+        expect(page.locator('[data-testid*="tag-"]')).to_have_count(0)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
