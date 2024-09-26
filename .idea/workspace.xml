@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="-n 26">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add manual tag test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
     </list>
@@ -570,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor stt tests" />
     <MESSAGE value="refactor stt tests7" />
     <MESSAGE value="refactor stt tests8" />
     <MESSAGE value="upgrade yaml" />
@@ -595,6 +594,7 @@
     <MESSAGE value="added upload audio for user6" />
     <MESSAGE value="added upload audio for user7" />
     <MESSAGE value="-n 26" />
-    <option name="LAST_COMMIT_MESSAGE" value="-n 26" />
+    <MESSAGE value="add manual tag test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add manual tag test" />
   </component>
 </project>
