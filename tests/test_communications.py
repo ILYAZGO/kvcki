@@ -2048,6 +2048,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Press (add manual tag)"):
         page.locator('[data-testid="CustomSelectWithSearch"]').locator('[class*="_tagGhost_"]').click()
+        page.wait_for_timeout(300)
         page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
 
     with allure.step("Add manual tag name"):
@@ -2074,6 +2075,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step(""):
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Wait for alert and check alert message"):
         page.wait_for_selector(ALERT, timeout=wait_until_visible)

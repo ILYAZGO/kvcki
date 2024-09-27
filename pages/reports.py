@@ -1,3 +1,5 @@
+# from xml.dom.minicompat import defproperty
+
 from utils.variables import wait_until_visible
 # time period
 YESTERDAY = "button[value='yesterday']"
@@ -33,14 +35,25 @@ INPUT_SEARCH = '[name="searchString"]'
 BUTTON_LUPA = '[type="submit"]'
 BUTTON_CROSS = '[data-testid="CloseIcon"]'
 MODAL_WINDOW = '[role="dialog"]'
+MENU = '[class*="-menu"]'
 
 BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS = '[data-testid="tagNameChange"]'
+BUTTON_CHECKLIST_POINT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistChange"]'
+BUTTON_CHECKLIST_POINT_PERCENT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistChangePercent"]'
+BUTTON_CHECKLIST_QUESTION_POINT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistQuestionChange"]'
+BUTTON_CHECKLIST_QUESTION_POINT_PERCENT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistQuestionChangePercent"]'
+BUTTON_CHECKLIST_FREQUENT_ANSWER_FOR_QUESTION_IN_ADDITIONAL_PARAMS = '[data-testid="checklistAnswerAvg"]'
+BUTTON_COMMENT_IN_ADDITIONAL_PARAMS = '[data-testid="commentary"]'
+BUTTON_ADD_PARAMS_APPLY = '[data-testid="report_settings_apply"]'
+BUTTON_KORZINA_IN_ADD_PARAMS = '[data-testid*="delete_btn_view_"]'
 
 SELECT_WITH_ADDITIONAL_PARAM = '[class*="AdditionalParams_additionalSelect_"]'
 
 
 def go_to_reports(page="page: Page"):
-    page.wait_for_selector(BUTTON_OT4ETI)
+    page.wait_for_timeout(500)
+    page.wait_for_selector(BUTTON_OT4ETI, timeout=wait_until_visible)
+    page.wait_for_timeout(300)
     page.locator(BUTTON_OT4ETI).click()
 
 
@@ -72,10 +85,12 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
 
 def press_add_column(page="page: Page"):
     page.locator(BUTTON_ADD_COLUMN).click()
+    page.wait_for_timeout(500)
 
 
 def press_add_row(page="page: Page"):
     page.locator(BUTTON_ADD_ROW).click()
+    page.wait_for_timeout(500)
 
 
 def click_checkbox_in_tag_and_value(number, page="page: Page"):
@@ -88,7 +103,7 @@ def click_checkbox_in_tag_list(number, page="page: Page"):
 
 def press_generate_report(page="page: Page"):
     page.locator(BUTTON_GENERATE_REPORT).click()
-    page.wait_for_selector('[data-id="0"]')
+    page.wait_for_selector('[data-id="0"]', timeout=wait_until_visible)
 
 
 def press_save_as_new(page="page: Page"):
@@ -103,6 +118,7 @@ def press_save_current(page="page: Page"):
 
 def collapse_expand_report(page="page: Page"):
     page.locator(BUTTON_COLLAPSE_EXPAND).click()
+    page.wait_for_timeout(500)
 
 
 def change_grouping_period(period, page="page: Page"):
@@ -224,6 +240,59 @@ def add_checklist_to_report(checkListName, page="page: Page"):
 
 
 # additional params
-def click_gear_in(row_or_column, page="page: Page"):
-    page.locator(f'[data-testid="report_{row_or_column}s"]').locator('[viewBox="0 0 24 24"]').click()
+
+def click_apply_in_additional_params(page="page: Page"):
+    page.locator(BUTTON_ADD_PARAMS_APPLY).click()
+    page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
+
+def click_gear_in_rows(page="page: Page"):
+    page.locator('[data-testid="report_rows_row_1_settings_btn"]').click()
     page.wait_for_selector(MODAL_WINDOW)
+
+def click_gear_in_columns(columnNumber, page="page: Page"):
+    page.locator(f'[data-testid="report_columns_column_{columnNumber}_settings_btn"]').click()
+    page.wait_for_selector(MODAL_WINDOW)
+
+def click_add_param_tag_value(page="page: Page"):
+    page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+
+def click_add_param_checklist_point(page="page: Page"):
+    page.locator(BUTTON_CHECKLIST_POINT_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+    page.wait_for_timeout(500)
+
+def click_add_param_checklist_point_percent(page="page: Page"):
+    page.locator(BUTTON_CHECKLIST_POINT_PERCENT_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+    page.wait_for_timeout(500)
+
+def click_add_param_checklist_question_point(page="page: Page"):
+    page.locator(BUTTON_CHECKLIST_QUESTION_POINT_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+    page.wait_for_timeout(500)
+
+def click_add_param_checklist_question_point_percent(page="page: Page"):
+    page.locator(BUTTON_CHECKLIST_QUESTION_POINT_PERCENT_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+    page.wait_for_timeout(500)
+
+def click_add_param_checklist_frequent_answer_for_question(page="page: Page"):
+    page.locator(BUTTON_CHECKLIST_FREQUENT_ANSWER_FOR_QUESTION_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+    page.wait_for_timeout(500)
+
+def click_add_param_comment(page="page: Page"):
+    page.locator(BUTTON_COMMENT_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+    page.wait_for_timeout(500)
+
+def type_value_to_select(value, page="page: Page"):
+    page.locator(SELECT_WITH_ADDITIONAL_PARAM).locator('[type="text"]').click(force=True)
+    page.wait_for_selector(MENU)
+    page.wait_for_timeout(500)
+    page.locator(MENU).get_by_text(value, exact=True).click()
+
+def delete_select(page="page: Page"):
+    page.locator(MODAL_WINDOW).locator(BUTTON_KORZINA_IN_ADD_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM, state="hidden")

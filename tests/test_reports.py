@@ -1310,10 +1310,10 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Click additional params for rows"):
-        click_gear_in("row", page)
+        click_gear_in_rows(page)
 
     with allure.step("Check content of modal window for rows. 21 checkbox, 7 add params, 2 buttons"):
-        expect(page.locator('[role="dialog"]').locator('[type="checkbox"]')).to_have_count(21)
+        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(21)
         expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
         expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
         expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
@@ -1331,10 +1331,10 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Click additional params for columns"):
-        click_gear_in("column", page)
+        click_gear_in_columns("0", page)
 
     with allure.step("Check content of modal window for columns. 22 checkbox, 8 add params, 2 buttons"):
-        expect(page.locator('[role="dialog"]').locator('[type="checkbox"]')).to_have_count(22)
+        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(22)
         expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
         expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
         expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
@@ -1382,50 +1382,42 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in("row", page)
+        click_gear_in_rows(page)
 
     with allure.step("Click tag value in additional params and wait for select"):
-        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+        click_add_param_tag_value(page)
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        page.locator(MODAL_WINDOW).locator('[viewBox="0 0 18 18"]').click()
-        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM, state="hidden")
+        delete_select(page)
 
     with allure.step("Click tag value in additional params and wait for select"):
-        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+        click_add_param_tag_value(page)
 
     with allure.step("Choose tag in select"):
-        page.locator(SELECT_WITH_ADDITIONAL_PARAM).locator('[type="text"]').click()
-        page.locator('[class*="-menu"]').get_by_text("asterisk_context", exact=True).click()
+        type_value_to_select("asterisk_context", page)
 
-    with allure.step("Click (Accept)"):
-        page.get_by_role("button", name="Применить").click()
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
 
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in("column", page)
+        click_gear_in_columns("0", page)
 
     with allure.step("Click tag value in additional params and wait for select"):
-        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+        click_add_param_tag_value(page)
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        page.locator(MODAL_WINDOW).locator('[viewBox="0 0 18 18"]').click()
-        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM, state="hidden")
+        delete_select(page)
 
     with allure.step("Click tag value in additional params and wait for select"):
-        page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
-        page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+        click_add_param_tag_value(page)
 
     with allure.step("Choose tag in select"):
-        page.locator(SELECT_WITH_ADDITIONAL_PARAM).locator('[type="text"]').click()
-        page.locator('[class*="-menu"]').get_by_text("asterisk_context", exact=True).click()
+        type_value_to_select("asterisk_context", page)
 
-    with allure.step("Click (Accept)"):
-        page.get_by_role("button", name="Применить").click()
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
 
     # generate report
     with allure.step("Generate report"):
@@ -1440,3 +1432,451 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         # check that contain text
         expect(page.get_by_text("ecotelecom-support")).to_have_count(7)
 
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checklist_point")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checklist_point. For rows and columns")
+def test_reports_additional_params_checklist_point(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Click checklist point in additional params and wait for select"):
+        click_add_param_checklist_point(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist point in additional params and wait for select"):
+        click_add_param_checklist_point(page)
+
+    with allure.step("Choose checklist in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Click checklist point in additional params and wait for select"):
+        click_add_param_checklist_point(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist point in additional params and wait for select"):
+        click_add_param_checklist_point(page)
+
+    with allure.step("Choose checklist in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        expect(page.locator('[data-field="calls_count_Второй чеклист (тоже нужен для автотестов, не трогать)_0_0"]')).to_have_count(6)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_have_count(2)
+        # check avarage checklist value (10, 8.68, 8, -)
+        expect(page.locator('[title="8.73"]')).to_have_count(1)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checklist_point_percent")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checklist_point_percent. For rows and columns")
+def test_reports_additional_params_checklist_point_percent(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Click checklist point percent in additional params and wait for select"):
+        click_add_param_checklist_point_percent(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist point percent in additional params and wait for select"):
+        click_add_param_checklist_point_percent(page)
+
+    with allure.step("Choose checklist in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Click checklist point percent in additional params and wait for select"):
+        click_add_param_checklist_point_percent(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist point percent in additional params and wait for select"):
+        click_add_param_checklist_point_percent(page)
+
+    with allure.step("Choose checklist in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        expect(page.locator('[data-field="calls_count_Второй чеклист (тоже нужен для автотестов, не трогать)_0_0"]')).to_have_count(6)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_have_count(2)
+        # check avarage checklist value (100 %, 86.84 %, 80 %, -)
+        expect(page.locator('[title="87.3 %"]')).to_have_count(1)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checklist_question_point")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checklist_question_point. For rows and columns")
+def test_reports_additional_params_checklist_question_point(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Click checklist question point in additional params and wait for select"):
+        click_add_param_checklist_question_point(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist question point in additional params and wait for select"):
+        click_add_param_checklist_question_point(page)
+
+    with allure.step("Choose checklist question in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_checklist_question_point(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist question point in additional params and wait for select"):
+        click_add_param_checklist_question_point(page)
+
+    with allure.step("Choose checklist question in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        expect(page.locator('[data-field="calls_count_Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?_0_0"]')).to_have_count(6)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?"]')).to_have_count(2)
+        # check avarage checklist value (10, 8.68, 8, -)
+        expect(page.locator('[title="8.73"]')).to_have_count(1)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checklist_question_point_in_percent")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checklist_question_point_in_percent. For rows and columns")
+def test_reports_additional_params_checklist_question_point_in_percent(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Click checklist question point in additional params and wait for select"):
+        click_add_param_checklist_question_point_percent(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_checklist_question_point_percent(page)
+
+    with allure.step("Choose checklist question in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_checklist_question_point_percent(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_checklist_question_point_percent(page)
+
+    with allure.step("Choose checklist question in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        expect(page.locator('[data-field="calls_count_Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?_0_0"]')).to_have_count(6)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?"]')).to_have_count(2)
+        # check avarage checklist value (100 %, 86.84 %, 80 %, -)
+        expect(page.locator('[title="87.3 %"]')).to_have_count(1)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checklist_frequent_answer_for_question")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checklist_frequent_answer_for_question. For rows and columns")
+def test_reports_additional_params_checklist_frequent_answer_for_question(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Click checklist frequent answer in additional params and wait for select"):
+        click_add_param_checklist_frequent_answer_for_question(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_checklist_frequent_answer_for_question(page)
+
+    with allure.step("Choose checklist question in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_checklist_frequent_answer_for_question(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist frequent answer in additional params and wait for select"):
+        click_add_param_checklist_frequent_answer_for_question(page)
+
+    with allure.step("Choose checklist question in select"):
+        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        expect(page.locator('[data-field="calls_count_Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?_0_0"]')).to_have_count(6)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?"]')).to_have_count(2)
+        # check avarage checklist value (100 %, 86.84 %, 80 %, -)
+        expect(page.locator('[title="да"]')).to_have_count(7)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_comment")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_comment. For rows and columns")
+def test_reports_additional_params_comment(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Click checklist question point in additional params and wait for select"):
+        click_add_param_comment(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_comment(page)
+
+    with allure.step("Choose comment in select"):
+        type_value_to_select("2222", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_comment(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click checklist question point  in additional params and wait for select"):
+        click_add_param_comment(page)
+
+    with allure.step("Choose comment in select"):
+        type_value_to_select("2222", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        expect(page.locator('[data-field="calls_count_2222_0_0"]')).to_have_count(6)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="2222"]')).to_have_count(2)
+        expect(page.locator('[data-id="4"]').locator('[title="qqqq,3333"]')).to_have_count(1)
