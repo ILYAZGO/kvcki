@@ -84,6 +84,7 @@ SELECT_PARTNER = '[data-testid="selectPartner"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 SELECT_MENU = '[class*="-menu"]'
+MODAL_WINDOW = '[role="dialog"]'
 
 
 def click_settings(page="page: Page"):
@@ -91,7 +92,7 @@ def click_settings(page="page: Page"):
     page.locator(BUTTON_NASTROIKI).click()
     page.wait_for_timeout(500)
     page.wait_for_selector(INPUT_LOGIN)
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(500)
 
 
 def click_notifications(page="page: Page"):
@@ -154,6 +155,8 @@ def fill_quota_time(minutes, page="page: Page"):
 
 def press_add_in_quotas(page="page: Page"):
     page.get_by_role("button", name="Добавить", exact=True).click()
+    page.wait_for_selector(MODAL_WINDOW)
+
 
 
 def fill_address_book(Text, page="page: Page"):
@@ -205,6 +208,7 @@ def fill_personal_information_user_and_operator(name, email, phone, timezone, pa
     page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
     page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
+    page.wait_for_timeout(300)
 
 
 def change_industry(industry, page="page: Page"):
@@ -269,3 +273,4 @@ def all_checkboxes_to_be_checked(page="page: Page"):
     # Проверяем состояние каждого чекбокса
     all_checked = all(checkbox.is_checked() for checkbox in checkboxes)
     return all_checked
+

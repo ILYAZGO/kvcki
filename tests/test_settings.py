@@ -617,7 +617,7 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
 @allure.description("Check changing and saving personal info for user")
 def test_change_personal_information_save_user_itself(base_url, page: Page) -> None:
 
-    NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    NEW_NAME = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
 
     with allure.step("Create user"):
@@ -626,7 +626,7 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
     with allure.step("Go to page"):
         page.goto(base_url, timeout=wait_until_visible)
 
-    with allure.step("Auth with admin"):
+    with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to settings"):
@@ -637,6 +637,11 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
 
     with allure.step("Press (Save) button"):
         press_save(page)
+
+    with allure.step("Check alert"):
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Профиль успешно сохранен")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Click notifications"):
         click_notifications(page)
@@ -652,11 +657,13 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+        expect(page.locator(INPUT_NEW_PASSWORD)).to_be_enabled()
+        expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_disabled()
 
     with allure.step("Page reload"):
         page.reload()
         page.wait_for_selector(INPUT_EMAIL)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Check that personal information still have after reboot"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -666,8 +673,10 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
+        expect(page.locator(INPUT_NEW_PASSWORD)).to_be_enabled()
+        expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_disabled()
 
-    with allure.step("Delete admin"):
+    with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
 
@@ -677,6 +686,8 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for operator")
 def test_change_personal_information_save_operator_itself(base_url, page: Page) -> None:
+
+    message = "Редактировать персональную информацию может только администратор"
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -705,7 +716,7 @@ def test_change_personal_information_save_operator_itself(base_url, page: Page) 
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Check that message (Can change only administrator) exists"):
-        expect(page.locator('[class*="typography--variant-body2"]')).to_contain_text("Редактировать персональную информацию может только администратор")
+        expect(page.locator('[class*="typography--variant-body2"]')).to_contain_text(message)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
@@ -935,6 +946,8 @@ def test_left_menu_items_for_manager_itself(base_url, page: Page) -> None:
 @allure.description("Check how many items in left menu for role")
 def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
 
+    block_list = "Персональная информацияСотрудникиДействия с коммуникациямиКвоты776История потребления услугАдресная книгаИнтеграции"
+
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
@@ -948,7 +961,7 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
         click_settings(page)
 
     with allure.step("Check items in left menu"):
-        expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информацияСотрудникиДействия с коммуникациямиКвоты776История потребления услугАдресная книгаИнтеграции'])
+        expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(block_list)
         expect(page.locator(LEFT_MENU_ITEM)).to_have_count(7)
 
     with allure.step("Delete user"):
@@ -1202,10 +1215,10 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("777")
 
     with allure.step("Click checkbox (bessro4no)"):
-        page.locator('[role="dialog"]').locator('[type="checkbox"]').click()
+        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').click()
 
     with allure.step("Check that checkbox was checked"):
-        expect(page.locator('[role="dialog"]').locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_be_checked()
 
     with allure.step("Check that dates disabled"):
         expect(page.locator('[class*="ant-picker-disabled"]')).to_be_visible()
@@ -1261,7 +1274,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added quota"):
         page.locator('[fill="#FF4D4F"]').click()
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(1000)
 
     with allure.step("Check that quota deleted"):
         expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
