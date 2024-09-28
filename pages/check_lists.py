@@ -25,14 +25,26 @@ BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = '[class*="checkButton"]'
 
+MODAL_WINDOW = '[role="dialog"]'
+MENU = '[class*="-menu"]'
+ALERT = '[role="alert"]'
+
 # other
+SEARCH_IN_IMPORT_MODAL = '[data-testid="markup_checklists_importSearch}"]'
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 CHECK_BOX_AUTOGENEREATE_REPORT = '[id="checklistGenerateReport"]'
+
+def go_to_user(name, page="page: Page"):
+    page.locator(USERS_LIST).type(name, delay=100)
+    page.wait_for_timeout(300)
+    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector('[class*="CallsHeader"]')
 
 
 def go_to_check_list(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_selector(BUTTON_CHECK_LIST)
     page.locator(BUTTON_CHECK_LIST).click()
 
 
@@ -93,20 +105,24 @@ def delete_appriser(page="page: Page"):
     page.locator('[class*="CheckListAppraisers_deleteBtn"]').click()
     page.wait_for_timeout(300)
 
+def press_import_checklists(page="page: Page"):
+    page.locator('[data-testid="markup_importDicts"]').click()
+    page.wait_for_selector(MODAL_WINDOW)
 
 def delete_check_list(page="page: Page"):
     page.wait_for_timeout(200)
     page.locator(BUTTON_KORZINA).click()
-    page.get_by_role("button", name="Удалить").click()
+    page.wait_for_selector(MODAL_WINDOW)
+    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
 
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator('[class*="styles_groupItem__B425x"]').nth(0).locator('[type="checkbox"]').first.click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(600)
     page.locator(BUTTON_CHECK_LIST).click()
     page.locator(BUTTON_KORZINA).first.click()
-    page.wait_for_timeout(500)
+    page.wait_for_selector(MODAL_WINDOW)
     #  confirm deleting
-    page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(1400)
+    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+    page.wait_for_timeout(1000)

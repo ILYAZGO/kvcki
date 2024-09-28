@@ -92,10 +92,11 @@ def choose_filter_value(filterValue, page="page: Page"):
 
 
 def press_find_communications(page="page: Page"):
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(500)
     page.locator(BUTTON_FIND_COMMUNICATIONS).click()
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(500)
     page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
+    page.wait_for_timeout(500)
 
 
 def choose_period_button(period, page="page: Page"):
