@@ -207,7 +207,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Go to new chec-lists"):
         page.get_by_role("button", name="К новым чек-листам").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(1900)
 
     with allure.step("Check that check-lists imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
