@@ -5,3 +5,4 @@ def auth(login, password, page="page: Page"):
     page.locator("[id='password']").fill(password)
     page.wait_for_selector("[type='submit']")
     page.locator("[type='submit']").click()
+    page.wait_for_timeout(500)
