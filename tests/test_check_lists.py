@@ -214,7 +214,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete first check-list"):
-        delete_rule(page)
+        delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
         page.wait_for_selector(ALERT, timeout=wait_until_visible)
@@ -225,7 +225,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second check-list"):
-        delete_rule(page)
+        delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
         page.wait_for_selector(ALERT, timeout=wait_until_visible)
@@ -295,7 +295,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete first check-list"):
-        delete_rule(page)
+        delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
         page.wait_for_selector(ALERT, timeout=wait_until_visible)
@@ -306,7 +306,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second check-list"):
-        delete_rule(page)
+        delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
         page.wait_for_selector(ALERT, timeout=wait_until_visible)

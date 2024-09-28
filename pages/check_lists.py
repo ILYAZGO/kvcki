@@ -110,11 +110,10 @@ def press_import_checklists(page="page: Page"):
     page.wait_for_selector(MODAL_WINDOW)
 
 def delete_check_list(page="page: Page"):
-    page.wait_for_timeout(200)
-    page.locator(BUTTON_KORZINA).click()
+    page.wait_for_selector(BUTTON_KORZINA)
+    page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_selector(MODAL_WINDOW)
     page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
@@ -125,4 +124,3 @@ def delete_rule(page="page: Page"):
     page.wait_for_selector(MODAL_WINDOW)
     #  confirm deleting
     page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(2000)
