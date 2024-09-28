@@ -125,4 +125,4 @@ def delete_rule(page="page: Page"):
     page.wait_for_selector(MODAL_WINDOW)
     #  confirm deleting
     page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(2000)
