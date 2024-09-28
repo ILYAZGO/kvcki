@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="search flaky4" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="search flaky6">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -567,8 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="upgrade download test3" />
-    <MESSAGE value="upgrade download test4" />
     <MESSAGE value="small refactor gpt rules tests" />
     <MESSAGE value="gpt rules tests2" />
     <MESSAGE value="gpt rules tests3" />
@@ -592,6 +592,8 @@
     <MESSAGE value="search flaky2" />
     <MESSAGE value="search flaky3" />
     <MESSAGE value="search flaky4" />
-    <option name="LAST_COMMIT_MESSAGE" value="search flaky4" />
+    <MESSAGE value="search flaky5" />
+    <MESSAGE value="search flaky6" />
+    <option name="LAST_COMMIT_MESSAGE" value="search flaky6" />
   </component>
 </project>
