@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added add params tests">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -569,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="upgrade yaml" />
     <MESSAGE value="upgrade stt engines list" />
     <MESSAGE value="upgrade stt engines list2" />
     <MESSAGE value="upgrade stt engines list3" />
@@ -594,6 +593,7 @@
     <MESSAGE value="add manual tag test" />
     <MESSAGE value="added timeout" />
     <MESSAGE value="added add params tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="added add params tests" />
+    <MESSAGE value="small refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="small refactor" />
   </component>
 </project>

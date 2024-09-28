@@ -2047,6 +2047,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     #     page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
 
     with allure.step("Press (add manual tag)"):
+        page.wait_for_timeout(500)
         page.locator('[data-testid="CustomSelectWithSearch"]').locator('[class*="_tagGhost_"]').click()
         page.wait_for_timeout(300)
         page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
