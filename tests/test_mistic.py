@@ -23,7 +23,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
 
     with allure.step("Auth with 0AleberOper"):
         auth("0AleberOper", PASSWORD, page)
-        page.wait_for_selector(FIRST_DATE)
+        page.wait_for_selector(FIRST_DATE, timeout=wait_until_visible)
 
     with allure.step("Choose period"):
         page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
