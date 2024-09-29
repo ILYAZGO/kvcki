@@ -22,7 +22,6 @@ def test_check_dates(base_url, page: Page) -> None:
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
-        #page.wait_for_selector(FIRST_DATE)
         page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
         page.wait_for_timeout(1000)
 
@@ -162,8 +161,9 @@ def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
         choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill input with text"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').fill("адрес")
-        page.wait_for_timeout(2400)
+        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=100)
+        page.wait_for_timeout(300)
+        page.locator(MENU).locator('[id*="option-0"]').get_by_text("адрес").click()
 
     with allure.step("Press button (Find communications)"):
         press_find_communications(page)
@@ -431,7 +431,7 @@ def test_check_sort(base_url, page: Page) -> None:
 
     with allure.step("Check LONG FIRST in list"):
         expect(page.locator(CALL_DATE_AND_TIME)).to_have_text("09.02.22 18:08", timeout=wait_until_visible)
-    #
+
     with allure.step("Change sort to MORE POINTS"):
         change_sort("Сначала много баллов", page)
 
@@ -502,7 +502,7 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove Другой отдел"]')).to_be_visible()
 
     with allure.step("Press button (Clear)"):
-        page.locator('[data-testid="calls_btns_clear"]').click()
+        page.locator(BUTTON_CLEAR).click()
 
     with allure.step("Check that cleared"):
         expect(page.locator('[aria-label="Remove 79251579005"]')).not_to_be_visible()
@@ -676,40 +676,41 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 @allure.description("test_check_buttons_in_open_call")
 def test_check_buttons_in_open_call(base_url, page: Page) -> None:
 
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
     with allure.step("Go to url"):
         page.goto(base_url, timeout=wait_until_visible)
 
-    with allure.step("Auth with Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
 
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
-
-    with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
-        page.wait_for_timeout(500)
-
-    with allure.step("Press button (Find communications)"):
-        press_find_communications(page)
+    # with allure.step("Press button (Find communications)"):
+    #     press_find_communications(page)
 
     with allure.step("Expand call"):
+        page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
+        page.wait_for_timeout(3000)
         page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
+        page.wait_for_selector(ALL_COMMENTS_AREA)
 
     with allure.step("Check that all 6 buttons in expanded call visible"):
-        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Применение GPT правила"]')).to_be_visible()
-        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Перетегировать"]')).to_be_visible()
-        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Скачать"]')).to_be_visible()
-        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Excel экспорт"]')).to_be_visible()
-        expect(page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Скопировать публичную ссылку"]')).to_be_visible()
-        expect(page.locator('[class="MuiAccordion-region"]').locator(BUTTON_CALLS_ACTION)).to_be_visible()
+        expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Переход в источник коммуникации"]')).to_be_visible()
+        expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Применение GPT правила"]')).to_be_visible()
+        expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Перетегировать"]')).to_be_visible()
+        expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Скачать"]')).to_be_visible()
+        expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Excel экспорт"]')).to_be_visible()
+        expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Скопировать публичную ссылку"]')).to_be_visible()
+        expect(page.locator(OPEN_CALL_AREA).locator(BUTTON_CALLS_ACTION)).to_be_visible()
 
     with allure.step("Click button (calls action)"):
-        page.locator('[class="MuiAccordion-region"]').locator(BUTTON_CALLS_ACTION).click()
+        page.locator(OPEN_CALL_AREA).locator(BUTTON_CALLS_ACTION).click()
 
     with (allure.step("Check content in opened menu")):
-        expect(page.locator('[class="MuiAccordion-region"]').locator(MENU)).to_have_text("Мета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения ")
+        expect(page.locator(OPEN_CALL_AREA).locator(MENU)).to_have_text("Мета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения ")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
 @pytest.mark.calls
 @pytest.mark.independent
@@ -718,32 +719,29 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
 @allure.description("test_check_download_call_from_expanded_call")
 def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
 
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
     with allure.step("Go to url"):
         page.goto(base_url, timeout=wait_until_visible)
 
-    with allure.step("Auth with Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+    with allure.step("Auth with user"):
+        auth(LOGIN, PASSWORD, page)
 
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
-
-    with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
-        page.wait_for_timeout(500)
-
-    with allure.step("Press button (Find communications)"):
-        press_find_communications(page)
+    # with allure.step("Press button (Find communications)"):
+    #     press_find_communications(page)
 
     with allure.step("Expand call"):
+        page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
+        page.wait_for_timeout(3000)
         page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
+        page.wait_for_selector(ALL_COMMENTS_AREA)
 
     with allure.step("Press (Download) button and download file"):
         # Start waiting for the download
         with page.expect_download(timeout=50000) as download_info:
             # Perform the action that initiates download
-            page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Скачать"]').locator('[type="button"]').click()
+            page.locator(OPEN_CALL_AREA).locator('[aria-label="Скачать"]').locator('[type="button"]').click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -752,13 +750,16 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check that file downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert os.path.getsize(path + download.suggested_filename) == 690604
+        assert os.path.getsize(path + download.suggested_filename) == 1200536
 
     with allure.step("Remove downloaded file"):
         os.remove(path + download.suggested_filename)
 
     with allure.step("Check that file removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
 @pytest.mark.calls
 @pytest.mark.independent
@@ -915,21 +916,23 @@ def test_check_communication_comment(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         auth(LOGIN, PASSWORD, page)
 
-    with allure.step("Press button (Find communications)"):
-        press_find_communications(page)
+    # with allure.step("Press button (Find communications)"):
+    #     press_find_communications(page)
 
     with allure.step("Expand call"):
+        page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
+        page.wait_for_timeout(3000)
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector(ALL_COMMENTS_AREA)
 
-        if page.is_visible('[class*="styles_message_"]'):
-
-            page.locator('[class*="styles_optionsSelect_"]').click()
-            page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
-            page.wait_for_selector(MODAL_WINDOW)
-            page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-
-            page.wait_for_timeout(950)
+        # if page.is_visible('[class*="styles_message_"]'):
+        #
+        #     page.locator('[class*="styles_optionsSelect_"]').click()
+        #     page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
+        #     page.wait_for_selector(MODAL_WINDOW)
+        #     page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+        #
+        #     page.wait_for_timeout(950)
 
     with allure.step("Press (add comment)"):
         page.locator(BUTTON_ADD_COMMENT).click()
@@ -941,7 +944,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]')).not_to_be_checked()
 
     with allure.step("Check that we can close comment form with X"):
-        page.locator('[data-testid="CloseIcon"]').click()
+        page.locator(BUTTON_KRESTIK).click()
 
     with allure.step("Press (add comment)"):
         page.locator(BUTTON_ADD_COMMENT).click()

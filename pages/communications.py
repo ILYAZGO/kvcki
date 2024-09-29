@@ -34,6 +34,7 @@ BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 BUTTON_SUBMIT = '[type="submit"]'
 BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
+BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
 
 # other
 ALERT = '[role="alert"]'
@@ -53,7 +54,7 @@ SELECT_ENGINE = '[data-testid="stt_engine"]'
 SELECT_MODEL = '[data-testid="stt_model"]'
 
 FIRST_PAGE_PAGINATION = '[aria-label="page 1"]'
-
+OPEN_CALL_AREA = '[class="MuiAccordion-region"]'
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
 RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
 CHECKBOX_DIARIZATION = '[name="diarization"]'
