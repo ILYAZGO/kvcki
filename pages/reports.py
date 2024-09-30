@@ -44,6 +44,12 @@ BUTTON_CHECKLIST_QUESTION_POINT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistQ
 BUTTON_CHECKLIST_QUESTION_POINT_PERCENT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistQuestionChangePercent"]'
 BUTTON_CHECKLIST_FREQUENT_ANSWER_FOR_QUESTION_IN_ADDITIONAL_PARAMS = '[data-testid="checklistAnswerAvg"]'
 BUTTON_COMMENT_IN_ADDITIONAL_PARAMS = '[data-testid="commentary"]'
+CHECKBOX_COMMUNICATIONS_ADD_PARAMS = '[data-testid="show_calls_count"]'
+CHECKBOX_PERCENTAGE_FROM_REPORT_ADD_PARAMS = '[data-testid="show_percentage"]'
+CHECKBOX_PERCENTAGE_FROM_ROW_ADD_PARAMS = '[data-testid="show_percentage_from_all_calls_row"]'
+CHECKBOX_PERCENTAGE_FROM_COLUMN_ADD_PARAMS = '[data-testid="show_percentage_from_all_calls_col"]'
+CHECKBOX_PERCENTAGE_FROM_ROW_CELL_ADD_PARAMS = '[data-testid="show_percentage_from_sum_calls_row"]'
+CHECKBOX_PERCENTAGE_FROM_COLUMN_CELL_ADD_PARAMS = '[data-testid="show_percentage_from_sum_calls_col"]'
 BUTTON_ADD_PARAMS_APPLY = '[data-testid="report_settings_apply"]'
 BUTTON_KORZINA_IN_ADD_PARAMS = '[data-testid*="delete_btn_view_"]'
 

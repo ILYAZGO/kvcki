@@ -1880,3 +1880,69 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         # check headers
         expect(page.locator('[aria-label="2222"]')).to_have_count(2)
         expect(page.locator('[data-id="4"]').locator('[title="qqqq,3333"]')).to_have_count(1)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_percentage")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_percentage. 5 checkboxes with percentage. For rows and columns")
+def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Unclick communications checkbox and click 5 percentage checkboxes"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_REPORT_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_ROW_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_COLUMN_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_ROW_CELL_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_COLUMN_CELL_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Unclick communications checkbox and click 5 percentage checkboxes"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_REPORT_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_ROW_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_COLUMN_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_ROW_CELL_ADD_PARAMS).check()
+        page.locator(CHECKBOX_PERCENTAGE_FROM_COLUMN_CELL_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    # with allure.step("check"):
+    #     expect(page.locator('[data-field="calls_count_2222_0_0"]')).to_have_count(6)
+    #     # check headers
+    #     expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+    #     # check headers
+    #     expect(page.locator('[aria-label="2222"]')).to_have_count(2)
+    #     expect(page.locator('[data-id="4"]').locator('[title="qqqq,3333"]')).to_have_count(1)
