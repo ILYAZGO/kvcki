@@ -1939,10 +1939,157 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
     with allure.step("Generate report"):
         press_generate_report(page)
 
-    # with allure.step("check"):
-    #     expect(page.locator('[data-field="calls_count_2222_0_0"]')).to_have_count(6)
-    #     # check headers
-    #     expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
-    #     # check headers
-    #     expect(page.locator('[aria-label="2222"]')).to_have_count(2)
-    #     expect(page.locator('[data-id="4"]').locator('[title="qqqq,3333"]')).to_have_count(1)
+    with allure.step("check"):
+        # check headers
+        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в отчет"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в строку"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в столбец"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в ячейку строки"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в ячейку столбца"]')).to_have_count(2)
+        # check sum
+        expect(page.locator('[title="19.68"]')).to_have_count(1)
+        expect(page.locator('[title="66.84"]')).to_have_count(1)
+        expect(page.locator('[title="13.39"]')).to_have_count(1)
+        expect(page.locator('[title="0.1"]')).to_have_count(1)
+        expect(page.locator('[title="100"]')).to_have_count(9)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_points")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_points. 4 checkboxes with points. For rows and columns")
+def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Unclick communications checkbox and click 4 points checkboxes"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_AVERAGE_POINT_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_AVERAGE_POINT_CHECKLIST_PERCENT_ADD_PARAMS).check()
+        page.locator(CHECKBOX_POINTS_SUM_ADD_PARAMS).check()
+        page.locator(CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Unclick communications checkbox and click 4 points checkboxes"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_AVERAGE_POINT_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_AVERAGE_POINT_CHECKLIST_PERCENT_ADD_PARAMS).check()
+        page.locator(CHECKBOX_POINTS_SUM_ADD_PARAMS).check()
+        page.locator(CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        # check headers
+        expect(page.locator('[aria-label="Сумма баллов"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Сумма максимальных баллов"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Средний балл"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Средний балл в %"]')).to_have_count(2)
+        # check sum
+        expect(page.locator('[title="14529"]')).to_have_count(2)
+        expect(page.locator('[title="49531"]')).to_have_count(2)
+        expect(page.locator('[title="11.37"]')).to_have_count(2)
+        expect(page.locator('[title="29.33 %"]')).to_have_count(1)
+        expect(page.locator('[title="29.33"]')).to_have_count(1) #this is bug
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_talk_time")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_talk_time. 4 checkboxes with talk time. For rows and columns")
+def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Unclick communications checkbox and click 4 percentage checkboxes"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_CLIENT_TALK_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_CLIENT_TALK_TIME_PERCENT_ADD_PARAMS).check()
+        page.locator(CHECKBOX_OPERATOR_TALK_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_OPERATOR_TALK_TIME_PERCENT_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Unclick communications checkbox and click 4 percentage checkboxes"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_CLIENT_TALK_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_CLIENT_TALK_TIME_PERCENT_ADD_PARAMS).check()
+        page.locator(CHECKBOX_OPERATOR_TALK_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_OPERATOR_TALK_TIME_PERCENT_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        # check headers
+        expect(page.locator('[aria-label="Время разговора оператора"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Время разговора клиента"]')).to_have_count(2)
+        expect(page.locator('[aria-label="% разговора оператора"]')).to_have_count(2)
+        expect(page.locator('[aria-label="% разговора клиента"]')).to_have_count(2)
+        # check sum
+        expect(page.locator('[title="28:33:44"]')).to_have_count(2)
+        expect(page.locator('[title="27:44:08"]')).to_have_count(2)
+        expect(page.locator('[title="35.34 %"]')).to_have_count(1)
+        expect(page.locator('[title="34.32 %"]')).to_have_count(1)
+        expect(page.locator('[title="35.34"]')).to_have_count(1) #this is bug
+        expect(page.locator('[title="34.32"]')).to_have_count(1) #this is bug
+
+

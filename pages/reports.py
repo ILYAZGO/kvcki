@@ -50,6 +50,19 @@ CHECKBOX_PERCENTAGE_FROM_ROW_ADD_PARAMS = '[data-testid="show_percentage_from_al
 CHECKBOX_PERCENTAGE_FROM_COLUMN_ADD_PARAMS = '[data-testid="show_percentage_from_all_calls_col"]'
 CHECKBOX_PERCENTAGE_FROM_ROW_CELL_ADD_PARAMS = '[data-testid="show_percentage_from_sum_calls_row"]'
 CHECKBOX_PERCENTAGE_FROM_COLUMN_CELL_ADD_PARAMS = '[data-testid="show_percentage_from_sum_calls_col"]'
+CHECKBOX_CLIENT_TALK_TIME_ADD_PARAMS = '[data-testid="show_client_time"]'
+CHECKBOX_CLIENT_TALK_TIME_PERCENT_ADD_PARAMS = '[data-testid="show_client_time_percentage"]'
+CHECKBOX_OPERATOR_TALK_TIME_ADD_PARAMS = '[data-testid="show_operator_time"]'
+CHECKBOX_OPERATOR_TALK_TIME_PERCENT_ADD_PARAMS = '[data-testid="show_operator_time_percentage"]'
+
+
+
+CHECKBOX_AVERAGE_POINT_CHECKLIST_ADD_PARAMS = '[data-testid="show_checklist_average"]'
+CHECKBOX_AVERAGE_POINT_CHECKLIST_PERCENT_ADD_PARAMS = '[data-testid="show_checklist_average_percent"]'
+
+CHECKBOX_POINTS_SUM_ADD_PARAMS = '[data-testid="show_points"]'
+CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS = '[data-testid="show_max_points"]'
+
 BUTTON_ADD_PARAMS_APPLY = '[data-testid="report_settings_apply"]'
 BUTTON_KORZINA_IN_ADD_PARAMS = '[data-testid*="delete_btn_view_"]'
 
