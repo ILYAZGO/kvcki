@@ -921,7 +921,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Expand call"):
         page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(4000)
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector(ALL_COMMENTS_AREA)
 
@@ -2031,7 +2031,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Expand call"):
         page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(4000)
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector(ALL_COMMENTS_AREA)
 
