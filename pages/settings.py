@@ -88,7 +88,7 @@ MODAL_WINDOW = '[role="dialog"]'
 
 
 def click_settings(page="page: Page"):
-    page.wait_for_selector(BUTTON_NASTROIKI)
+    page.wait_for_selector(BUTTON_NASTROIKI, timeout=wait_until_visible)
     page.locator(BUTTON_NASTROIKI).click()
     page.wait_for_timeout(500)
     page.wait_for_selector(INPUT_LOGIN)
