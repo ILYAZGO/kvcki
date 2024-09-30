@@ -81,6 +81,7 @@ def press_create_report(page="page: Page"):
     page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
 
 def press_create_report_in_management(page="page: Page"):
+    page.wait_for_timeout(500)
     page.locator(BUTTON_CREATE_REPORT_IN_MANAGEMENT).click()
     page.wait_for_selector(BUTTON_GENERATE_REPORT)
 
@@ -126,6 +127,7 @@ def press_generate_report(page="page: Page"):
 
 
 def press_save_as_new(page="page: Page"):
+    page.wait_for_timeout(500)
     page.locator(BUTTON_SAVE_AS_NEW).click()
     page.wait_for_selector('[class="modal-btns"]')
 

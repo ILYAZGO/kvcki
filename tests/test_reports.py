@@ -267,11 +267,11 @@ def test_reports_management_check(base_url, page: Page) -> None:
         press_save_as_new(page)
 
     with allure.step("Fill report name"):
-        page.locator(INPUT_REPORT_NAME).fill("auto_test_report")
+        page.locator(INPUT_REPORT_NAME).type("auto_test_report", delay=50)
 
     with allure.step("Press (submit)"):
         page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(2000)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -294,7 +294,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         page.locator('[class*="styles_nameCell_"]').locator('[aria-label="Сбросить"]').click()
         page.locator('[class*="styles_nameCell_"]').locator('[type="button"]').click()
         page.locator('[name="reportName"]').clear()
-        page.locator('[name="reportName"]').fill("changedReportName")
+        page.locator('[name="reportName"]').type("changedReportName", delay=50)
         page.locator('[aria-label="Сохранить"]').click()
 
     with allure.step("Check that report name changed"):
