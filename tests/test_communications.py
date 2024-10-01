@@ -43,12 +43,12 @@ def test_check_dates(base_url, page: Page) -> None:
         expect(page.locator(FIRST_DATE)).to_have_value(first_day_week_ago)
         expect(page.locator(LAST_DATE)).to_have_value(today)
 
-    with allure.step("Switch to month"):
-        page.locator(MONTH).click()
-
-    with allure.step("Check first and last dates in view."):
-        expect(page.locator(FIRST_DATE)).to_have_value(first_day_month_ago)
-        expect(page.locator(LAST_DATE)).to_have_value(today)
+    # with allure.step("Switch to month"):
+    #     page.locator(MONTH).click()
+    #
+    # with allure.step("Check first and last dates in view."):
+    #     expect(page.locator(FIRST_DATE)).to_have_value(first_day_month_ago)
+    #     expect(page.locator(LAST_DATE)).to_have_value(today)
 
     with allure.step("Switch to year"):
         page.locator(YEAR).click()

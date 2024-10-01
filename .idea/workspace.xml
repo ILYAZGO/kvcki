@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added few tests add params">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
@@ -571,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added upload audio for user2" />
     <MESSAGE value="added upload audio for user3" />
     <MESSAGE value="added upload audio for user4" />
     <MESSAGE value="added upload audio for user5" />
@@ -596,6 +595,7 @@
     <MESSAGE value="refactor3" />
     <MESSAGE value="refactor4" />
     <MESSAGE value="added few tests add params" />
-    <option name="LAST_COMMIT_MESSAGE" value="added few tests add params" />
+    <MESSAGE value="small refactor7" />
+    <option name="LAST_COMMIT_MESSAGE" value="small refactor7" />
   </component>
 </project>
