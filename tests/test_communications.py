@@ -769,7 +769,7 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
 def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
-        page.goto("http://192.168.10.101/feature-dev-2955", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with Ecotelecom"):
         auth(ECOTELECOM, ECOPASS, page)
