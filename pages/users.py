@@ -91,11 +91,11 @@ def set_user(name, login, password, mail, phone, comment, role, page="page: Page
     page.locator(INPUT_PHONE).fill(phone)
     page.wait_for_selector(f'[value="{phone}"]')
     page.locator(INPUT_COMMENT).fill(comment)
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(400)
     page.locator(SELECT_ROLE).locator("svg").click()
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(role, exact=True).click()
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(500)
 
 
 def set_operator(name, login, password, phone, mail, comment, page="page: Page"):

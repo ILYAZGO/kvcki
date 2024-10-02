@@ -184,6 +184,7 @@ def change_login(login, page="page: Page"):
 
 def fill_personal_information_admin_and_manager(name, email, phone, comment, timezone, page="page: Page"):
     #  admin and manager can see and write comment
+    page.wait_for_timeout(500)
     page.locator(INPUT_NAME).fill(name)
     page.wait_for_selector(f'[value="{name}"]')
     page.locator(INPUT_EMAIL).fill(email)
