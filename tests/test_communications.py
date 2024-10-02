@@ -1064,6 +1064,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
     with allure.step("Choose re-recognize in menu"):
         page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
+        page.wait_for_timeout(1000)
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Check modal window content"):
