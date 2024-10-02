@@ -2019,8 +2019,8 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
         expect(page.locator('[title="14529"]')).to_have_count(2)
         expect(page.locator('[title="49531"]')).to_have_count(2)
         expect(page.locator('[title="11.37"]')).to_have_count(2)
-        expect(page.locator('[title="29.33 %"]')).to_have_count(1)
-        expect(page.locator('[title="29.33"]')).to_have_count(1) #this is bug
+        expect(page.locator('[title="29.33 %"]')).to_have_count(2)
+        #expect(page.locator('[title="29.33"]')).to_have_count(1) #this is bug
 
 
 @pytest.mark.independent
@@ -2087,9 +2087,8 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         # check sum
         expect(page.locator('[title="28:33:44"]')).to_have_count(2)
         expect(page.locator('[title="27:44:08"]')).to_have_count(2)
-        expect(page.locator('[title="35.34 %"]')).to_have_count(1)
-        expect(page.locator('[title="34.32 %"]')).to_have_count(1)
-        expect(page.locator('[title="35.34"]')).to_have_count(1) #this is bug
-        expect(page.locator('[title="34.32"]')).to_have_count(1) #this is bug
+        expect(page.locator('[title="35.34 %"]')).to_have_count(2)
+        expect(page.locator('[title="34.32 %"]')).to_have_count(2)
+
 
 
