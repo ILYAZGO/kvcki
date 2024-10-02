@@ -282,6 +282,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         page.wait_for_selector(SEARCH_IN_IMPORT_MODAL, timeout=wait_until_visible)
 
     with allure.step("Import first"):
+        page.wait_for_timeout(600)
         page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(0).check()
         page.wait_for_timeout(700)
 
@@ -295,7 +296,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Go to new chec-lists"):
         page.get_by_role("button", name="К новым чек-листам").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(1900)
 
     with allure.step("Check that check-lists imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)

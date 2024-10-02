@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor17">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="small refactor18">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_lists.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -570,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="search flaky" />
     <MESSAGE value="search flaky2" />
     <MESSAGE value="search flaky3" />
     <MESSAGE value="search flaky4" />
@@ -595,6 +595,7 @@
     <MESSAGE value="small refactor15" />
     <MESSAGE value="small refactor16" />
     <MESSAGE value="small refactor17" />
-    <option name="LAST_COMMIT_MESSAGE" value="small refactor17" />
+    <MESSAGE value="small refactor18" />
+    <option name="LAST_COMMIT_MESSAGE" value="small refactor18" />
   </component>
 </project>
