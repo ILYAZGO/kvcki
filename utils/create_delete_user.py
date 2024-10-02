@@ -231,7 +231,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\n>>>>> WAV upload error {upload.status_code} text {upload.text} <<<<<")
 
-        time.sleep(15)
+        time.sleep(25)
 
 
     return user_id, token, LOGIN
