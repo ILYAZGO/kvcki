@@ -198,13 +198,16 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Import first"):
         page.wait_for_timeout(600)
-        page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
+        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(0).check()
+        page.wait_for_timeout(700)
 
     with allure.step("Press (Go on)"):
         page.get_by_role("button", name="Продолжить").click()
+        page.wait_for_timeout(700)
 
     with allure.step("Import second"):
-        page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()
+        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(1).check()
+        page.wait_for_timeout(700)
 
     with allure.step("Go to new chec-lists"):
         page.get_by_role("button", name="К новым чек-листам").click()
@@ -279,13 +282,16 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         page.wait_for_selector(SEARCH_IN_IMPORT_MODAL, timeout=wait_until_visible)
 
     with allure.step("Import first"):
-        page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
+        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(0).check()
+        page.wait_for_timeout(700)
 
     with allure.step("Press (Go on)"):
         page.get_by_role("button", name="Продолжить").click()
+        page.wait_for_timeout(700)
 
     with allure.step("Import second"):
-        page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()
+        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(1).check()
+        page.wait_for_timeout(700)
 
     with allure.step("Go to new chec-lists"):
         page.get_by_role("button", name="К новым чек-листам").click()
