@@ -1947,11 +1947,11 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
         expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в ячейку строки"]')).to_have_count(2)
         expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в ячейку столбца"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="19.68"]')).to_have_count(1)
-        expect(page.locator('[title="66.84"]')).to_have_count(1)
-        expect(page.locator('[title="13.39"]')).to_have_count(1)
-        expect(page.locator('[title="0.1"]')).to_have_count(1)
-        expect(page.locator('[title="100"]')).to_have_count(9)
+        expect(page.locator('[title="19.68 %"]')).to_have_count(4)
+        expect(page.locator('[title="66.84 %"]')).to_have_count(4)
+        expect(page.locator('[title="13.39 %"]')).to_have_count(4)
+        expect(page.locator('[title="0.1 %"]')).to_have_count(4)
+        expect(page.locator('[title="100 %"]')).to_have_count(20)
 
 
 @pytest.mark.independent
