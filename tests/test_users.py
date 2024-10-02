@@ -444,6 +444,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
 
     with allure.step("Go to users"):
         go_to_users(page)
+        page.wait_for_timeout(5000)
         page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
 
     with allure.step("Press button (Add User)"):

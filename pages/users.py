@@ -134,17 +134,17 @@ def set_stt(language, engine, model, page="page: Page"):
     page.locator(SELECT_LANGUAGE).click()
     page.wait_for_selector(SELECT_MENU)
     page.get_by_text(language, exact=True).click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(1000)
 
     page.locator(SELECT_ENGINE).click()
     page.wait_for_selector(SELECT_MENU)
     page.get_by_text(engine, exact=True).click()
-    page.wait_for_timeout(600)
+    page.wait_for_timeout(1000)
 
     page.locator(SELECT_MODEL).click()
     page.wait_for_selector(SELECT_MENU)
     page.get_by_text(model, exact=True).click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(1000)
 
 
 def delete_added_user(page="page: Page"):
