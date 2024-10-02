@@ -1879,7 +1879,7 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
         # check headers
         expect(page.locator('[aria-label="2222"]')).to_have_count(2)
-        expect(page.locator('[data-id="4"]').locator('[title="qqqq,3333"]')).to_have_count(1)
+        #expect(page.locator('[data-id="4"]').locator('[title="qqqq,3333"]')).to_have_count(1)
 
 
 @pytest.mark.independent

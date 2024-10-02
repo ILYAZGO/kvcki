@@ -192,11 +192,12 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         press_import_checklists(page)
 
     with allure.step("Fill user for import"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("importFrom", delay=100)
+        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("importFrom", delay=50)
         page.locator(MENU).get_by_text("importFrom", exact=True).click()
         page.wait_for_selector(SEARCH_IN_IMPORT_MODAL, timeout=wait_until_visible)
 
     with allure.step("Import first"):
+        page.wait_for_timeout(600)
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
 
     with allure.step("Press (Go on)"):
