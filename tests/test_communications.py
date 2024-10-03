@@ -1493,7 +1493,9 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
+        page.wait_for_timeout(500)
         page.locator(CHECKBOX_DIARIZATION).uncheck()
+        page.wait_for_timeout(1500)
 
     with allure.step("Change parameters"):
         page.locator(RECOGNITION_PRIORITY).locator('[type="number"]').fill("10")
