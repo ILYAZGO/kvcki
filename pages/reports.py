@@ -54,6 +54,11 @@ CHECKBOX_CLIENT_TALK_TIME_ADD_PARAMS = '[data-testid="show_client_time"]'
 CHECKBOX_CLIENT_TALK_TIME_PERCENT_ADD_PARAMS = '[data-testid="show_client_time_percentage"]'
 CHECKBOX_OPERATOR_TALK_TIME_ADD_PARAMS = '[data-testid="show_operator_time"]'
 CHECKBOX_OPERATOR_TALK_TIME_PERCENT_ADD_PARAMS = '[data-testid="show_operator_time_percentage"]'
+CHECKBOX_SILENCE_DURATION_ADD_PARAMS = '[data-testid="show_silence_time"]'
+CHECKBOX_SILENCE_DURATION_PERCENT_ADD_PARAMS = '[data-testid="show_silence_time_percentage"]'
+CHECKBOX_CLIENTS_PHONES_ADD_PARAMS = '[data-testid="show_client_phones"]'
+CHECKBOX_OPERATORS_PHONES_ADD_PARAMS = '[data-testid="show_operator_phones"]'
+
 
 
 

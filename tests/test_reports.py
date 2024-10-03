@@ -2091,4 +2091,126 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         expect(page.locator('[title="34.32 %"]')).to_have_count(2)
 
 
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_silence_duration")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_silence_duration. 2 checkboxes with silence duration. For rows and columns")
+def test_reports_additional_params_checkboxes_silence_duration(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Unclick communications checkbox and click 2 silence duration"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_SILENCE_DURATION_ADD_PARAMS).check()
+        page.locator(CHECKBOX_SILENCE_DURATION_PERCENT_ADD_PARAMS).check()
+
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Unclick communications checkbox and click 2 silence duration"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_SILENCE_DURATION_ADD_PARAMS).check()
+        page.locator(CHECKBOX_SILENCE_DURATION_PERCENT_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        # check headers
+        expect(page.locator('[aria-label="Продолжительность тишины"]')).to_have_count(2)
+        expect(page.locator('[aria-label="% продолжительности тишины"]')).to_have_count(2)
+        # check sum
+        expect(page.locator('[title="24:30:51"]')).to_have_count(2)
+        expect(page.locator('[title="30.33 %"]')).to_have_count(2)
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_phones")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_phones. 2 checkboxes with phones. For rows and columns")
+def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Unclick communications checkbox and click 2 phones"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_CLIENTS_PHONES_ADD_PARAMS).check()
+        page.locator(CHECKBOX_OPERATORS_PHONES_ADD_PARAMS).check()
+
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Unclick communications checkbox and click 2 phones"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_CLIENTS_PHONES_ADD_PARAMS).check()
+        page.locator(CHECKBOX_OPERATORS_PHONES_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        # check headers
+        expect(page.locator('[aria-label="Телефоны клиентов"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Телефоны сотрудников"]')).to_have_count(2)
+        # check sum
+        expect(page.get_by_text("89672838036")).to_have_count(4)
+        expect(page.get_by_text("4958017857")).to_have_count(6)
+
+
+
 

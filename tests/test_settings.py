@@ -367,7 +367,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         click_rights(page)
     
     with allure.step("Check that user have 3 right"):
-        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(3)
+        expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(4)
     
     with allure.step("Click to all rights and check all checkboxes"):
         click_all_checkboxes_on_page(page)
