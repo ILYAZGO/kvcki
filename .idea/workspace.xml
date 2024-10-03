@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added tests4">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added tests5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
     </list>
@@ -571,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="search flaky8" />
     <MESSAGE value="search flaky9" />
     <MESSAGE value="refactor" />
     <MESSAGE value="refactor2" />
@@ -596,6 +594,7 @@
     <MESSAGE value="added tests2" />
     <MESSAGE value="added tests3" />
     <MESSAGE value="added tests4" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tests4" />
+    <MESSAGE value="added tests5" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tests5" />
   </component>
 </project>

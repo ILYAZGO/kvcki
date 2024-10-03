@@ -167,6 +167,7 @@ def press_ex_button_in_expanded_call(page="page: Page"):
 #     page.locator
 
 def click_submit_in_word_processing(page="page: Page"):
+    page.wait_for_timeout(500)
     page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT).click()
     page.wait_for_timeout(500)
 

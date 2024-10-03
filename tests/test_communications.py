@@ -1493,9 +1493,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
-        page.wait_for_timeout(500)
         page.locator(CHECKBOX_DIARIZATION).uncheck()
-        page.wait_for_timeout(1500)
 
     with allure.step("Change parameters"):
         page.locator(RECOGNITION_PRIORITY).locator('[type="number"]').fill("10")
@@ -1503,9 +1501,11 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         #page.locator(CHECKBOX_USE_WEBHOOK).set_checked(checked=True)
 
     with allure.step("Press (Save)"):
+        page.wait_for_timeout(1500)
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
+        page.wait_for_timeout(500)
         page.wait_for_selector(ALERT, timeout=wait_until_visible)
         expect(page.locator(ALERT)).to_contain_text(action_started)
         page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
