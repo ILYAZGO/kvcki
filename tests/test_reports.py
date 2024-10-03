@@ -2212,5 +2212,68 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
         expect(page.get_by_text("4958017857")).to_have_count(6)
 
 
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_sum_time_first_last_time")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_sum_time_first_last_time. 2 checkboxes with sum time and first last time. For rows and columns")
+def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Unclick communications checkbox and click 2 sum time and first/last time"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_SUM_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_FIRST_LAST_COMM_TIME_ADD_PARAMS).check()
+
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Unclick communications checkbox and click 2 sum time and first/last time"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_SUM_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_FIRST_LAST_COMM_TIME_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        # check headers
+        expect(page.locator('[aria-label="Суммарное время"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Время первой коммуникации"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Время последней коммуникации"]')).to_have_count(2)
+        # check sum
+        expect(page.locator('[title="80:48:43"]')).to_have_count(2)
+        expect(page.locator('[title="08.02.2022, 00:12:20"]')).to_have_count(4)
+        expect(page.locator('[title="16.05.2022, 18:21:38"]')).to_have_count(4)
+
+
 
 

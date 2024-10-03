@@ -45,6 +45,7 @@ BUTTON_CHECKLIST_QUESTION_POINT_PERCENT_IN_ADDITIONAL_PARAMS = '[data-testid="ch
 BUTTON_CHECKLIST_FREQUENT_ANSWER_FOR_QUESTION_IN_ADDITIONAL_PARAMS = '[data-testid="checklistAnswerAvg"]'
 BUTTON_COMMENT_IN_ADDITIONAL_PARAMS = '[data-testid="commentary"]'
 CHECKBOX_COMMUNICATIONS_ADD_PARAMS = '[data-testid="show_calls_count"]'
+CHECKBOX_SUM_TIME_ADD_PARAMS = '[data-testid="show_minutes"]'
 CHECKBOX_PERCENTAGE_FROM_REPORT_ADD_PARAMS = '[data-testid="show_percentage"]'
 CHECKBOX_PERCENTAGE_FROM_ROW_ADD_PARAMS = '[data-testid="show_percentage_from_all_calls_row"]'
 CHECKBOX_PERCENTAGE_FROM_COLUMN_ADD_PARAMS = '[data-testid="show_percentage_from_all_calls_col"]'
@@ -59,11 +60,9 @@ CHECKBOX_SILENCE_DURATION_PERCENT_ADD_PARAMS = '[data-testid="show_silence_time_
 CHECKBOX_CLIENTS_PHONES_ADD_PARAMS = '[data-testid="show_client_phones"]'
 CHECKBOX_OPERATORS_PHONES_ADD_PARAMS = '[data-testid="show_operator_phones"]'
 
-
-
-
 CHECKBOX_AVERAGE_POINT_CHECKLIST_ADD_PARAMS = '[data-testid="show_checklist_average"]'
 CHECKBOX_AVERAGE_POINT_CHECKLIST_PERCENT_ADD_PARAMS = '[data-testid="show_checklist_average_percent"]'
+CHECKBOX_FIRST_LAST_COMM_TIME_ADD_PARAMS = '[data-testid="show_call_dt"]'
 
 CHECKBOX_POINTS_SUM_ADD_PARAMS = '[data-testid="show_points"]'
 CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS = '[data-testid="show_max_points"]'
