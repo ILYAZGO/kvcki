@@ -1383,6 +1383,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         with allure.step("Click to model"):
             page.locator(SELECT_MODEL).locator('[type="text"]').click()
             page.wait_for_selector(MENU)
+            page.wait_for_timeout(500)
 
         with allure.step("Check model list"):
             expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
