@@ -45,6 +45,7 @@ def go_to_check_list(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA)
     page.locator(BUTTON_RAZMETKA).click()
     page.wait_for_selector(BUTTON_CHECK_LIST)
+    page.wait_for_timeout(500)
     page.locator(BUTTON_CHECK_LIST).click()
 
 

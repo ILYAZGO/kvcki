@@ -75,7 +75,7 @@ SELECT_WITH_ADDITIONAL_PARAM = '[class*="AdditionalParams_additionalSelect_"]'
 
 
 def go_to_reports(page="page: Page"):
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(700)
     page.wait_for_selector(BUTTON_OT4ETI, timeout=wait_until_visible)
     page.wait_for_timeout(300)
     page.locator(BUTTON_OT4ETI).click()

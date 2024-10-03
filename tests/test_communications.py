@@ -732,7 +732,7 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
     #     press_find_communications(page)
 
     with allure.step("Expand call"):
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(4500)
         page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector(ALL_COMMENTS_AREA)
