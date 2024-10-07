@@ -21,7 +21,9 @@ INPUT_SLOVAR_ILI_TEXT_CLIENT = '[data-testid="filters_client_phrases"]'
 INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '[data-testid="filters_operator_phrases"]'
 INPUT_ID = '[data-testid="filters_any_id"]'
 INPUT_TEMPLATE_NAME = '[id="name"]'
+INPUT_LOGIN = '[name="login"]'
 # buttons
+BUTTON_COMMUNICATIONS = '[href*="/calls"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
@@ -29,6 +31,7 @@ BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
+BUTTON_NASTROIKI = '[value="settings"]'
 
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
@@ -70,10 +73,18 @@ BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 
 
 def go_to_user(name, page="page: Page"):
-    page.locator(USERS_LIST).fill(name)
+    page.locator(USERS_LIST).type(name, delay=40)
     page.wait_for_timeout(300)
     page.get_by_text(name, exact=True).click()
-    page.wait_for_selector('[class*="CallsHeader"]')
+    page.wait_for_timeout(1500)
+    #page.wait_for_selector('[class*="CallsHeader"]')
+
+def click_settings(page="page: Page"):
+    page.wait_for_selector(BUTTON_NASTROIKI, timeout=wait_until_visible)
+    page.locator(BUTTON_NASTROIKI).click()
+    page.wait_for_timeout(500)
+    page.wait_for_selector(INPUT_LOGIN)
+    page.wait_for_timeout(500)
 
 
 def change_filter(filterType, elementNumber, page="page: Page"):

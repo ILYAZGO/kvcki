@@ -2095,3 +2095,58 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_check_search_and_switch_to_other_user")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("Searching all communications for Ecotelecom and switch to auto_test_user and check that calls changed")
+def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with Ecotelecom"):
+        auth(LOGIN_ADMIN, PASSWORD, page)
+
+    with allure.step("Change user to auto_test_user"):
+        go_to_user("Экотелеком", page)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+        page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
+
+    with allure.step("Check that all communications found"):
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 3130 из 3130")
+
+    with allure.step("Go to settings"):
+        click_settings(page)
+
+    with allure.step("Change user to auto_test_user"):
+        go_to_user(LOGIN_USER, page)
+
+    with allure.step("Go to communications"):
+        page.locator(BUTTON_COMMUNICATIONS).click()
+        page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS, timeout=wait_until_visible)
+
+    with allure.step("Press button (Find communications)"):
+        press_find_communications(page)
+
+    with allure.step("Check that 1 communications found. Should be 1 and date today"):
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 0 из 0")
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)

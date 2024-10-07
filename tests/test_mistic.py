@@ -14,7 +14,7 @@ import allure
 @pytest.mark.independent
 @allure.title("test_mistic_mayorov")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_mistic_mayorov")
+@allure.description("test_mistic_mayorov Пн 09 сен 2024 16∶05∶49")
 def test_mistic_mayorov(base_url, page: Page) -> None:
     BUTTON_VOITI = "[type='submit']"
 
