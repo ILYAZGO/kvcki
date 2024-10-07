@@ -509,8 +509,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').fill("importFrom")
-        page.wait_for_timeout(1000)
+        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("importFrom", delay=40)
         page.get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(1000)
 
@@ -523,14 +522,13 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="markup_importNav_gpt"]')).not_to_be_visible()
 
     with allure.step("Import group with rule"):
-        #page.locator("(//input[@type='checkbox'])[3]").click()
         page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(1).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
         page.wait_for_timeout(2000)
 
     with allure.step("Import rule"):
-        #page.locator("(//input[@type='checkbox'])[5]").click()
+
         page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(3).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым правилам").click()
@@ -546,20 +544,29 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
     with allure.step("Delete groups and rules"):
         page.get_by_text("22222").click()
         page.locator('[width="30"]').click()
-        page.get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW)
+        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_timeout(700)
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+
         page.get_by_text("44444").click()
         page.locator('[width="30"]').click()
-        page.get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW)
+        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_timeout(700)
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
-        page.wait_for_timeout(2600)
+        #page.wait_for_timeout(2600)
         expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
@@ -602,8 +609,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').fill("importFrom")
-        page.wait_for_timeout(1000)
+        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("importFrom", delay=40)
         page.get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(1000)
 
@@ -616,14 +622,12 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="markup_importNav_gpt"]')).not_to_be_visible()
 
     with allure.step("Import group with rule"):
-        #page.locator("(//input[@type='checkbox'])[3]").click()
         page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(1).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
         page.wait_for_timeout(2000)
 
     with allure.step("Import rule"):
-        #page.locator("(//input[@type='checkbox'])[5]").click()
         page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(3).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым правилам").click()
@@ -639,20 +643,29 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
     with allure.step("Delete groups and rules"):
         page.get_by_text("22222").click()
         page.locator('[width="30"]').click()
-        page.get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW)
+        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_timeout(700)
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+
         page.get_by_text("44444").click()
         page.locator('[width="30"]').click()
-        page.get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW)
+        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_timeout(700)
+        page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
+        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
-        page.wait_for_timeout(2600)
+        #page.wait_for_timeout(2600)
         expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete manager"):

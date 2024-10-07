@@ -1,8 +1,10 @@
 BUTTON_RAZMETKA = '[value="tags"]'
+MODAL_WINDOW = '[role="dialog"]'
 USERS_LIST = "#react-select-2-input"
+ALERT = '[role="alert"]'
 
-'''locators for rules'''
-'''---------------------------------------'''
+'''------locators for rules---------'''
+
 # inputs
 INPUT_POISK = '[name="searchString"]'
 INPUT_NEW_GROUP_NAME = '[name="groupName"]'
@@ -62,7 +64,7 @@ def create_group(groupName, page="page: Page"):
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.wait_for_selector(INPUT_NEW_GROUP_NAME)
     page.locator(INPUT_NEW_GROUP_NAME).fill(groupName)
-    page.locator('[role="dialog"]').locator(BUTTON_OTPRAVIT).click()
+    page.locator(MODAL_WINDOW).locator(BUTTON_OTPRAVIT).click()
     page.wait_for_selector('[aria-label="Вкл/Выкл"]')
 
 
@@ -107,7 +109,7 @@ def create_dict(dictName, page="page: Page"):
     page.locator(BUTTON_DOBAVIT_SLOVAR).click()
     page.wait_for_selector(INPUT_NAZVANIE_SLOVAR)
     page.locator(INPUT_NAZVANIE_SLOVAR).fill(dictName)
-    page.locator('[role="dialog"]').locator(BUTTON_OTPRAVIT).click()
+    page.locator(MODAL_WINDOW).locator(BUTTON_OTPRAVIT).click()
     page.wait_for_selector(INPUT_SPISOK_SLOV)
     page.locator(INPUT_SPISOK_SLOV).fill("random_text")
     page.get_by_role("button", name="Сохранить").click()
