@@ -63,7 +63,7 @@ def create_group(groupName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
     page.locator(BUTTON_DOBAVIT_GRUPPU).click()
     page.wait_for_selector(INPUT_NEW_GROUP_NAME)
-    page.locator(INPUT_NEW_GROUP_NAME).fill(groupName)
+    page.locator(INPUT_NEW_GROUP_NAME).type(groupName, delay=40)
     page.locator(MODAL_WINDOW).locator(BUTTON_OTPRAVIT).click()
     page.wait_for_selector('[aria-label="Вкл/Выкл"]')
 
