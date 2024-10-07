@@ -414,7 +414,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
 
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(600)
 
     with allure.step("Create rule"):
         create_rule("tag_seq", page)
