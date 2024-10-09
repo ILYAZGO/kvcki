@@ -117,8 +117,8 @@ def create_dict(dictName, page="page: Page"):
     page.locator(MODAL_WINDOW).locator(BUTTON_OTPRAVIT).click()
     page.wait_for_selector(INPUT_SPISOK_SLOV)
     page.locator(INPUT_SPISOK_SLOV).fill("random_text")
-    page.get_by_role("button", name="Сохранить").click()
-    page.wait_for_timeout(300)
+    #page.get_by_role("button", name="Сохранить").click()
+    #page.wait_for_timeout(300)
 
 
 def fill_what_said(text, page="page: Page"):
