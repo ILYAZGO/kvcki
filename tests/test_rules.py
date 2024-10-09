@@ -30,20 +30,42 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
     with allure.step("Create group"):
         create_group("99999", page)
 
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Click at new group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
-        page.wait_for_timeout(500)
+        page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
         create_rule("88888", page)
 
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Check that rule and group created"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
         expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
-        #expect(page.locator(GROUP_LIST)).to_have_text("99999", timeout=wait_until_visible) #check parent group
 
-    with allure.step("Delete rule and group"):
-        delete_group_and_rule_or_dict(page)
+    with allure.step("Delete rule"):
+        delete_rule_or_dict(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
+    with allure.step("Delete group"):
+        delete_group(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -96,21 +118,36 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
     with allure.step("Create group"):
         create_group("12345", page)
 
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Click at new group"):
         page.locator(GROUP_LIST).get_by_text("12345").click()
-        page.wait_for_timeout(500)
+        page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Rename group"):
         page.wait_for_selector(BUTTON_PENCIL)
         page.locator(ACTIVE_GROUP).locator(BUTTON_PENCIL).click()
-        page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
+        page.locator(INPUT_EDIT_GROUP_NAME).type("54321", delay=30)
         page.locator(ACTIVE_GROUP).locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Название группы изменено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check group created and have edited name"):
         expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete group"):
-        page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
+        delete_group(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check group deleted"):
         expect(page.locator(GROUP_LIST).get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
@@ -217,12 +254,22 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
     with allure.step("Create group"):
         create_group("99999", page)
 
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
-        page.wait_for_timeout(500)
+        page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
         create_rule("88888", page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that group created"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
@@ -285,7 +332,11 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
 
     with allure.step("Press (Save) button"):
         page.get_by_role("button", name="Сохранить").click()
-        page.wait_for_timeout(1000)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Тег был обновлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Page reload"):
         page.reload()
@@ -296,8 +347,21 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         expect(page.locator('[data-testid="fragmentRuleBlock"]').get_by_text("Искать с начала разговора")).to_have_count(1)
         expect(page.locator('[data-testid="fragmentRuleBlock"]').get_by_text("Тегировать только первое совпадение")).to_have_count(1)
 
-    with allure.step("Delete rule and group"):
-        delete_group_and_rule_or_dict(page)
+    with allure.step("Delete rule"):
+        delete_rule_or_dict(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
+    with allure.step("Delete group"):
+        delete_group(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -328,12 +392,22 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
     with allure.step("Create group"):
         create_group("99999", page)
 
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
-        page.wait_for_timeout(500)
+        page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
         create_rule("set_tags", page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check rule name and tag name. Need be the same"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
@@ -369,7 +443,11 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
 
     with allure.step("Press (save) button"):
         page.get_by_role("button", name="Сохранить").click()
-        page.wait_for_timeout(1500)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Тег был обновлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Page reload"):
         page.reload()
@@ -380,8 +458,21 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         expect(page.locator('[data-testid="setTagsBlock"]').locator('[aria-label="Убрать значение тега"]')).to_have_count(1, timeout=wait_until_visible)
         expect(page.locator('[data-testid="setTagsDeleteTagButton"]')).to_have_count(1, timeout=wait_until_visible)
 
-    with allure.step("Delete group and rule"):
-        delete_group_and_rule_or_dict(page)
+    with allure.step("Delete rule"):
+        delete_rule_or_dict(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
+    with allure.step("Delete group"):
+        delete_group(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -412,12 +503,22 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
     with allure.step("Create_group"):
         create_group("99999", page)
 
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
-        page.wait_for_timeout(600)
+        page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
         create_rule("tag_seq", page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that rule created"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
@@ -454,7 +555,11 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
 
     with allure.step("Press (Save) button"):
         page.get_by_role("button", name="Сохранить").click()
-        page.wait_for_timeout(1000)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Тег был обновлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Delete tag sequence"):
         page.locator(BUTTON_DELETE_SEQUENCE).click()
@@ -469,8 +574,21 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         expect(page.locator(INPUT_INTERVAL_BETWEEN_TAGS).locator('[type="text"]')).to_have_value("1234567890")
         expect(page.locator('[data-testid="TagSequenceItem"]').get_by_text("tag_seq")).to_have_count(2)
 
-    with allure.step("Delete group and rule"):
-        delete_group_and_rule_or_dict(page)
+    with allure.step("Delete rule"):
+        delete_rule_or_dict(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
+    with allure.step("Delete group"):
+        delete_group(page)
+
+    with allure.step("Wait and check snack bar"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -547,20 +665,28 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW)
         page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
         page.get_by_text("44444").click()
         page.locator('[width="30"]').click()
         page.wait_for_selector(MODAL_WINDOW)
         page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
@@ -646,20 +772,28 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW)
         page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
         page.get_by_text("44444").click()
         page.locator('[width="30"]').click()
         page.wait_for_selector(MODAL_WINDOW)
         page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
         page.locator(BUTTON_KORZINA).first.click()
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)

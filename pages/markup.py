@@ -1,7 +1,10 @@
+from utils.variables import wait_until_visible
+
 BUTTON_RAZMETKA = '[value="tags"]'
 MODAL_WINDOW = '[role="dialog"]'
 USERS_LIST = "#react-select-2-input"
 ALERT = '[role="alert"]'
+SNACKBAR = '[class*="SnackbarItem"]'
 
 '''------locators for rules---------'''
 
@@ -65,19 +68,19 @@ def create_group(groupName, page="page: Page"):
     page.wait_for_selector(INPUT_NEW_GROUP_NAME)
     page.locator(INPUT_NEW_GROUP_NAME).type(groupName, delay=40)
     page.locator(MODAL_WINDOW).locator(BUTTON_OTPRAVIT).click()
-    page.wait_for_selector('[aria-label="Вкл/Выкл"]')
+    #page.wait_for_selector('[aria-label="Вкл/Выкл"]')
 
 
 def create_rule(ruleName, page="page: Page"):
     page.wait_for_selector(BUTTON_DOBAVIT_TEG)
     page.locator(BUTTON_DOBAVIT_TEG).click()
     page.wait_for_selector(INPUT_NAZVANIE_TEGA)
-    page.locator(INPUT_NAZVANIE_TEGA).type(ruleName)
+    page.locator(INPUT_NAZVANIE_TEGA).type(ruleName, delay=40)
     #page.get_by_role("button", name="Отправить").click()
     page.keyboard.press('Enter')  # kostil'
     page.wait_for_timeout(1300)
     #page.get_by_role("button", name="Сохранить").click()
-    page.wait_for_selector('[data-testid="tagSequenceBlock"]')
+    #page.wait_for_selector('[data-testid="tagSequenceBlock"]')
 
 
 def go_to_markup(page="page: Page"):
@@ -95,13 +98,15 @@ def go_to_dicts(page="page: Page"):
     #page.wait_for_timeout(1000)
 
 
-def delete_group_and_rule_or_dict(page="page: Page"):
+def delete_rule_or_dict(page="page: Page"):
     #page.locator(".css-izdlur").click()
     #page.get_by_text("Удалить", exact=True).click()
     page.locator('[width="30"]').click()
-    page.wait_for_timeout(500)
-    page.get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(1500)
+    page.wait_for_selector(MODAL_WINDOW)
+    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+    page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+def delete_group(page="page: Page"):
     page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
 
 
@@ -139,3 +144,4 @@ def change_dict_type(currentType, nextType, page="page: Page"):
     page.wait_for_timeout(300)
     page.locator('[class*="-menu"]').get_by_text(nextType, exact=True).click()
     page.wait_for_timeout(300)
+
