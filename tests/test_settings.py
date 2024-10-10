@@ -1298,7 +1298,12 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("press (add)"):
         press_add_in_quotas(page)
-        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+        #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Квота добавлена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Reload page"):
         page.reload()
@@ -1310,11 +1315,15 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("Бессрочно")
 
     with allure.step("Delete added quota"):
-        page.locator('[fill="#FF4D4F"]').click()
-        page.wait_for_timeout(3500)
+        page.locator('[role="grid"]').locator('[fill="#FF4D4F"]').click()
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Квота удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that quota deleted"):
-        expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.locator('[role="grid"]').locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
         #expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
 
     with allure.step("Click (add quota)"):
@@ -1331,12 +1340,17 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("press (add)"):
         press_add_in_quotas(page)
-        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+        #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Квота добавлена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Reload page"):
         page.reload()
         page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
-        page.wait_for_timeout(1500)
+        page.wait_for_timeout(2000)
 
     with allure.step("Check that quota added"):
         expect(page.locator('[role="gridcell"]')).to_have_count(18)
@@ -1344,7 +1358,11 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added quota"):
         page.locator('[fill="#FF4D4F"]').click()
-        page.wait_for_timeout(1000)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Квота удалена")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that quota deleted"):
         expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
@@ -1411,7 +1429,11 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
-        page.wait_for_timeout(500)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Данные успешно обновлены")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
@@ -1442,7 +1464,11 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
-        page.wait_for_timeout(500)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Данные успешно обновлены")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
@@ -2152,9 +2178,9 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_merge)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(alert_merge)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -2166,9 +2192,9 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_diarization)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(alert_diarization)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -2182,9 +2208,9 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(data_updated)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(data_updated)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Page reload"):
         page.reload()
@@ -2648,9 +2674,9 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         page.locator('[class="flex-end"]').locator('[type="button"]').click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_merge)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(alert_merge)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -2662,9 +2688,9 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         page.locator('[class="flex-end"]').locator('[type="button"]').click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_diarization)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(alert_diarization)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -2678,9 +2704,9 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         page.locator('[class="flex-end"]').locator('[type="button"]').click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(action_started)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(action_started)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
