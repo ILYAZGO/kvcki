@@ -310,7 +310,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
 
     with allure.step("Press (Go on)"):
-        page.wait_for_timeout(400)
+        page.wait_for_timeout(500)
         page.get_by_role("button", name="Продолжить").click()
 
     with allure.step("Import second"):
