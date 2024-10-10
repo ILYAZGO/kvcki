@@ -35,6 +35,11 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("Press (Save) button"):
         press_save_in_gpt(page)
 
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Check that created and have 2 questions"):
         expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled(timeout=wait_until_visible)
         expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled(timeout=wait_until_visible)
@@ -50,6 +55,11 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("Press (Save) button"):
         press_save_in_gpt(page)
 
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Check that question deleted"):
         expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
         expect(page.get_by_text("Вопрос 2")).to_have_count(0)
@@ -58,7 +68,6 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         page.locator(BUTTON_PENCIL).click()
         page.locator('[class*="styles_dpBothBox"]').locator('[value="GPTrule"]').fill("ruleGPT")
         page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
-        page.wait_for_timeout(1000)
 
     with allure.step("Check that GPT rule was renamed"):
         expect(page.get_by_text("ruleGPT")).to_be_visible(timeout=wait_until_visible)
@@ -67,9 +76,9 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило GPT удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that rule was deleted"):
         expect(page.get_by_text("ruleGPT")).not_to_be_visible(timeout=wait_until_visible)
@@ -104,9 +113,9 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         press_save_in_gpt(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило сохранено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that saved"):
         expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled()
@@ -123,7 +132,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(4).click()
         # tupo click
         page.locator('[value="gpt"]').click()
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Check that all parameters visible"):
         expect(page.get_by_text("Движок")).to_have_count(1)
@@ -136,7 +145,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("Change to yandex and add parameters for yandex"):
         page.wait_for_timeout(900)
         page.locator('[name="yandex_gpt"]').click()
-        page.wait_for_timeout(400)
+        page.wait_for_timeout(500)
         page.get_by_role("button", name="Добавить настройки").click()
         page.wait_for_timeout(500)
         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(1).click()
@@ -150,9 +159,9 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         press_save_in_gpt(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило сохранено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Turn on rule"):
         turn_on_rule(page)
@@ -164,9 +173,9 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило GPT удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check deleted"):
         expect(page.locator('[class*="styles_dpBothBox_"]').get_by_text("addParams")).not_to_be_visible()
@@ -194,10 +203,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         auth(LOGIN_ADMIN, PASSWORD, page)
 
     with allure.step("Go to user import to"):
-        page.locator(USERS_LIST).fill(LOGIN_USER)
-        page.wait_for_timeout(2000)
-        page.get_by_text(LOGIN_USER, exact=True).click()
-        page.wait_for_timeout(6000)
+        go_to_user(LOGIN_USER, page)
 
     with allure.step("Go to gpt"):
         go_to_gpt(page)
@@ -236,9 +242,9 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило GPT удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
@@ -247,9 +253,9 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило GPT удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
@@ -283,10 +289,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         auth(LOGIN_MANAGER, PASSWORD, page)
 
     with allure.step("Go to user import to"):
-        page.locator(USERS_LIST).fill(LOGIN_USER)
-        page.wait_for_timeout(2000)
-        page.get_by_text(LOGIN_USER, exact=True).click()
-        page.wait_for_timeout(6000)
+        go_to_user(LOGIN_USER, page)
 
     with allure.step("Go to gpt"):
         go_to_gpt(page)
@@ -325,9 +328,9 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило GPT удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
@@ -336,9 +339,9 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Правило GPT удалено")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)

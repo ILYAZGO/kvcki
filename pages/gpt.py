@@ -16,9 +16,15 @@ INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
 INPUT_GPT_TEG_NAME = '[placeholder="Название тега"]'
 INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
 MODAL_WINDOW = '[role="dialog"]'
+SNACKBAR = '[class*="SnackbarItem"]'
 ALERT = '[role="alert"]'
 MENU = '[class*="-menu"]'
 
+def go_to_user(name:str, page="page: Page"):
+    page.locator(USERS_LIST).fill(name)
+    page.wait_for_timeout(500)
+    page.get_by_text(name, exact=True).click()
+    page.wait_for_selector('[class*="CallsHeader"]')
 
 def go_to_gpt(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA, timeout=wait_until_visible)
