@@ -1,6 +1,7 @@
 from utils.variables import wait_until_visible
 
 ALERT = '[role="alert"]'
+SNACKBAR = '[class*="SnackbarItem"]'
 
 BUTTON_POLZOVATELI = '[data-testid="userLink"]'
 BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'

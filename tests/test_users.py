@@ -61,6 +61,11 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
     with allure.step("Delete admin 2"):
         delete_added_user(page)
 
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Check that admin 2 deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
 
@@ -119,6 +124,11 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added manager"):
         delete_added_user(page)
+
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that manager deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
@@ -212,6 +222,11 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added user"):
         delete_added_user(page)
+
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that user deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
@@ -315,6 +330,11 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
     with allure.step("Delete added user"):
         delete_added_user(page)
 
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Check that user deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
 
@@ -372,6 +392,11 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
 
     with allure.step("Delete added employee"):
         delete_added_user(page)
+
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that employee deleted"):
         expect(page.locator(BUTTON_DOBAVIT_SOTRUDNIKA)).to_be_visible(timeout=wait_until_visible)
@@ -820,9 +845,9 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(BUTTON_DOBAVIT).click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_merge)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(alert_merge)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -834,9 +859,9 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(BUTTON_DOBAVIT).click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_diarization)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(alert_diarization)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -850,9 +875,9 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(BUTTON_DOBAVIT).click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(action_started)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text(action_started)
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
