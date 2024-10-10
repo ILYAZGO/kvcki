@@ -92,11 +92,16 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
     
     with allure.step("Press (save) button"):
         press_save(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
     
     with allure.step("Reload page"):
         page.reload()
         page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(350)
+        page.wait_for_timeout(500)
     
     with allure.step("Check that login changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
@@ -146,6 +151,11 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
     
     with allure.step("Press (save) button"):
         press_save(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
     
     with allure.step("Reload page"):
         page.reload()
@@ -169,6 +179,11 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
     
     with allure.step("Press (save) button"):
         press_save(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
     
     with allure.step("Page reload"):
         page.reload()
@@ -316,6 +331,11 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
     
     with allure.step("Press (save) in rights"):
         press_save_in_rights(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
     
     with allure.step("Page reload"):
         page.reload()
@@ -374,6 +394,11 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
     
     with allure.step("Press (save) in rights"):
         press_save_in_rights(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
     
     with allure.step("Page reload"):
         page.reload()
@@ -403,6 +428,11 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
     
     with allure.step("Press (save) in rights"):
         press_save_in_rights(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
     
     with allure.step("Page reload"):
         page.reload()
@@ -464,6 +494,11 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
     with allure.step("Press (Save) button"):
         press_save_in_rights(page)
 
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Page reload"):
         page.reload()
         page.wait_for_selector(BUTTON_SAVE_IN_RIGHTS)
@@ -508,11 +543,21 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
     with allure.step("Press (Save) button"):
         press_save(page)
 
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Change person al information"):
         fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
 
     with allure.step("Press (Save) button"):
         press_save(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Click notifications"):
         click_notifications(page)
@@ -574,6 +619,11 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
 
     with allure.step("Press (Save) button"):
         press_save(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Click notifications"):
         click_notifications(page)
@@ -638,10 +688,10 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
     with allure.step("Press (Save) button"):
         press_save(page)
 
-    with allure.step("Check alert"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Профиль успешно сохранен")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Click notifications"):
         click_notifications(page)
@@ -768,6 +818,11 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
     with allure.step("Press (save)"):
         press_save(page)
 
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Go to rights"):
         click_rights(page)
 
@@ -845,6 +900,11 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
 
     with allure.step("Press (save)"):
         press_save(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Go to rights"):
         click_rights(page)
@@ -979,7 +1039,7 @@ def test_left_menu_items_for_operator_itself(base_url, page: Page) -> None:
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
-    with allure.step("Create operstor"):
+    with allure.step("Create operator"):
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL,USER_ID_USER,PASSWORD)
 
     with allure.step("Go to page"):
@@ -1080,6 +1140,11 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
     with allure.step("Press (save)"):
         press_save(page)
 
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Page reload"):
         page.reload()
         page.wait_for_selector(INPUT_LOGIN)
@@ -1149,6 +1214,11 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
 
     with allure.step("Press (save)"):
         press_save(page)
+
+    with allure.step("Wait for snackbar and check"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Page reload"):
         page.reload()

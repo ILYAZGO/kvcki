@@ -4,6 +4,7 @@ USERS_LIST = "#react-select-2-input"
 FIRST_DATE = '[placeholder="Начальная дата"]'
 LAST_DATE = '[placeholder="Конечная дата"]'
 ALERT = '[role="alert"]'
+SNACKBAR = '[class*="SnackbarItem"]'
 
 BUTTON_NASTROIKI = '[value="settings"]'
 BUTTON_OPOVESHENIA = '[href*="/notifications"]'
@@ -97,7 +98,7 @@ def click_settings(page="page: Page"):
 
 def click_notifications(page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
-    page.wait_for_timeout(600)
+    page.wait_for_timeout(1000)
 
 
 def click_personal_info(page="page: Page"):
@@ -235,7 +236,7 @@ def go_to_user(name, page="page: Page"):
 def go_to_operator_from_table(page="page: Page"):
     page.wait_for_selector('[role="gridcell"]')
     page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(1000)
     page.wait_for_selector(INPUT_LOGIN)
 
 
@@ -244,12 +245,12 @@ def go_to_admin_or_manager(name, page="page: Page"):
     page.locator(USERS_LIST).fill(name)
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(name, exact=True).click()
-    page.wait_for_timeout(1400)
+    page.wait_for_timeout(2000)
 
 
 def press_save(page="page: Page"):
     page.get_by_role("button", name="Сохранить").click()
-    page.wait_for_timeout(800)
+    page.wait_for_timeout(1000)
 
 
 def press_save_in_rights(page="page: Page"):
