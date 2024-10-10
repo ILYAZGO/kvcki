@@ -659,31 +659,40 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("1 тег")).to_have_count(count=3, timeout=wait_until_visible)
 
-    with allure.step("Delete groups and rules"):
+    with allure.step("Click on rule"):
         page.get_by_text("22222").click()
-        page.locator('[width="30"]').click()
-        page.wait_for_selector(MODAL_WINDOW)
-        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Delete rule"):
+        delete_rule_or_dict(page)
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
+    with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
+    with allure.step("Click on rule"):
         page.get_by_text("44444").click()
-        page.locator('[width="30"]').click()
-        page.wait_for_selector(MODAL_WINDOW)
-        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Delete rule"):
+            delete_rule_or_dict(page)
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
+    with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
@@ -692,7 +701,6 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
-        #page.wait_for_timeout(2600)
         expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
@@ -766,31 +774,40 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("1 тег")).to_have_count(count=3, timeout=wait_until_visible)
 
-    with allure.step("Delete groups and rules"):
+    with allure.step("Click on rule"):
         page.get_by_text("22222").click()
-        page.locator('[width="30"]').click()
-        page.wait_for_selector(MODAL_WINDOW)
-        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Delete rule"):
+        delete_rule_or_dict(page)
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
+    with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
+    with allure.step("Click on rule"):
         page.get_by_text("44444").click()
-        page.locator('[width="30"]').click()
-        page.wait_for_selector(MODAL_WINDOW)
-        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Delete rule"):
+        delete_rule_or_dict(page)
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
+    with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
+
+    with allure.step("Wait for snackbar and check"):
         page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
         expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
         page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
@@ -799,7 +816,6 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
-        #page.wait_for_timeout(2600)
         expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete manager"):

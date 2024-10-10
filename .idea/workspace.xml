@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add alerts in rules">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add alerts in dicts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
@@ -571,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="small refactor7" />
     <MESSAGE value="small refactor8" />
     <MESSAGE value="small refactor9" />
     <MESSAGE value="small refactor10" />
@@ -596,6 +595,7 @@
     <MESSAGE value="added alert" />
     <MESSAGE value="fix" />
     <MESSAGE value="add alerts in rules" />
-    <option name="LAST_COMMIT_MESSAGE" value="add alerts in rules" />
+    <MESSAGE value="add alerts in dicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add alerts in dicts" />
   </component>
 </project>
