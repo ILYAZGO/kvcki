@@ -421,11 +421,11 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
         auth(USER_FOR_CHECK, PASSWORD, page)
 
     with allure.step("Go to GPT"):
-        page.wait_for_selector(BUTTON_RAZMETKA)
+        page.wait_for_selector(BUTTON_RAZMETKA, timeout=wait_until_visible)
         page.locator(BUTTON_RAZMETKA).click()
-        page.wait_for_selector(BUTTON_GPT)
+        page.wait_for_selector(BUTTON_GPT, timeout=wait_until_visible)
         page.locator(BUTTON_GPT).click()
-        page.wait_for_selector(INPUT_GPT_RULE_NAME)
+        page.wait_for_selector(INPUT_GPT_RULE_NAME, timeout=wait_until_visible)
         page.wait_for_timeout(3000)
 
     with allure.step("Check parameters"):

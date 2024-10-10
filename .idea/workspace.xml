@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="alert to gpt2">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="alert to gpt3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_gpt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -570,7 +572,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="small refactor16" />
     <MESSAGE value="small refactor17" />
     <MESSAGE value="small refactor18" />
     <MESSAGE value="small refactor19" />
@@ -595,6 +596,7 @@
     <MESSAGE value="alert to users2" />
     <MESSAGE value="alert to gpt" />
     <MESSAGE value="alert to gpt2" />
-    <option name="LAST_COMMIT_MESSAGE" value="alert to gpt2" />
+    <MESSAGE value="alert to gpt3" />
+    <option name="LAST_COMMIT_MESSAGE" value="alert to gpt3" />
   </component>
 </project>

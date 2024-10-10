@@ -104,7 +104,7 @@ def test_search_string(base_url, page: Page) -> None:
         page.wait_for_selector('[alt="AmoCRM"]')
 
     with allure.step("Fill search string"):
-        page.get_by_role("textbox", name="Поиск").fill("za")
+        page.get_by_role("textbox", name="Поиск").type("za", delay=30)
         page.wait_for_timeout(500)
 
     with allure.step("Check that search string found something"):

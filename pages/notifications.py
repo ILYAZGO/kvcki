@@ -87,7 +87,7 @@ def delete_rule(page="page: Page"):
     page.wait_for_timeout(500)
     #  confirm deleting
     page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(1500)
 
 
 def choose_block(blockNumber, page="page: Page"):
