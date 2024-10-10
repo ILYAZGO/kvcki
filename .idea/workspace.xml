@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add alerts in settings">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add alerts in settings2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/auth.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -573,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="small refactor10" />
     <MESSAGE value="small refactor11" />
     <MESSAGE value="small refactor12" />
     <MESSAGE value="small refactor13" />
@@ -598,6 +594,7 @@
     <MESSAGE value="add alerts in dicts" />
     <MESSAGE value="add alerts in dicts2" />
     <MESSAGE value="add alerts in settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="add alerts in settings" />
+    <MESSAGE value="add alerts in settings2" />
+    <option name="LAST_COMMIT_MESSAGE" value="add alerts in settings2" />
   </component>
 </project>
