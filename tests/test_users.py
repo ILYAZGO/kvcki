@@ -347,6 +347,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
 @allure.title("test_add_delete_operator_by_user")
 @allure.severity(allure.severity_level.NORMAL)
 def test_add_delete_operator_by_user(base_url, page: Page) -> None:
+
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -380,6 +381,11 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
 
+    with allure.step("Wait for alert and check alert message"):
+        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+        expect(page.locator(SNACKBAR)).to_contain_text("Сотрудник успешно добавлен")
+        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+
     with allure.step("Check"):
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN, timeout=wait_until_visible)
@@ -393,10 +399,10 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
     with allure.step("Delete added employee"):
         delete_added_user(page)
 
-    with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+    # with allure.step("Wait for alert and check alert message"):
+    #     page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
+    #     expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
+    #     page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that employee deleted"):
         expect(page.locator(BUTTON_DOBAVIT_SOTRUDNIKA)).to_be_visible(timeout=wait_until_visible)
