@@ -368,11 +368,11 @@ def test_reports_management_check(base_url, page: Page) -> None:
         page.locator(BUTTON_KORZINA).nth(0).click()
         page.wait_for_selector(BUTTON_UDALIT)
         page.locator(BUTTON_UDALIT).click()
-        page.wait_for_timeout(900)
+        page.wait_for_timeout(1500)
         page.locator(BUTTON_KORZINA).nth(0).click()
         page.wait_for_selector(BUTTON_UDALIT)
         page.locator(BUTTON_UDALIT).click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(1500)
 
     with allure.step("Check that reports deleted"):
         expect(page.locator('[role="row"]')).to_have_count(1)

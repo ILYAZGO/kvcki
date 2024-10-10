@@ -143,7 +143,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.get_by_text("Presence Penalty")).to_have_count(1)
 
     with allure.step("Change to yandex and add parameters for yandex"):
-        page.wait_for_timeout(900)
+        page.wait_for_timeout(1000)
         page.locator('[name="yandex_gpt"]').click()
         page.wait_for_timeout(500)
         page.get_by_role("button", name="Добавить настройки").click()
@@ -215,16 +215,16 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
     with allure.step("Fill user for import"):
         page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
 
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(1000)
         page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(1000)
         page.wait_for_selector('[data-testid="markup_gpt_importSearch}"]')
 
     with allure.step("Import first"):
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
 
     with allure.step("Press (Go on)"):
-        page.wait_for_timeout(400)
+        page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
 
     with allure.step("Import second"):
@@ -301,16 +301,16 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
     with allure.step("Fill user for import"):
         page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
 
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(1000)
         page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(1000)
         page.wait_for_selector('[data-testid="markup_gpt_importSearch}"]')
 
     with allure.step("Import first"):
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
 
     with allure.step("Press (Go on)"):
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
 
     with allure.step("Import second"):

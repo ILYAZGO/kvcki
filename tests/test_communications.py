@@ -691,6 +691,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
     with allure.step("Expand call"):
         page.wait_for_timeout(4000)
         page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
+        page.wait_for_timeout(500)
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector(ALL_COMMENTS_AREA)
 
