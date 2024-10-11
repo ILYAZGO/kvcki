@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="alert to gpt4">
-      <change afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added base class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_admin_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_admin_bar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -572,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="small refactor18" />
     <MESSAGE value="small refactor19" />
     <MESSAGE value="small refactor20" />
     <MESSAGE value="added tests" />
@@ -597,6 +593,7 @@
     <MESSAGE value="alert to gpt2" />
     <MESSAGE value="alert to gpt3" />
     <MESSAGE value="alert to gpt4" />
-    <option name="LAST_COMMIT_MESSAGE" value="alert to gpt4" />
+    <MESSAGE value="added base class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added base class" />
   </component>
 </project>

@@ -9,6 +9,7 @@ class BaseClass:
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
         self.button_enter = page.locator('[type="submit"]')
+        self.menu = page.locator('[class*="-menu"]')
 
     def navigate(self, url):
         """Opens main page"""
