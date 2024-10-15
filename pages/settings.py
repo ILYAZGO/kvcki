@@ -56,6 +56,14 @@ TOTAL_AUDIO_HOURS = '[class*="communicationsStyles_totalValueInHours_"]'
 TOTAL_GPT_MONEY = '[class*="communicationsStyles_gptValuesWrapper_"]'
 TOTAL_CHATS = '[class*="communicationsStyles_chatsValuesWrapper_"]'
 
+BUTTON_TARIFFICATION = '[href*="/settings/billing"]'
+BUTTON_RATES = '[href*="/settings/billing/aboutRates"]'
+BUTTON_WRITEOFFS = '[href*="/settings/billing/writeoffs"]'
+BUTTON_CHARGES = '[href*="/settings/billing/payments"]'
+MESSAGE_TARIFFICATION_EMPTY = '[class*="styles_firstLine__"]'
+SEARCH_IN_TARIFFICATION = '[data-testid="Writeoffs_search"]'
+
+
 
 BUTTON_GPT_QUOTAS = '[href*="quotas/gpt-quotas"]'
 BLOCK_GPT_QUOTAS = '[class*="styles_quotasWrapper"]'

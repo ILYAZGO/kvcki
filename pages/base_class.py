@@ -13,6 +13,7 @@ class BaseClass:
 
     def navigate(self, url):
         """Opens main page"""
+        #self.page.route('**/*.png', lambda route: route.abort())
         self.page.goto(url, timeout=self.timeout)
 
     def auth(self, login, password):

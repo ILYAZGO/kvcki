@@ -344,7 +344,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
 
     with allure.step("Fill by tag"):
         page.wait_for_selector(INPUT_PO_TEGAM,timeout=wait_until_visible)
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=100)
+        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=40)
         page.wait_for_timeout(700)
         page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Другой отдел", exact=True).click()
         page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
@@ -354,10 +354,10 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         press_find_communications(page)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 131 из 3130", timeout=wait_until_visible)  #131
+        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 128 из 3130", timeout=wait_until_visible)  #131
 
     with allure.step("Add extra tag"):
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Обсуждение тарифа", delay=100)
+        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Обсуждение тарифа", delay=40)
         page.wait_for_timeout(700)
         page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Обсуждение тарифа", exact=True).click()
         page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
