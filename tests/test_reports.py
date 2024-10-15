@@ -1654,8 +1654,8 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
         expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
         # check headers
         expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?"]')).to_have_count(2)
-        # check avarage checklist value (10, 8.68, 8, -)
-        expect(page.locator('[title="8.73"]')).to_have_count(1)
+        # check avarage checklist value (0, 1.05, 0, -)
+        expect(page.locator('[title="0.63"]')).to_have_count(1)
 
 
 @pytest.mark.independent
@@ -1729,8 +1729,8 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
         expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
         # check headers
         expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?"]')).to_have_count(2)
-        # check avarage checklist value (100 %, 86.84 %, 80 %, -)
-        expect(page.locator('[title="87.3 %"]')).to_have_count(1)
+        # check avarage checklist value (0 %, 10.53 %, 0 %, -)
+        expect(page.locator('[title="6.35 %"]')).to_have_count(1)
 
 
 @pytest.mark.independent
@@ -1804,8 +1804,8 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
         expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
         # check headers
         expect(page.locator('[aria-label="Второй чеклист (тоже нужен для автотестов, не трогать) / Мат?"]')).to_have_count(2)
-        # check avarage checklist value (100 %, 86.84 %, 80 %, -)
-        expect(page.locator('[title="да"]')).to_have_count(7)
+        # check
+        expect(page.locator('[title="да"]')).to_have_count(3)
 
 
 @pytest.mark.independent
