@@ -59,6 +59,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin 2"):
+        page.wait_for_timeout(3000)
         delete_added_user(page)
 
     with allure.step("Wait for alert and check alert message"):
@@ -123,6 +124,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete added manager"):
+        page.wait_for_timeout(3000)
         delete_added_user(page)
 
     with allure.step("Wait for alert and check alert message"):
@@ -221,6 +223,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete added user"):
+        page.wait_for_timeout(3000)
         delete_added_user(page)
 
     with allure.step("Wait for alert and check alert message"):
