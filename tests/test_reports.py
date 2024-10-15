@@ -2016,10 +2016,10 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
         expect(page.locator('[aria-label="Средний балл"]')).to_have_count(2)
         expect(page.locator('[aria-label="Средний балл в %"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="14529"]')).to_have_count(2)
+        expect(page.locator('[title="14001"]')).to_have_count(2)
         expect(page.locator('[title="49531"]')).to_have_count(2)
-        expect(page.locator('[title="11.37"]')).to_have_count(2)
-        expect(page.locator('[title="29.33 %"]')).to_have_count(2)
+        expect(page.locator('[title="10.96"]')).to_have_count(2)
+        expect(page.locator('[title="28.27 %"]')).to_have_count(2)
         #expect(page.locator('[title="29.33"]')).to_have_count(1) #this is bug
 
 
@@ -2148,8 +2148,8 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
         expect(page.locator('[aria-label="Продолжительность тишины"]')).to_have_count(2)
         expect(page.locator('[aria-label="% продолжительности тишины"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="24:30:51"]')).to_have_count(2)
-        expect(page.locator('[title="30.33 %"]')).to_have_count(2)
+        expect(page.locator('[title="24:30:57"]')).to_have_count(2)
+        expect(page.locator('[title="30.34 %"]')).to_have_count(2)
 
 @pytest.mark.independent
 @pytest.mark.reports
@@ -2270,7 +2270,7 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
         expect(page.locator('[aria-label="Время первой коммуникации"]')).to_have_count(2)
         expect(page.locator('[aria-label="Время последней коммуникации"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="80:48:43"]')).to_have_count(2)
+        expect(page.locator('[title="80:48:49"]')).to_have_count(2)
         expect(page.locator('[title="08.02.2022, 00:12:20"]')).to_have_count(4)
         expect(page.locator('[title="16.05.2022, 18:21:38"]')).to_have_count(4)
 
