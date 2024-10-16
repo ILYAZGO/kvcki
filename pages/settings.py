@@ -62,6 +62,7 @@ BUTTON_WRITEOFFS = '[href*="/settings/billing/writeoffs"]'
 BUTTON_CHARGES = '[href*="/settings/billing/payments"]'
 MESSAGE_TARIFFICATION_EMPTY = '[class*="styles_firstLine__"]'
 SEARCH_IN_TARIFFICATION = '[data-testid="Writeoffs_search"]'
+TOTAL_IN_TABLE = '[class*="style_valuesWrapper_"]'
 
 
 

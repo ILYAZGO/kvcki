@@ -2772,6 +2772,10 @@ def test_user_tariffication_if_empty(base_url, page: Page) -> None:
 @allure.description("test_user_tariffication. mocked")
 def test_user_tariffication(base_url, page: Page) -> None:
 
+    tariff_block_contain_text = ("О тарифахСписанияПлатежиИндивидуальный тарифТекущий баланс:0 рубОбщая сумма:60 000 руб"
+                                 "Договор:0009Срок действия:БессрочноПериод тарификации:1 мес.Запросить счет"
+                                 "Включено в тарифЧек-листы звонкаОповещенияАбонентская плата")
+
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
@@ -2780,94 +2784,117 @@ def test_user_tariffication(base_url, page: Page) -> None:
         json_tariff = [
             {
                 "agreement": {
-                    "agreement_id": "828",
-                    "agreement_number": "456",
-                    "balance": "0.0",
-                    "create_date": "2023-10-04",
-                    "credit": "0.0",
+                    "agreement_id": 835,
+                    "agreement_number": "0009",
+                    "balance": 0.0,
+                    "create_date": "2024-10-01",
+                    "credit": 0.0,
                     "currency_symbol": "руб",
-                    "organization_id": "1",
-                    "pay_code": "null",
-                    "user_id": "598"
+                    "organization_id": 486,
+                    "pay_code": None,
+                    "user_id": 602
                 },
                 "tariff": {
-                    "archive": "0",
-                    "assign_unavailable": "0",
-                    "assigned": "1",
-                    "balance_blocks": "1",
-                    "block_to_close_days": "0",
-                    "client_unavailable": "0",
-                    "currency_id": "1",
-                    "dynamic_rent": "0",
-                    "float_period": "0",
-                    "link": "https://docs.google.com/document/d/12jPoVU_r581-RfV0IRx4j8KQ_kTmJ4AaFyufGqD-c6U/edit",
-                    "name": "АРХИВ. Пакет минут (мес.)",
-                    "outer_id": "minutes_month",
-                    "payment_type": "0",
-                    "tariff_id": "40"
+                    "archive": 0,
+                    "assign_unavailable": 0,
+                    "assigned": 1,
+                    "balance_blocks": 1,
+                    "block_to_close_days": 0,
+                    "client_unavailable": 0,
+                    "currency_id": 1,
+                    "dynamic_rent": 0,
+                    "float_period": 0,
+                    "link": "https://docs.google.com/document/d/1HBTqEQw6IAcNJcJN50HqDSZyzNU8uGn3cGM0IguiOD4/edit",
+                    "name": "АРХИВ. Пакет минут (расширенный)",
+                    "outer_id": "minutes_advanced",
+                    "payment_type": 0,
+                    "tariff_id": 41
                 },
                 "subscriptions": [
                     {
-                        "agreement_id": "828",
-                        "agreement_number": "456",
+                        "agreement_id": 835,
+                        "agreement_number": "0009",
                         "currency_symbol": "руб",
-                        "current_blocking": "0",
-                        "description": "Архивная подписка",
+                        "current_blocking": 0,
+                        "description": "Индивидуальный тариф",
                         "err_details": "",
-                        "last_tariffication_period_end": "2024-09-01",
-                        "last_tariffication_period_start": "2024-09-01",
-                        "next_change_date": "null",
-                        "period_id": "1",
-                        "period_length": "1",
-                        "period_type": "3",
+                        "last_tariffication_period_end": "2024-10-31",
+                        "last_tariffication_period_start": "2024-10-10",
+                        "next_change_date": None,
+                        "period_id": 1,
+                        "period_length": 1,
+                        "period_type": 3,
                         "services": [
                             {
-                                "bulk_service": "false",
-                                "hidden_for_user": "0",
-                                "multiplicator": "1.0",
+                                "bulk_service": False,
+                                "hidden_for_user": 0,
+                                "multiplicator": 1.0,
+                                "outer_id": "check_list_call",
+                                "periodic_service": 1,
+                                "price": 10000.0,
+                                "service_description": "Чек-листы звонка",
+                                "service_id": 613,
+                                "tariff_service_id": 2,
+                                "weight": 0
+                            },
+                            {
+                                "bulk_service": False,
+                                "hidden_for_user": 0,
+                                "multiplicator": 1.0,
+                                "outer_id": "notifications",
+                                "periodic_service": 1,
+                                "price": 10000.0,
+                                "service_description": "Оповещения",
+                                "service_id": 614,
+                                "tariff_service_id": 3,
+                                "weight": 0
+                            },
+                            {
+                                "bulk_service": False,
+                                "hidden_for_user": 0,
+                                "multiplicator": 1.0,
                                 "outer_id": "subscription_fee",
-                                "periodic_service": "1",
-                                "price": "15000.0",
+                                "periodic_service": 1,
+                                "price": 40000.0,
                                 "service_description": "Абонентская плата",
-                                "service_id": "599",
-                                "tariff_service_id": "2",
-                                "weight": "0"
+                                "service_id": 615,
+                                "tariff_service_id": 6,
+                                "weight": 0
                             },
                             {
-                                "bulk_service": "true",
-                                "hidden_for_user": "0",
-                                "multiplicator": "1.0",
+                                "bulk_service": True,
+                                "hidden_for_user": 1,
+                                "multiplicator": 1.0,
                                 "outer_id": "quote_overspending",
-                                "periodic_service": "1",
-                                "price": "0.6",
+                                "periodic_service": 1,
+                                "price": 0.0,
                                 "service_description": "Квота по перерасходу (счетчик)",
-                                "service_id": "600",
-                                "tariff_service_id": "5",
-                                "weight": "0"
+                                "service_id": 616,
+                                "tariff_service_id": 9,
+                                "weight": 0
                             },
                             {
-                                "bulk_service": "true",
-                                "hidden_for_user": "0",
-                                "multiplicator": "1.0",
+                                "bulk_service": True,
+                                "hidden_for_user": 1,
+                                "multiplicator": 1.0,
                                 "outer_id": "quote_consumption",
-                                "periodic_service": "1",
-                                "price": "0.0",
+                                "periodic_service": 1,
+                                "price": 0.0,
                                 "service_description": "Квота по потреблению (счетчик)",
-                                "service_id": "601",
-                                "tariff_service_id": "6",
-                                "weight": "0"
+                                "service_id": 617,
+                                "tariff_service_id": 10,
+                                "weight": 0
                             }
                         ],
-                        "state": "3",
-                        "subscription_end_date": "2024-09-01 23:59:59",
-                        "subscription_id": "232",
-                        "subscription_instance_end_date": "2024-09-01 23:59:59",
-                        "subscription_instance_id": "232",
-                        "subscription_instance_start_date": "2023-10-04 00:00:00",
-                        "subscription_start_date": "2023-10-04 00:00:00",
-                        "tariff_descr": "АРХИВ. Пакет минут (мес.)",
-                        "tariff_id": "40",
-                        "total_price": "15000.0"
+                        "state": 2,
+                        "subscription_end_date": "9999-12-31 23:59:59",
+                        "subscription_id": 239,
+                        "subscription_instance_end_date": "9999-12-31 23:59:59",
+                        "subscription_instance_start_date": "2024-10-10 00:00:00",
+                        "subscription_start_date": "2024-10-10 00:00:00",
+                        "tariff_descr": "АРХИВ. Пакет минут (расширенный)",
+                        "tariff_id": 41,
+                        "total_price": 60000.0
                     }
                 ]
             }
@@ -2880,81 +2907,81 @@ def test_user_tariffication(base_url, page: Page) -> None:
     def handle_writeoffs(route: Route):
         json_writeoffs = [
             {
-                "agreement_id": 828,
-                "agreement_number": "456",
+                "agreement_id": 835,
+                "agreement_number": "0009",
+                "amount": 10000.0,
+                "charge_date": "2024-10-10 11:46:25",
+                "charge_id": 72940,
+                "currency_id": 1,
+                "currency_symbol": "руб",
+                "is_bulk_service": False,
+                "is_connection_charge": 0,
+                "period": "2024-10-10",
+                "periodic_service": 1,
+                "service_id": 613,
+                "subscription_description": "Индивидуальный тариф",
+                "subscription_id": 239,
+                "subscription_instance_id": 239,
+                "tariff_description": "АРХИВ. Пакет минут (расширенный)",
+                "tariff_id": 41,
+                "tariff_service_description": "Чек-листы звонка",
+                "tariff_service_id": 2,
+                "tarification_period_end": "2024-10-31",
+                "tarification_period_start": "2024-10-01",
+                "usage_period": "2024-10-10",
+                "user_name": "Клиент тестовый 2",
+                "volume": 1.0
+            },
+            {
+                "agreement_id": 835,
+                "agreement_number": "0009",
+                "amount": 10000.0,
+                "charge_date": "2024-10-10 11:46:25",
+                "charge_id": 72941,
+                "currency_id": 1,
+                "currency_symbol": "руб",
+                "is_bulk_service": False,
+                "is_connection_charge": 0,
+                "period": "2024-10-10",
+                "periodic_service": 1,
+                "service_id": 614,
+                "subscription_description": "Индивидуальный тариф",
+                "subscription_id": 239,
+                "subscription_instance_id": 239,
+                "tariff_description": "АРХИВ. Пакет минут (расширенный)",
+                "tariff_id": 41,
+                "tariff_service_description": "Оповещения",
+                "tariff_service_id": 3,
+                "tarification_period_end": "2024-10-31",
+                "tarification_period_start": "2024-10-01",
+                "usage_period": "2024-10-10",
+                "user_name": "Клиент тестовый 2",
+                "volume": 1.0
+            },
+            {
+                "agreement_id": 835,
+                "agreement_number": "0009",
                 "amount": 40000.0,
-                "charge_date": "2024-10-08 11:45:32",
-                "charge_id": 72666,
+                "charge_date": "2024-10-10 11:46:25",
+                "charge_id": 72942,
                 "currency_id": 1,
                 "currency_symbol": "руб",
-                "is_bulk_service": "false",
+                "is_bulk_service": False,
                 "is_connection_charge": 0,
-                "period": "2024-10-08",
+                "period": "2024-10-10",
                 "periodic_service": 1,
-                "service_id": 607,
-                "subscription_description": "1 год тест",
-                "subscription_id": 235,
-                "subscription_instance_id": 235,
-                "tariff_description": "Пилот (тестовый период)",
-                "tariff_id": 42,
+                "service_id": 615,
+                "subscription_description": "Индивидуальный тариф",
+                "subscription_id": 239,
+                "subscription_instance_id": 239,
+                "tariff_description": "АРХИВ. Пакет минут (расширенный)",
+                "tariff_id": 41,
                 "tariff_service_description": "Абонентская плата",
-                "tariff_service_id": 1,
-                "tarification_period_end": "2025-09-30",
-                "tarification_period_start": "2024-10-01",
-                "usage_period": "2024-10-08",
-                "user_name": "Клиент тестовый",
-                "volume": 1.0
-            },
-            {
-                "agreement_id": 827,
-                "agreement_number": "123",
-                "amount": 19999.0,
-                "charge_date": "2024-10-05 00:00:04",
-                "charge_id": 72262,
-                "currency_id": 1,
-                "currency_symbol": "руб",
-                "is_bulk_service": "false",
-                "is_connection_charge": 0,
-                "period": "2024-10-01",
-                "periodic_service": 1,
-                "service_id": 594,
-                "subscription_description": "еще одна подписка",
-                "subscription_id": 230,
-                "subscription_instance_id": 230,
-                "tariff_description": "OFFLINE 1 (мес)",
-                "tariff_id": 30,
-                "tariff_service_description": "От 5 до 14 бейджей/микрофонов (за шт)",
-                "tariff_service_id": 1,
+                "tariff_service_id": 6,
                 "tarification_period_end": "2024-10-31",
                 "tarification_period_start": "2024-10-01",
-                "usage_period": "2024-10-01",
-                "user_name": "Клиент тестовый",
-                "volume": 1.0
-            },
-            {
-                "agreement_id": 826,
-                "agreement_number": "111",
-                "amount": 20000.0,
-                "charge_date": "2024-10-01 12:38:39",
-                "charge_id": 71392,
-                "currency_id": 1,
-                "currency_symbol": "руб",
-                "is_bulk_service": "false",
-                "is_connection_charge": 0,
-                "period": "2024-10-01",
-                "periodic_service": 1,
-                "service_id": 586,
-                "subscription_description": "СТТ",
-                "subscription_id": 226,
-                "subscription_instance_id": 226,
-                "tariff_description": "Тестовый тариф",
-                "tariff_id": 44,
-                "tariff_service_description": "Абонентская плата",
-                "tariff_service_id": 1,
-                "tarification_period_end": "2024-10-31",
-                "tarification_period_start": "2024-10-01",
-                "usage_period": "2024-10-01",
-                "user_name": "Клиент тестовый",
+                "usage_period": "2024-10-10",
+                "user_name": "Клиент тестовый 2",
                 "volume": 1.0
             }
 
@@ -2967,54 +2994,29 @@ def test_user_tariffication(base_url, page: Page) -> None:
     def handle_charges(route: Route):
         json_charges = [
             {
-                "agreement_id": 828,
-                "agreement_number": "456",
-                "amount": 40000.0,
-                "auto_payment_id": "null",
-                "cancel_date": "null",
-                "comment": "Назначение платежа 1",
+                "agreement_id": 835,
+                "agreement_number": "0009",
+                "amount": 60000.0,
+                "auto_payment_id": None,
+                "cancel_date": None,
+                "comment": "Some text about pyment",
                 "currency_symbol": "руб",
-                "document_id": "null",
-                "inn": "null",
+                "document_id": None,
+                "inn": None,
                 "is_vps": 0,
-                "local_date": "2024-10-09 12:59:32",
-                "manager_fio": "Алексей Березов",
-                "manager_id": 18,
-                "order_number": "null",
-                "pay_code": "null",
-                "pay_date": "2024-10-08 11:44:36",
-                "payment_id": 1411,
-                "payment_order_number": "null",
-                "status": 3,
-                "unqiue_payment_id": "20241044114436-3457",
-                "user_id": 598,
-                "user_login": "login-4DGSi",
-                "user_name": "Клиент тестовый"
-            },
-            {
-                "agreement_id": 829,
-                "agreement_number": "789",
-                "amount": 80000.0,
-                "auto_payment_id": "null",
-                "cancel_date": "null",
-                "comment": "Назначение платежа 2",
-                "currency_symbol": "руб",
-                "document_id": "null",
-                "inn": "null",
-                "is_vps": 0,
-                "local_date": "2024-10-09 12:59:37",
-                "manager_fio": "Алексей Березов",
-                "manager_id": 18,
-                "order_number": "null",
-                "pay_code": "null",
-                "pay_date": "2024-10-04 09:36:36",
-                "payment_id": 1324,
-                "payment_order_number": "null",
-                "status": 3,
-                "unqiue_payment_id": "20241036093636-3007",
-                "user_id": 598,
-                "user_login": "login-4DGSi",
-                "user_name": "Клиент тестовый"
+                "local_date": "2024-10-10 11:46:12",
+                "manager_fio": "Анастасия Соколова",
+                "manager_id": 2,
+                "order_number": None,
+                "pay_code": None,
+                "pay_date": "2024-10-01 11:46:12",
+                "payment_id": 1413,
+                "payment_order_number": None,
+                "status": 0,
+                "unqiue_payment_id": "20241046114612-9683",
+                "user_id": 602,
+                "user_login": "login-X4UYT",
+                "user_name": "Клиент тестовый 2"
             }
         ]
         # fulfill the route with the mock data
@@ -3035,42 +3037,53 @@ def test_user_tariffication(base_url, page: Page) -> None:
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_TARIFFICATION).click()
 
-    # with allure.step("Check tariff name"):
-        # expect(page.locator('[class*="style_accordionTitle"]')).to_contain_text("Архивная подписка")
+    with allure.step("Check tariff name"):
+        expect(page.locator('[class*="styles_body"]')).to_contain_text(tariff_block_contain_text)
+
+    with allure.step("Check invoice request"):
+        page.get_by_role("button", name="Запросить счет").click()
+        page.wait_for_selector(MODAL_WINDOW)
+        expect(page.locator(MODAL_WINDOW).get_by_role("button", name="Запросить")).to_have_count(1)
+        page.locator(MODAL_WINDOW).get_by_role("button", name="Отмена").click()
 
     with allure.step("Go to writeoffs"):
         page.locator(BUTTON_WRITEOFFS).click()
 
     with allure.step("Check exist search for chats, calendar, mocked data and total count"):
-
         expect(page.locator('[placeholder="Поиск по тарифу или услуге"]')).to_have_count(1)
         expect(page.locator(SEARCH_IN_TARIFFICATION)).to_have_count(1)
-        # #  check first row
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("yandex_gpt")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("yandexgpt-lite")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_contain_text("call")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="5"]')).to_contain_text("title1")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="6"]')).to_contain_text("200")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="7"]')).to_contain_text("111")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="8"]')).to_contain_text("7.47")
-        # #  check second row
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("29.07.2024")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("chat_gpt")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("gpt-3.5-turbo")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="4"]')).to_contain_text("call")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="5"]')).to_contain_text("title2")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="6"]')).to_contain_text("299")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="7"]')).to_contain_text("222")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="8"]')).to_contain_text("7.42")
-        # #  check total count
-        # expect(page.locator(TOTAL_GPT_MONEY)).to_contain_text("14.89")
+        #  check first row
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("10.10.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("10.10.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("АРХИВ. Пакет минут (расширенный)")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_contain_text("Чек-листы звонка")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="5"]')).to_contain_text("1")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="6"]')).to_contain_text("10 000")
 
-    # with allure.step("Fill search by ya"):
-    #     page.locator(SEARCH_IN_CONSUMPTION_GPT).locator('[type="text"]').fill("ya")
-    #
-    # with allure.step("Check search that chat_gpt not visible"):
-    #     expect(page.locator('[class*="communicationsStyles_table_"]')).not_to_contain_text("chat_gpt")
+        #  check second row
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("10.10.2024")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("10.10.2024")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("АРХИВ. Пакет минут (расширенный)")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="4"]')).to_contain_text("Оповещения")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="5"]')).to_contain_text("1")
+        expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="6"]')).to_contain_text("10 000")
+
+        #  check third row
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="1"]')).to_contain_text("10.10.2024")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="2"]')).to_contain_text("10.10.2024")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="3"]')).to_contain_text("АРХИВ. Пакет минут (расширенный)")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="4"]')).to_contain_text("Абонентская плата")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="5"]')).to_contain_text("1")
+        expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="6"]')).to_contain_text("40 000")
+
+        # #  check total count
+        expect(page.locator(TOTAL_IN_TABLE)).to_contain_text("60 000")
+
+    with allure.step("Fill search by ya"):
+        page.locator(SEARCH_IN_TARIFFICATION).locator('[type="text"]').fill("або")
+
+    with allure.step("Check search that chat_gpt not visible"):
+        expect(page.locator('[class*="style_table_"]')).not_to_contain_text("10 000")
 
     with allure.step("Go to consumption history chats"):
         page.locator(BUTTON_CHARGES).click()
@@ -3079,20 +3092,13 @@ def test_user_tariffication(base_url, page: Page) -> None:
 
         expect(page.locator('[placeholder="Поиск по договору и назначению платежа"]')).to_have_count(1)
         expect(page.locator(SEARCH_IN_TARIFFICATION)).to_have_count(1)
-        # #  check first row
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("28.07.2024")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("")
-        # expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("100")
-        # #  check second row
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="1"]')).to_contain_text("29.07.2024")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="2"]')).to_contain_text("chat1")
-        # expect(page.locator('[aria-rowindex="3"]').locator('[aria-colindex="3"]')).to_contain_text("999")
-        # #  check third row
-        # expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="1"]')).to_contain_text("30.07.2024")
-        # expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="2"]')).to_contain_text("chat2")
-        # expect(page.locator('[aria-rowindex="4"]').locator('[aria-colindex="3"]')).to_contain_text("9002")
-        # #  check total count
-        # expect(page.locator(TOTAL_CHATS)).to_contain_text("10101")
+        #  check first row
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="1"]')).to_contain_text("01.10.2024")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="2"]')).to_contain_text("0009")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="3"]')).to_contain_text("Some text about pyment")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_contain_text("+60 000")
+        #  check total count
+        expect(page.locator(TOTAL_IN_TABLE)).to_contain_text("60 000")
 
     # with allure.step("Fill search by chat1"):
     #     page.locator(SEARCH_IN_CONSUMPTION_CHATS).locator('[type="text"]').fill("chat1")

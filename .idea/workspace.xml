@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix add params test4">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="added workers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -570,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added tests4" />
     <MESSAGE value="added tests5" />
     <MESSAGE value="added tests6" />
     <MESSAGE value="added tests7" />
@@ -595,6 +594,7 @@
     <MESSAGE value="fix add params test2" />
     <MESSAGE value="fix add params test3" />
     <MESSAGE value="fix add params test4" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix add params test4" />
+    <MESSAGE value="added workers" />
+    <option name="LAST_COMMIT_MESSAGE" value="added workers" />
   </component>
 </project>
