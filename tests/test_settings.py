@@ -1006,7 +1006,7 @@ def test_left_menu_items_for_manager_itself(base_url, page: Page) -> None:
 @allure.description("Check how many items in left menu for role")
 def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
 
-    block_list = "Персональная информацияСотрудникиДействия с коммуникациямиКвоты776История потребления услугАдресная книгаИнтеграции"
+    block_list = "Персональная информацияСотрудникиДействия с коммуникациямиКвоты776История потребления услугТарифыАдресная книгаИнтеграции"
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -2726,7 +2726,7 @@ def test_user_tariffication_if_empty(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto("http://192.168.10.101/feature-dev-2967", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
@@ -3026,7 +3026,7 @@ def test_user_tariffication(base_url, page: Page) -> None:
 
 
     with allure.step("Go to page"):
-        page.goto("http://192.168.10.101/feature-dev-2967", timeout=wait_until_visible)
+        page.goto(base_url, timeout=wait_until_visible)
 
     with allure.step("Auth with user"):
         auth(LOGIN_USER, PASSWORD, page)
