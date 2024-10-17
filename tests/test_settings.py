@@ -1022,7 +1022,7 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
 
     with allure.step("Check items in left menu"):
         expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(block_list)
-        expect(page.locator(LEFT_MENU_ITEM)).to_have_count(7)
+        expect(page.locator(LEFT_MENU_ITEM)).to_have_count(8)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
