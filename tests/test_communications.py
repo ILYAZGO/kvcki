@@ -39,7 +39,7 @@ def test_check_dates(base_url, page: Page) -> None:
     with allure.step("Check first and last dates in view."):
         communications.assert_check_period_dates(first_day_week_ago, today)
 
-    # i cant find date month ago. every time changing) so i turn this off
+    # I cant find date month ago. every time changing), so i turn this off
     # with allure.step("Switch to month"):
     #     communications.month.click()
     #
@@ -101,8 +101,7 @@ def test_check_search_by_client_number(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill client number"):
-        page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').type("79251579005", delay=50)
-        page.wait_for_timeout(300)
+        communications.fill_client_number("79251579005")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -130,8 +129,7 @@ def test_check_search_by_employee_number(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill employee number"):
-        page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').type("4995055555", delay=100)
-        page.wait_for_timeout(300)
+        communications.fill_employee_number("4995055555")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_more_than_50()
@@ -199,7 +197,7 @@ def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill input with text"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').type("адрес", delay=100)
+        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').type("адрес", delay=30)
         page.wait_for_timeout(300)
         page.locator(MENU).locator('[id*="option-0"]').get_by_text("адрес").click()
 
@@ -239,8 +237,7 @@ def test_check_search_by_exact_time(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill exact time"):
-        page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').type("11:42", delay=50)
-        page.wait_for_timeout(300)
+        communications.fill_time("11:42")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -267,7 +264,7 @@ def test_check_search_by_length(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill length <10"):
-        fill_search_length("<10", page)
+        communications.fill_search_length("<10")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_more_than_50()
@@ -276,7 +273,7 @@ def test_check_search_by_length(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 441 из 3130")
 
     with allure.step("Fill length >10"):
-        fill_search_length(">10", page)
+        communications.fill_search_length(">10")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_more_than_50()
@@ -285,7 +282,7 @@ def test_check_search_by_length(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 2689 из 3130")
 
     with allure.step("Fill length 1711"):
-        fill_search_length("1711", page)
+        communications.fill_search_length("1711")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -312,8 +309,7 @@ def test_check_search_by_ID(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644474236.14425", delay=100)
-        page.wait_for_timeout(300)
+        communications.fill_id("1644474236.14425")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -340,12 +336,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill by tag"):
-        page.wait_for_selector(INPUT_PO_TEGAM,timeout=wait_until_visible)
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=40)
-        page.wait_for_timeout(700)
-        page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Другой отдел", exact=True).click()
-        page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
-        page.wait_for_timeout(300)
+        communications.fill_by_tag("Другой отдел")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -354,11 +345,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 128 из 3130")
 
     with allure.step("Add extra tag"):
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Обсуждение тарифа", delay=40)
-        page.wait_for_timeout(700)
-        page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Обсуждение тарифа", exact=True).click()
-        page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
-        page.wait_for_timeout(300)
+        communications.fill_by_tag("Обсуждение тарифа")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -378,7 +365,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
         page.wait_for_timeout(800)
         page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Новое подключение", exact=True).click()
-        page.locator(POISK_PO_FRAGMENTAM).click()  # tupo click
+        page.locator(COMMUNICATIONS_SEARCH).click()  # tupo click
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -461,33 +448,33 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
 
         page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').type("79251579005", delay=100)
         page.wait_for_timeout(500)
-        page.locator(POISK_PO_FRAGMENTAM).click()
+        page.locator(COMMUNICATIONS_SEARCH).click()
         page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').type("4995055555", delay=100)
         page.wait_for_timeout(500)
-        page.locator(POISK_PO_FRAGMENTAM).click()
+        page.locator(COMMUNICATIONS_SEARCH).click()
 
         page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=100)
         page.wait_for_timeout(2600)
-        page.locator(POISK_PO_FRAGMENTAM).click()
+        page.locator(COMMUNICATIONS_SEARCH).click()
 
         page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').type("2223", delay=100)
         page.wait_for_timeout(2600)
-        page.locator(POISK_PO_FRAGMENTAM).click()
+        page.locator(COMMUNICATIONS_SEARCH).click()
 
         fill_search_length(">10", page)
-        page.locator(POISK_PO_FRAGMENTAM).click()
-        page.locator(INPUT_VREMYA_ZVONKA).locator('[type="text"]').type("11:42", delay=100)
+        page.locator(COMMUNICATIONS_SEARCH).click()
+        page.locator(INPUT_TIME).locator('[type="text"]').type("11:42", delay=100)
         page.wait_for_timeout(500)
-        page.locator(POISK_PO_FRAGMENTAM).click()
+        page.locator(COMMUNICATIONS_SEARCH).click()
         page.locator(INPUT_ID).locator('[type="text"]').type("1644474236.14425", delay=100)
         page.wait_for_timeout(500)
-        page.locator(POISK_PO_FRAGMENTAM).click()
+        page.locator(COMMUNICATIONS_SEARCH).click()
 
         page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
         page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=100)
         page.wait_for_timeout(2600)
         page.get_by_text("Другой отдел", exact=True).first.click()
-        page.locator(POISK_PO_FRAGMENTAM).click()
+        page.locator(COMMUNICATIONS_SEARCH).click()
 
     with allure.step("Check all fields to have value"):
         expect(page.locator('[aria-label="Remove 79251579005"]')).to_be_visible()
@@ -931,15 +918,6 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.wait_for_timeout(4000)
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector(ALL_COMMENTS_AREA)
-
-        # if page.is_visible('[class*="styles_message_"]'):
-        #
-        #     page.locator('[class*="styles_optionsSelect_"]').click()
-        #     page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
-        #     page.wait_for_selector(MODAL_WINDOW)
-        #     page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-        #
-        #     page.wait_for_timeout(950)
 
     with allure.step("Press (add comment)"):
         page.locator(BUTTON_ADD_COMMENT).click()
@@ -1526,6 +1504,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check re-recognize in expanded call for ecotelecom. First finding by ID call with 0 length")
 def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
+    communications = Communications(page)
 
     expected_languages = ("Английский (Великобритания)Английский (США)Испанский (Латинская Америка, Карибский регион, "
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
@@ -1543,10 +1522,10 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        communications.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        communications.auth(LOGIN, PASSWORD, page)
 
     with allure.step("Go to user"):
         go_to_user("Экотелеком", page)
@@ -2025,15 +2004,16 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_communication_manual_tag")
 def test_check_communication_manual_tag(base_url, page: Page) -> None:
+    communications = Communications(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        communications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        communications.auth(LOGIN, PASSWORD, page)
 
     # with allure.step("Press button (Find communications)"):
     #     press_find_communications(page)
@@ -2110,6 +2090,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Searching all communications for Ecotelecom and switch to auto_test_user and check that calls changed")
 def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
+    communications = Communications(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -2118,20 +2099,19 @@ def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        communications.navigate(base_url)
 
     with allure.step("Auth with Ecotelecom"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        communications.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Change user to auto_test_user"):
-        go_to_user("Экотелеком", page)
+        communications.go_to_user("Экотелеком")
 
     with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Press button (Find communications)"):
-        press_find_communications(page)
-        page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
+        communications.press_find_communications_more_than_50()
 
     with allure.step("Check that all communications found"):
         expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 3130 из 3130")
@@ -2147,7 +2127,7 @@ def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
         page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS, timeout=wait_until_visible)
 
     with allure.step("Press button (Find communications)"):
-        press_find_communications(page)
+        communications.press_find_communications_less_than_50()
 
     with allure.step("Check that 1 communications found. Should be 1 and date today"):
         expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 0 из 0")

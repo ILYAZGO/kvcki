@@ -7,14 +7,33 @@ from utils.variables import wait_until_visible
 NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
 FIRST_PAGE_PAGINATION = '[aria-label="page 1"]'
 CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div/p'
+CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div'
+
+INPUT_CLIENT_NUMBER = '[data-testid="filters_client_phone"]'
+INPUT_EMPLOYEE_NUMBER = '[data-testid="filters_operator_phone"]'
+INPUT_TIME = '[data-testid="filters_call_time_interval"]'
+INPUT_CALL_DURATION = '[data-testid="filters_call_duration"]'
+INPUT_ID = '[data-testid="filters_any_id"]'
+INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
+
+COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
+
 
 class Communications(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
-        self.sort = page.locator('//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div')
+        self.sort = page.locator(CHANGE_SORT)
         self.call_date_and_time = page.locator(CALL_DATE_AND_TIME)
+        self.just_click = page.locator(COMMUNICATIONS_SEARCH)
+        self.input_client_number = page.locator(INPUT_CLIENT_NUMBER).locator('[type="text"]')
+        self.input_employee_number = page.locator(INPUT_EMPLOYEE_NUMBER).locator('[type="text"]')
+        self.input_time = page.locator(INPUT_TIME).locator('[type="text"]')
+        self.input_call_duration = page.locator(INPUT_CALL_DURATION).locator('[type="text"]')
+        self.input_id = page.locator(INPUT_ID).locator('[type="text"]')
+        self.input_by_tags = page.locator(INPUT_BY_TAGS).locator('[type="text"]')
+
 
     def assert_check_period_dates(self, begin: str, end: str):
         """Check first and last dates"""
@@ -43,16 +62,53 @@ class Communications(BaseClass):
         self.page.wait_for_selector(NAYDENO_ZVONKOV, timeout=self.timeout)
         self.page.wait_for_timeout(1000)
 
-    def assert_communications_found(self, text):
+    def assert_communications_found(self, text: str):
         expect(self.communications_found.nth(0)).to_have_text(text, timeout=self.timeout)
 
     def change_sort(self, sort_type):
+        """Change sort"""
         self.sort.click()
         self.menu.get_by_text(sort_type).click()
         self.page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=self.timeout)
 
-    def assert_call_date_and_time(self, text):
+    def assert_call_date_and_time(self, text: str):
         expect(self.call_date_and_time).to_have_text(text, timeout=self.timeout)
+
+    def fill_client_number(self, text: str):
+        """Fill filter client number"""
+        self.input_client_number.type(text, delay=30)
+        self.page.wait_for_timeout(500)
+
+    def fill_employee_number(self, text: str):
+        """Fill filter employee number"""
+        self.input_employee_number.type(text, delay=30)
+        self.page.wait_for_timeout(500)
+
+    def fill_time(self, time: str):
+        """Fill exact time"""
+        self.input_time.type(time, delay=30)
+        self.page.wait_for_timeout(500)
+
+    def fill_id(self, id: str):
+        self.input_id.type(id, delay=30)
+        self.page.wait_for_timeout(500)
+
+    def fill_search_length(self, value: str):
+        """Fill search length"""
+        self.page.wait_for_timeout(300)
+        self.input_call_duration.clear()
+        self.page.wait_for_timeout(300)
+        self.input_call_duration.type(value, delay=30)
+        self.page.wait_for_timeout(500)
+
+    def fill_by_tag(self, text: str):
+        self.page.wait_for_timeout(1000)
+        self.input_by_tags.type(text, delay=30)
+        self.page.wait_for_timeout(700)
+        self.menu.locator('[id*="-option-0"]').get_by_text(text, exact=True).click()
+        self.just_click.click()  # tupo click
+        self.page.wait_for_timeout(500)
+
 
 
 
@@ -76,13 +132,13 @@ LAST_DATE = '[placeholder="Конечная дата"]'
 # inputs
 INPUT_PO_TEGAM = '[data-testid="filters_search_by_tags"]'
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
-INPUT_VREMYA_ZVONKA = '[data-testid="filters_call_time_interval"]'
-INPUT_DLITELNOST_ZVONKA = '[data-testid="filters_call_duration"]'
+#INPUT_VREMYA_ZVONKA = '[data-testid="filters_call_time_interval"]'
+#INPUT_DLITELNOST_ZVONKA = '[data-testid="filters_call_duration"]'
 INPUT_NOMER_CLIENTA = '[data-testid="filters_client_phone"]'
 INPUT_NOMER_SOTRUDNIKA = '[data-testid="filters_operator_phone"]'
 INPUT_SLOVAR_ILI_TEXT_CLIENT = '[data-testid="filters_client_phrases"]'
 INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '[data-testid="filters_operator_phrases"]'
-INPUT_ID = '[data-testid="filters_any_id"]'
+
 INPUT_TEMPLATE_NAME = '[id="name"]'
 INPUT_LOGIN = '[name="login"]'
 # buttons
@@ -108,13 +164,13 @@ MODAL_WINDOW = '[role="dialog"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
 
-POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по коммуникациям')]"
+
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
-CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div/p'
+
 MENU = '[class*="-menu"]'
 COMMENT_AREA = '[class*="styles_content_"]'
 ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
-CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div'
+
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
 SELECT_MODEL = '[data-testid="stt_model"]'
@@ -163,7 +219,7 @@ def choose_filter_value(filterValue, page="page: Page"):
     # choose filter value
     page.locator(".css-1lq1yle-menu").get_by_text(filterValue).click()
     # tupo click
-    page.locator(POISK_PO_FRAGMENTAM).click()
+    page.locator(COMMUNICATIONS_SEARCH).click()
 
 
 def press_find_communications(page="page: Page"):
@@ -194,14 +250,14 @@ def choose_preiod_date(firstDate, lastDate, page="page: Page"):
 
 def remove_filter_value(filterValue, page="page: Page"):
     page.locator(f'[aria-label="Remove {filterValue}"]').click()
-    page.locator(POISK_PO_FRAGMENTAM).click()
+    page.locator(COMMUNICATIONS_SEARCH).click()
 
 
 def fill_search_length(value, page="page: Page"):
     page.wait_for_timeout(200)
-    page.locator(INPUT_DLITELNOST_ZVONKA).locator('[type="text"]').clear()
+    page.locator(INPUT_CALL_DURATION).locator('[type="text"]').clear()
     page.wait_for_timeout(200)
-    page.locator(INPUT_DLITELNOST_ZVONKA).locator('[type="text"]').type(value, delay=100)
+    page.locator(INPUT_CALL_DURATION).locator('[type="text"]').type(value, delay=100)
     page.wait_for_timeout(400)
 
 
