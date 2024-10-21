@@ -1,4 +1,67 @@
+from playwright.sync_api import Page, expect
+from pages.base_class import BaseClass
+
 from utils.variables import wait_until_visible
+
+
+NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
+FIRST_PAGE_PAGINATION = '[aria-label="page 1"]'
+CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div/p'
+
+class Communications(BaseClass):
+    def __init__(self, page: Page):
+        BaseClass.__init__(self, page)
+        self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
+        self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
+        self.sort = page.locator('//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div')
+        self.call_date_and_time = page.locator(CALL_DATE_AND_TIME)
+
+    def assert_check_period_dates(self, begin: str, end: str):
+        """Check first and last dates"""
+        expect(self.first_date).to_have_value(begin)
+        expect(self.last_date).to_have_value(end)
+
+    def assert_check_period_dates_disabled(self):
+        """Check that dates disabled if all-time"""
+        expect(self.first_date).to_be_disabled()
+        expect(self.last_date).to_be_disabled()
+
+    def press_find_communications_more_than_50(self):
+        """If more than 50, waiting pagination"""
+        self.page.wait_for_timeout(1000)
+        self.button_find_communications.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(NAYDENO_ZVONKOV, timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=self.timeout)
+
+    def press_find_communications_less_than_50(self):
+        """If less than 50, not waiting pagination"""
+        self.page.wait_for_timeout(1000)
+        self.button_find_communications.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(NAYDENO_ZVONKOV, timeout=self.timeout)
+        self.page.wait_for_timeout(1000)
+
+    def assert_communications_found(self, text):
+        expect(self.communications_found.nth(0)).to_have_text(text, timeout=self.timeout)
+
+    def change_sort(self, sort_type):
+        self.sort.click()
+        self.menu.get_by_text(sort_type).click()
+        self.page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=self.timeout)
+
+    def assert_call_date_and_time(self, text):
+        expect(self.call_date_and_time).to_have_text(text, timeout=self.timeout)
+
+
+
+
+
+
+
+
+
 USERS_LIST = "#react-select-2-input"
 
 # time period
@@ -44,7 +107,7 @@ ALERT = '[role="alert"]'
 MODAL_WINDOW = '[role="dialog"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
-NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
+
 POISK_PO_FRAGMENTAM = "//h6[contains(text(),'Поиск по коммуникациям')]"
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div/p'
@@ -56,7 +119,7 @@ SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
 SELECT_MODEL = '[data-testid="stt_model"]'
 
-FIRST_PAGE_PAGINATION = '[aria-label="page 1"]'
+
 OPEN_CALL_AREA = '[class="MuiAccordion-region"]'
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
 RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
@@ -173,9 +236,6 @@ def press_calls_list_download_button(number, page="page: Page"):
 def press_ex_button_in_expanded_call(page="page: Page"):
     page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Excel экспорт"]').locator('[type="button"]').click()
     page.wait_for_selector(MODAL_WINDOW)
-
-# def press_export_button(page="page: Page"):
-#     page.locator
 
 def click_submit_in_word_processing(page="page: Page"):
     page.wait_for_timeout(500)
