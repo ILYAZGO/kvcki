@@ -6,7 +6,7 @@ API_URL = "https://api.stand.imot.io"
 
 # LIST OF TIMEOUTS
 
-wait_until_visible = 50000
+wait_until_visible = 80000
 
 # LIST OF CREDENTIALS
 

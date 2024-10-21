@@ -610,7 +610,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=30)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
