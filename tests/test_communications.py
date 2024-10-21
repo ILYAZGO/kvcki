@@ -156,7 +156,7 @@ def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill input with text"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=50)
+        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=30)
         page.wait_for_timeout(300)
         page.locator(MENU).locator('[id*="option-0"]').get_by_text("адрес").click()
 
@@ -446,11 +446,10 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
     with allure.step("Fill all default fields"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
 
-        page.locator(INPUT_NOMER_CLIENTA).locator('[type="text"]').type("79251579005", delay=100)
-        page.wait_for_timeout(500)
+        communications.fill_client_number("79251579005")
         page.locator(COMMUNICATIONS_SEARCH).click()
-        page.locator(INPUT_NOMER_SOTRUDNIKA).locator('[type="text"]').type("4995055555", delay=100)
-        page.wait_for_timeout(500)
+
+        communications.fill_employee_number("4995055555")
         page.locator(COMMUNICATIONS_SEARCH).click()
 
         page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=100)
@@ -461,19 +460,13 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         page.wait_for_timeout(2600)
         page.locator(COMMUNICATIONS_SEARCH).click()
 
-        fill_search_length(">10", page)
+        communications.fill_search_length(">10")
         page.locator(COMMUNICATIONS_SEARCH).click()
-        page.locator(INPUT_TIME).locator('[type="text"]').type("11:42", delay=100)
-        page.wait_for_timeout(500)
+        communications.fill_time("11:42")
         page.locator(COMMUNICATIONS_SEARCH).click()
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644474236.14425", delay=100)
-        page.wait_for_timeout(500)
+        communications.fill_id("1644474236.14425")
         page.locator(COMMUNICATIONS_SEARCH).click()
-
-        page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
-        page.locator(INPUT_PO_TEGAM).locator('[type="text"]').type("Другой отдел", delay=100)
-        page.wait_for_timeout(2600)
-        page.get_by_text("Другой отдел", exact=True).first.click()
+        communications.fill_by_tag("Другой отдел")
         page.locator(COMMUNICATIONS_SEARCH).click()
 
     with allure.step("Check all fields to have value"):

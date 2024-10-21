@@ -90,6 +90,7 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(500)
 
     def fill_id(self, id: str):
+        """Fill ID"""
         self.input_id.type(id, delay=30)
         self.page.wait_for_timeout(500)
 
@@ -102,6 +103,7 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(500)
 
     def fill_by_tag(self, text: str):
+        """Fill by tag"""
         self.page.wait_for_timeout(1000)
         self.input_by_tags.type(text, delay=30)
         self.page.wait_for_timeout(700)
