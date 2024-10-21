@@ -1525,7 +1525,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        communications.auth(LOGIN, PASSWORD, page)
+        communications.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to user"):
         go_to_user("Экотелеком", page)
@@ -2013,7 +2013,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         communications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        communications.auth(LOGIN, PASSWORD, page)
+        communications.auth(LOGIN, PASSWORD)
 
     # with allure.step("Press button (Find communications)"):
     #     press_find_communications(page)
