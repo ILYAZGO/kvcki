@@ -615,7 +615,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Check that export (zip) downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert os.path.getsize(path + download.suggested_filename) > 41000
+        assert 10000 < os.path.getsize(path + download.suggested_filename) < 15000
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
@@ -732,9 +732,9 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
         # Wait for the download process to complete and save the downloaded file somewhere
         download.save_as(path + download.suggested_filename)
 
-    with allure.step("Check that file downloaded"):
+    with allure.step("Check that file opus downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert os.path.getsize(path + download.suggested_filename) == 1200536
+        assert 139500 < os.path.getsize(path + download.suggested_filename) < 139600
 
     with allure.step("Remove downloaded file"):
         os.remove(path + download.suggested_filename)
