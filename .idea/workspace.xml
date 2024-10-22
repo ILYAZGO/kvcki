@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="444">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix">
+      <change afterPath="$PROJECT_DIR$/6717b8032e91487a09dd5f8e.opus" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/communications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -572,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="alert to users2" />
     <MESSAGE value="alert to gpt" />
     <MESSAGE value="alert to gpt2" />
     <MESSAGE value="alert to gpt3" />
@@ -597,6 +595,7 @@
     <MESSAGE value="download tests update opus" />
     <MESSAGE value="#" />
     <MESSAGE value="444" />
-    <option name="LAST_COMMIT_MESSAGE" value="444" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

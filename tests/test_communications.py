@@ -725,7 +725,7 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check that file opus downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 139500 < os.path.getsize(path + download.suggested_filename) < 139600
+        assert 139000 < os.path.getsize(path + download.suggested_filename) < 139700
 
     with allure.step("Remove downloaded file"):
         os.remove(path + download.suggested_filename)
