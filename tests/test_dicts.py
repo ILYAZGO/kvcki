@@ -660,7 +660,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-        #
+
 
 
 @pytest.mark.independent
