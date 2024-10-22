@@ -1,3 +1,5 @@
+from re import search
+
 from playwright.sync_api import Page, expect
 from pages.base_class import BaseClass
 
@@ -10,11 +12,14 @@ CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/di
 CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div'
 
 INPUT_CLIENT_NUMBER = '[data-testid="filters_client_phone"]'
+INPUT_CLIENT_DICT_OR_TEXT = '[data-testid="filters_client_phrases"]'
 INPUT_EMPLOYEE_NUMBER = '[data-testid="filters_operator_phone"]'
+INPUT_EMPLOYEE_DICT_OR_TEXT = '[data-testid="filters_operator_phrases"]'
 INPUT_TIME = '[data-testid="filters_call_time_interval"]'
 INPUT_CALL_DURATION = '[data-testid="filters_call_duration"]'
 INPUT_ID = '[data-testid="filters_any_id"]'
 INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
+
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
 
@@ -28,7 +33,9 @@ class Communications(BaseClass):
         self.call_date_and_time = page.locator(CALL_DATE_AND_TIME)
         self.just_click = page.locator(COMMUNICATIONS_SEARCH)
         self.input_client_number = page.locator(INPUT_CLIENT_NUMBER).locator('[type="text"]')
+        self.input_client_dict_or_text = page.locator(INPUT_CLIENT_DICT_OR_TEXT).locator('[type="text"]')
         self.input_employee_number = page.locator(INPUT_EMPLOYEE_NUMBER).locator('[type="text"]')
+        self.input_employee_dict_or_text = page.locator(INPUT_EMPLOYEE_DICT_OR_TEXT).locator('[type="text"]')
         self.input_time = page.locator(INPUT_TIME).locator('[type="text"]')
         self.input_call_duration = page.locator(INPUT_CALL_DURATION).locator('[type="text"]')
         self.input_id = page.locator(INPUT_ID).locator('[type="text"]')
@@ -103,6 +110,22 @@ class Communications(BaseClass):
         self.input_call_duration.type(value, delay=30)
         self.page.wait_for_timeout(500)
 
+    def fill_client_dict_or_text(self, search_text: str, result_text: str):
+        """Fill client dict or text"""
+        self.input_client_dict_or_text.clear()
+        self.input_client_dict_or_text.type(search_text, delay=30)
+        self.page.wait_for_timeout(300)
+        self.menu.get_by_text(result_text).click()
+        self.just_click.click()  # tupo click
+
+    def fill_employee_dict_or_text(self, search_text: str, result_text: str):
+        """Fill employee dict or text"""
+        self.input_employee_dict_or_text.clear()
+        self.input_employee_dict_or_text.type(search_text, delay=30)
+        self.page.wait_for_timeout(300)
+        self.menu.get_by_text(result_text).click()
+        self.just_click.click()  # tupo click
+
     def fill_by_tag(self, text: str):
         """Fill by tag"""
         self.page.wait_for_timeout(1000)
@@ -139,8 +162,8 @@ INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/di
 #INPUT_DLITELNOST_ZVONKA = '[data-testid="filters_call_duration"]'
 INPUT_NOMER_CLIENTA = '[data-testid="filters_client_phone"]'
 INPUT_NOMER_SOTRUDNIKA = '[data-testid="filters_operator_phone"]'
-INPUT_SLOVAR_ILI_TEXT_CLIENT = '[data-testid="filters_client_phrases"]'
-INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '[data-testid="filters_operator_phrases"]'
+#INPUT_SLOVAR_ILI_TEXT_CLIENT = '[data-testid="filters_client_phrases"]'
+#INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '[data-testid="filters_operator_phrases"]'
 
 INPUT_TEMPLATE_NAME = '[id="name"]'
 INPUT_LOGIN = '[name="login"]'

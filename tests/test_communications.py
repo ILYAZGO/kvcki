@@ -156,20 +156,16 @@ def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill input with text"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=30)
-        page.wait_for_timeout(300)
-        page.locator(MENU).locator('[id*="option-0"]').get_by_text("адрес").click()
+        communications.fill_client_dict_or_text("минутку", "минутку")
 
     with allure.step("Press button (Find communications)"):
-        communications.press_find_communications_more_than_50()
+        communications.press_find_communications_less_than_50()
 
     with allure.step("Check"):
-        communications.assert_communications_found("Найдено коммуникаций 183 из 3130")
+        communications.assert_communications_found("Найдено коммуникаций 20 из 3130")
 
     with allure.step("Clear, fill input by dict, choose dict from suggestion"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').clear()
-        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').fill("Зо")
-        page.get_by_text("Зомбоящик").click()
+        communications.fill_client_dict_or_text("Зо", "Словарь: Зомбоящик")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_more_than_50()
@@ -197,20 +193,16 @@ def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill input with text"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').type("адрес", delay=30)
-        page.wait_for_timeout(300)
-        page.locator(MENU).locator('[id*="option-0"]').get_by_text("адрес").click()
+        communications.fill_employee_dict_or_text("минутку", "минутку")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_more_than_50()
 
     with allure.step("Check"):
-        communications.assert_communications_found("Найдено коммуникаций 398 из 3130")
+        communications.assert_communications_found("Найдено коммуникаций 204 из 3130")
 
     with allure.step("Clear, fill input by dict, choose dict from suggestion"):
-        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').clear()
-        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').fill("Зо")
-        page.get_by_text("Зомбоящик").click()
+        communications.fill_employee_dict_or_text("Зо", "Словарь: Зомбоящик")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_more_than_50()
@@ -452,28 +444,27 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         communications.fill_employee_number("4995055555")
         page.locator(COMMUNICATIONS_SEARCH).click()
 
-        page.locator(INPUT_SLOVAR_ILI_TEXT_CLIENT).locator('[type="text"]').type("адрес", delay=100)
-        page.wait_for_timeout(2600)
-        page.locator(COMMUNICATIONS_SEARCH).click()
+        communications.fill_client_dict_or_text("минутку", "минутку")
 
-        page.locator(INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK).locator('[type="text"]').type("2223", delay=100)
-        page.wait_for_timeout(2600)
-        page.locator(COMMUNICATIONS_SEARCH).click()
+        communications.fill_employee_dict_or_text("Зо", "Словарь: Зомбоящик")
 
         communications.fill_search_length(">10")
         page.locator(COMMUNICATIONS_SEARCH).click()
+
         communications.fill_time("11:42")
         page.locator(COMMUNICATIONS_SEARCH).click()
+
         communications.fill_id("1644474236.14425")
         page.locator(COMMUNICATIONS_SEARCH).click()
+
         communications.fill_by_tag("Другой отдел")
         page.locator(COMMUNICATIONS_SEARCH).click()
 
     with allure.step("Check all fields to have value"):
         expect(page.locator('[aria-label="Remove 79251579005"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove 4995055555"]')).to_be_visible()
-        expect(page.locator('[aria-label="Remove адрес"]')).to_be_visible()
-        expect(page.locator('[aria-label="Remove 2223"]')).to_be_visible()
+        expect(page.locator('[aria-label="Remove минутку"]')).to_be_visible()
+        expect(page.locator('[aria-label="Remove Словарь: Зомбоящик"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove >10"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove 11:42"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove 1644474236.14425"]')).to_be_visible()
@@ -485,8 +476,8 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
     with allure.step("Check that cleared"):
         expect(page.locator('[aria-label="Remove 79251579005"]')).not_to_be_visible()
         expect(page.locator('[aria-label="Remove 4995055555"]')).not_to_be_visible()
-        expect(page.locator('[aria-label="Remove адрес"]')).not_to_be_visible()
-        expect(page.locator('[aria-label="Remove 2223"]')).not_to_be_visible()
+        expect(page.locator('[aria-label="Remove минутку"]')).not_to_be_visible()
+        expect(page.locator('[aria-label="Remove Словарь: Зомбоящик"]')).not_to_be_visible()
         expect(page.locator('[aria-label="Remove >10"]')).not_to_be_visible()
         expect(page.locator('[aria-label="Remove 11:42"]')).not_to_be_visible()
         expect(page.locator('[aria-label="Remove 1644474236.14425"]')).not_to_be_visible()

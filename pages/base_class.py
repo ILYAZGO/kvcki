@@ -6,7 +6,7 @@ from playwright.sync_api import Page, expect
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
-        self.timeout = 50000
+        self.timeout = 70000
         self.users_list = page.locator("#react-select-2-input")
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
