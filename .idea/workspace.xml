@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="1.48">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="download tests update opus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/communications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
@@ -571,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add alerts in settings2" />
     <MESSAGE value="add -n to 40" />
     <MESSAGE value="alert to users" />
     <MESSAGE value="alert to users2" />
@@ -596,6 +595,7 @@
     <MESSAGE value="communications class5" />
     <MESSAGE value="communications class6" />
     <MESSAGE value="1.48" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.48" />
+    <MESSAGE value="download tests update opus" />
+    <option name="LAST_COMMIT_MESSAGE" value="download tests update opus" />
   </component>
 </project>
