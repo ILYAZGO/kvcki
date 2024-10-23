@@ -218,12 +218,12 @@ def create_user(URL, ROLE, PASSWORD):
         upload = requests.post(url=URL + "/call/", headers=headers_for_upload, data=params_for_upload,
                                files=
                                {
-                                   'client_audio': ('count-in.wav',
+                                   'client_audio': ('count-in.opus',
                                                     open(client_audio_path, 'rb'),
-                                                    'audio/wav'),
-                                   'operator_audio': ('count-out.wav',
+                                                    'audio/opus'),
+                                   'operator_audio': ('count-out.opus',
                                                       open(operator_audio_path, 'rb'),
-                                                      'audio/wav')
+                                                      'audio/opus')
                                })
 
         if upload.status_code == 200:
@@ -231,7 +231,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\n>>>>> WAV upload error {upload.status_code} text {upload.text} <<<<<")
 
-        time.sleep(100)
+        time.sleep(30)
 
 
     return user_id, token, LOGIN
