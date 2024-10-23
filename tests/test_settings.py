@@ -1021,6 +1021,7 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
         click_settings(page)
 
     with allure.step("Check items in left menu"):
+        page.wait_for_timeout(1000)
         expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(block_list)
         expect(page.locator(LEFT_MENU_ITEM)).to_have_count(8)
 
