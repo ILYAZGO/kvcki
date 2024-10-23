@@ -285,10 +285,10 @@ def test_check_search_by_length(base_url, page: Page) -> None:
 
 @pytest.mark.calls
 @pytest.mark.independent
-@allure.title("test_check_search_by_ID")
+@allure.title("test_check_search_by_id")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("Check search by ID for Ecotelecom")
-def test_check_search_by_ID(base_url, page: Page) -> None:
+@allure.description("Check search by id for Ecotelecom")
+def test_check_search_by_id(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Go to url"):
@@ -439,26 +439,20 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
 
         communications.fill_client_number("79251579005")
-        page.locator(COMMUNICATIONS_SEARCH).click()
 
         communications.fill_employee_number("4995055555")
-        page.locator(COMMUNICATIONS_SEARCH).click()
 
         communications.fill_client_dict_or_text("минутку", "минутку")
 
         communications.fill_employee_dict_or_text("Зо", "Словарь: Зомбоящик")
 
         communications.fill_search_length(">10")
-        page.locator(COMMUNICATIONS_SEARCH).click()
 
         communications.fill_time("11:42")
-        page.locator(COMMUNICATIONS_SEARCH).click()
 
         communications.fill_id("1644474236.14425")
-        page.locator(COMMUNICATIONS_SEARCH).click()
 
         communications.fill_by_tag("Другой отдел")
-        page.locator(COMMUNICATIONS_SEARCH).click()
 
     with allure.step("Check all fields to have value"):
         expect(page.locator('[aria-label="Remove 79251579005"]')).to_be_visible()
@@ -471,7 +465,7 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove Другой отдел"]')).to_be_visible()
 
     with allure.step("Press button (Clear)"):
-        page.locator(BUTTON_CLEAR).click()
+        communications.press_clear_button()
 
     with allure.step("Check that cleared"):
         expect(page.locator('[aria-label="Remove 79251579005"]')).not_to_be_visible()
@@ -515,6 +509,7 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
+        page.wait_for_timeout(2000)
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
         expect(new_tab.locator('[id="accordionSummary"]')).to_have_count(1)
         expect(new_tab.locator('[id="62050BEC113619D283D9D584"]')).to_have_count(1)
@@ -553,7 +548,7 @@ def test_check_content_button_calls_actions(base_url, page: Page) -> None:
         communications.press_find_communications_less_than_50()
 
     with allure.step("Press button (Calls action)"):
-        press_calls_action_button_in_list(0, page)
+        communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check content of button (...) calls action"):
         expect(page.locator(MENU)).to_have_text("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов")
@@ -662,11 +657,11 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
     #     press_find_communications(page)
 
     with allure.step("Expand call"):
-        page.wait_for_timeout(4000)
+        #page.wait_for_timeout(4000)
         page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        page.wait_for_timeout(500)
+        #page.wait_for_timeout(500)
         page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector(ALL_COMMENTS_AREA)
+        page.wait_for_selector(ALL_COMMENTS_AREA, timeout=wait_until_visible)
 
     with allure.step("Check that all 6 buttons in expanded call visible"):
         expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Переход в источник коммуникации"]')).to_be_visible()
@@ -707,10 +702,10 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
     #     press_find_communications(page)
 
     with allure.step("Expand call"):
-        page.wait_for_timeout(4500)
+        #page.wait_for_timeout(4500)
         page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
         page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector(ALL_COMMENTS_AREA)
+        page.wait_for_selector(ALL_COMMENTS_AREA, timeout=wait_until_visible)
 
     with allure.step("Press (Download) button and download file"):
         # Start waiting for the download
@@ -899,7 +894,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Expand call"):
         page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(1500)
         page.locator(BUTTON_EXPAND_CALL).click()
         page.wait_for_selector(ALL_COMMENTS_AREA)
 
@@ -1068,109 +1063,6 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         with allure.step("Check engine list"):
             expect(page.locator(MENU)).to_contain_text(expected_engines)
 
-        # DELETE
-        # with allure.step("Choose any2text"):
-        #     choose_option(0, page)
-        #
-        # with allure.step("Click to model"):
-        #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Check model list"):
-        #     expect(page.locator(MENU)).to_contain_text("Стандарт")
-        #
-        # with allure.step("Select model"):
-        #     choose_option(0, page)
-        #
-        # with allure.step("Check engine parameters"):
-        #     expect(page.locator(SELECT_ENGINE)).to_contain_text("any2text")
-        #     expect(page.locator(SELECT_MODEL)).to_contain_text("Стандарт")
-        #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-        #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-        #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-        #     expect(page.locator('[type="checkbox"]')).to_have_count(3)
-        # DELETE
-
-        # with allure.step("Click to engine"):
-        #     page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Choose assembly_ai"):
-        #     choose_option(1, page)
-        #
-        # with allure.step("Click to model"):
-        #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Check model list"):
-        #     expect(page.locator(MENU)).to_contain_text("bestconformer-2nano")
-        #
-        # with allure.step("Select model best"):
-        #     choose_option(0, page)
-        #
-        # with allure.step("Click to model"):
-        #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Select model conformer-2"):
-        #     choose_option(1, page)
-        #
-        # with allure.step("Click to model"):
-        #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Select model nano"):
-        #     choose_option(2, page)
-        #
-        # with allure.step("Check engine parameters"):
-        #     expect(page.locator(SELECT_ENGINE)).to_contain_text("assembly_ai")
-        #     expect(page.locator(SELECT_MODEL)).to_contain_text("nano")
-        #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-        #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-        #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        #     expect(page.locator(CHECKBOX_USE_WEBHOOK)).not_to_be_checked()
-        #     expect(page.locator(CHECKBOX_ADD_PUNCTUATION)).to_be_checked()
-        #     expect(page.locator(CHECKBOX_ENGINE_DIARIZATION)).to_be_checked()
-        #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-        #     expect(page.locator('[type="checkbox"]')).to_have_count(6)
-
-        # DELETE
-        # with allure.step("Click to engine"):
-        #     page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Choose ClaritySpeech"):
-        #     choose_option(2, page)
-        #
-        # with allure.step("Click to model"):
-        #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Check model list"):
-        #     expect(page.locator(MENU)).to_contain_text("СтандартАЗС")
-        #
-        # with allure.step("Select model Стандарт"):
-        #     choose_option(0, page)
-        #
-        # with allure.step("Click to model"):
-        #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Select model АЗС"):
-        #     choose_option(1, page)
-        #
-        # with allure.step("Check engine parameters"):
-        #     expect(page.locator(SELECT_ENGINE)).to_contain_text("ClaritySpeech")
-        #     expect(page.locator(SELECT_MODEL)).to_contain_text("АЗС")
-        #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-        #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-        #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        #     expect(page.locator(CHECKBOX_USE_WEBHOOK)).not_to_be_checked()
-        #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-        #     expect(page.locator('[type="checkbox"]')).to_have_count(4)
-        # DELETE
-
         with allure.step("Click to engine"):
             page.locator(SELECT_ENGINE).locator('[type="text"]').click()
             page.wait_for_selector(MENU)
@@ -1263,33 +1155,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
             expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
             expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
-        # DELETE
-        # with allure.step("Click to engine"):
-        #     page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Choose Sova ASR"):
-        #     choose_option(6, page)
-        #
-        # with allure.step("Click to model"):
-        #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        #     page.wait_for_selector(MENU)
-        #
-        # with allure.step("Check model list"):
-        #     expect(page.locator(MENU)).to_contain_text("Стандарт")
-        #
-        # with allure.step("Select model Стандарт"):
-        #     choose_option(0, page)
-        #
-        # with allure.step("Check engine parameters"):
-        #     expect(page.locator(SELECT_ENGINE)).to_contain_text("Sova ASR")
-        #     expect(page.locator(SELECT_MODEL)).to_contain_text("Стандарт")
-        #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-        #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-        #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-        #     expect(page.locator('[type="checkbox"]')).to_have_count(3)
-        #
+
         with allure.step("Click to engine"):
             page.locator(SELECT_ENGINE).locator('[type="text"]').click()
             page.wait_for_selector(MENU)
@@ -1568,109 +1434,6 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
     with allure.step("Check engine list"):
         expect(page.locator(MENU)).to_contain_text(expected_engines)
 
-    # DELETE
-    # with allure.step("Choose any2text"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Click to model"):
-    #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(MENU)).to_contain_text("Стандарт")
-    #
-    # with allure.step("Select model"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("any2text")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("Стандарт")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(3)
-    # DELETE
-
-    # with allure.step("Click to engine"):
-    #     page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Choose assembly_ai"):
-    #     choose_option(1, page)
-    #
-    # with allure.step("Click to model"):
-    #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(MENU)).to_contain_text("bestconformer-2nano")
-    #
-    # with allure.step("Select model best"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Click to model"):
-    #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Select model conformer-2"):
-    #     choose_option(1, page)
-    #
-    # with allure.step("Click to model"):
-    #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Select model nano"):
-    #     choose_option(2, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("assembly_ai")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("nano")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_USE_WEBHOOK)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ADD_PUNCTUATION)).to_be_checked()
-    #     expect(page.locator(CHECKBOX_ENGINE_DIARIZATION)).to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(6)
-
-    # DELETE
-    # with allure.step("Click to engine"):
-    #     page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Choose ClaritySpeech"):
-    #     choose_option(2, page)
-    #
-    # with allure.step("Click to model"):
-    #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(MENU)).to_contain_text("СтандартАЗС")
-    #
-    # with allure.step("Select model Стандарт"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Click to model"):
-    #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Select model АЗС"):
-    #     choose_option(1, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("ClaritySpeech")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("АЗС")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_USE_WEBHOOK)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(4)
-    # DELETE
-
     with allure.step("Click to engine"):
         page.locator(SELECT_ENGINE).locator('[type="text"]').click()
         page.wait_for_selector(MENU)
@@ -1762,34 +1525,6 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
-
-    # DELETE
-    # with allure.step("Click to engine"):
-    #     page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Choose Sova ASR"):
-    #     choose_option(6, page)
-    #
-    # with allure.step("Click to model"):
-    #     page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    #     page.wait_for_selector(MENU)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(MENU)).to_contain_text("Стандарт")
-    #
-    # with allure.step("Select model Стандарт"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("Sova ASR")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("Стандарт")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(3)
-    # DELETE
 
     #
     with allure.step("Click to engine"):
@@ -2098,10 +1833,10 @@ def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
         communications.press_find_communications_more_than_50()
 
     with allure.step("Check that all communications found"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 3130 из 3130")
+        communications.assert_communications_found("Найдено коммуникаций 3130 из 3130")
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        communications.click_settings()
 
     with allure.step("Change user to auto_test_user"):
         go_to_user(LOGIN_USER, page)
@@ -2114,7 +1849,7 @@ def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
         communications.press_find_communications_less_than_50()
 
     with allure.step("Check that 1 communications found. Should be 1 and date today"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 0 из 0")
+        communications.assert_communications_found("Найдено коммуникаций 0 из 0")
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)

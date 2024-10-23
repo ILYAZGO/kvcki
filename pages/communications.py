@@ -19,7 +19,11 @@ INPUT_TIME = '[data-testid="filters_call_time_interval"]'
 INPUT_CALL_DURATION = '[data-testid="filters_call_duration"]'
 INPUT_ID = '[data-testid="filters_any_id"]'
 INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
+INPUT_LOGIN = '[name="login"]'
 
+BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
+BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
+BUTTON_SETTINGS = '[value="settings"]'
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
 
@@ -28,8 +32,10 @@ class Communications(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
+        self.button_calls_action = page.locator(BUTTON_CALLS_ACTION)
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
         self.sort = page.locator(CHANGE_SORT)
+        self.button_clear = page.locator(BUTTON_CLEAR)
         self.call_date_and_time = page.locator(CALL_DATE_AND_TIME)
         self.just_click = page.locator(COMMUNICATIONS_SEARCH)
         self.input_client_number = page.locator(INPUT_CLIENT_NUMBER).locator('[type="text"]')
@@ -86,21 +92,25 @@ class Communications(BaseClass):
         """Fill filter client number"""
         self.input_client_number.type(text, delay=30)
         self.page.wait_for_timeout(500)
+        self.just_click.click()  # tupo click
 
     def fill_employee_number(self, text: str):
         """Fill filter employee number"""
         self.input_employee_number.type(text, delay=30)
         self.page.wait_for_timeout(500)
+        self.just_click.click()  # tupo click
 
     def fill_time(self, time: str):
         """Fill exact time"""
         self.input_time.type(time, delay=30)
         self.page.wait_for_timeout(500)
+        self.just_click.click()  # tupo click
 
     def fill_id(self, id: str):
         """Fill ID"""
         self.input_id.type(id, delay=30)
         self.page.wait_for_timeout(500)
+        self.just_click.click()  # tupo click
 
     def fill_search_length(self, value: str):
         """Fill search length"""
@@ -109,6 +119,7 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(300)
         self.input_call_duration.type(value, delay=30)
         self.page.wait_for_timeout(500)
+        self.just_click.click()  # tupo click
 
     def fill_client_dict_or_text(self, search_text: str, result_text: str):
         """Fill client dict or text"""
@@ -133,6 +144,21 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(700)
         self.menu.locator('[id*="-option-0"]').get_by_text(text, exact=True).click()
         self.just_click.click()  # tupo click
+        self.page.wait_for_timeout(500)
+
+    def press_clear_button(self):
+        """Press clear button"""
+        self.button_clear.click()
+
+    def press_calls_action_button_in_list(self, number: int):
+        self.button_calls_action.nth(number).click()
+        self.page.wait_for_selector('[class*="-menu"]')
+
+    def click_settings(self):
+        self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
+        self.page.locator(BUTTON_SETTINGS).click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(INPUT_LOGIN)
         self.page.wait_for_timeout(500)
 
 
@@ -166,23 +192,22 @@ INPUT_NOMER_SOTRUDNIKA = '[data-testid="filters_operator_phone"]'
 #INPUT_SLOVAR_ILI_TEXT_SOTRUDNIK = '[data-testid="filters_operator_phrases"]'
 
 INPUT_TEMPLATE_NAME = '[id="name"]'
-INPUT_LOGIN = '[name="login"]'
 # buttons
 BUTTON_COMMUNICATIONS = '[href*="/calls"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
-BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
+
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
-BUTTON_NASTROIKI = '[value="settings"]'
+
 
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 BUTTON_SUBMIT = '[type="submit"]'
 BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
-BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
+
 
 # other
 ALERT = '[role="alert"]'
