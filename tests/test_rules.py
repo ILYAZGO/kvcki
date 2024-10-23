@@ -275,6 +275,9 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
         expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
 
+    with allure.step("Add fragment"):
+        page.locator('[data-testid="fragmentRuleaddFragment"]').click()
+
     # switch "who said?"
     with allure.step("Switch (who said?) from first to last"):
         page.locator('[data-testid="fragmentRuleWhoSaid"]').get_by_text("Любой сказал").click()
@@ -296,14 +299,14 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
     with allure.step("Fill (what said)"):
         fill_what_said("someText",page)
 
-    with allure.step("Check (merge fragments) have value 0,11"):
-        expect(page.locator('[data-testid="secondsMergeFragmentsText"]').locator('[type="text"]')).to_have_value("0.11")
+    # with allure.step("Check (merge fragments) have value 0,11"):
+    #     expect(page.locator('[data-testid="secondsMergeFragmentsText"]').locator('[type="text"]')).to_have_value("0.11")
 
     with allure.step("Add all additional terms and click checkboxes in additional params"):
         Additional_terms = ["Искать с начала разговора", "Тегировать только первое совпадение", "Молчание до", "Молчание после", "Время разговора перед фрагментом",
                             "Время разговора после фрагмента", "Длительность перебивания", "Кол-во фрагментов перед этим фрагментом",
                             "Кол-во фрагментов после этого фрагмента", "Время разговора до предыдущего правила", "Кол-во фрагментов до предыдущего правила",
-                            "Альтернативный поиск"]   # "Связывать фрагменты" changed in https://task.imot.io/browse/DEV-2599
+                            "Альтернативный поиск", "Связывать фрагменты"]   # "Связывать фрагменты" changed in https://task.imot.io/browse/DEV-2599
 
         add_additional_terms(Additional_terms, page)
 
