@@ -2241,7 +2241,8 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
     with allure.step("Unclick communications checkbox and click 2 sum time and first/last time"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
         page.locator(CHECKBOX_SUM_TIME_ADD_PARAMS).check()
-        page.locator(CHECKBOX_FIRST_LAST_COMM_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_FIRST_COMM_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_LAST_COMM_TIME_ADD_PARAMS).check()
 
 
     with allure.step("Click (Apply)"):
@@ -2255,7 +2256,8 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
     with allure.step("Unclick communications checkbox and click 2 sum time and first/last time"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
         page.locator(CHECKBOX_SUM_TIME_ADD_PARAMS).check()
-        page.locator(CHECKBOX_FIRST_LAST_COMM_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_FIRST_COMM_TIME_ADD_PARAMS).check()
+        page.locator(CHECKBOX_LAST_COMM_TIME_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
         click_apply_in_additional_params(page)

@@ -62,7 +62,8 @@ CHECKBOX_OPERATORS_PHONES_ADD_PARAMS = '[data-testid="show_operator_phones"]'
 
 CHECKBOX_AVERAGE_POINT_CHECKLIST_ADD_PARAMS = '[data-testid="show_checklist_average"]'
 CHECKBOX_AVERAGE_POINT_CHECKLIST_PERCENT_ADD_PARAMS = '[data-testid="show_checklist_average_percent"]'
-CHECKBOX_FIRST_LAST_COMM_TIME_ADD_PARAMS = '[data-testid="show_call_dt"]'
+CHECKBOX_FIRST_COMM_TIME_ADD_PARAMS = '[data-testid="show_first_call_dt"]'
+CHECKBOX_LAST_COMM_TIME_ADD_PARAMS = '[data-testid="show_last_call_dt"]'
 
 CHECKBOX_POINTS_SUM_ADD_PARAMS = '[data-testid="show_points"]'
 CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS = '[data-testid="show_max_points"]'
