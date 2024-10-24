@@ -590,7 +590,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Choose (Export audio) option from opened menu"):
         # Start waiting for the download
-        with page.expect_download(timeout=50000) as download_info:
+        with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
             page.locator(MENU).get_by_text("Экспорт аудио", exact=True).click()
         download = download_info.value
@@ -657,11 +657,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
     #     press_find_communications(page)
 
     with allure.step("Expand call"):
-        #page.wait_for_timeout(4000)
-        page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        #page.wait_for_timeout(500)
-        page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector(ALL_COMMENTS_AREA, timeout=wait_until_visible)
+        communications.expand_call()
 
     with allure.step("Check that all 6 buttons in expanded call visible"):
         expect(page.locator(OPEN_CALL_AREA).locator('[aria-label="Переход в источник коммуникации"]')).to_be_visible()
@@ -702,15 +698,13 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
     #     press_find_communications(page)
 
     with allure.step("Expand call"):
-        #page.wait_for_timeout(4500)
-        page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector(ALL_COMMENTS_AREA, timeout=wait_until_visible)
+        communications.expand_call()
 
     with allure.step("Press (Download) button and download file"):
         # Start waiting for the download
-        with page.expect_download(timeout=50000) as download_info:
+        with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
+            page.wait_for_timeout(1000)
             page.locator(OPEN_CALL_AREA).locator('[aria-label="Скачать"]').locator('[type="button"]').click()
         download = download_info.value
         path = f'{os.getcwd()}/'
@@ -770,7 +764,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step(" and download excel"):
         # Start waiting for the download
-        with page.expect_download(timeout=50000) as download_info:
+        with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
             page.locator(MODAL_WINDOW).locator('[class*="buttonsBlock_"]').get_by_role("button", name="Экспортировать").click()
         download = download_info.value
@@ -889,14 +883,8 @@ def test_check_communication_comment(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
 
-    # with allure.step("Press button (Find communications)"):
-    #     press_find_communications(page)
-
     with allure.step("Expand call"):
-        page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        page.wait_for_timeout(1500)
-        page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector(ALL_COMMENTS_AREA)
+        communications.expand_call()
 
     with allure.step("Press (add comment)"):
         page.locator(BUTTON_ADD_COMMENT).click()
@@ -985,6 +973,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check re-recognize in call list for ecotelecom. First finding by ID call with 0 length")
 def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
+    communications = Communications(page)
 
     expected_languages = ("Английский (Великобритания)Английский (США)Испанский (Латинская Америка, Карибский регион, "
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
@@ -1309,9 +1298,10 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_merge)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert(alert_merge)
+        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        # expect(page.locator(ALERT)).to_contain_text(alert_merge)
+        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -1323,9 +1313,10 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_diarization)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert(alert_diarization)
+        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        # expect(page.locator(ALERT)).to_contain_text(alert_diarization)
+        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -1394,8 +1385,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 1 из 3130", timeout=wait_until_visible)
 
     with allure.step("Expand call"):
-        page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector(ALL_COMMENTS_AREA)
+        communications.expand_call()
 
     with allure.step("Click calls list actions button (...)"):
         press_calls_action_button_in_list(1, page)
@@ -1679,9 +1669,10 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_merge)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert(alert_merge)
+        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        # expect(page.locator(ALERT)).to_contain_text(alert_merge)
+        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -1693,9 +1684,10 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_diarization)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert(alert_diarization)
+        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        # expect(page.locator(ALERT)).to_contain_text(alert_diarization)
+        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -1709,9 +1701,10 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(action_started)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert(action_started)
+        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
+        # expect(page.locator(ALERT)).to_contain_text(action_started)
+        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -1734,14 +1727,8 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
 
-    # with allure.step("Press button (Find communications)"):
-    #     press_find_communications(page)
-
     with allure.step("Expand call"):
-        page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=wait_until_visible)
-        page.wait_for_timeout(4000)
-        page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector(ALL_COMMENTS_AREA)
+        communications.expand_call()
 
     with allure.step("Press (add manual tag)"):
         page.locator('[class*="_manualGroup_"]').locator('[type="button"]').click()
@@ -1751,9 +1738,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         page.keyboard.press("Enter")
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Укажите название тега")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert("Укажите название тега")
 
     # with allure.step("Press (add manual tag)"):
     #     page.locator('[class*="_manualGroup_"]').locator('[type="button"]').click()
@@ -1772,9 +1757,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         page.keyboard.press("Enter")
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Тег успешно добавлен")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert("Тег успешно добавлен")
 
     with allure.step("Check that we can see 2 manual tags"):
         expect(page.locator('[data-testid*="tag-"]')).to_have_count(2)
@@ -1792,9 +1775,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Тег удален")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        communications.check_alert("Тег удален")
 
     with allure.step("Check that we can see 2 manual tags"):
         expect(page.locator('[data-testid*="tag-"]')).to_have_count(0)

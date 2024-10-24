@@ -10,6 +10,8 @@ NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
 FIRST_PAGE_PAGINATION = '[aria-label="page 1"]'
 CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div/p'
 CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div'
+COMMENT_AREA = '[class*="styles_content_"]'
+ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
 
 INPUT_CLIENT_NUMBER = '[data-testid="filters_client_phone"]'
 INPUT_CLIENT_DICT_OR_TEXT = '[data-testid="filters_client_phrases"]'
@@ -24,6 +26,7 @@ INPUT_LOGIN = '[name="login"]'
 BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
 BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
 BUTTON_SETTINGS = '[value="settings"]'
+BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
 
@@ -33,6 +36,7 @@ class Communications(BaseClass):
         BaseClass.__init__(self, page)
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION)
+        self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
         self.sort = page.locator(CHANGE_SORT)
         self.button_clear = page.locator(BUTTON_CLEAR)
@@ -72,7 +76,7 @@ class Communications(BaseClass):
         """If less than 50, not waiting pagination"""
         self.page.wait_for_timeout(1500)
         self.button_find_communications.click()
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(1000)
         self.page.wait_for_selector(NAYDENO_ZVONKOV, timeout=self.timeout)
         self.page.wait_for_timeout(1000)
 
@@ -141,7 +145,7 @@ class Communications(BaseClass):
         """Fill by tag"""
         self.page.wait_for_timeout(1000)
         self.input_by_tags.type(text, delay=30)
-        self.page.wait_for_timeout(700)
+        self.page.wait_for_timeout(1500)
         self.menu.locator('[id*="-option-0"]').get_by_text(text, exact=True).click()
         self.just_click.click()  # tupo click
         self.page.wait_for_timeout(500)
@@ -160,6 +164,12 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector(INPUT_LOGIN)
         self.page.wait_for_timeout(500)
+
+    def expand_call(self):
+        self.page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+        self.button_expand_call.click()
+        self.page.wait_for_selector(ALL_COMMENTS_AREA, timeout=self.timeout)
 
 
 
@@ -199,7 +209,7 @@ BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 
 BUTTON_ZVONKI = "button[value='calls']"
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
-BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
+
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 
 
@@ -219,8 +229,7 @@ AUDIO_PLAYER = '[class*="react-audio-player"]'
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 
 MENU = '[class*="-menu"]'
-COMMENT_AREA = '[class*="styles_content_"]'
-ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
+
 
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
@@ -249,12 +258,12 @@ def go_to_user(name, page="page: Page"):
     page.wait_for_timeout(1500)
     #page.wait_for_selector('[class*="CallsHeader"]')
 
-def click_settings(page="page: Page"):
-    page.wait_for_selector(BUTTON_NASTROIKI, timeout=wait_until_visible)
-    page.locator(BUTTON_NASTROIKI).click()
-    page.wait_for_timeout(500)
-    page.wait_for_selector(INPUT_LOGIN)
-    page.wait_for_timeout(500)
+# def click_settings(page="page: Page"):
+#     page.wait_for_selector(BUTTON_NASTROIKI, timeout=wait_until_visible)
+#     page.locator(BUTTON_NASTROIKI).click()
+#     page.wait_for_timeout(500)
+#     page.wait_for_selector(INPUT_LOGIN)
+#     page.wait_for_timeout(500)
 
 
 def change_filter(filterType, elementNumber, page="page: Page"):

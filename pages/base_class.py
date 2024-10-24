@@ -12,6 +12,7 @@ class BaseClass:
         self.password = page.locator('[id="password"]')
         self.button_enter = page.locator('[type="submit"]')
         self.menu = page.locator('[class*="-menu"]')
+        self.snackbar = page.locator('[class*="SnackbarItem"]')
         '''Dates and calendar'''
         self.yesterday = page.locator('[value="yesterday"]')
         self.week = page.locator('[value="this_week"]')
@@ -57,5 +58,10 @@ class BaseClass:
         self.page.wait_for_timeout(300)
         self.page.keyboard.press("Enter")
         self.page.wait_for_timeout(300)
+
+    def check_alert(self, message: str):
+        self.snackbar.wait_for(state="visible", timeout=self.timeout)
+        expect(self.snackbar).to_contain_text(message)
+        self.snackbar.wait_for(state="hidden", timeout=self.timeout)
 
 

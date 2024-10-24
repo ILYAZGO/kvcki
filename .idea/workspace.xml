@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix10">
-      <change afterPath="$PROJECT_DIR$/audio/count-in.opus" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/count-out.opus" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/send_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/send_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,7 @@
       <recent name="$PROJECT_DIR$/login" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_pass">
+  <component name="RunManager">
     <configuration name="test_pass" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="e2e-tests" />
       <option name="ENV_FILES" value="" />
@@ -572,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix add params test4" />
     <MESSAGE value="added workers" />
     <MESSAGE value="add tests for billing" />
     <MESSAGE value="fix tests" />
@@ -597,6 +594,7 @@
     <MESSAGE value="fix8" />
     <MESSAGE value="fix9" />
     <MESSAGE value="fix10" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix10" />
+    <MESSAGE value="fix11" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix11" />
   </component>
 </project>
