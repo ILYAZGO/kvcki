@@ -511,7 +511,7 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
     with allure.step("Check"):
         page.wait_for_timeout(2000)
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
-        expect(new_tab.locator('[id="accordionSummary"]')).to_have_count(1)
+        expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
         expect(new_tab.locator('[id="62050BEC113619D283D9D584"]')).to_have_count(1)
         expect(new_tab.locator('[class*="ClientBlock_employeePhone"]')).to_have_text("79161489993")
         expect(new_tab.locator('[class*="ClientBlock_employeeDuration"]')).to_have_text("00:00:42")
