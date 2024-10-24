@@ -1735,7 +1735,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
 
     with allure.step("Press (add comment)"):
-        page.keyboard.press("Enter")
+        communications.press_key("Enter")
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Укажите название тега")
@@ -1747,14 +1747,15 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     with allure.step("Press (add manual tag)"):
         page.wait_for_timeout(500)
         page.locator('[data-testid="CustomSelectWithSearch"]').locator('[class*="_tagGhost_"]').click()
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
         page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
 
     with allure.step("Add manual tag name"):
-        page.locator('[data-testid="CustomSelectWithSearch"]').locator('[role="combobox"]').type("manual_tag", delay=100)
+        page.locator('[data-testid="CustomSelectWithSearch"]').locator('[role="combobox"]').type("manual_tag", delay=30)
+        page.wait_for_timeout(500)
 
     with allure.step("Press (add comment)"):
-        page.keyboard.press("Enter")
+        communications.press_key("Enter")
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")

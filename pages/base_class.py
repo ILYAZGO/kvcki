@@ -59,6 +59,11 @@ class BaseClass:
         self.page.keyboard.press("Enter")
         self.page.wait_for_timeout(300)
 
+    def press_key(self, key: str):
+        self.page.wait_for_timeout(1000)
+        self.page.keyboard.press(key)
+        self.page.wait_for_timeout(1000)
+
     def check_alert(self, message: str):
         self.snackbar.wait_for(state="visible", timeout=self.timeout)
         expect(self.snackbar).to_contain_text(message)
