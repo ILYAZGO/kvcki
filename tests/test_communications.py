@@ -1731,28 +1731,25 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         communications.expand_call()
 
     with allure.step("Press (add manual tag)"):
-        page.locator('[class*="_manualGroup_"]').locator('[type="button"]').click()
-        page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
+        communications.press_cross_in_manual_tags()
 
-    with allure.step("Press (add comment)"):
+    with allure.step("Press (Enter) with empty input"):
         communications.press_key("Enter")
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Укажите название тега")
 
     # with allure.step("Press (add manual tag)"):
-    #     page.locator('[class*="_manualGroup_"]').locator('[type="button"]').click()
-    #     page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
+    #     communications.press_cross_in_manual_tags()
 
     with allure.step("Press (add manual tag)"):
         page.wait_for_timeout(500)
-        page.locator('[data-testid="CustomSelectWithSearch"]').locator('[class*="_tagGhost_"]').click()
+        page.locator(SELECT_WITH_SEARCH_MANUAL_TAGS).locator('[class*="_tagGhost_"]').click()
         page.wait_for_timeout(500)
-        page.wait_for_selector('[data-testid="CustomSelectWithSearch"]')
+        page.wait_for_selector(SELECT_WITH_SEARCH_MANUAL_TAGS)
 
     with allure.step("Add manual tag name"):
-        page.locator('[data-testid="CustomSelectWithSearch"]').locator('[role="combobox"]').type("manual_tag", delay=30)
-        page.wait_for_timeout(500)
+        communications.add_manual_tag_name("manual_tag")
 
     with allure.step("Press (add comment)"):
         communications.press_key("Enter")
@@ -1761,25 +1758,41 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         communications.check_alert("Тег успешно добавлен")
 
     with allure.step("Check that we can see 2 manual tags"):
-        expect(page.locator('[data-testid*="tag-"]')).to_have_count(2)
+        communications.assert_tags_have_count(2)
 
-    with allure.step("Press pencil button in tag"):
-        page.locator('[fill="#d9f7be"]').nth(0).click()
-        page.wait_for_selector('[role="tooltip"]')
-
-    with allure.step("Press delete"):
-        page.locator('[role="tooltip"]').get_by_text("Удалить").click()
-        page.wait_for_selector(MODAL_WINDOW)
-
-    with allure.step(""):
-        page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
+    with allure.step("Delete manual call from call header"):
+        communications.delete_manual_tag_from_call_header(0)
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег удален")
 
     with allure.step("Check that we can see 2 manual tags"):
-        expect(page.locator('[data-testid*="tag-"]')).to_have_count(0)
+        communications.assert_tags_have_count(0)
+    #
+
+    with allure.step("Press (add manual tag)"):
+        communications.press_cross_in_manual_tags()
+
+    with allure.step("Add manual tag name"):
+        communications.add_manual_tag_name("manual_tag")
+
+    with allure.step("Press (add comment)"):
+        communications.press_key("Enter")
+
+    with allure.step("Wait for alert and check alert message"):
+        communications.check_alert("Тег успешно добавлен")
+
+    with allure.step("Check that we can see 2 manual tags"):
+        communications.assert_tags_have_count(2)
+
+    with allure.step("Delete manual tag from manual tags"):
+        communications.delete_manual_tag_from_manual_tags(0)
+
+    with allure.step("Wait for alert and check alert message"):
+        communications.check_alert("Тег удален")
+
+    with allure.step("Check that we can see 2 manual tags"):
+        communications.assert_tags_have_count(0)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

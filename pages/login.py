@@ -9,7 +9,7 @@ class LoginPage(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
         self.profile_button = page.locator('[aria-label="Профиль"]').get_by_role("button")
-        self.alert = page.locator('[class*="MuiAlert-message"]')
+        self.alert = page.locator(ALERT_MESSAGE)
 
 
     def quit_from_profile(self):

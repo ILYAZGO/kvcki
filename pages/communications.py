@@ -12,6 +12,9 @@ CALL_DATE_AND_TIME = '//html/body/div/div/div[2]/div/div[3]/div[2]/div[1]/div/di
 CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1]/div/div/div[2]/div'
 COMMENT_AREA = '[class*="styles_content_"]'
 ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
+SELECT_WITH_SEARCH_MANUAL_TAGS = '[data-testid="CustomSelectWithSearch"]'
+TAG = '[data-testid*="tag-"]'
+MODAL_WINDOW = '[role="dialog"]'
 
 INPUT_CLIENT_NUMBER = '[data-testid="filters_client_phone"]'
 INPUT_CLIENT_DICT_OR_TEXT = '[data-testid="filters_client_phrases"]'
@@ -37,8 +40,10 @@ class Communications(BaseClass):
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION)
         self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
+        self.button_cross_in_manual_tags = page.locator('[class*="_manualGroup_"]').locator('[type="button"]')
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
         self.sort = page.locator(CHANGE_SORT)
+        self.tag = page.locator(TAG)
         self.button_clear = page.locator(BUTTON_CLEAR)
         self.call_date_and_time = page.locator(CALL_DATE_AND_TIME)
         self.just_click = page.locator(COMMUNICATIONS_SEARCH)
@@ -50,6 +55,7 @@ class Communications(BaseClass):
         self.input_call_duration = page.locator(INPUT_CALL_DURATION).locator('[type="text"]')
         self.input_id = page.locator(INPUT_ID).locator('[type="text"]')
         self.input_by_tags = page.locator(INPUT_BY_TAGS).locator('[type="text"]')
+        self.input_manual_tag_name = page.locator(SELECT_WITH_SEARCH_MANUAL_TAGS).locator('[type="text"]')
 
 
     def assert_check_period_dates(self, begin: str, end: str):
@@ -155,10 +161,12 @@ class Communications(BaseClass):
         self.button_clear.click()
 
     def press_calls_action_button_in_list(self, number: int):
+        """(...) in list"""
         self.button_calls_action.nth(number).click()
         self.page.wait_for_selector('[class*="-menu"]')
 
     def click_settings(self):
+        """Click Settings"""
         self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
         self.page.locator(BUTTON_SETTINGS).click()
         self.page.wait_for_timeout(500)
@@ -166,10 +174,42 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(500)
 
     def expand_call(self):
+        """Expand call"""
         self.page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=self.timeout)
         self.page.wait_for_timeout(500)
         self.button_expand_call.click()
         self.page.wait_for_selector(ALL_COMMENTS_AREA, timeout=self.timeout)
+
+    def press_cross_in_manual_tags(self):
+        """Press + in manual tags"""
+        self.page.wait_for_timeout(500)
+        self.button_cross_in_manual_tags.click()
+        self.page.wait_for_selector(SELECT_WITH_SEARCH_MANUAL_TAGS)
+
+    def add_manual_tag_name(self, text: str):
+        self.input_manual_tag_name.type(text, delay=30)
+        self.page.wait_for_timeout(1000)
+
+    def delete_manual_tag_from_call_header(self, number: int):
+        self.page.wait_for_timeout(500)
+        self.page.locator('[class*="MuiAccordionSummary-content"]').locator('[fill="#d9f7be"]').nth(number).click()
+        self.page.wait_for_selector('[role="tooltip"]')
+        self.page.locator('[role="tooltip"]').get_by_text("Удалить").click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+        self.modal_window.locator(BUTTON_SUBMIT).click()
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=self.timeout)
+
+    def delete_manual_tag_from_manual_tags(self, number: int):
+        self.page.wait_for_timeout(500)
+        self.page.locator('[class*="_manualGroup_"]').locator('[fill="#d9f7be"]').nth(number).click()
+        self.page.wait_for_selector('[role="tooltip"]')
+        self.page.locator('[role="tooltip"]').get_by_text("Удалить").click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+        self.modal_window.locator(BUTTON_SUBMIT).click()
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=self.timeout)
+
+    def assert_tags_have_count(self, count: int):
+        expect(self.tag).to_have_count(count, timeout=self.timeout)
 
 
 
@@ -221,7 +261,7 @@ BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 
 # other
 ALERT = '[role="alert"]'
-MODAL_WINDOW = '[role="dialog"]'
+# MODAL_WINDOW = '[role="dialog"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
 

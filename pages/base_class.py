@@ -12,6 +12,7 @@ class BaseClass:
         self.password = page.locator('[id="password"]')
         self.button_enter = page.locator('[type="submit"]')
         self.menu = page.locator('[class*="-menu"]')
+        self.modal_window = page.locator('[role="dialog"]')
         self.snackbar = page.locator('[class*="SnackbarItem"]')
         '''Dates and calendar'''
         self.yesterday = page.locator('[value="yesterday"]')
