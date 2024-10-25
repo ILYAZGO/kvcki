@@ -30,6 +30,8 @@ BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) but
 BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
 BUTTON_SETTINGS = '[value="settings"]'
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
+BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
+BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
 
@@ -40,6 +42,7 @@ class Communications(BaseClass):
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION)
         self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
+        self.button_add_comment = page.locator(BUTTON_ADD_COMMENT)
         self.button_cross_in_manual_tags = page.locator('[class*="_manualGroup_"]').locator('[type="button"]')
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
         self.sort = page.locator(CHANGE_SORT)
@@ -211,6 +214,10 @@ class Communications(BaseClass):
     def assert_tags_have_count(self, count: int):
         expect(self.tag).to_have_count(count, timeout=self.timeout)
 
+    def press_add_comment(self):
+        self.button_add_comment.click()
+        self.page.wait_for_selector('[class*="styles_textareaWrapper"]')
+
 
 
 
@@ -253,8 +260,7 @@ BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить услов�
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 
 
-BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
-BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
+
 BUTTON_SUBMIT = '[type="submit"]'
 BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 

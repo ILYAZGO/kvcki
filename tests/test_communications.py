@@ -800,7 +800,7 @@ def test_check_search_template(base_url, page: Page) -> None:
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
-        page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
+        #page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
 
     with allure.step("Check that no any templates"):
         expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("Сохраненные шаблоны поиска(0)")
@@ -887,11 +887,10 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         communications.expand_call()
 
     with allure.step("Press (add comment)"):
-        page.locator(BUTTON_ADD_COMMENT).click()
+        communications.press_add_comment()
 
     with allure.step("Check that comment form openned"):
-        page.wait_for_selector('[class*="styles_textareaWrapper"]')
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(1000)
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1)).to_be_disabled()
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]')).not_to_be_checked()
 
@@ -899,7 +898,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator(BUTTON_KRESTIK).click()
 
     with allure.step("Press (add comment)"):
-        page.locator(BUTTON_ADD_COMMENT).click()
+        communications.press_add_comment()
 
     with allure.step("Check checkbox (hidden)"):
         page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]').check()
@@ -951,14 +950,17 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Press to (...) comment options"):
         page.locator('[class*="styles_optionsSelect_"]').click()
+        page.wait_for_selector(MENU)
 
     with allure.step("Choose and click (delete)"):
         page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
+        page.wait_for_timeout(500)
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Confirm deleting"):
         page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-        page.wait_for_timeout(800)
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        page.wait_for_timeout(500)
 
     with allure.step("Check that comment was deleted"):
         expect(page.locator(COMMENT_AREA)).not_to_be_visible()
@@ -1299,9 +1301,6 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(alert_merge)
-        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        # expect(page.locator(ALERT)).to_contain_text(alert_merge)
-        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -1314,9 +1313,6 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(alert_diarization)
-        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        # expect(page.locator(ALERT)).to_contain_text(alert_diarization)
-        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -1685,9 +1681,6 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(alert_diarization)
-        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        # expect(page.locator(ALERT)).to_contain_text(alert_diarization)
-        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -1702,9 +1695,6 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(action_started)
-        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        # expect(page.locator(ALERT)).to_contain_text(action_started)
-        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
