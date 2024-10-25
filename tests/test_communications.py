@@ -486,22 +486,14 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
 def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContext) -> None:
     communications = Communications(page)
 
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
     with allure.step("Go to url"):
         communications.navigate(base_url)
 
-    with allure.step("Auth with Ecotelecom"):
-        communications.auth(ECOTELECOM, ECOPASS)
-
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        communications.choose_period_date("01/01/2022", "31/12/2022")
-
-    with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
-        page.wait_for_timeout(500)
-
-    with allure.step("Press button (Find communications)"):
-        communications.press_find_communications_less_than_50()
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
@@ -512,9 +504,8 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
         page.wait_for_timeout(2000)
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
         expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
-        expect(new_tab.locator('[id="62050BEC113619D283D9D584"]')).to_have_count(1)
-        expect(new_tab.locator('[class*="ClientBlock_employeePhone"]')).to_have_text("79161489993")
-        expect(new_tab.locator('[class*="ClientBlock_employeeDuration"]')).to_have_text("00:00:42")
+        expect(new_tab.locator('[class*="ClientBlock_employeePhone"]')).to_have_text("0987654321")
+        expect(new_tab.locator('[class*="ClientBlock_employeeDuration"]')).to_have_text("00:00:38")
         expect(new_tab.locator('[aria-label="Применение GPT правила"]')).to_have_count(1)
         expect(new_tab.locator('[aria-label="Перетегировать"]')).to_have_count(1)
         expect(new_tab.locator('[aria-label="Скачать"]')).to_have_count(1)
@@ -522,10 +513,13 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
         expect(new_tab.locator('[aria-label="Скопировать публичную ссылку"]')).to_have_count(1)
         expect(new_tab.locator('[class*="styles_withAllComments_"]')).to_have_count(1)
         expect(new_tab.get_by_text("Добавить комментарий")).to_have_count(1)
+        expect(new_tab.locator('[class*="_manualGroup_"]')).to_have_count(1)
 
     with allure.step("Close context"):
         new_tab.close()
 
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
 @pytest.mark.calls
 @pytest.mark.independent
