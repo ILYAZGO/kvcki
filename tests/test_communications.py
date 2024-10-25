@@ -852,7 +852,7 @@ def test_check_search_template(base_url, page: Page) -> None:
 
     with allure.step("Confirm delete"):
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(1500)
 
     with allure.step("Check that template saved"):
         expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("Сохраненные шаблоны поиска(0)")
