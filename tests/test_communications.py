@@ -1743,7 +1743,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     #     communications.press_cross_in_manual_tags()
 
     with allure.step("Press (add manual tag)"):
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(600)
         page.locator(SELECT_WITH_SEARCH_MANUAL_TAGS).locator('[class*="_tagGhost_"]').click()
         page.wait_for_timeout(500)
         page.wait_for_selector(SELECT_WITH_SEARCH_MANUAL_TAGS)

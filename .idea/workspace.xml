@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix13">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix14">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/communications.py" afterDir="false" />
@@ -573,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix tests" />
     <MESSAGE value="fix tests2" />
     <MESSAGE value="communications class" />
     <MESSAGE value="communications class2" />
@@ -598,6 +597,7 @@
     <MESSAGE value="fix11" />
     <MESSAGE value="fix12" />
     <MESSAGE value="fix13" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix13" />
+    <MESSAGE value="fix14" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix14" />
   </component>
 </project>
