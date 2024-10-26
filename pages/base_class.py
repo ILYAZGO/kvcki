@@ -3,6 +3,11 @@ from playwright.sync_api import Page, expect
 #from pages.reports import FIRST_DATE
 
 
+BUTTON_SETTINGS = '[value="settings"]'
+INPUT_LOGIN = '[name="login"]'
+BUTTON_COMMUNICATIONS = '[href*="/calls"]'
+BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
+
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
@@ -42,7 +47,9 @@ class BaseClass:
         """Change user"""
         self.users_list.type(name, delay=30)
         self.page.get_by_text(name, exact=True).click()
-        self.page.wait_for_selector('[class*="CallsHeader"]')
+        #self.page.wait_for_selector('[class*="CallsHeader"]')
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(2000)
 
     def choose_period_date(self, first_date: str, last_date: str):
         """Choose period"""
@@ -66,8 +73,24 @@ class BaseClass:
         self.page.wait_for_timeout(1000)
 
     def check_alert(self, message: str):
+        """Wait snackbar, check text, wait for close"""
         self.snackbar.wait_for(state="visible", timeout=self.timeout)
         expect(self.snackbar).to_contain_text(message)
         self.snackbar.wait_for(state="hidden", timeout=self.timeout)
 
+    def click_settings(self):
+        """Click Settings"""
+        self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
+        self.page.locator(BUTTON_SETTINGS).click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(INPUT_LOGIN)
+        self.page.wait_for_timeout(500)
+
+    def click_communications(self):
+        """Click Settings"""
+        self.page.wait_for_selector(BUTTON_COMMUNICATIONS, timeout=self.timeout)
+        self.page.locator(BUTTON_COMMUNICATIONS).click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
+        self.page.wait_for_timeout(500)
 

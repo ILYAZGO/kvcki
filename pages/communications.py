@@ -24,11 +24,11 @@ INPUT_TIME = '[data-testid="filters_call_time_interval"]'
 INPUT_CALL_DURATION = '[data-testid="filters_call_duration"]'
 INPUT_ID = '[data-testid="filters_any_id"]'
 INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
-INPUT_LOGIN = '[name="login"]'
+
 
 BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
 BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
-BUTTON_SETTINGS = '[value="settings"]'
+
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
@@ -168,13 +168,13 @@ class Communications(BaseClass):
         self.button_calls_action.nth(number).click()
         self.page.wait_for_selector('[class*="-menu"]')
 
-    def click_settings(self):
-        """Click Settings"""
-        self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
-        self.page.locator(BUTTON_SETTINGS).click()
-        self.page.wait_for_timeout(500)
-        self.page.wait_for_selector(INPUT_LOGIN)
-        self.page.wait_for_timeout(500)
+    # def click_settings(self):
+    #     """Click Settings"""
+    #     self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
+    #     self.page.locator(BUTTON_SETTINGS).click()
+    #     self.page.wait_for_timeout(500)
+    #     self.page.wait_for_selector(INPUT_LOGIN)
+    #     self.page.wait_for_timeout(500)
 
     def expand_call(self):
         """Expand call"""
@@ -218,6 +218,9 @@ class Communications(BaseClass):
         self.button_add_comment.click()
         self.page.wait_for_selector('[class*="styles_textareaWrapper"]')
 
+    def choose_option(self, option_number: int):
+        self.menu.locator(f'[id$="-option-{option_number}"]').click()
+
 
 
 
@@ -250,7 +253,7 @@ INPUT_NOMER_SOTRUDNIKA = '[data-testid="filters_operator_phone"]'
 
 INPUT_TEMPLATE_NAME = '[id="name"]'
 # buttons
-BUTTON_COMMUNICATIONS = '[href*="/calls"]'
+#BUTTON_COMMUNICATIONS = '[href*="/calls"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 
@@ -297,35 +300,21 @@ CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 
 
-def go_to_user(name, page="page: Page"):
-    page.locator(USERS_LIST).type(name, delay=40)
-    page.wait_for_timeout(300)
-    page.get_by_text(name, exact=True).click()
-    page.wait_for_timeout(1500)
-    #page.wait_for_selector('[class*="CallsHeader"]')
 
-# def click_settings(page="page: Page"):
-#     page.wait_for_selector(BUTTON_NASTROIKI, timeout=wait_until_visible)
-#     page.locator(BUTTON_NASTROIKI).click()
-#     page.wait_for_timeout(500)
-#     page.wait_for_selector(INPUT_LOGIN)
-#     page.wait_for_timeout(500)
+# def change_filter(filterType, elementNumber, page="page: Page"):
+#     # button click
+#     page.locator(".css-b62m3t-container").get_by_text("Изменить фильтры").click()  # button click
+#     # choose filter with element number. first - 0, second - 1, etc
+#     page.locator(".css-woue3h-menu").get_by_text(filterType, exact=True).nth(elementNumber).click()
 
 
-def change_filter(filterType, elementNumber, page="page: Page"):
-    # button click
-    page.locator(".css-b62m3t-container").get_by_text("Изменить фильтры").click()  # button click
-    # choose filter with element number. first - 0, second - 1, etc
-    page.locator(".css-woue3h-menu").get_by_text(filterType, exact=True).nth(elementNumber).click()
-
-
-def choose_filter_value(filterValue, page="page: Page"):
-    # input click
-    page.locator("(//div[contains(@class,'css-12ol9ef')])[8]").first.click()
-    # choose filter value
-    page.locator(".css-1lq1yle-menu").get_by_text(filterValue).click()
-    # tupo click
-    page.locator(COMMUNICATIONS_SEARCH).click()
+# def choose_filter_value(filterValue, page="page: Page"):
+#     # input click
+#     page.locator("(//div[contains(@class,'css-12ol9ef')])[8]").first.click()
+#     # choose filter value
+#     page.locator(".css-1lq1yle-menu").get_by_text(filterValue).click()
+#     # tupo click
+#     page.locator(COMMUNICATIONS_SEARCH).click()
 
 
 def press_find_communications(page="page: Page"):
@@ -336,41 +325,24 @@ def press_find_communications(page="page: Page"):
     page.wait_for_timeout(500)
 
 
-def choose_period_button(period, page="page: Page"):
-    page.wait_for_selector(period, timeout=wait_until_visible)
-    page.locator(period).click()
+
+# def remove_filter_value(filterValue, page="page: Page"):
+#     page.locator(f'[aria-label="Remove {filterValue}"]').click()
+#     page.locator(COMMUNICATIONS_SEARCH).click()
 
 
-def choose_preiod_date(firstDate, lastDate, page="page: Page"):
-    page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
-    page.locator(FIRST_DATE).click()
-    page.wait_for_timeout(100)
-    page.locator(FIRST_DATE).fill(firstDate)
-    page.wait_for_timeout(300)
-    page.locator(LAST_DATE).click()
-    page.wait_for_timeout(100)
-    page.locator(LAST_DATE).fill(lastDate)
-    page.wait_for_timeout(300)
-    page.keyboard.press("Enter")
-    page.wait_for_timeout(300)
-
-def remove_filter_value(filterValue, page="page: Page"):
-    page.locator(f'[aria-label="Remove {filterValue}"]').click()
-    page.locator(COMMUNICATIONS_SEARCH).click()
+# def fill_search_length(value, page="page: Page"):
+#     page.wait_for_timeout(200)
+#     page.locator(INPUT_CALL_DURATION).locator('[type="text"]').clear()
+#     page.wait_for_timeout(200)
+#     page.locator(INPUT_CALL_DURATION).locator('[type="text"]').type(value, delay=100)
+#     page.wait_for_timeout(400)
 
 
-def fill_search_length(value, page="page: Page"):
-    page.wait_for_timeout(200)
-    page.locator(INPUT_CALL_DURATION).locator('[type="text"]').clear()
-    page.wait_for_timeout(200)
-    page.locator(INPUT_CALL_DURATION).locator('[type="text"]').type(value, delay=100)
-    page.wait_for_timeout(400)
-
-
-def change_sort(sortType, page="page: Page"):
-    page.locator(CHANGE_SORT).click()
-    page.get_by_text(sortType).click()
-    page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
+# def change_sort(sortType, page="page: Page"):
+#     page.locator(CHANGE_SORT).click()
+#     page.get_by_text(sortType).click()
+#     page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=wait_until_visible)
 
 def press_save_template(page="page: Page"):
     page.locator(BUTTON_SAVE_TEMPLATE).click()
@@ -403,6 +375,3 @@ def click_submit_in_word_processing(page="page: Page"):
     page.wait_for_timeout(500)
     page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT).click()
     page.wait_for_timeout(500)
-
-def choose_option(optionNumber, page="page: Page"):
-    page.locator(MENU).locator(f'[id$="-option-{optionNumber}"]').click()
