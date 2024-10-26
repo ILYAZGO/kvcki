@@ -6,30 +6,31 @@ import pytest
 import allure
 
 
-@pytest.mark.independent
-@pytest.mark.login
-@allure.title("test_login_admin_positive")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_login_admin_positive(base_url, page: Page) -> None:
-    login_page = LoginPage(page)
-
-    with allure.step("Create admin"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
-
-    with allure.step("Go to url"):
-        login_page.navigate(base_url)
-
-    with allure.step("Auth"):
-        login_page.auth(LOGIN, PASSWORD)
-
-    with allure.step("Quit from profile"):
-        login_page.quit_from_profile()
-
-    with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
-
-    with allure.step("Delete admin"):
-        delete_user(API_URL, TOKEN, USER_ID)
+"""THIS TEST NOT USEFULL CHECK THIS IN OTHER TESTS"""
+# @pytest.mark.independent
+# @pytest.mark.login
+# @allure.title("test_login_admin_positive")
+# @allure.severity(allure.severity_level.CRITICAL)
+# def test_login_admin_positive(base_url, page: Page) -> None:
+#     login_page = LoginPage(page)
+#
+#     with allure.step("Create admin"):
+#         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+#
+#     with allure.step("Go to url"):
+#         login_page.navigate(base_url)
+#
+#     with allure.step("Auth"):
+#         login_page.auth(LOGIN, PASSWORD)
+#
+#     with allure.step("Quit from profile"):
+#         login_page.quit_from_profile()
+#
+#     with allure.step("Check that quit was successful"):
+#         expect(page.locator(BUTTON_VOITI)).to_be_visible()
+#
+#     with allure.step("Delete admin"):
+#         delete_user(API_URL, TOKEN, USER_ID)
 
 
 @pytest.mark.independent
@@ -58,30 +59,31 @@ def test_login_manager_positive(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
-@pytest.mark.login
-@allure.title("test_login_user_positive")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_login_user_positive(base_url, page: Page) -> None:
-    login_page = LoginPage(page)
-
-    with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-
-    with allure.step("Go to url"):
-        login_page.navigate(base_url)
-
-    with allure.step("Auth"):
-        login_page.auth(LOGIN, PASSWORD)
-
-    with allure.step("Quit from profile"):
-        login_page.quit_from_profile()
-
-    with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
-
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN, USER_ID)
+"""THIS TEST NOT USEFULL CHECK THIS IN OTHER TESTS"""
+# @pytest.mark.independent
+# @pytest.mark.login
+# @allure.title("test_login_user_positive")
+# @allure.severity(allure.severity_level.CRITICAL)
+# def test_login_user_positive(base_url, page: Page) -> None:
+#     login_page = LoginPage(page)
+#
+#     with allure.step("Create user"):
+#         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+#
+#     with allure.step("Go to url"):
+#         login_page.navigate(base_url)
+#
+#     with allure.step("Auth"):
+#         login_page.auth(LOGIN, PASSWORD)
+#
+#     with allure.step("Quit from profile"):
+#         login_page.quit_from_profile()
+#
+#     with allure.step("Check that quit was successful"):
+#         expect(page.locator(BUTTON_VOITI)).to_be_visible()
+#
+#     with allure.step("Delete user"):
+#         delete_user(API_URL, TOKEN, USER_ID)
 
 
 @pytest.mark.independent
