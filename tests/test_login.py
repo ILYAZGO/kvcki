@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.login import *
 from utils.create_delete_user import create_user, delete_user, create_operator
@@ -27,36 +27,36 @@ import allure
 #         login_page.quit_from_profile()
 #
 #     with allure.step("Check that quit was successful"):
-#         expect(page.locator(BUTTON_VOITI)).to_be_visible()
+#         login_page.assert_quited()
 #
 #     with allure.step("Delete admin"):
 #         delete_user(API_URL, TOKEN, USER_ID)
 
-
-@pytest.mark.independent
-@pytest.mark.login
-@allure.title("test_login_manager_positive")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_login_manager_positive(base_url, page: Page) -> None:
-    login_page = LoginPage(page)
-
-    with allure.step("Create manager"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
-
-    with allure.step("Go to url"):
-        login_page.navigate(base_url)
-
-    with allure.step("Auth"):
-        login_page.auth(LOGIN, PASSWORD)
-
-    with allure.step("Quit from profile"):
-        login_page.quit_from_profile()
-
-    with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
-
-    with allure.step("Delete manager"):
-        delete_user(API_URL, TOKEN, USER_ID)
+"""THIS TEST NOT USEFULL CHECK THIS IN OTHER TESTS"""
+# @pytest.mark.independent
+# @pytest.mark.login
+# @allure.title("test_login_manager_positive")
+# @allure.severity(allure.severity_level.CRITICAL)
+# def test_login_manager_positive(base_url, page: Page) -> None:
+#     login_page = LoginPage(page)
+#
+#     with allure.step("Create manager"):
+#         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+#
+#     with allure.step("Go to url"):
+#         login_page.navigate(base_url)
+#
+#     with allure.step("Auth"):
+#         login_page.auth(LOGIN, PASSWORD)
+#
+#     with allure.step("Quit from profile"):
+#         login_page.quit_from_profile()
+#
+#     with allure.step("Check that quit was successful"):
+#         login_page.assert_quited()
+#
+#     with allure.step("Delete manager"):
+#         delete_user(API_URL, TOKEN, USER_ID)
 
 
 """THIS TEST NOT USEFULL CHECK THIS IN OTHER TESTS"""
@@ -80,7 +80,7 @@ def test_login_manager_positive(base_url, page: Page) -> None:
 #         login_page.quit_from_profile()
 #
 #     with allure.step("Check that quit was successful"):
-#         expect(page.locator(BUTTON_VOITI)).to_be_visible()
+#         login_page.assert_quited()
 #
 #     with allure.step("Delete user"):
 #         delete_user(API_URL, TOKEN, USER_ID)
@@ -109,7 +109,7 @@ def test_login_operator_positive(base_url, page: Page) -> None:
         login_page.quit_from_profile()
 
     with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
+        login_page.assert_quited()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
@@ -132,7 +132,7 @@ def test_login_user_negotive(base_url, page: Page) -> None:
         login_page.auth(LOGIN_NEGOTIVE, PASSWORD)
 
     with allure.step("Check that alert message visible"):
-        expect(page.locator(ALERT_MESSAGE)).to_be_visible()
+        login_page.assert_alert_visible("Wrong login or password")
 
 
 @pytest.mark.independent
@@ -149,4 +149,4 @@ def test_password_user_negotive(base_url, page: Page) -> None:
         login_page.auth(USER, PASSWORD_NEGOTIVE)
 
     with allure.step("Check that alert message visible"):
-        expect(page.locator(ALERT_MESSAGE)).to_be_visible()
+        login_page.assert_alert_visible("Wrong login or password")
