@@ -7,6 +7,7 @@ BUTTON_SETTINGS = '[value="settings"]'
 INPUT_LOGIN = '[name="login"]'
 BUTTON_COMMUNICATIONS = '[href*="/calls"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
+BUTTON_SUBMIT = '[type="submit"]'
 
 class BaseClass:
     def __init__(self, page: Page):
@@ -41,7 +42,10 @@ class BaseClass:
         self.password.type(password, delay=20)
         self.page.wait_for_selector("[type='submit']")
         self.button_enter.click()
-        self.page.wait_for_timeout(2000)
+        self.page.wait_for_timeout(1000)
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(1000)
+
 
     def go_to_user(self, name: str):
         """Change user"""
@@ -87,7 +91,7 @@ class BaseClass:
         self.page.wait_for_timeout(500)
 
     def click_communications(self):
-        """Click Settings"""
+        """Click Communications"""
         self.page.wait_for_selector(BUTTON_COMMUNICATIONS, timeout=self.timeout)
         self.page.locator(BUTTON_COMMUNICATIONS).click()
         self.page.wait_for_timeout(500)

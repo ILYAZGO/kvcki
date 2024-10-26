@@ -1,7 +1,7 @@
 from re import search
 
 from playwright.sync_api import Page, expect
-from pages.base_class import BaseClass
+from pages.base_class import BaseClass, BUTTON_SUBMIT
 
 from utils.variables import wait_until_visible
 
@@ -35,6 +35,20 @@ BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
 
+OPEN_CALL_AREA = '[class="MuiAccordion-region"]'
+CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
+RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
+CHECKBOX_DIARIZATION = '[name="diarization"]'
+CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
+CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
+CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
+CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
+CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
+CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
+CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
+CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
+BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
+
 
 class Communications(BaseClass):
     def __init__(self, page: Page):
@@ -44,6 +58,7 @@ class Communications(BaseClass):
         self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
         self.button_add_comment = page.locator(BUTTON_ADD_COMMENT)
         self.button_cross_in_manual_tags = page.locator('[class*="_manualGroup_"]').locator('[type="button"]')
+        self.button_submit_in_word_processing = page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
         self.sort = page.locator(CHANGE_SORT)
         self.tag = page.locator(TAG)
@@ -221,6 +236,11 @@ class Communications(BaseClass):
     def choose_option(self, option_number: int):
         self.menu.locator(f'[id$="-option-{option_number}"]').click()
 
+    def click_submit_in_word_processing(self):
+        self.page.wait_for_timeout(500)
+        self.button_submit_in_word_processing.click()
+        self.page.wait_for_timeout(500)
+
 
 
 
@@ -264,7 +284,7 @@ BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 
 
 
-BUTTON_SUBMIT = '[type="submit"]'
+#BUTTON_SUBMIT = '[type="submit"]'
 BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 
 
@@ -285,19 +305,7 @@ SELECT_ENGINE = '[data-testid="stt_engine"]'
 SELECT_MODEL = '[data-testid="stt_model"]'
 
 
-OPEN_CALL_AREA = '[class="MuiAccordion-region"]'
-CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
-RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
-CHECKBOX_DIARIZATION = '[name="diarization"]'
-CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
-CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
-CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
-CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
-CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
-CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
-CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
-CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
-BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
+
 
 
 

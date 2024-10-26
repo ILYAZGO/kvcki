@@ -436,22 +436,13 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         communications.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Fill all default fields"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-
         communications.fill_client_number("79251579005")
-
         communications.fill_employee_number("4995055555")
-
         communications.fill_client_dict_or_text("минутку", "минутку")
-
         communications.fill_employee_dict_or_text("Зо", "Словарь: Зомбоящик")
-
         communications.fill_search_length(">10")
-
         communications.fill_time("11:42")
-
         communications.fill_id("1644474236.14425")
-
         communications.fill_by_tag("Другой отдел")
 
     with allure.step("Check all fields to have value"):
@@ -1291,7 +1282,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        click_submit_in_word_processing(page)
+        communications.click_submit_in_word_processing()
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(alert_merge)
@@ -1303,7 +1294,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         page.locator(CHECKBOX_DIARIZATION).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        click_submit_in_word_processing(page)
+        communications.click_submit_in_word_processing()
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(alert_diarization)
@@ -1317,7 +1308,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         #page.locator(CHECKBOX_USE_WEBHOOK).set_checked(checked=True)
 
     with allure.step("Press (Save)"):
-        click_submit_in_word_processing(page)
+        communications.click_submit_in_word_processing()
 
     with allure.step("Wait for alert and check alert message"):
         page.wait_for_selector(ALERT, timeout=wait_until_visible)
@@ -1360,11 +1351,9 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Go to user"):
         communications.go_to_user("Экотелеком")
-        #go_to_user("Экотелеком", page)
 
     with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
         communications.choose_period_date("01/01/2022", "31/12/2022")
-        #choose_preiod_date("01/01/2022", "31/12/2022", page)
 
     with allure.step("Fill ID"):
         page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=50)
@@ -1372,10 +1361,9 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
-        #press_find_communications(page)
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 1 из 3130", timeout=wait_until_visible)
+        communications.assert_communications_found("Найдено коммуникаций 1 из 3130")
 
     with allure.step("Expand call"):
         communications.expand_call()
@@ -1659,13 +1647,10 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        click_submit_in_word_processing(page)
+        communications.click_submit_in_word_processing()
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(alert_merge)
-        # page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        # expect(page.locator(ALERT)).to_contain_text(alert_merge)
-        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -1674,7 +1659,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         page.locator(CHECKBOX_DIARIZATION).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        click_submit_in_word_processing(page)
+        communications.click_submit_in_word_processing()
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(alert_diarization)
@@ -1688,7 +1673,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         #page.locator(CHECKBOX_USE_WEBHOOK).set_checked(checked=True)
 
     with allure.step("Press (Save)"):
-        click_submit_in_word_processing(page)
+        communications.click_submit_in_word_processing()
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(action_started)
