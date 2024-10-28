@@ -16,17 +16,20 @@ import allure
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_mistic_mayorov Пн 09 сен 2024 16∶05∶49")
 def test_mistic_mayorov(base_url, page: Page) -> None:
-    BUTTON_VOITI = "[type='submit']"
+    FIRST_DATE = '[placeholder="Начальная дата"]'
+    LAST_DATE = '[placeholder="Конечная дата"]'
+
+    communications = Communications(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        communications.navigate(base_url)
 
     with allure.step("Auth with 0AleberOper"):
         auth("0AleberOper", PASSWORD, page)
         page.wait_for_selector(FIRST_DATE, timeout=wait_until_visible)
 
     with allure.step("Choose period"):
-        page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
+        page.wait_for_selector(INPUT_BY_TAGS, timeout=wait_until_visible)
         page.locator(FIRST_DATE).click()
         page.wait_for_timeout(100)
         page.locator(FIRST_DATE).fill("03/09/2024")
@@ -39,24 +42,24 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         page.wait_for_timeout(300)
 
     with allure.step("Search coomunications"):
-        press_find_communications(page)
+        communications.press_find_communications_more_than_50()
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 1212 из 1212", timeout=wait_until_visible)
+        communications.assert_communications_found("Найдено коммуникаций 1212 из 1212")
 
     with allure.step("Quit from account"):
         page.locator('[aria-label="Профиль"]').get_by_role("button").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
+        expect(page.locator(BUTTON_SUBMIT)).to_be_visible()
 
     with allure.step("Auth with 1AleberOper"):
         auth("1AleberOper", PASSWORD, page)
         page.wait_for_selector(FIRST_DATE)
 
     with allure.step("Choose period"):
-        page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
+        page.wait_for_selector(INPUT_BY_TAGS, timeout=wait_until_visible)
         page.locator(FIRST_DATE).click()
         page.wait_for_timeout(100)
         page.locator(FIRST_DATE).fill("03/09/2024")
@@ -69,25 +72,24 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         page.wait_for_timeout(300)
 
     with allure.step("Search coomunications"):
-        press_find_communications(page)
+        communications.press_find_communications_more_than_50()
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 899 из 899",
-                                                                  timeout=wait_until_visible)
+        communications.assert_communications_found("Найдено коммуникаций 899 из 899")
 
     with allure.step("Quit from account"):
         page.locator('[aria-label="Профиль"]').get_by_role("button").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
+        expect(page.locator(BUTTON_SUBMIT)).to_be_visible()
 
     with allure.step("Auth with 2AleberOper"):
         auth("2AleberOper", PASSWORD, page)
         page.wait_for_selector(FIRST_DATE)
 
     with allure.step("Choose period"):
-        page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
+        page.wait_for_selector(INPUT_BY_TAGS, timeout=wait_until_visible)
         page.locator(FIRST_DATE).click()
         page.wait_for_timeout(100)
         page.locator(FIRST_DATE).fill("03/09/2024")
@@ -100,18 +102,17 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         page.wait_for_timeout(300)
 
     with allure.step("Search coomunications"):
-        press_find_communications(page)
+        communications.press_find_communications_more_than_50()
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 229 из 229",
-                                                                  timeout=wait_until_visible)
+        communications.assert_communications_found("Найдено коммуникаций 229 из 229")
 
     with allure.step("Quit from account"):
         page.locator('[aria-label="Профиль"]').get_by_role("button").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
+        expect(page.locator(BUTTON_SUBMIT)).to_be_visible()
 
 
     with allure.step("Auth with 3AleberOper"):
@@ -119,7 +120,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         page.wait_for_selector(FIRST_DATE)
 
     with allure.step("Choose period"):
-        page.wait_for_selector(INPUT_PO_TEGAM, timeout=wait_until_visible)
+        page.wait_for_selector(INPUT_BY_TAGS, timeout=wait_until_visible)
         page.locator(FIRST_DATE).click()
         page.wait_for_timeout(100)
         page.locator(FIRST_DATE).fill("03/09/2024")
@@ -132,15 +133,14 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         page.wait_for_timeout(300)
 
     with allure.step("Search coomunications"):
-        press_find_communications(page)
+        communications.press_find_communications_more_than_50()
 
     with allure.step("Check"):
-        expect(page.locator(NAYDENO_ZVONKOV).nth(0)).to_have_text("Найдено коммуникаций 562 из 562",
-                                                                  timeout=wait_until_visible)
+        communications.assert_communications_found("Найдено коммуникаций 562 из 562")
 
     with allure.step("Quit from account"):
         page.locator('[aria-label="Профиль"]').get_by_role("button").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
-        expect(page.locator(BUTTON_VOITI)).to_be_visible()
+        expect(page.locator(BUTTON_SUBMIT)).to_be_visible()

@@ -8,6 +8,12 @@ INPUT_LOGIN = '[name="login"]'
 BUTTON_COMMUNICATIONS = '[href*="/calls"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_SUBMIT = '[type="submit"]'
+MENU = '[class*="-menu"]'
+MODAL_WINDOW = '[role="dialog"]'
+
+SELECT_LANGUAGE = '[data-testid="stt_language"]'
+SELECT_ENGINE = '[data-testid="stt_engine"]'
+SELECT_MODEL = '[data-testid="stt_model"]'
 
 class BaseClass:
     def __init__(self, page: Page):

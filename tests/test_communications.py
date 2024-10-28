@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect, BrowserContext
 from utils.variables import *
-from utils.auth import auth
 from pages.communications import *
 from utils.dates import *
 from datetime import datetime
@@ -568,7 +567,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.press_find_communications_less_than_50()
 
     with allure.step("Press button (Download)"):
-        press_calls_list_download_button(0, page)
+        communications.press_calls_list_download_button(0)
 
     with allure.step("Check content of button download"):
         expect(page.locator(MENU)).to_have_text("Экспорт аудиоЭкспорт расшифровкиЭкспорт коммуникаций")
@@ -740,7 +739,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
 
     with allure.step("Press (EX) button"):
-        press_ex_button_in_expanded_call(page)
+        communications.press_ex_button_in_expanded_call()
 
     with allure.step("Check content of modal window"):
         expect(page.locator(MODAL_WINDOW).get_by_text("Теги без значений")).to_have_count(1)
@@ -791,7 +790,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("Сохраненные шаблоны поиска(0)")
 
     with allure.step("Save template"):
-        press_save_template(page)
+        communications.press_save_template()
 
     with allure.step("Check that (add) button disabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
@@ -809,7 +808,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("firstTemplate(1)")
 
     with allure.step("Rename template"):
-        press_rename_template(page)
+        communications.press_rename_template()
 
     with allure.step("Check that (add) button disabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
@@ -827,13 +826,13 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("renameTemplate(1)")
 
     with allure.step("Delete template"):
-        press_delete_template(page)
+        communications.press_delete_template()
 
     with allure.step("Press (cancel)"):
         page.get_by_role("button", name="Отмена").click()
 
     with allure.step("Delete template"):
-        press_delete_template(page)
+        communications.press_delete_template()
 
     with allure.step("Confirm delete"):
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
@@ -1000,7 +999,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 1 из 3130")
 
     with allure.step("Click calls list actions button (...)"):
-        press_calls_action_button_in_list(0, page)
+        communications.press_calls_action_button_in_list(0)
 
     with allure.step("Choose re-recognize in menu"):
         page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
@@ -1369,7 +1368,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.expand_call()
 
     with allure.step("Click calls list actions button (...)"):
-        press_calls_action_button_in_list(1, page)
+        communications.press_calls_action_button_in_list(1)
 
     with allure.step("Choose re-recognize in menu"):
         page.locator(MENU).get_by_text("Перераспознать", exact=True).click()

@@ -1,9 +1,7 @@
-from re import search
+
 
 from playwright.sync_api import Page, expect
-from pages.base_class import BaseClass, BUTTON_SUBMIT
-
-from utils.variables import wait_until_visible
+from pages.base_class import *
 
 
 NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
@@ -14,7 +12,6 @@ COMMENT_AREA = '[class*="styles_content_"]'
 ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
 SELECT_WITH_SEARCH_MANUAL_TAGS = '[data-testid="CustomSelectWithSearch"]'
 TAG = '[data-testid*="tag-"]'
-MODAL_WINDOW = '[role="dialog"]'
 
 INPUT_CLIENT_NUMBER = '[data-testid="filters_client_phone"]'
 INPUT_CLIENT_DICT_OR_TEXT = '[data-testid="filters_client_phrases"]'
@@ -25,13 +22,15 @@ INPUT_CALL_DURATION = '[data-testid="filters_call_duration"]'
 INPUT_ID = '[data-testid="filters_any_id"]'
 INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
 
-
 BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
 BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
 
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
+BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
+
+BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
 
@@ -48,6 +47,7 @@ CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
 CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
+AUDIO_PLAYER = '[class*="react-audio-player"]'
 
 
 class Communications(BaseClass):
@@ -56,10 +56,13 @@ class Communications(BaseClass):
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION)
         self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
+        self.button_ex_from_call = page.locator(OPEN_CALL_AREA).locator('[aria-label="Excel экспорт"]').locator('[type="button"]')
         self.button_add_comment = page.locator(BUTTON_ADD_COMMENT)
         self.button_cross_in_manual_tags = page.locator('[class*="_manualGroup_"]').locator('[type="button"]')
         self.button_submit_in_word_processing = page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)
+        self.button_save_template = page.locator(BUTTON_SAVE_TEMPLATE)
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
+        self.button_calls_list_download = page.locator(BUTTON_CALLS_LIST_DOWNLOAD)
         self.sort = page.locator(CHANGE_SORT)
         self.tag = page.locator(TAG)
         self.button_clear = page.locator(BUTTON_CLEAR)
@@ -74,6 +77,7 @@ class Communications(BaseClass):
         self.input_id = page.locator(INPUT_ID).locator('[type="text"]')
         self.input_by_tags = page.locator(INPUT_BY_TAGS).locator('[type="text"]')
         self.input_manual_tag_name = page.locator(SELECT_WITH_SEARCH_MANUAL_TAGS).locator('[type="text"]')
+        self.vert_dots_in_template = page.locator('[class=" css-izdlur"]')
 
 
     def assert_check_period_dates(self, begin: str, end: str):
@@ -181,15 +185,7 @@ class Communications(BaseClass):
     def press_calls_action_button_in_list(self, number: int):
         """(...) in list"""
         self.button_calls_action.nth(number).click()
-        self.page.wait_for_selector('[class*="-menu"]')
-
-    # def click_settings(self):
-    #     """Click Settings"""
-    #     self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
-    #     self.page.locator(BUTTON_SETTINGS).click()
-    #     self.page.wait_for_timeout(500)
-    #     self.page.wait_for_selector(INPUT_LOGIN)
-    #     self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(MENU)
 
     def expand_call(self):
         """Expand call"""
@@ -205,10 +201,12 @@ class Communications(BaseClass):
         self.page.wait_for_selector(SELECT_WITH_SEARCH_MANUAL_TAGS)
 
     def add_manual_tag_name(self, text: str):
+        """Add manual tag name"""
         self.input_manual_tag_name.type(text, delay=30)
         self.page.wait_for_timeout(1000)
 
     def delete_manual_tag_from_call_header(self, number: int):
+        """Press pencil and delete manual tag from call header"""
         self.page.wait_for_timeout(500)
         self.page.locator('[class*="MuiAccordionSummary-content"]').locator('[fill="#d9f7be"]').nth(number).click()
         self.page.wait_for_selector('[role="tooltip"]')
@@ -218,6 +216,7 @@ class Communications(BaseClass):
         self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=self.timeout)
 
     def delete_manual_tag_from_manual_tags(self, number: int):
+        """Press pencil and delete manual tag from manual tag list"""
         self.page.wait_for_timeout(500)
         self.page.locator('[class*="_manualGroup_"]').locator('[fill="#d9f7be"]').nth(number).click()
         self.page.wait_for_selector('[role="tooltip"]')
@@ -230,10 +229,12 @@ class Communications(BaseClass):
         expect(self.tag).to_have_count(count, timeout=self.timeout)
 
     def press_add_comment(self):
+        """Press add comment button"""
         self.button_add_comment.click()
         self.page.wait_for_selector('[class*="styles_textareaWrapper"]')
 
     def choose_option(self, option_number: int):
+        """Choose option from menu"""
         self.menu.locator(f'[id$="-option-{option_number}"]').click()
 
     def click_submit_in_word_processing(self):
@@ -241,77 +242,50 @@ class Communications(BaseClass):
         self.button_submit_in_word_processing.click()
         self.page.wait_for_timeout(500)
 
+    def press_calls_list_download_button(self, number):
+        """Press download in calls list"""
+        self.button_calls_list_download.nth(number).click()
+        self.page.wait_for_selector(MENU)
 
-FIRST_DATE = '[placeholder="Начальная дата"]'
-LAST_DATE = '[placeholder="Конечная дата"]'
+    def press_ex_button_in_expanded_call(self):
+        self.button_ex_from_call.click()
+        self.page.wait_for_selector(MODAL_WINDOW)
 
-# inputs
-INPUT_PO_TEGAM = '[data-testid="filters_search_by_tags"]'
+    def press_save_template(self):
+        """Press save template"""
+        self.button_save_template.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
+
+    def press_rename_template(self):
+        """Press rename template"""
+        self.vert_dots_in_template.click()
+        self.page.wait_for_timeout(500)
+        self.menu.get_by_text("Переименовать", exact=True).click()
+        self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
+
+    def press_delete_template(self):
+        """Press delete template"""
+        self.vert_dots_in_template.click()
+        self.page.wait_for_timeout(500)
+        self.menu.get_by_text("Удалить", exact=True).click()
+        self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
+
+
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
 
-# INPUT_NOMER_CLIENTA = '[data-testid="filters_client_phone"]'
-# INPUT_NOMER_SOTRUDNIKA = '[data-testid="filters_operator_phone"]'
-
 INPUT_TEMPLATE_NAME = '[id="name"]'
-# buttons
-BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
-BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
-
-BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 
 BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 
 # other
 ALERT = '[role="alert"]'
-# MODAL_WINDOW = '[role="dialog"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
-AUDIO_PLAYER = '[class*="react-audio-player"]'
 
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 
-MENU = '[class*="-menu"]'
-
-SELECT_LANGUAGE = '[data-testid="stt_language"]'
-SELECT_ENGINE = '[data-testid="stt_engine"]'
-SELECT_MODEL = '[data-testid="stt_model"]'
 
 
-
-
-def press_find_communications(page="page: Page"):
-    page.wait_for_timeout(1000)
-    page.locator(BUTTON_FIND_COMMUNICATIONS).click()
-    page.wait_for_timeout(500)
-    page.wait_for_selector(NAYDENO_ZVONKOV, timeout=wait_until_visible)
-    page.wait_for_timeout(500)
-
-
-def press_save_template(page="page: Page"):
-    page.locator(BUTTON_SAVE_TEMPLATE).click()
-    page.wait_for_timeout(200)
-    page.wait_for_selector(MODAL_WINDOW, timeout=wait_until_visible)
-
-def press_rename_template(page="page: Page"):
-    page.locator('[class=" css-izdlur"]').click()
-    page.get_by_text("Переименовать", exact=True).click()
-    page.wait_for_selector(MODAL_WINDOW, timeout=wait_until_visible)
-
-def press_delete_template(page="page: Page"):
-    page.locator('[class=" css-izdlur"]').click()
-    page.get_by_text("Удалить", exact=True).click()
-    page.wait_for_selector(MODAL_WINDOW, timeout=wait_until_visible)
-
-def press_calls_action_button_in_list(number, page="page: Page"):
-    page.locator(BUTTON_CALLS_ACTION).nth(number).click()
-    page.wait_for_selector(MENU)
-
-def press_calls_list_download_button(number, page="page: Page"):
-    page.locator(BUTTON_CALLS_LIST_DOWNLOAD).nth(number).click()
-    page.wait_for_selector(MENU)
-
-def press_ex_button_in_expanded_call(page="page: Page"):
-    page.locator('[class="MuiAccordion-region"]').locator('[aria-label="Excel экспорт"]').locator('[type="button"]').click()
-    page.wait_for_selector(MODAL_WINDOW)
 
