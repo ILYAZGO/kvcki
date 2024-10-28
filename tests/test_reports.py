@@ -1432,6 +1432,81 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         # check that contain text
         expect(page.get_by_text("ecotelecom-support")).to_have_count(7)
 
+#
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_avg_number_tag_value")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_avg_number_tag_value. For rows and columns")
+def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        click_gear_in_rows(page)
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        click_add_param_avg_number_tag_value(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        click_add_param_avg_number_tag_value(page)
+
+    with allure.step("Choose tag in select"):
+        type_value_to_select("multi value number", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        click_gear_in_columns("0", page)
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        click_add_param_avg_number_tag_value(page)
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        delete_select(page)
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        click_add_param_avg_number_tag_value(page)
+
+    with allure.step("Choose tag in select"):
+        type_value_to_select("multi value number", page)
+
+    with allure.step("Click (Apply)"):
+        click_apply_in_additional_params(page)
+
+    # generate report
+    with allure.step("Generate report"):
+        press_generate_report(page)
+
+    with allure.step("check"):
+        expect(page.locator('[title="5061.89"]')).to_have_count(1)
+        expect(page.locator('[title="5092.72"]')).to_have_count(2)
+        expect(page.locator('[title="4956.51"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="multi value number"]')).to_have_count(2)
+
 
 @pytest.mark.independent
 @pytest.mark.reports
@@ -2011,8 +2086,8 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
 
     with allure.step("check"):
         # check headers
-        expect(page.locator('[aria-label="Сумма баллов"]')).to_have_count(2)
-        expect(page.locator('[aria-label="Сумма максимальных баллов"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Сумма баллов по чек-листам"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Сумма максимальных баллов по чек-листам"]')).to_have_count(2)
         expect(page.locator('[aria-label="Средний балл"]')).to_have_count(2)
         expect(page.locator('[aria-label="Средний балл в %"]')).to_have_count(2)
         # check sum

@@ -38,6 +38,7 @@ MODAL_WINDOW = '[role="dialog"]'
 MENU = '[class*="-menu"]'
 
 BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS = '[data-testid="tagNameChange"]'
+BUTTON_AVERAGE_NUMBER_TAG_VALUE = '[data-testid="avgNumTagChange"]'
 BUTTON_CHECKLIST_POINT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistChange"]'
 BUTTON_CHECKLIST_POINT_PERCENT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistChangePercent"]'
 BUTTON_CHECKLIST_QUESTION_POINT_IN_ADDITIONAL_PARAMS = '[data-testid="checklistQuestionChange"]'
@@ -281,6 +282,10 @@ def click_gear_in_columns(columnNumber, page="page: Page"):
 
 def click_add_param_tag_value(page="page: Page"):
     page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
+    page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
+
+def click_add_param_avg_number_tag_value(page="page: Page"):
+    page.locator(BUTTON_AVERAGE_NUMBER_TAG_VALUE).click()
     page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
 
 def click_add_param_checklist_point(page="page: Page"):
