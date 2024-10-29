@@ -678,9 +678,6 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
 
-    # with allure.step("Press button (Find communications)"):
-    #     press_find_communications(page)
-
     with allure.step("Expand call"):
         communications.expand_call()
 
@@ -735,8 +732,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         communications.press_find_communications_less_than_50()
 
     with allure.step("Expand call"):
-        page.locator(BUTTON_EXPAND_CALL).click()
-        page.wait_for_selector('[id="62050BEC113619D283D9D584-9-0"]')  #  wait word "nu"
+        communications.expand_call()
 
     with allure.step("Press (EX) button"):
         communications.press_ex_button_in_expanded_call()
@@ -784,10 +780,9 @@ def test_check_search_template(base_url, page: Page) -> None:
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
-        #page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
 
     with allure.step("Check that no any templates"):
-        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("Сохраненные шаблоны поиска(0)")
+        communications.assert_template_name("Сохраненные шаблоны поиска(0)")
 
     with allure.step("Save template"):
         communications.press_save_template()
@@ -796,7 +791,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_TEMPLATE_NAME).fill("firstTemplate")
+        page.locator(INPUT_TEMPLATE_NAME).type("firstTemplate", delay=30)
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -805,7 +800,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
 
     with allure.step("Check that template saved"):
-        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("firstTemplate(1)")
+        communications.assert_template_name("firstTemplate(1)")
 
     with allure.step("Rename template"):
         communications.press_rename_template()
@@ -823,7 +818,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
 
     with allure.step("Check that template saved"):
-        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("renameTemplate(1)")
+        communications.assert_template_name("renameTemplate(1)")
 
     with allure.step("Delete template"):
         communications.press_delete_template()
@@ -836,10 +831,10 @@ def test_check_search_template(base_url, page: Page) -> None:
 
     with allure.step("Confirm delete"):
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
-        page.wait_for_timeout(1600)
+        page.wait_for_timeout(2000)
 
     with allure.step("Check that template saved"):
-        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_have_text("Сохраненные шаблоны поиска(0)")
+        communications.assert_template_name("Сохраненные шаблоны поиска(0)")
 
     with allure.step("Check stupid text"):
         expect(page.locator('[style="font-size: 13px; margin-top: 15px;"]').get_by_text("Поиск пуст. Добавить фильтры можно с помощь 'Изменить фильтры'")).to_be_visible()
@@ -990,7 +985,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
     with allure.step("Fill ID"):
         page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=50)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -1015,11 +1010,10 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 #  check all combinations of engines and models
 
     with allure.step("Click to language"):
-        page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_language_select()
 
     with allure.step("Check language list"):
-        expect(page.locator(MENU)).to_contain_text(expected_languages)
+        communications.assert_menu_values(expected_languages)
 
     with allure.step("Close language menu"):
         page.locator('[class*="STT_order_"]').click()
@@ -1032,32 +1026,28 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
     #     expect(page.locator(SELECT_MODEL)).to_contain_text("Выберите модель")
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Check engine list"):
-        expect(page.locator(MENU)).to_contain_text(expected_engines)
+        communications.assert_menu_values(expected_engines)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose Deepgram"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Обобщённаяwhisper")
+        communications.assert_menu_values("Обобщённаяwhisper")
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model whisper"):
         communications.choose_option(1)
@@ -1072,18 +1062,16 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
         communications.choose_option(1)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Стандарт")
+        communications.assert_menu_values("Стандарт")
 
     with allure.step("Select model Стандарт"):
         communications.choose_option(0)
@@ -1098,25 +1086,22 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
         communications.choose_option(2)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("ОбобщённаяЖадный")
+        communications.assert_menu_values("ОбобщённаяЖадный")
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model Жадный"):
         communications.choose_option(1)
@@ -1132,18 +1117,16 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
         communications.choose_option(3)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Стандарт")
+        communications.assert_menu_values("Стандарт")
 
     with allure.step("Select model Стандарт"):
         communications.choose_option(0)
@@ -1158,18 +1141,16 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose whisper"):
         communications.choose_option(4)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Стандарт")
+        communications.assert_menu_values("Стандарт")
 
     with allure.step("Select model Стандарт"):
         communications.choose_option(0)
@@ -1184,26 +1165,22 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(5)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose Яндекс"):
         communications.choose_option(5)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
-        page.wait_for_timeout(500)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        communications.assert_menu_values("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(1)
@@ -1218,25 +1195,22 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
         communications.choose_option(6)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        communications.assert_menu_values("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(1)
@@ -1258,8 +1232,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 #  check save combinations
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
         communications.choose_option(6)
@@ -1268,8 +1241,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)).to_be_enabled()
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model best"):
         communications.choose_option(0)
@@ -1316,7 +1288,6 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
-
 
 
 @pytest.mark.calls
@@ -1381,11 +1352,10 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 #  check all combinations of engines and models
 
     with allure.step("Click to language"):
-        page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_language_select()
 
     with allure.step("Check language list"):
-        expect(page.locator(MENU)).to_contain_text(expected_languages)
+        communications.assert_menu_values(expected_languages)
 
     with allure.step("Close language menu"):
         page.locator('[class*="STT_order_"]').click()
@@ -1398,32 +1368,28 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
     #     expect(page.locator(SELECT_MODEL)).to_contain_text("Выберите модель")
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Check engine list"):
-        expect(page.locator(MENU)).to_contain_text(expected_engines)
+        communications.assert_menu_values(expected_engines)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose Deepgram"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Обобщённаяwhisper")
+        communications.assert_menu_values("Обобщённаяwhisper")
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model whisper"):
         communications.choose_option(1)
@@ -1438,18 +1404,16 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
         communications.choose_option(1)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Стандарт")
+        communications.assert_menu_values("Стандарт")
 
     with allure.step("Select model Стандарт"):
         communications.choose_option(0)
@@ -1464,25 +1428,22 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
         communications.choose_option(2)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("ОбобщённаяЖадный")
+        communications.assert_menu_values("ОбобщённаяЖадный")
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model Жадный"):
         communications.choose_option(1)
@@ -1495,21 +1456,18 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
-
     #
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
         communications.choose_option(3)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Стандарт")
+        communications.assert_menu_values("Стандарт")
 
     with allure.step("Select model Стандарт"):
         communications.choose_option(0)
@@ -1524,18 +1482,16 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose whisper"):
         communications.choose_option(4)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Стандарт")
+        communications.assert_menu_values("Стандарт")
 
     with allure.step("Select model Стандарт"):
         communications.choose_option(0)
@@ -1550,25 +1506,22 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(5)
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose Яндекс"):
         communications.choose_option(5)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        communications.assert_menu_values("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(1)
@@ -1583,25 +1536,22 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
     #
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
         communications.choose_option(6)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        communications.assert_menu_values("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         communications.choose_option(0)
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model Обобщённая"):
         communications.choose_option(1)
@@ -1623,8 +1573,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 #  check save combinations
 
     with allure.step("Click to engine"):
-        page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
         communications.choose_option(6)
@@ -1633,8 +1582,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)).to_be_enabled()
 
     with allure.step("Click to model"):
-        page.locator(SELECT_MODEL).locator('[type="text"]').click()
-        page.wait_for_selector(MENU)
+        communications.click_model_select()
 
     with allure.step("Select model best"):
         communications.choose_option(0)

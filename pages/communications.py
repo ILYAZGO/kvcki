@@ -1,5 +1,3 @@
-
-
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
@@ -29,6 +27,7 @@ BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
+CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 
 BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 
@@ -53,6 +52,7 @@ AUDIO_PLAYER = '[class*="react-audio-player"]'
 class Communications(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
+        self.template_name = page.locator(CURRENT_TEMPLATE_NAME)
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION)
         self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
@@ -78,7 +78,6 @@ class Communications(BaseClass):
         self.input_by_tags = page.locator(INPUT_BY_TAGS).locator('[type="text"]')
         self.input_manual_tag_name = page.locator(SELECT_WITH_SEARCH_MANUAL_TAGS).locator('[type="text"]')
         self.vert_dots_in_template = page.locator('[class=" css-izdlur"]')
-
 
     def assert_check_period_dates(self, begin: str, end: str):
         """Check first and last dates"""
@@ -271,18 +270,19 @@ class Communications(BaseClass):
         self.menu.get_by_text("Удалить", exact=True).click()
         self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
 
+    def assert_template_name(self, template_name: str):
+        expect(self.template_name).to_have_text(template_name)
+
+    def assert_menu_values(self, values: str):
+        expect(self.menu).to_contain_text(values)
+
 
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
-
 INPUT_TEMPLATE_NAME = '[id="name"]'
-
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
-
 BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
-
 # other
 ALERT = '[role="alert"]'
-CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 

@@ -34,6 +34,10 @@ class BaseClass:
         self.all_time = page.locator('[value="all_time"]')
         self.first_date = page.locator('[placeholder="Начальная дата"]')
         self.last_date = page.locator('[placeholder="Конечная дата"]')
+        '''Word processing'''
+        self.select_language = page.locator(SELECT_LANGUAGE).locator('[type="text"]')
+        self.select_engine = page.locator(SELECT_ENGINE).locator('[type="text"]')
+        self.select_model = page.locator(SELECT_MODEL).locator('[type="text"]')
 
     def navigate(self, url: str):
         """Opens main page"""
@@ -51,7 +55,6 @@ class BaseClass:
         self.page.wait_for_timeout(1000)
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(1000)
-
 
     def go_to_user(self, name: str):
         """Change user"""
@@ -103,4 +106,22 @@ class BaseClass:
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
         self.page.wait_for_timeout(500)
+
+    def click_language_select(self):
+        """Select language in word processing"""
+        self.select_language.click()
+        self.page.wait_for_selector(MENU)
+        self.page.wait_for_timeout(300)
+
+    def click_engine_select(self):
+        """Select engine in word processing"""
+        self.select_engine.click()
+        self.page.wait_for_selector(MENU)
+        self.page.wait_for_timeout(300)
+
+    def click_model_select(self):
+        """Select model in word processing"""
+        self.select_model.click()
+        self.page.wait_for_selector(MENU)
+        self.page.wait_for_timeout(300)
 
