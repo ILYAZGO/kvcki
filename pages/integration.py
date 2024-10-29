@@ -9,7 +9,7 @@ BUTTON_INTEGRACII_IN_MENU = '[href*="settings/integrations"]'
 BUTTON_PODKLU4IT = ".styles_goToIntegrationsList__KXaHU"
 BUTTON_SAVE_TOKEN = '[data-testid="AccessKeysTab_submit"]'
 BUTTON_INTEGRACII = ".styles_firstTitle__iaGwm"
-BUTTON_PLAY = "//div[@class='styles_buttonsWrapper__5BGen']//div[1]//button[1]"
+#BUTTON_PLAY = "//div[@class='styles_buttonsWrapper__5BGen']//div[1]//button[1]"
 BUTTON_SOZDAT = '[data-testid="StartTaskModalContent_submit"]'
 BUTTON_FIND_CALLS = "(//button[contains(text(),'Найти коммуникации')])[1]"
 BUTTON_KORZINA = "div[class='styles_button__xgQ1q'] button[type='button']"

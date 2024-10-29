@@ -45,8 +45,8 @@ def test_usedesk(base_url, page: Page) -> None:
         page.locator(BUTTON_INTEGRACII).click()
 
     with allure.step("Press to (Play) button"):
-        page.wait_for_selector(BUTTON_PLAY)
-        page.locator(BUTTON_PLAY).click()
+        page.wait_for_selector('[aria-label="Запуск интеграции"]')
+        page.locator('[aria-label="Запуск интеграции"]').locator('[type="button"]').click()
 
     with allure.step("Set period (first_day_week_ago)"):
         set_date(first_day_week_ago, page)
