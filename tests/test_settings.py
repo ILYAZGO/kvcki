@@ -16,6 +16,8 @@ import random
 @allure.description("input text to address-book, save, check that text saved")
 def test_address_book_fill_by_user(base_url, page: Page) -> None:
     settings = Settings(page)
+
+    text = "Телефон;Должность;ФИО\n12345;IVAN;BOSS"
     
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -30,10 +32,10 @@ def test_address_book_fill_by_user(base_url, page: Page) -> None:
         settings.click_settings()
     
     with allure.step("Go to address book"):
-        click_address_book(page)
+        settings.click_address_book()
     
     with allure.step("Fill address book"):
-        fill_address_book("Телефон;Должность;ФИО\n12345;IVAN;BOSS", page)
+        settings.fill_address_book(text)
     
     with allure.step("Press (Save) button"):
         press_save(page)
@@ -42,17 +44,16 @@ def test_address_book_fill_by_user(base_url, page: Page) -> None:
         click_personal_info(page)
     
     with allure.step("Go to address book"):
-        click_address_book(page)
+        settings.click_address_book()
     
     with allure.step("Check that address book contain correct text"):
-        expect(page.locator(INPUT_ADDRESS_BOOK)).to_contain_text(["Телефон;Должность;ФИО\n12345;IVAN;BOSS"])
+        settings.assert_address_book_text(text)
     
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_ADDRESS_BOOK)
+        settings.reload_page()
 
     with allure.step("Check that address book contain correct text after page reload"):
-        expect(page.locator(INPUT_ADDRESS_BOOK)).to_contain_text(["Телефон;Должность;ФИО\n12345;IVAN;BOSS"])
+        settings.assert_address_book_text(text)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -99,9 +100,7 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
         settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Reload page"):
-        page.reload()
-        page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(500)
+        settings.reload_page()
     
     with allure.step("Check that login changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
@@ -140,7 +139,6 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.auth(LOGIN_ADMIN, PASSWORD)
     
     # change login for user
-
     with allure.step("Go to user"):
         settings.go_to_user(LOGIN_USER)
     
@@ -157,9 +155,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Reload page"):
-        page.reload()
-        page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(500)
+        settings.reload_page()
     
     with allure.step("Check that login changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
@@ -183,9 +179,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(500)
+        settings.reload_page()
     
     with allure.step("Check that login changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN)
@@ -336,8 +330,7 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
         settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(BUTTON_SAVE_IN_RIGHTS)
+        settings.reload_page()
     
     with allure.step("Check that all rights checked after page reload"):
         all_checkboxes_to_be_checked(page)
@@ -375,7 +368,6 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         settings.auth(LOGIN_ADMIN, PASSWORD)
 
     # change rights for user
-
     with allure.step("Go to user"):
         settings.go_to_user(LOGIN_USER)
     
@@ -398,8 +390,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(BUTTON_SAVE_IN_RIGHTS)
+        settings.reload_page()
     
     with allure.step("Check that all rights checked after page reload"):
         all_checkboxes_to_be_checked(page)
@@ -430,8 +421,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(BUTTON_SAVE_IN_RIGHTS)
+        settings.reload_page()
     
     with allure.step("Check that all rights checked after page reload"):
         all_checkboxes_to_be_checked(page)
@@ -494,8 +484,7 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
         settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(BUTTON_SAVE_IN_RIGHTS)
+        settings.reload_page()
 
     with allure.step("Check that all rights checked after page reload"):
         all_checkboxes_to_be_checked(page)
@@ -566,9 +555,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_EMAIL)
-        page.wait_for_timeout(500)
+        settings.reload_page()
 
     with allure.step("Check that personal information still have after reboot"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN)
@@ -632,9 +619,7 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_EMAIL)
-        page.wait_for_timeout(500)
+        settings.reload_page()
 
     with allure.step("Check that personal information still have after reboot"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -700,9 +685,7 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_disabled()
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_EMAIL)
-        page.wait_for_timeout(500)
+        settings.reload_page()
 
     with allure.step("Check that personal information still have after reboot"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -829,9 +812,7 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_NAME)
-        page.wait_for_timeout(300)
+        settings.reload_page()
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
@@ -911,9 +892,7 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_NAME)
-        page.wait_for_timeout(300)
+        settings.reload_page()
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
@@ -1018,7 +997,6 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
-
 
 # check how many items in left menu for role
 @pytest.mark.independent
@@ -1139,9 +1117,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(300)
+        settings.reload_page()
 
     with allure.step("Check that industry and partner changed"):
         expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
@@ -1213,9 +1189,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(INPUT_LOGIN)
-        page.wait_for_timeout(300)
+        settings.reload_page()
 
     with allure.step("Check that industry changed and partner NOT visible"):
         expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
@@ -1420,13 +1394,11 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         settings.check_alert("Данные успешно обновлены")
 
     with allure.step("Reload page and check that saved and have residue"):
-        page.reload()
-        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+        settings.reload_page()
         expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("150.00")
         expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("150.00")
 
         # yandex
-
     with allure.step("Check negative value"):
         page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("-1")
 
@@ -1453,8 +1425,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         settings.check_alert("Данные успешно обновлены")
 
     with allure.step("Reload page and check that saved and have residue"):
-        page.reload()
-        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+        settings.reload_page()
         expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("15000.00")
         expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("15000.00")
 
@@ -2194,8 +2165,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         settings.check_alert(data_updated)
 
     with allure.step("Page reload"):
-        page.reload()
-        page.wait_for_selector(SELECT_LANGUAGE)
+        settings.reload_page()
 
     with allure.step("Check settings"):
         #expect(page.locator(SELECT_ENGINE)).to_contain_text("assembly_ai")

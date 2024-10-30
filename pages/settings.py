@@ -3,18 +3,28 @@ from pages.base_class import *
 
 from utils.variables import wait_until_visible
 
-
+BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
+INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
 class Settings(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
+        self.button_address_book = page.locator(BUTTON_ADDRESS_BOOK)
+        self.input_address_book = page.locator(INPUT_ADDRESS_BOOK)
 
 
+    def click_address_book(self):
+        self.button_address_book.click()
+        self.page.wait_for_selector(INPUT_ADDRESS_BOOK)
 
+    def fill_address_book(self, text: str):
+        self.input_address_book.clear()
+        self.page.wait_for_timeout(1000)
+        self.input_address_book.fill(text)
+        self.page.wait_for_timeout(1000)
 
-
-
-
+    def assert_address_book_text(self, text: str):
+        expect(self.input_address_book).to_contain_text([text])
 
 
 
@@ -87,9 +97,6 @@ BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
 BUTTON_SAVE = '[type="submit"]'
 BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
 
-BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
-INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
-
 BUTTON_EMPLOYEES = '[href*="settings/employees"]'
 BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
 
@@ -153,12 +160,6 @@ def click_quota(page="page: Page"):
     page.wait_for_timeout(500)
     page.wait_for_selector('[aria-colcount="6"]')
 
-
-def click_address_book(page="page: Page"):
-    page.locator(BUTTON_ADDRESS_BOOK).click()
-    page.wait_for_selector(INPUT_ADDRESS_BOOK)
-
-
 def fill_quota_time(minutes, page="page: Page"):
     page.locator(INPUT_QUOTA_TIME).clear()
     page.locator(INPUT_QUOTA_TIME).fill(minutes)
@@ -168,11 +169,7 @@ def press_add_in_quotas(page="page: Page"):
     page.get_by_role("button", name="Добавить", exact=True).click()
     page.wait_for_selector(MODAL_WINDOW)
 
-def fill_address_book(Text, page="page: Page"):
-    page.locator(INPUT_ADDRESS_BOOK).clear()
-    page.wait_for_timeout(800)
-    page.locator(INPUT_ADDRESS_BOOK).fill(Text)
-    page.wait_for_timeout(800)
+
 
 def change_login(login, page="page: Page"):
     page.wait_for_selector(INPUT_LOGIN)
@@ -194,7 +191,6 @@ def fill_personal_information_admin_and_manager(name, email, phone, comment, tim
     page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
     page.get_by_text(timezone).click()
     page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
-
 
 def fill_personal_information_user_and_operator(name, email, phone, timezone, page="page: Page"):
     #  user and operator cant see and write comment
@@ -220,13 +216,11 @@ def change_partner(partner, page="page: Page"):
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(partner, exact=True).click()
 
-
 def go_to_operator_from_table(page="page: Page"):
     page.wait_for_selector('[role="gridcell"]')
     page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(2000)
     page.wait_for_selector(INPUT_LOGIN)
-
 
 def go_to_admin_or_manager(name, page="page: Page"):
     page.wait_for_selector(USERS_LIST)
