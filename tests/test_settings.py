@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect, Route
 from utils.variables import *
-from utils.auth import auth
+#from utils.auth import auth
 from pages.settings import *
 from utils.dates import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
@@ -15,18 +15,19 @@ import random
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("input text to address-book, save, check that text saved")
 def test_address_book_fill_by_user(base_url, page: Page) -> None:
+    settings = Settings(page)
     
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
     
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
     
     with allure.step("Auth as user"):
-        auth(LOGIN, PASSWORD, page)
+        settings.auth(LOGIN, PASSWORD)
     
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
     
     with allure.step("Go to address book"):
         click_address_book(page)
@@ -63,6 +64,7 @@ def test_address_book_fill_by_user(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change login for manager")
 def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     CHANGED_LOGIN = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     
@@ -73,16 +75,16 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
     
     with allure.step("Auth as admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
     
     with allure.step("Go to manager"):
         go_to_admin_or_manager(LOGIN_MANAGER, page)
     
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
     
     with allure.step("Check that manager have original login"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN_MANAGER)
@@ -94,9 +96,7 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Reload page"):
         page.reload()
@@ -119,6 +119,7 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change login for user and operator")
 def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     CHANGED_LOGIN = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
@@ -133,18 +134,18 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
     
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
     
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
     
     # change login for user
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
     
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
     
     with allure.step("Change login for user"):
         change_login(CHANGED_LOGIN, page)
@@ -153,9 +154,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Reload page"):
         page.reload()
@@ -181,9 +180,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
         page.reload()
@@ -209,6 +206,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check that changing login disabled for operator")
 def test_user_cant_change_login_for_operator(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -217,13 +215,13 @@ def test_user_cant_change_login_for_operator(base_url, page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     # check disabled for operator
     with allure.step("Go to employees"):
@@ -248,6 +246,7 @@ def test_user_cant_change_login_for_operator(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_manager_cant_change_login_for_user_and_operator")
 def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -260,17 +259,17 @@ def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with manager"):
-        auth(LOGIN_MANAGER, PASSWORD, page)
+        settings.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Go to user"):
         # check disabled for user
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that login field disabled"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -301,6 +300,7 @@ def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change rights for manager")
 def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
+    settings = Settings(page)
     
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -309,16 +309,16 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
     
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth as admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
     
     with allure.step("Go to manager"):
         go_to_admin_or_manager(LOGIN_MANAGER, page)
     
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
     
     with allure.step("Go to rights"):
         click_rights(page)
@@ -333,9 +333,7 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
         press_save_in_rights(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
         page.reload()
@@ -359,6 +357,7 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("check admin can change rights for user and operator")
 def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -370,18 +369,18 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth as admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     # change rights for user
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
     
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to rights"):
         click_rights(page)
@@ -396,9 +395,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         press_save_in_rights(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
         page.reload()
@@ -430,9 +427,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         press_save_in_rights(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
     
     with allure.step("Page reload"):
         page.reload()
@@ -459,6 +454,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check user can change rights for operator")
 def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -467,14 +463,14 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     # change rights for operator
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to employees"):
         click_employees(page)
@@ -495,9 +491,7 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
         press_save_in_rights(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Page reload"):
         page.reload()
@@ -521,6 +515,7 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for admin")
 def test_change_personal_information_save_admin_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
@@ -529,13 +524,13 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        settings.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Change login"):
         change_login(NEW_LOGIN, page)
@@ -544,9 +539,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Change person al information"):
         fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
@@ -555,15 +548,13 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Click notifications"):
         click_notifications(page)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that personal information changed"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN)
@@ -598,6 +589,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for manager")
 def test_change_personal_information_save_manager_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     NEW_NAME = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -606,13 +598,13 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        settings.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Change personal information"):
         fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
@@ -621,15 +613,13 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Click notifications"):
         click_notifications(page)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that personal information changed"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -666,6 +656,7 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for user")
 def test_change_personal_information_save_user_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     NEW_NAME = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -674,13 +665,13 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        settings.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Change person al information"):
         fill_personal_information_user_and_operator(NEW_NAME, EMAIL, "1234567890", "Africa/Bamako", page)
@@ -689,15 +680,13 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Click notifications"):
         click_notifications(page)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that personal information changed"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -736,6 +725,7 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for operator")
 def test_change_personal_information_save_operator_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     message = "Редактировать персональную информацию может только администратор"
 
@@ -746,13 +736,13 @@ def test_change_personal_information_save_operator_itself(base_url, page: Page) 
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with operator"):
-        auth(LOGIN_OPERATOR, PASSWORD, page)
+        settings.auth(LOGIN_OPERATOR, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that operator cant change personal information"):
         expect(page.locator(INPUT_EMAIL)).to_be_disabled()
@@ -781,6 +771,7 @@ def test_change_personal_information_save_operator_itself(base_url, page: Page) 
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for operator by admin")
 def test_change_personal_information_save_operator_by_admin(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -795,16 +786,16 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to employees"):
         click_employees(page)
@@ -819,9 +810,7 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Go to rights"):
         click_rights(page)
@@ -870,6 +859,7 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check changing and saving personal info for operator by user")
 def test_change_personal_information_save_operator_by_user(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 999)}@mail.ru"
@@ -881,13 +871,13 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to employees"):
         click_employees(page)
@@ -902,9 +892,7 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Go to rights"):
         click_rights(page)
@@ -950,18 +938,19 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
 def test_left_menu_items_for_admin_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        settings.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check items in left menu"):
         expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
@@ -977,18 +966,19 @@ def test_left_menu_items_for_admin_itself(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
 def test_left_menu_items_for_manager_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create manager"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with manager"):
-        auth(LOGIN, PASSWORD, page)
+        settings.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check items in left menu"):
         expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
@@ -1005,6 +995,7 @@ def test_left_menu_items_for_manager_itself(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
 def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     block_list = "Персональная информацияСотрудникиДействия с коммуникациямиКвоты776История потребления услугТарифыАдресная книгаИнтеграции"
 
@@ -1012,13 +1003,13 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        settings.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check items in left menu"):
         page.wait_for_timeout(1000)
@@ -1036,6 +1027,7 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check how many items in left menu for role")
 def test_left_menu_items_for_operator_itself(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -1044,13 +1036,13 @@ def test_left_menu_items_for_operator_itself(base_url, page: Page) -> None:
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL,USER_ID_USER,PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with operator"):
-        auth(LOGIN_OPERATOR, PASSWORD, page)
+        settings.auth(LOGIN_OPERATOR, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check items in left menu"):
         expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(['Персональная информация'])
@@ -1069,6 +1061,7 @@ def test_left_menu_items_for_operator_itself(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_admin_check_industry_and_partner_for_manager")
 def test_admin_check_industry_and_partner_for_manager(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1077,16 +1070,16 @@ def test_admin_check_industry_and_partner_for_manager(base_url, page: Page) -> N
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to manager"):
         go_to_admin_or_manager(LOGIN_MANAGER, page)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that industry and partner not visible"):
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -1105,6 +1098,7 @@ def test_admin_check_industry_and_partner_for_manager(base_url, page: Page) -> N
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_admin_check_industry_and_partner_for_user_and_operator")
 def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1116,17 +1110,17 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
         # check and change for user
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that industry and partner visible"):
         expect(page.locator(SELECT_INDUSTRY)).to_be_visible()
@@ -1142,9 +1136,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Page reload"):
         page.reload()
@@ -1182,6 +1174,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_manager_check_industry_and_partner_for_user_and_operator")
 def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -1194,17 +1187,17 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with manager"):
-        auth(LOGIN_MANAGER, PASSWORD, page)
+        settings.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Go to user"):
         # check and change for user
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Check that industry visible and partner NOT visible"):
         expect(page.locator(SELECT_INDUSTRY)).to_be_visible()
@@ -1217,9 +1210,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         press_save(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Профиль успешно сохранен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Page reload"):
         page.reload()
@@ -1257,6 +1248,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
 def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1265,16 +1257,16 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to quotas"):
         click_quota(page)
@@ -1302,9 +1294,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Квота добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Квота добавлена")
 
     with allure.step("Reload page"):
         page.reload()
@@ -1319,9 +1309,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         page.locator('[role="grid"]').locator('[fill="#FF4D4F"]').click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Квота удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Квота удалена")
 
     with allure.step("Check that quota deleted"):
         expect(page.locator('[role="grid"]').locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
@@ -1334,7 +1322,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("100")
 
     with allure.step("Choose period for quota"):
-        choose_preiod_date("30/12/2024", "31/12/2024", page)
+        settings.choose_period_date("30/12/2024", "31/12/2024")
 
     with allure.step("Fill quota 100"):
         fill_quota_time("100", page)
@@ -1344,9 +1332,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Квота добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Квота добавлена")
 
     with allure.step("Reload page"):
         page.reload()
@@ -1361,9 +1347,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         page.locator('[fill="#FF4D4F"]').click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Квота удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Квота удалена")
 
     with allure.step("Check that quota deleted"):
         expect(page.locator('[fill="#FF4D4F"]')).not_to_be_visible(timeout=wait_until_visible)
@@ -1381,6 +1365,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
 def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1389,16 +1374,16 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to quotas"):
         click_quota(page)
@@ -1432,9 +1417,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Данные успешно обновлены")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Данные успешно обновлены")
 
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
@@ -1467,9 +1450,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Данные успешно обновлены")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert("Данные успешно обновлены")
 
     with allure.step("Reload page and check that saved and have residue"):
         page.reload()
@@ -1490,18 +1471,19 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("every auto_test_user gets 777 min quota by default. test check that we can add more")
 def test_user_cant_change_quotas(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 #
     with allure.step("Go to quotas"):
         click_quota(page)
@@ -1529,6 +1511,7 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_user_consumption_history. mocked")
 def test_user_consumption_history(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -1572,13 +1555,13 @@ def test_user_consumption_history(base_url, page: Page) -> None:
     page.route("**/history/gpt?**", handle_gpt)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
@@ -1688,18 +1671,19 @@ def test_user_consumption_history(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_user_consumption_history. check have warning if []")
 def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
@@ -1742,6 +1726,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_word_processing_russian_language")
 def test_check_word_processing_russian_language(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     expected_languages = ("Английский (Великобритания)Английский (США)Испанский (Латинская Америка, Карибский регион, "
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
@@ -1756,16 +1741,16 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to word processing"):
         click_word_processing(page)
@@ -2126,6 +2111,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_word_processing_parameters_combination")
 def test_check_word_processing_parameters_combination(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     alert_merge = "Опция 'Объединить дорожки в один файл' не может быть выбрана одновременно с любой из диаризаций"
 
@@ -2140,16 +2126,16 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to word processing"):
         click_word_processing(page)
@@ -2179,9 +2165,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(alert_merge)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert(alert_merge)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -2193,9 +2177,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(alert_diarization)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert(alert_diarization)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -2209,9 +2191,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(data_updated)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert(data_updated)
 
     with allure.step("Page reload"):
         page.reload()
@@ -2246,6 +2226,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_re_recognize_in_actions_with_calls")
 def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     expected_languages = ("Английский (Великобритания)Английский (США)Испанский (Латинская Америка, Карибский регион, "
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
@@ -2268,16 +2249,16 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        settings.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        settings.go_to_user(LOGIN_USER)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to actions with calls"):
         click_actions_with_calls(page)
@@ -2629,7 +2610,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
 #  check save combinations
 
     with allure.step("Choose dates"):
-        choose_preiod_date(today, today, page)
+        settings.choose_period_date(today, today)
 
     with allure.step("Click to engine"):
         click_engine_select(page)
@@ -2655,9 +2636,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         page.locator('[class="flex-end"]').locator('[type="button"]').click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text(alert_fill_parameters)
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        settings.check_alert(alert_fill_parameters)
 
     with allure.step("Click to model"):
         click_model_select(page)
@@ -2675,9 +2654,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         page.locator('[class="flex-end"]').locator('[type="button"]').click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(alert_merge)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert(alert_merge)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -2689,9 +2666,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         page.locator('[class="flex-end"]').locator('[type="button"]').click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(alert_diarization)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert(alert_diarization)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -2705,9 +2680,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         page.locator('[class="flex-end"]').locator('[type="button"]').click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(action_started)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        settings.check_alert(action_started)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
@@ -2722,18 +2695,19 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_user_tariffication_history. check have warning if []")
 def test_user_tariffication_if_empty(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_TARIFFICATION).click()
@@ -2772,6 +2746,7 @@ def test_user_tariffication_if_empty(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_user_tariffication. mocked")
 def test_user_tariffication(base_url, page: Page) -> None:
+    settings = Settings(page)
 
     tariff_block_contain_text = ("О тарифахСписанияПлатежиИндивидуальный тарифТекущий баланс:0 рубОбщая сумма:60 000 руб"
                                  "Договор:0009Срок действия:БессрочноПериод тарификации:1 мес.Запросить счет"
@@ -3027,13 +3002,13 @@ def test_user_tariffication(base_url, page: Page) -> None:
 
 
     with allure.step("Go to page"):
-        page.goto(base_url, timeout=wait_until_visible)
+        settings.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN_USER, PASSWORD, page)
+        settings.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to settings"):
-        click_settings(page)
+        settings.click_settings()
 
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_TARIFFICATION).click()
