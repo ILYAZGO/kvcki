@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect, Route
 from utils.variables import *
-#from utils.auth import auth
 from pages.settings import *
 from utils.dates import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
@@ -161,7 +160,6 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
 
     # change for operator
-    
     with allure.step("Go to employees from left menu"):
         page.locator(BUTTON_EMPLOYEES).click()
         page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
