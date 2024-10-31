@@ -40,7 +40,7 @@ def test_address_book_fill_by_user(base_url, page: Page) -> None:
         press_save(page)
     
     with allure.step("Go to personal info"):
-        click_personal_info(page)
+        settings.click_personal_info()
     
     with allure.step("Go to address book"):
         settings.click_address_book()
@@ -165,7 +165,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
     
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
     
     with allure.step("Change login for operator"):
         change_login(NEW_OPERATOR_LOGIN, page)
@@ -217,10 +217,10 @@ def test_user_cant_change_login_for_operator(base_url, page: Page) -> None:
 
     # check disabled for operator
     with allure.step("Go to employees"):
-        click_employees(page)
+        settings.click_employees()
 
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
 
     with allure.step("Check that login field in operators personal info disabled"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -268,10 +268,10 @@ def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -
 
     with allure.step("Go to employees"):
         # check disabled for operator
-        click_employees(page)
+        settings.click_employees()
 
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
 
     with allure.step("Check that login field disabled"):
         expect(page.locator(INPUT_LOGIN)).to_be_disabled()
@@ -313,7 +313,7 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
         settings.click_settings()
     
     with allure.step("Go to rights"):
-        click_rights(page)
+        settings.click_rights()
     
     with allure.step("Check that manager have 6 right"):
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(7)
@@ -373,7 +373,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         settings.click_settings()
 
     with allure.step("Go to rights"):
-        click_rights(page)
+        settings.click_rights()
     
     with allure.step("Check that user have 3 right"):
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(3)
@@ -398,13 +398,13 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
     # change rights for operator
     
     with allure.step("Go to employees"):
-        click_employees(page)
+        settings.click_employees()
     
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
     
     with allure.step("Go to rights"):
-        click_rights(page)
+        settings.click_rights()
     
     with allure.step("Check that operator have 24 rights"):
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(24)
@@ -461,13 +461,13 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
         settings.click_settings()
 
     with allure.step("Go to employees"):
-        click_employees(page)
+        settings.click_employees()
 
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
 
     with allure.step("Go to rights"):
-        click_rights(page)
+        settings.click_rights()
 
     with allure.step("Check that operator have 24 rights in list"):
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(24)
@@ -779,10 +779,10 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         settings.click_settings()
 
     with allure.step("Go to employees"):
-        click_employees(page)
+        settings.click_employees()
 
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
 
     with allure.step("Fill personal information"):
         fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
@@ -794,10 +794,10 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Go to rights"):
-        click_rights(page)
+        settings.click_rights()
 
     with allure.step("Go to personal info"):
-        click_personal_info(page)
+        settings.click_personal_info()
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
@@ -859,10 +859,10 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         settings.click_settings()
 
     with allure.step("Go to employees"):
-        click_employees(page)
+        settings.click_employees()
 
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
 
     with allure.step("Fill personal information"):
         fill_personal_information_user_and_operator(NEW_OPERATOR_NAME, EMAIL, "1234567890", "Africa/Bamako", page)
@@ -874,10 +874,10 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Go to rights"):
-        click_rights(page)
+        settings.click_rights()
 
     with allure.step("Go to personal info"):
-        click_personal_info(page)
+        settings.click_personal_info()
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
@@ -1123,10 +1123,10 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
 
     with allure.step("Go to employees"):
         # check for operator
-        click_employees(page)
+        settings.click_employees()
 
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
 
     with allure.step("Check that industry and partner NOT visible"):
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -1195,10 +1195,10 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
 
     with allure.step("Go to employees"):
         # check for operator
-        click_employees(page)
+        settings.click_employees()
 
     with allure.step("Go to operator from table"):
-        go_to_operator_from_table(page)
+        settings.go_to_operator_from_table()
 
     with allure.step("Check that industry and partner NOT visible"):
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()

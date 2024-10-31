@@ -6,11 +6,28 @@ from utils.variables import wait_until_visible
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
+BUTTON_PERSONAL_INFO = '[href*="/profile"]'
+BUTTON_RIGHTS = '[href*="/access-rights"]'
+BUTTON_EMPLOYEES = '[href*="settings/employees"]'
+
+INPUT_LOGIN = '[name="login"]'
+INPUT_NAME = '[name="name"]'
+INPUT_EMAIL = '[name="email"]'
+INPUT_PHONE = '[name="phoneNumber"]'
+INPUT_COMMENT = '[name="comment"]'
+INPUT_NEW_PASSWORD = '[name="newPassword"]'
+INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
+
+BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
+
 class Settings(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
         self.button_address_book = page.locator(BUTTON_ADDRESS_BOOK)
         self.input_address_book = page.locator(INPUT_ADDRESS_BOOK)
+        self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
+        self.button_rights = page.locator(BUTTON_RIGHTS)
+        self.button_employees = page.locator(BUTTON_EMPLOYEES)
 
 
     def click_address_book(self):
@@ -29,6 +46,23 @@ class Settings(BaseClass):
         """Check address book text"""
         expect(self.input_address_book).to_contain_text([text])
 
+    def click_personal_info(self):
+        self.button_personal_info.click()
+        self.page.wait_for_selector(INPUT_LOGIN)
+
+    def click_rights(self):
+        self.button_rights.click()
+        self.page.wait_for_selector('[data-testid="acceptButton"]')
+
+    def click_employees(self):
+        self.button_employees.click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_selector('[role="grid"]')
+
+    def go_to_operator_from_table(self):
+        self.page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_selector(INPUT_LOGIN)
 
 
 
@@ -41,10 +75,6 @@ BLOCK_LEFT_MENU = '[class*="styles_list_"]'
 
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
-
-BUTTON_PERSONAL_INFO = '[href*="/profile"]'
-
-BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
@@ -99,36 +129,11 @@ BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
 BUTTON_SAVE = '[type="submit"]'
 BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
 
-BUTTON_EMPLOYEES = '[href*="settings/employees"]'
-BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
-
-INPUT_LOGIN = '[name="login"]'
-INPUT_NAME = '[name="name"]'
-INPUT_EMAIL = '[name="email"]'
-INPUT_PHONE = '[name="phoneNumber"]'
-INPUT_COMMENT = '[name="comment"]'
-INPUT_NEW_PASSWORD = '[name="newPassword"]'
-INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
-
 SELECT_PARTNER = '[data-testid="selectPartner"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 SELECT_MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
-
-
-def click_personal_info(page="page: Page"):
-    page.locator(BUTTON_PERSONAL_INFO).click()
-    page.wait_for_selector(INPUT_LOGIN)
-
-def click_employees(page="page: Page"):
-    page.locator(BUTTON_EMPLOYEES).click()
-    page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
-
-
-def click_rights(page="page: Page"):
-    page.locator(BUTTON_RIGHTS).click()
-    page.wait_for_selector('[class*="FooterButtons"]')
 
 def click_actions_with_calls(page="page: Page"):
     page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
@@ -197,12 +202,6 @@ def change_partner(partner, page="page: Page"):
     page.locator(SELECT_PARTNER).click()
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(partner, exact=True).click()
-
-def go_to_operator_from_table(page="page: Page"):
-    page.wait_for_selector('[role="gridcell"]')
-    page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
-    page.wait_for_timeout(2000)
-    page.wait_for_selector(INPUT_LOGIN)
 
 def press_save(page="page: Page"):
     page.get_by_role("button", name="Сохранить").click()
