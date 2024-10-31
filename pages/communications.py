@@ -232,10 +232,6 @@ class Communications(BaseClass):
         self.button_add_comment.click()
         self.page.wait_for_selector('[class*="styles_textareaWrapper"]')
 
-    def choose_option(self, option_number: int):
-        """Choose option from menu"""
-        self.menu.locator(f'[id$="-option-{option_number}"]').click()
-
     def click_submit_in_word_processing(self):
         self.page.wait_for_timeout(500)
         self.button_submit_in_word_processing.click()

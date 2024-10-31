@@ -14,18 +14,20 @@ class Settings(BaseClass):
 
 
     def click_address_book(self):
+        """Click address book button"""
         self.button_address_book.click()
         self.page.wait_for_selector(INPUT_ADDRESS_BOOK)
 
     def fill_address_book(self, text: str):
+        """Fill address book with text"""
         self.input_address_book.clear()
         self.page.wait_for_timeout(1000)
         self.input_address_book.fill(text)
         self.page.wait_for_timeout(1000)
 
     def assert_address_book_text(self, text: str):
+        """Check address book text"""
         expect(self.input_address_book).to_contain_text([text])
-
 
 
 
@@ -114,14 +116,10 @@ SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 SELECT_MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
 
-def click_notifications(page="page: Page"):
-    page.locator(BUTTON_OPOVESHENIA).click()
-    page.wait_for_timeout(1000)
 
 def click_personal_info(page="page: Page"):
     page.locator(BUTTON_PERSONAL_INFO).click()
     page.wait_for_selector(INPUT_LOGIN)
-
 
 def click_employees(page="page: Page"):
     page.locator(BUTTON_EMPLOYEES).click()
@@ -140,17 +138,6 @@ def click_word_processing(page="page: Page"):
     page.locator(BUTTON_WORD_PROCESSING).click()
     page.wait_for_selector(SELECT_LANGUAGE)
 
-def click_engine_select(page="page: Page"):
-    page.locator(SELECT_ENGINE).locator('[type="text"]').click()
-    page.wait_for_selector(SELECT_MENU)
-
-def click_model_select(page="page: Page"):
-    page.locator(SELECT_MODEL).locator('[type="text"]').click()
-    page.wait_for_selector(SELECT_MENU)
-
-def choose_option(optionNumber, page="page: Page"):
-    page.locator(SELECT_MENU).locator(f'[id$="-option-{optionNumber}"]').click()
-
 def click_submit_in_word_processing(page="page: Page"):
     page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SAVE).click()
     page.wait_for_timeout(500)
@@ -164,18 +151,14 @@ def fill_quota_time(minutes, page="page: Page"):
     page.locator(INPUT_QUOTA_TIME).clear()
     page.locator(INPUT_QUOTA_TIME).fill(minutes)
 
-
 def press_add_in_quotas(page="page: Page"):
     page.get_by_role("button", name="Добавить", exact=True).click()
     page.wait_for_selector(MODAL_WINDOW)
-
-
 
 def change_login(login, page="page: Page"):
     page.wait_for_selector(INPUT_LOGIN)
     page.locator(INPUT_LOGIN).clear()
     page.locator(INPUT_LOGIN).fill(login)
-
 
 def fill_personal_information_admin_and_manager(name, email, phone, comment, timezone, page="page: Page"):
     #  admin and manager can see and write comment
@@ -210,7 +193,6 @@ def change_industry(industry, page="page: Page"):
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(industry, exact=True).click()
 
-
 def change_partner(partner, page="page: Page"):
     page.locator(SELECT_PARTNER).click()
     page.wait_for_selector(SELECT_MENU)
@@ -222,23 +204,13 @@ def go_to_operator_from_table(page="page: Page"):
     page.wait_for_timeout(2000)
     page.wait_for_selector(INPUT_LOGIN)
 
-def go_to_admin_or_manager(name, page="page: Page"):
-    page.wait_for_selector(USERS_LIST)
-    page.locator(USERS_LIST).fill(name)
-    page.wait_for_selector(SELECT_MENU)
-    page.locator(SELECT_MENU).get_by_text(name, exact=True).click()
-    page.wait_for_timeout(2000)
-
-
 def press_save(page="page: Page"):
     page.get_by_role("button", name="Сохранить").click()
     page.wait_for_timeout(1000)
 
-
 def press_save_in_rights(page="page: Page"):
     page.locator(BUTTON_SAVE_IN_RIGHTS).click()
     page.wait_for_timeout(500)
-
 
 def click_all_checkboxes_on_page(page="page: Page"):
     # Находим все чекбоксы на странице

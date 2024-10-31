@@ -2,10 +2,10 @@ from playwright.sync_api import Page, expect
 
 #from pages.reports import FIRST_DATE
 
-
+BUTTON_COMMUNICATIONS = '[href*="/calls"]'
+BUTTON_OPOVESHENIA = '[href*="/notifications"]'
 BUTTON_SETTINGS = '[value="settings"]'
 INPUT_LOGIN = '[name="login"]'
-BUTTON_COMMUNICATIONS = '[href*="/calls"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_SUBMIT = '[type="submit"]'
 MENU = '[class*="-menu"]'
@@ -97,6 +97,12 @@ class BaseClass:
         expect(self.snackbar).to_contain_text(message)
         self.snackbar.wait_for(state="hidden", timeout=self.timeout)
 
+    def click_notifications(self):
+        """Click Notifications"""
+        self.page.locator(BUTTON_OPOVESHENIA).click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+
     def click_settings(self):
         """Click Settings"""
         self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
@@ -130,4 +136,8 @@ class BaseClass:
         self.select_model.click()
         self.page.wait_for_selector(MENU)
         self.page.wait_for_timeout(300)
+
+    def choose_option(self, option_number: int):
+        """Choose option from menu"""
+        self.menu.locator(f'[id$="-option-{option_number}"]').click()
 
