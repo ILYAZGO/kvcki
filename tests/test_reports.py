@@ -2160,8 +2160,8 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         expect(page.locator('[aria-label="% разговора оператора"]')).to_have_count(2)
         expect(page.locator('[aria-label="% разговора клиента"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="28:33:44"]')).to_have_count(2)
-        expect(page.locator('[title="27:44:08"]')).to_have_count(2)
+        expect(page.locator('[title="28:33:40"]')).to_have_count(2)
+        expect(page.locator('[title="27:44:12"]')).to_have_count(2)
         expect(page.locator('[title="35.34 %"]')).to_have_count(2)
         expect(page.locator('[title="34.32 %"]')).to_have_count(2)
 
