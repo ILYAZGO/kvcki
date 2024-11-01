@@ -90,7 +90,7 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN_MANAGER)
     
     with allure.step("Change login"):
-        change_login(CHANGED_LOGIN, page)
+        settings.change_login(CHANGED_LOGIN)
     
     with allure.step("Press (save) button"):
         press_save(page)
@@ -145,7 +145,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.click_settings()
     
     with allure.step("Change login for user"):
-        change_login(CHANGED_LOGIN, page)
+        settings.change_login(CHANGED_LOGIN)
     
     with allure.step("Press (save) button"):
         press_save(page)
@@ -168,7 +168,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.go_to_operator_from_table()
     
     with allure.step("Change login for operator"):
-        change_login(NEW_OPERATOR_LOGIN, page)
+        settings.change_login(NEW_OPERATOR_LOGIN)
     
     with allure.step("Press (save) button"):
         press_save(page)
@@ -520,7 +520,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         settings.click_settings()
 
     with allure.step("Change login"):
-        change_login(NEW_LOGIN, page)
+        settings.change_login(NEW_LOGIN)
 
     with allure.step("Press (Save) button"):
         press_save(page)
@@ -1103,10 +1103,10 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         expect(page.locator(SELECT_PARTNER)).to_be_visible()
 
     with allure.step("Change industry"):
-        change_industry('Ed-tech', page)
+        settings.change_industry('Ed-tech')
 
     with allure.step("Change partner"):
-        change_partner('managerIM', page)
+        settings.change_partner('managerIM')
 
     with allure.step("Press (save)"):
         press_save(page)
@@ -1178,7 +1178,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Change industry"):
-        change_industry('Ed-tech', page)
+        settings.change_industry('Ed-tech')
 
     with allure.step("Press (save)"):
         press_save(page)

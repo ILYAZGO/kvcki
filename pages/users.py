@@ -1,7 +1,14 @@
 from utils.variables import wait_until_visible
+from playwright.sync_api import Page, expect
+from pages.base_class import *
 
-ALERT = '[role="alert"]'
-SNACKBAR = '[class*="SnackbarItem"]'
+
+class Users(BaseClass):
+    def __init__(self, page: Page):
+        BaseClass.__init__(self, page)
+
+
+
 
 BUTTON_POLZOVATELI = '[data-testid="userLink"]'
 BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
@@ -26,16 +33,11 @@ INPUT_QUOTA = '[name="quotaRemindTime"]'
 INPUT_NEW_PASSWORD = '[name="newPassword"]'
 INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
-
 USER_LOGIN_IN_LEFT_MENU = '[class*="headerName"]'
 
-# SELECT_LANGUAGE = '[data-testid="selectSttLang"]'
-# SELECT_ENGINE = '[data-testid="selectSttEngine"]'
-# SELECT_MODEL = '[data-testid="selectSttModel"]'
-
-SELECT_LANGUAGE = '[data-testid="stt_language"]'
-SELECT_ENGINE = '[data-testid="stt_engine"]'
-SELECT_MODEL = '[data-testid="stt_model"]'
+# SELECT_LANGUAGE = '[data-testid="stt_language"]'
+# SELECT_ENGINE = '[data-testid="stt_engine"]'
+# SELECT_MODEL = '[data-testid="stt_model"]'
 
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
 RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'

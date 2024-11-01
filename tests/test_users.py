@@ -13,6 +13,8 @@ import random
 @allure.title("test_add_delete_admin_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
+    users = Users(page)
+
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -21,10 +23,10 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with admin 1"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
         go_to_users(page)
@@ -63,9 +65,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         delete_added_user(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert("Пользователь был удален")
 
     with allure.step("Check that admin 2 deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
@@ -79,6 +79,8 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
 @allure.title("test_add_delete_manager_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
+    users = Users(page)
+
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -87,10 +89,10 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
         go_to_users(page)
@@ -128,9 +130,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         delete_added_user(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert("Пользователь был удален")
 
     with allure.step("Check that manager deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
@@ -144,6 +144,8 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
 @allure.title("test_add_delete_user_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_delete_user_by_admin(base_url, page: Page) -> None:
+    users = Users(page)
+
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -152,10 +154,10 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
         go_to_users(page)
@@ -227,9 +229,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         delete_added_user(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert("Пользователь был удален")
 
     with allure.step("Check that user deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
@@ -244,15 +244,16 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_user_disabled_for_manager_without_right")
 def test_add_user_disabled_for_manager_without_right(base_url, page: Page) -> None:
+    users = Users(page)
 
     with allure.step("Create manager without right to add"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
         go_to_users(page)
@@ -271,6 +272,8 @@ def test_add_user_disabled_for_manager_without_right(base_url, page: Page) -> No
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition : manager should have access_rights for create and delete user")
 def test_add_delete_user_by_manager(base_url, page: Page) -> None:
+    users = Users(page)
+
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -282,10 +285,10 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         give_manager_all_rights(API_URL, USER_ID, TOKEN)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with manager"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
         go_to_users(page)
@@ -334,9 +337,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         delete_added_user(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Пользователь был удален")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert("Пользователь был удален")
 
     with allure.step("Check that user deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
@@ -350,6 +351,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
 @allure.title("test_add_delete_operator_by_user")
 @allure.severity(allure.severity_level.NORMAL)
 def test_add_delete_operator_by_user(base_url, page: Page) -> None:
+    users = Users(page)
 
     NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
@@ -359,10 +361,10 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
         page.locator(BUTTON_NASTROIKI).click()
@@ -385,9 +387,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         press_button_add_in_modal(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Сотрудник успешно добавлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert("Сотрудник успешно добавлен")
 
     with allure.step("Check"):
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME, timeout=wait_until_visible)
@@ -420,15 +420,16 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
 @allure.title("test_check_search")
 @allure.severity(allure.severity_level.NORMAL)
 def test_check_search(base_url, page: Page) -> None:
+    users = Users(page)
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
         go_to_users(page)
@@ -451,6 +452,8 @@ def test_check_search(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Admin checking all stt parameters while adding new user ")
 def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
+    users = Users(page)
+
     NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
@@ -471,10 +474,10 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        users.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
         go_to_users(page)
@@ -854,9 +857,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(BUTTON_DOBAVIT).click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(alert_merge)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert(alert_merge)
 
     with allure.step("Uncheck merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).uncheck()
@@ -868,9 +869,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(BUTTON_DOBAVIT).click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(alert_diarization)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert(alert_diarization)
 
     with allure.step("Uncheck diarization checkbox"):
         page.locator(CHECKBOX_DIARIZATION).uncheck()
@@ -884,9 +883,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(BUTTON_DOBAVIT).click()
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text(action_started)
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        users.check_alert(action_started)
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):

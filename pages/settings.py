@@ -20,6 +20,10 @@ INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
 
+SELECT_PARTNER = '[data-testid="selectPartner"]'
+SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
+SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
+
 class Settings(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
@@ -28,6 +32,9 @@ class Settings(BaseClass):
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
         self.button_rights = page.locator(BUTTON_RIGHTS)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
+        self.input_login = page.locator(INPUT_LOGIN)
+        self.select_industry = page.locator(SELECT_INDUSTRY)
+        self.select_partner = page.locator(SELECT_PARTNER)
 
 
     def click_address_book(self):
@@ -64,13 +71,22 @@ class Settings(BaseClass):
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_selector(INPUT_LOGIN)
 
+    def change_login(self, login):
+        self.page.wait_for_selector(INPUT_LOGIN)
+        self.input_login.clear()
+        self.input_login.type(login, delay=30)
+
+    def change_industry(self, industry):
+        self.select_industry.click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(industry, exact=True).click()
+
+    def change_partner(self, partner):
+        self.select_partner.click()
+        self.page.wait_for_selector(MENU)
+        self.page.locator(MENU).get_by_text(partner, exact=True).click()
 
 
-
-
-USERS_LIST = "#react-select-2-input"
-
-BUTTON_OPOVESHENIA = '[href*="/notifications"]'
 BLOCK_LEFT_MENU = '[class*="styles_list_"]'
 
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
@@ -128,12 +144,7 @@ INPUT_NEW_QUOTA = '[placeholder="Новое значение"]'
 BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
 BUTTON_SAVE = '[type="submit"]'
 BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
-
-SELECT_PARTNER = '[data-testid="selectPartner"]'
-SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
-SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 SELECT_MENU = '[class*="-menu"]'
-MODAL_WINDOW = '[role="dialog"]'
 
 def click_actions_with_calls(page="page: Page"):
     page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
@@ -159,11 +170,6 @@ def fill_quota_time(minutes, page="page: Page"):
 def press_add_in_quotas(page="page: Page"):
     page.get_by_role("button", name="Добавить", exact=True).click()
     page.wait_for_selector(MODAL_WINDOW)
-
-def change_login(login, page="page: Page"):
-    page.wait_for_selector(INPUT_LOGIN)
-    page.locator(INPUT_LOGIN).clear()
-    page.locator(INPUT_LOGIN).fill(login)
 
 def fill_personal_information_admin_and_manager(name, email, phone, comment, timezone, page="page: Page"):
     #  admin and manager can see and write comment
@@ -192,16 +198,6 @@ def fill_personal_information_user_and_operator(name, email, phone, timezone, pa
     page.get_by_text(timezone).click()
     page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
     page.wait_for_timeout(300)
-
-def change_industry(industry, page="page: Page"):
-    page.locator(SELECT_INDUSTRY).click()
-    page.wait_for_selector(SELECT_MENU)
-    page.locator(SELECT_MENU).get_by_text(industry, exact=True).click()
-
-def change_partner(partner, page="page: Page"):
-    page.locator(SELECT_PARTNER).click()
-    page.wait_for_selector(SELECT_MENU)
-    page.locator(SELECT_MENU).get_by_text(partner, exact=True).click()
 
 def press_save(page="page: Page"):
     page.get_by_role("button", name="Сохранить").click()
