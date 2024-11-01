@@ -29,11 +29,10 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
-        go_to_users(page)
-        page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
+        users.go_to_users_list()
 
     with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
+        users.press_button_add_user()
 
     with allure.step("Set admin 2 info"):
         set_user(NEW_NAME,
@@ -95,11 +94,10 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
-        go_to_users(page)
-        page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
+        users.go_to_users_list()
 
     with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
+        users.press_button_add_user()
 
     with allure.step("Set manager info"):
         set_user(NEW_NAME,
@@ -160,12 +158,11 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
-        go_to_users(page)
-        page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
+        users.go_to_users_list()
 
     #
     with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
+        users.press_button_add_user()
 
     with allure.step("Cancel by button CANCEL"):
         page.locator(BUTTON_OTMENA).click()
@@ -174,7 +171,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
 
     with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
+        users.press_button_add_user()
 
     with allure.step("Cancel by button KRESTIK"):
         page.locator(BUTTON_KRESTIK).click()
@@ -184,7 +181,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
     #
 
     with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
+        users.press_button_add_user()
 
     with allure.step("Set user info"):
         set_user(NEW_NAME,
@@ -256,10 +253,10 @@ def test_add_user_disabled_for_manager_without_right(base_url, page: Page) -> No
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
-        go_to_users(page)
+        users.go_to_users_list()
 
     with allure.step("Check"):
-        expect(page.locator(BUTTON_DOBAVIT_POLZOVATELIA)).to_be_disabled()
+        expect(page.locator(BUTTON_ADD_USER)).to_be_disabled()
         expect(page.locator('[class="rs-table-body-info"]')).to_contain_text("Информация отсутствует")
 
     with allure.step("Delete manager"):
@@ -291,10 +288,10 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
-        go_to_users(page)
+        users.go_to_users_list()
 
     with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
+        users.press_button_add_user()
 
     with allure.step("Set user info"):
         set_user(NEW_NAME,
@@ -432,8 +429,7 @@ def test_check_search(base_url, page: Page) -> None:
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
-        go_to_users(page)
-        page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
+        users.go_to_users_list()
 
     with allure.step("Fill searchString"):
         page.locator(INPUT_POISK).fill("ecot")
@@ -480,12 +476,10 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to users"):
-        go_to_users(page)
-        page.wait_for_timeout(5000)
-        page.wait_for_selector(FIRST_ROW_IN_USERS_LIST, timeout=wait_until_visible)
+        users.go_to_users_list()
 
     with allure.step("Press button (Add User)"):
-        press_button_add_user(page)
+        users.press_button_add_user()
 
     with allure.step("Set user info"):
         set_user(NEW_NAME,
@@ -514,102 +508,6 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
 
     with allure.step("Check engine list"):
         expect(page.locator(SELECT_MENU)).to_contain_text(expected_engines)
-
-
-    # DELETE
-    # with allure.step("Choose any2text"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Click to model"):
-    #     click_model_select(page)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
-    #
-    # with allure.step("Select model"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("any2text")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("Стандарт")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(3)
-    # DELETE
-
-    # with allure.step("Click to engine"):
-    #     click_engine_select(page)
-    #
-    # with allure.step("Choose assembly_ai"):
-    #     choose_option(1, page)
-    #
-    # with allure.step("Click to model"):
-    #     click_model_select(page)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(SELECT_MENU)).to_contain_text("bestconformer-2nano")
-    #
-    # with allure.step("Select model best"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Click to model"):
-    #     click_model_select(page)
-    #
-    # with allure.step("Select model conformer-2"):
-    #     choose_option(1, page)
-    #
-    # with allure.step("Click to model"):
-    #     click_model_select(page)
-    #
-    # with allure.step("Select model nano"):
-    #     choose_option(2, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("assembly_ai")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("nano")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_USE_WEBHOOK)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ADD_PUNCTUATION)).to_be_checked()
-    #     expect(page.locator(CHECKBOX_ENGINE_DIARIZATION)).to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(6)
-
-    # DELETE
-    # with allure.step("Click to engine"):
-    #     click_engine_select(page)
-    #
-    # with allure.step("Choose ClaritySpeech"):
-    #     choose_option(2, page)
-    #
-    # with allure.step("Click to model"):
-    #     click_model_select(page)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(SELECT_MENU)).to_contain_text("СтандартАЗС")
-    #
-    # with allure.step("Select model Стандарт"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Click to model"):
-    #     click_model_select(page)
-    #
-    # with allure.step("Select model АЗС"):
-    #     choose_option(1, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("ClaritySpeech")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("АЗС")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_USE_WEBHOOK)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(4)
-    # DELETE
 
     with allure.step("Click to engine"):
         click_engine_select(page)
@@ -694,33 +592,6 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
-
-    # DELETE
-    # with allure.step("Click to engine"):
-    #     click_engine_select(page)
-    #
-    # with allure.step("Choose Sova ASR"):
-    #     choose_option(6, page)
-    #
-    # with allure.step("Click to model"):
-    #     click_model_select(page)
-    #
-    # with allure.step("Check model list"):
-    #     expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
-    #
-    # with allure.step("Select model Стандарт"):
-    #     choose_option(0, page)
-    #
-    # with allure.step("Check engine parameters"):
-    #     expect(page.locator(SELECT_ENGINE)).to_contain_text("Sova ASR")
-    #     expect(page.locator(SELECT_MODEL)).to_contain_text("Стандарт")
-    #     expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
-    #     expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
-    #     expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-    #     expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-    #     expect(page.locator('[type="checkbox"]')).to_have_count(3)
-    # DELETE
-
 
     with allure.step("Click to engine"):
         click_engine_select(page)

@@ -3,15 +3,32 @@ from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 
+BUTTON_USERS = '[data-testid="userLink"]'
+BUTTON_ADD_USER = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
+
 class Users(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
+        self.button_users = page.locator(BUTTON_USERS)
+        self.button_add_user = page.locator(BUTTON_ADD_USER)
+
+    def go_to_users_list(self):
+        self.page.wait_for_selector(BUTTON_USERS)
+        self.button_users.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector('[class="circular-progress"]', state='hidden', timeout=self.timeout)
+
+    def press_button_add_user(self):
+        self.button_add_user.click()
+        self.page.wait_for_selector(INPUT_NAME)
+        self.page.wait_for_timeout(500)
 
 
 
 
-BUTTON_POLZOVATELI = '[data-testid="userLink"]'
-BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
+
+
+
 BUTTON_OTMENA = '[data-testid="cancelButton"]'
 BUTTON_KRESTIK = '[data-testid="closePopupButton"]'
 BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
@@ -29,15 +46,11 @@ INPUT_PASSWORD = '[name="password"]'
 INPUT_EMAIL = '[name="email"]'
 INPUT_PHONE = '[name="phoneNumber"]'
 INPUT_COMMENT = '[name="comment"]'
-INPUT_QUOTA = '[name="quotaRemindTime"]'
+
 INPUT_NEW_PASSWORD = '[name="newPassword"]'
 INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 USER_LOGIN_IN_LEFT_MENU = '[class*="headerName"]'
-
-# SELECT_LANGUAGE = '[data-testid="stt_language"]'
-# SELECT_ENGINE = '[data-testid="stt_engine"]'
-# SELECT_MODEL = '[data-testid="stt_model"]'
 
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
 RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
@@ -62,16 +75,10 @@ FIRST_ROW_IN_USERS_LIST = '[aria-rowindex="2"]'
 USERS_TABLE = '[class="rs-table-body-wheel-area"]'
 
 
-def go_to_users(page="page: Page"):
-    page.wait_for_selector(BUTTON_POLZOVATELI)
-    page.locator(BUTTON_POLZOVATELI).click()
-    page.wait_for_selector(USERS_TABLE, timeout=wait_until_visible)
-
-
-def press_button_add_user(page="page: Page"):
-    #page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
-    page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
-    page.wait_for_selector(INPUT_NAME)
+# def press_button_add_user(page="page: Page"):
+#     #page.wait_for_selector(BUTTON_DOBAVIT_POLZOVATELIA)
+#     page.locator(BUTTON_DOBAVIT_POLZOVATELIA).click()
+#     page.wait_for_selector(INPUT_NAME)
 
 
 def press_button_add_employee(page="page: Page"):
@@ -94,7 +101,7 @@ def set_user(name, login, password, mail, phone, comment, role, page="page: Page
     page.locator(INPUT_PHONE).fill(phone)
     page.wait_for_selector(f'[value="{phone}"]')
     page.locator(INPUT_COMMENT).fill(comment)
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator(SELECT_ROLE).locator("svg").click()
     page.wait_for_selector(SELECT_MENU)
     page.locator(SELECT_MENU).get_by_text(role, exact=True).click()
