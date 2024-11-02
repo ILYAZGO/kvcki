@@ -2026,7 +2026,7 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
         expect(page.locator('[title="66.84 %"]')).to_have_count(4)
         expect(page.locator('[title="13.39 %"]')).to_have_count(4)
         expect(page.locator('[title="0.1 %"]')).to_have_count(4)
-        expect(page.locator('[title="100 %"]')).to_have_count(20)
+        expect(page.locator('[title="100 %"]')).to_have_count(22)
 
 
 @pytest.mark.independent
