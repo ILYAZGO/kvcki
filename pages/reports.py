@@ -76,9 +76,9 @@ SELECT_WITH_ADDITIONAL_PARAM = '[class*="AdditionalParams_additionalSelect_"]'
 
 
 def go_to_reports(page="page: Page"):
-    page.wait_for_timeout(700)
+    page.wait_for_timeout(1000)
     page.wait_for_selector(BUTTON_OT4ETI, timeout=wait_until_visible)
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(500)
     page.locator(BUTTON_OT4ETI).click()
 
 
@@ -188,7 +188,7 @@ def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Pag
     page.locator('[class*="menu"]').get_by_text("Точный фильтр", exact=True).click()
     page.locator(f'[data-testid="report_columns_column_{number}_searchInput"]').locator('[type="text"]').fill(columnName)
     page.locator(f'[data-testid="report_columns_column_{number}_searchFilters"]').click()
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(500)
     page.locator('[class*="menu"]').get_by_text(tagName, exact=True).click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
     page.locator('[data-testid="report_columns"]').get_by_text("Все").click()

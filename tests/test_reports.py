@@ -684,6 +684,77 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
         # check column
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
+#$
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_row_1_client_phone")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_row_1_client_phone")
+def test_reports_row_1_client_phone(base_url, page: Page) -> None:
+
+    with allure.step("Go to url"):
+        page.goto(base_url, timeout=wait_until_visible)
+
+    with allure.step("Auth with ecotelecom"):
+        auth(ECOTELECOM, ECOPASS, page)
+
+    with allure.step("Go to reports"):
+        go_to_reports(page)
+
+    with allure.step("Press (Create report)"):
+        press_create_report(page)
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        choose_preiod_date("01/01/2022", "31/12/2022", page)
+
+    with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
+        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+
+    with allure.step("Fill row by operators phone"):
+        fill_row_operator_phone("1", "По номеру клиента", page)
+        #fill_row_operator_phone("1", "Номеру клиента", page)
+
+    with allure.step("Fill column by communication"):
+        fill_column_by_communication("0", page)
+
+    with allure.step("Press (Generate report)"):
+        press_generate_report(page)
+
+    with allure.step("Check that report generated and all values okey"):
+        expect(page.locator('[aria-label="89164476315"]')).to_be_visible()
+        expect(page.locator('[aria-label="89645653870"]')).to_be_visible()
+        expect(page.locator('[aria-label="89637275939"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("4")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("2")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6")
+
+    with allure.step("Scroll down"):
+        page.locator('[class*="MuiDataGrid-scrollbar--vertical"]').click()
+        page.mouse.wheel(delta_x=0, delta_y=10000)
+
+    with allure.step("Check that report generated and all values okey (last)"):
+        expect(page.locator('[data-id="31"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("1")
+        expect(page.locator('[data-id="32"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
+
+    with allure.step("Expand reports parameters"):
+        collapse_expand_report(page)
+        page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    with allure.step("Check that all parameters exists"):
+        expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
+        # check row
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("По номеру клиента")
+        # check column
+        expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
+
+
+
+
+
+
+#$
+
 
 @pytest.mark.independent
 @pytest.mark.reports
