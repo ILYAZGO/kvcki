@@ -585,7 +585,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Check that export (zip) downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 10000 < os.path.getsize(path + download.suggested_filename) < 15000
+        assert 120000 < os.path.getsize(path + download.suggested_filename) < 160000
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
@@ -593,30 +593,71 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
     with allure.step("Check that downloaded export (zip) removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
 
-    # For now not working. Download can take long time
 
-    #with allure.step("Press button (Download)"):
-    #    press_calls_action_button_in_list(0, page)
+    with allure.step("Press button (Download)"):
+        communications.press_calls_list_download_button(0)
 
-    #with allure.step("Choose (Export transcribe) option from opened menu"):
+    with allure.step("Press (Export)"):
+        page.locator('[class*="menu"]').get_by_text("Экспорт расшифровки", exact=True).click()
+        page.wait_for_selector(MODAL_WINDOW)
+
+    with allure.step("Choose (Export transcribe) option from opened menu"):
         # Start waiting for the download
-    #    with page.expect_download(timeout=50000) as download_info:
+        with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
-    #        page.locator('[class*="menu"]').get_by_text("Экспорт расшифровки", exact=True).click()
-    #    download = download_info.value
-    #    path = f'{os.getcwd()}/'
+            page.locator(MODAL_WINDOW).get_by_text("Экспортировать", exact=True).click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
 
         # Wait for the download process to complete and save the downloaded file somewhere
-    #    download.save_as(path + download.suggested_filename)
+        download.save_as(path + download.suggested_filename)
 
-    #with allure.step("Check that export (zip) downloaded"):
-   #     assert os.path.isfile(path + download.suggested_filename) == True
+    with allure.step("Check that export (zip) downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+        assert 7000 < os.path.getsize(path + download.suggested_filename) < 8000
 
-    #with allure.step("Remove downloaded export (zip)"):
-    #    os.remove(path + download.suggested_filename)
+    with allure.step("Remove downloaded export (zip)"):
+        os.remove(path + download.suggested_filename)
 
-    #with allure.step("Check that downloaded export (zip) removed"):
-    #    assert os.path.isfile(path + download.suggested_filename) == False
+    with allure.step("Check that downloaded export (zip) removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+    with allure.step("Close modal with export"):
+        page.locator(BUTTON_CROSS).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    #@
+    with allure.step("Press button (Download)"):
+        communications.press_calls_list_download_button(0)
+
+    with allure.step("Press (Export)"):
+        page.locator('[class*="menu"]').get_by_text("Экспорт коммуникаций", exact=True).click()
+        page.wait_for_selector(MODAL_WINDOW)
+
+    with allure.step("Choose (Export transcribe) option from opened menu"):
+        # Start waiting for the download
+        with page.expect_download(timeout=60000) as download_info:
+            # Perform the action that initiates download
+            page.locator(MODAL_WINDOW).get_by_text("Экспортировать", exact=True).click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that export (zip) downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+        assert 6000 < os.path.getsize(path + download.suggested_filename) < 7000
+
+    with allure.step("Remove downloaded export (zip)"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that downloaded export (zip) removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+    with allure.step("Close modal with export"):
+        page.locator(BUTTON_CROSS).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
 
 
