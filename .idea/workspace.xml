@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="settings refactor11">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="settings refactor12">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -571,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix15" />
     <MESSAGE value="fix16" />
     <MESSAGE value="fix17" />
     <MESSAGE value="fix18" />
@@ -596,6 +597,7 @@
     <MESSAGE value="settings refactor9" />
     <MESSAGE value="settings refactor10" />
     <MESSAGE value="settings refactor11" />
-    <option name="LAST_COMMIT_MESSAGE" value="settings refactor11" />
+    <MESSAGE value="settings refactor12" />
+    <option name="LAST_COMMIT_MESSAGE" value="settings refactor12" />
   </component>
 </project>

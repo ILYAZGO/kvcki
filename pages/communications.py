@@ -276,7 +276,6 @@ class Communications(BaseClass):
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
 INPUT_TEMPLATE_NAME = '[id="name"]'
 BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
-BUTTON_KRESTIK = '[data-testid="CloseIcon"]'
 # other
 ALERT = '[role="alert"]'
 

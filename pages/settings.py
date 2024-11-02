@@ -9,6 +9,8 @@ INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 BUTTON_PERSONAL_INFO = '[href*="/profile"]'
 BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_EMPLOYEES = '[href*="settings/employees"]'
+BUTTON_QUOTAS = '[href*="settings/quotas"]'
+INPUT_QUOTA_TIME = '[name="time"]'
 
 INPUT_LOGIN = '[name="login"]'
 INPUT_NAME = '[name="name"]'
@@ -32,6 +34,8 @@ class Settings(BaseClass):
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
         self.button_rights = page.locator(BUTTON_RIGHTS)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
+        self.button_quotas = page.locator(BUTTON_QUOTAS)
+        self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
         self.input_login = page.locator(INPUT_LOGIN)
         self.select_industry = page.locator(SELECT_INDUSTRY)
         self.select_partner = page.locator(SELECT_PARTNER)
@@ -66,6 +70,22 @@ class Settings(BaseClass):
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_selector('[role="grid"]')
 
+    def click_quota(self):
+        self.button_quotas.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector('[role="grid"]')
+
+    def fill_quota_time(self, minutes: str):
+        self.page.wait_for_timeout(500)
+        self.input_quota_time.clear()
+        self.page.wait_for_timeout(500)
+        self.input_quota_time.type(minutes, delay=30)
+
+    def press_add_in_quotas(self):
+        """Working in table and modal window"""
+        self.page.get_by_role("button", name="Добавить", exact=True).click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+
     def go_to_operator_from_table(self):
         self.page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
@@ -86,9 +106,16 @@ class Settings(BaseClass):
         self.page.wait_for_selector(MENU)
         self.page.locator(MENU).get_by_text(partner, exact=True).click()
 
+    def click_all_checkboxes_on_page(self):
+        # Находим все чекбоксы на странице
+        checkboxes = self.page.query_selector_all('input[type="checkbox"]')
+        # Выполняем клик на каждом чекбоксе
+        for checkbox in checkboxes:
+            if not checkbox.is_checked():
+                checkbox.click()
+
 
 BLOCK_LEFT_MENU = '[class*="styles_list_"]'
-
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
 BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
@@ -96,7 +123,6 @@ BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
 BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
 BLOCK_ACTION_SELECT = '[class="action-block"]'
-
 BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
@@ -111,9 +137,6 @@ CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
 CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
-
-BUTTON_QUOTAS = '[href*="settings/quotas"]'
-INPUT_QUOTA_TIME = '[name="time"]'
 
 BUTTON_CONSUMPTION_HISTORY = '[href*="-consumption-history"]'
 BUTTON_CONSUMPTION_HISTORY_AUDIO = '[href*="-consumption-history/audio"]'
@@ -158,19 +181,6 @@ def click_submit_in_word_processing(page="page: Page"):
     page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SAVE).click()
     page.wait_for_timeout(500)
 
-def click_quota(page="page: Page"):
-    page.locator(BUTTON_QUOTAS).click()
-    page.wait_for_timeout(500)
-    page.wait_for_selector('[aria-colcount="6"]')
-
-def fill_quota_time(minutes, page="page: Page"):
-    page.locator(INPUT_QUOTA_TIME).clear()
-    page.locator(INPUT_QUOTA_TIME).fill(minutes)
-
-def press_add_in_quotas(page="page: Page"):
-    page.get_by_role("button", name="Добавить", exact=True).click()
-    page.wait_for_selector(MODAL_WINDOW)
-
 def fill_personal_information_admin_and_manager(name, email, phone, comment, timezone, page="page: Page"):
     #  admin and manager can see and write comment
     page.wait_for_timeout(500)
@@ -206,14 +216,6 @@ def press_save(page="page: Page"):
 def press_save_in_rights(page="page: Page"):
     page.locator(BUTTON_SAVE_IN_RIGHTS).click()
     page.wait_for_timeout(500)
-
-def click_all_checkboxes_on_page(page="page: Page"):
-    # Находим все чекбоксы на странице
-    checkboxes = page.query_selector_all('input[type="checkbox"]')
-    # Выполняем клик на каждом чекбоксе
-    for checkbox in checkboxes:
-        if not checkbox.is_checked():
-            checkbox.click()
 
 def all_checkboxes_to_be_checked(page="page: Page"):
     page.wait_for_timeout(500)

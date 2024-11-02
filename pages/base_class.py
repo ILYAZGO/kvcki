@@ -10,6 +10,7 @@ BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_SUBMIT = '[type="submit"]'
 MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
+BUTTON_CROSS = '[data-testid="CloseIcon"]'
 
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
@@ -107,8 +108,9 @@ class BaseClass:
         """Click Settings"""
         self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
         self.page.locator(BUTTON_SETTINGS).click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
-        self.page.wait_for_selector(INPUT_LOGIN)
+        self.page.wait_for_selector(INPUT_LOGIN, timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
     def click_communications(self):

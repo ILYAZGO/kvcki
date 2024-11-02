@@ -684,7 +684,7 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
         # check column
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
-#$
+
 @pytest.mark.independent
 @pytest.mark.reports
 @allure.title("test_reports_row_1_client_phone")
@@ -747,13 +747,6 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Номеру клиента")
         # check column
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
-
-
-
-
-
-
-#$
 
 
 @pytest.mark.independent

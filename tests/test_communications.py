@@ -874,7 +874,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]')).not_to_be_checked()
 
     with allure.step("Check that we can close comment form with X"):
-        page.locator(BUTTON_KRESTIK).click()
+        page.locator(BUTTON_CROSS).click()
 
     with allure.step("Press (add comment)"):
         communications.press_add_comment()
@@ -1004,7 +1004,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
     with allure.step("Check modal window content"):
         expect(page.locator('[class*="styles_sttAllFoudCalls_"]')).to_contain_text(" (количество коммуникаций:  1)")
         expect(page.locator(SELECT_LANGUAGE)).to_contain_text("Русский")
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_KRESTIK)).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_CROSS)).to_have_count(1)
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_contain_text("Перераспознать")
 
 #  check all combinations of engines and models
@@ -1347,7 +1347,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check modal window content"):
         expect(page.locator(SELECT_LANGUAGE)).to_contain_text("Русский")
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_KRESTIK)).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_CROSS)).to_have_count(1)
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_contain_text("Перераспознать")
 #  check all combinations of engines and models
 

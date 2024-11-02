@@ -161,8 +161,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
 
     # change for operator
     with allure.step("Go to employees from left menu"):
-        page.locator(BUTTON_EMPLOYEES).click()
-        page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
+        settings.click_employees()
     
     with allure.step("Go to operator from table"):
         settings.go_to_operator_from_table()
@@ -319,7 +318,8 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(7)
     
     with allure.step("Click to all rights and check all checkboxes"):
-        click_all_checkboxes_on_page(page)
+        settings.click_all_checkboxes_on_page()
+        #click_all_checkboxes_on_page(page)
     
     with allure.step("Press (save) in rights"):
         press_save_in_rights(page)
@@ -379,7 +379,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(3)
     
     with allure.step("Click to all rights and check all checkboxes"):
-        click_all_checkboxes_on_page(page)
+        settings.click_all_checkboxes_on_page()
     
     with allure.step("Press (save) in rights"):
         press_save_in_rights(page)
@@ -410,7 +410,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(24)
     
     with allure.step("Click to all rights and check all checkboxes"):
-        click_all_checkboxes_on_page(page)
+        settings.click_all_checkboxes_on_page()
     
     with allure.step("Press (save) in rights"):
         press_save_in_rights(page)
@@ -473,7 +473,7 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
         expect(page.locator(BLOCK_ONE_RIGHT)).to_have_count(24)
 
     with allure.step("Click to all rights and check all checkboxes"):
-        click_all_checkboxes_on_page(page)
+        settings.click_all_checkboxes_on_page()
 
     with allure.step("Press (Save) button"):
         press_save_in_rights(page)
@@ -989,7 +989,7 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
         settings.click_settings()
 
     with allure.step("Check items in left menu"):
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(1500)
         expect(page.locator(BLOCK_LEFT_MENU)).to_contain_text(block_list)
         expect(page.locator(LEFT_MENU_ITEM)).to_have_count(8)
 
@@ -1241,10 +1241,10 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         settings.click_settings()
 
     with allure.step("Go to quotas"):
-        click_quota(page)
+        settings.click_quota()
 
     with allure.step("Click (add quota)"):
-        press_add_in_quotas(page)
+        settings.press_add_in_quotas()
 
     with allure.step("Check that system will recommend last gived quota (777)"):
         expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("777")
@@ -1259,10 +1259,10 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         expect(page.locator('[class*="ant-picker-disabled"]')).to_be_visible()
 
     with allure.step("Fill quota 100"):
-        fill_quota_time("100", page)
+        settings.fill_quota_time("100")
 
     with allure.step("press (add)"):
-        press_add_in_quotas(page)
+        settings.press_add_in_quotas()
         #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
 
     with allure.step("Wait for snackbar and check"):
@@ -1288,7 +1288,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         #expect(page.locator('[class="rs-table-body-info"]')).to_have_text("Информация отсутствует")
 
     with allure.step("Click (add quota)"):
-        press_add_in_quotas(page)
+        settings.press_add_in_quotas()
 
     with allure.step("Check that system will recommend last gived quota (100)"):
         expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("100")
@@ -1297,10 +1297,10 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         settings.choose_period_date("30/12/2024", "31/12/2024")
 
     with allure.step("Fill quota 100"):
-        fill_quota_time("100", page)
+        settings.fill_quota_time("100")
 
     with allure.step("press (add)"):
-        press_add_in_quotas(page)
+        settings.press_add_in_quotas()
         #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
 
     with allure.step("Wait for snackbar and check"):
@@ -1358,7 +1358,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         settings.click_settings()
 
     with allure.step("Go to quotas"):
-        click_quota(page)
+        settings.click_quota()
 
     with allure.step("Click to (GPT) tab"):
         page.locator(BUTTON_GPT_QUOTAS).click()
@@ -1455,7 +1455,8 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
         settings.click_settings()
 #
     with allure.step("Go to quotas"):
-        click_quota(page)
+        settings.click_quota()
+        #click_quota(page)
 
     with allure.step("Check that button (Add) not visible for user"):
         expect(page.get_by_role("button", name="Добавить", exact=True)).not_to_be_visible()
@@ -1471,8 +1472,6 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-
-
 
 @pytest.mark.independent
 @pytest.mark.settings
@@ -1728,8 +1727,9 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(SELECT_LANGUAGE)).to_contain_text("Русский")
 
     with allure.step("Click to language"):
-        page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
-        page.wait_for_selector(SELECT_MENU)
+        settings.click_language_select()
+        # page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
+        # page.wait_for_selector(SELECT_MENU)
 
     with allure.step("Check language list"):
         expect(page.locator(SELECT_MENU)).to_contain_text(expected_languages)
@@ -2116,7 +2116,6 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
 
     with allure.step("Choose re-recognize in action select"):
         settings.choose_option(2)
-        #choose_option("2", page)
         page.wait_for_selector(SELECT_LANGUAGE)
 
 #  check all combinations of engines and models
