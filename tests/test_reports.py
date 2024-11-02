@@ -711,8 +711,8 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Fill row by operators phone"):
-        fill_row_operator_phone("1", "По номеру клиента", page)
-        #fill_row_operator_phone("1", "Номеру клиента", page)
+        #fill_row_operator_phone("1", "По номеру клиента", page)
+        fill_row_operator_phone("1", "Номеру клиента", page)
 
     with allure.step("Fill column by communication"):
         fill_column_by_communication("0", page)
@@ -744,7 +744,7 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
         # check row
-        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("По номеру клиента")
+        expect(page.locator('[data-testid="report_rows_row_1_select"]')).to_have_text("Номеру клиента")
         # check column
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
