@@ -2,8 +2,9 @@ from playwright.sync_api import Page, expect
 
 #from pages.reports import FIRST_DATE
 
-BUTTON_COMMUNICATIONS = '[href*="/calls"]'
-BUTTON_OPOVESHENIA = '[href*="/notifications"]'
+BUTTON_COMMUNICATIONS = '[value="calls"]'
+BUTTON_REPORTS = '[value="reports"]'
+BUTTON_OPOVESHENIA = '[value="notifications"]'
 BUTTON_SETTINGS = '[value="settings"]'
 INPUT_LOGIN = '[name="login"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
@@ -11,6 +12,7 @@ BUTTON_SUBMIT = '[type="submit"]'
 MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
 BUTTON_CROSS = '[data-testid="CloseIcon"]'
+INPUT_SEARCH = '[name="searchString"]'
 
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
@@ -19,13 +21,13 @@ SELECT_MODEL = '[data-testid="stt_model"]'
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
-        self.timeout = 70000
+        self.timeout = 85000
         self.users_list = page.locator("#react-select-2-input")
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
-        self.button_enter = page.locator('[type="submit"]')
-        self.menu = page.locator('[class*="-menu"]')
-        self.modal_window = page.locator('[role="dialog"]')
+        self.button_enter = page.locator(BUTTON_SUBMIT)
+        self.menu = page.locator(MENU)
+        self.modal_window = page.locator(MODAL_WINDOW)
         self.snackbar = page.locator('[class*="SnackbarItem"]')
         '''Dates and calendar'''
         self.yesterday = page.locator('[value="yesterday"]')
@@ -120,6 +122,13 @@ class BaseClass:
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
         self.page.wait_for_timeout(500)
+
+    def click_reports(self):
+        """Click Reports"""
+        self.page.wait_for_selector(BUTTON_REPORTS, timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+        self.page.locator(BUTTON_REPORTS).click()
+        self.page.wait_for_selector(INPUT_SEARCH)
 
     def click_language_select(self):
         """Select language in word processing"""
