@@ -1,6 +1,12 @@
-# from xml.dom.minicompat import defproperty
+from playwright.sync_api import Page, expect
+from pages.base_class import *
 
 from utils.variables import wait_until_visible
+
+class Reports(BaseClass):
+    def __init__(self, page: Page):
+        BaseClass.__init__(self, page)
+
 # time period
 YESTERDAY = "button[value='yesterday']"
 WEEK = "button[value='this_week']"
@@ -33,9 +39,6 @@ TUPO_CLICK = ".styles_questionTitle__WSOwz"
 INPUT_REPORT_NAME = '[name="report_name"]'
 INPUT_SEARCH = '[name="searchString"]'
 BUTTON_LUPA = '[type="submit"]'
-BUTTON_CROSS = '[data-testid="CloseIcon"]'
-MODAL_WINDOW = '[role="dialog"]'
-MENU = '[class*="-menu"]'
 
 BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS = '[data-testid="tagNameChange"]'
 BUTTON_AVERAGE_NUMBER_TAG_VALUE = '[data-testid="avgNumTagChange"]'
@@ -95,19 +98,6 @@ def press_report_management(page="page: Page"):
     page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
     page.wait_for_selector('[role="table"]', timeout=wait_until_visible)
-
-
-def choose_preiod_date(firstDate, lastDate, page="page: Page"):
-    page.wait_for_selector(FIRST_DATE)
-    page.locator(FIRST_DATE).click()
-    page.locator(FIRST_DATE).fill(firstDate)
-    page.wait_for_timeout(500)
-    page.locator(LAST_DATE).click()
-    page.locator(LAST_DATE).fill(lastDate)
-    page.wait_for_timeout(500)
-    page.keyboard.press("Enter")
-    page.wait_for_timeout(500)
-
 
 def press_add_column(page="page: Page"):
     page.locator(BUTTON_ADD_COLUMN).click()

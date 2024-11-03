@@ -22,7 +22,7 @@ INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
 
 BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
 BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
-
+BUTTON_ADD_CONDITION = '[data-testid="addCondition_search_by_tags"]'
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
@@ -275,10 +275,6 @@ class Communications(BaseClass):
 
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
 INPUT_TEMPLATE_NAME = '[id="name"]'
-BUTTON_DOBAVIT_USLOVIE = "//button[contains(text(),'Добавить условие')]"
-# other
-ALERT = '[role="alert"]'
-
 CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 
 

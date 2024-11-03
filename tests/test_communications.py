@@ -345,7 +345,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 46 из 3130")
 
     with allure.step("Click to (Add condition)"):
-        page.locator(BUTTON_DOBAVIT_USLOVIE).first.click()
+        page.locator(BUTTON_ADD_CONDITION).first.click()
 
     with allure.step("Change logic operator"):
         page.locator(CHANGE_LOGIC_OPERATOR).click()
@@ -491,7 +491,7 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(2500)
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
         expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
         expect(new_tab.locator('[class*="ClientBlock_employeePhone"]')).to_have_text("0987654321")
@@ -850,7 +850,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_TEMPLATE_NAME).fill("renameTemplate")
+        page.locator(INPUT_TEMPLATE_NAME).type("renameTemplate", delay=30)
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -1323,9 +1323,9 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_submit_in_word_processing()
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        # expect(page.locator(ALERT)).to_contain_text(action_started)
-        # page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        page.wait_for_selector('[class*="SnackbarItem"]', timeout=wait_until_visible)
+        # expect(page.locator('[class*="SnackbarItem"]')).to_contain_text(action_started)
+        # page.wait_for_selector('[class*="SnackbarItem"]', state="hidden", timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)

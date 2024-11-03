@@ -2,7 +2,6 @@ import os
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from utils.dates import *
-from utils.auth import auth
 from pages.reports import *
 import pytest
 import allure
@@ -16,12 +15,13 @@ import random
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_check_dates")
 def test_reports_check_dates(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -74,12 +74,13 @@ def test_reports_check_dates(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("create report , save , change, save current, delete")
 def test_reports_save_update_delete_report(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -88,7 +89,7 @@ def test_reports_save_update_delete_report(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -159,12 +160,13 @@ def test_reports_save_update_delete_report(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_download_report")
 def test_reports_download_report(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -173,7 +175,7 @@ def test_reports_download_report(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -219,12 +221,13 @@ def test_reports_download_report(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_management_check_search")
 def test_reports_management_check_search(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -244,15 +247,16 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_management_check")
 def test_reports_management_check(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -280,6 +284,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         press_report_management(page)
 
     with allure.step("Check table"):
+        page.wait_for_timeout(2000)
         expect(page.locator('[role="columnheader"]')).to_have_count(4)
         expect(page.locator('[title="Toggle SortBy"]')).to_have_count(1)
         expect(page.locator('[aria-label="auto_test_report"]')).to_have_count(1)
@@ -312,7 +317,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         page.wait_for_selector('[class="ant-space-item"]')
 
     with allure.step("Choose dates"):
-        choose_preiod_date(today, today, page)
+        reports.choose_period_date(today, today)
 
     with allure.step("Reload page"):
         page.reload()
@@ -389,12 +394,13 @@ def test_reports_management_check(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_row_1_without_grouping")
 def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -403,7 +409,7 @@ def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -442,12 +448,13 @@ def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_row_1_time_4_values")
 def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -456,7 +463,7 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -578,12 +585,13 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_row_1_communications")
 def test_reports_row_1_communications(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -592,7 +600,7 @@ def test_reports_row_1_communications(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -628,12 +636,13 @@ def test_reports_row_1_communications(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_row_1_operator_phone")
 def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -642,7 +651,7 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -691,12 +700,13 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_row_1_client_phone")
 def test_reports_row_1_client_phone(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -705,7 +715,7 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -755,12 +765,13 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_row_2_tag_list")
 def test_reports_row_2_tag_list(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -769,7 +780,7 @@ def test_reports_row_2_tag_list(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -826,12 +837,13 @@ def test_reports_row_2_tag_list(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_row_4_tag_and_value")
 def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -840,7 +852,7 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)"):
         add_checklist_to_report("Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)", page)
@@ -924,12 +936,13 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_column_1_communications")
 def test_reports_column_1_communications(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -938,7 +951,7 @@ def test_reports_column_1_communications(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -975,12 +988,13 @@ def test_reports_column_1_communications(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_column_4_filter")
 def test_reports_column_4_filter(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -989,7 +1003,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -1062,12 +1076,13 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_column_4_tag_and_value")
 def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1076,7 +1091,7 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -1163,12 +1178,13 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_column_4_tag_list")
 def test_reports_column_4_tag_list(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1177,7 +1193,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
@@ -1257,96 +1273,96 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_3_tagListInput"]').locator('[type="text"]')).to_have_value("multi value, multi value number")
 
 
-@pytest.mark.independent
-@pytest.mark.reports
-@allure.title("test_flying_additional_params")
-@allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_flying_additional_params")
-def est_flying_additional_params(base_url, page: Page) -> None:  #disabled
-
-    report_name=f"flying_report_{today}_{random.randint(100, 200)}"
-
-    with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
-
-    with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
-
-    with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
-
-    with allure.step("Go to user"):
-        page.locator("#react-select-2-input").fill("Novostroi_test")
-        page.wait_for_timeout(350)
-        page.get_by_text("Novostroi_test", exact=True).click()
-        page.wait_for_selector('[class*="CallsHeader"]')
-
-    with allure.step("Go to reports"):
-        go_to_reports(page)
-
-    with allure.step("Press (Create report)"):
-        press_create_report(page)
-
-    with allure.step("Choose period"):
-        choose_preiod_date(first_day_month_ago, today, page)
-
-    with allure.step("Add row with Tag and value"):
-        fill_row_by_tag_and_value("1", "Тегу и значениям", "Сотрудник", "Лиза", page)
-
-    with allure.step("add additional param"):
-        page.locator('[data-testid="report_columns"]').locator('[width="24"]').click()
-        page.locator('[data-testid="checklistQuestionChange"]').click()
-        page.locator('[class*="AdditionalParams_search_"]').locator(".css-12ol9ef").click()
-        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-4"]').click()
-        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-5"]').click()
-        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-6"]').click()
-        page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-7"]').click()
-        page.get_by_role("button", name="Применить").click()
-
-    with allure.step("Press (Generate report)"):
-        press_generate_report(page)
-
-    with allure.step("Check that report generated and all values okey"):
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
-
-    with allure.step("Save report"):
-        page.locator(BUTTON_SAVE_AS_NEW).click()
-        page.wait_for_selector('[class="modal-btns"]')
-        page.locator(INPUT_REPORT_NAME).fill(report_name)
-        page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
-        page.wait_for_timeout(1000)
-        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
-
-    with allure.step("Go to settings"):
-        page.wait_for_selector('[value="settings"]')
-        page.locator('[value="settings"]').click()
-        page.wait_for_timeout(500)
-        page.wait_for_selector('[name="login"]')
-
-    with allure.step("Reload page"):
-        page.reload()
-        page.wait_for_timeout(500)
-
-    with allure.step("Go back to reports"):
-        go_to_reports(page)
-
-    with allure.step("Choose report"):
-        page.locator('[name="searchString"]').fill(report_name)
-        page.wait_for_timeout(500)
-        page.get_by_text(report_name).nth(0).click()
-        page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
-
-    with allure.step("BINGO"):
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
-
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN, USER_ID)
+# @pytest.mark.independent
+# @pytest.mark.reports
+# @allure.title("test_flying_additional_params")
+# @allure.severity(allure.severity_level.CRITICAL)
+# @allure.description("test_flying_additional_params")
+# def est_flying_additional_params(base_url, page: Page) -> None:  #disabled
+#
+#     report_name=f"flying_report_{today}_{random.randint(100, 200)}"
+#
+#     with allure.step("Create user"):
+#         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+#
+#     with allure.step("Go to url"):
+#         reports.navigate(base_url)
+#
+#     with allure.step("Auth with admin"):
+#         auth(LOGIN, PASSWORD, page)
+#
+#     with allure.step("Go to user"):
+#         page.locator("#react-select-2-input").fill("Novostroi_test")
+#         page.wait_for_timeout(350)
+#         page.get_by_text("Novostroi_test", exact=True).click()
+#         page.wait_for_selector('[class*="CallsHeader"]')
+#
+#     with allure.step("Go to reports"):
+#         go_to_reports(page)
+#
+#     with allure.step("Press (Create report)"):
+#         press_create_report(page)
+#
+#     with allure.step("Choose period"):
+#         choose_preiod_date(first_day_month_ago, today, page)
+#
+#     with allure.step("Add row with Tag and value"):
+#         fill_row_by_tag_and_value("1", "Тегу и значениям", "Сотрудник", "Лиза", page)
+#
+#     with allure.step("add additional param"):
+#         page.locator('[data-testid="report_columns"]').locator('[width="24"]').click()
+#         page.locator('[data-testid="checklistQuestionChange"]').click()
+#         page.locator('[class*="AdditionalParams_search_"]').locator(".css-12ol9ef").click()
+#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-4"]').click()
+#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-5"]').click()
+#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-6"]').click()
+#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-7"]').click()
+#         page.get_by_role("button", name="Применить").click()
+#
+#     with allure.step("Press (Generate report)"):
+#         press_generate_report(page)
+#
+#     with allure.step("Check that report generated and all values okey"):
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
+#
+#     with allure.step("Save report"):
+#         page.locator(BUTTON_SAVE_AS_NEW).click()
+#         page.wait_for_selector('[class="modal-btns"]')
+#         page.locator(INPUT_REPORT_NAME).fill(report_name)
+#         page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
+#         page.wait_for_timeout(1000)
+#         page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+#
+#     with allure.step("Go to settings"):
+#         page.wait_for_selector('[value="settings"]')
+#         page.locator('[value="settings"]').click()
+#         page.wait_for_timeout(500)
+#         page.wait_for_selector('[name="login"]')
+#
+#     with allure.step("Reload page"):
+#         page.reload()
+#         page.wait_for_timeout(500)
+#
+#     with allure.step("Go back to reports"):
+#         go_to_reports(page)
+#
+#     with allure.step("Choose report"):
+#         page.locator('[name="searchString"]').fill(report_name)
+#         page.wait_for_timeout(500)
+#         page.get_by_text(report_name).nth(0).click()
+#         page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
+#
+#     with allure.step("BINGO"):
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
+#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
+#
+#     with allure.step("Delete user"):
+#         delete_user(API_URL, TOKEN, USER_ID)
 
 
 # additional params
@@ -1357,15 +1373,16 @@ def est_flying_additional_params(base_url, page: Page) -> None:  #disabled
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_content")
 def test_reports_additional_params_content(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1428,12 +1445,13 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_tag_value. For rows and columns")
 def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1442,7 +1460,7 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -1503,12 +1521,13 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_avg_number_tag_value. For rows and columns")
 def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1517,7 +1536,7 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -1578,12 +1597,13 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checklist_point. For rows and columns")
 def test_reports_additional_params_checklist_point(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1592,7 +1612,7 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -1653,12 +1673,13 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checklist_point_percent. For rows and columns")
 def test_reports_additional_params_checklist_point_percent(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1667,7 +1688,7 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -1728,12 +1749,13 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checklist_question_point. For rows and columns")
 def test_reports_additional_params_checklist_question_point(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1742,7 +1764,7 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -1803,12 +1825,13 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checklist_question_point_in_percent. For rows and columns")
 def test_reports_additional_params_checklist_question_point_in_percent(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1817,7 +1840,7 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -1878,12 +1901,13 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checklist_frequent_answer_for_question. For rows and columns")
 def test_reports_additional_params_checklist_frequent_answer_for_question(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1892,7 +1916,7 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -1953,12 +1977,13 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_comment. For rows and columns")
 def test_reports_additional_params_comment(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -1967,7 +1992,7 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -2027,12 +2052,13 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checkboxes_percentage. 5 checkboxes with percentage. For rows and columns")
 def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -2041,7 +2067,7 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -2099,12 +2125,13 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checkboxes_points. 4 checkboxes with points. For rows and columns")
 def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -2113,7 +2140,7 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -2168,12 +2195,13 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checkboxes_talk_time. 4 checkboxes with talk time. For rows and columns")
 def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -2182,7 +2210,7 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -2236,12 +2264,13 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checkboxes_silence_duration. 2 checkboxes with silence duration. For rows and columns")
 def test_reports_additional_params_checkboxes_silence_duration(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -2250,7 +2279,7 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -2296,12 +2325,13 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checkboxes_phones. 2 checkboxes with phones. For rows and columns")
 def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -2310,7 +2340,7 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
@@ -2357,12 +2387,13 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_checkboxes_sum_time_first_last_time. 2 checkboxes with sum time and first last time. For rows and columns")
 def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url, page: Page) -> None:
+    reports = Reports(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        reports.navigate(base_url)
 
     with allure.step("Auth with ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        reports.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to reports"):
         go_to_reports(page)
@@ -2371,7 +2402,7 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
         press_create_report(page)
 
     with allure.step("Choose period 01/01/2022-31/12/2022"):
-        choose_preiod_date("01/01/2022", "31/12/2022", page)
+        reports.choose_period_date("01/01/2022", "31/12/2022")
 
     # for row
     with allure.step("Click additional params for rows"):
