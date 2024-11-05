@@ -256,7 +256,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         reports.navigate(base_url)
 
     with allure.step("Auth with user"):
-        reports.auth(ECOTELECOM, ECOPASS)
+        reports.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to reports"):
         reports.click_reports()
