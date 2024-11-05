@@ -34,14 +34,14 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         expect(page.locator(LAST_DATE)).to_have_value(today)
 
     with allure.step("Switch to yesterday"):
-        page.locator(YESTERDAY).click()
+        reports.yesterday.click()
 
     with allure.step("Check begin and end dates in view"):
         expect(page.locator(FIRST_DATE)).to_have_value(yesterday)
         expect(page.locator(LAST_DATE)).to_have_value(yesterday)
 
     with allure.step("Switch to week"):
-        page.locator(WEEK).click()
+        reports.week.click()
 
     with allure.step("Check begin and end dates in view"):
         expect(page.locator(FIRST_DATE)).to_have_value(first_day_week_ago)
@@ -55,14 +55,14 @@ def test_reports_check_dates(base_url, page: Page) -> None:
     #     expect(page.locator(LAST_DATE)).to_have_value(today)
 
     with allure.step("Switch to year"):
-        page.locator(YEAR).click()
+        reports.year.click()
 
     with allure.step("Check begin and end dates in view"):
         expect(page.locator(FIRST_DATE)).to_have_value(first_day_year_ago)
         expect(page.locator(LAST_DATE)).to_have_value(today)
 
     with allure.step("Switch to all time"):
-        page.locator(ALL_TIME).click()
+        reports.all_time.click()
 
     with allure.step("Check begin and end dates is disabled"):
         expect(page.locator(FIRST_DATE)).to_be_disabled()
@@ -429,8 +429,7 @@ def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
         expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand report parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check checklist exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -487,8 +486,7 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -510,8 +508,7 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -533,8 +530,7 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -567,8 +563,7 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-id="18"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -619,8 +614,7 @@ def test_reports_row_1_communications(base_url, page: Page) -> None:
         expect(page.locator('[data-id="63"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -683,8 +677,7 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
         expect(page.locator('[data-id="21"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -748,8 +741,7 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
         expect(page.locator('[data-id="32"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -789,7 +781,7 @@ def test_reports_row_2_tag_list(base_url, page: Page) -> None:
         fill_row_by_tag_list("1", "По списку тегов", "direction", page)
 
     with allure.step("Press (Add row)"):
-        press_add_row(page)
+        reports.press_add_row()
 
     with allure.step("Add second row by tag list"):
         fill_row_by_tag_list("2", "По списку тегов", "hangup", page)
@@ -812,8 +804,7 @@ def test_reports_row_2_tag_list(base_url, page: Page) -> None:
         expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_ROW)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -861,13 +852,13 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         fill_row_by_tag_and_value("1", "Тегу и значениям", "direction", "incoming", page)
 
     with allure.step("Press (Add row)"):
-        press_add_row(page)
+        reports.press_add_row()
 
     with allure.step("Add row with Tag and value"):
         fill_row_by_tag_and_value("2", "Тегу и значениям", "hangup", "operator", page)
 
     with allure.step("Press (Add row)"):
-        press_add_row(page)
+        reports.press_add_row()
 
     with allure.step("Add row with Tag and value"):
         fill_row_by_tag_and_value("3", "Тегу и значениям", "CALLID", "Выбрать все", page)
@@ -878,7 +869,7 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_rows_row_3_tagCheckbox"]')).not_to_be_checked()
 
     with allure.step("Press (Add row)"):
-        press_add_row(page)
+        reports.press_add_row()
 
     with allure.step("Add row with Tag and value"):
         fill_row_by_tag_and_value("4", "Тегу и значениям", "queue", "Выбрать все", page)
@@ -901,8 +892,7 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("193")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_ROW)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)"]')).to_be_visible()
@@ -971,8 +961,7 @@ def test_reports_column_1_communications(base_url, page: Page) -> None:
         expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -1012,21 +1001,21 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         fill_column_by_filter("0", "zero", "test tag", "test q", page)
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 1
     with allure.step("Fill 1 column fith filter"):
         fill_column_by_filter("1", "first", "Клиент-должность", "Монтажник Восток", page)
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 2
     with allure.step("Fill 2 column fith filter"):
         fill_column_by_filter("2", "second", "Должность", "Бухгалтер", page)
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 3
     with allure.step("Fill 3 column fith filter"):
@@ -1045,8 +1034,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("19")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -1100,14 +1088,14 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         fill_column_by_tag_and_value("0", "direction", "outgoing", page)
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 1
     with allure.step("Add row with Tag and value"):
         fill_column_by_tag_and_value("1","hangup", "operator", page)
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 2
     with allure.step("Add row with Tag and value"):
@@ -1119,7 +1107,7 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_2_tagCheckbox"]')).not_to_be_checked()
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 3
     with allure.step("Add column with Tag and value"):
@@ -1143,8 +1131,7 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("58")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -1202,14 +1189,14 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         fill_column_by_tag_list("0", "11", "asterisk_context", page=page)
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 1
     with allure.step("Add column with Tag list"):
         fill_column_by_tag_list("1", "CALLID", "direction", page=page)
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 2
     with allure.step("Add column with Tag list"):
@@ -1221,7 +1208,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_2_tagListCheckbox"]')).not_to_be_checked()
 
     with allure.step("Press (Add column)"):
-        press_add_column(page)
+        reports.press_add_column()
 
     # 3
     with allure.step("Add column with Tag list"):
@@ -1245,8 +1232,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("63")
 
     with allure.step("Expand reports parameters"):
-        collapse_expand_report(page)
-        page.wait_for_selector(BUTTON_ADD_COLUMN)
+        reports.expand_report()
 
     with allure.step("Check that all parameters exists"):
         expect(page.locator('[aria-label="Remove Второй чеклист (тоже нужен для автотестов, не трогать)"]')).to_be_visible()
@@ -1478,7 +1464,7 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         type_value_to_select("asterisk_context", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -1498,7 +1484,7 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         type_value_to_select("asterisk_context", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -1554,7 +1540,7 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
         type_value_to_select("multi value number", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -1574,7 +1560,7 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
         type_value_to_select("multi value number", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -1630,7 +1616,7 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -1650,7 +1636,7 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -1706,7 +1692,7 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -1726,7 +1712,7 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -1782,7 +1768,7 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -1802,7 +1788,7 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -1858,7 +1844,7 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -1878,7 +1864,7 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -1934,7 +1920,7 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -1954,7 +1940,7 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
         type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -2010,7 +1996,7 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         type_value_to_select("2222", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -2030,7 +2016,7 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         type_value_to_select("2222", page)
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -2081,7 +2067,7 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
         page.locator(CHECKBOX_PERCENTAGE_FROM_COLUMN_CELL_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -2097,7 +2083,7 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
         page.locator(CHECKBOX_PERCENTAGE_FROM_COLUMN_CELL_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -2153,7 +2139,7 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
         page.locator(CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -2168,7 +2154,7 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
         page.locator(CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -2223,7 +2209,7 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         page.locator(CHECKBOX_OPERATOR_TALK_TIME_PERCENT_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -2238,7 +2224,7 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         page.locator(CHECKBOX_OPERATOR_TALK_TIME_PERCENT_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -2291,7 +2277,7 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
 
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -2304,7 +2290,7 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
         page.locator(CHECKBOX_SILENCE_DURATION_PERCENT_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -2352,7 +2338,7 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
 
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -2365,7 +2351,7 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
         page.locator(CHECKBOX_OPERATORS_PHONES_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):
@@ -2415,7 +2401,7 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
 
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # for column
 
@@ -2429,7 +2415,7 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
         page.locator(CHECKBOX_LAST_COMM_TIME_ADD_PARAMS).check()
 
     with allure.step("Click (Apply)"):
-        click_apply_in_additional_params(page)
+        reports.click_apply_in_additional_params()
 
     # generate report
     with allure.step("Generate report"):

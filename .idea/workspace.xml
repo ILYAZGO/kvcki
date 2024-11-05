@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="reports class2">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="reports class3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -569,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix20" />
     <MESSAGE value="fix21" />
     <MESSAGE value="fix22" />
     <MESSAGE value="fix23" />
@@ -594,6 +593,7 @@
     <MESSAGE value="update test_check_download_button_in_calls_list" />
     <MESSAGE value="reports class" />
     <MESSAGE value="reports class2" />
-    <option name="LAST_COMMIT_MESSAGE" value="reports class2" />
+    <MESSAGE value="reports class3" />
+    <option name="LAST_COMMIT_MESSAGE" value="reports class3" />
   </component>
 </project>

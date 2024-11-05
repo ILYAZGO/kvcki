@@ -81,6 +81,9 @@ def test_check_search_all(base_url, page: Page) -> None:
     with allure.step("Check that all communications found"):
         communications.assert_communications_found("Найдено коммуникаций 3130 из 3130")
 
+    with allure.step("Check that 50 calls in one page"):
+        expect(page.locator(BUTTON_SHARE_CALL)).to_have_count(50)
+
 
 @pytest.mark.calls
 @pytest.mark.independent
@@ -487,7 +490,7 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
-            page.locator('[data-testid="call_share"]').get_by_role("button").click()
+            page.locator(BUTTON_SHARE_CALL).get_by_role("button").click()
             new_tab=new_tab_event.value
 
     with allure.step("Check"):

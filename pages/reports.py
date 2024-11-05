@@ -5,11 +5,21 @@ from utils.variables import wait_until_visible
 
 BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
 BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
+BUTTON_SAVE_AS_NEW = '[data-testid="reportNewSave"]'
+BUTTON_REPORT_UPDATE = '[data-testid="reportUpdate"]'
+BUTTON_CHANGE_FILTERS = '[data-testid="report_filters_addCriterias"]'
+BUTTON_COLLAPSE_EXPAND = '[class*="ShowHideCheck_checkTitle"]'
+BUTTON_ADD_COLUMN = '[data-testid="report_rows_addColumn"]'
+BUTTON_ADD_ROW = '[data-testid="report_rows_addRow"]'
 
 class Reports(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
         self.button_generate_report = page.locator(BUTTON_GENERATE_REPORT)
+        self.button_add_column = page.locator(BUTTON_ADD_COLUMN)
+        self.button_add_row = page.locator(BUTTON_ADD_ROW)
+        self.button_collapse_expand = page.locator(BUTTON_COLLAPSE_EXPAND)
+        self.button_add_params_apply = page.locator(BUTTON_ADD_PARAMS_APPLY)
 
     def press_create_report(self):
         self.page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
@@ -21,12 +31,32 @@ class Reports(BaseClass):
         self.button_generate_report.click()
         self.page.wait_for_selector('[data-id="0"]', timeout=self.timeout)
 
+    def press_add_column(self):
+        self.button_add_column.click()
+        self.page.wait_for_timeout(800)
+
+    def press_add_row(self):
+        self.button_add_row.click()
+        self.page.wait_for_timeout(800)
+
+    def expand_report(self):
+        self.button_collapse_expand.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(BUTTON_ADD_COLUMN)
+
+    def collapse_report(self):
+        self.button_collapse_expand.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(BUTTON_ADD_COLUMN, state="hidden")
+
+    # additional params
+
+    def click_apply_in_additional_params(self):
+        self.button_add_params_apply.click()
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
+
+
 # time period
-YESTERDAY = "button[value='yesterday']"
-WEEK = "button[value='this_week']"
-MONTH = "button[value='this_month']"
-YEAR = "button[value='this_year']"
-ALL_TIME = "button[value='all_time']"
 FIRST_DATE = "//input[@placeholder='Начальная дата']"
 LAST_DATE = "//input[@placeholder='Конечная дата']"
 
@@ -34,16 +64,6 @@ BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV = '[href*="/reports"]'
 BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_UDALIT= BUTTON_CREATE = '[data-testid="acceptButton"]'
-
-BUTTON_SAVE_AS_NEW = '[data-testid="reportNewSave"]'
-BUTTON_REPORT_UPDATE = '[data-testid="reportUpdate"]'
-BUTTON_CHANGE_FILTERS = '[data-testid="report_filters_addCriterias"]'
-BUTTON_COLLAPSE_EXPAND = '[class*="ShowHideCheck_checkTitle"]'
-BUTTON_ADD_COLUMN = '[data-testid="report_rows_addColumn"]'
-BUTTON_ADD_ROW = '[data-testid="report_rows_addRow"]'
-
-# PO_TEGAM_SECOND = ".css-19bb58m"
-# PO_TEGAM_THIRD = ".css-12ol9ef"
 
 TUPO_CLICK = ".styles_questionTitle__WSOwz"
 
@@ -99,19 +119,8 @@ def press_report_management(page="page: Page"):
     page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
     page.wait_for_selector('[role="table"]', timeout=wait_until_visible)
 
-def press_add_column(page="page: Page"):
-    page.locator(BUTTON_ADD_COLUMN).click()
-    page.wait_for_timeout(500)
-
-
-def press_add_row(page="page: Page"):
-    page.locator(BUTTON_ADD_ROW).click()
-    page.wait_for_timeout(500)
-
-
 def click_checkbox_in_tag_and_value(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_tagCheckbox"]').click()
-
 
 def click_checkbox_in_tag_list(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_tagListCheckbox"]').click()
@@ -125,11 +134,6 @@ def press_save_as_new(page="page: Page"):
 def press_save_current(page="page: Page"):
     page.locator(BUTTON_REPORT_UPDATE).click()
     page.wait_for_selector('[class="modal-btns"]')
-
-
-def collapse_expand_report(page="page: Page"):
-    page.locator(BUTTON_COLLAPSE_EXPAND).click()
-    page.wait_for_timeout(500)
 
 
 def change_grouping_period(period, page="page: Page"):
@@ -251,10 +255,6 @@ def add_checklist_to_report(checkListName, page="page: Page"):
 
 
 # additional params
-
-def click_apply_in_additional_params(page="page: Page"):
-    page.locator(BUTTON_ADD_PARAMS_APPLY).click()
-    page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
 
 def click_gear_in_rows(page="page: Page"):
     page.locator('[data-testid="report_rows_row_1_settings_btn"]').click()
