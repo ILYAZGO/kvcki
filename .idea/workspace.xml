@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="integrations class">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="gpt class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/integration.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/integration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_integrations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_integrations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -574,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix23" />
     <MESSAGE value="added test avg number tag value" />
     <MESSAGE value="refactor comm" />
     <MESSAGE value="refactor comm2" />
@@ -599,6 +593,7 @@
     <MESSAGE value="reports class3" />
     <MESSAGE value="reports class4" />
     <MESSAGE value="integrations class" />
-    <option name="LAST_COMMIT_MESSAGE" value="integrations class" />
+    <MESSAGE value="gpt class" />
+    <option name="LAST_COMMIT_MESSAGE" value="gpt class" />
   </component>
 </project>

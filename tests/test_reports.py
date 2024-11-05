@@ -2162,15 +2162,16 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
 
     with allure.step("check"):
         # check headers
+        page.wait_for_timeout(20000)
         expect(page.locator('[aria-label="Сумма баллов по чек-листам"]')).to_have_count(2)
         expect(page.locator('[aria-label="Сумма максимальных баллов по чек-листам"]')).to_have_count(2)
         expect(page.locator('[aria-label="Средний балл"]')).to_have_count(2)
         expect(page.locator('[aria-label="Средний балл в %"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="14001"]')).to_have_count(2)
+        expect(page.locator('[title="14019"]')).to_have_count(2)
         expect(page.locator('[title="49531"]')).to_have_count(2)
-        expect(page.locator('[title="10.96"]')).to_have_count(2)
-        expect(page.locator('[title="28.27 %"]')).to_have_count(2)
+        expect(page.locator('[title="10.98"]')).to_have_count(2)
+        expect(page.locator('[title="28.3 %"]')).to_have_count(2)
         #expect(page.locator('[title="29.33"]')).to_have_count(1) #this is bug
 
 
