@@ -13,15 +13,16 @@ import allure
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_create_rename_delete_gpt_rule_by_user")
 def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
+    gpt = GPT(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        gpt.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN, PASSWORD, page)
+        gpt.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to GPT"):
         go_to_gpt(page)
@@ -36,9 +37,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         press_save_in_gpt(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that created and have 2 questions"):
         expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled(timeout=wait_until_visible)
@@ -56,9 +55,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         press_save_in_gpt(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that question deleted"):
         expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
@@ -76,9 +73,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило GPT удалено")
 
     with allure.step("Check that rule was deleted"):
         expect(page.get_by_text("ruleGPT")).not_to_be_visible(timeout=wait_until_visible)
@@ -93,15 +88,16 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_additional_params_gpt_rule_by_user")
 def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
+    gpt = GPT(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        gpt.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN, PASSWORD, page)
+        gpt.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to GPT"):
         go_to_gpt(page)
@@ -113,9 +109,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         press_save_in_gpt(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that saved"):
         expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled()
@@ -159,9 +153,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         press_save_in_gpt(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило сохранено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило сохранено")
 
     with allure.step("Turn on rule"):
         turn_on_rule(page)
@@ -173,9 +165,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило GPT удалено")
 
     with allure.step("Check deleted"):
         expect(page.locator('[class*="styles_dpBothBox_"]').get_by_text("addParams")).not_to_be_visible()
@@ -189,6 +179,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
 @allure.title("test_import_gpt_rule_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
+    gpt = GPT(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -197,13 +188,13 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        gpt.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        gpt.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user import to"):
-        go_to_user(LOGIN_USER, page)
+        gpt.go_to_user(LOGIN_USER)
 
     with allure.step("Go to gpt"):
         go_to_gpt(page)
@@ -242,9 +233,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило GPT удалено")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
@@ -253,9 +242,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило GPT удалено")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
@@ -272,6 +259,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
 @allure.title("test_import_gpt_rule_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
+    gpt = GPT(page)
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -283,13 +271,13 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        gpt.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN_MANAGER, PASSWORD, page)
+        gpt.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Go to user import to"):
-        go_to_user(LOGIN_USER, page)
+        gpt.go_to_user(LOGIN_USER)
 
     with allure.step("Go to gpt"):
         go_to_gpt(page)
@@ -328,9 +316,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило GPT удалено")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
@@ -339,9 +325,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило GPT удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        gpt.check_alert("Правило GPT удалено")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
@@ -358,15 +342,16 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
 @allure.title("test_import_gpt_rules_disabled_for_user")
 @allure.severity(allure.severity_level.NORMAL)
 def test_import_gpt_rules_disabled_for_user(base_url, page: Page) -> None:
+    gpt = GPT(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        gpt.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN_USER, PASSWORD, page)
+        gpt.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to gpt"):
         go_to_gpt(page)
@@ -384,12 +369,13 @@ def test_import_gpt_rules_disabled_for_user(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check first old gpt rule for ecotelecom")
 def test_check_old_gpt_rule(base_url, page: Page) -> None:
+    gpt = GPT(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        gpt.navigate(base_url)
 
     with allure.step("Auth to ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        gpt.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to GPT"):
         page.wait_for_selector(BUTTON_RAZMETKA)
@@ -413,12 +399,13 @@ def test_check_old_gpt_rule(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User has two gpt rules with different parameters. when he switch between them, all parameters changing")
 def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
+    gpt = GPT(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        gpt.navigate(base_url)
 
     with allure.step("Auth with user for check comparelogin"):
-        auth(USER_FOR_CHECK, PASSWORD, page)
+        gpt.auth(USER_FOR_CHECK, PASSWORD)
 
     with allure.step("Go to GPT"):
         page.wait_for_selector(BUTTON_RAZMETKA, timeout=wait_until_visible)

@@ -1,7 +1,14 @@
 from utils.variables import wait_until_visible
 
+from pages.base_class import *
+from playwright.sync_api import Page, expect
+
+
+class GPT(BaseClass):
+    def __init__(self, page: Page):
+        BaseClass.__init__(self, page)
+
 BUTTON_RAZMETKA = '[value="tags"]'
-USERS_LIST = "#react-select-2-input"
 
 BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
@@ -15,16 +22,7 @@ BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
 INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
 INPUT_GPT_TEG_NAME = '[placeholder="Название тега"]'
 INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
-MODAL_WINDOW = '[role="dialog"]'
-SNACKBAR = '[class*="SnackbarItem"]'
-ALERT = '[role="alert"]'
-MENU = '[class*="-menu"]'
 
-def go_to_user(name:str, page="page: Page"):
-    page.locator(USERS_LIST).fill(name)
-    page.wait_for_timeout(500)
-    page.get_by_text(name, exact=True).click()
-    page.wait_for_selector('[class*="CallsHeader"]')
 
 def go_to_gpt(page="page: Page"):
     page.wait_for_selector(BUTTON_RAZMETKA, timeout=wait_until_visible)
@@ -33,7 +31,6 @@ def go_to_gpt(page="page: Page"):
     page.locator(BUTTON_GPT).click()
     page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=wait_until_visible)
     page.wait_for_timeout(500)
-
 
 def press_save_in_gpt(page="page: Page"):
     page.locator(BUTTON_GPT_SAVE).click(force=True)
@@ -84,11 +81,9 @@ def add_filter(filterType, filterName, page="page: Page"):
     page.wait_for_timeout(2300)
     page.get_by_text(filterName, exact=True).nth(0).click()
 
-
 def turn_on_rule(page="page: Page"):
     page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
     page.wait_for_selector('[class*="Mui-checked"]', timeout=wait_until_visible)
-
 
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
