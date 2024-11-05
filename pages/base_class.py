@@ -90,6 +90,7 @@ class BaseClass:
         self.page.wait_for_timeout(300)
 
     def press_key(self, key: str):
+        """Press key on keyboard"""
         self.page.wait_for_timeout(1000)
         self.page.keyboard.press(key)
         self.page.wait_for_timeout(1000)

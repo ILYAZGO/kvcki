@@ -20,6 +20,7 @@ class Reports(BaseClass):
         self.button_add_row = page.locator(BUTTON_ADD_ROW)
         self.button_collapse_expand = page.locator(BUTTON_COLLAPSE_EXPAND)
         self.button_add_params_apply = page.locator(BUTTON_ADD_PARAMS_APPLY)
+        self.button_gear_in_row = page.locator('[data-testid="report_rows_row_1_settings_btn"]')
 
     def press_create_report(self):
         self.page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
@@ -54,6 +55,14 @@ class Reports(BaseClass):
     def click_apply_in_additional_params(self):
         self.button_add_params_apply.click()
         self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
+
+    def click_gear_in_rows(self):
+        self.button_gear_in_row.click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+
+    def click_gear_in_columns(self, column_number: str):
+        self.page.locator(f'[data-testid="report_columns_column_{column_number}_settings_btn"]').click()
+        self.page.wait_for_selector(MODAL_WINDOW)
 
 
 # time period
@@ -255,14 +264,9 @@ def add_checklist_to_report(checkListName, page="page: Page"):
 
 
 # additional params
-
-def click_gear_in_rows(page="page: Page"):
-    page.locator('[data-testid="report_rows_row_1_settings_btn"]').click()
-    page.wait_for_selector(MODAL_WINDOW)
-
-def click_gear_in_columns(columnNumber, page="page: Page"):
-    page.locator(f'[data-testid="report_columns_column_{columnNumber}_settings_btn"]').click()
-    page.wait_for_selector(MODAL_WINDOW)
+# def click_gear_in_columns(columnNumber, page="page: Page"):
+#     page.locator(f'[data-testid="report_columns_column_{columnNumber}_settings_btn"]').click()
+#     page.wait_for_selector(MODAL_WINDOW)
 
 def click_add_param_tag_value(page="page: Page"):
     page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()

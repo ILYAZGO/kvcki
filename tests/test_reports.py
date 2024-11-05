@@ -1376,7 +1376,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         reports.press_create_report()
 
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Check content of modal window for rows. 21 checkbox, 7 add params, 2 buttons"):
         expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(22)
@@ -1397,7 +1397,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Click additional params for columns"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Check content of modal window for columns. 22 checkbox, 8 add params, 2 buttons"):
         expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(23)
@@ -1449,7 +1449,7 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click tag value in additional params and wait for select"):
         click_add_param_tag_value(page)
@@ -1469,7 +1469,7 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click tag value in additional params and wait for select"):
         click_add_param_tag_value(page)
@@ -1525,7 +1525,7 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click tag value in additional params and wait for select"):
         click_add_param_avg_number_tag_value(page)
@@ -1545,7 +1545,7 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click tag value in additional params and wait for select"):
         click_add_param_avg_number_tag_value(page)
@@ -1601,7 +1601,7 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click checklist point in additional params and wait for select"):
         click_add_param_checklist_point(page)
@@ -1621,7 +1621,7 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist point in additional params and wait for select"):
         click_add_param_checklist_point(page)
@@ -1677,7 +1677,7 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click checklist point percent in additional params and wait for select"):
         click_add_param_checklist_point_percent(page)
@@ -1697,7 +1697,7 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist point percent in additional params and wait for select"):
         click_add_param_checklist_point_percent(page)
@@ -1753,7 +1753,7 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
         click_add_param_checklist_question_point(page)
@@ -1773,7 +1773,7 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
         click_add_param_checklist_question_point(page)
@@ -1829,7 +1829,7 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
         click_add_param_checklist_question_point_percent(page)
@@ -1849,7 +1849,7 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
         click_add_param_checklist_question_point_percent(page)
@@ -1905,7 +1905,7 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click checklist frequent answer in additional params and wait for select"):
         click_add_param_checklist_frequent_answer_for_question(page)
@@ -1925,7 +1925,7 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
         click_add_param_checklist_frequent_answer_for_question(page)
@@ -1981,7 +1981,7 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
         click_add_param_comment(page)
@@ -2001,7 +2001,7 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
         click_add_param_comment(page)
@@ -2056,7 +2056,7 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Unclick communications checkbox and click 5 percentage checkboxes"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2072,7 +2072,7 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Unclick communications checkbox and click 5 percentage checkboxes"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2129,7 +2129,7 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Unclick communications checkbox and click 4 points checkboxes"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2144,7 +2144,7 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Unclick communications checkbox and click 4 points checkboxes"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2199,7 +2199,7 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Unclick communications checkbox and click 4 percentage checkboxes"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2214,7 +2214,7 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Unclick communications checkbox and click 4 percentage checkboxes"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2268,7 +2268,7 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Unclick communications checkbox and click 2 silence duration"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2282,7 +2282,7 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Unclick communications checkbox and click 2 silence duration"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2329,7 +2329,7 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Unclick communications checkbox and click 2 phones"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2343,7 +2343,7 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Unclick communications checkbox and click 2 phones"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2391,7 +2391,7 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
 
     # for row
     with allure.step("Click additional params for rows"):
-        click_gear_in_rows(page)
+        reports.click_gear_in_rows()
 
     with allure.step("Unclick communications checkbox and click 2 sum time and first/last time"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
@@ -2406,7 +2406,7 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
     # for column
 
     with allure.step("Click additional params for column"):
-        click_gear_in_columns("0", page)
+        reports.click_gear_in_columns("0")
 
     with allure.step("Unclick communications checkbox and click 2 sum time and first/last time"):
         page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()

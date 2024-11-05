@@ -1,8 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import auth
 from utils.dates import first_day_week_ago
-from pages.communications import *
 from pages.integration import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
@@ -15,18 +13,19 @@ import allure
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User making integration with usedesk")
 def test_usedesk(base_url, page: Page) -> None:
+    integrations = Integrations(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        integrations.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN, PASSWORD, page)
+        integrations.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        go_to_settings(page)
+        integrations.click_settings()
 
     with allure.step("Go to integrations"):
         page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
@@ -38,21 +37,26 @@ def test_usedesk(base_url, page: Page) -> None:
     with allure.step("Choose Usedesk"):
         page.locator(".styles_body__L76ER", has_text="usedesk").get_by_role("button").click()
 
-    with allure.step("Input and save API token"):
-        input_save_api_token(page)
+    with allure.step("Input API token"):
+        integrations.input_api_token()
+
+    with allure.step("Press (Save)"):
+        integrations.press_save()
+
+    with allure.step("Check alert"):
+        integrations.check_alert("Данные сохранены")
 
     with allure.step("Go to integrations"):
         page.locator(BUTTON_INTEGRACII).click()
 
     with allure.step("Press to (Play) button"):
-        page.wait_for_selector('[aria-label="Запуск интеграции"]')
-        page.locator('[aria-label="Запуск интеграции"]').locator('[type="button"]').click()
+        integrations.press_play()
 
     with allure.step("Set period (first_day_week_ago)"):
-        set_date(first_day_week_ago, page)
+        integrations.set_date(first_day_week_ago)
 
     with allure.step("Set calls limit (2)"):
-        set_calls_limit("2", page)
+        integrations.set_calls_limit("2")
 
     with allure.step("Press button create"):
         page.locator(BUTTON_SOZDAT).click()
@@ -61,14 +65,14 @@ def test_usedesk(base_url, page: Page) -> None:
         page.wait_for_timeout(35000)
 
     with allure.step("Reload page"):
-        page.reload()
+        integrations.reload_page()
 
     with allure.step("Check that 2 communications downloaded"):
         page.wait_for_selector('[class*=headerRow]')
         expect(page.locator('[role="rowgroup"]').locator('[role="cell"]').nth(4)).to_have_text('2')
 
     with allure.step("Delete integration"):
-        delete_integration(page)
+        integrations.delete_integration()
 
     with allure.step("Check that integration deleted"):
         expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
@@ -83,18 +87,19 @@ def test_usedesk(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_search_string")
 def test_search_string(base_url, page: Page) -> None:
+    integrations = Integrations(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        integrations.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN, PASSWORD, page)
+        integrations.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        go_to_settings(page)
+        integrations.click_settings()
 
     with allure.step("Go to integrations"):
         page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
