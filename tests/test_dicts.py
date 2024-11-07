@@ -132,7 +132,6 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
 
     with allure.step("Go to dicts"):
         dicts.go_to_dicts()
-
     #
     with allure.step("Press (Add group)"):
         page.locator(BUTTON_ADD_GROUP).click()
@@ -152,7 +151,6 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
     with allure.step("Check canceled"):
         expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
     #
-
     with allure.step("Create group"):
         dicts.create_group("12345")
 
@@ -233,7 +231,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Change dict type"):
-        change_dict_type("Обычный словарь", "Словарь автозамен", page)
+        dicts.change_dict_type("Обычный словарь", "Словарь автозамен")
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
@@ -242,9 +240,8 @@ def test_check_dict_type(base_url, page: Page) -> None:
         dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
-        page.reload()
-        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
-        page.wait_for_timeout(800)
+        dicts.reload_page()
+        page.wait_for_timeout(1000)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_WORDS_LIST)
 
@@ -252,7 +249,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
         expect(page.get_by_text("Словарь автозамен")).to_have_count(1)
 
     with allure.step("Change dict type"):
-        change_dict_type("Словарь автозамен", "Словарь грамматики", page)
+        dicts.change_dict_type("Словарь автозамен", "Словарь грамматики")
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
@@ -261,9 +258,8 @@ def test_check_dict_type(base_url, page: Page) -> None:
         dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
-        page.reload()
-        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
-        page.wait_for_timeout(800)
+        dicts.reload_page()
+        page.wait_for_timeout(1000)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_WORDS_LIST)
 
@@ -271,7 +267,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
         expect(page.get_by_text("Словарь грамматики")).to_have_count(1)
 
     with allure.step("Change dict type"):
-        change_dict_type("Словарь грамматики", "Словарь правил грамматики", page)
+        dicts.change_dict_type("Словарь грамматики", "Словарь правил грамматики")
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
@@ -280,9 +276,8 @@ def test_check_dict_type(base_url, page: Page) -> None:
         dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
-        page.reload()
-        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
-        page.wait_for_timeout(800)
+        dicts.reload_page()
+        page.wait_for_timeout(1000)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_WORDS_LIST)
 
@@ -290,7 +285,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
         expect(page.get_by_text("Словарь правил грамматики")).to_have_count(1)
 
     with allure.step("Change dict type"):
-        change_dict_type("Словарь правил грамматики", "Обычный словарь", page)
+        dicts.change_dict_type("Словарь правил грамматики", "Обычный словарь")
 
     with allure.step("Press (Save)"):
         page.get_by_role("button", name="Сохранить").click()
@@ -299,9 +294,8 @@ def test_check_dict_type(base_url, page: Page) -> None:
         dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
-        page.reload()
-        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
-        page.wait_for_timeout(800)
+        dicts.reload_page()
+        page.wait_for_timeout(1000)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_WORDS_LIST)
 

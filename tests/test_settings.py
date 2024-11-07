@@ -529,7 +529,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Change person al information"):
-        fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
+        settings.fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako")
 
     with allure.step("Press (Save) button"):
         press_save(page)
@@ -592,7 +592,8 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         settings.click_settings()
 
     with allure.step("Change personal information"):
-        fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
+        settings.fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment","Africa/Bamako")
+        #fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
 
     with allure.step("Press (Save) button"):
         press_save(page)
@@ -657,7 +658,7 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         settings.click_settings()
 
     with allure.step("Change person al information"):
-        fill_personal_information_user_and_operator(NEW_NAME, EMAIL, "1234567890", "Africa/Bamako", page)
+        settings.fill_personal_information_user_and_operator(NEW_NAME, EMAIL, "1234567890", "Africa/Bamako")
 
     with allure.step("Press (Save) button"):
         press_save(page)
@@ -785,7 +786,8 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         settings.go_to_operator_from_table()
 
     with allure.step("Fill personal information"):
-        fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
+        settings.fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment","Africa/Bamako")
+        #fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
 
     with allure.step("Press (save)"):
         press_save(page)
@@ -865,7 +867,7 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         settings.go_to_operator_from_table()
 
     with allure.step("Fill personal information"):
-        fill_personal_information_user_and_operator(NEW_OPERATOR_NAME, EMAIL, "1234567890", "Africa/Bamako", page)
+        settings.fill_personal_information_user_and_operator(NEW_OPERATOR_NAME, EMAIL, "1234567890", "Africa/Bamako")
 
     with allure.step("Press (save)"):
         press_save(page)

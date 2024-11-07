@@ -37,6 +37,11 @@ class Settings(BaseClass):
         self.button_quotas = page.locator(BUTTON_QUOTAS)
         self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
         self.input_login = page.locator(INPUT_LOGIN)
+        self.input_name = page.locator(INPUT_NAME)
+        self.input_email = page.locator(INPUT_EMAIL)
+        self.input_phone = page.locator(INPUT_PHONE)
+        self.input_comment = page.locator(INPUT_COMMENT)
+        self.input_timezone = page.locator(SELECT_TIMEZONE)
         self.select_industry = page.locator(SELECT_INDUSTRY)
         self.select_partner = page.locator(SELECT_PARTNER)
 
@@ -114,6 +119,35 @@ class Settings(BaseClass):
             if not checkbox.is_checked():
                 checkbox.click()
 
+    def fill_personal_information_admin_and_manager(self, name, email, phone, comment, timezone):
+        """admin and manager can see and write comment"""
+        self.page.wait_for_timeout(500)
+        self.input_name.fill(name)
+        self.page.wait_for_selector(f'[value="{name}"]')
+        self.input_email.fill(email)
+        self.page.wait_for_selector(f'[value="{email}"]')
+        self.input_phone.fill(phone)
+        self.page.wait_for_selector(f'[value="{phone}"]')
+        self.input_comment.fill(comment)
+        self.page.wait_for_timeout(500)
+        self.input_timezone.locator('[role="combobox"]').click()
+        self.page.get_by_text(timezone).click()
+        self.page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
+
+    def fill_personal_information_user_and_operator(self, name, email, phone, timezone):
+        """user and operator cant see and write comment"""
+        self.page.wait_for_timeout(500)
+        self.input_name.fill(name)
+        self.page.wait_for_selector(f'[value="{name}"]')
+        self.input_email.fill(email)
+        self.page.wait_for_selector(f'[value="{email}"]')
+        self.input_phone.fill(phone)
+        self.page.wait_for_selector(f'[value="{phone}"]')
+        self.input_timezone.locator('[role="combobox"]').click()
+        self.page.get_by_text(timezone).click()
+        self.page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
+        self.page.wait_for_timeout(500)
+
 
 BLOCK_LEFT_MENU = '[class*="styles_list_"]'
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
@@ -180,34 +214,6 @@ def click_word_processing(page="page: Page"):
 def click_submit_in_word_processing(page="page: Page"):
     page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SAVE).click()
     page.wait_for_timeout(500)
-
-def fill_personal_information_admin_and_manager(name, email, phone, comment, timezone, page="page: Page"):
-    #  admin and manager can see and write comment
-    page.wait_for_timeout(500)
-    page.locator(INPUT_NAME).fill(name)
-    page.wait_for_selector(f'[value="{name}"]')
-    page.locator(INPUT_EMAIL).fill(email)
-    page.wait_for_selector(f'[value="{email}"]')
-    page.locator(INPUT_PHONE).fill(phone)
-    page.wait_for_selector(f'[value="{phone}"]')
-    page.locator(INPUT_COMMENT).fill(comment)
-    page.wait_for_timeout(200)
-    page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
-    page.get_by_text(timezone).click()
-    page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
-
-def fill_personal_information_user_and_operator(name, email, phone, timezone, page="page: Page"):
-    #  user and operator cant see and write comment
-    page.locator(INPUT_NAME).fill(name)
-    page.wait_for_selector(f'[value="{name}"]')
-    page.locator(INPUT_EMAIL).fill(email)
-    page.wait_for_selector(f'[value="{email}"]')
-    page.locator(INPUT_PHONE).fill(phone)
-    page.wait_for_selector(f'[value="{phone}"]')
-    page.locator(SELECT_TIMEZONE).locator('[role="combobox"]').click()
-    page.get_by_text(timezone).click()
-    page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
-    page.wait_for_timeout(300)
 
 def press_save(page="page: Page"):
     page.get_by_role("button", name="Сохранить").click()

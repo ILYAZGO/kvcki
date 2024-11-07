@@ -88,16 +88,6 @@ def go_to_markup(page="page: Page"):
     page.locator(BUTTON_RAZMETKA).click()
     page.wait_for_selector(BUTTON_DOBAVIT_GRUPPU)
 
-
-def go_to_dicts(page="page: Page"):
-    page.wait_for_selector(BUTTON_RAZMETKA)
-    page.locator(BUTTON_RAZMETKA).click()
-    page.wait_for_selector(BUTTON_SLOVARI)
-    page.locator(BUTTON_SLOVARI).click()
-    page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR)
-    #page.wait_for_timeout(1000)
-
-
 def delete_rule_or_dict(page="page: Page"):
     #page.locator(".css-izdlur").click()
     #page.get_by_text("Удалить", exact=True).click()
@@ -108,17 +98,6 @@ def delete_rule_or_dict(page="page: Page"):
 
 def delete_group(page="page: Page"):
     page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
-
-
-def create_dict(dictName, page="page: Page"):
-    page.locator(BUTTON_DOBAVIT_SLOVAR).click()
-    page.wait_for_selector(INPUT_NAZVANIE_SLOVAR)
-    page.locator(INPUT_NAZVANIE_SLOVAR).fill(dictName)
-    page.locator(MODAL_WINDOW).locator(BUTTON_OTPRAVIT).click()
-    page.wait_for_selector(INPUT_SPISOK_SLOV)
-    page.locator(INPUT_SPISOK_SLOV).fill("random_text")
-    #page.get_by_role("button", name="Сохранить").click()
-    #page.wait_for_timeout(300)
 
 
 def fill_what_said(text, page="page: Page"):
@@ -138,10 +117,4 @@ def add_additional_terms(list, page="page: Page"):
         page.locator('[placeholder=">X, <X или X-Y. Время в секундах"]').nth(l).fill(f"{l}")
     page.wait_for_timeout(500)
 
-
-def change_dict_type(currentType, nextType, page="page: Page"):
-    page.get_by_text(currentType, exact=True).click()
-    page.wait_for_timeout(300)
-    page.locator('[class*="-menu"]').get_by_text(nextType, exact=True).click()
-    page.wait_for_timeout(300)
 

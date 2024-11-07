@@ -47,6 +47,12 @@ class Dicts(BaseClass):
         self.page.wait_for_selector(INPUT_WORDS_LIST)
         self.input_words_list.type(text, delay=30)
 
+    def change_dict_type(self, current_type: str, next_type: str):
+        self.page.get_by_text(current_type, exact=True).click()
+        self.page.wait_for_timeout(500)
+        self.menu.get_by_text(next_type, exact=True).click()
+        self.page.wait_for_timeout(500)
+
 '''------locators for rules---------'''
 # inputs
 
@@ -84,9 +90,5 @@ def delete_rule_or_dict(page="page: Page"):
 def delete_group(page="page: Page"):
     page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
 
-def change_dict_type(currentType, nextType, page="page: Page"):
-    page.get_by_text(currentType, exact=True).click()
-    page.wait_for_timeout(300)
-    page.locator('[class*="-menu"]').get_by_text(nextType, exact=True).click()
-    page.wait_for_timeout(300)
+
 
