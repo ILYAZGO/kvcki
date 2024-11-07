@@ -1,7 +1,6 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import auth
-from pages.markup import *
+from pages.dicts import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager
 import pytest
 import allure
@@ -13,45 +12,40 @@ import allure
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create dict inside group by user")
 def test_add_dict_inside_group(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        dicts.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Create group"):
-        create_group("12345", page)
+        dicts.create_group("12345")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа добавлена")
 
     with allure.step("Click on group"):
         page.locator(CLICK_ON_GROUP).click()
 
     with allure.step("Create dict"):
-        create_dict("98765", page)
+        dicts.create_dict("98765", "random_text")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь добавлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь добавлен")
 
     with allure.step("Save created dict"):
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Check that dict created"):
         expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("98765")
@@ -67,9 +61,7 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
         #page.wait_for_timeout(1000)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Check that name changed"):
         expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("newName")
@@ -79,17 +71,13 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Словарь удалён")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
         delete_group(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа удалена")
 
     with allure.step("Check that group deleted (group will not be delete if you didnt delete dict)"):
         expect(page.get_by_text("12345")).not_to_be_visible()
@@ -104,18 +92,19 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_dict_outside_group_disabled")
 def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        dicts.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Check that disabled"):
         expect(page.locator(TOOLTIP_BUTTON_DOBAVIT_SLOVAR)).to_be_visible()
@@ -130,22 +119,23 @@ def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_dict_group_rename_delete")
 def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        dicts.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     #
     with allure.step("Press (Add group)"):
-        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
+        page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (Cancel)"):
         page.locator(BUTTON_OTMENA).click()
@@ -154,22 +144,20 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 
     with allure.step("Press (Add group)"):
-        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
+        page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (cross button)"):
-        page.locator(BUTTON_KRESTIK).click()
+        page.locator(BUTTON_CROSS).click()
 
     with allure.step("Check canceled"):
         expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
     #
 
     with allure.step("Create group"):
-        create_group("12345", page)
+        dicts.create_group("12345")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа добавлена")
 
     with allure.step("Rename group"):
         page.wait_for_selector(BUTTON_PENCIL)
@@ -178,9 +166,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Название группы изменено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Название группы изменено")
 
     with allure.step("Check group created and renamed"):
         expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
@@ -189,9 +175,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         page.locator(BUTTON_KORZINA).click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа удалена")
 
     with allure.step("Check deleted"):
         expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
@@ -206,45 +190,40 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_dict_type")
 def test_check_dict_type(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        dicts.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Create group"):
-        create_group("12345", page)
+        dicts.create_group("12345")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа добавлена")
 
     with allure.step("Click on group"):
         page.locator(CLICK_ON_GROUP).click()
 
     with allure.step("Create dict"):
-        create_dict("98765", page)
+        dicts.create_dict("98765", "random_text")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь добавлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь добавлен")
 
     with allure.step("Save created dict"):
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Check created dict name"):
         expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("98765")
@@ -260,16 +239,14 @@ def test_check_dict_type(base_url, page: Page) -> None:
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
         page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
-        page.wait_for_selector(INPUT_SPISOK_SLOV)
+        page.wait_for_selector(INPUT_WORDS_LIST)
 
     with allure.step("Check that dict type changed and saved"):
         expect(page.get_by_text("Словарь автозамен")).to_have_count(1)
@@ -281,16 +258,14 @@ def test_check_dict_type(base_url, page: Page) -> None:
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
         page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
-        page.wait_for_selector(INPUT_SPISOK_SLOV)
+        page.wait_for_selector(INPUT_WORDS_LIST)
 
     with allure.step("Check that dict type changed and saved"):
         expect(page.get_by_text("Словарь грамматики")).to_have_count(1)
@@ -302,16 +277,14 @@ def test_check_dict_type(base_url, page: Page) -> None:
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
         page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
-        page.wait_for_selector(INPUT_SPISOK_SLOV)
+        page.wait_for_selector(INPUT_WORDS_LIST)
 
     with allure.step("Check that dict type changed and saved"):
         expect(page.get_by_text("Словарь правил грамматики")).to_have_count(1)
@@ -323,16 +296,14 @@ def test_check_dict_type(base_url, page: Page) -> None:
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Словарь был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь был обновлен")
 
     with allure.step("Reload page and go to dict"):
         page.reload()
-        page.wait_for_selector(BUTTON_DOBAVIT_SLOVAR, timeout=wait_until_visible)
+        page.wait_for_selector(BUTTON_ADD_DICT, timeout=wait_until_visible)
         page.wait_for_timeout(800)
         page.locator('[data-testid="test"]').click()
-        page.wait_for_selector(INPUT_SPISOK_SLOV)
+        page.wait_for_selector(INPUT_WORDS_LIST)
 
     with allure.step("Check that dict type changed and saved"):
         expect(page.get_by_text("Обычный словарь")).to_have_count(1)
@@ -341,17 +312,13 @@ def test_check_dict_type(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Словарь удалён")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
         delete_group(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа удалена")
 
     with allure.step("Check that dict and group deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible()
@@ -366,15 +333,16 @@ def test_check_dict_type(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("https://task.imot.io/browse/DEV-1784   check old dict from ecotelecom")
 def test_check_old_dict(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with ECOTELECOM"):
-        auth(ECOTELECOM, ECOPASS, page)
+        dicts.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
         page.wait_for_selector('[href*="/tags?group"]')
 
     with allure.step("Click to first dict"):
@@ -382,7 +350,7 @@ def test_check_old_dict(base_url, page: Page) -> None:
         page.wait_for_selector(NAZVANIE_SLOVARYA)
 
     with allure.step("Check that dict opened"):
-        expect(page.locator(INPUT_SPISOK_SLOV)).to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(INPUT_WORDS_LIST)).to_be_visible(timeout=wait_until_visible)
 
 
 @pytest.mark.independent
@@ -391,18 +359,19 @@ def test_check_old_dict(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_search_dict")
 def test_search_dict(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with ECOTELECOM"):
-        auth(ECOTELECOM, ECOPASS, page)
+        dicts.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Search (should not depend on register)"):
-        page.locator(INPUT_POISK).nth(1).fill("seat")
+        page.locator(INPUT_SEARCH).nth(1).fill("seat")
         #page.locator("form").get_by_role("button").click()
 
     with allure.step("Check that found"):
@@ -415,18 +384,19 @@ def test_search_dict(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_import_dict_disabled_for_user")
 def test_import_dict_disabled_for_user(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        dicts.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Check"):
         expect(page.locator(BUTTON_IMPORTIROVAT_SLOVARI)).not_to_be_visible()
@@ -441,6 +411,7 @@ def test_import_dict_disabled_for_user(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside, with rule 33333 without group")
 def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -449,16 +420,16 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        dicts.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        dicts.go_to_user(LOGIN_USER)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Press (Import dicts) button"):
         page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
@@ -502,17 +473,13 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Словарь удалён")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа удалена")
 
     with allure.step("Click on rule"):
         page.get_by_text("66666").click()
@@ -521,17 +488,13 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Словарь удалён")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.locator("//p[normalize-space()='44444']")).not_to_be_visible(timeout=wait_until_visible)
@@ -553,6 +516,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside, with rule 33333 without group")
 def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -564,16 +528,16 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with manager"):
-        auth(LOGIN_MANAGER, PASSWORD, page)
+        dicts.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        dicts.go_to_user(LOGIN_USER)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Press (Import dicts) button"):
         page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
@@ -617,17 +581,13 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Словарь удалён")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа удалена")
 
     with allure.step("Click on rule"):
         page.get_by_text("66666").click()
@@ -636,17 +596,13 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Словарь удалён")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        dicts.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.locator("//p[normalize-space()='44444']")).not_to_be_visible(timeout=wait_until_visible)
@@ -669,23 +625,24 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User has two dicts with different parameters. when he switch between them, all parameters changing")
 def test_compare_dicts_by_user(base_url, page: Page) -> None:
+    dicts = Dicts(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        dicts.navigate(base_url)
 
     with allure.step("Auth with user for check comparelogin"):
-        auth(USER_FOR_CHECK, PASSWORD, page)
+        dicts.auth(USER_FOR_CHECK, PASSWORD)
 
     with allure.step("Go to dicts"):
-        go_to_dicts(page)
+        dicts.go_to_dicts()
 
     with allure.step("Go to first rule"):
         page.get_by_text("firstdict").click()
-        page.wait_for_selector(INPUT_SPISOK_SLOV)
+        page.wait_for_selector(INPUT_WORDS_LIST)
 
     with allure.step("Check filters and other inside rule"):
         expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("firstdict")
-        expect(page.locator(INPUT_SPISOK_SLOV)).to_have_text("few words")
+        expect(page.locator(INPUT_WORDS_LIST)).to_have_text("few words")
         expect(page.get_by_text("Обычный словарь")).to_have_count(1)
 
     with allure.step("Change rule"):
@@ -695,5 +652,5 @@ def test_compare_dicts_by_user(base_url, page: Page) -> None:
 
     with allure.step("Check filters and other inside rule was changed"):
         expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("seconddict")
-        expect(page.locator(INPUT_SPISOK_SLOV)).to_have_text("some text")
+        expect(page.locator(INPUT_WORDS_LIST)).to_have_text("some text")
         expect(page.get_by_text("Словарь автозамен")).to_have_count(1)

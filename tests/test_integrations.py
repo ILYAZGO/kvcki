@@ -28,14 +28,13 @@ def test_usedesk(base_url, page: Page) -> None:
         integrations.click_settings()
 
     with allure.step("Go to integrations"):
-        page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
+        integrations.press_integrations_in_menu()
 
     with allure.step("Press (Connect)"):
-        page.locator(BUTTON_PODKLU4IT).click()
-        page.wait_for_selector('[alt="AmoCRM"]')
+        integrations.press_connect()
 
     with allure.step("Choose Usedesk"):
-        page.locator(".styles_body__L76ER", has_text="usedesk").get_by_role("button").click()
+        integrations.choose_integration("usedesk")
 
     with allure.step("Input API token"):
         integrations.input_api_token()
@@ -59,9 +58,12 @@ def test_usedesk(base_url, page: Page) -> None:
         integrations.set_calls_limit("2")
 
     with allure.step("Press button create"):
-        page.locator(BUTTON_SOZDAT).click()
+        integrations.press_create()
 
-    with allure.step("Wait 240 seconds"):
+    with allure.step("Check alert"):
+        integrations.check_alert("Задача создана")
+
+    with allure.step("Wait 35 seconds"):
         page.wait_for_timeout(35000)
 
     with allure.step("Reload page"):
@@ -75,7 +77,7 @@ def test_usedesk(base_url, page: Page) -> None:
         integrations.delete_integration()
 
     with allure.step("Check that integration deleted"):
-        expect(page.locator(BUTTON_PODKLU4IT)).to_be_visible()
+        expect(page.locator(BUTTON_CONNECT)).to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -102,11 +104,10 @@ def test_search_string(base_url, page: Page) -> None:
         integrations.click_settings()
 
     with allure.step("Go to integrations"):
-        page.locator(BUTTON_INTEGRACII_IN_MENU).click(timeout=wait_until_visible)
+        integrations.press_integrations_in_menu()
 
     with allure.step("Press (Connect)"):
-        page.locator(BUTTON_PODKLU4IT).click()
-        page.wait_for_selector('[alt="AmoCRM"]')
+        integrations.press_connect()
 
     with allure.step("Fill search string"):
         page.get_by_role("textbox", name="Поиск").type("za", delay=30)
