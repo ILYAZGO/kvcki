@@ -1,12 +1,10 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import auth
-from pages.markup import *
+#from utils.auth import auth
+from pages.rules import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager
 import pytest
 import allure
-
-
 
 @pytest.mark.independent
 @pytest.mark.rules
@@ -14,26 +12,25 @@ import allure
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create rule inside group by user")
 def test_add_rule_inside_group(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
 
     with allure.step("Create group"):
-        create_group("99999", page)
+        rules.create_group("99999")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа добавлена")
 
     with allure.step("Click at new group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
@@ -43,9 +40,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         create_rule("88888", page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Тег добавлен")
 
     with allure.step("Check that rule and group created"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
@@ -55,17 +50,13 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         delete_group(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -80,22 +71,23 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create, rename and delete group of rules")
 def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
 
     #
     with allure.step("Press (Add group) button"):
-        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
+        page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (Cancel) button"):
         page.locator(BUTTON_OTMENA).click()
@@ -105,10 +97,10 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
 
     with allure.step("Press (Add group) button"):
-        page.locator(BUTTON_DOBAVIT_GRUPPU).click()
+        page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (X) button"):
-        page.locator(BUTTON_KRESTIK).click()
+        page.locator(BUTTON_CROSS).click()
 
     with allure.step("Check cancelled"):
         expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
@@ -116,12 +108,10 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
     #
 
     with allure.step("Create group"):
-        create_group("12345", page)
+        rules.create_group("12345")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа добавлена")
 
     with allure.step("Click at new group"):
         page.locator(GROUP_LIST).get_by_text("12345").click()
@@ -134,9 +124,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         page.locator(ACTIVE_GROUP).locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Название группы изменено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Название группы изменено")
 
     with allure.step("Check group created and have edited name"):
         expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
@@ -145,9 +133,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         delete_group(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Check group deleted"):
         expect(page.locator(GROUP_LIST).get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
@@ -162,15 +148,16 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Creating rule outside group should be disabled")
 def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
@@ -188,12 +175,13 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("DEV-1784   check old rule from Ecotelecom")
 def test_check_old_rule(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        rules.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
@@ -213,19 +201,20 @@ def test_check_old_rule(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_search_rule for Ecotelecom")
 def test_search_rule(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        rules.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
 
     with allure.step("Search (should not depend on register)"):
         page.wait_for_selector('[href*="/dictionaries?group"]')
-        page.locator(INPUT_POISK).nth(1).fill("coope")
+        page.locator(INPUT_SEARCH).nth(1).fill("coope")
         #page.locator("form").get_by_role("button").click()
 
     with allure.step("Check that found"):
@@ -238,26 +227,25 @@ def test_search_rule(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create rule inside group, check rule for fragments")
 def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
 
     with allure.step("Create group"):
-        create_group("99999", page)
+        rules.create_group("99999")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа добавлена")
 
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
@@ -267,9 +255,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         create_rule("88888", page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Тег добавлен")
 
     with allure.step("Check that group created"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
@@ -337,9 +323,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Тег был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Тег был обновлен")
 
     with allure.step("Page reload"):
         page.reload()
@@ -354,17 +338,13 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         delete_rule_or_dict(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         delete_group(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -379,26 +359,25 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Create rule inside group, check tag block")
 def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
 
     with allure.step("Create group"):
-        create_group("99999", page)
+        rules.create_group("99999")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа добавлена")
 
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
@@ -408,9 +387,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         create_rule("set_tags", page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Тег добавлен")
 
     with allure.step("Check rule name and tag name. Need be the same"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
@@ -448,9 +425,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Тег был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Тег был обновлен")
 
     with allure.step("Page reload"):
         page.reload()
@@ -465,17 +440,13 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         delete_rule_or_dict(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         delete_group(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -490,26 +461,25 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_rule_inside_group_check_tag_sequence")
 def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
 
     with allure.step("Create_group"):
-        create_group("99999", page)
+        rules.create_group("99999")
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Группа добавлена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа добавлена")
 
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
@@ -519,9 +489,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         create_rule("tag_seq", page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Тег добавлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Тег добавлен")
 
     with allure.step("Check that rule created"):
         page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
@@ -560,9 +528,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         page.get_by_role("button", name="Сохранить").click()
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Тег был обновлен")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Тег был обновлен")
 
     with allure.step("Delete tag sequence"):
         page.locator(BUTTON_DELETE_SEQUENCE).click()
@@ -581,17 +547,13 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         delete_group(page)
 
     with allure.step("Wait and check snack bar"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("99999")).not_to_be_visible(timeout=wait_until_visible) #check no parent group
@@ -606,6 +568,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside with rule 33333 without group")
 def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -614,13 +577,13 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        rules.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        rules.go_to_user(LOGIN_USER)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
@@ -669,17 +632,13 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Click on rule"):
         page.get_by_text("44444").click()
@@ -688,17 +647,13 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
             delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
@@ -719,6 +674,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside with rule 33333 without group")
 def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -730,13 +686,13 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with manager"):
-        auth(LOGIN_MANAGER, PASSWORD, page)
+        rules.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        rules.go_to_user(LOGIN_USER)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
@@ -784,17 +740,13 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Click on rule"):
         page.get_by_text("44444").click()
@@ -803,17 +755,13 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         delete_rule_or_dict(page)
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Правило удалено")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
         page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait for snackbar and check"):
-        page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
-        expect(page.locator(SNACKBAR)).to_contain_text("Группа удалена")
-        page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
+        rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
@@ -834,15 +782,16 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_import_rule_disabled_for_user")
 def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)
@@ -860,12 +809,13 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User has three rules with different parameters. when he switch between them, all parameters changing")
 def test_compare_rules_by_user(base_url, page: Page) -> None:
+    rules = Rules(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        rules.navigate(base_url)
 
     with allure.step("Auth with user for check comparelogin"):
-        auth(USER_FOR_CHECK, PASSWORD, page)
+        rules.auth(USER_FOR_CHECK, PASSWORD)
 
     with allure.step("Go to markup"):
         go_to_markup(page)

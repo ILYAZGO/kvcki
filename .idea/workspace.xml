@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to dicts2">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to dicts3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
@@ -572,7 +572,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update report tests" />
     <MESSAGE value="fix integr test" />
     <MESSAGE value="settings refactor1" />
     <MESSAGE value="settings refactor2" />
@@ -597,6 +596,7 @@
     <MESSAGE value="fix test" />
     <MESSAGE value="class to dicts" />
     <MESSAGE value="class to dicts2" />
-    <option name="LAST_COMMIT_MESSAGE" value="class to dicts2" />
+    <MESSAGE value="class to dicts3" />
+    <option name="LAST_COMMIT_MESSAGE" value="class to dicts3" />
   </component>
 </project>
