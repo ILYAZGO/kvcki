@@ -37,7 +37,7 @@ def test_address_book_fill_by_user(base_url, page: Page) -> None:
         settings.fill_address_book(text)
     
     with allure.step("Press (Save) button"):
-        press_save(page)
+        settings.press_save()
     
     with allure.step("Go to personal info"):
         settings.click_personal_info()
@@ -93,7 +93,7 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
         settings.change_login(CHANGED_LOGIN)
     
     with allure.step("Press (save) button"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -148,7 +148,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.change_login(CHANGED_LOGIN)
     
     with allure.step("Press (save) button"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -170,7 +170,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.change_login(NEW_OPERATOR_LOGIN)
     
     with allure.step("Press (save) button"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -319,10 +319,9 @@ def test_admin_can_change_rights_for_manager(base_url, page: Page) -> None:
     
     with allure.step("Click to all rights and check all checkboxes"):
         settings.click_all_checkboxes_on_page()
-        #click_all_checkboxes_on_page(page)
     
     with allure.step("Press (save) in rights"):
-        press_save_in_rights(page)
+        settings.press_save_in_rights()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -382,7 +381,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         settings.click_all_checkboxes_on_page()
     
     with allure.step("Press (save) in rights"):
-        press_save_in_rights(page)
+        settings.press_save_in_rights()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -413,7 +412,7 @@ def test_admin_can_change_rights_for_user_and_operator(base_url, page: Page) -> 
         settings.click_all_checkboxes_on_page()
     
     with allure.step("Press (save) in rights"):
-        press_save_in_rights(page)
+        settings.press_save_in_rights()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -476,7 +475,7 @@ def test_user_can_change_rights_for_operator(base_url, page: Page) -> None:
         settings.click_all_checkboxes_on_page()
 
     with allure.step("Press (Save) button"):
-        press_save_in_rights(page)
+        settings.press_save_in_rights()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -523,7 +522,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         settings.change_login(NEW_LOGIN)
 
     with allure.step("Press (Save) button"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -532,7 +531,7 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         settings.fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako")
 
     with allure.step("Press (Save) button"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -596,7 +595,7 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         #fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
 
     with allure.step("Press (Save) button"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -661,7 +660,7 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         settings.fill_personal_information_user_and_operator(NEW_NAME, EMAIL, "1234567890", "Africa/Bamako")
 
     with allure.step("Press (Save) button"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -787,10 +786,9 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
 
     with allure.step("Fill personal information"):
         settings.fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment","Africa/Bamako")
-        #fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
 
     with allure.step("Press (save)"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -870,7 +868,7 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         settings.fill_personal_information_user_and_operator(NEW_OPERATOR_NAME, EMAIL, "1234567890", "Africa/Bamako")
 
     with allure.step("Press (save)"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -1111,7 +1109,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         settings.change_partner('managerIM')
 
     with allure.step("Press (save)"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -1183,7 +1181,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         settings.change_industry('Ed-tech')
 
     with allure.step("Press (save)"):
-        press_save(page)
+        settings.press_save()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Профиль успешно сохранен")
@@ -1372,7 +1370,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("-1")
 
     with allure.step("Check that (save) button disabled"):
-        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
@@ -1380,7 +1378,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("151")
 
     with allure.step("Check that (save) button disabled"):
-        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
@@ -1388,7 +1386,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("150")
 
     with allure.step("Click (save)"):
-        page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
+        page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Данные успешно обновлены")
@@ -1403,7 +1401,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("-1")
 
     with allure.step("Check that (save) button disabled"):
-        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
@@ -1411,7 +1409,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("15001")
 
     with allure.step("Check that (save) button disabled"):
-        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
@@ -1419,7 +1417,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("15000")
 
     with allure.step("Click (save)"):
-        page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE).click()
+        page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Данные успешно обновлены")
@@ -1468,7 +1466,7 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
         page.wait_for_selector(BLOCK_GPT_QUOTAS)
 
     with allure.step("Check that button (save) and input for new amount - disabled"):
-        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         expect(page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
         expect(page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
 
@@ -1723,18 +1721,16 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_settings()
 
     with allure.step("Go to word processing"):
-        click_word_processing(page)
+        settings.click_word_processing()
 
     with allure.step("Check default language"):
         expect(page.locator(SELECT_LANGUAGE)).to_contain_text("Русский")
 
     with allure.step("Click to language"):
         settings.click_language_select()
-        # page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
-        # page.wait_for_selector(SELECT_MENU)
 
     with allure.step("Check language list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text(expected_languages)
+        expect(page.locator(MENU)).to_contain_text(expected_languages)
 
     with allure.step("Close language menu"):
         page.locator('[class*="STT_order_"]').click()
@@ -1749,7 +1745,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Check engine list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text(expected_engines)
+        expect(page.locator(MENU)).to_contain_text(expected_engines)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -1761,7 +1757,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Обобщённаяwhisper")
+        expect(page.locator(MENU)).to_contain_text("Обобщённаяwhisper")
 
     with allure.step("Select model Обобщённая"):
         settings.choose_option(0)
@@ -1791,7 +1787,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         settings.choose_option(0)
@@ -1815,7 +1811,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("ОбобщённаяЖадный")
+        expect(page.locator(MENU)).to_contain_text("ОбобщённаяЖадный")
 
     with allure.step("Select model Обобщённая"):
         settings.choose_option(0)
@@ -1845,7 +1841,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         settings.choose_option(0)
@@ -1869,7 +1865,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         settings.choose_option(0)
@@ -1893,7 +1889,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         settings.choose_option(0)
@@ -1923,7 +1919,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         settings.choose_option(0)
@@ -1988,7 +1984,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         settings.click_settings()
 
     with allure.step("Go to word processing"):
-        click_word_processing(page)
+        settings.click_word_processing()
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -1997,7 +1993,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         settings.choose_option(6)
 
     with allure.step("Check (Save) button is disabled"):
-        expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SAVE)).to_be_disabled()
+        expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2006,13 +2002,14 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         settings.choose_option(0)
 
     with allure.step("Check (Save) button is enabled"):
-        expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SAVE)).to_be_enabled()
+        expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)).to_be_enabled()
 
     with allure.step("Check merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        click_submit_in_word_processing(page)
+        settings.press_save()
+        #click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
         settings.check_alert(alert_merge)
@@ -2024,7 +2021,8 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         page.locator(CHECKBOX_DIARIZATION).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        click_submit_in_word_processing(page)
+        settings.press_save()
+        #click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
         settings.check_alert(alert_diarization)
@@ -2038,7 +2036,8 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         #page.locator(CHECKBOX_USE_WEBHOOK).set_checked(checked=True)
 
     with allure.step("Press (Save)"):
-        click_submit_in_word_processing(page)
+        settings.press_save()
+        #click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
         settings.check_alert(data_updated)
@@ -2110,11 +2109,11 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_settings()
 
     with allure.step("Go to actions with calls"):
-        click_actions_with_calls(page)
+        settings.click_actions_with_calls()
 
     with allure.step("Click to actions select"):
         page.locator(BLOCK_ACTION_SELECT).get_by_text("Выберите действие").click(force=True)
-        page.wait_for_selector(SELECT_MENU)
+        page.wait_for_selector(MENU)
 
     with allure.step("Choose re-recognize in action select"):
         settings.choose_option(2)
@@ -2123,11 +2122,10 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
 #  check all combinations of engines and models
 
     with allure.step("Click to language"):
-        page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
-        page.wait_for_selector(SELECT_MENU)
+        settings.click_language_select()
 
     with allure.step("Check language list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text(expected_languages)
+        expect(page.locator(MENU)).to_contain_text(expected_languages)
 
     with allure.step("Close language menu"):
         page.locator('[class*="STT_order_"]').click()
@@ -2142,7 +2140,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Обобщённаяwhisper")
+        expect(page.locator(MENU)).to_contain_text("Обобщённаяwhisper")
 
     with allure.step("Select model Обобщённая"):
         settings.choose_option(0)
@@ -2172,7 +2170,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         settings.choose_option(0)
@@ -2196,7 +2194,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("ОбобщённаяЖадный")
+        expect(page.locator(MENU)).to_contain_text("ОбобщённаяЖадный")
 
     with allure.step("Select model Обобщённая"):
         settings.choose_option(0)
@@ -2226,7 +2224,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         settings.choose_option(0)
@@ -2250,7 +2248,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         settings.choose_option(0)
@@ -2274,7 +2272,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         settings.choose_option(0)
@@ -2304,7 +2302,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         settings.choose_option(0)

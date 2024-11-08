@@ -1,7 +1,5 @@
 from playwright.sync_api import Page, expect
 
-#from pages.reports import FIRST_DATE
-
 BUTTON_COMMUNICATIONS = '[value="calls"]'
 BUTTON_REPORTS = '[value="reports"]'
 BUTTON_OPOVESHENIA = '[value="notifications"]'

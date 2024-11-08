@@ -12,6 +12,12 @@ BUTTON_EMPLOYEES = '[href*="settings/employees"]'
 BUTTON_QUOTAS = '[href*="settings/quotas"]'
 INPUT_QUOTA_TIME = '[name="time"]'
 
+BLOCK_LEFT_MENU = '[class*="styles_list_"]'
+LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
+BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
+BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
+BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
+
 INPUT_LOGIN = '[name="login"]'
 INPUT_NAME = '[name="name"]'
 INPUT_EMAIL = '[name="email"]'
@@ -26,6 +32,10 @@ SELECT_PARTNER = '[data-testid="selectPartner"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 
+BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
+BLOCK_ACTION_SELECT = '[class="action-block"]'
+BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
+
 class Settings(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
@@ -34,7 +44,9 @@ class Settings(BaseClass):
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
         self.button_rights = page.locator(BUTTON_RIGHTS)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
+        self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
         self.button_quotas = page.locator(BUTTON_QUOTAS)
+        self.button_save_in_rights = page.locator(BUTTON_SAVE_IN_RIGHTS)
         self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
         self.input_login = page.locator(INPUT_LOGIN)
         self.input_name = page.locator(INPUT_NAME)
@@ -75,6 +87,10 @@ class Settings(BaseClass):
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_selector('[role="grid"]')
 
+    def click_word_processing(self):
+        self.button_word_pocessing.click()
+        self.page.wait_for_selector(SELECT_LANGUAGE)
+
     def click_quota(self):
         self.button_quotas.click()
         self.page.wait_for_timeout(500)
@@ -90,6 +106,18 @@ class Settings(BaseClass):
         """Working in table and modal window"""
         self.page.get_by_role("button", name="Добавить", exact=True).click()
         self.page.wait_for_selector(MODAL_WINDOW)
+
+    def press_save(self):
+        self.page.get_by_role("button", name="Сохранить").click()
+        self.page.wait_for_timeout(500)
+
+    def press_save_in_rights(self):
+        self.button_save_in_rights.click()
+        self.page.wait_for_timeout(500)
+
+    def click_actions_with_calls(self):
+        self.page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
+        self.page.wait_for_selector(BLOCK_ACTION_SELECT)
 
     def go_to_operator_from_table(self):
         self.page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()
@@ -143,21 +171,12 @@ class Settings(BaseClass):
         self.page.wait_for_selector(f'[value="{email}"]')
         self.input_phone.fill(phone)
         self.page.wait_for_selector(f'[value="{phone}"]')
+        self.page.wait_for_timeout(500)
         self.input_timezone.locator('[role="combobox"]').click()
-        self.page.get_by_text(timezone).click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(timezone).click()
         self.page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
         self.page.wait_for_timeout(500)
-
-
-BLOCK_LEFT_MENU = '[class*="styles_list_"]'
-LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
-BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
-BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
-BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
-
-BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
-BLOCK_ACTION_SELECT = '[class="action-block"]'
-BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
 RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
@@ -199,29 +218,8 @@ BLOCK_CHAT_GPT = '[class*="styles_ChatGPTwrapper"]'
 BLOCK_YANDEX_GPT = '[class*="styles_YandexGPTwrapper"]'
 INPUT_NEW_QUOTA = '[placeholder="Новое значение"]'
 BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
-BUTTON_SAVE = '[type="submit"]'
 BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
-SELECT_MENU = '[class*="-menu"]'
 
-def click_actions_with_calls(page="page: Page"):
-    page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
-    page.wait_for_selector(BLOCK_ACTION_SELECT)
-
-def click_word_processing(page="page: Page"):
-    page.locator(BUTTON_WORD_PROCESSING).click()
-    page.wait_for_selector(SELECT_LANGUAGE)
-
-def click_submit_in_word_processing(page="page: Page"):
-    page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SAVE).click()
-    page.wait_for_timeout(500)
-
-def press_save(page="page: Page"):
-    page.get_by_role("button", name="Сохранить").click()
-    page.wait_for_timeout(1000)
-
-def press_save_in_rights(page="page: Page"):
-    page.locator(BUTTON_SAVE_IN_RIGHTS).click()
-    page.wait_for_timeout(500)
 
 def all_checkboxes_to_be_checked(page="page: Page"):
     page.wait_for_timeout(500)

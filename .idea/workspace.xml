@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to dicts">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to dicts2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dicts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/markup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -574,7 +572,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor comm2" />
     <MESSAGE value="update report tests" />
     <MESSAGE value="fix integr test" />
     <MESSAGE value="settings refactor1" />
@@ -599,6 +596,7 @@
     <MESSAGE value="gpt class" />
     <MESSAGE value="fix test" />
     <MESSAGE value="class to dicts" />
-    <option name="LAST_COMMIT_MESSAGE" value="class to dicts" />
+    <MESSAGE value="class to dicts2" />
+    <option name="LAST_COMMIT_MESSAGE" value="class to dicts2" />
   </component>
 </project>
