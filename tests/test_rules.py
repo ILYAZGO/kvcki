@@ -24,7 +24,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Create group"):
         rules.create_group("99999")
@@ -47,13 +47,13 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
 
     with allure.step("Delete rule"):
-        delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        delete_group(page)
+        rules.delete_group()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Группа удалена")
@@ -83,7 +83,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     #
     with allure.step("Press (Add group) button"):
@@ -130,7 +130,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete group"):
-        delete_group(page)
+        rules.delete_group()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Группа удалена")
@@ -160,7 +160,7 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
         rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Check that creating rule - disabled and alert exists"):
         expect(page.locator('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]')).to_be_visible()
@@ -184,7 +184,7 @@ def test_check_old_rule(base_url, page: Page) -> None:
         rules.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Click at first group"):
         page.wait_for_selector('[href*="/dictionaries?group"]')
@@ -210,7 +210,7 @@ def test_search_rule(base_url, page: Page) -> None:
         rules.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Search (should not depend on register)"):
         page.wait_for_selector('[href*="/dictionaries?group"]')
@@ -239,7 +239,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Create group"):
         rules.create_group("99999")
@@ -335,13 +335,13 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         expect(page.locator('[data-testid="fragmentRuleBlock"]').get_by_text("Тегировать только первое совпадение")).to_have_count(1)
 
     with allure.step("Delete rule"):
-        delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        delete_group(page)
+        rules.delete_group()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Группа удалена")
@@ -371,7 +371,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Create group"):
         rules.create_group("99999")
@@ -437,13 +437,13 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         expect(page.locator('[data-testid="setTagsDeleteTagButton"]')).to_have_count(1, timeout=wait_until_visible)
 
     with allure.step("Delete rule"):
-        delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        delete_group(page)
+        rules.delete_group()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Группа удалена")
@@ -473,7 +473,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Create_group"):
         rules.create_group("99999")
@@ -544,13 +544,13 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="TagSequenceItem"]').get_by_text("tag_seq")).to_have_count(2)
 
     with allure.step("Delete rule"):
-        delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        delete_group(page)
+        rules.delete_group()
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Группа удалена")
@@ -586,7 +586,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         rules.go_to_user(LOGIN_USER)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Press (Import rules) button"):
         page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
@@ -629,7 +629,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         page.get_by_text("22222").click()
 
     with allure.step("Delete rule"):
-        delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Правило удалено")
@@ -644,7 +644,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         page.get_by_text("44444").click()
 
     with allure.step("Delete rule"):
-            delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Правило удалено")
@@ -695,7 +695,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         rules.go_to_user(LOGIN_USER)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Press (Import rules) button"):
         page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
@@ -737,7 +737,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         page.get_by_text("22222").click()
 
     with allure.step("Delete rule"):
-        delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Правило удалено")
@@ -752,7 +752,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         page.get_by_text("44444").click()
 
     with allure.step("Delete rule"):
-        delete_rule_or_dict(page)
+        rules.delete_rule_or_dict()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Правило удалено")
@@ -794,7 +794,7 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
         rules.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Check that button for import not visible"):
         expect(page.locator(BUTTON_IMPORTIROVAT_PRAVILA)).not_to_be_visible()
@@ -818,7 +818,7 @@ def test_compare_rules_by_user(base_url, page: Page) -> None:
         rules.auth(USER_FOR_CHECK, PASSWORD)
 
     with allure.step("Go to markup"):
-        go_to_markup(page)
+        rules.click_markup()
 
     with allure.step("Go to first rule"):
         page.get_by_text("firstrule").click()

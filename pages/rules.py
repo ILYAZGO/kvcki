@@ -1,11 +1,9 @@
-from utils.variables import wait_until_visible
-
 from pages.base_class import *
 from playwright.sync_api import Page, expect
 
-BUTTON_RAZMETKA = '[value="tags"]'
 BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'
 INPUT_NEW_GROUP_NAME = '[name="groupName"]'
+ACTIVE_GROUP = '[class*="styles_isActive_"]'
 
 class Rules(BaseClass):
     def __init__(self, page: Page):
@@ -21,6 +19,16 @@ class Rules(BaseClass):
         self.modal_window.locator(BUTTON_SUBMIT).click()
         self.page.wait_for_timeout(500)
 
+    def delete_group(self):
+        self.page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
+        self.page.wait_for_timeout(500)
+
+    def delete_rule_or_dict(self):
+        self.page.locator('[width="30"]').click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+        self.modal_window.get_by_role("button", name="Удалить").click()
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'
@@ -29,10 +37,8 @@ INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 # buttons
 BUTTON_DOBAVIT_TEG = '[data-testid="markup_addTaggingRule"]'
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
-#BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
-BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_ADD_SEQUENCE = '[data-testid="addNewTagSequenceItemBtn"]'
 BUTTON_DELETE_SEQUENCE = '[data-testid="TagSequenceDeleteItem"]'
 LIST_PRESENCE_ONE_OF_TAGS = '[data-testid="presenceOfOneOfTags"]'
@@ -41,9 +47,8 @@ INPUT_INTERVAL_BETWEEN_TAGS = '[data-testid="intervalBetweenTags"]'
 CHECK_BOX_ABSENCE_OF_TAGS = '[data-testid="triggeredInAbsenceOfTags"]'
 CHECK_BOX_REVERSE_LOGIC = '[data-testid="reverseLogic"]'
 BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
-# other
 GROUP_LIST = '[class*="styles_dpBothBox_"]'
-ACTIVE_GROUP = '[class*="styles_isActive_"]'
+
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 NAZVANIE_PRAVILA_TEGIROVANIYA = NAZVANIE_SLOVARYA = '[name="title"]'
@@ -59,27 +64,10 @@ def create_rule(ruleName, page="page: Page"):
     #page.get_by_role("button", name="Сохранить").click()
     #page.wait_for_selector('[data-testid="tagSequenceBlock"]')
 
-def go_to_markup(page="page: Page"):
-    page.wait_for_selector(BUTTON_RAZMETKA)
-    page.locator(BUTTON_RAZMETKA).click()
-    page.wait_for_selector(BUTTON_ADD_GROUP)
-
-def delete_rule_or_dict(page="page: Page"):
-    #page.locator(".css-izdlur").click()
-    #page.get_by_text("Удалить", exact=True).click()
-    page.locator('[width="30"]').click()
-    page.wait_for_selector(MODAL_WINDOW)
-    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-    page.wait_for_selector(MODAL_WINDOW, state="hidden")
-
-def delete_group(page="page: Page"):
-    page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
-
 def fill_what_said(text, page="page: Page"):
-    page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').type(text, delay=100)
-    page.keyboard.press("Enter", delay=100)
+    page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').type(text, delay=30)
+    page.keyboard.press("Enter", delay=30)
     page.wait_for_timeout(500)
-
 
 def add_additional_terms(list, page="page: Page"):
     page.locator('[data-testid="fragmentRuleAddButton"]').get_by_role("button").dblclick()

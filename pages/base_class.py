@@ -2,7 +2,8 @@ from playwright.sync_api import Page, expect
 
 BUTTON_COMMUNICATIONS = '[value="calls"]'
 BUTTON_REPORTS = '[value="reports"]'
-BUTTON_OPOVESHENIA = '[value="notifications"]'
+BUTTON_MARKUP = '[value="tags"]'
+BUTTON_NOTIFICATIONS = '[value="notifications"]'
 BUTTON_SETTINGS = '[value="settings"]'
 INPUT_LOGIN = '[name="login"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
@@ -11,6 +12,7 @@ MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
 BUTTON_CROSS = '[data-testid="CloseIcon"]'
 INPUT_SEARCH = '[name="searchString"]'
+BUTTON_KORZINA = '[aria-label="Удалить"]'
 
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
@@ -19,7 +21,7 @@ SELECT_MODEL = '[data-testid="stt_model"]'
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
-        self.timeout = 85000
+        self.timeout = 80000
         self.users_list = page.locator("#react-select-2-input")
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
@@ -101,7 +103,7 @@ class BaseClass:
 
     def click_notifications(self):
         """Click Notifications"""
-        self.page.locator(BUTTON_OPOVESHENIA).click()
+        self.page.locator(BUTTON_NOTIFICATIONS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
@@ -128,6 +130,13 @@ class BaseClass:
         self.page.wait_for_timeout(500)
         self.page.locator(BUTTON_REPORTS).click()
         self.page.wait_for_selector(INPUT_SEARCH)
+
+    def click_markup(self):
+        """Click Markup"""
+        self.page.wait_for_selector(BUTTON_MARKUP)
+        self.page.locator(BUTTON_MARKUP).click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(500)
 
     def click_language_select(self):
         """Select language in word processing"""

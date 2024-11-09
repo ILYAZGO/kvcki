@@ -2009,7 +2009,6 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
 
     with allure.step("Try to save"):
         settings.press_save()
-        #click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
         settings.check_alert(alert_merge)
@@ -2022,7 +2021,6 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
 
     with allure.step("Try to save"):
         settings.press_save()
-        #click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
         settings.check_alert(alert_diarization)
@@ -2037,7 +2035,6 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
 
     with allure.step("Press (Save)"):
         settings.press_save()
-        #click_submit_in_word_processing(page)
 
     with allure.step("Wait for alert and check alert message"):
         settings.check_alert(data_updated)
