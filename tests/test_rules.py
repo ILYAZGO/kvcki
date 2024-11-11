@@ -566,7 +566,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
 @pytest.mark.rules
 @allure.title("test_import_group_and_rule_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside with rule 33333 without group")
+@allure.description("Precondition: user  importFrom with group 00000 rule 22222 inside with rule 33333 without group")
 def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
     rules = Rules(page)
 
@@ -619,7 +619,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         page.wait_for_timeout(2000)
 
     with allure.step("Check that import was successful"):
-        expect(page.get_by_text("11111")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("00000")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
@@ -656,7 +656,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
-        expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("00000")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)
@@ -672,7 +672,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
 @pytest.mark.rules
 @allure.title("test_import_group_and_rule_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("Precondition: user  importFrom with group 11111 rule 22222 inside with rule 33333 without group")
+@allure.description("Precondition: user  importFrom with group 00000 rule 22222 inside with rule 33333 without group")
 def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
     rules = Rules(page)
 
@@ -727,7 +727,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         page.wait_for_timeout(2000)
 
     with allure.step("Check that import was successful"):
-        expect(page.get_by_text("11111")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("00000")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("44444")).to_be_visible(timeout=wait_until_visible)
@@ -764,7 +764,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         rules.check_alert("Группа удалена")
 
     with allure.step("Check that deleted"):
-        expect(page.get_by_text("11111")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("00000")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("22222")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("33333")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("44444")).not_to_be_visible(timeout=wait_until_visible)

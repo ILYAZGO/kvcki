@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to dicts4">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to dicts5">
+      <change afterPath="$PROJECT_DIR$/scriptAndFiles.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/markup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_admin_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_admin_bar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/send_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/send_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,26 +57,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python tests.pytest for test_usedesk.test_example.executor": "Run",
-    "Python tests.pytest in test_pass.py.executor": "Run",
-    "Python.Unnamed.executor": "Run",
-    "Python.dates.executor": "Run",
-    "Python.erer.executor": "Run",
-    "Python.send_file.executor": "Run",
-    "Python.send_files2.executor": "Run",
-    "Python.test_pass.executor": "Run",
-    "Python.variables.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/pages",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_pass.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dates.executor&quot;: &quot;Run&quot;,
+    &quot;Python.erer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.send_file.executor&quot;: &quot;Run&quot;,
+    &quot;Python.send_files2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/pages&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages" />
@@ -574,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="settings refactor1" />
     <MESSAGE value="settings refactor2" />
     <MESSAGE value="settings refactor3" />
     <MESSAGE value="settings refactor4" />
@@ -599,6 +595,7 @@
     <MESSAGE value="class to dicts2" />
     <MESSAGE value="class to dicts3" />
     <MESSAGE value="class to dicts4" />
-    <option name="LAST_COMMIT_MESSAGE" value="class to dicts4" />
+    <MESSAGE value="class to dicts5" />
+    <option name="LAST_COMMIT_MESSAGE" value="class to dicts5" />
   </component>
 </project>

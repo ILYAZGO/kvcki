@@ -123,7 +123,7 @@ def upload_call(url, username, password):
     return response.status_code, response.text
 
 
-print(upload_call(URL, "auto_test_user_102313_64385", "Qaz123wsX" ))
+print(upload_call(URL, "auto_test_user_111110_85655", "Qaz123wsX" ))
 
 
 
