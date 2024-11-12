@@ -592,7 +592,6 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
 
     with allure.step("Change personal information"):
         settings.fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment","Africa/Bamako")
-        #fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako", page)
 
     with allure.step("Press (Save) button"):
         settings.press_save()
