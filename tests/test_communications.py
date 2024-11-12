@@ -940,6 +940,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Press (add comment)"):
         page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1).click()
+        page.wait_for_timeout(1000)
 
     with allure.step("Check that comment saved and saved right"):
         expect(page.locator('[class*="styles_author_"]')).to_have_text(LOGIN)

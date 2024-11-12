@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to checklists">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to checklists1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/check_lists.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/notifications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_check_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_lists.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_notifications.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -574,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="settings refactor5" />
     <MESSAGE value="settings refactor6" />
     <MESSAGE value="settings refactor7" />
     <MESSAGE value="settings refactor8" />
@@ -599,6 +594,7 @@
     <MESSAGE value="class to dicts6" />
     <MESSAGE value="class to dicts7" />
     <MESSAGE value="class to checklists" />
-    <option name="LAST_COMMIT_MESSAGE" value="class to checklists" />
+    <MESSAGE value="class to checklists1" />
+    <option name="LAST_COMMIT_MESSAGE" value="class to checklists1" />
   </component>
 </project>

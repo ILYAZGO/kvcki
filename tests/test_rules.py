@@ -846,7 +846,7 @@ def test_compare_rules_by_user(base_url, page: Page) -> None:
 
     with allure.step("Change rule"):
         page.get_by_text("thirdrule").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(3000)
 
     with allure.step("Check that tagname still the same, but tagvalue changed"):
         expect(page.locator('[aria-label="Remove firstrule: firstrulevalue"]')).to_be_visible()

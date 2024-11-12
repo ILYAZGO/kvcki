@@ -80,6 +80,7 @@ class Settings(BaseClass):
 
     def click_rights(self):
         self.button_rights.click()
+        self.page.wait_for_timeout(1000)
         self.page.wait_for_selector('[data-testid="acceptButton"]')
 
     def click_employees(self):

@@ -130,7 +130,9 @@ class BaseClass:
         self.page.wait_for_selector(BUTTON_REPORTS, timeout=self.timeout)
         self.page.wait_for_timeout(500)
         self.page.locator(BUTTON_REPORTS).click()
-        self.page.wait_for_selector(INPUT_SEARCH)
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+        #self.page.wait_for_selector(INPUT_SEARCH)
 
     def click_markup(self):
         """Click Markup"""

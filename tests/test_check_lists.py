@@ -384,6 +384,7 @@ def test_compare_check_lists_by_user(base_url, page: Page) -> None:
 
     with allure.step("Switch to second check-list"):
         page.locator('[class*="styles_dpBothBox_"]').get_by_text("secondchecklist").click()
+        page.wait_for_timeout(1000)
 
     with allure.step("Check that parameters changed"):
         expect(page.locator(INPUT_CHECK_LIST_NAME)).to_have_value("secondchecklist")
