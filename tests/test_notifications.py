@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import auth
 from pages.notifications import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager
 import pytest
@@ -13,15 +12,16 @@ import allure
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_first_page")
 def test_notifications_first_page(base_url, page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        notifications.auth(LOGIN, PASSWORD)
 
     with allure.step("Click on block 0 from first page"):
         choose_block(0, page)
@@ -51,30 +51,31 @@ def test_notifications_first_page(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_notifications_api_method_change")
 def test_notifications_api_method_change(base_url, page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        notifications.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to notifications"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Create api notification rule"):
-        add_notification("API", page)
+        notifications.add_notification("API")
 
     with allure.step("Set notification name"):
-        set_notification_name("auto-test-api_method_change", page)
+        notifications.set_notification_name("auto-test-api_method_change")
 
     with allure.step("Set url and headers"):
-        set_url_and_headers("https://www.google.com/", "someHeaders", page)
+        notifications.set_url_and_headers("https://www.google.com/", "someHeaders")
 
     with allure.step("Fill message"):
-        fill_message("someText ", page)
+        notifications.fill_message("someText ")
 
     with allure.step("Change api method from POST to GET"):
         change_api_method("POST", "GET", page)
@@ -156,27 +157,28 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_api")
 def test_notifications_api(base_url, page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        notifications.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to notifications"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Create api notification rule"):
-        add_notification("API", page)
+        notifications.add_notification("API")
 
     with allure.step("Set notification name"):
-        set_notification_name("auto-test-api", page)
+        notifications.set_notification_name("auto-test-api")
 
     with allure.step("Set url and headers"):
-        set_url_and_headers("https://www.google.com/", "someHeaders", page)
+        notifications.set_url_and_headers("https://www.google.com/", "someHeaders")
 
     with allure.step("Checkbox send again when rule changed"):
         page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').click()
@@ -188,7 +190,7 @@ def test_notifications_api(base_url, page: Page) -> None:
         add_filter("По тегам", "auto_rule", "1", page)
 
     with allure.step("Fill message"):
-        fill_message("someText ", page)
+        notifications.fill_message("someText ")
 
     with allure.step("Save rule"):
         save_rule(page)
@@ -221,24 +223,25 @@ def test_notifications_api(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_email")
 def test_notifications_email(base_url, page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        notifications.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to notifications"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Create email notification rule"):
-        add_notification("Email", page)
+        notifications.add_notification("Email")
 
     with allure.step("Set notification name"):
-        set_notification_name("auto-test-email", page)
+        notifications.set_notification_name("auto-test-email")
 
     with allure.step("Checkbox send again when rule changed"):
         page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').click()
@@ -250,10 +253,10 @@ def test_notifications_email(base_url, page: Page) -> None:
         add_filter("По тегам", "auto_rule", "1", page)
 
     with allure.step("Fill message"):
-        fill_message("someText ", page)
+        notifications.fill_message("someText ")
 
     with allure.step("Fill letter theme and email"):
-        fill_attr_for_email('letterTheme', 'mail@.mail.com', page)
+        notifications.fill_attr_for_email('letterTheme', 'mail@.mail.com')
 
     with allure.step("Save rule"):
         save_rule(page)
@@ -286,24 +289,25 @@ def test_notifications_email(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_telegram")
 def test_notifications_telegram(base_url,page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        auth(LOGIN, PASSWORD, page)
+        notifications.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to notifications"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Create telegram notification rule"):
-        add_notification("Telegram", page)
+        notifications.add_notification("Telegram")
 
     with allure.step("Set notification name"):
-        set_notification_name("auto-test-telegram", page)
+        notifications.set_notification_name("auto-test-telegram")
 
     with allure.step("Checkbox send again when rule changed"):
         page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0).click()
@@ -321,7 +325,7 @@ def test_notifications_telegram(base_url,page: Page) -> None:
         add_filter("По тегам", "auto_rule", "1", page)
 
     with allure.step("Fill message"):
-        fill_message("someText ", page)
+        notifications.fill_message("someText ")
 
     with allure.step("Save rule"):
         save_rule(page)
@@ -354,35 +358,36 @@ def test_notifications_telegram(base_url,page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_amo_crm")
 def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
+    notifications = Notifications(page)
 
     with allure.step("Create admin"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN, PASSWORD, page)
+        notifications.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to user IMOT.IO"):
-        go_to_user("IMOT.IO", page)
+        notifications.go_to_user("IMOT.IO")
 
     with allure.step("Go to notifications"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Check that notification auto-test-amoCRM deleted before"):
         if page.get_by_text("auto-test-amoCRM").is_visible():
             go_back_in_rule_after_save("auto-test-amoCRM", page)
             page.locator('[class*="styles_selected_"]').locator(BUTTON_KORZINA).click()
             page.wait_for_timeout(500)
-            page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
+            page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
             page.wait_for_timeout(2000)
 
     with allure.step("Create api notification rule"):
-        add_notification("AmoCRM", page)
+        notifications.add_notification("AmoCRM")
 
     with allure.step("Set notification name"):
-        set_notification_name("auto-test-amoCRM", page)
+        notifications.set_notification_name("auto-test-amoCRM")
 
     with allure.step("Checkbox Send again when rule changed"):
         page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0).click()
@@ -400,7 +405,7 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         add_filter("По тегам", "Бренд", "1", page)
 
     with allure.step("Fill message"):
-        fill_message("someText ", page)
+        notifications.fill_message("someText ")
 
     with allure.step("Save rule"):
         save_rule(page)
@@ -419,7 +424,7 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         #delete_rule(page)
         page.locator('[class*="styles_selected_"]').locator(BUTTON_KORZINA).click()
         page.wait_for_timeout(500)
-        page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
+        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
         page.wait_for_timeout(1000)
 
     with allure.step("Check that rule deleted"):
@@ -435,6 +440,7 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_import_rules_by_admin")
 def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -443,16 +449,16 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        notifications.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        notifications.go_to_user(LOGIN_USER)
 
     with allure.step("Go to notifications page"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Press button import notifications"):
         page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
@@ -461,7 +467,7 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
     with allure.step("Choose user import from"):
         page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
         page.wait_for_timeout(300)
-        page.locator('[class*="menu"]').get_by_text("importFrom", exact=True).click()
+        page.locator(MENU).get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(800)
 
     with allure.step("Import first rule"):
@@ -508,6 +514,7 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_notifications_import_rules_by_manager")
 def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -519,16 +526,16 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with manager"):
-        auth(LOGIN_MANAGER, PASSWORD, page)
+        notifications.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Go to user"):
-        go_to_user(LOGIN_USER, page)
+        notifications.go_to_user(LOGIN_USER)
 
     with allure.step("Go to notifications page"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Press button import notifications"):
         page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
@@ -537,7 +544,7 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
     with allure.step("Choose user import from"):
         page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
         page.wait_for_timeout(300)
-        page.locator('[class*="menu"]').get_by_text("importFrom", exact=True).click()
+        page.locator(MENU).get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(800)
 
     with allure.step("Import first rule"):
@@ -587,15 +594,16 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_old_notification for Ecotelecom")
 def test_check_old_notification(base_url, page: Page) -> None:
+    notifications = Notifications(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        notifications.navigate(base_url)
 
     with allure.step("Auth with Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        notifications.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to notifications"):
-        go_to_notifications_page(page)
+        notifications.go_to_notifications_page()
 
     with allure.step("Click at first Ecotelecom rule"):
         page.locator(BLOCK_RULES_LIST).locator('[class*="styles_content__"]').first.click()

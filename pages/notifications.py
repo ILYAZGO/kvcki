@@ -1,13 +1,11 @@
-from utils.variables import wait_until_visible
+from playwright.sync_api import Page, expect
+from pages.base_class import *
 
 BUTTON_OPOVESHENIA = '[href*="/notifications"]'
-USERS_LIST = "#react-select-2-input"
-
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_IMPORT_RULES = '[class*="styles_importTagRules"]'
 
 INPUT_NOTIFICATION_NAME = '[name="notifyTitle"]'
-
 INPUT_LETTER_THEME = '[name="emailSubj"]'
 INPUT_EMAIL = '[placeholder="example@mail.com"]'
 INPUT_HEADERS = '[placeholder="Можно проставить авторизацию и content-type"]'
@@ -23,15 +21,43 @@ SEARCH_IN_IMPORT_MODAL = '[data-testid="NotifyRuleCopyMode_search"]'
 BLOCK_AFTER_IMPORT = '[class*="styles_btns"]'
 MODAL = '[role="dialog"]'
 
+class Notifications(BaseClass):
+    def __init__(self, page: Page):
+        BaseClass.__init__(self, page)
+        self.notification_name = page.locator(INPUT_NOTIFICATION_NAME)
+        self.button_add_new_rule = page.locator(BLOCK_ADD_NEW_RULE).locator('[type="button"]')
+        self.block_main_area = page.locator(BLOCK_RULE_MAIN_AREA)
+        self.input_letter_theme = page.locator(INPUT_LETTER_THEME)
+        self.input_email = page.locator(INPUT_EMAIL)
+        self.input_comment = page.locator(INPUT_COMMENT)
+        self.input_url = page.locator(INPUT_URL)
+        self.input_header = page.locator(INPUT_HEADERS)
 
-def go_to_notifications_page(page="page: Page"):
-    page.wait_for_selector(BUTTON_OPOVESHENIA, timeout=wait_until_visible)
-    page.locator(BUTTON_OPOVESHENIA).click()
-    page.wait_for_selector(BLOCK_ADD_NEW_RULE, timeout=wait_until_visible)
+    def set_notification_name(self, notification_name):
+        self.notification_name.type(notification_name, delay=30)
 
+    def add_notification(self, notification_type):
+        self.button_add_new_rule.click()
+        self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
+        self.block_main_area.locator('[class="css-8mmkcg"]').first.click()
+        self.page.wait_for_timeout(500)
+        self.block_main_area.locator(MENU).get_by_text(notification_type, exact=True).click()
 
-def set_notification_name(notificationName, page="page: Page"):
-    page.locator(INPUT_NOTIFICATION_NAME).fill(notificationName)
+    def fill_attr_for_email(self, letter_theme, email):
+        self.page.wait_for_selector(INPUT_LETTER_THEME)
+        self.input_letter_theme.type(letter_theme, delay=30)
+        self.page.wait_for_timeout(500)
+        self.input_email.type(email, delay=30)
+
+    def fill_message(self, text):
+        self.input_comment.type(text, delay=30)
+        self.page.wait_for_timeout(500)
+        self.page.locator('[aria-label="ID звонка. Пример: 123456789012345678901234"]').click()
+
+    def set_url_and_headers(self, url, headers):
+        self.input_url.fill(url)
+        self.page.wait_for_timeout(500)
+        self.input_header.fill(headers)
 
 
 def add_filter(filterType, filterName, elementNumber, page="page: Page"):
@@ -48,36 +74,9 @@ def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     page.get_by_text(filterName, exact=True).nth(0).click()
 
 
-def add_notification(notificationType, page="page: Page"):
-    #  add new
-    page.locator(BLOCK_ADD_NEW_RULE).get_by_role("button").click()
-    page.wait_for_selector(INPUT_NOTIFICATION_NAME)
-    #  click to list
-    page.locator(BLOCK_RULE_MAIN_AREA).locator('[class="css-8mmkcg"]').first.click()
-    page.wait_for_timeout(300)
-    #  choose type
-    page.locator(BLOCK_RULE_MAIN_AREA).locator('[class*="-menu"]').get_by_text(notificationType, exact=True).click()
-
-
-def fill_attr_for_email(letterTheme, email, page="page: Page"):
-    page.wait_for_selector(INPUT_LETTER_THEME)
-    page.locator(INPUT_LETTER_THEME).fill(letterTheme)
-    page.locator(INPUT_EMAIL).fill(email)
-
-
-def fill_message(text, page="page: Page"):
-    page.locator(INPUT_COMMENT).fill(text)
-    page.locator('[aria-label="ID звонка. Пример: 123456789012345678901234"]').click()
-
-
-def set_url_and_headers(url, headers, page="page: Page"):
-    page.locator(INPUT_URL).fill(url)
-    page.locator(INPUT_HEADERS).fill(headers)
-
-
 def save_rule(page="page: Page"):
     page.get_by_role("button", name="Сохранить правило").click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
 
 
 def delete_rule(page="page: Page"):
@@ -108,10 +107,3 @@ def change_api_method(originalMethod, newMethod, page="page: Page"):
     page.locator(BlOCK_API).get_by_text(originalMethod).click()
     page.get_by_text(newMethod, exact=True).click()
 
-
-def go_to_user(name, page="page: Page"):
-    page.wait_for_selector(USERS_LIST)
-    page.locator(USERS_LIST).fill(name)
-    page.wait_for_timeout(300)
-    page.get_by_text(name, exact=True).click()
-    page.wait_for_selector('[class*="CallsHeader"]')
