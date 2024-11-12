@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-from utils.auth import auth
 from pages.check_lists import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
 import pytest
@@ -13,15 +12,16 @@ import allure
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("create,rename, update,delete check-list")
 def test_create_update_delete_check_list(base_url, page: Page) -> None:
+    checklists = Checklists(page)
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        checklists.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN, PASSWORD, page)
+        checklists.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to check-lists"):
         go_to_check_list(page)
@@ -128,9 +128,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Чек-лист удален")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        checklists.check_alert("Чек-лист удален")
 
     with allure.step("Check that deleted"):
         page.wait_for_selector(NI4EGO_NE_NAYDENO, timeout=wait_until_visible)
@@ -146,12 +144,13 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check old checklist from ecotelecom")
 def test_check_old_check_list(base_url, page: Page) -> None:
+    checklists = Checklists(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        checklists.navigate(base_url)
 
     with allure.step("Auth like Ecotelecom"):
-        auth(ECOTELECOM, ECOPASS, page)
+        checklists.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to check-lists"):
         go_to_check_list(page)
@@ -169,6 +168,7 @@ def test_check_old_check_list(base_url, page: Page) -> None:
 @allure.title("test_import_check_list_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_import_check_list_by_admin(base_url, page: Page) -> None:
+    checklists = Checklists(page)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -177,13 +177,13 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        checklists.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN_ADMIN, PASSWORD, page)
+        checklists.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user import to"):
-        go_to_user(LOGIN_USER, page)
+        checklists.go_to_user(LOGIN_USER)
 
     with allure.step("Go to check-lists"):
         go_to_check_list(page)
@@ -221,9 +221,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Чек-лист удален")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        checklists.check_alert("Чек-лист удален")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
@@ -232,9 +230,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Чек-лист удален")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        checklists.check_alert("Чек-лист удален")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
@@ -251,6 +247,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
 @allure.title("test_import_check_list_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_import_check_list_by_manager(base_url, page: Page) -> None:
+    checklists = Checklists(page)
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -262,13 +259,13 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        checklists.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN_MANAGER, PASSWORD, page)
+        checklists.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Go to user import to"):
-        go_to_user(LOGIN_USER, page)
+        checklists.go_to_user(LOGIN_USER)
 
     with allure.step("Go to check-lists"):
         go_to_check_list(page)
@@ -306,9 +303,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Чек-лист удален")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        checklists.check_alert("Чек-лист удален")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
@@ -317,9 +312,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         delete_check_list(page)
 
     with allure.step("Wait for alert and check alert message"):
-        page.wait_for_selector(ALERT, timeout=wait_until_visible)
-        expect(page.locator(ALERT)).to_contain_text("Чек-лист удален")
-        page.wait_for_selector(ALERT, state="hidden", timeout=wait_until_visible)
+        checklists.check_alert("Чек-лист удален")
 
     with allure.step("Check that deleted"):
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
@@ -336,15 +329,16 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
 @allure.title("test_import_check_list_disabled_for_user")
 @allure.severity(allure.severity_level.NORMAL)
 def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
+    checklists = Checklists(page)
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        checklists.navigate(base_url)
 
     with allure.step("Auth"):
-        auth(LOGIN_USER, PASSWORD, page)
+        checklists.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to check-lists"):
         go_to_check_list(page)
@@ -362,12 +356,13 @@ def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("User has two check lists with different parameters. when he switch between them, all parameters changing")
 def test_compare_check_lists_by_user(base_url, page: Page) -> None:
+    checklists = Checklists(page)
 
     with allure.step("Go to url"):
-        page.goto(base_url, timeout=wait_until_visible)
+        checklists.navigate(base_url)
 
     with allure.step("Auth with user for check comparelogin"):
-        auth(USER_FOR_CHECK, PASSWORD, page)
+        checklists.auth(USER_FOR_CHECK, PASSWORD)
 
     with allure.step("Go to check-lists"):
         go_to_check_list(page)

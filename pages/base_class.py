@@ -103,16 +103,10 @@ class BaseClass:
 
     def click_notifications(self):
         """Click Notifications"""
-        self.page.locator(BUTTON_NOTIFICATIONS).click()
-        self.page.wait_for_load_state(state="load", timeout=self.timeout)
-        self.page.wait_for_timeout(500)
-
-    def go_to_notifications_page(self):
         self.page.wait_for_selector(BUTTON_NOTIFICATIONS, timeout=self.timeout)
         self.page.locator(BUTTON_NOTIFICATIONS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
-        #page.wait_for_selector(BLOCK_ADD_NEW_RULE, timeout=self.timeout)
 
     def click_settings(self):
         """Click Settings"""

@@ -59,6 +59,11 @@ class Notifications(BaseClass):
         self.page.wait_for_timeout(500)
         self.input_header.fill(headers)
 
+    def go_back_in_rule_after_save(self, notification_name):
+        self.page.wait_for_selector('[class*=notifyList]')
+        self.page.get_by_text(notification_name).click()
+        self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
+
 
 def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     #  dobavit filtr
@@ -95,12 +100,6 @@ def choose_block(blockNumber, page="page: Page"):
     #page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
     page.locator('[class*="styles_notifyList"]').locator(".styles_root__cx1Gi").nth(blockNumber).click()
     page.wait_for_selector(INPUT_NOTIFICATION_NAME)
-
-
-def go_back_in_rule_after_save(notificationName, page="page: Page"):
-    page.wait_for_selector('[class*=notifyList]')
-    page.get_by_text(notificationName).click()
-    page.wait_for_selector('[name="notifyTitle"]')
 
 
 def change_api_method(originalMethod, newMethod, page="page: Page"):

@@ -1,7 +1,12 @@
 from utils.variables import wait_until_visible
-#  all for check-lists
+from playwright.sync_api import Page, expect
+from pages.base_class import *
 
-USERS_LIST = "#react-select-2-input"
+
+class Checklists(BaseClass):
+    def __init__(self, page: Page):
+        BaseClass.__init__(self, page)
+
 
 # inputs
 INPUT_CHECK_LIST_NAME = '[name="title"]'
@@ -17,7 +22,6 @@ INPUT_LEFT_CHECK_LIST_NAME = '[class*="styles_input_"]'
 INPUT_SORT_ORDER = '[name="priority"]'
 
 # buttons
-BUTTON_RAZMETKA = '[value="tags"]'
 BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
 BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'
 BUTTON_SAVE = ".MuiButton-contained"
@@ -25,25 +29,14 @@ BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = '[class*="checkButton"]'
 
-MODAL_WINDOW = '[role="dialog"]'
-MENU = '[class*="-menu"]'
-ALERT = '[role="alert"]'
-
 # other
 SEARCH_IN_IMPORT_MODAL = '[data-testid="markup_checklists_importSearch}"]'
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 CHECK_BOX_AUTOGENEREATE_REPORT = '[id="checklistGenerateReport"]'
 
-def go_to_user(name, page="page: Page"):
-    page.locator(USERS_LIST).type(name, delay=100)
-    page.wait_for_timeout(300)
-    page.get_by_text(name, exact=True).click()
-    page.wait_for_selector('[class*="CallsHeader"]')
-
-
 def go_to_check_list(page="page: Page"):
-    page.wait_for_selector(BUTTON_RAZMETKA)
-    page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_selector(BUTTON_MARKUP)
+    page.locator(BUTTON_MARKUP).click()
     page.wait_for_selector(BUTTON_CHECK_LIST)
     page.wait_for_timeout(500)
     page.locator(BUTTON_CHECK_LIST).click()
@@ -56,7 +49,7 @@ def create_check_list_with_questions_and_answers(checkListName, firstQustionTitl
     page.locator(BUTTON_DOBAVIT_CHECK_LIST).click()
     page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=wait_until_visible)
     page.locator(INPUT_CHECK_LIST_NAME).fill(checkListName)
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     # add questions
     page.locator('[class="styles_content__4ydtX"]').nth(1).get_by_role("button").click()
 
@@ -74,7 +67,7 @@ def create_check_list_with_questions_and_answers(checkListName, firstQustionTitl
     page.locator(INPUT_THIRD_POINTS).fill("3")
     #page.locator(BUTTON_DELETE_QUESTION).nth(1).click()
     page.get_by_role("button", name="Удалить вопрос").nth(1).click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
 
 
 def add_filter(filterType, filterName, page="page: Page"):
@@ -94,7 +87,7 @@ def press_button_save(page="page: Page"):
 
 
 def create_appriser(title, points, page="page: Page"):
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(500)
     page.get_by_role("button", name="Добавить оценку").click()
     #page.locator('[class*="CheckListAppraisers_addBtn"]').click()
     page.locator('[name="appraisers.0.title"]').fill(title)
@@ -104,7 +97,7 @@ def create_appriser(title, points, page="page: Page"):
 def delete_appriser(page="page: Page"):
     page.wait_for_timeout(500)
     page.locator('[class*="CheckListAppraisers_deleteBtn"]').click()
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(500)
 
 def press_import_checklists(page="page: Page"):
     page.locator('[data-testid="markup_importDicts"]').click()
