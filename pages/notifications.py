@@ -97,7 +97,7 @@ def delete_rule(page="page: Page"):
 def choose_block(blockNumber, page="page: Page"):
     page.locator(BUTTON_OPOVESHENIA).click()
     page.wait_for_timeout(1000)
-    #page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
+    # page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
     page.locator('[class*="styles_notifyList"]').locator(".styles_root__cx1Gi").nth(blockNumber).click()
     page.wait_for_selector(INPUT_NOTIFICATION_NAME)
 
