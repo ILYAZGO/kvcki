@@ -5,8 +5,8 @@ BUTTON_REPORTS = '[value="reports"]'
 BUTTON_MARKUP = '[value="tags"]'
 BUTTON_NOTIFICATIONS = '[value="notifications"]'
 BUTTON_SETTINGS = '[value="settings"]'
-INPUT_LOGIN = '[name="login"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
+BUTTON_EMPLOYEES = '[href*="settings/employees"]'
 BUTTON_SUBMIT = '[type="submit"]'
 MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
@@ -17,6 +17,13 @@ BUTTON_KORZINA = '[aria-label="Удалить"]'
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
 SELECT_MODEL = '[data-testid="stt_model"]'
+
+INPUT_NAME = '[name="name"]'
+INPUT_LOGIN = '[name="login"]'
+INPUT_PASSWORD = '[name="password"]'
+INPUT_EMAIL = '[name="email"]'
+INPUT_PHONE = '[name="phoneNumber"]'
+INPUT_COMMENT = '[name="comment"]'
 
 class BaseClass:
     def __init__(self, page: Page):
@@ -41,6 +48,16 @@ class BaseClass:
         self.select_language = page.locator(SELECT_LANGUAGE).locator('[type="text"]')
         self.select_engine = page.locator(SELECT_ENGINE).locator('[type="text"]')
         self.select_model = page.locator(SELECT_MODEL).locator('[type="text"]')
+        '''User info'''
+        self.input_login = page.locator(INPUT_LOGIN)
+        self.input_name = page.locator(INPUT_NAME)
+        self.input_email = page.locator(INPUT_EMAIL)
+        self.input_phone = page.locator(INPUT_PHONE)
+        self.input_comment = page.locator(INPUT_COMMENT)
+        self.input_password = page.locator(INPUT_PASSWORD)
+        '''Other'''
+        self.button_employees = page.locator(BUTTON_EMPLOYEES)
+
 
     def navigate(self, url: str):
         """Opens main page"""
@@ -132,7 +149,6 @@ class BaseClass:
         self.page.locator(BUTTON_REPORTS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
-        #self.page.wait_for_selector(INPUT_SEARCH)
 
     def click_markup(self):
         """Click Markup"""
@@ -140,6 +156,12 @@ class BaseClass:
         self.page.locator(BUTTON_MARKUP).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
+
+    def click_employees(self):
+        """Click employees in left menu"""
+        self.button_employees.click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_selector('[role="grid"]')
 
     def click_language_select(self):
         """Select language in word processing"""

@@ -34,14 +34,15 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         users.press_button_add_user()
 
     with allure.step("Set admin 2 info"):
-        set_user(NEW_NAME,
-                 NEW_LOGIN,
-                 PASSWORD,
-                 EMAIL,
-                 PHONE,
-                 "someComment",
-                 "Администратор",
-                 page)
+        users.set_user(
+            NEW_NAME,
+            NEW_LOGIN,
+            PASSWORD,
+            EMAIL,
+            PHONE,
+            "someComment",
+            "Администратор"
+        )
 
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
@@ -99,14 +100,15 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         users.press_button_add_user()
 
     with allure.step("Set manager info"):
-        set_user(NEW_NAME,
-                 NEW_LOGIN,
-                 PASSWORD,
-                 EMAIL,
-                 PHONE,
-                 "someComment",
-                 "Интегратор",
-                 page)
+        users.set_user(
+            NEW_NAME,
+            NEW_LOGIN,
+            PASSWORD,
+            EMAIL,
+            PHONE,
+            "someComment",
+            "Интегратор"
+            )
 
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
@@ -158,7 +160,6 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Go to users"):
         users.go_to_users_list()
-
     #
     with allure.step("Press button (Add User)"):
         users.press_button_add_user()
@@ -178,19 +179,19 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
     with allure.step("Check"):
         expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
     #
-
     with allure.step("Press button (Add User)"):
         users.press_button_add_user()
 
     with allure.step("Set user info"):
-        set_user(NEW_NAME,
-                 NEW_LOGIN,
-                 PASSWORD,
-                 EMAIL,
-                 PHONE,
-                 "someComment",
-                 "Компания",
-                 page)
+        users.set_user(
+            NEW_NAME,
+            NEW_LOGIN,
+            PASSWORD,
+            EMAIL,
+            PHONE,
+            "someComment",
+            "Компания"
+        )
 
     with allure.step("Set industry and partner for user"):
         set_industry_and_partner("Недвижимость",
@@ -293,14 +294,15 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         users.press_button_add_user()
 
     with allure.step("Set user info"):
-        set_user(NEW_NAME,
-                 NEW_LOGIN,
-                 PASSWORD,
-                 EMAIL,
-                 PHONE,
-                 "someComment",
-                 "Компания",
-                 page)
+        users.set_user(
+            NEW_NAME,
+            NEW_LOGIN,
+            PASSWORD,
+            EMAIL,
+            PHONE,
+            "someComment",
+            "Компания"
+        )
 
     with allure.step("Check that select partner not available"):
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible(timeout=wait_until_visible)
@@ -363,22 +365,24 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         users.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to settings"):
-        page.locator(BUTTON_NASTROIKI).click()
+        users.click_settings()
 
     with allure.step("Go to employees"):
-        page.locator(BUTTON_SOTRUDNIKI).click()
+        users.click_employees()
 
     with allure.step("Press button (Add employee)"):
         press_button_add_employee(page)
 
     with allure.step("Set operator info"):
-        set_operator(NEW_OPERATOR_NAME,
-                     NEW_OPERATOR_LOGIN,
-                     PASSWORD,
-                     PHONE,
-                     EMAIL,
-                     EMAIL,
-                     page)
+        users.set_operator(
+            NEW_OPERATOR_NAME,
+            NEW_OPERATOR_LOGIN,
+            PASSWORD,
+            PHONE,
+            EMAIL,
+            EMAIL
+        )
+
     with allure.step("Press button (Add) in modal window"):
         press_button_add_in_modal(page)
 
@@ -431,7 +435,7 @@ def test_check_search(base_url, page: Page) -> None:
         users.go_to_users_list()
 
     with allure.step("Fill searchString"):
-        page.locator(INPUT_POISK).fill("ecot")
+        page.locator(INPUT_SEARCH).fill("ecot")
 
     with allure.step("Check ecotelecom visible and 1userIM not visible"):
         expect(page.get_by_text("ecotelecom")).to_be_visible(timeout=wait_until_visible)
@@ -481,14 +485,15 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.press_button_add_user()
 
     with allure.step("Set user info"):
-        set_user(NEW_NAME,
-                 NEW_LOGIN,
-                 PASSWORD,
-                 EMAIL,
-                 PHONE,
-                 "someComment",
-                 "Компания",
-                 page)
+        users.set_user(
+            NEW_NAME,
+            NEW_LOGIN,
+            PASSWORD,
+            EMAIL,
+            PHONE,
+            "someComment",
+            "Компания"
+        )
 
     #  check all combinations of engines and models
 
@@ -500,34 +505,34 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(SELECT_MENU)).to_contain_text(expected_languages)
 
     with allure.step("Choose russian language"):
-        choose_option(7, page)
+        users.choose_option(7)
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Check engine list"):
         expect(page.locator(SELECT_MENU)).to_contain_text(expected_engines)
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose Deepgram"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Check model list"):
         expect(page.locator(SELECT_MENU)).to_contain_text("Обобщённаяwhisper")
 
     with allure.step("Select model Обобщённая"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Select model whisper"):
-        choose_option(1, page)
+        users.choose_option(1)
 
     with allure.step("Check engine parameters"):
         expect(page.locator(SELECT_ENGINE)).to_contain_text("Deepgram")
@@ -539,19 +544,19 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
-        choose_option(1, page)
+        users.choose_option(1)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Check model list"):
         expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Check engine parameters"):
         expect(page.locator(SELECT_ENGINE)).to_contain_text("Happyscribe")
@@ -563,25 +568,25 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
-        choose_option(2, page)
+        users.choose_option(2)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Check model list"):
         expect(page.locator(SELECT_MENU)).to_contain_text("ОбобщённаяЖадный")
 
     with allure.step("Select model Обобщённая"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Select model Жадный"):
-        choose_option(1, page)
+        users.choose_option(1)
 
     with allure.step("Check engine parameters"):
         expect(page.locator(SELECT_ENGINE)).to_contain_text("NLab Speech")
@@ -593,19 +598,19 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
-        choose_option(3, page)
+        users.choose_option(3)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Check model list"):
         expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Check engine parameters"):
         expect(page.locator(SELECT_ENGINE)).to_contain_text("IMOT.IO")
@@ -617,19 +622,19 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose whisper"):
-        choose_option(4, page)
+        users.choose_option(4)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Check model list"):
         expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Check engine parameters"):
         expect(page.locator(SELECT_ENGINE)).to_contain_text("whisper")
@@ -642,25 +647,25 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
 
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose Яндекс"):
-        choose_option(5, page)
+        users.choose_option(5)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Check model list"):
         expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Select model Обобщённая"):
-        choose_option(1, page)
+        users.choose_option(1)
 
     with allure.step("Check engine parameters"):
         expect(page.locator(SELECT_ENGINE)).to_contain_text("Яндекс")
@@ -672,25 +677,25 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
-        choose_option(6, page)
+        users.choose_option(6)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Check model list"):
         expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Select model Обобщённая"):
-        choose_option(1, page)
+        users.choose_option(1)
 
     with allure.step("Check engine parameters"):
         expect(page.locator(SELECT_ENGINE)).to_contain_text("yandex_v3")
@@ -709,16 +714,16 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
     #  check save combinations
 
     with allure.step("Click to engine"):
-        click_engine_select(page)
+        users.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        choose_option(6, page)
+        users.choose_option(6)
 
     with allure.step("Click to model"):
-        click_model_select(page)
+        users.click_model_select()
 
     with allure.step("Select model best"):
-        choose_option(0, page)
+        users.choose_option(0)
 
     with allure.step("Check merge all to one checkbox"):
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).set_checked(checked=True)

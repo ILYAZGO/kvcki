@@ -43,16 +43,12 @@ class Settings(BaseClass):
         self.input_address_book = page.locator(INPUT_ADDRESS_BOOK)
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
         self.button_rights = page.locator(BUTTON_RIGHTS)
-        self.button_employees = page.locator(BUTTON_EMPLOYEES)
+        # self.button_employees = page.locator(BUTTON_EMPLOYEES)
         self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
         self.button_quotas = page.locator(BUTTON_QUOTAS)
         self.button_save_in_rights = page.locator(BUTTON_SAVE_IN_RIGHTS)
         self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
         self.input_login = page.locator(INPUT_LOGIN)
-        self.input_name = page.locator(INPUT_NAME)
-        self.input_email = page.locator(INPUT_EMAIL)
-        self.input_phone = page.locator(INPUT_PHONE)
-        self.input_comment = page.locator(INPUT_COMMENT)
         self.input_timezone = page.locator(SELECT_TIMEZONE)
         self.select_industry = page.locator(SELECT_INDUSTRY)
         self.select_partner = page.locator(SELECT_PARTNER)
@@ -83,10 +79,10 @@ class Settings(BaseClass):
         self.page.wait_for_timeout(1000)
         self.page.wait_for_selector('[data-testid="acceptButton"]')
 
-    def click_employees(self):
-        self.button_employees.click()
-        self.page.wait_for_load_state(state="load", timeout=self.timeout)
-        self.page.wait_for_selector('[role="grid"]')
+    # def click_employees(self):
+    #     self.button_employees.click()
+    #     self.page.wait_for_load_state(state="load", timeout=self.timeout)
+    #     self.page.wait_for_selector('[role="grid"]')
 
     def click_word_processing(self):
         self.button_word_pocessing.click()
