@@ -163,6 +163,7 @@ class Settings(BaseClass):
 
     def change_login(self, login):
         self.page.wait_for_selector(INPUT_LOGIN)
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.input_login.clear()
         self.input_login.type(login, delay=30)
 

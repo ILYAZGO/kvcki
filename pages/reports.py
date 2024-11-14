@@ -147,7 +147,9 @@ def press_save_current(page="page: Page"):
 
 def change_grouping_period(period, page="page: Page"):
     page.get_by_text("По дням", exact=True).click()
+    page.wait_for_timeout(500)
     page.get_by_text(period, exact=True).click()
+    page.wait_for_timeout(500)
 
 
 def delete_current_report(page="page: Page"):
@@ -159,15 +161,15 @@ def delete_current_report(page="page: Page"):
 def fill_column_by_tag_and_value(number, tagName, tagValue, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
     page.locator(MENU).get_by_text("Тегу и значениям", exact=True).click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator(f'[data-testid="report_columns_column_{number}_tagSelect"]').click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator(MENU).get_by_text(tagName, exact=True).click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator(f'[data-testid="report_columns_column_{number}_tagValues"]').click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagValue, exact=True).click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(1000)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
 
@@ -223,25 +225,25 @@ def fill_row_communications(number, select, page="page: Page"):
 def fill_row_by_tag_and_value(number, select, tagName, tagValue, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
     page.locator(MENU).get_by_text(select, exact=True).click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator(f'[data-testid="report_rows_row_{number}_tagSelect"]').click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator(MENU).get_by_text(tagName, exact=True).click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator(f'[data-testid="report_rows_row_{number}_tagValues"]').click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagValue, exact=True).click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(500)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
 def fill_row_by_tag_list(number, select, tagName, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
     page.locator(MENU).get_by_text(select, exact=True).click()
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(500)
     page.locator(f'[data-testid="report_rows_row_{number}__tagListValues"]').click()
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(500)
     page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagName, exact=True).click()
-    page.wait_for_timeout(200)
+    page.wait_for_timeout(500)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
 def click_checkbox_row_in_tag_and_value(number, page="page: Page"):

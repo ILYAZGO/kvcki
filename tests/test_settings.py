@@ -1117,6 +1117,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         settings.reload_page()
 
     with allure.step("Check that industry and partner changed"):
+
         expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
         expect(page.locator(SELECT_PARTNER)).to_have_text('managerIM')
 

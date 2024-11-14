@@ -232,13 +232,13 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
     with allure.step("Go to reports"):
         reports.click_reports()
 
-    with allure.step("Type Ntcn in searchstring in menu an press magnifier"):
-        page.locator(INPUT_SEARCH).fill("Ntcn")
-        page.locator(BUTTON_LUPA).click()
+    with allure.step("Type тест1 in searchstring in menu an press magnifier"):
+        page.locator(INPUT_SEARCH).type("тест1", delay=30)
+        page.locator(BUTTON_SUBMIT).click()
 
     with allure.step("Check that search was successful"):
-        expect(page.locator(INPUT_SEARCH)).to_have_value("Ntcn")
-        expect(page.get_by_text("Ntcn")).to_have_count(1)
+        expect(page.locator(INPUT_SEARCH)).to_have_value("тест1")
+        expect(page.get_by_text("тест1")).to_have_count(1)
 
 
 @pytest.mark.independent
