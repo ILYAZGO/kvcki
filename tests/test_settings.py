@@ -1278,6 +1278,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added quota"):
         page.locator('[role="grid"]').locator('[fill="#FF4D4F"]').click()
+        page.wait_for_timeout(500)
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Квота удалена")
@@ -1316,6 +1317,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added quota"):
         page.locator('[fill="#FF4D4F"]').click()
+        page.wait_for_timeout(500)
 
     with allure.step("Wait for snackbar and check"):
         settings.check_alert("Квота удалена")
@@ -1360,29 +1362,25 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         settings.click_quota()
 
     with allure.step("Click to (GPT) tab"):
-        page.locator(BUTTON_GPT_QUOTAS).click()
-        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+        settings.click_to_gpt_tab()
 
         # gpt
-
     with allure.step("Check negative value"):
-        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("-1")
+        settings.type_chat_gpt_quota_value("-1")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).clear()
-        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("151")
+        settings.type_chat_gpt_quota_value("151")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).clear()
-        page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA).fill("150")
+        settings.type_chat_gpt_quota_value("150")
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
@@ -1397,23 +1395,21 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
         # yandex
     with allure.step("Check negative value"):
-        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("-1")
+        settings.type_yandex_gpt_quota_value("-1")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).clear()
-        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("15001")
+        settings.type_yandex_gpt_quota_value("15001")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).clear()
-        page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA).fill("15000")
+        settings.type_yandex_gpt_quota_value("15000")
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
@@ -1452,17 +1448,17 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
 
     with allure.step("Go to settings"):
         settings.click_settings()
-#
+
     with allure.step("Go to quotas"):
         settings.click_quota()
-        #click_quota(page)
 
     with allure.step("Check that button (Add) not visible for user"):
         expect(page.get_by_role("button", name="Добавить", exact=True)).not_to_be_visible()
 
     with allure.step("Click to (GPT) tab"):
-        page.locator(BUTTON_GPT_QUOTAS).click()
-        page.wait_for_selector(BLOCK_GPT_QUOTAS)
+        settings.click_to_gpt_tab()
+        # page.locator(BUTTON_GPT_QUOTAS).click()
+        # page.wait_for_selector(BLOCK_GPT_QUOTAS)
 
     with allure.step("Check that button (save) and input for new amount - disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()

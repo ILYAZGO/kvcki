@@ -36,6 +36,48 @@ BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
 BLOCK_ACTION_SELECT = '[class="action-block"]'
 BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 
+CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
+RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
+CHECKBOX_DIARIZATION = '[name="diarization"]'
+CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
+CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
+CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
+CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
+CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
+CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
+CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
+CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
+BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
+
+BUTTON_CONSUMPTION_HISTORY = '[href*="-consumption-history"]'
+BUTTON_CONSUMPTION_HISTORY_AUDIO = '[href*="-consumption-history/audio"]'
+BUTTON_CONSUMPTION_HISTORY_GPT = '[href*="-consumption-history/gpt"]'
+BUTTON_CONSUMPTION_HISTORY_CHATS = '[href*="-consumption-history/dialogs"]'
+SEARCH_IN_CONSUMPTION_AUDIO = '[data-testid="AudioCommunications_searchBySource"]'
+SEARCH_IN_CONSUMPTION_GPT = '[data-testid="GPTCommunications_searchBySource"]'
+SEARCH_IN_CONSUMPTION_CHATS = '[data-testid="DialogsCommunications_searchBySource"]'
+CALENDAR_IN_CONSUMPTION = '[class="ant-space-item"]'
+TOTAL_AUDIO_MIN = '[class*="communicationsStyles_totalValueInMinutes_"]'
+TOTAL_AUDIO_HOURS = '[class*="communicationsStyles_totalValueInHours_"]'
+TOTAL_GPT_MONEY = '[class*="communicationsStyles_gptValuesWrapper_"]'
+TOTAL_CHATS = '[class*="communicationsStyles_chatsValuesWrapper_"]'
+
+BUTTON_TARIFFICATION = '[href*="/settings/billing"]'
+BUTTON_RATES = '[href*="/settings/billing/aboutRates"]'
+BUTTON_WRITEOFFS = '[href*="/settings/billing/writeoffs"]'
+BUTTON_CHARGES = '[href*="/settings/billing/payments"]'
+MESSAGE_TARIFFICATION_EMPTY = '[class*="styles_firstLine__"]'
+SEARCH_IN_TARIFFICATION = '[data-testid="Writeoffs_search"]'
+TOTAL_IN_TABLE = '[class*="style_valuesWrapper_"]'
+
+BUTTON_GPT_QUOTAS = '[href*="quotas/gpt-quotas"]'
+BLOCK_GPT_QUOTAS = '[class*="styles_quotasWrapper"]'
+BLOCK_CHAT_GPT = '[class*="styles_ChatGPTwrapper"]'
+BLOCK_YANDEX_GPT = '[class*="styles_YandexGPTwrapper"]'
+INPUT_NEW_QUOTA = '[placeholder="Новое значение"]'
+BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
+BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
+
 class Settings(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
@@ -46,6 +88,9 @@ class Settings(BaseClass):
         # self.button_employees = page.locator(BUTTON_EMPLOYEES)
         self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
         self.button_quotas = page.locator(BUTTON_QUOTAS)
+        self.button_gpt_in_quotas = page.locator(BUTTON_GPT_QUOTAS)
+        self.input_chat_gpt_quota_value = page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)
+        self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
         self.button_save_in_rights = page.locator(BUTTON_SAVE_IN_RIGHTS)
         self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
         self.input_login = page.locator(INPUT_LOGIN)
@@ -78,11 +123,6 @@ class Settings(BaseClass):
         self.button_rights.click()
         self.page.wait_for_timeout(1000)
         self.page.wait_for_selector('[data-testid="acceptButton"]')
-
-    # def click_employees(self):
-    #     self.button_employees.click()
-    #     self.page.wait_for_load_state(state="load", timeout=self.timeout)
-    #     self.page.wait_for_selector('[role="grid"]')
 
     def click_word_processing(self):
         self.button_word_pocessing.click()
@@ -182,47 +222,20 @@ class Settings(BaseClass):
         self.page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
         self.page.wait_for_timeout(500)
 
-CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
-RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
-CHECKBOX_DIARIZATION = '[name="diarization"]'
-CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
-CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
-CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
-CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
-CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
-CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
-CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
-CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
-BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
+    def click_to_gpt_tab(self):
+        """Click to GPT tab in quotas"""
+        self.button_gpt_in_quotas.click()
+        self.page.wait_for_selector(BLOCK_GPT_QUOTAS)
 
-BUTTON_CONSUMPTION_HISTORY = '[href*="-consumption-history"]'
-BUTTON_CONSUMPTION_HISTORY_AUDIO = '[href*="-consumption-history/audio"]'
-BUTTON_CONSUMPTION_HISTORY_GPT = '[href*="-consumption-history/gpt"]'
-BUTTON_CONSUMPTION_HISTORY_CHATS = '[href*="-consumption-history/dialogs"]'
-SEARCH_IN_CONSUMPTION_AUDIO = '[data-testid="AudioCommunications_searchBySource"]'
-SEARCH_IN_CONSUMPTION_GPT = '[data-testid="GPTCommunications_searchBySource"]'
-SEARCH_IN_CONSUMPTION_CHATS = '[data-testid="DialogsCommunications_searchBySource"]'
-CALENDAR_IN_CONSUMPTION = '[class="ant-space-item"]'
-TOTAL_AUDIO_MIN = '[class*="communicationsStyles_totalValueInMinutes_"]'
-TOTAL_AUDIO_HOURS = '[class*="communicationsStyles_totalValueInHours_"]'
-TOTAL_GPT_MONEY = '[class*="communicationsStyles_gptValuesWrapper_"]'
-TOTAL_CHATS = '[class*="communicationsStyles_chatsValuesWrapper_"]'
+    def type_chat_gpt_quota_value(self, value: str):
+        self.input_chat_gpt_quota_value.clear()
+        self.input_chat_gpt_quota_value.type(value, delay=30)
 
-BUTTON_TARIFFICATION = '[href*="/settings/billing"]'
-BUTTON_RATES = '[href*="/settings/billing/aboutRates"]'
-BUTTON_WRITEOFFS = '[href*="/settings/billing/writeoffs"]'
-BUTTON_CHARGES = '[href*="/settings/billing/payments"]'
-MESSAGE_TARIFFICATION_EMPTY = '[class*="styles_firstLine__"]'
-SEARCH_IN_TARIFFICATION = '[data-testid="Writeoffs_search"]'
-TOTAL_IN_TABLE = '[class*="style_valuesWrapper_"]'
+    def type_yandex_gpt_quota_value(self, value: str):
+        self.input_yandex_gpt_quota_value.clear()
+        self.input_yandex_gpt_quota_value.type(value, delay=30)
 
-BUTTON_GPT_QUOTAS = '[href*="quotas/gpt-quotas"]'
-BLOCK_GPT_QUOTAS = '[class*="styles_quotasWrapper"]'
-BLOCK_CHAT_GPT = '[class*="styles_ChatGPTwrapper"]'
-BLOCK_YANDEX_GPT = '[class*="styles_YandexGPTwrapper"]'
-INPUT_NEW_QUOTA = '[placeholder="Новое значение"]'
-BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
-BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
+
 
 
 def all_checkboxes_to_be_checked(page="page: Page"):

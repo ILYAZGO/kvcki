@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to checklists3">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to users6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/send_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/send_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +92,7 @@
       <recent name="$PROJECT_DIR$/login" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_pass">
+  <component name="RunManager">
     <configuration name="test_pass" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="e2e-tests" />
       <option name="ENV_FILES" value="" />
@@ -569,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="settings refactor8" />
     <MESSAGE value="settings refactor9" />
     <MESSAGE value="settings refactor10" />
     <MESSAGE value="settings refactor11" />
@@ -594,6 +594,7 @@
     <MESSAGE value="class to checklists1" />
     <MESSAGE value="class to checklists2" />
     <MESSAGE value="class to checklists3" />
-    <option name="LAST_COMMIT_MESSAGE" value="class to checklists3" />
+    <MESSAGE value="class to users6" />
+    <option name="LAST_COMMIT_MESSAGE" value="class to users6" />
   </component>
 </project>
