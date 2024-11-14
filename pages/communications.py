@@ -268,6 +268,7 @@ class Communications(BaseClass):
         self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
 
     def assert_template_name(self, template_name: str):
+        self.page.wait_for_timeout(500)
         expect(self.template_name).to_have_text(template_name)
 
     def assert_menu_values(self, values: str):

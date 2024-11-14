@@ -129,6 +129,7 @@ class Settings(BaseClass):
         self.page.wait_for_selector(SELECT_LANGUAGE)
 
     def click_quota(self):
+        self.page.wait_for_timeout(500)
         self.button_quotas.click()
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector('[role="grid"]')
