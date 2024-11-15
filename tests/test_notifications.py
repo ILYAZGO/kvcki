@@ -78,7 +78,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         notifications.fill_message("someText ")
 
     with allure.step("Change api method from POST to GET"):
-        change_api_method("POST", "GET", page)
+        notifications.change_api_method("POST", "GET")
 
     with allure.step("Save rule"):
         notifications.save_rule()
@@ -97,7 +97,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
        expect(page.locator(BlOCK_API)).to_have_text("API*GET")
 
     with allure.step("Change api method from GET to PUT"):
-        change_api_method("GET", "PUT", page)
+        notifications.change_api_method("GET", "PUT")
 
     with allure.step("Save rule"):
         notifications.save_rule()
@@ -116,7 +116,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         expect(page.locator(BlOCK_API)).to_have_text("API*PUT")
 
     with allure.step("Change api method from PUT to PATCH"):
-        change_api_method("PUT", "PATCH", page)
+        notifications.change_api_method("PUT", "PATCH")
 
     with allure.step("Save rule"):
         notifications.save_rule()
@@ -135,7 +135,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         expect(page.locator(BlOCK_API)).to_have_text("API*PATCH")
 
     with allure.step("Change api method from PATCH to POST"):
-        change_api_method("PATCH", "POST", page)
+        notifications.change_api_method("PATCH", "POST")
 
     with allure.step("Save rule"):
         notifications.save_rule()
@@ -485,11 +485,10 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
         notifications.click_notifications()
 
     with allure.step("Press button import notifications"):
-        page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
-        page.wait_for_selector(SEARCH_IN_IMPORT_MODAL)
+        notifications.press_import_rules()
 
     with allure.step("Choose user import from"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
+        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("impo", delay=30)
         page.wait_for_timeout(500)
         page.locator(MENU).get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(1000)
@@ -562,11 +561,10 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         notifications.click_notifications()
 
     with allure.step("Press button import notifications"):
-        page.locator(BUTTON_IMPORT_RULES).get_by_role("button").click()
-        page.wait_for_selector('[data-testid="NotifyRuleCopyMode_search"]')
+        notifications.press_import_rules()
 
-    with allure.step("Choose user import from"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
+    with allure.step("Choose user importFrom"):
+        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("impo", delay=30)
         page.wait_for_timeout(500)
         page.locator(MENU).get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(1000)

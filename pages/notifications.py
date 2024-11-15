@@ -1,9 +1,7 @@
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_IMPORT_RULES = '[class*="styles_importTagRules"]'
-
 INPUT_NOTIFICATION_NAME = '[name="notifyTitle"]'
 INPUT_LETTER_THEME = '[name="emailSubj"]'
 INPUT_EMAIL = '[placeholder="example@mail.com"]'
@@ -30,6 +28,7 @@ class Notifications(BaseClass):
         self.input_comment = page.locator(INPUT_COMMENT)
         self.input_url = page.locator(INPUT_URL)
         self.input_header = page.locator(INPUT_HEADERS)
+        self.button_import_rules = page.locator(BUTTON_IMPORT_RULES).locator('[type="button"]')
 
     def choose_block(self, block_number: int):
         self.page.locator(BUTTON_NOTIFICATIONS).click()
@@ -72,12 +71,23 @@ class Notifications(BaseClass):
         self.page.get_by_role("button", name="Сохранить правило").click()
         self.page.wait_for_timeout(500)
 
+    def press_import_rules(self):
+        self.button_import_rules.click()
+        self.page.wait_for_selector(SEARCH_IN_IMPORT_MODAL)
+
+    def change_api_method(self, current_method, new_method):
+        """Change API method for API rules"""
+        self.page.locator(BlOCK_API).get_by_text(current_method).click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(new_method, exact=True).click()
+        self.page.wait_for_selector(MENU, state="hidden")
+
 
 def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     #  dobavit filtr
     page.locator('[style*="padding: 10px; border-radius: 10px;"]').get_by_role("button").click()
     #  choose po tegam
-    page.locator('[class*="-menu"]').get_by_text(filterType, exact=True).nth(1).click()
+    page.locator(MENU).get_by_text(filterType, exact=True).nth(1).click()
     #  tupo click
     page.locator(".styles_title__nLZ-h").click()
     #  fill filter
@@ -86,18 +96,13 @@ def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     #  choose filter
     page.get_by_text(filterName, exact=True).nth(0).click()
 
-
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]').first.click()
     page.locator(BUTTON_KORZINA).first.click()
     page.wait_for_timeout(500)
     #  confirm deleting
-    page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
+    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
     page.wait_for_timeout(1500)
 
-
-def change_api_method(originalMethod, newMethod, page="page: Page"):
-    page.locator(BlOCK_API).get_by_text(originalMethod).click()
-    page.get_by_text(newMethod, exact=True).click()
 
