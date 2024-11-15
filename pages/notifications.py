@@ -1,7 +1,6 @@
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-BUTTON_OPOVESHENIA = '[href*="/notifications"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_IMPORT_RULES = '[class*="styles_importTagRules"]'
 
@@ -19,7 +18,6 @@ BLOCK_ADD_NEW_RULE = '[class*="styles_addNewRule_"]'
 
 SEARCH_IN_IMPORT_MODAL = '[data-testid="NotifyRuleCopyMode_search"]'
 BLOCK_AFTER_IMPORT = '[class*="styles_btns"]'
-MODAL = '[role="dialog"]'
 
 class Notifications(BaseClass):
     def __init__(self, page: Page):
@@ -33,10 +31,16 @@ class Notifications(BaseClass):
         self.input_url = page.locator(INPUT_URL)
         self.input_header = page.locator(INPUT_HEADERS)
 
-    def set_notification_name(self, notification_name):
+    def choose_block(self, block_number: int):
+        self.page.locator(BUTTON_NOTIFICATIONS).click()
+        self.page.wait_for_timeout(1000)
+        self.page.locator('[class*="styles_notifyList"]').locator(".styles_root__cx1Gi").nth(block_number).click()
+        self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
+
+    def set_notification_name(self, notification_name: str):
         self.notification_name.type(notification_name, delay=30)
 
-    def add_notification(self, notification_type):
+    def add_notification(self, notification_type: str):
         self.button_add_new_rule.click()
         self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
         self.block_main_area.locator('[class="css-8mmkcg"]').first.click()
@@ -49,7 +53,7 @@ class Notifications(BaseClass):
         self.page.wait_for_timeout(500)
         self.input_email.type(email, delay=30)
 
-    def fill_message(self, text):
+    def fill_message(self, text: str):
         self.input_comment.type(text, delay=30)
         self.page.wait_for_timeout(500)
         self.page.locator('[aria-label="ID звонка. Пример: 123456789012345678901234"]').click()
@@ -59,10 +63,14 @@ class Notifications(BaseClass):
         self.page.wait_for_timeout(500)
         self.input_header.fill(headers)
 
-    def go_back_in_rule_after_save(self, notification_name):
+    def go_back_in_rule_after_save(self, notification_name: str):
         self.page.wait_for_selector('[class*=notifyList]')
         self.page.get_by_text(notification_name).click()
         self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
+
+    def save_rule(self):
+        self.page.get_by_role("button", name="Сохранить правило").click()
+        self.page.wait_for_timeout(500)
 
 
 def add_filter(filterType, filterName, elementNumber, page="page: Page"):
@@ -79,11 +87,6 @@ def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     page.get_by_text(filterName, exact=True).nth(0).click()
 
 
-def save_rule(page="page: Page"):
-    page.get_by_role("button", name="Сохранить правило").click()
-    page.wait_for_timeout(500)
-
-
 def delete_rule(page="page: Page"):
     page.wait_for_selector(BUTTON_KORZINA)
     page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]').first.click()
@@ -92,14 +95,6 @@ def delete_rule(page="page: Page"):
     #  confirm deleting
     page.locator('[role="dialog"]').get_by_role("button", name="Удалить").click()
     page.wait_for_timeout(1500)
-
-
-def choose_block(blockNumber, page="page: Page"):
-    page.locator(BUTTON_OPOVESHENIA).click()
-    page.wait_for_timeout(1000)
-    # page.locator(".styles_root__qwOsd").locator(".styles_root__cx1Gi").nth(blockNumber).click()
-    page.locator('[class*="styles_notifyList"]').locator(".styles_root__cx1Gi").nth(blockNumber).click()
-    page.wait_for_selector(INPUT_NOTIFICATION_NAME)
 
 
 def change_api_method(originalMethod, newMethod, page="page: Page"):

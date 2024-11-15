@@ -37,7 +37,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
-        create_rule("88888", page)
+        rules.create_rule("88888")
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Тег добавлен")
@@ -252,7 +252,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
-        create_rule("88888", page)
+        rules.create_rule("88888")
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Тег добавлен")
@@ -384,7 +384,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
-        create_rule("set_tags", page)
+        rules.create_rule("set_tags")
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Тег добавлен")
@@ -486,7 +486,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
 
     with allure.step("Create rule"):
-        create_rule("tag_seq", page)
+        rules.create_rule("tag_seq")
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Тег добавлен")
@@ -593,9 +593,9 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("importFrom", delay=40)
-        page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1000)
+        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("impo", delay=30)
+        page.locator(MENU).get_by_text("importFrom", exact=True).click()
+        page.wait_for_timeout(1500)
 
     with allure.step("Check that search string visible"):
         page.wait_for_selector('[data-testid="markup_tags_importSearch}"]')
@@ -702,9 +702,9 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("importFrom", delay=40)
-        page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1000)
+        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("impo", delay=30)
+        page.locator(MENU).get_by_text("importFrom", exact=True).click()
+        page.wait_for_timeout(1500)
 
     with allure.step("Check that search string visible"):
         page.wait_for_selector('[data-testid="markup_tags_importSearch}"]')

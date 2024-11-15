@@ -119,7 +119,7 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
 def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> None:
     settings = Settings(page)
 
-    NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     CHANGED_LOGIN = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datetime.now().microsecond}"
 
     with allure.step("Create admin"):
@@ -528,7 +528,13 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         settings.check_alert("Профиль успешно сохранен")
 
     with allure.step("Change person al information"):
-        settings.fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment", "Africa/Bamako")
+        settings.fill_personal_information_admin_and_manager(
+            NEW_NAME,
+            EMAIL,
+            "1234567890",
+            "someComment",
+            "Africa/Bamako"
+        )
 
     with allure.step("Press (Save) button"):
         settings.press_save()
@@ -591,7 +597,13 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         settings.click_settings()
 
     with allure.step("Change personal information"):
-        settings.fill_personal_information_admin_and_manager(NEW_NAME, EMAIL, "1234567890", "someComment","Africa/Bamako")
+        settings.fill_personal_information_admin_and_manager(
+            NEW_NAME,
+            EMAIL,
+            "1234567890",
+            "someComment",
+            "Africa/Bamako"
+        )
 
     with allure.step("Press (Save) button"):
         settings.press_save()
@@ -656,7 +668,12 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         settings.click_settings()
 
     with allure.step("Change person al information"):
-        settings.fill_personal_information_user_and_operator(NEW_NAME, EMAIL, "1234567890", "Africa/Bamako")
+        settings.fill_personal_information_user_and_operator(
+            NEW_NAME,
+            EMAIL,
+            "1234567890",
+            "Africa/Bamako"
+        )
 
     with allure.step("Press (Save) button"):
         settings.press_save()
@@ -784,7 +801,13 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         settings.go_to_operator_from_table()
 
     with allure.step("Fill personal information"):
-        settings.fill_personal_information_admin_and_manager(NEW_OPERATOR_NAME, EMAIL, "1234567890", "someComment","Africa/Bamako")
+        settings.fill_personal_information_admin_and_manager(
+            NEW_OPERATOR_NAME,
+            EMAIL,
+            "1234567890",
+            "someComment",
+            "Africa/Bamako"
+        )
 
     with allure.step("Press (save)"):
         settings.press_save()
@@ -864,7 +887,12 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         settings.go_to_operator_from_table()
 
     with allure.step("Fill personal information"):
-        settings.fill_personal_information_user_and_operator(NEW_OPERATOR_NAME, EMAIL, "1234567890", "Africa/Bamako")
+        settings.fill_personal_information_user_and_operator(
+            NEW_OPERATOR_NAME,
+            EMAIL,
+            "1234567890",
+            "Africa/Bamako"
+        )
 
     with allure.step("Press (save)"):
         settings.press_save()
@@ -995,7 +1023,6 @@ def test_left_menu_items_for_user_itself(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
-# check how many items in left menu for role
 @pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_left_menu_items_for_operator_itself")
@@ -1117,7 +1144,6 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         settings.reload_page()
 
     with allure.step("Check that industry and partner changed"):
-
         expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
         expect(page.locator(SELECT_PARTNER)).to_have_text('managerIM')
 

@@ -24,19 +24,19 @@ def test_notifications_first_page(base_url, page: Page) -> None:
         notifications.auth(LOGIN, PASSWORD)
 
     with allure.step("Click on block 0 from first page"):
-        choose_block(0, page)
+        notifications.choose_block(0)
 
     with allure.step("Check that we moved to telegram new rule"):
         expect(page.get_by_text("Telegram", exact=True)).to_have_count(1)
 
     with allure.step("Click on block 1 from first page"):
-        choose_block(1, page)
+        notifications.choose_block(1)
 
     with allure.step("Check that we moved to email new rule"):
         expect(page.get_by_text("Email", exact=True)).to_have_count(1)
 
     with allure.step("Click on block 2 from first page"):
-        choose_block(2, page)
+        notifications.choose_block(2)
 
     with allure.step("Check that we moved to api new rule"):
         expect(page.get_by_text("API", exact=True)).to_have_count(1)
@@ -81,7 +81,10 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         change_api_method("POST", "GET", page)
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-api_method_change")
@@ -97,7 +100,10 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         change_api_method("GET", "PUT", page)
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-api_method_change")
@@ -113,7 +119,10 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         change_api_method("PUT", "PATCH", page)
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-api_method_change")
@@ -129,7 +138,10 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         change_api_method("PATCH", "POST", page)
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-api_method_change")
@@ -193,7 +205,10 @@ def test_notifications_api(base_url, page: Page) -> None:
         notifications.fill_message("someText ")
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-api")
@@ -259,7 +274,10 @@ def test_notifications_email(base_url, page: Page) -> None:
         notifications.fill_attr_for_email('letterTheme', 'mail@.mail.com')
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-email")
@@ -328,7 +346,10 @@ def test_notifications_telegram(base_url,page: Page) -> None:
         notifications.fill_message("someText ")
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-telegram")
@@ -408,7 +429,10 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         notifications.fill_message("someText ")
 
     with allure.step("Save rule"):
-        save_rule(page)
+        notifications.save_rule()
+
+    with allure.step("Check alert"):
+        notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
         notifications.go_back_in_rule_after_save("auto-test-amoCRM")
@@ -466,9 +490,9 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Choose user import from"):
         page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
         page.locator(MENU).get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(1000)
 
     with allure.step("Import first rule"):
         page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(0).click()
@@ -491,14 +515,14 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
-        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(MODAL_WINDOW)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("pochta")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second rule"):
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
-        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(MODAL_WINDOW)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("telega")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
@@ -543,21 +567,21 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Choose user import from"):
         page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
         page.locator(MENU).get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(1000)
 
     with allure.step("Import first rule"):
         page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(0).click()
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Press (Go on) button"):
         page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="Продолжить").click()
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Import second rule"):
         page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(1).click()
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(500)
 
     with allure.step("Go to new rules"):
         page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="К новым правилам").click()
@@ -571,14 +595,14 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
-        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(MODAL_WINDOW)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("pochta")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second rule"):
         delete_rule(page)
 
     with allure.step("Check that first rule deleted"):
-        expect(page.locator(MODAL)).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(MODAL_WINDOW)).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("telega")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete manager"):

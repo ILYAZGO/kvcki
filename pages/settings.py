@@ -238,8 +238,6 @@ class Settings(BaseClass):
         self.input_yandex_gpt_quota_value.type(value, delay=30)
 
 
-
-
 def all_checkboxes_to_be_checked(page="page: Page"):
     page.wait_for_timeout(500)
     # Находим все чекбоксы на странице
