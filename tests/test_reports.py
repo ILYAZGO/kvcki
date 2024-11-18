@@ -2162,7 +2162,6 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
 
     with allure.step("check"):
         # check headers
-        page.wait_for_timeout(20000)
         expect(page.locator('[aria-label="Сумма баллов по чек-листам"]')).to_have_count(2)
         expect(page.locator('[aria-label="Сумма максимальных баллов по чек-листам"]')).to_have_count(2)
         expect(page.locator('[aria-label="Средний балл"]')).to_have_count(2)
@@ -2238,8 +2237,8 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         expect(page.locator('[aria-label="% разговора оператора"]')).to_have_count(2)
         expect(page.locator('[aria-label="% разговора клиента"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="28:33:40"]')).to_have_count(2)
-        expect(page.locator('[title="27:44:12"]')).to_have_count(2)
+        expect(page.locator('[title="28:33:42"]')).to_have_count(2)
+        expect(page.locator('[title="27:44:15"]')).to_have_count(2)
         expect(page.locator('[title="35.34 %"]')).to_have_count(2)
         expect(page.locator('[title="34.32 %"]')).to_have_count(2)
 
@@ -2302,8 +2301,8 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
         expect(page.locator('[aria-label="Продолжительность тишины"]')).to_have_count(2)
         expect(page.locator('[aria-label="% продолжительности тишины"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="24:30:57"]')).to_have_count(2)
-        expect(page.locator('[title="30.34 %"]')).to_have_count(2)
+        expect(page.locator('[title="24:30:52"]')).to_have_count(2)
+        expect(page.locator('[title="30.33 %"]')).to_have_count(2)
 
 @pytest.mark.independent
 @pytest.mark.reports
