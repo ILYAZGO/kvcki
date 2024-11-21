@@ -1,8 +1,6 @@
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-from utils.variables import wait_until_visible
-
 BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
 BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
 BUTTON_SAVE_AS_NEW = '[data-testid="reportNewSave"]'
@@ -11,6 +9,8 @@ BUTTON_CHANGE_FILTERS = '[data-testid="report_filters_addCriterias"]'
 BUTTON_COLLAPSE_EXPAND = '[class*="ShowHideCheck_checkTitle"]'
 BUTTON_ADD_COLUMN = '[data-testid="report_rows_addColumn"]'
 BUTTON_ADD_ROW = '[data-testid="report_rows_addRow"]'
+BUTTON_MANAGE_REPORTS = '[href*="/reports"]'
+BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
 
 class Reports(BaseClass):
     def __init__(self, page: Page):
@@ -50,11 +50,26 @@ class Reports(BaseClass):
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector(BUTTON_ADD_COLUMN, state="hidden")
 
+    def press_create_report_in_management(self):
+        self.page.wait_for_timeout(500)
+        self.page.locator(BUTTON_CREATE_REPORT_IN_MANAGEMENT).click()
+        self.page.wait_for_selector(BUTTON_GENERATE_REPORT)
+
+    def press_report_management(self):
+        self.page.wait_for_selector(BUTTON_MANAGE_REPORTS)
+        self.page.locator(BUTTON_MANAGE_REPORTS).click()
+        self.page.wait_for_selector('[role="table"]', timeout=self.timeout)
+
+    def press_save_as_new(self):
+        self.page.wait_for_timeout(500)
+        self.page.locator(BUTTON_SAVE_AS_NEW).click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+
     # additional params
 
     def click_apply_in_additional_params(self):
         self.button_add_params_apply.click()
-        self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=wait_until_visible)
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=self.timeout)
 
     def click_gear_in_rows(self):
         self.button_gear_in_row.click()
@@ -66,19 +81,12 @@ class Reports(BaseClass):
 
 
 # time period
-FIRST_DATE = "//input[@placeholder='Начальная дата']"
-LAST_DATE = "//input[@placeholder='Конечная дата']"
-
-BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV = '[href*="/reports"]'
-BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
-BUTTON_KORZINA = '[aria-label="Удалить"]'
+FIRST_DATE = '[placeholder="Начальная дата"]'
+LAST_DATE = '[placeholder="Конечная дата"]'
 BUTTON_UDALIT= BUTTON_CREATE = '[data-testid="acceptButton"]'
 
 TUPO_CLICK = ".styles_questionTitle__WSOwz"
-
 INPUT_REPORT_NAME = '[name="report_name"]'
-
-BUTTON_LUPA = '[type="submit"]'
 
 BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS = '[data-testid="tagNameChange"]'
 BUTTON_AVERAGE_NUMBER_TAG_VALUE = '[data-testid="avgNumTagChange"]'
@@ -118,27 +126,11 @@ BUTTON_KORZINA_IN_ADD_PARAMS = '[data-testid*="delete_btn_view_"]'
 SELECT_WITH_ADDITIONAL_PARAM = '[class*="AdditionalParams_additionalSelect_"]'
 
 
-def press_create_report_in_management(page="page: Page"):
-    page.wait_for_timeout(500)
-    page.locator(BUTTON_CREATE_REPORT_IN_MANAGEMENT).click()
-    page.wait_for_selector(BUTTON_GENERATE_REPORT)
-
-def press_report_management(page="page: Page"):
-    page.wait_for_selector(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV)
-    page.locator(BUTTON_UPRAVLENIE_SPISKOM_OT4ETOV).click()
-    page.wait_for_selector('[role="table"]', timeout=wait_until_visible)
-
 def click_checkbox_in_tag_and_value(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_tagCheckbox"]').click()
 
 def click_checkbox_in_tag_list(number, page="page: Page"):
     page.locator(f'[data-testid="report_columns_column_{number}_tagListCheckbox"]').click()
-
-def press_save_as_new(page="page: Page"):
-    page.wait_for_timeout(500)
-    page.locator(BUTTON_SAVE_AS_NEW).click()
-    page.wait_for_selector('[class="modal-btns"]')
-
 
 def press_save_current(page="page: Page"):
     page.locator(BUTTON_REPORT_UPDATE).click()
@@ -266,9 +258,6 @@ def add_checklist_to_report(checkListName, page="page: Page"):
 
 
 # additional params
-# def click_gear_in_columns(columnNumber, page="page: Page"):
-#     page.locator(f'[data-testid="report_columns_column_{columnNumber}_settings_btn"]').click()
-#     page.wait_for_selector(MODAL_WINDOW)
 
 def click_add_param_tag_value(page="page: Page"):
     page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS).click()
