@@ -13,8 +13,7 @@ tests:
       - exec.log
       - allure-report
   before_script:
-    - apt update
-    - apt install --reinstall ca-certificates
+    - apt-key adv --refresh-keys --keyserver keyserver.ubuntu.com
     - echo "Download and install java"
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
     - echo "Download and install wget"
