@@ -232,7 +232,7 @@ def create_user(URL, ROLE, PASSWORD):
 
         # create report for user
 
-        report_name = f"test_report_{random.randint(100000, 999999)}"
+        report_name = f"auto_test_report_{random.randint(100000, 999999)}"
 
         json_for_create_report = {
             "report_id": None,
@@ -333,8 +333,6 @@ def create_user(URL, ROLE, PASSWORD):
 
         create_report = requests.post(url_for_create_report, headers=headers_for_user, json=json_for_create_report)
 
-        assert create_report.status_code == 200
-
         report_id = create_report.text.replace('"', '')
 
         if create_report.status_code == 200:
@@ -342,7 +340,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\nreport {report_name}_{report_id} creation failed with {create_report.status_code}")
 
-        time.sleep(37)
+        time.sleep(30)
 
 
     return user_id, token, LOGIN

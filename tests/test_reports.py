@@ -1,5 +1,5 @@
 import os
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Route
 from utils.variables import *
 from utils.dates import *
 from pages.reports import *
@@ -397,6 +397,235 @@ def test_reports_management_check(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
+#---------------
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_report_send_email")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_report_send_email")
+def test_report_send_email(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        reports.navigate("http://192.168.10.101/feature-dev-2859/")
+
+    with allure.step("Auth with user"):
+        reports.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Go to report management"):
+        reports.press_report_management()
+
+    with allure.step("Press (Send report)"):
+        reports.press_send_report()
+
+    with allure.step("Select (Send to email)"):
+        reports.choose_where_send_report("Отправить на почту")
+
+    with allure.step("Check modal window no data text"):
+        expect(page.locator('[class*="styles_noDataText"]')).to_contain_text("Этот отчет пока никуда не отправляется")
+
+    with allure.step("Press (Add a new dispatch)"):
+        page.locator('[data-testid="addТewNotify_toEmail"]').click()
+        page.wait_for_selector('[data-testid="messageBody"]')
+        page.wait_for_timeout(500)
+
+    with allure.step("Fill dispatch fields"):
+        page.locator('[data-testid="dispatchName_to_toEmail"]').locator('[type="text"]').type("at-email_dispatch", delay=30)
+        page.locator('[data-testid="toEmail"]').nth(0).locator('[type="text"]').type("first@mail.com", delay=30)
+        page.locator('[data-testid="addEmailBtn"]').click()
+        page.locator('[data-testid="toEmail"]').nth(1).locator('[type="text"]').type("second@mail.com", delay=30)
+        page.locator('[data-testid="emailSubject_to_toEmail"]').locator('[type="text"]').type("at-email_dispatch", delay=30)
+        page.locator('[data-testid="messageBody"]').type("at-email_dispatch", delay=30)
+        page.locator('[data-test-id="report_id"]').click()
+        page.wait_for_timeout(500)
+        page.locator('[aria-label="Текст сообщения"]').click()
+
+    with allure.step("Choose date"):
+        # every month
+        page.get_by_text("Выберите значение", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Каждый месяц", exact=True).click()
+        page.get_by_text("Выберите день месяца").click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("2", exact=True).click()
+        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+        # every week
+        page.get_by_text("Каждый месяц", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Каждую неделю", exact=True).click()
+        page.get_by_text("Выберите день недели", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Вторник", exact=True).click()
+        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+        # every day
+        page.get_by_text("Каждую неделю", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Каждый день", exact=True).click()
+        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+
+    with allure.step("Press (Send)"):
+        page.locator('[data-testid="sendButton_to_toEmail"]').click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Данные сохранены")
+
+    with allure.step("Check modal window no data text"):
+        expect(page.locator('[class*="styles_noDataText"]')).to_contain_text("Выберите отправку или добавьте новую")
+
+    with allure.step("Turn of rule"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Вкл/Выкл"]').click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Правило выключено")
+
+    with allure.step("Turn of rule"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Вкл/Выкл"]').click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Правило включено")
+
+    with allure.step("Press (Korzina)"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Удалить"]').click()
+
+    with allure.step("Cancel deleting"):
+        page.locator('[class*="styles_buttonsGroup_"]').get_by_text("Отмена")
+
+    with allure.step("Press (Korzina)"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Удалить"]').click()
+
+    with allure.step("Cancel deleting"):
+        page.locator('[class*="styles_buttonsGroup_"]').get_by_text("Удалить").click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Правило удалено")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_report_send_telegram")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_report_send_telegram")
+def test_report_send_telegram(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    def handle_chat(route: Route):
+        json_chat = [{"chatId":-4249734796,"botId":1724205115,"username":"","group":"AT_CHAT"}]
+        # fulfill the route with the mock data
+        route.fulfill(json=json_chat)
+        # Intercept the route
+    page.route("**/tg_chats", handle_chat)
+
+    with allure.step("Go to url"):
+        reports.navigate("http://192.168.10.101/feature-dev-2859/")
+
+    with allure.step("Auth with user"):
+        reports.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Go to report management"):
+        reports.press_report_management()
+
+    with allure.step("Press (Send report)"):
+        reports.press_send_report()
+
+    with allure.step("Select (Send to email)"):
+        reports.choose_where_send_report("Отправить в Telegram")
+
+    with allure.step("Check modal window no data text"):
+        expect(page.locator('[class*="styles_noDataText"]')).to_contain_text("Этот отчет пока никуда не отправляется")
+
+    with allure.step("Press (Add a new dispatch)"):
+        page.locator('[data-testid="addТewNotify_toTelegram"]').click()
+        page.wait_for_selector('[data-testid="messageBody"]')
+        page.wait_for_timeout(500)
+
+    with allure.step("Fill dispatch fields"):
+        page.locator('[data-testid="dispatchName_to_toTelegram"]').locator('[type="text"]').type("at-telegram_dispatch", delay=30)
+        page.locator('[data-testid="selectActiveTgChats"]').locator("svg").click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("AT_CHAT", exact=True).click()
+        page.locator('[data-testid="messageBody"]').type("at-telegram_dispatch", delay=30)
+        page.locator('[data-test-id="report_id"]').click()
+        page.wait_for_timeout(500)
+
+    with allure.step("Choose date"):
+        # every month
+        page.get_by_text("Выберите значение", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Каждый месяц", exact=True).click()
+        page.get_by_text("Выберите день месяца").click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("2", exact=True).click()
+        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+        # every week
+        page.get_by_text("Каждый месяц", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Каждую неделю", exact=True).click()
+        page.get_by_text("Выберите день недели", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Вторник", exact=True).click()
+        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+        # every day
+        page.get_by_text("Каждую неделю", exact=True).click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("Каждый день", exact=True).click()
+        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+
+    with allure.step("Press (Send)"):
+        page.locator('[data-testid="sendButton_to_toTelegram"]').click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Данные сохранены")
+
+    with allure.step("Check modal window no data text"):
+        expect(page.locator('[class*="styles_noDataText"]')).to_contain_text("Выберите отправку или добавьте новую")
+
+    with allure.step("Turn of rule"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Вкл/Выкл"]').click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Правило выключено")
+
+    with allure.step("Turn of rule"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Вкл/Выкл"]').click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Правило включено")
+
+    with allure.step("Press (Korzina)"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Удалить"]').click()
+
+    with allure.step("Cancel deleting"):
+        page.locator('[class*="styles_buttonsGroup_"]').get_by_text("Отмена")
+
+    with allure.step("Press (Korzina)"):
+        page.locator(MODAL_WINDOW).locator('[aria-label="Удалить"]').click()
+
+    with allure.step("Cancel deleting"):
+        page.locator('[class*="styles_buttonsGroup_"]').get_by_text("Удалить").click()
+
+    with allure.step("Check alert"):
+        reports.check_alert("Правило удалено")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+#--------------------
 # rows
 
 

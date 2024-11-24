@@ -65,6 +65,17 @@ class Reports(BaseClass):
         self.page.locator(BUTTON_SAVE_AS_NEW).click()
         self.page.wait_for_selector(MODAL_WINDOW)
 
+    # send reports
+
+    def press_send_report(self):
+        self.page.locator('[aria-label="Отправить отчет"]').click()
+        self.page.wait_for_selector(MENU)
+
+    def choose_where_send_report(self, value: str):
+        self.menu.get_by_text(value, exact=True).click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+
+
     # additional params
 
     def click_apply_in_additional_params(self):
