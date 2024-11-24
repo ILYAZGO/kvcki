@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to users18">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to users22">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -570,10 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix test" />
-    <MESSAGE value="class to dicts" />
-    <MESSAGE value="class to dicts2" />
-    <MESSAGE value="class to dicts3" />
     <MESSAGE value="class to dicts4" />
     <MESSAGE value="class to dicts5" />
     <MESSAGE value="class to dicts6" />
@@ -595,6 +590,10 @@
     <MESSAGE value="class to users16" />
     <MESSAGE value="class to users17" />
     <MESSAGE value="class to users18" />
-    <option name="LAST_COMMIT_MESSAGE" value="class to users18" />
+    <MESSAGE value="class to users19" />
+    <MESSAGE value="class to users20" />
+    <MESSAGE value="class to users21" />
+    <MESSAGE value="class to users22" />
+    <option name="LAST_COMMIT_MESSAGE" value="class to users22" />
   </component>
 </project>
