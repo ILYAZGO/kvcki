@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to users16">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="class to users17">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reports.py" afterDir="false" />
@@ -573,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="integrations class" />
     <MESSAGE value="gpt class" />
     <MESSAGE value="fix test" />
     <MESSAGE value="class to dicts" />
@@ -598,6 +597,7 @@
     <MESSAGE value="class to users14" />
     <MESSAGE value="class to users15" />
     <MESSAGE value="class to users16" />
-    <option name="LAST_COMMIT_MESSAGE" value="class to users16" />
+    <MESSAGE value="class to users17" />
+    <option name="LAST_COMMIT_MESSAGE" value="class to users17" />
   </component>
 </project>
