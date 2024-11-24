@@ -13,7 +13,7 @@ tests:
       - exec.log
       - allure-report
   before_script:
-    - apt-get update
+    - apt-get install ubuntu-keyring
 
     - echo "Download and install java"
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
