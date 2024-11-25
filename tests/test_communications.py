@@ -1783,34 +1783,28 @@ def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
     with allure.step("Go to url"):
         communications.navigate(base_url)
 
-    with allure.step("Auth with Ecotelecom"):
+    with allure.step("Auth with admin"):
         communications.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Change user to auto_test_user"):
-        communications.go_to_user("Экотелеком")
-
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        communications.choose_period_date("01/01/2022", "31/12/2022")
-
-    with allure.step("Press button (Find communications)"):
-        communications.press_find_communications_more_than_50()
-
-    with allure.step("Check that all communications found"):
-        communications.assert_communications_found("Найдено коммуникаций 3130 из 3130")
-
-    with allure.step("Go to settings"):
-        communications.click_settings()
-
-    with allure.step("Change user to auto_test_user"):
         communications.go_to_user(LOGIN_USER)
-
-    with allure.step("Go to communications"):
-        communications.click_communications()
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
 
     with allure.step("Check that 1 communications found. Should be 1 and date today"):
+        communications.assert_communications_found("Найдено коммуникаций 1 из 1")
+
+    with allure.step("Go to settings"):
+        communications.click_settings()
+
+    with allure.step("Change user to ecotelecom"):
+        communications.go_to_user("Экотелеком")
+
+    with allure.step("Go to communications"):
+        communications.click_communications()
+
+    with allure.step("Check that all communications found"):
         communications.assert_communications_found("Найдено коммуникаций 0 из 0")
 
     with allure.step("Delete admin"):

@@ -13,7 +13,6 @@ tests:
       - exec.log
       - allure-report
   before_script:
-
     - echo "Download and install java"
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
     - echo "Download and install wget"
@@ -27,7 +26,7 @@ tests:
     - echo $URL_FOR_TEST
     - echo "Execute tests"
 #    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
-    - pytest -m independent -n 27 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m independent -n 31 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
     - echo "Send notification to telegram"
