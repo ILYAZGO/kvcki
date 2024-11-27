@@ -68,7 +68,7 @@ class Reports(BaseClass):
     # send reports
 
     def press_send_report(self):
-        self.page.locator('[aria-label="Отправить отчет"]').click()
+        self.page.locator('[aria-label="Отправлять отчет"]').click()
         self.page.wait_for_selector(MENU)
 
     def choose_where_send_report(self, value: str):

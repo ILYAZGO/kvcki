@@ -410,7 +410,7 @@ def test_report_send_email(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        reports.navigate("http://192.168.10.101/feature-dev-2859/")
+        reports.navigate(base_url)
 
     with allure.step("Auth with user"):
         reports.auth(LOGIN, PASSWORD)
@@ -425,7 +425,7 @@ def test_report_send_email(base_url, page: Page) -> None:
         reports.press_send_report()
 
     with allure.step("Select (Send to email)"):
-        reports.choose_where_send_report("Отправить на почту")
+        reports.choose_where_send_report("Отправлять на почту")
 
     with allure.step("Check modal window no data text"):
         expect(page.locator('[class*="styles_noDataText"]')).to_contain_text("Этот отчет пока никуда не отправляется")
@@ -529,7 +529,7 @@ def test_report_send_telegram(base_url, page: Page) -> None:
     page.route("**/tg_chats", handle_chat)
 
     with allure.step("Go to url"):
-        reports.navigate("http://192.168.10.101/feature-dev-2859/")
+        reports.navigate(base_url)
 
     with allure.step("Auth with user"):
         reports.auth(LOGIN, PASSWORD)
@@ -544,7 +544,7 @@ def test_report_send_telegram(base_url, page: Page) -> None:
         reports.press_send_report()
 
     with allure.step("Select (Send to email)"):
-        reports.choose_where_send_report("Отправить в Telegram")
+        reports.choose_where_send_report("Отправлять в Telegram")
 
     with allure.step("Check modal window no data text"):
         expect(page.locator('[class*="styles_noDataText"]')).to_contain_text("Этот отчет пока никуда не отправляется")
