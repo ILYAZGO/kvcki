@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix test_check_search_and_switch_to_other_user">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix lyat'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -569,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="class to users9" />
     <MESSAGE value="class to users10" />
     <MESSAGE value="class to users11" />
     <MESSAGE value="class to users12" />
@@ -594,6 +593,7 @@
     <MESSAGE value="class to users231" />
     <MESSAGE value="class to users232" />
     <MESSAGE value="fix test_check_search_and_switch_to_other_user" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix test_check_search_and_switch_to_other_user" />
+    <MESSAGE value="fix lyat'" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix lyat'" />
   </component>
 </project>

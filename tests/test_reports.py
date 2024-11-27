@@ -509,7 +509,6 @@ def test_report_send_email(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-
 @pytest.mark.independent
 @pytest.mark.reports
 @allure.title("test_report_send_telegram")
