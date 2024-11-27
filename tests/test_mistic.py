@@ -108,12 +108,11 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 229 из 229")
 
     with allure.step("Quit from account"):
-        page.locator('[aria-label="Профиль"]').get_by_role("button").click()
+        page.get_by_label("Профиль").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
         expect(page.locator(BUTTON_SUBMIT)).to_be_visible()
-
 
     with allure.step("Auth with 3AleberOper"):
         auth("3AleberOper", PASSWORD, page)

@@ -289,7 +289,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
 
     with allure.step("Check table"):
         page.wait_for_timeout(1000)
-        expect(page.locator('[role="columnheader"]')).to_have_count(4)
+        expect(page.locator('[role="columnheader"]')).to_have_count(5)
         expect(page.locator('[title="Toggle SortBy"]')).to_have_count(1)
         expect(page.locator('[aria-label="auto_test_report"]')).to_have_count(1)
         expect(page.locator('[aria-label="Изменить название"]')).to_have_count(2)

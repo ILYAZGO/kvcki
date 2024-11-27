@@ -1,5 +1,5 @@
 from playwright.sync_api import Page, expect
-from pages.base_class import BaseClass, BUTTON_SUBMIT
+from pages.base_class import BaseClass, BUTTON_SUBMIT, MENU
 
 #BUTTON_VOITI = "[type='submit']" #have in base class also
 
@@ -8,13 +8,14 @@ ALERT_MESSAGE = '[class*="MuiAlert-message"]'
 class LoginPage(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
-        self.profile_button = page.locator('[aria-label="Профиль"]').get_by_role("button")
         self.alert = page.locator(ALERT_MESSAGE)
         self.button_enter = page.locator(BUTTON_SUBMIT)
 
 
     def quit_from_profile(self):
-        self.profile_button.click()
+        self.page.wait_for_timeout(500)
+        self.page.get_by_label("Профиль").click()
+        self.page.wait_for_selector(MENU)
         self.menu.get_by_text("Выйти", exact=True).click()
 
     def assert_quited(self):
