@@ -697,7 +697,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
         expect(page.locator(OPEN_CALL_AREA).locator(BUTTON_CALLS_ACTION)).to_be_visible()
 
     with allure.step("Click button (calls action)"):
-        page.locator(OPEN_CALL_AREA).locator(BUTTON_CALLS_ACTION).click()
+        page.locator(OPEN_CALL_AREA).locator(BUTTON_CALLS_ACTION).locator('[type="button"]').click()
 
     with (allure.step("Check content in opened menu")):
         expect(page.locator(OPEN_CALL_AREA).locator(MENU)).to_have_text("Удаленные тегиМета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения")

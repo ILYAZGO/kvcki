@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix lyat'2">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix lyat'4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_mistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_mistic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/rules.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -571,8 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="class to users11" />
-    <MESSAGE value="class to users12" />
     <MESSAGE value="class to users13" />
     <MESSAGE value="class to users14" />
     <MESSAGE value="class to users15" />
@@ -596,6 +593,8 @@
     <MESSAGE value="fix test_check_search_and_switch_to_other_user" />
     <MESSAGE value="fix lyat'" />
     <MESSAGE value="fix lyat'2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix lyat'2" />
+    <MESSAGE value="fix lyat'3" />
+    <MESSAGE value="fix lyat'4" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix lyat'4" />
   </component>
 </project>
