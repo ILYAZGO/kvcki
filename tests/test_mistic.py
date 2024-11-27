@@ -48,7 +48,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 1212 из 1212")
 
     with allure.step("Quit from account"):
-        page.locator('[aria-label="Профиль"]').get_by_role("button").click()
+        page.get_by_label("Профиль").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
@@ -78,7 +78,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 899 из 899")
 
     with allure.step("Quit from account"):
-        page.locator('[aria-label="Профиль"]').get_by_role("button").click()
+        page.get_by_label("Профиль").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
@@ -138,7 +138,7 @@ def test_mistic_mayorov(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 562 из 562")
 
     with allure.step("Quit from account"):
-        page.locator('[aria-label="Профиль"]').get_by_role("button").click()
+        page.get_by_label("Профиль").click()
         page.get_by_text("Выйти", exact=True).click()
 
     with allure.step("Check that quit was successful"):
