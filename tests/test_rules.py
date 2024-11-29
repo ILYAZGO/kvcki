@@ -286,7 +286,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         fill_what_said("someText",page)
 
     # with allure.step("Check (merge fragments) have value 0,11"):
-    #     expect(page.locator('[data-testid="secondsMergeFragmentsText"]').locator('[type="text"]')).to_have_value("0.11")
+    #     expect(page.locator('[data-testid="secondsMergeFragmentsText"]').locator('[type="text"]')).to_have_value("0.11") #
 
     with allure.step("Add all additional terms and click checkboxes in additional params"):
         Additional_terms = ["Искать с начала разговора", "Тегировать только первое совпадение", "Молчание до", "Молчание после", "Время разговора перед фрагментом",
