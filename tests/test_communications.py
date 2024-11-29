@@ -487,10 +487,11 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
+        page.wait_for_timeout(4000)
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
-            page.locator(BUTTON_SHARE_CALL).get_by_role("button").click()
+            page.locator(BUTTON_SHARE_CALL).locator('[type="button"]').click()
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
