@@ -260,7 +260,7 @@ def add_checklist_to_report(checkListName, page="page: Page"):
     page.locator(BUTTON_CHANGE_FILTERS).click()
     page.locator('[id="Фильтровать по числовым тегам"]').click()
     page.mouse.wheel(delta_x=0, delta_y=10000)
-    page.get_by_text("По чеклистам").nth(1).click()
+    page.get_by_text("По чек-листам").nth(1).click()
     page.locator(TUPO_CLICK).click()
     page.locator('[autocorrect=off]').nth(0).type("автотест", delay=100)
     page.wait_for_timeout(500)
