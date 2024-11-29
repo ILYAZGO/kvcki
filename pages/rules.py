@@ -70,10 +70,9 @@ def fill_what_said(text, page="page: Page"):
     page.wait_for_timeout(500)
 
 def add_additional_terms(list, page="page: Page"):
-    page.wait_for_timeout(1000)
-    page.get_by_label("Дополнительные условия").locator('[type="button"]').click(position={ "x": 30, "y": 30}, force=True)
-    #page.locator('[data-testid="fragmentRuleAddButton"]').locator('[type="button"]').dblclick()
-    #page.locator('[data-testid="fragmentRuleaddFragment"]').click()
+    page.wait_for_timeout(500)
+    #page.get_by_label("Дополнительные условия").locator('[type="button"]').click(position={ "x": 30, "y": 30}, force=True)
+    page.locator('[data-testid="fragmentRuleAddButton"]').locator('[type="button"]').dblclick()
     page.wait_for_selector('[class*="-menu"]')
     for i in list:
         page.locator('[class*="-menu"]').get_by_text(i).click()
