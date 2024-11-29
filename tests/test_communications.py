@@ -351,7 +351,8 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         page.locator(BUTTON_ADD_CONDITION).first.click()
 
     with allure.step("Change logic operator"):
-        page.locator(CHANGE_LOGIC_OPERATOR).click()
+        page.locator('[data-testid="filters_search_by_tags"]').nth(1).get_by_text("ИЛИ").click()
+        page.wait_for_selector(MENU)
         page.get_by_text("НЕТ ВСЕХ").click()
 
     with allure.step("Add new tag"):

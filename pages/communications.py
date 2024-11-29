@@ -268,7 +268,8 @@ class Communications(BaseClass):
         self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
 
     def assert_template_name(self, template_name: str):
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(2000)
+        self.page.wait_for_selector(CURRENT_TEMPLATE_NAME)
         expect(self.template_name).to_have_text(template_name)
 
     def assert_menu_values(self, values: str):
@@ -277,7 +278,7 @@ class Communications(BaseClass):
 
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
 INPUT_TEMPLATE_NAME = '[id="name"]'
-CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
+#CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
 
 
 

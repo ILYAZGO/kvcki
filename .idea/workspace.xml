@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix lyat'9">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix lyat'11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/communications.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -569,8 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="class to users18" />
-    <MESSAGE value="class to users19" />
     <MESSAGE value="class to users20" />
     <MESSAGE value="class to users21" />
     <MESSAGE value="class to users22" />
@@ -594,6 +593,8 @@
     <MESSAGE value="fix lyat'7" />
     <MESSAGE value="fix lyat'8" />
     <MESSAGE value="fix lyat'9" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix lyat'9" />
+    <MESSAGE value="fix lyat'10" />
+    <MESSAGE value="fix lyat'11" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix lyat'11" />
   </component>
 </project>
