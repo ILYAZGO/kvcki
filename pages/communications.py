@@ -170,10 +170,10 @@ class Communications(BaseClass):
         self.menu.get_by_text(result_text).click()
         self.just_click.click()  # tupo click
 
-    def fill_by_tag(self, text: str):
+    def fill_by_tag(self, input_number: int, text: str):
         """Fill by tag"""
         self.page.wait_for_timeout(1000)
-        self.input_by_tags.type(text, delay=30)
+        self.input_by_tags.nth(input_number).type(text, delay=30)
         self.page.wait_for_timeout(1500)
         self.menu.locator('[id*="-option-0"]').get_by_text(text, exact=True).click()
         self.just_click.click()  # tupo click

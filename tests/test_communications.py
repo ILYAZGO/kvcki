@@ -330,7 +330,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill by tag"):
-        communications.fill_by_tag("Другой отдел")
+        communications.fill_by_tag(0, "Другой отдел")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -339,7 +339,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 128 из 3130")
 
     with allure.step("Add extra tag"):
-        communications.fill_by_tag("Обсуждение тарифа")
+        communications.fill_by_tag(0, "Обсуждение тарифа")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -356,11 +356,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         page.get_by_text("НЕТ ВСЕХ").click()
 
     with allure.step("Add new tag"):
-        page.wait_for_selector(INPUT_PO_TEGAM_NEW, timeout=wait_until_visible)
-        page.locator(INPUT_PO_TEGAM_NEW).fill("Новое подключение")
-        page.wait_for_timeout(800)
-        page.locator(MENU).locator('[id*="-option-0"]').get_by_text("Новое подключение", exact=True).click()
-        page.locator(COMMUNICATIONS_SEARCH).click()  # tupo click
+        communications.fill_by_tag(1, "Новое подключение")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
