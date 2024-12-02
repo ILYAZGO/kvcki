@@ -13,7 +13,7 @@ import allure
 @pytest.mark.independent
 @allure.title("test_check_dates")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("Check dates buttons. Test not stabile because of expected date")
+@allure.description("Check dates buttons")
 def test_check_dates(base_url, page: Page) -> None:
     communications = Communications(page)
 
@@ -457,6 +457,7 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove 11:42"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove 1644474236.14425"]')).to_be_visible()
         expect(page.locator('[aria-label="Remove Другой отдел"]')).to_be_visible()
+        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_be_visible()
 
     with allure.step("Press button (Clear)"):
         communications.press_clear_button()
@@ -470,6 +471,7 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove 11:42"]')).not_to_be_visible()
         expect(page.locator('[aria-label="Remove 1644474236.14425"]')).not_to_be_visible()
         expect(page.locator('[aria-label="Remove Другой отдел"]')).not_to_be_visible()
+        expect(page.locator(CURRENT_TEMPLATE_NAME)).to_be_visible()
 
 
 @pytest.mark.calls
@@ -488,7 +490,7 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(5000)
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
@@ -837,7 +839,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_TEMPLATE_NAME).type("firstTemplate", delay=30)
+        page.locator(INPUT_NAME).type("firstTemplate", delay=30)
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -855,7 +857,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_TEMPLATE_NAME).type("renameTemplate", delay=30)
+        page.locator(INPUT_NAME).type("renameTemplate", delay=30)
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()

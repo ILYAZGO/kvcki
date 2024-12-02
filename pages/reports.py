@@ -12,6 +12,13 @@ BUTTON_ADD_ROW = '[data-testid="report_rows_addRow"]'
 BUTTON_MANAGE_REPORTS = '[href*="/reports"]'
 BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
 
+INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
+BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
+BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
+BUTTON_RETAG = '[data-testid="calls_actions_retag"]'
+BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
+NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
+
 class Reports(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)

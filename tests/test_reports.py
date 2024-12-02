@@ -1,5 +1,5 @@
 import os
-from playwright.sync_api import Page, expect, Route
+from playwright.sync_api import Page, expect, Route, BrowserContext
 from utils.variables import *
 from utils.dates import *
 from pages.reports import *
@@ -625,9 +625,52 @@ def test_report_send_telegram(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 #--------------------
+#+++++++++++
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_go_to_communications_from_report")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_go_to_communications_from_report")
+def test_reports_go_to_communications_from_report(base_url, page: Page, context: BrowserContext) -> None:
+    reports = Reports(page)
+
+    with allure.step("Go to url"):
+        reports.navigate(base_url)
+
+    with allure.step("Auth with ecotelecom"):
+        reports.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Press (Create report)"):
+        reports.press_create_report()
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        reports.choose_period_date("01/01/2022", "31/12/2022")
+
+    with allure.step("Press generate report"):
+        reports.press_generate_report()
+
+    with allure.step("Go to calls from report"):
+        with context.expect_page() as new_tab_event:
+            page.locator('[title="3130"]').first.click()
+            new_tab = new_tab_event.value
+
+    with allure.step("Check"):
+        expect(new_tab.locator(INPUT_BY_TAGS)).to_be_visible(timeout=wait_until_visible)
+        expect(new_tab.locator(BUTTON_FIND_COMMUNICATIONS)).to_be_visible(timeout=wait_until_visible)
+        expect(new_tab.locator(BUTTON_CLEAR)).to_be_visible(timeout=wait_until_visible)
+        expect(new_tab.locator(BUTTON_CALLS_LIST_DOWNLOAD)).to_have_count(2, timeout=wait_until_visible)
+        expect(new_tab.locator(BUTTON_RETAG)).to_have_count(2, timeout=wait_until_visible)
+        expect(new_tab.locator(BUTTON_CALLS_ACTION)).to_have_count(2, timeout=wait_until_visible)
+        expect(new_tab.locator(NAYDENO_ZVONKOV).first).to_have_text("Найдено коммуникаций 3130 из 3130")
+
+    with allure.step("Close context"):
+        new_tab.close()
+#+++++++++
+
 # rows
-
-
 @pytest.mark.independent
 @pytest.mark.reports
 @allure.title("test_reports_row_1_without_grouping")

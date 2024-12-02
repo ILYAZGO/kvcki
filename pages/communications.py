@@ -28,6 +28,7 @@ BUTTON_SHARE_CALL = '[data-testid="call_share"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
+BUTTON_RETAG = '[data-testid="calls_actions_retag"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 
 BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
@@ -277,8 +278,7 @@ class Communications(BaseClass):
 
 
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
-INPUT_TEMPLATE_NAME = '[id="name"]'
-#CHANGE_LOGIC_OPERATOR = '//*[@id="root"]/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[2]/div'
+
 
 
 
