@@ -442,7 +442,7 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
         communications.fill_search_length(">10")
         communications.fill_time("11:42")
         communications.fill_id("1644474236.14425")
-        communications.fill_by_tag("Другой отдел")
+        communications.fill_by_tag(0, "Другой отдел")
 
     with allure.step("Check all fields to have value"):
         expect(page.locator('[aria-label="Remove 79251579005"]')).to_be_visible()
