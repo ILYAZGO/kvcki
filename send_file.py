@@ -8,8 +8,8 @@ URL="https://api.stand.imot.io"
 
 def upload_call(url, username, password):
 
-    client_audio_path = os.path.join('audio', 'count-in.wav')
-    operator_audio_path = os.path.join('audio', 'count-out.wav')
+    client_audio_path = os.path.join('audio', 'count-in.opus')
+    operator_audio_path = os.path.join('audio', 'count-out.opus')
 
     # time for call
     #current_time = datetime.utcnow()
@@ -112,18 +112,18 @@ def upload_call(url, username, password):
     response = requests.post(url=URL + "/call/", headers=headers, data=params,
                              files=
                              {
-                                 'client_audio': ('count-in.wav',
+                                 'client_audio': ('count-in.opus',
                                                   open(client_audio_path, 'rb'),
-                                                  'audio/wav'),
-                                 'operator_audio': ('count-out.wav',
+                                                  'audio/opus'),
+                                 'operator_audio': ('count-out.opus',
                                                     open(operator_audio_path, 'rb'),
-                                                    'audio/wav')
+                                                    'audio/opus')
                               })
 
     return response.status_code, response.text
 
 
-print(upload_call(URL, "auto_test_user_110713_88000", "Qaz123wsX" ))
+print(upload_call(URL, "auto_test_user_120323_79541", "Qaz123wsX" ))
 
 
 

@@ -76,7 +76,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\n>>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
-        # get token for user and greate group and rule for user
+        # get token for user and create group and rule for user
 
         data_for_user = {
             'username': NAME,
@@ -134,8 +134,8 @@ def create_user(URL, ROLE, PASSWORD):
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} <<<<<")
 
         # upload call
-        client_audio_path = os.path.join('audio', 'count-in.wav')
-        operator_audio_path = os.path.join('audio', 'count-out.wav')
+        client_audio_path = os.path.join('audio', 'count-in.opus')
+        operator_audio_path = os.path.join('audio', 'count-out.opus')
 
         # time for call
         current_time = datetime.now(timezone.utc)
@@ -340,7 +340,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\nreport {report_name}_{report_id} creation failed with {create_report.status_code}")
 
-        time.sleep(30)
+        time.sleep(25)
 
 
     return user_id, token, LOGIN
