@@ -668,7 +668,7 @@ def test_reports_go_to_communications_from_report(base_url, page: Page, context:
 
     with allure.step("Close context"):
         new_tab.close()
-#+++++++++
+
 
 # rows
 @pytest.mark.independent
