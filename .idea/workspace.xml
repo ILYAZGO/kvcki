@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="tariffication enable3">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="tariffication enable4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/count-in.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/ount-in.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/count-out.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/ount-out.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/send_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/send_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +95,7 @@
       <recent name="$PROJECT_DIR$/login" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_pass">
+  <component name="RunManager">
     <configuration name="test_pass" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="e2e-tests" />
       <option name="ENV_FILES" value="" />
@@ -570,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="class to users29" />
     <MESSAGE value="class to users230" />
     <MESSAGE value="class to users231" />
     <MESSAGE value="class to users232" />
@@ -595,6 +597,7 @@
     <MESSAGE value="tariffication disable" />
     <MESSAGE value="tariffication enable" />
     <MESSAGE value="tariffication enable3" />
-    <option name="LAST_COMMIT_MESSAGE" value="tariffication enable3" />
+    <MESSAGE value="tariffication enable4" />
+    <option name="LAST_COMMIT_MESSAGE" value="tariffication enable4" />
   </component>
 </project>

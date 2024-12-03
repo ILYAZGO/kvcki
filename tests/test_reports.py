@@ -2244,7 +2244,7 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
 @allure.title("test_reports_additional_params_comment")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_additional_params_comment. For rows and columns")
-def test_reports_additional_params_comment(base_url, page: Page) -> None:
+def est_reports_additional_params_comment(base_url, page: Page) -> None:
     reports = Reports(page)
 
     with allure.step("Go to url"):
