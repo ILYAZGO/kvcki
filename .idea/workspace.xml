@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="tariffication disable">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="tariffication enable">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
@@ -570,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="class to users27" />
     <MESSAGE value="class to users28" />
     <MESSAGE value="class to users29" />
     <MESSAGE value="class to users230" />
@@ -595,6 +595,7 @@
     <MESSAGE value="test before release3" />
     <MESSAGE value="check" />
     <MESSAGE value="tariffication disable" />
-    <option name="LAST_COMMIT_MESSAGE" value="tariffication disable" />
+    <MESSAGE value="tariffication enable" />
+    <option name="LAST_COMMIT_MESSAGE" value="tariffication enable" />
   </component>
 </project>

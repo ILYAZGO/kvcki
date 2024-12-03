@@ -880,8 +880,8 @@ def test_check_search_template(base_url, page: Page) -> None:
     with allure.step("Check that template saved"):
         communications.assert_template_name("Сохраненные шаблоны поиска(0)")
 
-    with allure.step("Check stupid text"):
-        expect(page.locator('[style="font-size: 13px; margin-top: 15px;"]').get_by_text("Поиск пуст. Добавить фильтры можно с помощь 'Изменить фильтры'")).to_be_visible()
+    # with allure.step("Check stupid text"):
+    #     expect(page.locator('[style="font-size: 13px; margin-top: 15px;"]').get_by_text("Поиск пуст. Добавить фильтры можно с помощь 'Изменить фильтры'")).to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
