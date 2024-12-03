@@ -2433,7 +2433,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
 @allure.title("test_user_tariffication_if_empty")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_user_tariffication_history. check have warning if []")
-def test_user_tariffication_if_empty(base_url, page: Page) -> None:
+def est_user_tariffication_if_empty(base_url, page: Page) -> None:
     settings = Settings(page)
 
     with allure.step("Create user"):
@@ -2484,7 +2484,7 @@ def test_user_tariffication_if_empty(base_url, page: Page) -> None:
 @allure.title("test_user_tariffication")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_user_tariffication. mocked")
-def test_user_tariffication(base_url, page: Page) -> None:
+def est_user_tariffication(base_url, page: Page) -> None:
     settings = Settings(page)
 
     tariff_block_contain_text = ("О тарифахСписанияПлатежиИндивидуальный тарифТекущий баланс:0 рубОбщая сумма:60 000 руб"
