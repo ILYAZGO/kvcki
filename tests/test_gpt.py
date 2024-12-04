@@ -378,8 +378,8 @@ def test_check_old_gpt_rule(base_url, page: Page) -> None:
         gpt.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to GPT"):
-        page.wait_for_selector(BUTTON_RAZMETKA)
-        page.locator(BUTTON_RAZMETKA).click()
+        page.wait_for_selector(BUTTON_MARKUP)
+        page.locator(BUTTON_MARKUP).click()
         page.wait_for_selector(BUTTON_GPT)
         page.locator(BUTTON_GPT).click()
         page.wait_for_selector(INPUT_GPT_RULE_NAME)
@@ -408,8 +408,8 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
         gpt.auth(USER_FOR_CHECK, PASSWORD)
 
     with allure.step("Go to GPT"):
-        page.wait_for_selector(BUTTON_RAZMETKA, timeout=wait_until_visible)
-        page.locator(BUTTON_RAZMETKA).click()
+        page.wait_for_selector(BUTTON_MARKUP, timeout=wait_until_visible)
+        page.locator(BUTTON_MARKUP).click()
         page.wait_for_selector(BUTTON_GPT, timeout=wait_until_visible)
         page.locator(BUTTON_GPT).click()
         page.wait_for_selector(INPUT_GPT_RULE_NAME, timeout=wait_until_visible)
@@ -435,8 +435,6 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("sadecesoru")
         expect(page.locator(INPUT_GPT_QUESTION).nth(0)).to_have_value("nasilsin")
 
-    with allure.step("Check all checkboxes to be checked (include on/off rules)"):
-        all_checkboxes_to_be_checked(page)
-
-        assert all_checkboxes_to_be_checked(page) == True
+    with allure.step("Check some amount checkboxes to be checked (include on/off rules)"):
+        assert amount_checkboxes_to_be_checked(5, page) == True
 

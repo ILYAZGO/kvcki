@@ -25,7 +25,6 @@ INPUT_SORT_ORDER = '[name="priority"]'
 BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
 BUTTON_DOBAVIT_CHECK_LIST = '[data-testid="markup_addChecklists"]'
 BUTTON_SAVE = ".MuiButton-contained"
-#BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = '[class*="checkButton"]'
 

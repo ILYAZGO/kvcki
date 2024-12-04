@@ -1,9 +1,6 @@
-#from utils.variables import wait_until_visible
-
 from pages.base_class import *
 from playwright.sync_api import Page, expect
 
-BUTTON_MARKUP = '[value="tags"]'
 BUTTON_DICTS = '[data-testid="markup_nav_dicts"]'
 BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'
 INPUT_NEW_GROUP_NAME = '[name="groupName"]'
@@ -21,7 +18,6 @@ class Dicts(BaseClass):
         self.input_dict_name = page.locator(INPUT_DICT_NAME)
         self.input_words_list = page.locator(INPUT_WORDS_LIST)
         self.button_add_dict = page.locator(BUTTON_ADD_DICT)
-
 
     def go_to_dicts(self):
         self.page.wait_for_selector(BUTTON_MARKUP)
@@ -55,18 +51,15 @@ class Dicts(BaseClass):
 
 '''------locators for rules---------'''
 # inputs
-
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'
 INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
-
 # buttons
 BUTTON_DOBAVIT_TEG = '[data-testid="markup_addTaggingRule"]'
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
 BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
-BUTTON_KORZINA = '[aria-label="Удалить"]'
 # other
 GROUP_LIST = '[class*="styles_dpBothBox_"]'
 ACTIVE_GROUP = '[class*="styles_isActive_"]'

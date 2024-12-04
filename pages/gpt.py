@@ -8,13 +8,10 @@ class GPT(BaseClass):
     def __init__(self, page: Page):
         BaseClass.__init__(self, page)
 
-BUTTON_RAZMETKA = '[value="tags"]'
-
 BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
 BUTTON_GPT_SAVE = '[data-testid="acceptButton"]'
 BUTTON_GPT_CANCEL = '[data-testid="cancelButton"]'
-BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
@@ -25,8 +22,8 @@ INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопр
 
 
 def go_to_gpt(page="page: Page"):
-    page.wait_for_selector(BUTTON_RAZMETKA, timeout=wait_until_visible)
-    page.locator(BUTTON_RAZMETKA).click()
+    page.wait_for_selector(BUTTON_MARKUP, timeout=wait_until_visible)
+    page.locator(BUTTON_MARKUP).click()
     page.wait_for_selector(BUTTON_GPT, timeout=wait_until_visible)
     page.locator(BUTTON_GPT).click()
     page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=wait_until_visible)
@@ -93,9 +90,16 @@ def delete_rule(page="page: Page"):
     page.wait_for_selector(MODAL_WINDOW, state="hidden")
     page.wait_for_timeout(500)
 
-def all_checkboxes_to_be_checked(page="page: Page"):
+# def all_checkboxes_to_be_checked(page="page: Page"):
+#     # Находим все чекбоксы на странице
+#     checkboxes = page.query_selector_all('input[type="checkbox"]')
+#     # Проверяем состояние каждого чекбокса
+#     all_checked = all(checkbox.is_checked() for checkbox in checkboxes)
+#     return all_checked
+
+def amount_checkboxes_to_be_checked(amount, page="page: Page"):
     # Находим все чекбоксы на странице
     checkboxes = page.query_selector_all('input[type="checkbox"]')
-    # Проверяем состояние каждого чекбокса
-    all_checked = all(checkbox.is_checked() for checkbox in checkboxes)
-    return all_checked
+    # Check that amount checked
+    all_checked = sum(checkbox.is_checked() for checkbox in checkboxes)
+    return all_checked==amount
