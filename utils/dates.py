@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
 import calendar
 
-
-
 current_date = datetime.now()
 
 today = current_date.strftime("%d/%m/%Y")
