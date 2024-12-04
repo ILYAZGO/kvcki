@@ -191,7 +191,7 @@ class Communications(BaseClass):
     def expand_call(self):
         """Expand call"""
         self.page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=self.timeout)
-        self.page.wait_for_timeout(1000)
+        self.page.wait_for_timeout(2000)
         self.button_expand_call.click()
         self.page.wait_for_selector(ALL_COMMENTS_AREA, timeout=self.timeout)
 

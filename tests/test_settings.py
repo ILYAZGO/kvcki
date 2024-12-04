@@ -1677,7 +1677,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
 
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(2000)
         page.wait_for_selector('[aria-rowindex="2"]')
 
     with allure.step("Check exist search, calendar, mocked data and total count"):

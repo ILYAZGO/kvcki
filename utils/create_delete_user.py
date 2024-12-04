@@ -340,7 +340,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\nreport {report_name}_{report_id} creation failed with {create_report.status_code}")
 
-        time.sleep(24)
+        time.sleep(27)
 
 
     return user_id, token, LOGIN
