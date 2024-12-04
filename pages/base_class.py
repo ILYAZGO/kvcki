@@ -28,7 +28,7 @@ INPUT_COMMENT = '[name="comment"]'
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
-        self.timeout = 80000
+        self.timeout = 30000
         self.users_list = page.locator("#react-select-2-input")
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
