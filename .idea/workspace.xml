@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="tariffication enable4">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="est_reports_additional_params_comment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/count-in.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/ount-in.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/count-out.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/ount-out.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/send_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/send_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_communications.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_communications.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -573,7 +571,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="class to users230" />
     <MESSAGE value="class to users231" />
     <MESSAGE value="class to users232" />
     <MESSAGE value="fix test_check_search_and_switch_to_other_user" />
@@ -598,6 +595,7 @@
     <MESSAGE value="tariffication enable" />
     <MESSAGE value="tariffication enable3" />
     <MESSAGE value="tariffication enable4" />
-    <option name="LAST_COMMIT_MESSAGE" value="tariffication enable4" />
+    <MESSAGE value="est_reports_additional_params_comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="est_reports_additional_params_comment" />
   </component>
 </project>
