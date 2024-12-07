@@ -41,6 +41,13 @@ class Rules(BaseClass):
         self.press_key("Enter")  # kostil'
         self.page.wait_for_timeout(1000)
 
+    def change_sort(self, current: str, change_to: str ):
+        self.page.get_by_text(current, exact=True).click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(change_to, exact=True).click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'

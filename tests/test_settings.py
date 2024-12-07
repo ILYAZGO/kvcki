@@ -1100,6 +1100,10 @@ def test_admin_check_industry_and_partner_for_manager(base_url, page: Page) -> N
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_admin_check_industry_and_partner_for_user_and_operator")
 def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: Page) -> None:
+    industys_list = ("Не выбраноАвтомобильная индустрияB2B продажиE-commerceМедклиникаСтоматологияКолл-центрыКонсалтинг"
+                     "ЛогистикаМебельНефть и газНедвижимостьПроизводствоРозничные продажиРазработка ПОСфера услугТуризм"
+                     "ФинансыФитнес-центрыEdTechТелекоммуникацииHR и рекрутинг")
+
     settings = Settings(page)
 
     with allure.step("Create admin"):
@@ -1128,8 +1132,11 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         expect(page.locator(SELECT_INDUSTRY)).to_be_visible()
         expect(page.locator(SELECT_PARTNER)).to_be_visible()
 
+    with allure.step("Check industrys list"):
+        settings.assert_industrys_list(industys_list)
+
     with allure.step("Change industry"):
-        settings.change_industry('Ed-tech')
+        settings.change_industry('E-commerce')
 
     with allure.step("Change partner"):
         settings.change_partner('managerIM')
@@ -1144,7 +1151,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         settings.reload_page()
 
     with allure.step("Check that industry and partner changed"):
-        expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
+        expect(page.locator(SELECT_INDUSTRY)).to_have_text('E-commerce')
         expect(page.locator(SELECT_PARTNER)).to_have_text('managerIM')
 
     with allure.step("Go to employees"):
@@ -1174,6 +1181,11 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_manager_check_industry_and_partner_for_user_and_operator")
 def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page: Page) -> None:
+    industys_list = ("Не выбраноАвтомобильная индустрияB2B продажиE-commerceМедклиникаСтоматологияКолл-центрыКонсалтинг"
+                     "ЛогистикаМебельНефть и газНедвижимостьПроизводствоРозничные продажиРазработка ПОСфера услугТуризм"
+                     "ФинансыФитнес-центрыEdTechТелекоммуникацииHR и рекрутинг")
+
+
     settings = Settings(page)
 
     with allure.step("Create manager"):
@@ -1203,8 +1215,11 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         expect(page.locator(SELECT_INDUSTRY)).to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
+    with allure.step("Check industrys list"):
+        settings.assert_industrys_list(industys_list)
+
     with allure.step("Change industry"):
-        settings.change_industry('Ed-tech')
+        settings.change_industry('E-commerce')
 
     with allure.step("Press (save)"):
         settings.press_save()
@@ -1216,7 +1231,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         settings.reload_page()
 
     with allure.step("Check that industry changed and partner NOT visible"):
-        expect(page.locator(SELECT_INDUSTRY)).to_have_text('Ed-tech')
+        expect(page.locator(SELECT_INDUSTRY)).to_have_text('E-commerce')
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Go to employees"):

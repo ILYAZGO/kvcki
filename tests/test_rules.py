@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 #from utils.auth import auth
 from pages.rules import *
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager
+from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_rules
 import pytest
 import allure
 
@@ -195,30 +195,29 @@ def test_check_old_rule(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="fragmentRuleWhoSaid"]')).to_be_visible(timeout=wait_until_visible)
 
 
-@pytest.mark.independent
-@pytest.mark.rules
-@allure.title("test_search_rule")
-@allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_search_rule for Ecotelecom")
-def test_search_rule(base_url, page: Page) -> None:
-    rules = Rules(page)
-
-    with allure.step("Go to url"):
-        rules.navigate(base_url)
-
-    with allure.step("Auth with Ecotelecom"):
-        rules.auth(ECOTELECOM, ECOPASS)
-
-    with allure.step("Go to markup"):
-        rules.click_markup()
-
-    with allure.step("Search (should not depend on register)"):
-        page.wait_for_selector('[href*="/dictionaries?group"]')
-        page.locator(INPUT_SEARCH).nth(1).fill("coope")
-        #page.locator("form").get_by_role("button").click()
-
-    with allure.step("Check that found"):
-        expect(page.get_by_text("Cooper")).to_have_count(1, timeout=wait_until_visible)
+# @pytest.mark.independent
+# @pytest.mark.rules
+# @allure.title("test_search_rule")
+# @allure.severity(allure.severity_level.CRITICAL)
+# @allure.description("test_search_rule for Ecotelecom")
+# def test_search_rule(base_url, page: Page) -> None:
+#     rules = Rules(page)
+#
+#     with allure.step("Go to url"):
+#         rules.navigate(base_url)
+#
+#     with allure.step("Auth with Ecotelecom"):
+#         rules.auth(ECOTELECOM, ECOPASS)
+#
+#     with allure.step("Go to markup"):
+#         rules.click_markup()
+#
+#     with allure.step("Search (should not depend on register)"):
+#         #page.wait_for_selector('[href*="/dictionaries?group"]')
+#         page.locator(INPUT_SEARCH).nth(1).fill("coope")
+#
+#     with allure.step("Check that found"):
+#         expect(page.get_by_text("Cooper")).to_have_count(1, timeout=wait_until_visible)
 
 
 @pytest.mark.independent
@@ -853,3 +852,80 @@ def test_compare_rules_by_user(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove word"]')).to_be_visible()
         expect(page.locator('[data-testid="setTagsBlock"]').locator('[name="name"]')).to_have_value("secondrule")
         expect(page.locator('[data-testid="setTagsBlock"]').locator('[name="value"]')).to_have_value("thirdrulevalue")
+
+
+@pytest.mark.independent
+@pytest.mark.rules
+@allure.title("test_check_rules_search_and_sort")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_check_rules_search_and_sort")
+def test_check_rules_search_and_sort(base_url, page: Page) -> None:
+    rules = Rules(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        create_rules(API_URL, LOGIN, PASSWORD, USER_ID, 5)
+
+    with allure.step("Go to url"):
+        rules.navigate("http://192.168.10.101/feature-dev-3114/")
+
+    with allure.step("Auth with user"):
+        rules.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to markup"):
+        rules.click_markup()
+
+    with allure.step("Filter rules by sort"):
+        page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=20)
+
+    with allure.step("Check that button for import not visible"):
+        expect(page.get_by_text("auto_rule", exact=True)).to_be_visible()
+
+    with allure.step("Clear search"):
+        page.locator(INPUT_SEARCH).nth(1).clear()
+
+    with allure.step("Filter rules by sort"):
+        page.locator(INPUT_SEARCH).nth(1).type("sort", delay=20)
+
+    with allure.step("Check that button for import not visible"):
+        expect(page.get_by_text("auto_rule", exact=True)).not_to_be_visible()
+
+    with allure.step("Change sort"):
+        rules.change_sort("Сначала обновленные", "По алфавиту")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    with allure.step("Change sort"):
+        rules.change_sort("По алфавиту", "По алфавиту с конца")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+
+    with allure.step("Change sort"):
+        rules.change_sort("По алфавиту с конца", "Сначала новые")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+
+    with allure.step("Change sort"):
+        rules.change_sort("Сначала новые", "Сначала старые")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    with allure.step("Change sort"):
+        rules.change_sort("Сначала старые", "Сначала обновленные")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+
+    page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.uncheck()
+    page.wait_for_timeout(500)
+
+    with allure.step("Check that button for import not visible"):
+        expect(page.get_by_text("auto_rule", exact=True)).not_to_be_visible()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+

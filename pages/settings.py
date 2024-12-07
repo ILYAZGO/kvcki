@@ -173,6 +173,12 @@ class Settings(BaseClass):
         self.page.wait_for_selector(MENU)
         self.menu.get_by_text(industry, exact=True).click()
 
+    def assert_industrys_list(self, industrys_list: str):
+        self.select_industry.click()
+        self.page.wait_for_selector(MENU)
+        expect(self.menu).to_contain_text(industrys_list)
+        self.input_phone.click()
+
     def change_partner(self, partner):
         self.select_partner.click()
         self.page.wait_for_selector(MENU)

@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.dicts import *
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager
+from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_dicts
 import pytest
 import allure
 
@@ -140,7 +140,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         page.locator(BUTTON_OTMENA).click()
 
     with allure.step("Check canceled"):
-        expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
+        expect(page.locator(GROUP_ITEMS)).to_have_count(2)
 
     with allure.step("Press (Add group)"):
         page.locator(BUTTON_ADD_GROUP).click()
@@ -149,7 +149,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         page.locator(BUTTON_CROSS).click()
 
     with allure.step("Check canceled"):
-        expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
+        expect(page.locator(GROUP_ITEMS)).to_have_count(2)
     #
     with allure.step("Create group"):
         dicts.create_group("12345")
@@ -159,7 +159,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
 
     with allure.step("Rename group"):
         page.wait_for_selector(BUTTON_PENCIL)
-        page.locator(BUTTON_PENCIL).click()
+        page.locator(BUTTON_PENCIL).first.click()
         page.locator(INPUT_EDIT_GROUP_NAME).fill("54321")
         page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
 
@@ -170,13 +170,14 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).click()
+        page.locator(BUTTON_KORZINA).first.click()
 
     with allure.step("Wait and check snack bar"):
         dicts.check_alert("Группа удалена")
 
     with allure.step("Check deleted"):
         expect(page.get_by_text("54321")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("auto_dict_group")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -347,29 +348,29 @@ def test_check_old_dict(base_url, page: Page) -> None:
         expect(page.locator(INPUT_WORDS_LIST)).to_be_visible(timeout=wait_until_visible)
 
 
-@pytest.mark.independent
-@pytest.mark.dictionaries
-@allure.title("test_search_dict")
-@allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_search_dict")
-def test_search_dict(base_url, page: Page) -> None:
-    dicts = Dicts(page)
-
-    with allure.step("Go to url"):
-        dicts.navigate(base_url)
-
-    with allure.step("Auth with ECOTELECOM"):
-        dicts.auth(ECOTELECOM, ECOPASS)
-
-    with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
-
-    with allure.step("Search (should not depend on register)"):
-        page.locator(INPUT_SEARCH).nth(1).fill("seat")
-        #page.locator("form").get_by_role("button").click()
-
-    with allure.step("Check that found"):
-        expect(page.get_by_text("Seat")).to_have_count(1, timeout=wait_until_visible)
+# @pytest.mark.independent
+# @pytest.mark.dictionaries
+# @allure.title("test_search_dict")
+# @allure.severity(allure.severity_level.CRITICAL)
+# @allure.description("test_search_dict")
+# def test_search_dict(base_url, page: Page) -> None:
+#     dicts = Dicts(page)
+#
+#     with allure.step("Go to url"):
+#         dicts.navigate(base_url)
+#
+#     with allure.step("Auth with ECOTELECOM"):
+#         dicts.auth(ECOTELECOM, ECOPASS)
+#
+#     with allure.step("Go to dicts"):
+#         dicts.go_to_dicts()
+#
+#     with allure.step("Search (should not depend on register)"):
+#         page.locator(INPUT_SEARCH).nth(1).fill("seat")
+#         #page.locator("form").get_by_role("button").click()
+#
+#     with allure.step("Check that found"):
+#         expect(page.get_by_text("Seat")).to_have_count(1, timeout=wait_until_visible)
 
 
 @pytest.mark.independent
@@ -458,7 +459,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         expect(page.get_by_text("55555")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("66666")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("Неотсортированные")).to_be_visible(timeout=wait_until_visible)
-        expect(page.get_by_text("1 словарь")).to_have_count(count=2, timeout=wait_until_visible)
+        expect(page.get_by_text("1 словарь")).to_have_count(count=3, timeout=wait_until_visible)
 
     with allure.step("Click on rule"):
         page.get_by_text("55555").click()
@@ -470,7 +471,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        page.locator(BUTTON_KORZINA).nth(0).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -485,7 +486,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        page.locator(BUTTON_KORZINA).nth(1).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -566,7 +567,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         expect(page.get_by_text("55555")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("66666")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("Неотсортированные")).to_be_visible(timeout=wait_until_visible)
-        expect(page.get_by_text("1 словарь")).to_have_count(count=2, timeout=wait_until_visible)
+        expect(page.get_by_text("1 словарь")).to_have_count(count=3, timeout=wait_until_visible)
 
     with allure.step("Click on rule"):
         page.get_by_text("55555").click()
@@ -578,7 +579,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        page.locator(BUTTON_KORZINA).nth(0).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -593,7 +594,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        page.locator(BUTTON_KORZINA).nth(1).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -648,3 +649,79 @@ def test_compare_dicts_by_user(base_url, page: Page) -> None:
         expect(page.locator(NAZVANIE_SLOVARYA)).to_have_value("seconddict")
         expect(page.locator(INPUT_WORDS_LIST)).to_have_text("some text")
         expect(page.get_by_text("Словарь автозамен")).to_have_count(1)
+
+
+@pytest.mark.independent
+@pytest.mark.rules
+@allure.title("test_check_dicts_search_and_sort")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_check_dicts_search_and_sort")
+def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
+    dicts = Dicts(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        create_dicts(API_URL, LOGIN, PASSWORD, USER_ID, 5)
+
+    with allure.step("Go to url"):
+        dicts.navigate("http://192.168.10.101/feature-dev-3114/")
+
+    with allure.step("Auth with user"):
+        dicts.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to markup"):
+        dicts.go_to_dicts()
+
+    with allure.step("Filter rules by sort"):
+        page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=20)
+
+    with allure.step("Check that button for import not visible"):
+        expect(page.get_by_text("auto_dict", exact=True)).to_be_visible()
+
+    with allure.step("Clear search"):
+        page.locator(INPUT_SEARCH).nth(1).clear()
+
+    with allure.step("Filter rules by sort"):
+        page.locator(INPUT_SEARCH).nth(1).type("sort", delay=20)
+
+    with allure.step("Check that button for import not visible"):
+        expect(page.get_by_text("auto_dict", exact=True)).not_to_be_visible()
+
+    with allure.step("Change sort"):
+        dicts.change_sort("По алфавиту", "По алфавиту с конца")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+
+    with allure.step("Change sort"):
+        dicts.change_sort("По алфавиту с конца", "Сначала новые")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+
+    with allure.step("Change sort"):
+        dicts.change_sort("Сначала новые", "Сначала старые")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    with allure.step("Change sort"):
+        dicts.change_sort("Сначала старые", "Сначала обновленные")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    with allure.step("Change sort"):
+        dicts.change_sort("Сначала обновленные", "Сначала не обновленные")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.uncheck()
+    page.wait_for_timeout(500)
+
+    with allure.step("Check that button for import not visible"):
+        expect(page.get_by_text("auto_dict", exact=True)).not_to_be_visible()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)

@@ -49,6 +49,13 @@ class Dicts(BaseClass):
         self.menu.get_by_text(next_type, exact=True).click()
         self.page.wait_for_timeout(500)
 
+    def change_sort(self, current: str, change_to: str ):
+        self.page.get_by_text(current, exact=True).click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(change_to, exact=True).click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+
 '''------locators for rules---------'''
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
@@ -63,6 +70,7 @@ BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 # other
 GROUP_LIST = '[class*="styles_dpBothBox_"]'
 ACTIVE_GROUP = '[class*="styles_isActive_"]'
+GROUP_ITEMS = '[class*="styles_groupItem_"]'
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 NAZVANIE_SLOVARYA = '[name="title"]'

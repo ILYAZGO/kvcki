@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check widj">
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="check widjet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dicts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/rules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_dicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dicts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_rules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/create_delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/create_delete_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -570,7 +576,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix lyat'6" />
     <MESSAGE value="fix lyat'7" />
     <MESSAGE value="fix lyat'8" />
     <MESSAGE value="fix lyat'9" />
@@ -595,6 +600,7 @@
     <MESSAGE value="make tests great again7" />
     <MESSAGE value="make tests great again8" />
     <MESSAGE value="check widj" />
-    <option name="LAST_COMMIT_MESSAGE" value="check widj" />
+    <MESSAGE value="check widjet" />
+    <option name="LAST_COMMIT_MESSAGE" value="check widjet" />
   </component>
 </project>
