@@ -348,31 +348,6 @@ def test_check_old_dict(base_url, page: Page) -> None:
         expect(page.locator(INPUT_WORDS_LIST)).to_be_visible(timeout=wait_until_visible)
 
 
-# @pytest.mark.independent
-# @pytest.mark.dictionaries
-# @allure.title("test_search_dict")
-# @allure.severity(allure.severity_level.CRITICAL)
-# @allure.description("test_search_dict")
-# def test_search_dict(base_url, page: Page) -> None:
-#     dicts = Dicts(page)
-#
-#     with allure.step("Go to url"):
-#         dicts.navigate(base_url)
-#
-#     with allure.step("Auth with ECOTELECOM"):
-#         dicts.auth(ECOTELECOM, ECOPASS)
-#
-#     with allure.step("Go to dicts"):
-#         dicts.go_to_dicts()
-#
-#     with allure.step("Search (should not depend on register)"):
-#         page.locator(INPUT_SEARCH).nth(1).fill("seat")
-#         #page.locator("form").get_by_role("button").click()
-#
-#     with allure.step("Check that found"):
-#         expect(page.get_by_text("Seat")).to_have_count(1, timeout=wait_until_visible)
-
-
 @pytest.mark.independent
 @pytest.mark.dictionaries
 @allure.title("test_import_dict_disabled_for_user")

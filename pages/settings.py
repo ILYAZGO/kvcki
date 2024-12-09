@@ -61,6 +61,8 @@ TOTAL_AUDIO_MIN = '[class*="communicationsStyles_totalValueInMinutes_"]'
 TOTAL_AUDIO_HOURS = '[class*="communicationsStyles_totalValueInHours_"]'
 TOTAL_GPT_MONEY = '[class*="communicationsStyles_gptValuesWrapper_"]'
 TOTAL_CHATS = '[class*="communicationsStyles_chatsValuesWrapper_"]'
+CONSUMPTION_ERROR_FIRST_LINE = '[class*="styles_firstLine"]'
+CONSUMPTION_ERROR_SECOND_LINE = '[class*="styles_secondLine"]'
 
 BUTTON_TARIFFICATION = '[href*="/settings/billing"]'
 BUTTON_RATES = '[href*="/settings/billing/aboutRates"]'

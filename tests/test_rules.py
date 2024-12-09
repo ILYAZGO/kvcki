@@ -195,31 +195,6 @@ def test_check_old_rule(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="fragmentRuleWhoSaid"]')).to_be_visible(timeout=wait_until_visible)
 
 
-# @pytest.mark.independent
-# @pytest.mark.rules
-# @allure.title("test_search_rule")
-# @allure.severity(allure.severity_level.CRITICAL)
-# @allure.description("test_search_rule for Ecotelecom")
-# def test_search_rule(base_url, page: Page) -> None:
-#     rules = Rules(page)
-#
-#     with allure.step("Go to url"):
-#         rules.navigate(base_url)
-#
-#     with allure.step("Auth with Ecotelecom"):
-#         rules.auth(ECOTELECOM, ECOPASS)
-#
-#     with allure.step("Go to markup"):
-#         rules.click_markup()
-#
-#     with allure.step("Search (should not depend on register)"):
-#         #page.wait_for_selector('[href*="/dictionaries?group"]')
-#         page.locator(INPUT_SEARCH).nth(1).fill("coope")
-#
-#     with allure.step("Check that found"):
-#         expect(page.get_by_text("Cooper")).to_have_count(1, timeout=wait_until_visible)
-
-
 @pytest.mark.independent
 @pytest.mark.rules
 @allure.title("test_add_rule_inside_group_check_fragment_rule")

@@ -1678,6 +1678,13 @@ def test_user_consumption_history(base_url, page: Page) -> None:
 def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
     settings = Settings(page)
 
+    alert_massage = "Нет информации об истории потребления за выбранный период"
+
+    def handle_consumption(route: Route):
+        route.fulfill(body="[]")
+    # Intercept the route
+    page.route("**/history/calls?**", handle_consumption)
+
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
@@ -1693,11 +1700,10 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
         page.wait_for_timeout(2000)
-        page.wait_for_selector('[aria-rowindex="2"]')
+        page.wait_for_selector(CONSUMPTION_ERROR_FIRST_LINE)
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        #expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1) # warning message
-        expect(page.locator('[aria-rowindex="2"]')).to_have_count(1)
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(alert_massage)
         expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
@@ -1706,7 +1712,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
         page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1)  # warning message
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(alert_massage)
         expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по движку, модели, типу коммуникации или запросу"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
@@ -1715,7 +1721,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
         page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator('[class*="styles_firstLine"]')).to_have_count(1)  # warning message
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(alert_massage)
         expect(page.locator(SEARCH_IN_CONSUMPTION_CHATS)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
@@ -1723,7 +1729,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
-# ^^^^^^^***
+
 @pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_user_consumption_history_if_500")
@@ -1757,10 +1763,11 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
         page.wait_for_timeout(2000)
+        page.wait_for_selector(CONSUMPTION_ERROR_FIRST_LINE)
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator('[class*="styles_firstLine"]')).to_contain_text(error_first_line)
-        expect(page.locator('[class*="styles_secondLine"]')).to_contain_text(error_second_line)
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
+        expect(page.locator(CONSUMPTION_ERROR_SECOND_LINE)).to_contain_text(error_second_line)
         expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
@@ -1769,8 +1776,8 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
         page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator('[class*="styles_firstLine"]')).to_contain_text(error_first_line)
-        expect(page.locator('[class*="styles_secondLine"]')).to_contain_text(error_second_line)
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
+        expect(page.locator(CONSUMPTION_ERROR_SECOND_LINE)).to_contain_text(error_second_line)
         expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по движку, модели, типу коммуникации или запросу"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
@@ -1779,8 +1786,8 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
         page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator('[class*="styles_firstLine"]')).to_contain_text(error_first_line)
-        expect(page.locator('[class*="styles_secondLine"]')).to_contain_text(error_second_line)
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
+        expect(page.locator(CONSUMPTION_ERROR_SECOND_LINE)).to_contain_text(error_second_line)
         expect(page.locator(SEARCH_IN_CONSUMPTION_CHATS)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
