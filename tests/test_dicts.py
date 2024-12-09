@@ -664,7 +664,7 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
         create_dicts(API_URL, LOGIN, PASSWORD, USER_ID, 5)
 
     with allure.step("Go to url"):
-        dicts.navigate("http://192.168.10.101/feature-dev-3114/")
+        dicts.navigate(base_url)
 
     with allure.step("Auth with user"):
         dicts.auth(LOGIN, PASSWORD)
@@ -717,11 +717,18 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
     with allure.step("Check first rule name"):
         expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
 
-    page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.uncheck()
+    with allure.step("Change sort"):
+        dicts.change_sort("Сначала не обновленные", "По алфавиту")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.click()
     page.wait_for_timeout(500)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_dict", exact=True)).not_to_be_visible()
+        expect(page.locator('[class*="Mui-checked"]')).to_have_count(6)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

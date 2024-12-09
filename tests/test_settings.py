@@ -1723,7 +1723,71 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
+# ^^^^^^^***
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_user_consumption_history_if_500")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_user_consumption_history_if_500. check have warning if 500")
+def test_user_consumption_history_if_500(base_url, page: Page) -> None:
+    settings = Settings(page)
 
+    error_first_line = "Возникла ошибка в процессе формирования таблицы"
+    error_second_line = "Пожалуйста, перезагрузите страницу браузера или зайдите в систему заново"
+
+    def handle_consumption(route: Route):
+        route.fulfill(status=500, body="")
+    # Intercept the route
+    page.route("**/history/calls?**", handle_consumption)
+    page.route("**/history/chats?**", handle_consumption)
+    page.route("**/history/gpt?**", handle_consumption)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        settings.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        settings.auth(LOGIN_USER, PASSWORD)
+
+    with allure.step("Go to settings"):
+        settings.click_settings()
+
+    with allure.step("Go to consumption history"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY).click()
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator('[class*="styles_firstLine"]')).to_contain_text(error_first_line)
+        expect(page.locator('[class*="styles_secondLine"]')).to_contain_text(error_second_line)
+        expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+
+    with allure.step("Go to consumption history GPT"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator('[class*="styles_firstLine"]')).to_contain_text(error_first_line)
+        expect(page.locator('[class*="styles_secondLine"]')).to_contain_text(error_second_line)
+        expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по движку, модели, типу коммуникации или запросу"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+
+    with allure.step("Go to consumption history chats"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator('[class*="styles_firstLine"]')).to_contain_text(error_first_line)
+        expect(page.locator('[class*="styles_secondLine"]')).to_contain_text(error_second_line)
+        expect(page.locator(SEARCH_IN_CONSUMPTION_CHATS)).to_have_count(1)
+        expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+# ^^^^*****
 
 @pytest.mark.independent
 @pytest.mark.settings
@@ -2494,6 +2558,69 @@ def test_user_tariffication_if_empty(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
+# ^^^^^^^^^^^
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_user_tariffication_if_500")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_user_tariffication_history. check have warning if 500")
+def test_user_tariffication_if_500(base_url, page: Page) -> None:
+    settings = Settings(page)
+
+    def handle_tariff(route: Route):
+        route.fulfill(status=500, body="")
+    # Intercept the route
+    page.route("**/billing/billing_info", handle_tariff)
+    page.route("**/billing/charges", handle_tariff)
+    page.route("**/billing/payments", handle_tariff)
+
+    # fix after https://task.imot.io/browse/DEV-3130
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        settings.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        settings.auth(LOGIN_USER, PASSWORD)
+
+    with allure.step("Go to settings"):
+        settings.click_settings()
+
+    with allure.step("Go to consumption history"):
+        page.locator(BUTTON_TARIFFICATION).click()
+        page.wait_for_timeout(500)
+        page.wait_for_selector(MESSAGE_TARIFFICATION_EMPTY)
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Возникла ошибка, пожалуйста, обновите страницу")
+
+    with allure.step("Go to consumption history GPT"):
+        page.locator(BUTTON_WRITEOFFS).click()
+        page.wait_for_timeout(500)
+        page.wait_for_selector(MESSAGE_TARIFFICATION_EMPTY)
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Нет информации о списаниях")
+        #expect(page.locator('[placeholder="Поиск по тарифу или услуге"]')).to_have_count(1)
+        #expect(page.locator(SEARCH_IN_TARIFFICATION)).to_have_count(1)
+
+    with allure.step("Go to consumption history chats"):
+        page.locator(BUTTON_CHARGES).click()
+        page.wait_for_timeout(500)
+        page.wait_for_selector(MESSAGE_TARIFFICATION_EMPTY)
+
+    with allure.step("Check exist search, calendar, mocked data and total count"):
+        expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Нет информации о платежах")
+        #expect(page.locator('[placeholder="Поиск по договору и назначению платежа"]')).to_have_count(1)
+        #expect(page.locator(SEARCH_IN_TARIFFICATION)).to_have_count(1)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+# ^^^^
+
+
 @pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_user_tariffication")
@@ -2764,7 +2891,7 @@ def test_user_tariffication(base_url, page: Page) -> None:
     with allure.step("Go to settings"):
         settings.click_settings()
 
-    with allure.step("Go to consumption history"):
+    with allure.step("Go to tarriffication history"):
         page.locator(BUTTON_TARIFFICATION).click()
 
     with allure.step("Check tariff name"):

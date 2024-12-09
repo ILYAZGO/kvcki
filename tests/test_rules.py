@@ -867,7 +867,7 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         create_rules(API_URL, LOGIN, PASSWORD, USER_ID, 5)
 
     with allure.step("Go to url"):
-        rules.navigate("http://192.168.10.101/feature-dev-3114/")
+        rules.navigate(base_url)
 
     with allure.step("Auth with user"):
         rules.auth(LOGIN, PASSWORD)
@@ -920,11 +920,24 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
     with allure.step("Check first rule name"):
         expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
 
-    page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.uncheck()
+    with allure.step("Change sort"):
+        rules.change_sort("Сначала обновленные", "Сначала не обновленные")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    with allure.step("Change sort"):
+        rules.change_sort("Сначала не обновленные", "По алфавиту")
+
+    with allure.step("Check first rule name"):
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+
+    page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.click()
     page.wait_for_timeout(500)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_rule", exact=True)).not_to_be_visible()
+        expect(page.locator('[class*="Mui-checked"]')).to_have_count(6)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
