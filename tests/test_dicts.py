@@ -684,7 +684,7 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
         dicts.change_sort("Сначала старые", "Сначала обновленные")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
 
     with allure.step("Change sort"):
         dicts.change_sort("Сначала обновленные", "Сначала не обновленные")
