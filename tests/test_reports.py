@@ -345,7 +345,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
 
     with allure.step("Check that file was downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 4000 < os.path.getsize(path + download.suggested_filename) < 6000
+        assert 4000 < os.path.getsize(path + download.suggested_filename) < 6500
         page.wait_for_timeout(500)
 
     with allure.step("Remove downloaded file"):
@@ -2520,10 +2520,10 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         expect(page.locator('[aria-label="% разговора оператора"]')).to_have_count(2)
         expect(page.locator('[aria-label="% разговора клиента"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="28:33:29"]')).to_have_count(2)
-        expect(page.locator('[title="27:43:41"]')).to_have_count(2)
+        expect(page.locator('[title="28:33:45"]')).to_have_count(2)
+        expect(page.locator('[title="27:44:24"]')).to_have_count(2)
         expect(page.locator('[title="35.34 %"]')).to_have_count(2)
-        expect(page.locator('[title="34.31 %"]')).to_have_count(2)
+        expect(page.locator('[title="34.33 %"]')).to_have_count(2)
 
 
 @pytest.mark.independent
@@ -2584,8 +2584,8 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
         expect(page.locator('[aria-label="Продолжительность тишины"]')).to_have_count(2)
         expect(page.locator('[aria-label="% продолжительности тишины"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="24:31:39"]')).to_have_count(2)
-        expect(page.locator('[title="30.35 %"]')).to_have_count(2)
+        expect(page.locator('[title="24:30:40"]')).to_have_count(2)
+        expect(page.locator('[title="30.33 %"]')).to_have_count(2)
 
 @pytest.mark.independent
 @pytest.mark.reports

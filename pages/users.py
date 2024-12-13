@@ -100,7 +100,7 @@ BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 SELECT_ROLE = '[data-testid="selectRole"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_PARTNER = '[data-testid="selectPartner"]'
-SELECT_MENU = '[class*="-menu"]'
+#SELECT_MENU = '[class*="-menu"]'
 
 FIRST_PAGE_PAGINATION = '[aria-label="1"]'
 FIRST_ROW_IN_USERS_LIST = '[aria-rowindex="2"]'
@@ -115,34 +115,34 @@ def press_button_add_employee(page="page: Page"):
 
 def set_industry(industry, page="page: Page"):
     page.locator(SELECT_INDUSTRY).locator("svg").click()
-    page.wait_for_selector(SELECT_MENU)
+    page.wait_for_selector(MENU)
     page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
     page.wait_for_timeout(500)
 
 
 def set_industry_and_partner(industry, partner, page="page: Page"):
     page.locator(SELECT_INDUSTRY).locator("svg").click()
-    page.wait_for_selector(SELECT_MENU)
+    page.wait_for_selector(MENU)
     page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
     page.wait_for_timeout(500)
     page.locator(SELECT_PARTNER).locator("svg").click()
-    page.wait_for_selector(SELECT_MENU)
+    page.wait_for_selector(MENU)
     page.locator(SELECT_PARTNER).get_by_text(partner, exact=True).click()
 
 
 def set_stt(language, engine, model, page="page: Page"):
     page.locator(SELECT_LANGUAGE).click()
-    page.wait_for_selector(SELECT_MENU)
+    page.wait_for_selector(MENU)
     page.get_by_text(language, exact=True).click()
     page.wait_for_timeout(1000)
 
     page.locator(SELECT_ENGINE).click()
-    page.wait_for_selector(SELECT_MENU)
+    page.wait_for_selector(MENU)
     page.get_by_text(engine, exact=True).click()
     page.wait_for_timeout(1000)
 
     page.locator(SELECT_MODEL).click()
-    page.wait_for_selector(SELECT_MENU)
+    page.wait_for_selector(MENU)
     page.get_by_text(model, exact=True).click()
     page.wait_for_timeout(1000)
 

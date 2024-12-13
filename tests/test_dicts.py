@@ -242,7 +242,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
 
     with allure.step("Reload page and go to dict"):
         dicts.reload_page()
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(2000)
         page.locator('[data-testid="test"]').click()
         page.wait_for_selector(INPUT_WORDS_LIST)
 

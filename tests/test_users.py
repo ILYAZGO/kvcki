@@ -499,10 +499,10 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
 
     with allure.step("Click to language"):
         page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
-        page.wait_for_selector(SELECT_MENU)
+        page.wait_for_selector(MENU)
 
     with allure.step("Check language list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text(expected_languages)
+        expect(page.locator(MENU)).to_contain_text(expected_languages)
 
     with allure.step("Choose russian language"):
         users.choose_option(7)
@@ -511,7 +511,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Check engine list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text(expected_engines)
+        expect(page.locator(MENU)).to_contain_text(expected_engines)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -523,7 +523,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Обобщённаяwhisper")
+        expect(page.locator(MENU)).to_contain_text("Обобщённаяwhisper")
 
     with allure.step("Select model Обобщённая"):
         users.choose_option(0)
@@ -553,7 +553,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         users.choose_option(0)
@@ -577,7 +577,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("ОбобщённаяЖадный")
+        expect(page.locator(MENU)).to_contain_text("ОбобщённаяЖадный")
 
     with allure.step("Select model Обобщённая"):
         users.choose_option(0)
@@ -607,7 +607,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         users.choose_option(0)
@@ -631,7 +631,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Стандарт")
+        expect(page.locator(MENU)).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         users.choose_option(0)
@@ -656,7 +656,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         users.choose_option(0)
@@ -686,7 +686,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(SELECT_MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         users.choose_option(0)

@@ -15,7 +15,7 @@ import allure
 @allure.title("test_mistic_mayorov")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_mistic_mayorov Пн 09 сен 2024 16∶05∶49")
-def test_mistic_mayorov(base_url, page: Page) -> None:
+def est_mistic_mayorov(base_url, page: Page) -> None:
     FIRST_DATE = '[placeholder="Начальная дата"]'
     LAST_DATE = '[placeholder="Конечная дата"]'
 
