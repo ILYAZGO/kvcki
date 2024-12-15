@@ -44,7 +44,7 @@ def get_token(url: str, login: str, password: str):
 actions = ["analyze", "apply_gpt", "swap_channels", "get_api_tags", "apply_notify_rules", "apply_addressbook_tags", "delete"]
 
 
-@pytest.mark.independent
+#@pytest.mark.independent
 @pytest.mark.api
 @allure.title("test_tasks")
 @allure.severity(allure.severity_level.NORMAL)
@@ -58,7 +58,7 @@ def test_tasks(task_type):
     with allure.step("Get token for user"):
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
-    with allure.step("Give all right for user"):
+    with allure.step("Give all rights for user"):
         headers_for_rights = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ def test_tasks(task_type):
         get_progress_tasks = requests.get(url=API_URL + "/progress_tasks", headers=headers)
         json_get_progress_tasks = get_progress_tasks.json()
 
-    with allure.step("Check"):
+    with allure.step("Check status code == 200 and response"):
         assert get_progress_tasks.status_code == 200
         assert json_get_progress_tasks[0]["task_id"] == task_id  # check task_id
         assert json_get_progress_tasks[0]["owner"] == USER_ID  # check task belongs to created user
@@ -124,7 +124,7 @@ def test_tasks(task_type):
         get_task_status = requests.get(url=API_URL + f"/task/{task_id}/status", headers=headers)
         json_get_task_status = get_task_status.json()
 
-    with allure.step("Check"):
+    with allure.step("Check status code == 200 and response"):
         assert get_task_status.status_code == 200
         assert json_get_task_status["task_id"] == task_id  # check task_id
         assert json_get_task_status["owner"] == USER_ID  # check task belongs to created user
@@ -141,10 +141,10 @@ def test_tasks(task_type):
     with allure.step("Delete task"):
         delete_task = requests.delete(url=API_URL + f"/task/{task_id}", headers=headers)
 
-    with allure.step("Check that task deleted"):
+    with allure.step("Check that status code == 204"):
         assert delete_task.status_code == 204
 
-    with allure.step("Check that tasks empty"):
+    with allure.step("Get tasks and check status code == 200 and []"):
         get_progress_tasks = requests.get(url=API_URL + "/progress_tasks", headers=headers)
 
         assert  get_progress_tasks.status_code == 200
