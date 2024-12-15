@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="fix tests3">
+      <change afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,26 +60,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python tests.pytest for test_usedesk.test_example.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_pass.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dates.executor&quot;: &quot;Run&quot;,
-    &quot;Python.erer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.send_file.executor&quot;: &quot;Run&quot;,
-    &quot;Python.send_files2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_pass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/imustafin/PycharmProjects/e2e-tests/pages&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python tests.pytest for test_usedesk.test_example.executor": "Run",
+    "Python tests.pytest in api_test.py.executor": "Run",
+    "Python tests.pytest in test_api.py.executor": "Run",
+    "Python tests.pytest in test_pass.py.executor": "Run",
+    "Python.Unnamed.executor": "Run",
+    "Python.api_test.executor": "Run",
+    "Python.dates.executor": "Run",
+    "Python.erer.executor": "Run",
+    "Python.send_file.executor": "Run",
+    "Python.send_files2.executor": "Run",
+    "Python.test_pass.executor": "Run",
+    "Python.variables.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/imustafin/PycharmProjects/e2e-tests/pages",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages" />
@@ -91,7 +99,7 @@
       <recent name="$PROJECT_DIR$/login" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_pass">
+  <component name="RunManager">
     <configuration name="test_pass" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="e2e-tests" />
       <option name="ENV_FILES" value="" />
@@ -569,7 +577,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix lyat'12" />
     <MESSAGE value="fix lyat'13" />
     <MESSAGE value="test before release" />
     <MESSAGE value="test before release2" />
@@ -594,6 +601,7 @@
     <MESSAGE value="cleaning" />
     <MESSAGE value="fix tests" />
     <MESSAGE value="fix tests2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests2" />
+    <MESSAGE value="fix tests3" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix tests3" />
   </component>
 </project>

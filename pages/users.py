@@ -97,7 +97,7 @@ CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 
-SELECT_ROLE = '[data-testid="selectRole"]'
+
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_PARTNER = '[data-testid="selectPartner"]'
 #SELECT_MENU = '[class*="-menu"]'

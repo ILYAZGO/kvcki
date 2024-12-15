@@ -1185,7 +1185,6 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
                      "ЛогистикаМебельНефть и газНедвижимостьПроизводствоРозничные продажиРазработка ПОСфера услугТуризм"
                      "ФинансыФитнес-центрыEdTechТелекоммуникацииHR и рекрутинг")
 
-
     settings = Settings(page)
 
     with allure.step("Create manager"):
@@ -1667,7 +1666,6 @@ def test_user_consumption_history(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-
 
 
 @pytest.mark.independent
@@ -2433,7 +2431,6 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator('[type="checkbox"]')).to_have_count(8)
 
 #  check save combinations
-
     with allure.step("Choose dates"):
         settings.choose_period_date(today, today)
 
@@ -2969,6 +2966,63 @@ def test_user_tariffication(base_url, page: Page) -> None:
     #
     # with allure.step("Check search that chat_gpt not visible"):
     #     expect(page.locator('[class*="communicationsStyles_table_"]')).not_to_contain_text("chat2")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_change_role_for_user_by_admin")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_change_role_for_user_by_admin")
+def test_change_role_for_user_by_admin(base_url, page: Page) -> None:
+    settings = Settings(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        settings.navigate(base_url)
+
+    with allure.step("Auth with admin"):
+        settings.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Go to user"):
+        settings.go_to_user(LOGIN_USER)
+
+    with allure.step("Go to settings"):
+        settings.click_settings()
+
+    with allure.step("Change role for manager"):
+        settings.change_role("Интегратор")
+
+    with allure.step("Press save"):
+        settings.press_save()
+
+    with allure.step("Reload page"):
+        settings.reload_page()
+
+    with allure.step("Check that role changed"):
+        expect(page.locator(SELECT_ROLE)).to_contain_text("Интегратор")
+
+    # with allure.step("Change role for manager"):
+    #     settings.change_role("Администратор")
+    #
+    # with allure.step("Press save"):
+    #     settings.press_save()
+    #
+    # with allure.step("Reload page"):
+    #     settings.reload_page()
+    #
+    # with allure.step("Check that role changed"):
+    #     expect(page.locator(SELECT_ROLE)).to_contain_text("Администратор")
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)

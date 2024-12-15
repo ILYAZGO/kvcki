@@ -99,6 +99,7 @@ class Settings(BaseClass):
         self.input_timezone = page.locator(SELECT_TIMEZONE).locator('[type="text"]')
         self.select_industry = page.locator(SELECT_INDUSTRY)
         self.select_partner = page.locator(SELECT_PARTNER)
+        self.select_role = page.locator(SELECT_ROLE).locator('[type="text"]')
 
 
     def click_address_book(self):
@@ -244,6 +245,11 @@ class Settings(BaseClass):
     def type_yandex_gpt_quota_value(self, value: str):
         self.input_yandex_gpt_quota_value.clear()
         self.input_yandex_gpt_quota_value.type(value, delay=30)
+
+    def change_role(self, role: str):
+        self.select_role.click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(role).click()
 
 
 def all_checkboxes_to_be_checked(page="page: Page"):

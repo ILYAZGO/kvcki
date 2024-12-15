@@ -24,6 +24,7 @@ INPUT_PASSWORD = '[name="password"]'
 INPUT_EMAIL = '[name="email"]'
 INPUT_PHONE = '[name="phoneNumber"]'
 INPUT_COMMENT = '[name="comment"]'
+SELECT_ROLE = '[data-testid="selectRole"]'
 
 class BaseClass:
     def __init__(self, page: Page):
