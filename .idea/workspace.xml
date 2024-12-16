@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add task tests">
-      <change afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add task tests2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/base_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -580,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="test before release" />
     <MESSAGE value="test before release2" />
     <MESSAGE value="test before release3" />
     <MESSAGE value="check" />
@@ -605,6 +597,7 @@
     <MESSAGE value="fix tests2" />
     <MESSAGE value="fix tests3" />
     <MESSAGE value="add task tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add task tests" />
+    <MESSAGE value="add task tests2" />
+    <option name="LAST_COMMIT_MESSAGE" value="add task tests2" />
   </component>
 </project>

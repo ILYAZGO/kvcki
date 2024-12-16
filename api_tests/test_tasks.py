@@ -1,4 +1,4 @@
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
+from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from utils.dates import *
 import requests
@@ -6,7 +6,6 @@ import pytest
 import allure
 import time
 from datetime import datetime
-from pydantic import BaseModel, Field
 from uuid import UUID
 
 
@@ -14,9 +13,6 @@ current_date = datetime.now()
 
 today = current_date.strftime("%Y-%m-%d")
 today_with_dots = current_date.strftime("%d.%m.%Y")
-
-# class CreateTask(BaseModel):
-#     task_id: UUID
 
 
 def get_token(url: str, login: str, password: str):
@@ -41,14 +37,14 @@ def get_token(url: str, login: str, password: str):
 
 
 
-actions = ["analyze", "apply_gpt", "swap_channels", "get_api_tags", "apply_notify_rules", "apply_addressbook_tags", "delete"]
+actions = ["analyze", "apply_gpt", "stt", "swap_channels", "get_api_tags", "apply_notify_rules", "apply_addressbook_tags", "delete"]
 
 
 #@pytest.mark.independent
 @pytest.mark.api
 @allure.title("test_tasks")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_tasks. parametrize")
+@allure.description("test_tasks. settings, actions with communications. parametrize")
 @pytest.mark.parametrize("task_type", actions)
 def test_tasks(task_type):
 
@@ -89,8 +85,26 @@ def test_tasks(task_type):
             "action": task_type,
         }
 
+        data_for_stt = {
+            "start_date": today,
+            "end_date": today,
+            "action":task_type,
+            "sttOptions":{
+                "sttEngine":"vosk",
+                "sttEconomize": True,
+                "sttOptionsMap":{
+                    "language":"ru-RU",
+                    "model":"default",
+                    "merge_all_to_one_audio": True,
+                    "count_per_iteration":1,
+                    "diarization": False}
+            }
+        }
 
-        create_task = requests.post(url=API_URL + "/calls/action", headers=headers, json=data)
+        if task_type == "stt":
+            create_task = requests.post(url=API_URL + "/calls/action", headers=headers, json=data_for_stt)
+        else:
+            create_task = requests.post(url=API_URL + "/calls/action", headers=headers, json=data)
 
         task_id = create_task.json()["task_id"]
 
@@ -149,4 +163,7 @@ def test_tasks(task_type):
 
         assert  get_progress_tasks.status_code == 200
         assert get_progress_tasks.json() == []
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
