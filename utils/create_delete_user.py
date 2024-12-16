@@ -69,7 +69,7 @@ def create_user(URL, ROLE, PASSWORD):
             "time_nominal": 46620
         }
 
-        give_quota = requests.post(url=URL + "/user/" + user_id + "/quota", headers=headers_for_create, json=quota)
+        give_quota = requests.post(url=URL + f"/user/{user_id}/quota", headers=headers_for_create, json=quota)
 
         if give_quota.status_code == 200:
             logger.opt(depth=1).info(f"\n>>>>> USER {NAME} WITH user_id: {user_id} IS GIVEN A QUOTA OF 777 MINUTES <<<<<")
@@ -447,7 +447,7 @@ def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, token):
     importFrom_id = '64b923905f95f6305573e619'
     json_with_id = [USER_ID_USER, importFrom_id]
 
-    give_user = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/user_limitation", headers=headers_for_giving, json=json_with_id)
+    give_user = requests.put(url=URL + f"/user/{USER_ID_MANAGER}/user_limitation", headers=headers_for_giving, json=json_with_id)
 
 
     if give_user.status_code == 204:
@@ -465,7 +465,7 @@ def give_manager_all_rights(URL, USER_ID_MANAGER, token ):
     json_with_rights = {'restt': 'true','delete_user': 'true', 'add_user': 'true','set_default_engine': 'true',
             'quota_edit': 'true', 'gpt_quota': 'true','user_modules_setup': 'true'}
 
-    give_rights = requests.put(url=URL + "/user/" + USER_ID_MANAGER + "/access_rights", headers=headers, json=json_with_rights)
+    give_rights = requests.put(url=URL + f"/user/{USER_ID_MANAGER}/access_rights", headers=headers, json=json_with_rights)
 
     if give_rights.status_code == 204:
         logger.opt(depth=1).info(f"\n>>>>> MANAGER {USER_ID_MANAGER} NOW HAVE ALL RIGHTS <<<<<")

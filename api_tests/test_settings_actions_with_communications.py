@@ -1,6 +1,7 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from utils.dates import *
+from api_tests.common import get_token
 import requests
 import pytest
 import allure
@@ -14,39 +15,15 @@ current_date = datetime.now()
 today = current_date.strftime("%Y-%m-%d")
 today_with_dots = current_date.strftime("%d.%m.%Y")
 
-
-def get_token(url: str, login: str, password: str):
-
-    headers_for_get_token = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }
-
-    data_for_user = {
-        'username': login,
-        'password': password,
-        'scope': '',
-        'client_id': '',
-        'client_secret': '',
-    }
-    get_token_for_user = requests.post(url=url + "/token", headers=headers_for_get_token, data=data_for_user).json()
-
-    token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
-
-    return token_for_user
-
-
-
 actions = ["analyze", "apply_gpt", "stt", "swap_channels", "get_api_tags", "apply_notify_rules", "apply_addressbook_tags", "delete"]
-
 
 #@pytest.mark.independent
 @pytest.mark.api
-@allure.title("test_tasks")
+@allure.title("test_settings_actions_with_communcations")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_tasks. settings, actions with communications. parametrize")
+@allure.description("test_settings_actions_with_communcations. settings, actions with communications. parametrize")
 @pytest.mark.parametrize("task_type", actions)
-def test_tasks(task_type):
+def test_settings_actions_with_communcations(task_type):
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
