@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add task tests3">
-      <change afterPath="$PROJECT_DIR$/api_tests/__init__.py" afterDir="false" />
+    <list default="true" id="6aa117ec-242e-470e-b174-8e2739f1eb01" name="Changes" comment="add gpt options tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_tests/test_tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,11 +88,11 @@
       <recent name="$PROJECT_DIR$/dictionaries_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api_tests" />
       <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/left_menu_tests" />
       <recent name="$PROJECT_DIR$/login_test" />
       <recent name="$PROJECT_DIR$/utils" />
-      <recent name="$PROJECT_DIR$/login" />
     </key>
   </component>
   <component name="RunManager">
@@ -574,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="test before release3" />
     <MESSAGE value="check" />
     <MESSAGE value="tariffication disable" />
     <MESSAGE value="tariffication enable" />
@@ -599,6 +597,7 @@
     <MESSAGE value="add task tests" />
     <MESSAGE value="add task tests2" />
     <MESSAGE value="add task tests3" />
-    <option name="LAST_COMMIT_MESSAGE" value="add task tests3" />
+    <MESSAGE value="add gpt options tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add gpt options tests" />
   </component>
 </project>

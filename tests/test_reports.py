@@ -2716,4 +2716,38 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
 
 
 
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_diff")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_diff")
+def test_reports_diff(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Go to url"):
+        reports.navigate(base_url)
+
+    with allure.step("Auth with ecotelecom"):
+        reports.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Press (Create report)"):
+        reports.press_create_report()
+
+    with allure.step("Choose period 10/02/2022-10/02/2022"):
+        reports.choose_period_date("10/02/2022", "10/02/2022")
+
+    with allure.step("Generate report"):
+        reports.press_generate_report()
+
+    with allure.step("Click diff report"):
+        page.get_by_text("Настройка таблицы").click()
+        page.wait_for_selector('[class="shown"]')
+        page.locator('[data-testid="show_diff_report"]').locator('[type="checkbox"]').click()
+
+    with allure.step("Check"):
+        expect(page.locator('[title="419 (-1673)"]')).to_have_count(3)
+
 
