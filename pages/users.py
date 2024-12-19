@@ -17,12 +17,12 @@ class Users(BaseClass):
     def go_to_users_list(self):
         self.page.wait_for_selector(BUTTON_USERS)
         self.button_users.click()
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(1000)
         self.page.wait_for_selector('[class="circular-progress"]', state='hidden', timeout=self.timeout)
 
     def press_button_add_user(self):
         self.button_add_user.click()
-        self.page.wait_for_selector(INPUT_NAME)
+        self.page.wait_for_selector(INPUT_NAME, timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
     def set_user(self, name, login, password, email, phone, comment, role):

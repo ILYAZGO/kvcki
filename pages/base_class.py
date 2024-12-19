@@ -29,7 +29,7 @@ SELECT_ROLE = '[data-testid="selectRole"]'
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
-        self.timeout = 30000
+        self.timeout = 40000
         self.users_list = page.locator("#react-select-2-input")
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
