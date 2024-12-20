@@ -1,4 +1,3 @@
-from utils.variables import wait_until_visible
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 

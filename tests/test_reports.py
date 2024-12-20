@@ -1281,7 +1281,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
 
     # 0
     with allure.step("Fill 0 column fith filter"):
-        fill_column_by_filter("0", "zero", "test tag", "test q", page)
+        fill_column_by_filter("0", "zero", "Адрес подключения", "девятнадцать", page)
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
@@ -1312,9 +1312,9 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
         expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
         expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("5")
-        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("8")
-        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6")
-        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("19")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("8") #8
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6") #6
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("19") #19
 
     with allure.step("Expand reports parameters"):
         reports.expand_report()
@@ -1334,7 +1334,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_3_searchInput"]').locator('[type="text"]')).to_have_value("third")
 
         # check tags
-        expect(page.locator('[data-testid="report_columns"]').get_by_text("test q")).to_be_visible()
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("Выбрать все")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Монтажник Восток")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Бухгалтер")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Customer")).to_be_visible()

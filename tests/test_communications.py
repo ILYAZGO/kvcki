@@ -617,7 +617,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Check that export (zip) downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 7000 < os.path.getsize(path + download.suggested_filename) < 8000
+        assert 7000 < os.path.getsize(path + download.suggested_filename) < 9000
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)

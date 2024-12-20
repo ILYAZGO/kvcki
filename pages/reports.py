@@ -200,7 +200,7 @@ def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Pag
     page.wait_for_timeout(500)
     page.locator(MENU).get_by_text(tagName, exact=True).click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
-    page.locator('[data-testid="report_columns"]').get_by_text("Все").click()
+    page.locator('[data-testid="report_columns"]').get_by_text("Все", exact=True).click()
     page.locator(MENU).get_by_text(tagValue, exact=True).click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
