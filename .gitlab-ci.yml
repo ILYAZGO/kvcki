@@ -26,7 +26,7 @@ tests:
     - echo $URL_FOR_TEST
     - echo "Execute tests"
 #    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
-    - pytest -m api -n 12 --reruns=${RERUNS_NUMBER}
+    - pytest -m api -n 16 --reruns=${RERUNS_NUMBER}
     - pytest -m independent -n 28 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
