@@ -374,7 +374,6 @@ def create_user(URL, ROLE, PASSWORD):
 
         time.sleep(23)
 
-
     return user_id, token, LOGIN
 
 
