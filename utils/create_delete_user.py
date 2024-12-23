@@ -76,7 +76,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\n>>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
-        # get token for user and create group with rule/dict for user
+        # get token for user
         ##get token
         data_for_user = {
             'username': NAME,
@@ -94,75 +94,6 @@ def create_user(URL, ROLE, PASSWORD):
             'Content-Type': 'application/json',
             'Authorization': token_for_user,
         }
-        ##create groups
-        rule_group = {
-            "title": "auto_rule_group",
-            "enabled": True
-        }
-        dict_group = {
-            "title": "auto_dict_group",
-            "enabled": True
-        }
-        add_rule_group = requests.post(url=URL + "/tag_rule_group/", headers=headers_for_user, json=rule_group)
-        add_dict_group = requests.post(url=URL + "/dict_group/", headers=headers_for_user, json=dict_group)
-
-        rule_group_id = add_rule_group.text.replace('"', '')
-        dict_group_id = add_dict_group.text.replace('"', '')
-
-        if add_rule_group.status_code == 201:
-            logger.opt(depth=1).info(f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE GROUP {rule_group_id} <<<<<")
-        else:
-            logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE GROUP {add_rule_group.status_code} <<<<<")
-
-        if add_dict_group.status_code == 201:
-            logger.opt(depth=1).info(
-                f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED DICT GROUP {dict_group_id} <<<<<")
-        else:
-            logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING DICT GROUP {add_dict_group.status_code} <<<<<")
-        #create rule and dict in groups
-        rule = {
-            "owner": user_id,
-            "title": "auto_rule",
-            "group": rule_group_id,
-            "enabled": True,
-            "calculatedRulePriority": 0,
-            "globalFilter": [],
-            "fragmentRules": [{"phrasesAndDicts": [], "phrases": [], "dicts": [],
-                              "direction": "", "fromStart": False, "silentBefore": "",
-                              "silentAfter": "", "interruptTime": "", "talkBefore": "",
-                               "talkAfter": "", "onlyFirstMatch": False, "fragmentsBefore": "",
-                               "fragmentsAfter": "", "distancePrevRuleTime": "", "distancePrevRuleFragmentCount": "",
-                               "orPhrasesAndDicts": [], "orPhrases": [], "orDicts": [], "orDirection": ""}],
-            "setTags": [{"name": "auto_rule", "value": "", "visible": False}],
-            "allowedActions": [],
-            "timeTagRules": []}
-
-        add_rule = requests.post(url=URL + "/tag_rule/", headers=headers_for_user, json=rule)
-
-        rule_id = add_rule.text.replace('"', '')
-
-        if add_rule.status_code == 201:
-            logger.opt(depth=1).info(f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE {rule_id} INSIDE GROUP {rule_group_id} <<<<<")
-        else:
-            logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} <<<<<")
-
-        dict = {"title": "auto_dict",
-                "owner": user_id,
-                "enabled": True,
-                "group": dict_group_id,
-                "usedRules": [],
-                "allowedUsers": [],
-                "phrases": ["auto_dict"]}
-
-        add_dict = requests.post(url=URL + "/dict/", headers=headers_for_user, json=dict)
-        dict_id = add_dict.text.replace('"', '')
-
-        if add_dict.status_code == 201:
-            logger.opt(depth=1).info(
-                f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED auto_dict {dict_id} INSIDE GROUP {dict_group_id} <<<<<")
-        else:
-            logger.opt(depth=1).info(
-                f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT auto_dict<<<<<")
 
         # upload call
         client_audio_path = os.path.join('audio', 'count-in.opus')
@@ -260,6 +191,76 @@ def create_user(URL, ROLE, PASSWORD):
             logger.opt(depth=1).info(f"\n>>>>> AUDIO id:{upload.text} uploaded  {URL}/call/ <<<<<")
         else:
             logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {upload.status_code} text {upload.text} <<<<<")
+
+        ##create groups
+        rule_group = {
+            "title": "auto_rule_group",
+            "enabled": True
+        }
+        dict_group = {
+            "title": "auto_dict_group",
+            "enabled": True
+        }
+        add_rule_group = requests.post(url=URL + "/tag_rule_group/", headers=headers_for_user, json=rule_group)
+        add_dict_group = requests.post(url=URL + "/dict_group/", headers=headers_for_user, json=dict_group)
+
+        rule_group_id = add_rule_group.text.replace('"', '')
+        dict_group_id = add_dict_group.text.replace('"', '')
+
+        if add_rule_group.status_code == 201:
+            logger.opt(depth=1).info(f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE GROUP {rule_group_id} <<<<<")
+        else:
+            logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE GROUP {add_rule_group.status_code} <<<<<")
+
+        if add_dict_group.status_code == 201:
+            logger.opt(depth=1).info(
+                f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED DICT GROUP {dict_group_id} <<<<<")
+        else:
+            logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING DICT GROUP {add_dict_group.status_code} <<<<<")
+        #create rule and dict in groups
+        rule = {
+            "owner": user_id,
+            "title": "auto_rule",
+            "group": rule_group_id,
+            "enabled": True,
+            "calculatedRulePriority": 0,
+            "globalFilter": [],
+            "fragmentRules": [{"phrasesAndDicts": [], "phrases": [], "dicts": [],
+                              "direction": "", "fromStart": False, "silentBefore": "",
+                              "silentAfter": "", "interruptTime": "", "talkBefore": "",
+                               "talkAfter": "", "onlyFirstMatch": False, "fragmentsBefore": "",
+                               "fragmentsAfter": "", "distancePrevRuleTime": "", "distancePrevRuleFragmentCount": "",
+                               "orPhrasesAndDicts": [], "orPhrases": [], "orDicts": [], "orDirection": ""}],
+            "setTags": [{"name": "auto_rule", "value": "", "visible": False}],
+            "allowedActions": [],
+            "timeTagRules": []}
+
+        add_rule = requests.post(url=URL + "/tag_rule/", headers=headers_for_user, json=rule)
+
+        rule_id = add_rule.text.replace('"', '')
+
+        if add_rule.status_code == 201:
+            logger.opt(depth=1).info(f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED RULE {rule_id} INSIDE GROUP {rule_group_id} <<<<<")
+        else:
+            logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} <<<<<")
+
+        dict = {"title": "auto_dict",
+                "owner": user_id,
+                "enabled": True,
+                "group": dict_group_id,
+                "usedRules": [],
+                "allowedUsers": [],
+                "phrases": ["auto_dict"]}
+
+        add_dict = requests.post(url=URL + "/dict/", headers=headers_for_user, json=dict)
+        dict_id = add_dict.text.replace('"', '')
+
+        if add_dict.status_code == 201:
+            logger.opt(depth=1).info(
+                f"\n>>>>> FOR USER {NAME} WITH user_id: {user_id} CREATED auto_dict {dict_id} INSIDE GROUP {dict_group_id} <<<<<")
+        else:
+            logger.opt(depth=1).info(
+                f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT auto_dict<<<<<")
 
         # create report for user
 
@@ -371,7 +372,7 @@ def create_user(URL, ROLE, PASSWORD):
         else:
             logger.opt(depth=1).info(f"\nreport {report_name}_{report_id} creation failed with {create_report.status_code}")
 
-        time.sleep(26)
+        time.sleep(23)
 
 
     return user_id, token, LOGIN
