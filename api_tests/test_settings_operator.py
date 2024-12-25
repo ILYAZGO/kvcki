@@ -12,7 +12,7 @@ from datetime import datetime
 @allure.title("test_create_update_delete_employee_positive")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_create_update_delete_employee_positive")
-def test_create_update_delete_employee_positive():
+def test_create_update_delete_operator_positive():
     NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     CHANGED_OPERATOR_LOGIN = f"auto_test_operator_changed{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
@@ -154,12 +154,11 @@ def test_create_update_delete_employee_positive():
 
 
 @pytest.mark.api
-@allure.title("test_create_update_delete_employee_positive")
+@allure.title("test_give_take_report_to_operator")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_create_update_delete_employee_positive")
-def est_create_employee_negotive():
+@allure.description("test_give_take_report_to_operator")
+def test_give_take_report_to_operator():
     NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
-    CHANGED_OPERATOR_LOGIN = f"auto_test_operator_changed{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -176,10 +175,10 @@ def est_create_employee_negotive():
 
         json = {
             "role":"operator",
-            "login":"",
-            "name":"",
+            "login":NEW_OPERATOR_LOGIN,
+            "name":NEW_OPERATOR_LOGIN,
             "email":"",
-            "password":"",
+            "password":PASSWORD,
             "comment":"",
             "parentUser":USER_ID,
             "phoneNumber":""
@@ -187,11 +186,51 @@ def est_create_employee_negotive():
 
         create_operator = requests.post(url=API_URL + "/user", headers=headers, json=json)
         operator_id = create_operator.text.replace('"', '')
-        print(operator_id)
 
     with allure.step("Check status code == 200 and we get operator_id in response"):
         assert create_operator.status_code == 200
         assert len(operator_id) == 24 # check len of created operator id with "
+
+    with allure.step("Get all reports that we can give to operator"):
+        get_all_reports = requests.get(url=API_URL + f"/user/{operator_id}/all_reports", headers=headers)
+        report_id = get_all_reports.json()[0]["id"]
+
+    with allure.step("Check status code == 200 and report_id, name and other params is null"):
+        assert get_all_reports.status_code == 200
+        assert len(report_id) == 24
+        assert "auto_test_report" in get_all_reports.json()[0]["name"]
+        assert get_all_reports.json()[0]["period"] is None
+        assert get_all_reports.json()[0]["from_dt"] is None
+        assert get_all_reports.json()[0]["to_dt"] is None
+        assert get_all_reports.json()[0]["notification_status"] is None
+
+    with allure.step("Get operators reports"):
+        get_report_limitation = requests.get(url=API_URL + f"/user/{operator_id}/report_limitation", headers=headers)
+
+    with allure.step("Check status code == 200 and no given reports"):
+        assert get_all_reports.status_code == 200
+        assert get_report_limitation.text == "[]"
+
+    with allure.step("Give report to operator"):
+        give_report_to_operator = requests.put(url=API_URL + f"/user/{operator_id}/report_limitation", headers=headers, data=f'["{report_id}"]')
+
+    with allure.step("Check status code == 204 and no text"):
+        assert give_report_to_operator.status_code == 204
+        assert give_report_to_operator.text == ""
+
+    with allure.step("Get list of given reports"):
+        get_report_limitation = requests.get(url=API_URL + f"/user/{operator_id}/report_limitation", headers=headers)
+
+    with allure.step("Check status code == 200 and response have report_id"):
+        assert get_all_reports.status_code == 200
+        assert report_id in get_report_limitation.text
+
+    with allure.step("Take report from operator"):
+        take_report_from_operator = requests.put(url=API_URL + f"/user/{operator_id}/report_limitation", headers=headers, data="[]")
+
+    with allure.step("Check status code == 204 and no text"):
+        assert take_report_from_operator.status_code == 204
+        assert take_report_from_operator.text == ""
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
