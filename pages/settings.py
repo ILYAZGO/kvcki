@@ -74,8 +74,8 @@ TOTAL_IN_TABLE = '[class*="style_valuesWrapper_"]'
 
 BUTTON_GPT_QUOTAS = '[href*="quotas/gpt-quotas"]'
 BLOCK_GPT_QUOTAS = '[class*="styles_quotasWrapper"]'
-BLOCK_CHAT_GPT = '[class*="styles_ChatGPTwrapper"]'
-BLOCK_YANDEX_GPT = '[class*="styles_YandexGPTwrapper"]'
+#BLOCK_CHAT_GPT = '[class*="styles_ChatGPTwrapper"]'
+#BLOCK_YANDEX_GPT = '[class*="styles_YandexGPTwrapper"]'
 INPUT_NEW_QUOTA = '[placeholder="Новое значение"]'
 BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
 BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
@@ -91,8 +91,8 @@ class Settings(BaseClass):
         self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
         self.button_quotas = page.locator(BUTTON_QUOTAS)
         self.button_gpt_in_quotas = page.locator(BUTTON_GPT_QUOTAS)
-        self.input_chat_gpt_quota_value = page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)
-        self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
+        #self.input_chat_gpt_quota_value = page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)
+        #self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
         self.button_save_in_rights = page.locator(BUTTON_SAVE_IN_RIGHTS)
         self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
         self.input_login = page.locator(INPUT_LOGIN)
@@ -236,15 +236,19 @@ class Settings(BaseClass):
     def click_to_gpt_tab(self):
         """Click to GPT tab in quotas"""
         self.button_gpt_in_quotas.click()
-        self.page.wait_for_selector(BLOCK_GPT_QUOTAS)
+        self.page.wait_for_timeout(2000)
 
-    def type_chat_gpt_quota_value(self, value: str):
-        self.input_chat_gpt_quota_value.clear()
-        self.input_chat_gpt_quota_value.type(value, delay=30)
+    # def type_chat_gpt_quota_value(self, value: str):
+    #     self.input_chat_gpt_quota_value.clear()
+    #     self.input_chat_gpt_quota_value.type(value, delay=30)
+    #
+    # def type_yandex_gpt_quota_value(self, value: str):
+    #     self.input_yandex_gpt_quota_value.clear()
+    #     self.input_yandex_gpt_quota_value.type(value, delay=30)
 
-    def type_yandex_gpt_quota_value(self, value: str):
-        self.input_yandex_gpt_quota_value.clear()
-        self.input_yandex_gpt_quota_value.type(value, delay=30)
+    def fill_quota_value(self, number: int, value: str):
+        self.page.locator('[placeholder="Новое значение"]').nth(number).clear()
+        self.page.locator('[placeholder="Новое значение"]').nth(number).type(value, delay=10)
 
     def change_role(self, role: str):
         self.select_role.click()

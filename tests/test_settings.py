@@ -1407,21 +1407,21 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
         # gpt
     with allure.step("Check negative value"):
-        settings.type_chat_gpt_quota_value("-1")
+        settings.fill_quota_value(0, "-1")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        settings.type_chat_gpt_quota_value("151")
+        settings.fill_quota_value(0, "151")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        settings.type_chat_gpt_quota_value("150")
+        settings.fill_quota_value(0, "150")
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
@@ -1431,26 +1431,26 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Reload page and check that saved and have residue"):
         settings.reload_page()
-        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("150.00")
-        expect(page.locator(BLOCK_CHAT_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("150.00")
+        expect(page.get_by_text("Ограничение 150 USD")).to_have_count(1)
+        expect(page.get_by_text("150.00")).to_have_count(2)
 
         # yandex
     with allure.step("Check negative value"):
-        settings.type_yandex_gpt_quota_value("-1")
+        settings.fill_quota_value(1, "-1")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        settings.type_yandex_gpt_quota_value("15001")
+        settings.fill_quota_value(1, "15001")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        settings.type_yandex_gpt_quota_value("15000")
+        settings.fill_quota_value(1, "15000")
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
@@ -1460,8 +1460,86 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Reload page and check that saved and have residue"):
         settings.reload_page()
-        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(0)).to_have_text("15000.00")
-        expect(page.locator(BLOCK_YANDEX_GPT).locator(BLOCK_WITH_AMOUNT).nth(1)).to_have_text("15000.00")
+        expect(page.get_by_text("Ограничение 15000 RUB")).to_have_count(1)
+        expect(page.get_by_text("15000.00")).to_have_count(2)
+
+        # imotio
+    with allure.step("Check negative value"):
+        settings.fill_quota_value(2, "-1")
+
+    with allure.step("Check that (save) button disabled"):
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check value more than limit"):
+        settings.fill_quota_value(2, "100001")
+
+    with allure.step("Check that (save) button disabled"):
+        expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
+        page.wait_for_timeout(500)
+
+    with allure.step("Check value more than limit"):
+        settings.fill_quota_value(2, "100000")
+
+    with allure.step("Click (save)"):
+        page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
+
+    with allure.step("Wait for snackbar and check"):
+        settings.check_alert("Данные успешно обновлены")
+
+    with allure.step("Reload page and check that saved and have residue"):
+        settings.reload_page()
+        expect(page.get_by_text("Ограничение 100000 RUB")).to_have_count(1)
+        expect(page.get_by_text("100000.00")).to_have_count(2)
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.independent
+@pytest.mark.settings
+@allure.title("test_giving_gpt_quota_by_admin_if_500")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_giving_gpt_quota_by_admin_if_500")
+def test_giving_gpt_quota_by_admin_if_500(base_url, page: Page) -> None:
+    settings = Settings(page)
+
+    error = "Данные о GPT квотах не получены"
+
+    def handle_consumption(route: Route):
+        route.fulfill(status=500, body="")
+    # Intercept the route
+    page.route("**/gpt_quotas", handle_consumption)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        settings.navigate(base_url)
+
+    with allure.step("Auth with admin"):
+        settings.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Go to user"):
+        settings.go_to_user(LOGIN_USER)
+
+    with allure.step("Go to settings"):
+        settings.click_settings()
+
+    with allure.step("Go to quotas"):
+        settings.click_quota()
+
+    with allure.step("Click to (GPT) tab"):
+        settings.click_to_gpt_tab()
+
+    with allure.step("Check error"):
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
