@@ -1576,13 +1576,12 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
 
     with allure.step("Click to (GPT) tab"):
         settings.click_to_gpt_tab()
-        # page.locator(BUTTON_GPT_QUOTAS).click()
-        # page.wait_for_selector(BLOCK_GPT_QUOTAS)
 
     with allure.step("Check that button (save) and input for new amount - disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
-        expect(page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
-        expect(page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)).to_be_disabled()
+        expect(page.locator('[placeholder="Новое значение"]').nth(0)).to_be_disabled()
+        expect(page.locator('[placeholder="Новое значение"]').nth(1)).to_be_disabled()
+        expect(page.locator('[placeholder="Новое значение"]').nth(2)).to_be_disabled()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
