@@ -1335,7 +1335,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("100")
 
     with allure.step("Choose period for quota"):
-        settings.choose_period_date("30/12/2024", "31/12/2024")
+        settings.choose_period_date(tomorrow, tomorrow)
 
     with allure.step("Fill quota 100"):
         settings.fill_quota_time("100")
@@ -1354,7 +1354,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Check that quota added"):
         expect(page.locator('[role="gridcell"]')).to_have_count(18)
-        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text("2024-12-30 - 2024-12-31")
+        expect(page.locator('[aria-rowindex="2"]').locator('[aria-colindex="4"]')).to_have_text(f"{tomorrow_with_dash} - {tomorrow_with_dash}")
 
     with allure.step("Delete added quota"):
         page.locator('[fill="#FF4D4F"]').click()
@@ -1472,14 +1472,14 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        settings.fill_quota_value(2, "100001")
+        settings.fill_quota_value(2, "1000001")
 
     with allure.step("Check that (save) button disabled"):
         expect(page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
         page.wait_for_timeout(500)
 
     with allure.step("Check value more than limit"):
-        settings.fill_quota_value(2, "100000")
+        settings.fill_quota_value(2, "1000000")
 
     with allure.step("Click (save)"):
         page.locator(BLOCK_WITH_SAVE_BUTTON).locator(BUTTON_SUBMIT).click()
@@ -1489,8 +1489,8 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Reload page and check that saved and have residue"):
         settings.reload_page()
-        expect(page.get_by_text("Ограничение 100000 RUB")).to_have_count(1)
-        expect(page.get_by_text("100000.00")).to_have_count(2)
+        expect(page.get_by_text("Ограничение 1000000 RUB")).to_have_count(1)
+        expect(page.get_by_text("1000000.00")).to_have_count(2)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
@@ -1583,8 +1583,8 @@ def test_user_cant_change_quotas(base_url, page: Page) -> None:
         expect(page.locator('[placeholder="Новое значение"]').nth(1)).to_be_disabled()
         expect(page.locator('[placeholder="Новое значение"]').nth(2)).to_be_disabled()
 
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+    # with allure.step("Delete user"):
+    #     delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 @pytest.mark.independent
 @pytest.mark.settings

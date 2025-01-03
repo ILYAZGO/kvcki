@@ -7,6 +7,9 @@ today = current_date.strftime("%d/%m/%Y")
 
 yesterday = (current_date - timedelta(days=1)).strftime("%d/%m/%Y")
 
+tomorrow = (current_date + timedelta(days=1)).strftime("%d/%m/%Y")
+tomorrow_with_dash = (current_date + timedelta(days=1)).strftime("%Y-%m-%d") # for quotas test
+
 first_day_week_ago = (current_date - timedelta(days=6)).strftime("%d/%m/%Y")
 
 
