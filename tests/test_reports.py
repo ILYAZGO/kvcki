@@ -1704,8 +1704,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
-# additional params for rows
-
+# additional params combination
 
 @pytest.mark.independent
 @pytest.mark.reports
@@ -1735,16 +1734,16 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         reports.click_gear_in_rows()
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_tag_value(page)
+        reports.click_add_param_tag_value()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_tag_value(page)
+        reports.click_add_param_tag_value()
 
     with allure.step("Choose tag in select"):
-        type_value_to_select("asterisk_context", page)
+        reports.type_value_to_select("asterisk_context")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -1755,16 +1754,16 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         reports.click_gear_in_columns("0")
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_tag_value(page)
+        reports.click_add_param_tag_value()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_tag_value(page)
+        reports.click_add_param_tag_value()
 
     with allure.step("Choose tag in select"):
-        type_value_to_select("asterisk_context", page)
+        reports.type_value_to_select("asterisk_context")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -1811,16 +1810,16 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
         reports.click_gear_in_rows()
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_avg_number_tag_value(page)
+        reports.click_add_param_avg_number_tag_value()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_avg_number_tag_value(page)
+        reports.click_add_param_avg_number_tag_value()
 
     with allure.step("Choose tag in select"):
-        type_value_to_select("multi value number", page)
+        reports.type_value_to_select("multi value number")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -1831,16 +1830,16 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
         reports.click_gear_in_columns("0")
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_avg_number_tag_value(page)
+        reports.click_add_param_avg_number_tag_value()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click tag value in additional params and wait for select"):
-        click_add_param_avg_number_tag_value(page)
+        reports.click_add_param_avg_number_tag_value()
 
     with allure.step("Choose tag in select"):
-        type_value_to_select("multi value number", page)
+        reports.type_value_to_select("multi value number")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -1853,6 +1852,83 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
         expect(page.locator('[title="5061.89"]')).to_have_count(2)
         expect(page.locator('[title="5092.72"]')).to_have_count(2)
         expect(page.locator('[title="4956.51"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
+        # check headers
+        expect(page.locator('[aria-label="multi value number"]')).to_have_count(2)
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_sum_number_tag_value")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_sum_number_tag_value. For rows and columns")
+def test_reports_additional_params_sum_number_tag_value(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Go to url"):
+        reports.navigate(base_url)
+
+    with allure.step("Auth with ecotelecom"):
+        reports.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Press (Create report)"):
+        reports.press_create_report()
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        reports.choose_period_date("01/01/2022", "31/12/2022")
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        reports.click_gear_in_rows()
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        reports.click_add_param_sum_number_tag_value()
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        reports.delete_select()
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        reports.click_add_param_sum_number_tag_value()
+
+    with allure.step("Choose tag in select"):
+        reports.type_value_to_select("multi value number")
+
+    with allure.step("Click (Apply)"):
+        reports.click_apply_in_additional_params()
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        reports.click_gear_in_columns("0")
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        reports.click_add_param_sum_number_tag_value()
+
+    with allure.step("Delete select by using basket button and wait until deleted"):
+        reports.delete_select()
+
+    with allure.step("Click tag value in additional params and wait for select"):
+        reports.click_add_param_sum_number_tag_value()
+
+    with allure.step("Choose tag in select"):
+        reports.type_value_to_select("multi value number")
+
+    with allure.step("Click (Apply)"):
+        reports.click_apply_in_additional_params()
+
+    # generate report
+    with allure.step("Generate report"):
+        reports.press_generate_report()
+
+    with allure.step("check"):
+        expect(page.locator('[title="0"]')).to_have_count(4)
+        expect(page.locator('[title="7292773"]')).to_have_count(2)
+        expect(page.locator('[title="2076777"]')).to_have_count(2)
+        expect(page.locator('[title="9369550"]')).to_have_count(2)
         # check headers
         expect(page.locator('[aria-label="Коммуникации"]')).to_have_count(2)
         # check headers
@@ -1887,16 +1963,16 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
         reports.click_gear_in_rows()
 
     with allure.step("Click checklist point in additional params and wait for select"):
-        click_add_param_checklist_point(page)
+        reports.click_add_param_checklist_point()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist point in additional params and wait for select"):
-        click_add_param_checklist_point(page)
+        reports.click_add_param_checklist_point()
 
     with allure.step("Choose checklist in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -1907,16 +1983,16 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
         reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist point in additional params and wait for select"):
-        click_add_param_checklist_point(page)
+        reports.click_add_param_checklist_point()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist point in additional params and wait for select"):
-        click_add_param_checklist_point(page)
+        reports.click_add_param_checklist_point()
 
     with allure.step("Choose checklist in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -1963,16 +2039,16 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
         reports.click_gear_in_rows()
 
     with allure.step("Click checklist point percent in additional params and wait for select"):
-        click_add_param_checklist_point_percent(page)
+        reports.click_add_param_checklist_point_percent()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist point percent in additional params and wait for select"):
-        click_add_param_checklist_point_percent(page)
+        reports.click_add_param_checklist_point_percent()
 
     with allure.step("Choose checklist in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -1983,16 +2059,16 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
         reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist point percent in additional params and wait for select"):
-        click_add_param_checklist_point_percent(page)
+        reports.click_add_param_checklist_point_percent()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist point percent in additional params and wait for select"):
-        click_add_param_checklist_point_percent(page)
+        reports.click_add_param_checklist_point_percent()
 
     with allure.step("Choose checklist in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2039,16 +2115,16 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
         reports.click_gear_in_rows()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
-        click_add_param_checklist_question_point(page)
+        reports.click_add_param_checklist_question_point()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
-        click_add_param_checklist_question_point(page)
+        reports.click_add_param_checklist_question_point()
 
     with allure.step("Choose checklist question in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2059,16 +2135,16 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
         reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_checklist_question_point(page)
+        reports.click_add_param_checklist_question_point()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
-        click_add_param_checklist_question_point(page)
+        reports.click_add_param_checklist_question_point()
 
     with allure.step("Choose checklist question in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2115,16 +2191,16 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
         reports.click_gear_in_rows()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
-        click_add_param_checklist_question_point_percent(page)
+        reports.click_add_param_checklist_question_point_percent()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_checklist_question_point_percent(page)
+        reports.click_add_param_checklist_question_point_percent()
 
     with allure.step("Choose checklist question in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2135,16 +2211,16 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
         reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_checklist_question_point_percent(page)
+        reports.click_add_param_checklist_question_point_percent()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_checklist_question_point_percent(page)
+        reports.click_add_param_checklist_question_point_percent()
 
     with allure.step("Choose checklist question in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2191,16 +2267,16 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
         reports.click_gear_in_rows()
 
     with allure.step("Click checklist frequent answer in additional params and wait for select"):
-        click_add_param_checklist_frequent_answer_for_question(page)
+        reports.click_add_param_checklist_frequent_answer_for_question()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_checklist_frequent_answer_for_question(page)
+        reports.click_add_param_checklist_frequent_answer_for_question()
 
     with allure.step("Choose checklist question in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2211,16 +2287,16 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
         reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_checklist_frequent_answer_for_question(page)
+        reports.click_add_param_checklist_frequent_answer_for_question()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist frequent answer in additional params and wait for select"):
-        click_add_param_checklist_frequent_answer_for_question(page)
+        reports.click_add_param_checklist_frequent_answer_for_question()
 
     with allure.step("Choose checklist question in select"):
-        type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.type_value_to_select("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2267,16 +2343,16 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         reports.click_gear_in_rows()
 
     with allure.step("Click checklist question point in additional params and wait for select"):
-        click_add_param_comment(page)
+        reports.click_add_param_comment()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_comment(page)
+        reports.click_add_param_comment()
 
     with allure.step("Choose comment in select"):
-        type_value_to_select("2222", page)
+        reports.type_value_to_select("2222")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
@@ -2287,16 +2363,16 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         reports.click_gear_in_columns("0")
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_comment(page)
+        reports.click_add_param_comment()
 
     with allure.step("Delete select by using basket button and wait until deleted"):
-        delete_select(page)
+        reports.delete_select()
 
     with allure.step("Click checklist question point  in additional params and wait for select"):
-        click_add_param_comment(page)
+        reports.click_add_param_comment()
 
     with allure.step("Choose comment in select"):
-        type_value_to_select("2222", page)
+        reports.type_value_to_select("2222")
 
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()

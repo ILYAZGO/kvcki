@@ -171,6 +171,53 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
 
 @pytest.mark.independent
 @pytest.mark.rules
+@allure.title("test_add_group_and_rule_with_same_name")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_add_group_and_rule_with_same_name. You cant do group and rule with same name (409 status code)")
+def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
+    rules = Rules(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        rules.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        rules.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to markup"):
+        rules.click_markup()
+
+    with allure.step("Create group with same name"):
+        rules.create_group("auto_rule_group")
+
+    with allure.step("Wait and check snack bar"):
+        rules.check_alert("Такая группа уже существует")
+
+    with allure.step("Click at existed group"):
+        page.locator(GROUP_LIST).get_by_text("auto_rule_group").click()
+        page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
+
+    with allure.step("Try to create rule with same name"):
+        rules.create_rule("auto_rule")
+
+    with allure.step("Wait and check snack bar"):
+        rules.check_alert("Такой тег уже существует")
+
+    with allure.step("Reload page"):
+        rules.reload_page()
+
+    with allure.step("Check that tag with same name was not created"):
+        expect(page.get_by_text("auto_rule_group", exact=True)).to_have_count(1, timeout=wait_until_visible)
+        expect(page.get_by_text("auto_rule", exact=True)).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.independent
+@pytest.mark.rules
 @allure.title("test_check_old_rule")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("DEV-1784   check old rule from Ecotelecom")

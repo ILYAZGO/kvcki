@@ -43,6 +43,12 @@ class Dicts(BaseClass):
         self.page.wait_for_selector(INPUT_WORDS_LIST)
         self.input_words_list.type(text, delay=30)
 
+    def create_dict_without_text(self, dict_name: str):
+        self.button_add_dict.click()
+        self.page.wait_for_selector(INPUT_DICT_NAME)
+        self.input_dict_name.type(dict_name, delay=30)
+        self.modal_window.locator(BUTTON_SUBMIT).click()
+
     def change_dict_type(self, current_type: str, next_type: str):
         self.page.get_by_text(current_type, exact=True).click()
         self.page.wait_for_timeout(500)

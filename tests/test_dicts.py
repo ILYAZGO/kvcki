@@ -114,6 +114,53 @@ def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
 
 
 @pytest.mark.independent
+@pytest.mark.rules
+@allure.title("test_add_group_and_dict_with_same_name")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_add_group_and_dict_with_same_name. You cant do group and dict with same name (409 status code)")
+def test_add_group_and_dict_with_same_name(base_url, page: Page) -> None:
+    dicts = Dicts(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        dicts.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        dicts.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to dicts"):
+        dicts.go_to_dicts()
+
+    with allure.step("Create group with same name"):
+        dicts.create_group("auto_dict_group")
+
+    with allure.step("Wait and check snack bar"):
+        dicts.check_alert("Такая группа уже существует")
+
+    with allure.step("Click at existed group"):
+        page.locator(GROUP_LIST).get_by_text("auto_dict_group").click()
+        page.wait_for_selector('[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]', state='hidden')
+
+    with allure.step("Try to create rule with same name"):
+        dicts.create_dict_without_text("auto_dict")
+
+    with allure.step("Wait and check snack bar"):
+        dicts.check_alert("Такой словарь уже существует")
+
+    with allure.step("Reload page"):
+        dicts.reload_page()
+
+    with allure.step("Check that tag with same name was not created"):
+        expect(page.get_by_text("auto_dict_group", exact=True)).to_have_count(1, timeout=wait_until_visible)
+        expect(page.get_by_text("auto_dict", exact=True)).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.independent
 @pytest.mark.dictionaries
 @allure.title("test_add_dict_group_rename_delete")
 @allure.severity(allure.severity_level.CRITICAL)
