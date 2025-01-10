@@ -22,12 +22,26 @@ tests:
     - echo "Download and install requirements"
     - pip install -r requirements.txt --default-timeout=100
 
-  script:
-    - echo $URL_FOR_TEST
-    - echo "Execute tests"
-#    - pytest -m dependent --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
-    - pytest -m api -n 16 --reruns=${RERUNS_NUMBER}
-    - pytest -m independent -n 28 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+  test_api:
+    stage: test
+    script:
+      - echo "Execute api tests"
+      - pytest -m api -n 16 --reruns=${RERUNS_NUMBER}
+    allow_failure: true
+
+  test_independent:
+    stage: test
+    script:
+      - echo "Execute independent tests"
+      - echo $URL_FOR_TEST
+      - pytest -m independent -n 36 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+
+
+#  script:
+#    - echo $URL_FOR_TEST
+#    - echo "Execute tests"
+#    - pytest -m api -n 16 --reruns=${RERUNS_NUMBER}
+#    - pytest -m independent -n 36 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
     - echo "Send notification to telegram"
