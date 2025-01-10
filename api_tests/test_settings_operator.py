@@ -73,7 +73,9 @@ def test_create_update_delete_operator_positive():
                 "defaultSttOptions": {},
                 "sttLanguage": None,
                 "enableGpt": None,
-                "publicLinkAge": None
+                "publicLinkAge": None,
+                "excludedGrammarRuleList": [],
+                "excludedGrammarRuleCategoryList": []
             }
         ]
 
@@ -128,7 +130,9 @@ def test_create_update_delete_operator_positive():
                 "defaultSttOptions": {},
                 "sttLanguage": None,
                 "enableGpt": None,
-                "publicLinkAge": None
+                "publicLinkAge": None,
+                "excludedGrammarRuleList": [],
+                "excludedGrammarRuleCategoryList": []
             }
         ]
 
