@@ -31,7 +31,7 @@ def test_integrations_services_list():
 
     with allure.step("Check status code == 200 and list correct"):
         assert get_services_list.status_code == 200
-        assert count == 42
+        assert count == 43
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
