@@ -36,7 +36,7 @@ class BaseClass:
         self.button_enter = page.locator(BUTTON_SUBMIT)
         self.menu = page.locator(MENU)
         self.modal_window = page.locator(MODAL_WINDOW)
-        self.snackbar = page.locator('[class*="SnackbarItem"]')
+        self.snackbar = page.locator('[class*="SnackbarItem-wrappedRoot"]')
         '''Dates and calendar'''
         self.yesterday = page.locator('[value="yesterday"]')
         self.week = page.locator('[value="this_week"]')

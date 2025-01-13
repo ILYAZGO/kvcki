@@ -1,7 +1,7 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from utils.dates import *
-from api_tests.common import get_token
+from api_tests.common import *
 import requests
 import pytest
 import allure
@@ -9,11 +9,6 @@ import time
 from datetime import datetime
 from uuid import UUID
 
-
-current_date = datetime.now()
-
-today = current_date.strftime("%Y-%m-%d")
-today_with_dots = current_date.strftime("%d.%m.%Y")
 
 actions = ["analyze", "apply_gpt", "stt", "swap_channels", "get_api_tags", "apply_notify_rules", "apply_addressbook_tags", "delete"]
 

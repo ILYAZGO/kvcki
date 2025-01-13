@@ -898,6 +898,12 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         rules.click_markup()
 
     with allure.step("Filter rules by sort"):
+        page.locator(INPUT_SEARCH).nth(1).type("test ", delay=20)
+
+    with allure.step("Check that button for import not visible"):
+        expect(page.locator(INPUT_SEARCH).nth(1)).to_have_value("test ")
+
+    with allure.step("Filter rules by sort"):
         page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=20)
 
     with allure.step("Check that button for import not visible"):

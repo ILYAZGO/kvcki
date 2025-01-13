@@ -1,6 +1,6 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
-from api_tests.common import get_token
+from api_tests.common import *
 import requests
 import pytest
 import allure

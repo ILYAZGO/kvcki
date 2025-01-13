@@ -1503,7 +1503,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 @pytest.mark.settings
 @allure.title("test_giving_gpt_quota_by_admin_if_500")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_giving_gpt_quota_by_admin_if_500")
+@allure.description("test_giving_gpt_quota_by_admin_if_500. if /gpt_quotas 500")
 def test_giving_gpt_quota_by_admin_if_500(base_url, page: Page) -> None:
     settings = Settings(page)
 
@@ -1840,6 +1840,9 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
         page.wait_for_timeout(2000)
         page.wait_for_selector(CONSUMPTION_ERROR_FIRST_LINE)
 
+    with allure.step("Check snackbar"):
+        settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
+
     with allure.step("Check exist search, calendar, mocked data and total count"):
         expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
         expect(page.locator(CONSUMPTION_ERROR_SECOND_LINE)).to_contain_text(error_second_line)
@@ -1849,6 +1852,9 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
 
     with allure.step("Go to consumption history GPT"):
         page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
+
+    with allure.step("Check snackbar"):
+        settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
         expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
@@ -1860,6 +1866,9 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
     with allure.step("Go to consumption history chats"):
         page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
 
+    with allure.step("Check snackbar"):
+        settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
+
     with allure.step("Check exist search, calendar, mocked data and total count"):
         expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
         expect(page.locator(CONSUMPTION_ERROR_SECOND_LINE)).to_contain_text(error_second_line)
@@ -1869,7 +1878,7 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-# ^^^^*****
+
 
 @pytest.mark.independent
 @pytest.mark.settings
@@ -2674,6 +2683,9 @@ def test_user_tariffication_if_500(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
         page.wait_for_selector(MESSAGE_TARIFFICATION_EMPTY)
 
+    with allure.step("Check snackbar"):
+        settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
+
     with allure.step("Check exist search, calendar, mocked data and total count"):
         expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Возникла ошибка, пожалуйста, обновите страницу")
 
@@ -2681,6 +2693,9 @@ def test_user_tariffication_if_500(base_url, page: Page) -> None:
         page.locator(BUTTON_WRITEOFFS).click()
         page.wait_for_timeout(500)
         page.wait_for_selector(MESSAGE_TARIFFICATION_EMPTY)
+
+    with allure.step("Check snackbar"):
+        settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
         expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Нет информации о списаниях")
@@ -2691,6 +2706,9 @@ def test_user_tariffication_if_500(base_url, page: Page) -> None:
         page.locator(BUTTON_CHARGES).click()
         page.wait_for_timeout(500)
         page.wait_for_selector(MESSAGE_TARIFFICATION_EMPTY)
+
+    with allure.step("Check snackbar"):
+        settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
         expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Нет информации о платежах")
