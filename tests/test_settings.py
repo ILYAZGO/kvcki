@@ -2648,7 +2648,7 @@ def test_user_tariffication_if_empty(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
-# ^^^^^^^^^^^
+
 @pytest.mark.independent
 @pytest.mark.settings
 @allure.title("test_user_tariffication_if_500")
@@ -2656,6 +2656,9 @@ def test_user_tariffication_if_empty(base_url, page: Page) -> None:
 @allure.description("test_user_tariffication_history. check have warning if 500")
 def test_user_tariffication_if_500(base_url, page: Page) -> None:
     settings = Settings(page)
+
+    error_first_line = "Возникла ошибка в процессе формирования таблицы"
+    error_second_line = "Пожалуйста, перезагрузите страницу браузера или зайдите в систему заново"
 
     def handle_tariff(route: Route):
         route.fulfill(status=500, body="")
@@ -2698,7 +2701,8 @@ def test_user_tariffication_if_500(base_url, page: Page) -> None:
         settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Нет информации о списаниях")
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
+        expect(page.locator(CONSUMPTION_ERROR_SECOND_LINE)).to_contain_text(error_second_line)
         #expect(page.locator('[placeholder="Поиск по тарифу или услуге"]')).to_have_count(1)
         #expect(page.locator(SEARCH_IN_TARIFFICATION)).to_have_count(1)
 
@@ -2711,13 +2715,13 @@ def test_user_tariffication_if_500(base_url, page: Page) -> None:
         settings.check_alert("Ошибка 500: Внутренняя ошибка сервера")
 
     with allure.step("Check exist search, calendar, mocked data and total count"):
-        expect(page.locator(MESSAGE_TARIFFICATION_EMPTY)).to_contain_text("Нет информации о платежах")
+        expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(error_first_line)
+        expect(page.locator(CONSUMPTION_ERROR_SECOND_LINE)).to_contain_text(error_second_line)
         #expect(page.locator('[placeholder="Поиск по договору и назначению платежа"]')).to_have_count(1)
         #expect(page.locator(SEARCH_IN_TARIFFICATION)).to_have_count(1)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-# ^^^^
 
 
 @pytest.mark.independent

@@ -73,6 +73,25 @@ def test_usedesk(base_url, page: Page) -> None:
         page.wait_for_selector('[class*=headerRow]')
         expect(page.locator('[role="rowgroup"]').locator('[role="cell"]').nth(4)).to_have_text('2')
 
+    with allure.step("Go to integration history"):
+        page.locator('[aria-label="История"]').locator('[type="button"]').click()
+
+    with allure.step("Check that integration have logs"):
+        expect(page.locator('[aria-label="Логи интеграции"]')).to_have_count(1)
+
+    with allure.step("Go to logs"):
+        page.locator('[aria-label="Логи интеграции"]').locator('[type="button"]').click()
+
+    with allure.step("Check that logs present"):
+        page.wait_for_selector('[data-testid="TaskHistoryLogTable_dataTextarea"]', timeout=wait_until_visible)
+        textarea = page.locator('[data-testid="TaskHistoryLogTable_dataTextarea"]')
+        count = textarea.count()
+
+        assert count > 1
+
+    with allure.step("Go back to integrations list"):
+        page.locator('[class*="styles_category"]').nth(0).click()
+
     with allure.step("Delete integration"):
         integrations.delete_integration()
 
