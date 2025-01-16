@@ -24,29 +24,31 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         checklists.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to check-lists"):
-        go_to_check_list(page)
+        checklists.go_to_check_list()
 
     with allure.step("Create check-list with 2 questions and 2 answers"):
-        create_check_list_with_questions_and_answers("12345", "Question1", "Question2", page)
+        checklists.create_check_list_with_questions_and_answers("12345", "Question1", "Question2")
 
     with allure.step("Fill filter"):
-        add_filter("По тегам", "auto_rule", page)
+        checklists.add_filter_by_tags("auto_rule")
 
     with allure.step("Change sort order"):
         expect(page.locator(INPUT_SORT_ORDER)).to_have_value("0")
+
         page.locator(INPUT_SORT_ORDER).clear()
         page.locator(INPUT_SORT_ORDER).fill("1000")
 
     with allure.step("Press button (Save)"):
-        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
-        press_button_save(page)
+        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
+        checklists.press_button_save()
+
+    with allure.step("Check alert"):
+        checklists.check_alert("Чек-лист добавлен")
 
     with allure.step("Check created"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
         expect(page.locator(INPUT_SORT_ORDER)).to_have_value("1000")
-
-        #  added block with renaming from other test
 
     with allure.step("Change title"):
         page.get_by_text("12345").click()
@@ -55,8 +57,11 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Save)"):
-        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
-        press_button_save(page)
+        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
+        checklists.press_button_save()
+
+    with allure.step("Check alert"):
+        checklists.check_alert("Чек-лист обновлен")
 
     with allure.step("Check that title changed"):
         expect(page.locator(INPUT_CHECK_LIST_NAME)).to_have_value("654321")
@@ -74,8 +79,6 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
     with allure.step("Check rename was successful"):
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
-        #
-
     with allure.step("Update check-list (change first question)"):
         page.get_by_text("98765").click()
         page.locator(INPUT_FIRST_QUESTION).clear()
@@ -86,8 +89,11 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         page.locator('[id="checklistGenerateReport"]').click()
 
     with allure.step("Press button (Save)"):
-        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
-        press_button_save(page)
+        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
+        checklists.press_button_save()
+
+    with allure.step("Check alert"):
+        checklists.check_alert("Чек-лист обновлен")
 
     with allure.step("Reload page and check that update saved"):
         page.reload()
@@ -103,8 +109,11 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         page.locator(CHECK_BOX_AUTOGENEREATE_REPORT).click()
 
     with allure.step("Press button (Save)"):
-        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
-        press_button_save(page)
+        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
+        checklists.press_button_save()
+
+    with allure.step("Check alert"):
+        checklists.check_alert("Чек-лист обновлен")
 
     with allure.step("Check that appriser created"):
         page.reload()
@@ -116,8 +125,11 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         delete_appriser(page)
 
     with allure.step("Press button (Save)"):
-        page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
-        press_button_save(page)
+        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
+        checklists.press_button_save()
+
+    with allure.step("Check alert"):
+        checklists.check_alert("Чек-лист обновлен")
 
     with allure.step("Check that appriser deleted"):
         page.reload()
@@ -153,7 +165,7 @@ def test_check_old_check_list(base_url, page: Page) -> None:
         checklists.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Go to check-lists"):
-        go_to_check_list(page)
+        checklists.go_to_check_list()
 
     with allure.step("Select first available check-list"):
         page.locator('[class*=groupItem]').first.click()
@@ -186,7 +198,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         checklists.go_to_user(LOGIN_USER)
 
     with allure.step("Go to check-lists"):
-        go_to_check_list(page)
+        checklists.go_to_check_list()
 
     with allure.step("Press import button"):
         press_import_checklists(page)
@@ -268,7 +280,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         checklists.go_to_user(LOGIN_USER)
 
     with allure.step("Go to check-lists"):
-        go_to_check_list(page)
+        checklists.go_to_check_list()
 
     with allure.step("Press import button"):
         press_import_checklists(page)
@@ -341,7 +353,7 @@ def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
         checklists.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to check-lists"):
-        go_to_check_list(page)
+        checklists.go_to_check_list()
 
     with allure.step("Check that for user check-list import disabled"):
         expect(page.locator('[data-testid="markup_importDicts"]')).not_to_be_visible()
@@ -365,7 +377,7 @@ def test_compare_check_lists_by_user(base_url, page: Page) -> None:
         checklists.auth(USER_FOR_CHECK, PASSWORD)
 
     with allure.step("Go to check-lists"):
-        go_to_check_list(page)
+        checklists.go_to_check_list()
 
     with allure.step("Select first available check-list"):
         page.locator('[class*="styles_dpBothBox_"]').get_by_text("firstchecklist").click()

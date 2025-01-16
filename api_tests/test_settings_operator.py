@@ -157,10 +157,10 @@ def test_create_update_delete_operator_positive():
 
 
 @pytest.mark.api
-@allure.title("test_give_take_report_to_operator")
+@allure.title("test_give_take_report_to_from_operator")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_give_take_report_to_operator")
-def test_give_take_report_to_operator():
+@allure.description("test_give_take_report_to_from_operator")
+def test_give_take_report_to_from_operator():
     NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
     with allure.step("Create user"):

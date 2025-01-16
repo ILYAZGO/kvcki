@@ -438,7 +438,7 @@ def test_check_search(base_url, page: Page) -> None:
         page.locator(INPUT_SEARCH).fill("ecot")
 
     with allure.step("Check ecotelecom visible and 1userIM not visible"):
-        expect(page.get_by_text("ecotelecom")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("ecotelecom", exact=True)).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("1userIM")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin"):

@@ -57,6 +57,7 @@ class BaseClass:
         self.input_comment = page.locator(INPUT_COMMENT)
         self.input_password = page.locator(INPUT_PASSWORD)
         '''Other'''
+        self.button_markup = page.locator(BUTTON_MARKUP)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
 
 
@@ -154,7 +155,7 @@ class BaseClass:
     def click_markup(self):
         """Click Markup"""
         self.page.wait_for_selector(BUTTON_MARKUP)
-        self.page.locator(BUTTON_MARKUP).click()
+        self.button_markup.click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
