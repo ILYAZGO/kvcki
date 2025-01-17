@@ -452,14 +452,9 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').fill("importFrom")
-        page.wait_for_timeout(1000)
-        page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1000)
+        dicts.choose_user_import_from("importFrom")
 
     with allure.step("Check that search string visible"):
-        page.wait_for_selector('[data-testid="markup_dicts_importSearch}"]')
-
         expect(page.locator('[data-testid="markup_importNav_tags"]')).not_to_be_visible()
         expect(page.locator('[data-testid="markup_importNav_dicts"]')).not_to_be_visible()
         expect(page.locator('[data-testid="markup_dicts_importSearch}"]')).to_be_visible()
@@ -560,14 +555,9 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').fill("importFrom")
-        page.wait_for_timeout(1000)
-        page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1000)
+        dicts.choose_user_import_from("importFrom")
 
     with allure.step("Check that search string visible"):
-        page.wait_for_selector('[data-testid="markup_dicts_importSearch}"]')
-
         expect(page.locator('[data-testid="markup_importNav_tags"]')).not_to_be_visible()
         expect(page.locator('[data-testid="markup_importNav_dicts"]')).not_to_be_visible()
         expect(page.locator('[data-testid="markup_dicts_importSearch}"]')).to_be_visible()
@@ -633,7 +623,6 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-
 
 
 @pytest.mark.independent

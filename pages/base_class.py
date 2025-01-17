@@ -58,6 +58,7 @@ class BaseClass:
         self.input_password = page.locator(INPUT_PASSWORD)
         '''Other'''
         self.button_markup = page.locator(BUTTON_MARKUP)
+        self.button_korzina = page.locator(BUTTON_KORZINA)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
 
 
@@ -186,4 +187,9 @@ class BaseClass:
     def choose_option(self, option_number: int):
         """Choose option from menu"""
         self.menu.locator(f'[id$="-option-{option_number}"]').click()
+
+    def choose_user_import_from(self, username: str):
+        self.page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type(username, delay=20)
+        self.menu.get_by_text(username, exact=True).click()
+        self.page.wait_for_selector('[data-testid*="_importSearch}"]', timeout=self.timeout)
 

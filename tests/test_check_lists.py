@@ -103,7 +103,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
 
     with allure.step("Create appriser"):
-        create_appriser("Appriser", "5", page)
+        checklists.create_appriser("Appriser", "5")
 
     with allure.step("Check autogerenate report checkbox"):
         page.locator(CHECK_BOX_AUTOGENEREATE_REPORT).click()
@@ -122,7 +122,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         expect(page.locator(CHECK_BOX_AUTOGENEREATE_REPORT)).to_be_checked()
 
     with allure.step("Delete appriser"):
-        delete_appriser(page)
+        checklists.delete_appriser()
 
     with allure.step("Press button (Save)"):
         #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
@@ -137,7 +137,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         expect(page.locator('[name="appraisers.0.title"]')).not_to_be_visible()
 
     with allure.step("Delete created check-list"):
-        delete_check_list(page)
+        checklists.delete_check_list()
 
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
@@ -201,36 +201,34 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         checklists.go_to_check_list()
 
     with allure.step("Press import button"):
-        press_import_checklists(page)
+        checklists.press_import_checklists()
 
-    with allure.step("Fill user for import"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("importFrom", delay=50)
-        page.locator(MENU).get_by_text("importFrom", exact=True).click()
-        page.wait_for_selector(SEARCH_IN_IMPORT_MODAL, timeout=wait_until_visible)
+    with allure.step("Choose user for import"):
+        checklists.choose_user_import_from("importFrom")
 
     with allure.step("Import first"):
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(1000)
         page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(0).check()
-        page.wait_for_timeout(700)
+        page.wait_for_timeout(1000)
 
     with allure.step("Press (Go on)"):
         page.get_by_role("button", name="Продолжить").click()
-        page.wait_for_timeout(700)
+        page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
         page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(1).check()
-        page.wait_for_timeout(700)
+        page.wait_for_timeout(1000)
 
-    with allure.step("Go to new chec-lists"):
+    with allure.step("Go to new check-lists"):
         page.get_by_role("button", name="К новым чек-листам").click()
-        page.wait_for_timeout(1900)
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check that check-lists imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete first check-list"):
-        delete_check_list(page)
+        checklists.delete_check_list()
 
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
@@ -239,7 +237,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second check-list"):
-        delete_check_list(page)
+        checklists.delete_check_list()
 
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
@@ -283,36 +281,34 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         checklists.go_to_check_list()
 
     with allure.step("Press import button"):
-        press_import_checklists(page)
+        checklists.press_import_checklists()
 
-    with allure.step("Fill user for import"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
-        page.locator(MENU).get_by_text("importFrom", exact=True).click()
-        page.wait_for_selector(SEARCH_IN_IMPORT_MODAL, timeout=wait_until_visible)
+    with allure.step("Choose user for import"):
+        checklists.choose_user_import_from("importFrom")
 
     with allure.step("Import first"):
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(1000)
         page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(0).check()
-        page.wait_for_timeout(700)
+        page.wait_for_timeout(1000)
 
     with allure.step("Press (Go on)"):
         page.get_by_role("button", name="Продолжить").click()
-        page.wait_for_timeout(700)
+        page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
         page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(1).check()
-        page.wait_for_timeout(700)
+        page.wait_for_timeout(1000)
 
     with allure.step("Go to new chec-lists"):
         page.get_by_role("button", name="К новым чек-листам").click()
-        page.wait_for_timeout(1900)
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check that check-lists imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete first check-list"):
-        delete_check_list(page)
+        checklists.delete_check_list()
 
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
@@ -321,7 +317,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second check-list"):
-        delete_check_list(page)
+        checklists.delete_check_list()
 
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
@@ -356,7 +352,7 @@ def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
         checklists.go_to_check_list()
 
     with allure.step("Check that for user check-list import disabled"):
-        expect(page.locator('[data-testid="markup_importDicts"]')).not_to_be_visible()
+        expect(page.locator(BUTTON_IMPORT_CHECK_LIST)).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)

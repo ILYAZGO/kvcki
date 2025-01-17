@@ -611,7 +611,6 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
             page.locator(MODAL_WINDOW).get_by_text("Экспортировать", exact=True).click()
         download = download_info.value
         path = f'{os.getcwd()}/'
-
         # Wait for the download process to complete and save the downloaded file somewhere
         download.save_as(path + download.suggested_filename)
 
@@ -769,7 +768,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=100)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=20)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):

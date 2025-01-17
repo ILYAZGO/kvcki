@@ -614,12 +614,9 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("impo", delay=30)
-        page.locator(MENU).get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1500)
+        rules.choose_user_import_from("importFrom")
 
     with allure.step("Check that search string visible"):
-        page.wait_for_selector('[data-testid="markup_tags_importSearch}"]')
 
         expect(page.locator('[data-testid="markup_importNav_tags"]')).not_to_be_visible()
         expect(page.locator('[data-testid="markup_importNav_dicts"]')).not_to_be_visible()
@@ -723,13 +720,9 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
 
     with allure.step("Select user ImportFrom in modal window"):
-        page.locator('[class*="simpleSelect"]').locator('[role="combobox"]').type("impo", delay=30)
-        page.locator(MENU).get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1500)
+        rules.choose_user_import_from("importFrom")
 
     with allure.step("Check that search string visible"):
-        page.wait_for_selector('[data-testid="markup_tags_importSearch}"]')
-
         expect(page.locator('[data-testid="markup_importNav_tags"]')).not_to_be_visible()
         expect(page.locator('[data-testid="markup_importNav_dicts"]')).not_to_be_visible()
         expect(page.locator('[data-testid="markup_tags_importSearch}"]')).to_be_visible()

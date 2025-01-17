@@ -3,11 +3,6 @@ from utils.variables import wait_until_visible
 from pages.base_class import *
 from playwright.sync_api import Page, expect
 
-
-class GPT(BaseClass):
-    def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
-
 BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
 BUTTON_GPT_SAVE = '[data-testid="acceptButton"]'
@@ -15,58 +10,78 @@ BUTTON_GPT_CANCEL = '[data-testid="cancelButton"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
+# SEARCH_IN_IMPORT_MODAL = '[data-testid="markup_gpt_importSearch}"]'
 
 INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
 INPUT_GPT_TEG_NAME = '[placeholder="Название тега"]'
 INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
 
+class GPT(BaseClass):
+    def __init__(self, page: Page):
+        BaseClass.__init__(self, page)
+        self.button_gpt = page.locator(BUTTON_GPT)
+        self.button_create_gpt_rule = page.locator(BUTTON_GPT_CREATE_RULE)
+        self.input_gpt_rule_name = page.locator(INPUT_GPT_RULE_NAME)
+        self.input_gpt_tag_name = page.locator(INPUT_GPT_TEG_NAME)
+        self.input_gpt_question = page.locator(INPUT_GPT_QUESTION)
 
-def go_to_gpt(page="page: Page"):
-    page.wait_for_selector(BUTTON_MARKUP, timeout=wait_until_visible)
-    page.locator(BUTTON_MARKUP).click()
-    page.wait_for_selector(BUTTON_GPT, timeout=wait_until_visible)
-    page.locator(BUTTON_GPT).click()
-    page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=wait_until_visible)
-    page.wait_for_timeout(500)
+    def go_to_gpt(self):
+        self.page.wait_for_selector(BUTTON_MARKUP, timeout=self.timeout)
+        self.button_markup.click()
+        self.page.wait_for_selector(BUTTON_GPT, timeout=wait_until_visible)
+        self.button_gpt.click()
+        self.page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+
+    def delete_rule(self):
+        self.page.wait_for_selector(BUTTON_KORZINA)
+        self.button_korzina.first.click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+        self.modal_window.get_by_role("button", name="Удалить").click()
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        self.page.wait_for_timeout(500)
+
+    def press_add_settings(self):
+        self.page.get_by_role("button", name="Добавить настройки").click()
+        self.page.wait_for_selector(MENU, timeout=self.timeout)
+
+    def create_gpt_rule_with_one(self, gpt_rule_name: str):
+        """Creates gpt rule with one question"""
+        self.button_create_gpt_rule.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
+        self.input_gpt_rule_name.type(gpt_rule_name, delay=20)
+        self.page.wait_for_timeout(1000)
+        self.input_gpt_tag_name.type("GPTteg1", delay=20)
+        self.page.wait_for_timeout(500)
+        self.input_gpt_question.type("GPTquestion1", delay=20)
+        self.page.wait_for_timeout(500)
+
+    def create_gpt_rule_with_two(self, gpt_rule_name: str):
+        self.button_create_gpt_rule.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
+        self.input_gpt_rule_name.type(gpt_rule_name, delay=20)
+        self.page.wait_for_timeout(1000)
+        self.input_gpt_tag_name.type("GPTteg1", delay=20)
+        self.page.wait_for_timeout(500)
+        self.input_gpt_question.type("GPTquestion1", delay=20)
+        self.page.wait_for_timeout(500)
+        self.page.get_by_role("button", name="Добавить вопрос").click()
+        self.page.wait_for_timeout(1000)
+        self.input_gpt_tag_name.nth(1).type("GPTteg2", delay=20)
+        self.page.wait_for_timeout(500)
+        self.input_gpt_question.nth(1).type("GPTquestion2", delay=20)
+        self.page.wait_for_timeout(500)
+
+    def turn_on_rule(self):
+        self.page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
+        self.page.wait_for_selector('[class*="Mui-checked"]', timeout=self.timeout)
+
 
 def press_save_in_gpt(page="page: Page"):
     page.locator(BUTTON_GPT_SAVE).click(force=True)
     page.wait_for_timeout(500)
-
-def press_add_settings(page="page: Page"):
-    page.get_by_role("button", name="Добавить настройки").click()
-    page.wait_for_selector(MENU, timeout=wait_until_visible)
-
-def create_gpt_rule_with_one(GptRuleName, page="page: Page"):
-    page.locator(BUTTON_GPT_CREATE_RULE).click()
-    page.wait_for_timeout(400)
-    page.wait_for_selector(INPUT_GPT_RULE_NAME)
-    page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
-    page.wait_for_timeout(800)
-    page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
-    page.wait_for_timeout(300)
-    page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
-    page.wait_for_timeout(300)
-
-
-# create group with 2 tags with 2 questions inside#
-def create_gpt_rule_with_two(GptRuleName, page="page: Page"):
-    page.locator(BUTTON_GPT_CREATE_RULE).click()
-    page.wait_for_timeout(400)
-    page.wait_for_selector(INPUT_GPT_RULE_NAME)
-    page.locator(INPUT_GPT_RULE_NAME).fill(GptRuleName)
-    page.wait_for_timeout(800)
-    page.locator(INPUT_GPT_TEG_NAME).fill("GPTteg1")
-    page.wait_for_timeout(300)
-    page.locator(INPUT_GPT_QUESTION).fill("GPTquestion1")
-    page.wait_for_timeout(300)
-    page.get_by_role("button", name="Добавить вопрос").click()
-    page.wait_for_timeout(700)
-    page.locator(INPUT_GPT_TEG_NAME).nth(1).fill("GPTteg2")
-    page.wait_for_timeout(300)
-    page.locator(INPUT_GPT_QUESTION).nth(1).fill("GPTquestion2")
-    page.wait_for_timeout(300)
-
 
 def add_filter(filterType, filterName, page="page: Page"):
     page.locator('[style="margin-top: 5px;"]').get_by_role("button").click()
@@ -78,17 +93,6 @@ def add_filter(filterType, filterName, page="page: Page"):
     page.wait_for_timeout(2300)
     page.get_by_text(filterName, exact=True).nth(0).click()
 
-def turn_on_rule(page="page: Page"):
-    page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
-    page.wait_for_selector('[class*="Mui-checked"]', timeout=wait_until_visible)
-
-def delete_rule(page="page: Page"):
-    page.wait_for_selector(BUTTON_KORZINA)
-    page.locator(BUTTON_KORZINA).first.click()
-    page.wait_for_selector(MODAL_WINDOW)
-    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
-    page.wait_for_selector(MODAL_WINDOW, state="hidden")
-    page.wait_for_timeout(500)
 
 # def all_checkboxes_to_be_checked(page="page: Page"):
 #     # Находим все чекбоксы на странице

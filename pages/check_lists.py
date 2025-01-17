@@ -1,4 +1,3 @@
-from utils.variables import wait_until_visible
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
@@ -19,12 +18,11 @@ INPUT_SORT_ORDER = '[name="priority"]'
 BUTTON_CHANGE_FILTERS = '[class*="styles_btnTitle_"]'
 BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
 BUTTON_ADD_CHECK_LIST = '[data-testid="markup_addChecklists"]'
-BUTTON_SAVE = ".MuiButton-contained"
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = '[class*="checkButton"]'
+BUTTON_IMPORT_CHECK_LIST = '[data-testid="markup_importDicts"]'
 
 # other
-SEARCH_IN_IMPORT_MODAL = '[data-testid="markup_checklists_importSearch}"]'
 NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 CHECK_BOX_AUTOGENEREATE_REPORT = '[id="checklistGenerateReport"]'
 
@@ -85,36 +83,28 @@ class Checklists(BaseClass):
         self.page.get_by_role("button", name="Сохранить").click()
         self.page.wait_for_timeout(500)
 
+    def create_appriser(self, title, points):
+        self.page.wait_for_timeout(500)
+        self.page.get_by_role("button", name="Добавить оценку").click()
+        self.page.locator('[name="appraisers.0.title"]').type(title, delay=20)
+        self.page.locator('[name="appraisers.0.points"]').type(points, delay=20)
 
-def create_appriser(title, points, page="page: Page"):
-    page.wait_for_timeout(500)
-    page.get_by_role("button", name="Добавить оценку").click()
-    #page.locator('[class*="CheckListAppraisers_addBtn"]').click()
-    page.locator('[name="appraisers.0.title"]').fill(title)
-    page.locator('[name="appraisers.0.points"]').fill(points)
+    def delete_appriser(self):
+        self.page.wait_for_timeout(500)
+        self.page.locator('[class*="CheckListAppraisers_deleteBtn"]').click()
+        self.page.wait_for_timeout(500)
+
+    def press_import_checklists(self):
+        self.page.locator(BUTTON_IMPORT_CHECK_LIST).click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+
+    def delete_check_list(self):
+        self.page.wait_for_selector(BUTTON_KORZINA)
+        self.button_korzina.first.click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+        self.modal_window.get_by_role("button", name="Удалить").click()
 
 
-def delete_appriser(page="page: Page"):
-    page.wait_for_timeout(500)
-    page.locator('[class*="CheckListAppraisers_deleteBtn"]').click()
-    page.wait_for_timeout(500)
 
-def press_import_checklists(page="page: Page"):
-    page.locator('[data-testid="markup_importDicts"]').click()
-    page.wait_for_selector(MODAL_WINDOW)
 
-def delete_check_list(page="page: Page"):
-    page.wait_for_selector(BUTTON_KORZINA)
-    page.locator(BUTTON_KORZINA).first.click()
-    page.wait_for_selector(MODAL_WINDOW)
-    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
 
-def delete_rule(page="page: Page"):
-    page.wait_for_selector(BUTTON_KORZINA)
-    page.locator('[class*="styles_groupItem__B425x"]').nth(0).locator('[type="checkbox"]').first.click()
-    page.wait_for_timeout(600)
-    page.locator(BUTTON_CHECK_LIST).click()
-    page.locator(BUTTON_KORZINA).first.click()
-    page.wait_for_selector(MODAL_WINDOW)
-    #  confirm deleting
-    page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()

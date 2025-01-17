@@ -24,10 +24,10 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to GPT"):
-        go_to_gpt(page)
+        gpt.go_to_gpt()
 
     with allure.step("Create GPT rule with 2 questions"):
-        create_gpt_rule_with_two("GPTrule", page)
+        gpt.create_gpt_rule_with_two("GPTrule")
 
     with allure.step("add filter"):
         add_filter("По тегам", "auto_rule", page)
@@ -45,7 +45,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
 
     with allure.step("Turn on rule"):
-        turn_on_rule(page)
+        gpt.turn_on_rule()
 
     with allure.step("Delete 1 question"):
         page.get_by_role("button", name="Удалить вопрос").nth(1).click()
@@ -69,7 +69,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.get_by_text("ruleGPT")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete rule"):
-        delete_rule(page)
+        gpt.delete_rule()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило GPT удалено")
@@ -99,10 +99,10 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to GPT"):
-        go_to_gpt(page)
+        gpt.go_to_gpt()
 
     with allure.step("Create GPT rule with one question"):
-        create_gpt_rule_with_one("addParams", page)
+        gpt.create_gpt_rule_with_one("addParams")
 
     with allure.step("Press (Save) button"):
         press_save_in_gpt(page)
@@ -115,7 +115,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled()
 
     with allure.step("Press (Add settings)"):
-        press_add_settings(page)
+        gpt.press_add_settings()
 
     with allure.step("Click all parameters"):
         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(0).click()
@@ -155,13 +155,13 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Turn on rule"):
-        turn_on_rule(page)
+        gpt.turn_on_rule()
         # tupo click
         page.locator('[value="gpt"]').click()
         page.wait_for_timeout(500)
 
     with allure.step("Delete rule"):
-        delete_rule(page)
+        gpt.delete_rule()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило GPT удалено")
@@ -196,19 +196,14 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         gpt.go_to_user(LOGIN_USER)
 
     with allure.step("Go to gpt"):
-        go_to_gpt(page)
+        gpt.go_to_gpt()
 
     with allure.step("Press import button"):
         page.locator(BUTTON_IMPORT_GPT).click()
         page.wait_for_selector('[data-testid="closePopupButton"]')
 
     with allure.step("Fill user for import"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
-
-        page.wait_for_timeout(1000)
-        page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1000)
-        page.wait_for_selector('[data-testid="markup_gpt_importSearch}"]')
+        gpt.choose_user_import_from("importFrom")
 
     with allure.step("Import first"):
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
@@ -222,14 +217,14 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Go to new gpt rules"):
         page.get_by_role("button", name="К новым правилам GPT").click()
-        page.wait_for_timeout(1800)
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check that gpt rules imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete first gpt rule"):
-        delete_rule(page)
+        gpt.delete_rule()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило GPT удалено")
@@ -238,7 +233,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second gpt rule"):
-        delete_rule(page)
+        gpt.delete_rule()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило GPT удалено")
@@ -279,19 +274,14 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         gpt.go_to_user(LOGIN_USER)
 
     with allure.step("Go to gpt"):
-        go_to_gpt(page)
+        gpt.go_to_gpt()
 
     with allure.step("Press import button"):
         page.locator(BUTTON_IMPORT_GPT).click()
         page.wait_for_selector('[data-testid="closePopupButton"]')
 
     with allure.step("Fill user for import"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').fill("importFrom")
-
-        page.wait_for_timeout(1000)
-        page.get_by_text("importFrom", exact=True).click()
-        page.wait_for_timeout(1000)
-        page.wait_for_selector('[data-testid="markup_gpt_importSearch}"]')
+        gpt.choose_user_import_from("importFrom")
 
     with allure.step("Import first"):
         page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
@@ -305,14 +295,14 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Go to new gpt rules"):
         page.get_by_role("button", name="К новым правилам GPT").click()
-        page.wait_for_timeout(2000)
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check that gpt rules imported"):
         expect(page.get_by_text("12345")).to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete first gpt rule"):
-        delete_rule(page)
+        gpt.delete_rule()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило GPT удалено")
@@ -321,7 +311,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete second gpt rule"):
-        delete_rule(page)
+        gpt.delete_rule()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило GPT удалено")
@@ -353,10 +343,10 @@ def test_import_gpt_rules_disabled_for_user(base_url, page: Page) -> None:
         gpt.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Go to gpt"):
-        go_to_gpt(page)
+        gpt.go_to_gpt()
 
     with allure.step("Check that for user gpt rules import disabled"):
-        expect(page.locator('[data-testid="markup_importDicts"]')).not_to_be_visible()
+        expect(page.locator(BUTTON_IMPORT_GPT)).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
