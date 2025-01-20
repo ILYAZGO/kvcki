@@ -38,7 +38,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило сохранено")
 
-    with allure.step("Check that created and have 2 questions"):
+    with allure.step("Check that created and have 2 questions and filter"):
         expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled(timeout=wait_until_visible)
         expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled(timeout=wait_until_visible)
         expect(page.get_by_text("Вопрос 2")).to_have_count(1)
@@ -57,16 +57,17 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that question deleted"):
-        expect(page.locator('[tabindex="-1"]')).to_have_count(3)  # check that buttons save and cancel disabled
+        expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled(timeout=wait_until_visible)
+        expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled(timeout=wait_until_visible)
         expect(page.get_by_text("Вопрос 2")).to_have_count(0)
 
     with allure.step("Rename GPT rule"):
-        page.locator(BUTTON_PENCIL).click()
-        page.locator('[class*="styles_dpBothBox"]').locator('[value="GPTrule"]').fill("ruleGPT")
-        page.locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
+        gpt.rename_gpt_rule("GPTrule","ruleGPT")
 
     with allure.step("Check that GPT rule was renamed"):
         expect(page.get_by_text("ruleGPT")).to_be_visible(timeout=wait_until_visible)
+
+        # place for checkbox check
 
     with allure.step("Delete rule"):
         gpt.delete_rule()

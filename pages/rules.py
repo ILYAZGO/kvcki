@@ -54,7 +54,7 @@ INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 
 # buttons
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
-BUTTON_PENCIL = '[aria-label="Изменить название"]'
+#BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 BUTTON_ADD_SEQUENCE = '[data-testid="addNewTagSequenceItemBtn"]'
 BUTTON_DELETE_SEQUENCE = '[data-testid="TagSequenceDeleteItem"]'

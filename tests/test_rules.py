@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
-#from utils.auth import auth
 from pages.rules import *
 from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_rules
 import pytest

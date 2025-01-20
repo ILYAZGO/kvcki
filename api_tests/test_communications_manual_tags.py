@@ -65,12 +65,12 @@ def test_communications_manual_tags():
     with allure.step("Check status code == 204"):
         assert delete_manual_tag.status_code == 204
 
+        time.sleep(5)
+
     with allure.step("Check that call dont have any manual tags"):
         get_manual_tags_list = requests.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
 
     with allure.step("Check status code == 200 and list is empty"):
-        time.sleep(30)
-
         assert get_calls.status_code == 200
         assert get_manual_tags_list.text == "[]"
 

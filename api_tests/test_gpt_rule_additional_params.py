@@ -147,8 +147,6 @@ imotio_gpt = {
 }
 
 
-
-
 @pytest.mark.api
 @allure.title("test_gpt_engine_selectors")
 @allure.severity(allure.severity_level.NORMAL)

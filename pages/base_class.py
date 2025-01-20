@@ -12,6 +12,7 @@ MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
 BUTTON_CROSS = '[data-testid="CloseIcon"]'
 INPUT_SEARCH = '[name="searchString"]'
+BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
@@ -59,6 +60,7 @@ class BaseClass:
         '''Other'''
         self.button_markup = page.locator(BUTTON_MARKUP)
         self.button_korzina = page.locator(BUTTON_KORZINA)
+        self.button_pencil = page.locator(BUTTON_PENCIL)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
 
 
