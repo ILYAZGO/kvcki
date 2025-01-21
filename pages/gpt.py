@@ -10,7 +10,7 @@ BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
 # SEARCH_IN_IMPORT_MODAL = '[data-testid="markup_gpt_importSearch}"]'
 
 INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
-INPUT_GPT_TEG_NAME = '[placeholder="Название тега"]'
+INPUT_GPT_TEG_NAME = '[placeholder="Название"]'
 INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
 
 class GPT(BaseClass):
@@ -34,6 +34,7 @@ class GPT(BaseClass):
         self.page.wait_for_selector(BUTTON_KORZINA)
         self.button_korzina.first.click()
         self.page.wait_for_selector(MODAL_WINDOW)
+        self.page.wait_for_timeout(500)
         self.modal_window.get_by_role("button", name="Удалить").click()
         self.page.wait_for_selector(MODAL_WINDOW, state="hidden")
         self.page.wait_for_timeout(500)
@@ -42,11 +43,16 @@ class GPT(BaseClass):
         self.page.get_by_role("button", name="Добавить настройки").click()
         self.page.wait_for_selector(MENU, timeout=self.timeout)
 
-    def create_gpt_rule_with_one(self, gpt_rule_name: str):
-        """Creates gpt rule with one question"""
+    def click_create_new_gpt_rule(self):
         self.button_create_gpt_rule.click()
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
+
+    def fill_gpt_rule_with_one(self, gpt_rule_name: str):
+        """Creates gpt rule with one question"""
+        # self.button_create_gpt_rule.click()
+        # self.page.wait_for_timeout(500)
+        # self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
         self.input_gpt_rule_name.type(gpt_rule_name, delay=20)
         self.page.wait_for_timeout(1000)
         self.input_gpt_tag_name.type("GPTteg1", delay=20)
@@ -54,10 +60,10 @@ class GPT(BaseClass):
         self.input_gpt_question.type("GPTquestion1", delay=20)
         self.page.wait_for_timeout(500)
 
-    def create_gpt_rule_with_two(self, gpt_rule_name: str):
-        self.button_create_gpt_rule.click()
-        self.page.wait_for_timeout(500)
-        self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
+    def fill_gpt_rule_with_two(self, gpt_rule_name: str):
+        # self.button_create_gpt_rule.click()
+        # self.page.wait_for_timeout(500)
+        # self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
         self.input_gpt_rule_name.type(gpt_rule_name, delay=20)
         self.page.wait_for_timeout(1000)
         self.input_gpt_tag_name.type("GPTteg1", delay=20)
@@ -73,7 +79,7 @@ class GPT(BaseClass):
 
     def turn_on_rule(self):
         self.page.locator('[aria-label="Вкл/Выкл"]').locator('[type="checkbox"]').click()
-        self.page.wait_for_selector('[class*="Mui-checked"]', timeout=self.timeout)
+        #self.page.wait_for_selector('[class*="Mui-checked"]', timeout=self.timeout)
 
     def rename_gpt_rule(self, old_name, new_name):
         self.button_pencil.click()
