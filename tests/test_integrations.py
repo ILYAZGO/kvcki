@@ -45,6 +45,24 @@ def test_usedesk(base_url, page: Page) -> None:
     with allure.step("Check alert"):
         integrations.check_alert("Данные сохранены")
 
+    with allure.step("Check integration status"):
+        expect(page.locator('[class*="styles_statusTitleDisconnected_"]')).to_have_count(1)
+
+    with allure.step("Make integration Active"):
+        page.locator('[type="checkbox"]').click()
+
+    with allure.step("Check alert"):
+        integrations.check_alert("Данные сохранены")
+
+    with allure.step("Check integration status"):
+        expect(page.locator('[class*="styles_statusTitleConnected"]')).to_have_count(1)
+
+    with allure.step("Reload page"):
+        integrations.reload_page()
+
+    with allure.step("Check integration status"):
+        expect(page.locator('[class*="styles_statusTitleConnected"]')).to_have_count(1)
+
     with allure.step("Go to integrations"):
         page.locator(BUTTON_INTEGRACII).click()
 

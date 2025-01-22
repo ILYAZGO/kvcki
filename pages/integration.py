@@ -48,7 +48,7 @@ class Integrations(BaseClass):
 
     def press_save(self):
         self.button_save.click()
-        self.page.wait_for_timeout(700)
+        self.page.wait_for_timeout(1500)
 
     def set_date(self, first_date: str):
         self.first_date.click()

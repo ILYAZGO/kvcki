@@ -766,7 +766,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
     with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
-    with allure.step("Fill ID to find call"):
+    with allure.step("Fill first ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=20)
         page.wait_for_timeout(500)
@@ -805,6 +805,52 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check that excel export removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
+
+    with allure.step("Close export modal"):
+        page.locator('[data-testid="CloseIcon"]').click()
+
+    with allure.step("Fill second ID to find call"):
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
+        page.locator(INPUT_ID).locator('[type="text"]').clear()
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268692.90190", delay=20)
+        page.wait_for_timeout(500)
+
+    with allure.step("Press button (Find communications)"):
+        communications.press_find_communications_less_than_50()
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Press (EX) button"):
+        communications.press_ex_button_in_expanded_call()
+
+    with allure.step("Check content of modal window"):
+        expect(page.locator(MODAL_WINDOW).get_by_text("Теги без значений")).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).get_by_text("Теги со значениями")).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).get_by_text("Параметры коммуникаций")).to_have_count(1)
+
+    with allure.step(" and download excel"):
+        # Start waiting for the download
+        with page.expect_download(timeout=60000) as download_info:
+            # Perform the action that initiates download
+            page.locator(MODAL_WINDOW).locator('[class*="buttonsBlock_"]').get_by_role("button", name="Экспортировать").click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that excel export downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+        assert os.path.getsize(path + download.suggested_filename) > 7100
+
+    with allure.step("Remove downloaded excel export"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that excel export removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+
 
 
 @pytest.mark.calls
