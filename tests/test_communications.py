@@ -472,10 +472,10 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
 
 @pytest.mark.calls
 @pytest.mark.independent
-@allure.title("test_check_open_call_in_new_tab")
+@allure.title("test_check_open_call_in_new_tab_by_user")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_check_open_call_in_new_tab")
-def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContext) -> None:
+@allure.description("test_check_open_call_in_new_tab_by_user")
+def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: BrowserContext) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
@@ -513,6 +513,94 @@ def test_check_open_call_in_new_tab(base_url, page: Page, context: BrowserContex
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
+
+
+# 00000000000
+@pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_check_open_call_in_new_tab_by_admin")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_open_call_in_new_tab_by_admin")
+def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: BrowserContext) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN_ADMIN, PASSWORD)
+        page.wait_for_timeout(5000)
+
+    with allure.step("Go to user"):
+        communications.go_to_user(LOGIN_USER)
+        page.wait_for_load_state(state="load", timeout=wait_until_visible)
+        page.wait_for_timeout(5000)
+
+    with allure.step("Open new tab"):
+        with context.expect_page() as new_tab_event:
+            page.locator(BUTTON_SHARE_CALL).locator('[type="button"]').click()
+            new_tab=new_tab_event.value
+
+    with allure.step("Check"):
+        page.wait_for_timeout(2500)
+        expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
+        expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
+        expect(new_tab.locator('[class*="ClientBlock_employeePhone"]')).to_have_text("0987654321")
+        expect(new_tab.locator('[class*="ClientBlock_employeeDuration"]')).to_have_text("00:00:38")
+        expect(new_tab.locator('[aria-label="Применение GPT правила"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Перетегировать"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Скачать"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Excel экспорт"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Скопировать публичную ссылку"]')).to_have_count(1)
+        expect(new_tab.locator('[class*="styles_withAllComments_"]')).to_have_count(1)
+        expect(new_tab.get_by_text("Добавить комментарий")).to_have_count(1)
+        expect(new_tab.locator('[class*="_manualGroup_"]')).to_have_count(1)
+
+    with allure.step("Change user in new tab. https://task.imot.io/browse/DEV-3239"):
+        # page.wait_for_timeout(3000)
+        # communications.go_to_user("Экотелеком")
+        # page.wait_for_timeout(5000)
+        # page.wait_for_load_state(state="load", timeout=wait_until_visible)
+        #
+        # page.wait_for_selector('[value="6204e7cb599aff4f43f5d3a0"]', state="hidden")
+        # page.wait_for_timeout(10000)
+
+        new_tab.locator("#react-select-2-input").type("Экотелеком", delay=30)
+        new_tab.get_by_text("Экотелеком", exact=True).click()
+        new_tab.wait_for_load_state(state="load", timeout=wait_until_visible)
+        new_tab.wait_for_timeout(2000)
+
+
+    with allure.step("Check"):
+        new_tab.wait_for_timeout(2500)
+        expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
+        expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
+        expect(new_tab.locator('[class*="ClientBlock_employeePhone"]')).to_have_text("0987654321")
+        expect(new_tab.locator('[class*="ClientBlock_employeeDuration"]')).to_have_text("00:00:38")
+        expect(new_tab.locator('[aria-label="Применение GPT правила"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Перетегировать"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Скачать"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Excel экспорт"]')).to_have_count(1)
+        expect(new_tab.locator('[aria-label="Скопировать публичную ссылку"]')).to_have_count(1)
+        expect(new_tab.locator('[class*="styles_withAllComments_"]')).to_have_count(1)
+        expect(new_tab.get_by_text("Добавить комментарий")).to_have_count(1)
+        expect(new_tab.locator('[class*="_manualGroup_"]')).to_have_count(1)
+
+    with allure.step("Close context"):
+        new_tab.close()
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+#----------
 
 @pytest.mark.calls
 @pytest.mark.independent
@@ -849,8 +937,6 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check that excel export removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
-
-
 
 
 @pytest.mark.calls

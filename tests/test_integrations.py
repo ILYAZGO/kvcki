@@ -5,6 +5,7 @@ from pages.integration import *
 from utils.create_delete_user import create_user, delete_user
 import pytest
 import allure
+import re
 
 
 @pytest.mark.independent
@@ -155,3 +156,38 @@ def test_search_string(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.independent
+@pytest.mark.integration
+@allure.title("test_integration_parameters")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_integration_parameters. with ecotelecom")
+def test_integration_parameters(base_url, page: Page) -> None:
+    integrations = Integrations(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        integrations.navigate(base_url)
+
+    with allure.step("Auth"):
+        integrations.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to settings"):
+        integrations.click_settings()
+
+    with allure.step("Go to integrations"):
+        integrations.press_integrations_in_menu()
+
+    with allure.step("Go to settings"):
+        page.locator('[aria-label="Настройки"]').click()
+        page.wait_for_selector('[href*="/parameters"]')
+
+    with allure.step("Go to parameters"):
+        page.locator('[href*="/parameters"]').click()
+
+    with allure.step("Check duration limit and skip empty calls are present"):
+        expect(page.locator('[data-testid="duration_limit"]').locator('[type="text"]')).to_have_value("50")
+        expect(page.locator('[data-testid="skip_empty_calls"]')).to_have_class(re.compile(r"Mui-checked"))
