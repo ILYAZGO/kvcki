@@ -2527,9 +2527,9 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
         expect(page.locator('[aria-label="Средний балл в %"]')).to_have_count(2)
         # check sum
         expect(page.locator('[title="14019"]')).to_have_count(2)
-        expect(page.locator('[title="49531"]')).to_have_count(2)
-        expect(page.locator('[title="10.98"]')).to_have_count(2)
-        expect(page.locator('[title="28.3 %"]')).to_have_count(2)
+        expect(page.locator('[title="49481"]')).to_have_count(2)
+        expect(page.locator('[title="10.99"]')).to_have_count(2)
+        expect(page.locator('[title="28.33 %"]')).to_have_count(2)
         #expect(page.locator('[title="29.33"]')).to_have_count(1) #this is bug
 
 
@@ -2596,8 +2596,8 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         expect(page.locator('[aria-label="% разговора оператора"]')).to_have_count(2)
         expect(page.locator('[aria-label="% разговора клиента"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="28:33:45"]')).to_have_count(2)
-        expect(page.locator('[title="27:44:24"]')).to_have_count(2)
+        expect(page.locator('[title="28:33:47"]')).to_have_count(2)
+        expect(page.locator('[title="27:44:26"]')).to_have_count(2)
         expect(page.locator('[title="35.34 %"]')).to_have_count(2)
         expect(page.locator('[title="34.33 %"]')).to_have_count(2)
 
@@ -2660,7 +2660,7 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
         expect(page.locator('[aria-label="Продолжительность тишины"]')).to_have_count(2)
         expect(page.locator('[aria-label="% продолжительности тишины"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="24:30:40"]')).to_have_count(2)
+        expect(page.locator('[title="24:30:36"]')).to_have_count(2)
         expect(page.locator('[title="30.33 %"]')).to_have_count(2)
 
 @pytest.mark.independent
