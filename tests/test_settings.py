@@ -1892,7 +1892,8 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
                           "(Бразилия)Португальский (Португалия)РусскийТурецкий (Турция)УкраинскийУзбекскийАвто")
 
-    expected_engines = "DeepgramgigaamHappyscribenexaraNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
+    expected_engines = "DeepgramHappyscribeNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
+    # expected_engines = "DeepgramgigaamHappyscribenexaraNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -1973,7 +1974,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
-        settings.choose_option(2)
+        settings.choose_option(1)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -1997,7 +1998,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
-        settings.choose_option(4)
+        settings.choose_option(2)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2027,7 +2028,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
-        settings.choose_option(5)
+        settings.choose_option(3)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2051,7 +2052,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose whisper"):
-        settings.choose_option(6)
+        settings.choose_option(4)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2075,7 +2076,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose Яндекс"):
-        settings.choose_option(7)
+        settings.choose_option(5)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2105,7 +2106,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
-        settings.choose_option(8)
+        settings.choose_option(6)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2182,7 +2183,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         settings.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        settings.choose_option(8)
+        settings.choose_option(6)
 
     with allure.step("Check (Save) button is disabled"):
         expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)).to_be_disabled()
@@ -2353,7 +2354,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
-        settings.choose_option(2)
+        settings.choose_option(1)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2377,7 +2378,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
-        settings.choose_option(4)
+        settings.choose_option(2)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2407,7 +2408,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
-        settings.choose_option(5)
+        settings.choose_option(3)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2431,7 +2432,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose whisper"):
-        settings.choose_option(6)
+        settings.choose_option(4)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2455,7 +2456,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose Яндекс"):
-        settings.choose_option(7)
+        settings.choose_option(5)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2485,7 +2486,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
-        settings.choose_option(8)
+        settings.choose_option(6)
 
     with allure.step("Click to model"):
         settings.click_model_select()
@@ -2524,13 +2525,13 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        settings.choose_option(7)
+        settings.choose_option(5)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        settings.choose_option(8)
+        settings.choose_option(6)
 
     with allure.step("Uncheck merge"):
         page.wait_for_timeout(500)

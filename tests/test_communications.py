@@ -1144,7 +1144,9 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
                           "(Бразилия)Португальский (Португалия)РусскийТурецкий (Турция)УкраинскийУзбекскийАвто")
 
-    expected_engines = "DeepgramgigaamHappyscribenexaraNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
+    expected_engines = "DeepgramHappyscribeNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
+    #expected_engines = "DeepgramgigaamHappyscribenexaraNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
+
 
     alert_merge = "Опция 'Объединить дорожки в один файл' не может быть выбрана одновременно с любой из диаризаций"
 
@@ -1249,7 +1251,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
-        communications.choose_option(2)
+        communications.choose_option(1)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1273,7 +1275,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
-        communications.choose_option(4)
+        communications.choose_option(2)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1304,7 +1306,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
-        communications.choose_option(5)
+        communications.choose_option(3)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1328,7 +1330,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose whisper"):
-        communications.choose_option(6)
+        communications.choose_option(4)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1352,7 +1354,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose Яндекс"):
-        communications.choose_option(7)
+        communications.choose_option(5)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1382,7 +1384,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
-        communications.choose_option(8)
+        communications.choose_option(6)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1419,7 +1421,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
-        communications.choose_option(8)
+        communications.choose_option(6)
 
     with allure.step("Check (Save) button is disabled"):
         expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -1486,7 +1488,8 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
                           "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
                           "(Бразилия)Португальский (Португалия)РусскийТурецкий (Турция)УкраинскийУзбекскийАвто")
 
-    expected_engines = "DeepgramgigaamHappyscribenexaraNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
+    expected_engines = "DeepgramHappyscribeNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
+    # expected_engines = "DeepgramgigaamHappyscribenexaraNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
 
     alert_merge = "Опция 'Объединить дорожки в один файл' не может быть выбрана одновременно с любой из диаризаций"
 
@@ -1591,7 +1594,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
-        communications.choose_option(2)
+        communications.choose_option(1)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1615,7 +1618,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
-        communications.choose_option(4)
+        communications.choose_option(2)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1645,7 +1648,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
-        communications.choose_option(5)
+        communications.choose_option(3)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1669,7 +1672,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose whisper"):
-        communications.choose_option(6)
+        communications.choose_option(4)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1693,7 +1696,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose Яндекс"):
-        communications.choose_option(7)
+        communications.choose_option(5)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1723,7 +1726,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
-        communications.choose_option(8)
+        communications.choose_option(6)
 
     with allure.step("Click to model"):
         communications.click_model_select()
@@ -1760,7 +1763,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        communications.choose_option(8)
+        communications.choose_option(6)
 
     with allure.step("Check (Save) button is disabled"):
         expect(page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)).to_be_enabled()
