@@ -30,7 +30,7 @@ SELECT_ROLE = '[data-testid="selectRole"]'
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
-        self.timeout = 40000
+        self.timeout = 50000
         self.users_list = page.locator("#react-select-2-input")
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
@@ -97,8 +97,8 @@ class BaseClass:
 
     def choose_period_date(self, first_date: str, last_date: str):
         """Choose period"""
-        self.page.wait_for_timeout(1500)
-        self.page.wait_for_selector('[class="ant-space-item"]')
+        self.page.wait_for_timeout(3000)
+        self.page.wait_for_selector('[class="ant-space-item"]', timeout=self.timeout)
         self.page.wait_for_timeout(2000)
         self.first_date.click()
         self.page.wait_for_timeout(300)

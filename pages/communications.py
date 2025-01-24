@@ -100,6 +100,7 @@ class Communications(BaseClass):
         self.page.wait_for_selector(NAYDENO_ZVONKOV, timeout=self.timeout)
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=self.timeout)
+        self.page.wait_for_timeout(1000)
 
     def press_find_communications_less_than_50(self):
         """If less than 50, not waiting pagination"""

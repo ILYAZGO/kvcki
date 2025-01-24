@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect, BrowserContext
+from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright
 from utils.variables import *
 from pages.communications import *
 from utils.dates import *
@@ -59,6 +59,7 @@ def test_check_dates(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
+@pytest.mark.test
 @pytest.mark.independent
 @allure.title("test_check_search_all")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -114,6 +115,7 @@ def test_check_search_by_client_number(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
+@pytest.mark.test
 @pytest.mark.independent
 @allure.title("test_check_search_by_employee_number")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -141,11 +143,13 @@ def test_check_search_by_employee_number(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
+@pytest.mark.test
 @pytest.mark.independent
 @allure.title("test_check_search_by_client_dict_or_text")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by client dict or text for Ecotelecom")
 def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
+
     communications = Communications(page)
 
     with allure.step("Go to url"):
@@ -689,7 +693,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.press_calls_list_download_button(0)
 
     with allure.step("Press (Export)"):
-        page.locator('[class*="menu"]').get_by_text("Экспорт расшифровки", exact=True).click()
+        page.locator(MENU).get_by_text("Экспорт расшифровки", exact=True).click()
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Choose (Export transcribe) option from opened menu"):
@@ -713,6 +717,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close modal with export"):
+        page.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
         page.locator(BUTTON_CROSS).click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
@@ -721,7 +726,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.press_calls_list_download_button(0)
 
     with allure.step("Press (Export)"):
-        page.locator('[class*="menu"]').get_by_text("Экспорт коммуникаций", exact=True).click()
+        page.locator(MENU).get_by_text("Экспорт коммуникаций", exact=True).click()
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Choose (Export transcribe) option from opened menu"):
@@ -746,6 +751,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close modal with export"):
+        page.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
         page.locator(BUTTON_CROSS).click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
@@ -895,7 +901,9 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close export modal"):
-        page.locator('[data-testid="CloseIcon"]').click()
+        page.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
+        page.locator(BUTTON_CROSS).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Fill second ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
