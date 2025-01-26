@@ -18,15 +18,24 @@ days_in_current_month = calendar.monthrange(today.year, today.month)[1]
 last_day_this_month = today.replace(day=days_in_current_month)
 
 
-first_day_last_month = today - timedelta(days=today.month)
-print(first_day_last_month)
-# last_day_last_month =
+if today.month == 1:  # Handle January
+    first_day_last_month = datetime(today.year - 1, 12, 1)
+else:
+    first_day_last_month = datetime(today.year, today.month - 1, 1)
+#first_day_last_month = today - timedelta(days=today.month)
+last_day_last_month = first_day_this_month - timedelta(days=1)
 
 #first_day_last_quarter =
 #last_day_last_quarter =
 
-#first_day_this_quarter =
-#last_day_this_quarter =
+first_month_of_quarter = (today.month - 1) // 3 * 3 + 1
+first_day_this_quarter = datetime(today.year, first_month_of_quarter, 1)
+last_month_of_quarter = ((today.month - 1) // 3 + 1) * 3
+# Create a date for the first day of the next month
+first_day_of_next_month = datetime(today.year, last_month_of_quarter + 1, 1) if (
+        last_month_of_quarter < 12) else datetime(today.year + 1, 1, 1)
+# Subtract one day to get the last day of the quarter
+last_day_this_quarter = first_day_of_next_month - timedelta(days=1)
 
 first_day_last_year = today.replace(year=today.year - 1, month=1, day=1)
 last_day_last_year = today.replace(year=today.year - 1, month=12, day=31)
