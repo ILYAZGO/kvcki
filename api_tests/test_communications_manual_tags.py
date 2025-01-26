@@ -1,6 +1,7 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from api_tests.common import *
+from utils.dates import *
 import requests
 import pytest
 import allure
@@ -25,7 +26,7 @@ def test_communications_manual_tags():
             'Authorization': user_token,
         }
 
-        get_calls = requests.post(url=API_URL + f"/search_calls/?start_date={today}&end_date={today}", headers=headers)
+        get_calls = requests.post(url=API_URL + f'/search_calls/?start_date={today.strftime("%Y-%m-%d")}&end_date={today.strftime("%Y-%m-%d")}', headers=headers)
         call_id = get_calls.json()["call_ids"][0].replace('"', '')
 
     with allure.step("Check status code == 200 and we get call_id in response"):

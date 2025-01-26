@@ -1,11 +1,4 @@
 import requests
-from datetime import datetime
-
-current_date = datetime.now()
-
-today = current_date.strftime("%Y-%m-%d")
-today_with_dots = current_date.strftime("%d.%m.%Y")
-
 
 def get_token(url: str, login: str, password: str):
 

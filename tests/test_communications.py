@@ -24,19 +24,19 @@ def test_check_dates(base_url, page: Page) -> None:
         communications.auth(ECOTELECOM, ECOPASS)
 
     with allure.step("Check first and last dates in view. Today by default"):
-        communications.assert_check_period_dates(today, today)
+        communications.assert_check_period_dates(today.strftime("%d/%m/%Y"), today.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to yesterday"):
         communications.yesterday.click()
 
     with allure.step("Check first and last dates in view."):
-        communications.assert_check_period_dates(yesterday, yesterday)
+        communications.assert_check_period_dates(yesterday.strftime("%d/%m/%Y"), yesterday.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to week"):
         communications.week.click()
 
     with allure.step("Check first and last dates in view."):
-        communications.assert_check_period_dates(first_day_week_ago, today)
+        communications.assert_check_period_dates(first_day_week_ago, today.strftime("%d/%m/%Y"))
 
     # I cant find date month ago. every time changing), so i turn this off
     # with allure.step("Switch to month"):
@@ -49,7 +49,7 @@ def test_check_dates(base_url, page: Page) -> None:
         communications.year.click()
 
     with allure.step("Check first and last dates in view."):
-        communications.assert_check_period_dates(first_day_year_ago, today)
+        communications.assert_check_period_dates(first_day_year_ago, today.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to all time"):
         communications.all_time.click()

@@ -30,22 +30,22 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         reports.press_create_report()
 
     with allure.step("Check begin and end dates in view. today by default"):
-        expect(page.locator(FIRST_DATE)).to_have_value(today)
-        expect(page.locator(LAST_DATE)).to_have_value(today)
+        expect(page.locator(FIRST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
+        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to yesterday"):
         reports.yesterday.click()
 
     with allure.step("Check begin and end dates in view"):
-        expect(page.locator(FIRST_DATE)).to_have_value(yesterday)
-        expect(page.locator(LAST_DATE)).to_have_value(yesterday)
+        expect(page.locator(FIRST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
+        expect(page.locator(LAST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to week"):
         reports.week.click()
 
     with allure.step("Check begin and end dates in view"):
         expect(page.locator(FIRST_DATE)).to_have_value(first_day_week_ago)
-        expect(page.locator(LAST_DATE)).to_have_value(today)
+        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
 
     # with allure.step("Switch to month"):
     #     page.locator(MONTH).click()
@@ -59,7 +59,7 @@ def test_reports_check_dates(base_url, page: Page) -> None:
 
     with allure.step("Check begin and end dates in view"):
         expect(page.locator(FIRST_DATE)).to_have_value(first_day_year_ago)
-        expect(page.locator(LAST_DATE)).to_have_value(today)
+        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to all time"):
         reports.all_time.click()

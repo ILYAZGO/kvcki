@@ -2519,7 +2519,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
 
 #  check save combinations
     with allure.step("Choose dates"):
-        settings.choose_period_date(today, today)
+        settings.choose_period_date(today.strftime("%d/%m/%Y"), today.strftime("%d/%m/%Y"))
 
     with allure.step("Click to engine"):
         settings.click_engine_select()

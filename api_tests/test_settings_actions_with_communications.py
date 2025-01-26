@@ -6,7 +6,6 @@ import requests
 import pytest
 import allure
 import time
-from datetime import datetime
 from uuid import UUID
 
 
@@ -52,14 +51,14 @@ def test_settings_actions_with_communcations(task_type):
         }
 
         data = {
-            "start_date": today,
-            "end_date": today,
+            "start_date": today.strftime("%Y-%m-%d"),
+            "end_date": today.strftime("%Y-%m-%d"),
             "action": task_type,
         }
 
         data_for_stt = {
-            "start_date": today,
-            "end_date": today,
+            "start_date": today.strftime("%Y-%m-%d"),
+            "end_date": today.strftime("%Y-%m-%d"),
             "action":task_type,
             "sttOptions":{
                 "sttEngine":"vosk",
@@ -99,8 +98,8 @@ def test_settings_actions_with_communcations(task_type):
         assert json_get_progress_tasks[0]["status"] == "SUCCESS" # check status
         assert json_get_progress_tasks[0]["action"] == task_type  # check action type
         assert json_get_progress_tasks[0]["progress"] == {}
-        assert today in json_get_progress_tasks[0]["add_time"]
-        assert today in json_get_progress_tasks[0]["done_time"]
+        assert today.strftime("%Y-%m-%d") in json_get_progress_tasks[0]["add_time"]
+        assert today.strftime("%Y-%m-%d") in json_get_progress_tasks[0]["done_time"]
         #assert json_get_progress_tasks[0]["title"] == {}
         #  https://task.imot.io/browse/DEV-3222
         #assert json_get_progress_tasks[0]["task_interval"] == f"коммуникации за: {today_with_dots}-{today_with_dots}"
@@ -118,8 +117,8 @@ def test_settings_actions_with_communcations(task_type):
         assert json_get_task_status["status"] == "SUCCESS"  # check status
         assert json_get_task_status["action"] == task_type  # check action type
         assert json_get_task_status["progress"] == {}
-        assert today in json_get_task_status["add_time"]
-        assert today in json_get_task_status["done_time"]
+        assert today.strftime("%Y-%m-%d") in json_get_task_status["add_time"]
+        assert today.strftime("%Y-%m-%d") in json_get_task_status["done_time"]
         # assert json_get_task_status["title"] == {}
         #  https://task.imot.io/browse/DEV-3222
         # assert json_get_task_status["task_interval"] == f"коммуникации за: {today_with_dots}-{today_with_dots}"
