@@ -71,4 +71,7 @@ def test_periods(period_type):
         else:
             assert get_period.status_code == 422
 
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
 
