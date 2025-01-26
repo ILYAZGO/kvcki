@@ -66,7 +66,7 @@ def test_communications_manual_tags():
     with allure.step("Check status code == 204"):
         assert delete_manual_tag.status_code == 204
 
-        time.sleep(15)
+        time.sleep(20)
 
     with allure.step("Check that call dont have any manual tags"):
         get_manual_tags_list = requests.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)

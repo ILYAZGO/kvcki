@@ -19,10 +19,11 @@ last_day_this_month = today.replace(day=days_in_current_month)
 
 
 first_day_last_month = today - timedelta(days=today.month)
-#last_day_last_month =
-
-#first_day_this_month =
-#last_day_this_month =
+print(first_day_last_month)
+# last_day_last_month =
+#
+# first_day_this_month =
+# last_day_this_month =
 
 #first_day_last_quarter =
 #last_day_last_quarter =

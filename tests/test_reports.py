@@ -322,15 +322,15 @@ def test_reports_management_check(base_url, page: Page) -> None:
         page.wait_for_selector('[class="ant-space-item"]')
 
     with allure.step("Choose dates"):
-        reports.choose_period_date(today, today)
+        reports.choose_period_date(today.strftime("%d/%m/%Y"), today.strftime("%d/%m/%Y"))
 
     with allure.step("Reload page"):
         reports.reload_page()
 
     with allure.step("Check that all changes saved"):
         expect(page.locator('[aria-label="changedReportName"]')).to_have_count(1)
-        expect(page.locator(FIRST_DATE)).to_have_value(today)
-        expect(page.locator(LAST_DATE)).to_have_value(today)
+        expect(page.locator(FIRST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
+        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
 #
     with allure.step("Press (Download) and wait until file will be saved"):
         # Start waiting for the download
