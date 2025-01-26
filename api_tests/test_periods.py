@@ -47,3 +47,10 @@ def test_periods(period_type):
             assert get_period.text == f'["{first_day_last_week.strftime("%Y-%m-%d")}","{last_day_last_week.strftime("%Y-%m-%d")}"]'
         elif period_type == "this_month":
             assert get_period.text == f'["{first_day_this_month.strftime("%Y-%m-%d")}","{last_day_this_month.strftime("%Y-%m-%d")}"]'
+
+
+
+        elif period_type == "last_year":
+            assert get_period.text == f'["{first_day_last_year.strftime("%Y-%m-%d")}","{last_day_last_year.strftime("%Y-%m-%d")}"]'
+        elif period_type == "this_year":
+            assert get_period.text == f'["{first_day_this_year.strftime("%Y-%m-%d")}","{last_day_this_year.strftime("%Y-%m-%d")}"]'

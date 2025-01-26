@@ -21,9 +21,6 @@ last_day_this_month = today.replace(day=days_in_current_month)
 first_day_last_month = today - timedelta(days=today.month)
 print(first_day_last_month)
 # last_day_last_month =
-#
-# first_day_this_month =
-# last_day_this_month =
 
 #first_day_last_quarter =
 #last_day_last_quarter =
@@ -31,12 +28,11 @@ print(first_day_last_month)
 #first_day_this_quarter =
 #last_day_this_quarter =
 
-#first_day_last_year =
-#last_day_last_year =
+first_day_last_year = today.replace(year=today.year - 1, month=1, day=1)
+last_day_last_year = today.replace(year=today.year - 1, month=12, day=31)
 
-#first_day_this_year =
-#last_day_this_year =
-
+first_day_this_year = today.replace(month=1, day=1)
+last_day_this_year = today.replace(month=12, day=31)
 
 
 
