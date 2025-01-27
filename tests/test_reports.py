@@ -271,7 +271,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         reports.press_save_as_new()
 
     with allure.step("Fill report name"):
-        page.locator(INPUT_REPORT_NAME).type("auto_test_report", delay=30)
+        page.locator(INPUT_REPORT_NAME).type("auto_test_report", delay=20)
 
     with allure.step("Press (submit)"):
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
@@ -397,7 +397,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
-#---------------
+
 @pytest.mark.independent
 @pytest.mark.reports
 @allure.title("test_report_send_email")
