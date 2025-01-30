@@ -112,6 +112,12 @@ class Reports(BaseClass):
         self.page.locator(BUTTON_SAVE_AS_NEW).click()
         self.page.wait_for_selector(MODAL_WINDOW)
 
+    def assert_check_period_dates(self, begin: str, end: str):
+        """Check first and last dates"""
+        self.page.wait_for_timeout(500)
+        expect(self.first_date).to_have_value(begin)
+        expect(self.last_date).to_have_value(end)
+
     # send reports
     def press_send_report(self):
         self.page.locator('[aria-label="Отправлять отчет"]').click()

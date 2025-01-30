@@ -39,10 +39,11 @@ class BaseClass:
         self.modal_window = page.locator(MODAL_WINDOW)
         self.snackbar = page.locator('[class*="SnackbarItem-wrappedRoot"]')
         '''Dates and calendar'''
-        self.yesterday = page.locator('[value="yesterday"]')
-        self.week = page.locator('[value="this_week"]')
-        self.month = page.locator('[value="this_month"]')
-        self.year = page.locator('[value="this_year"]')
+        self.yesterday = page.locator('[data-testid="yesterday"]')
+        self.week = page.locator('[data-testid="week"]')
+        self.month = page.locator('[data-testid="month"]')
+        self.quarter = page.locator('[data-testid="quarter"]')
+        self.year = page.locator('[data-testid="year"]')
         self.all_time = page.locator('[value="all_time"]')
         self.first_date = page.locator('[placeholder="Начальная дата"]')
         self.last_date = page.locator('[placeholder="Конечная дата"]')
@@ -110,6 +111,12 @@ class BaseClass:
         self.page.wait_for_timeout(300)
         self.page.keyboard.press("Enter")
         self.page.wait_for_timeout(300)
+
+    def select_period_value(self, period: str):
+        self.page.wait_for_selector('[class*="shown"]')
+        self.page.locator(f'[data-testid="{period}"]').click()
+        self.page.wait_for_selector('[class*="shown"]', state="hidden")
+        self.page.wait_for_timeout(500)
 
     def press_key(self, key: str):
         """Press key on keyboard"""

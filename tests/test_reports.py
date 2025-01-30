@@ -39,27 +39,81 @@ def test_reports_check_dates(base_url, page: Page) -> None:
     with allure.step("Check begin and end dates in view"):
         expect(page.locator(FIRST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
         expect(page.locator(LAST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
-
-    with allure.step("Switch to week"):
+#4444444444444444
+    with allure.step("Click to week"):
         reports.week.click()
 
-    with allure.step("Check begin and end dates in view"):
-        expect(page.locator(FIRST_DATE)).to_have_value(first_day_week_ago)
-        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
+    with allure.step("Choose this week"):
+        reports.select_period_value("this_week")
 
-    # with allure.step("Switch to month"):
-    #     page.locator(MONTH).click()
-    #
-    # with allure.step("Check begin and end dates in view"):
-    #     expect(page.locator(FIRST_DATE)).to_have_value(first_day_month_ago)
-    #     expect(page.locator(LAST_DATE)).to_have_value(today)
+    with allure.step("Check first and last dates in view."):
+        reports.assert_check_period_dates(first_day_this_week.strftime("%d/%m/%Y"), last_day_this_week.strftime("%d/%m/%Y"))
 
-    with allure.step("Switch to year"):
+    with allure.step("Click to week"):
+        reports.week.click()
+
+    with allure.step("Choose last week"):
+        reports.select_period_value("last_week")
+
+    with allure.step("Check first and last dates in view."):
+        reports.assert_check_period_dates(first_day_last_week.strftime("%d/%m/%Y"), last_day_last_week.strftime("%d/%m/%Y"))
+
+    with allure.step("Click to month"):
+        reports.month.click()
+
+    with allure.step("Choose this month"):
+        reports.select_period_value("this_month")
+
+    with allure.step("Check first and last dates in view."):
+        reports.assert_check_period_dates(first_day_this_month.strftime("%d/%m/%Y"), last_day_this_month.strftime("%d/%m/%Y"))
+
+    with allure.step("Click to month"):
+        reports.month.click()
+
+    with allure.step("Choose last month"):
+        reports.select_period_value("last_month")
+
+    with allure.step("Check first and last dates in view."):
+        reports.assert_check_period_dates(first_day_last_month.strftime("%d/%m/%Y"), last_day_last_month.strftime("%d/%m/%Y"))
+
+    with allure.step("Click to quarter"):
+        reports.quarter.click()
+
+    with allure.step("Choose this quarter"):
+        reports.select_period_value("this_quarter")
+
+    with allure.step("Check first and last dates in view."):
+        reports.assert_check_period_dates(first_day_this_quarter.strftime("%d/%m/%Y"),
+                                                 last_day_this_quarter.strftime("%d/%m/%Y"))
+
+    with allure.step("Click to quarter"):
+        reports.quarter.click()
+
+    with allure.step("Choose last quarter"):
+        reports.select_period_value("last_quarter")
+
+    # with allure.step("Check first and last dates in view."):
+    #     communications.assert_check_period_dates(first_day_last_quarter.strftime("%d/%m/%Y"), last_day_last_quarter.strftime("%d/%m/%Y"))
+
+    with allure.step("Click to year"):
         reports.year.click()
 
-    with allure.step("Check begin and end dates in view"):
-        expect(page.locator(FIRST_DATE)).to_have_value(first_day_year_ago)
-        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
+    with allure.step("Choose this year"):
+        reports.select_period_value("this_year")
+
+    with allure.step("Check first and last dates in view."):
+        reports.assert_check_period_dates(first_day_this_year.strftime("%d/%m/%Y"),
+                                                 last_day_this_year.strftime("%d/%m/%Y"))
+
+    with allure.step("Click to year"):
+        reports.year.click()
+
+    with allure.step("Choose last year"):
+        reports.select_period_value("last_year")
+
+    with allure.step("Check first and last dates in view."):
+        reports.assert_check_period_dates(first_day_last_year.strftime("%d/%m/%Y"),
+                                                 last_day_last_year.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to all time"):
         reports.all_time.click()
