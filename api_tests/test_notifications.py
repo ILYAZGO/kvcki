@@ -4,7 +4,6 @@ from api_tests.common import *
 import requests
 import pytest
 import allure
-import time
 
 available_directions = ["Telegram","Email","API"]
 
@@ -13,7 +12,6 @@ available_directions = ["Telegram","Email","API"]
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_create_update_delete_email_notification_rule")
 def test_create_update_delete_email_notification_rule():
-
     rule_name = "auto_api_test_email"
     direction = available_directions[1]
 
@@ -69,6 +67,28 @@ def test_create_update_delete_email_notification_rule():
         assert get_notify_rules_list.status_code == 200
         assert get_notify_rules_list.text == "[]"
 
+    ####
+    with allure.step("GET /notify_rules/ empty with fake ?rule_owner"):
+        get_notify_rules_list = requests.get(url=API_URL + f'/notify_rules/?rule_owner={fake_id}', headers=headers)
+
+    with allure.step("Check status code == 404 and Setting rule_owner not allowed"):
+        assert get_notify_rules_list.status_code == 403
+        assert get_notify_rules_list.text == '{"detail":"Setting rule_owner not allowed"}'
+
+    with allure.step("GET /notify_rules/ empty with ecotelecom ?rule_owner"):
+        get_notify_rules_list = requests.get(url=API_URL + f'/notify_rules/?rule_owner={ecotelecom_id}', headers=headers)
+
+    with allure.step("Check status code == 403 and Setting rule_owner not allowed"):
+        assert get_notify_rules_list.status_code == 403
+        assert get_notify_rules_list.text == '{"detail":"Setting rule_owner not allowed"}'
+
+    with allure.step("GET /notify_rules/ empty with broken ?rule_owner"):
+        get_notify_rules_list = requests.get(url=API_URL + f'/notify_rules/?rule_owner={fake_id[:10]}', headers=headers)
+
+    with allure.step("Check status code == 422 and empty"):
+        assert get_notify_rules_list.status_code == 422
+        assert "Value error, Not a valid ObjectId" in get_notify_rules_list.text
+######
     with allure.step("Create email notify rule"):
         rule_payload = {
             "owner":USER_ID,

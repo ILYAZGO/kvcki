@@ -1069,13 +1069,13 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator(BUTTON_ADD_COMMENT_TITLE).click()
 
     with allure.step("Fill title"):
-        page.locator('[class*="styles_title_"]').fill("CommentTitle")
+        page.locator('[id*="post_comment_"]').locator('[class*="styles_title_"]').type("CommentTitle", delay=20)
 
     with allure.step("Check that button (add comment) still disabled"):
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1)).to_be_disabled()
 
     with allure.step("Fill comment"):
-        page.locator('[class*="styles_textareaWrapper"]').locator('[class*="styles_textarea_"]').fill("CommentText")
+        page.locator('[class*="styles_textareaWrapper"]').locator('[class*="styles_textarea_"]').type("CommentText", delay=20)
 
     with allure.step("Press (add comment)"):
         page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1).click()

@@ -1,5 +1,9 @@
 import requests
 
+ecotelecom_id = "6204e7cb599aff4f43f5d3a0"
+fake_id = "123456789012345678901234" # 24 digits for every fake id if needed
+
+
 def get_token(url: str, login: str, password: str):
 
     headers_for_get_token = {

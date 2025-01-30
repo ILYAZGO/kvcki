@@ -247,6 +247,8 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_reports_management_check")
 def test_reports_management_check(base_url, page: Page) -> None:
+    period_list = "СегодняВчераТекущая неделяПрошлая неделяТекущий месяцПрошлый месяцТекущий кварталПрошлый кварталТекущий годПрошлый годЗа все времяПроизвольные даты"
+
     reports = Reports(page)
 
     with allure.step("Create user"):
@@ -315,7 +317,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
 
     with allure.step("Check content of period options"):
         expect(page.locator('[class*="styles_periodCell_"]').locator(MENU)
-               ).to_have_text("СегодняВчераТекущая неделяТекущий месяцТекущий годЗа все времяПроизвольные даты")
+               ).to_have_text(period_list)
 
     with allure.step("Choose arbitrary dates"):
         page.get_by_text("Произвольные даты", exact=True).click()
