@@ -27,6 +27,8 @@ INPUT_PHONE = '[name="phoneNumber"]'
 INPUT_COMMENT = '[name="comment"]'
 SELECT_ROLE = '[data-testid="selectRole"]'
 
+ALERT_MESSAGE = '[class*="styles_firstLine__"]'
+
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page

@@ -7,6 +7,7 @@ INPUT_API_TOKEN = '[data-testid="api_token"]'
 INPUT_CALLS_LIMIT = '[name="maxNewCalls"]'
 
 BUTTON_INTEGRATIONS_IN_MENU = '[href*="settings/integrations"]'
+TAB_API_TOKEN = '[href*="/api-tokens"]'
 BUTTON_CONNECT = ".styles_goToIntegrationsList__KXaHU"
 BUTTON_SAVE = '[data-testid="AccessKeysTab_submit"]'
 BUTTON_INTEGRACII = ".styles_firstTitle__iaGwm"
@@ -15,8 +16,11 @@ BUTTON_PLAY = '[aria-label="Запуск интеграции"]'
 BUTTON_KORZINA = "div[class='styles_button__xgQ1q'] button[type='button']"
 BUTTON_DELETE_INTEGRATION = '[data-testid="SettingsCell_deleteBtn"]'
 BUTTON_OK_IN_DATE = "button[class='ant-btn ant-btn-primary ant-btn-sm']"
+BUTTON_ADD_TOKEN_OR_TRANSLATION = '[data-testid="addTranslateBtn"]'
+BUTTON_BASKET = '[class*="ant-btn"]' # in api tokens and tag translations
 NAYDENO_ZVONKOV_INTEGRATION = '//*[@id="root"]/div/div[3]/div/div[3]/div[1]/div/p'
 LOGIN_IN_LEFT_MENU = ".MuiTypography-root.MuiTypography-body1.styles_headerLogin__eWAxf.css-pd9d9b"
+
 
 
 class Integrations(BaseClass):
@@ -77,6 +81,16 @@ class Integrations(BaseClass):
     def press_create(self):
         self.page.locator(BUTTON_CREATE).click()
         self.page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    def click_api_token_tab(self):
+        self.page.locator(TAB_API_TOKEN).click()
+        self.page.wait_for_selector(BUTTON_ADD_TOKEN_OR_TRANSLATION)
+        self.page.wait_for_timeout(500)
+
+    def press_basket_in_api_tokens_and_tag_translations(self):
+        self.page.locator(BUTTON_BASKET).nth(0).click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+
 
 
 

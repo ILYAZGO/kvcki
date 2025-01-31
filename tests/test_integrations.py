@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Route
 from utils.variables import *
 from utils.dates import first_day_week_ago
 from pages.integration import *
@@ -191,3 +191,207 @@ def test_integration_parameters(base_url, page: Page) -> None:
     with allure.step("Check duration limit and skip empty calls are present"):
         expect(page.locator('[data-testid="duration_limit"]').locator('[type="text"]')).to_have_value("50")
         expect(page.locator('[data-testid="skip_empty_calls"]')).to_have_class(re.compile(r"Mui-checked"))
+
+
+@pytest.mark.independent
+@pytest.mark.integration
+@allure.title("test_integrations_api_token")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_integrations_api_token")
+def test_integrations_api_token(base_url, page: Page) -> None:
+    integrations = Integrations(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        integrations.navigate(base_url)
+
+    with allure.step("Auth"):
+        integrations.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to settings"):
+        integrations.click_settings()
+
+    with allure.step("Go to integrations"):
+        integrations.press_integrations_in_menu()
+
+    with allure.step("Go to api tokens tab"):
+        integrations.click_api_token_tab()
+
+    with allure.step("Check alert about empty token list"):
+        expect(page.locator(ALERT_MESSAGE)).to_contain_text("Вы еще не добавили ни одного токена")
+
+    with allure.step("Press (add token)"):
+        page.locator(BUTTON_ADD_TOKEN_OR_TRANSLATION).click()
+        page.wait_for_selector('[data-row-key="0"]', timeout=wait_until_visible)
+
+    with allure.step("Press (Delete api token)"):
+        integrations.press_basket_in_api_tokens_and_tag_translations()
+
+    with allure.step("Press (Cancel)"):
+        page.locator('[data-testid="cancelDeleteToken"]').click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Press (Delete api token)"):
+        integrations.press_basket_in_api_tokens_and_tag_translations()
+
+    with allure.step("Press (Delete)"):
+        page.locator('[data-testid="confirmDeleteToken"]').click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Check alert about empty token list"):
+        expect(page.locator(ALERT_MESSAGE)).to_contain_text("Вы еще не добавили ни одного токена")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.independent
+@pytest.mark.integration
+@allure.title("test_integrations_api_token_list_if_500")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_integrations_api_token_list_if_500")
+def test_integrations_api_token_list_if_500(base_url, page: Page) -> None:
+    integrations = Integrations(page)
+
+    error = "Возникла ошибка в процессе формирования таблицы"
+
+    def handle_api_token_list(route: Route):
+        route.fulfill(status=500, body="")
+
+    # Intercept the route
+    page.route("**/api_keys", handle_api_token_list)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        integrations.navigate(base_url)
+
+    with allure.step("Auth"):
+        integrations.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to settings"):
+        integrations.click_settings()
+
+    with allure.step("Go to integrations"):
+        integrations.press_integrations_in_menu()
+
+    with allure.step("Go to api tokens tab"):
+        integrations.click_api_token_tab()
+
+    with allure.step("Check alert"):
+        integrations.check_alert("Ошибка 500: Внутренняя ошибка сервера")
+
+    with allure.step("Check alert about empty token list"):
+        expect(page.locator(ALERT_MESSAGE)).to_contain_text(error)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.independent
+@pytest.mark.integration
+@allure.title("test_integrations_tag_translations")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_integrations_tag_translations")
+def est_integrations_tag_translations(base_url, page: Page) -> None:
+    integrations = Integrations(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        integrations.navigate(base_url)
+
+    with allure.step("Auth"):
+        integrations.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to settings"):
+        integrations.click_settings()
+
+    with allure.step("Go to integrations"):
+        integrations.press_integrations_in_menu()
+
+    with allure.step("Go to tag translations tab"):
+        page.locator('[href*="/translation-integrations-tags"]').click()
+
+    with allure.step("Check alert about empty token list"):
+        expect(page.locator(ALERT_MESSAGE)).to_contain_text("Вы еще не добавили ни одного перевода")
+
+    with allure.step("Press (add token)"):
+        page.locator(BUTTON_ADD_TOKEN_OR_TRANSLATION).click()
+        page.wait_for_selector('[data-row-key="new-1"]', timeout=wait_until_visible)
+
+
+
+
+
+
+
+
+
+    with allure.step("Press (Delete api token)"):
+        integrations.press_basket_in_api_tokens_and_tag_translations()
+
+    with allure.step("Press (Cancel)"):
+        page.locator('[data-testid="cancelDeleteToken"]').click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Press (Delete api token)"):
+        integrations.press_basket_in_api_tokens_and_tag_translations()
+
+    with allure.step("Press (Delete)"):
+        page.locator('[data-testid="confirmDeleteToken"]').click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Check alert about empty token list"):
+        expect(page.locator(ALERT_MESSAGE)).to_contain_text("Вы еще не добавили ни одного токена")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.independent
+@pytest.mark.integration
+@allure.title("test_integrations_tag_translation_list_if_500")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_integrations_tag_translation_list_if_500")
+def test_integrations_tag_translation_list_if_500(base_url, page: Page) -> None:
+    integrations = Integrations(page)
+
+    error = "Возникла ошибка в процессе формирования таблицы"
+
+    def handle_api_token_list(route: Route):
+        route.fulfill(status=500, body="")
+
+    # Intercept the route
+    page.route("**/tag_translations/user", handle_api_token_list)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        integrations.navigate(base_url)
+
+    with allure.step("Auth"):
+        integrations.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to settings"):
+        integrations.click_settings()
+
+    with allure.step("Go to integrations"):
+        integrations.press_integrations_in_menu()
+
+    with allure.step("Go to api tokens tab"):
+        page.locator('[href*="/translation-integrations-tags"]').click()
+
+    with allure.step("Check alert"):
+        integrations.check_alert("Ошибка 500: Внутренняя ошибка сервера")
+
+    with allure.step("Check alert about empty token list"):
+        expect(page.locator(ALERT_MESSAGE)).to_contain_text(error)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
