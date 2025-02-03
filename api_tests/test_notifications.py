@@ -44,13 +44,13 @@ def test_create_update_delete_email_notification_rule():
             "call_id", "client_phone", "operator_phone", "call_time", "call_timestamp",
             "duration", "unique_id", "conversation_id", "call_points", "call_max_points",
             "link", "link_old", "link_new", "public_link", "public_link_old", "public_link_new",
-            "get_fragments('tag_name', 2, 2)", "get_all_text(1000)", "in_line()", "get_stt_json()"
+            "get_fragments('tag_name', 2, 2)", "get_all_text(1000)", "in_line()", "json()", "get_stt_json()"
         }
         expected_keys_descriptions = {
             "call_id", "client_phone", "operator_phone", "call_time", "call_timestamp",
             "duration", "unique_id", "conversation_id", "call_points", "call_max_points",
             "link", "public_link", "get_fragments('tag_name', 2, 2)",
-            "get_all_text(1000)", "in_line()", "get_stt_json()"
+            "get_all_text(1000)", "in_line()", "json()", "get_stt_json()"
         }
         actual_keys_call_vars = set(json_get_notify_rule_variables["call_vars"].keys())
         actual_keys_descriptions = set(json_get_notify_rule_variables["descriptions"].keys())

@@ -2508,9 +2508,9 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
         # check headers
         expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в отчет"]')).to_have_count(2)
         expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в строку"]')).to_have_count(2)
-        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в столбец"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в колонку"]')).to_have_count(2)
         expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в ячейку строки"]')).to_have_count(2)
-        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в ячейку столбца"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Доля (%) от коммуникаций, вошедших в ячейку колонки"]')).to_have_count(2)
         # check sum
         expect(page.locator('[title="19.68 %"]')).to_have_count(4)
         expect(page.locator('[title="66.84 %"]')).to_have_count(4)
