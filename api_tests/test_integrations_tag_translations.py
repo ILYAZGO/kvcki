@@ -76,6 +76,39 @@ def test_integrations_create_update_delete_tag_translation():
         assert get_translations_list.status_code == 200
         assert get_translations_list.json() == list_with_translation
 
+    with allure.step("Update tag translation"):
+        payload = {
+            "language": "ru",
+            "owner": f"{USER_ID}",
+            "originalTagName": "auto_rule",
+            "translatedTagName": "update",
+            "integrationServiceName": "update",
+            "isGlobal": False
+        }
+        update_tag_translation = requests.put(url=API_URL + f'/tag_translations/{translation_id}', headers=headers, json=payload)
+
+    with allure.step("Check status code == 204 "):
+        assert update_tag_translation.status_code == 204
+
+    with allure.step("GET /tag_translations/user"):
+        get_translations_list = requests.get(url=API_URL + f'/tag_translations/user', headers=headers)
+
+    with allure.step("Check status code == 200 and empty"):
+        updated_list_with_translation = [
+            {
+                "id": f"{translation_id}",
+                "language": "ru",
+                "owner": "None",
+                "originalTagName": "auto_rule",
+                "translatedTagName": "update",
+                "integrationServiceName": "update",
+                "isGlobal": False
+            }
+        ]
+
+        assert get_translations_list.status_code == 200
+        assert get_translations_list.json() == updated_list_with_translation
+
     with allure.step("DELETE tag translation"):
         delete_tag_translation = requests.delete(url=API_URL + f'/tag_translations/{translation_id}', headers=headers)
 

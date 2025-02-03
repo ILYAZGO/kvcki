@@ -296,7 +296,7 @@ def test_integrations_api_token_list_if_500(base_url, page: Page) -> None:
 @allure.title("test_integrations_tag_translations")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_integrations_tag_translations")
-def est_integrations_tag_translations(base_url, page: Page) -> None:
+def test_integrations_tag_translations(base_url, page: Page) -> None:
     integrations = Integrations(page)
 
     with allure.step("Create user"):
@@ -324,30 +324,87 @@ def est_integrations_tag_translations(base_url, page: Page) -> None:
         page.locator(BUTTON_ADD_TOKEN_OR_TRANSLATION).click()
         page.wait_for_selector('[data-row-key="new-1"]', timeout=wait_until_visible)
 
+    with allure.step("Add comment"):
+        page.locator('[id="comment"]').clear()
+        page.locator('[id="comment"]').type("comment", delay=20)
 
+    with allure.step("Press green V"):
+        page.locator('[fill="#73D13D"]').click()
+        page.wait_for_timeout(500)
 
+    with allure.step("Check empty inputs alert"):
+        expect(page.get_by_text("* Пожалуйста, выберите название", exact=True)).to_have_count(1)
+        expect(page.get_by_text("* Пожалуйста, введите перевод", exact=True)).to_have_count(1)
 
+    with allure.step("Choose tag"):
+        page.locator('[class="ant-table-tbody"]').locator('[class*="-indicatorContainer"]').click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("auto_rule", exact=True).click()
 
+    with allure.step("Add translation"):
+        page.locator('[id="translatedName"]').clear()
+        page.locator('[id="translatedName"]').type("tag", delay=20)
 
+    with allure.step("Add comment"):
+        page.locator('[id="comment"]').clear()
+        page.locator('[id="comment"]').type("comment", delay=20)
 
+    with allure.step("Press green V"):
+        page.locator('[fill="#73D13D"]').click()
+        page.wait_for_timeout(500)
 
+    with allure.step("Reload page"):
+        integrations.reload_page()
+
+    with allure.step("Check that tanslation saved"):
+        expect(page.get_by_text("auto_rule", exact=True)).to_have_count(1)
+        expect(page.get_by_text("tag", exact=True)).to_have_count(1)
+        expect(page.get_by_text("comment", exact=True)).to_have_count(1)
+
+    with allure.step("Press pencil"):
+        page.locator('[class*="ant-btn"]').nth(0).click()
+
+    with allure.step("Choose tag"):
+        page.locator('[class="ant-table-tbody"]').locator('[class*="-indicatorContainer"]').click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("auto", exact=True).click()
+
+    with allure.step("Add translation"):
+        page.locator('[id="translatedName"]').clear()
+        page.locator('[id="translatedName"]').type("gat", delay=20)
+
+    with allure.step("Add comment"):
+        page.locator('[id="comment"]').clear()
+        page.locator('[id="comment"]').type("tnemmoc", delay=20)
+
+    with allure.step("Press green V"):
+        page.locator('[fill="#73D13D"]').click()
+        page.wait_for_timeout(500)
+
+    with allure.step("Reload page"):
+        integrations.reload_page()
+
+    with allure.step("Check that tanslation saved"):
+        expect(page.get_by_text("auto", exact=True)).to_have_count(1)
+        expect(page.get_by_text("gat", exact=True)).to_have_count(1)
+        expect(page.get_by_text("tnemmoc", exact=True)).to_have_count(1)
 
     with allure.step("Press (Delete api token)"):
-        integrations.press_basket_in_api_tokens_and_tag_translations()
+        page.locator('[class*="ant-btn"]').nth(1).click()
 
     with allure.step("Press (Cancel)"):
-        page.locator('[data-testid="cancelDeleteToken"]').click()
+        page.get_by_text("Отмена", exact=True).click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Press (Delete api token)"):
-        integrations.press_basket_in_api_tokens_and_tag_translations()
+        page.locator('[class*="ant-btn"]').nth(1).click()
 
     with allure.step("Press (Delete)"):
-        page.locator('[data-testid="confirmDeleteToken"]').click()
+        page.get_by_text("Удалить", exact=True).click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check alert about empty token list"):
-        expect(page.locator(ALERT_MESSAGE)).to_contain_text("Вы еще не добавили ни одного токена")
+        expect(page.locator(ALERT_MESSAGE)).to_contain_text("Вы еще не добавили ни одного перевода")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
