@@ -15,6 +15,7 @@ USER = "1userIM"
 #MANAGER = "3managerIM"
 #ADMIN = "4adminIM"
 #USER_FOR_IMPORT = "importFrom"
+
 USER_FOR_CHECK = "comparelogin"
 PASSWORD = "Qaz123wsX"
 
