@@ -6,7 +6,7 @@ from pages.reports import *
 import pytest
 import allure
 from utils.create_delete_user import create_user, delete_user
-import random
+#import random
 
 
 @pytest.mark.independent
@@ -39,7 +39,7 @@ def test_reports_check_dates(base_url, page: Page) -> None:
     with allure.step("Check begin and end dates in view"):
         expect(page.locator(FIRST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
         expect(page.locator(LAST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
-#4444444444444444
+
     with allure.step("Click to week"):
         reports.week.click()
 
@@ -83,8 +83,7 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         reports.select_period_value("this_quarter")
 
     with allure.step("Check first and last dates in view."):
-        reports.assert_check_period_dates(first_day_this_quarter.strftime("%d/%m/%Y"),
-                                                 last_day_this_quarter.strftime("%d/%m/%Y"))
+        reports.assert_check_period_dates(first_day_this_quarter.strftime("%d/%m/%Y"), last_day_this_quarter.strftime("%d/%m/%Y"))
 
     with allure.step("Click to quarter"):
         reports.quarter.click()
@@ -102,8 +101,7 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         reports.select_period_value("this_year")
 
     with allure.step("Check first and last dates in view."):
-        reports.assert_check_period_dates(first_day_this_year.strftime("%d/%m/%Y"),
-                                                 last_day_this_year.strftime("%d/%m/%Y"))
+        reports.assert_check_period_dates(first_day_this_year.strftime("%d/%m/%Y"), last_day_this_year.strftime("%d/%m/%Y"))
 
     with allure.step("Click to year"):
         reports.year.click()
@@ -112,8 +110,7 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         reports.select_period_value("last_year")
 
     with allure.step("Check first and last dates in view."):
-        reports.assert_check_period_dates(first_day_last_year.strftime("%d/%m/%Y"),
-                                                 last_day_last_year.strftime("%d/%m/%Y"))
+        reports.assert_check_period_dates(first_day_last_year.strftime("%d/%m/%Y"), last_day_last_year.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to all time"):
         reports.all_time.click()
@@ -121,6 +118,88 @@ def test_reports_check_dates(base_url, page: Page) -> None:
     with allure.step("Check begin and end dates is disabled"):
         expect(page.locator(FIRST_DATE)).to_be_disabled()
         expect(page.locator(LAST_DATE)).to_be_disabled()
+
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_change_dates_in_calendar")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_change_dates_in_calendar. fix https://task.imot.io/browse/DEV-3264")
+def test_reports_change_dates_in_calendar(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Go to url"):
+        reports.navigate(base_url)
+
+    with allure.step("Auth with ecotelecom"):
+        reports.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Press (Create report)"):
+        reports.press_create_report()
+
+    with allure.step("Choose period 01/02/2022-15/02/2022"):
+        reports.choose_period_date("01/02/2022", "15/02/2022")
+
+    with allure.step("Press generate report"):
+        reports.press_generate_report()
+
+    with allure.step("Check that report created"):
+        expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("616")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("2092")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("419")
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("3127")
+
+    with allure.step("Choose period 08/02/2022-09/02/2022"):
+        reports.choose_period_date("08/02/2022", "09/02/2022")
+
+    with allure.step("Press generate report"):
+        reports.press_generate_report()
+
+    with allure.step("Check that report created"):
+        expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
+        expect(page.locator('[aria-label="10-02-2022"]')).not_to_be_visible()
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("616")
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("2092")
+        expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("2708")
+        expect(page.locator('[data-id="3"]')).not_to_be_visible()
+
+@pytest.mark.independent
+@pytest.mark.reports
+@allure.title("test_reports_check_calendar_localization")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_check_calendar_localization")
+def test_reports_check_calendar_localization(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        reports.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        reports.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Click to calendar"):
+        page.locator('[placeholder="Начальная дата"]').click()
+
+    with allure.step("Check localization"):
+        expect(page.locator('[class="ant-picker-content"]').nth(0)).to_contain_text("пнвтсрчтптсбвс")
+        expect(page.locator('[class="ant-picker-content"]').nth(1)).to_contain_text("пнвтсрчтптсбвс")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
 
 @pytest.mark.independent
 @pytest.mark.reports
@@ -153,16 +232,16 @@ def test_reports_save_update_delete_report(base_url, page: Page) -> None:
 
     with allure.step("Check that opened modal window with empty report name and button (add) disabled"):
         expect(page.locator(INPUT_REPORT_NAME)).to_be_empty()
-        expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_be_disabled(timeout=wait_until_visible)
+        expect(page.locator('[class="modal-btns"]').locator(BUTTON_SUBMIT)).to_be_disabled(timeout=wait_until_visible)
 
     with allure.step("Input report name - auto_test_report"):
         page.locator(INPUT_REPORT_NAME).fill("auto_test_report")
 
     with allure.step("Check that button (add) enabled"):
-        expect(page.locator('[class="modal-btns"]').locator('[type="submit"]')).to_be_enabled(timeout=wait_until_visible)
+        expect(page.locator('[class="modal-btns"]').locator(BUTTON_SUBMIT)).to_be_enabled(timeout=wait_until_visible)
 
     with allure.step("Press (save) button"):
-        page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
+        page.locator('[class="modal-btns"]').locator(BUTTON_SUBMIT).click()
 
     with allure.step("Press generate report"):
         reports.press_generate_report()

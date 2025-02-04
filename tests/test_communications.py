@@ -112,6 +112,34 @@ def test_check_dates(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
+@pytest.mark.independent
+@allure.title("test_communications_check_calendar_localization")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_communications_check_calendar_localization")
+def test_communications_check_calendar_localization(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
+
+    with allure.step("Click to calendar"):
+        page.locator('[placeholder="Начальная дата"]').click()
+
+    with allure.step("Check localization"):
+        expect(page.locator('[class="ant-picker-content"]').nth(0)).to_contain_text("пнвтсрчтптсбвс")
+        expect(page.locator('[class="ant-picker-content"]').nth(1)).to_contain_text("пнвтсрчтптсбвс")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.calls
 @pytest.mark.test
 @pytest.mark.independent
 @allure.title("test_check_search_all")
