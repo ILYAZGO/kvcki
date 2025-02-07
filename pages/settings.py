@@ -18,18 +18,6 @@ BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
 BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
-INPUT_LOGIN = '[name="login"]'
-INPUT_NAME = '[name="name"]'
-INPUT_EMAIL = '[name="email"]'
-INPUT_PHONE = '[name="phoneNumber"]'
-INPUT_COMMENT = '[name="comment"]'
-INPUT_NEW_PASSWORD = '[name="newPassword"]'
-INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
-
-BUTTON_DOBAVIT_POLZOVATELIA = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
-
-SELECT_PARTNER = '[data-testid="selectPartner"]'
-SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
 
 BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'

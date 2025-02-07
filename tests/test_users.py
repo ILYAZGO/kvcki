@@ -45,7 +45,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         )
 
     with allure.step("Press button (Add) in modal window"):
-        press_button_add_in_modal(page)
+        users.press_button_add_in_modal()
         page.wait_for_selector('[class*="PersonalInfo_form"]', timeout=wait_until_visible)
 
     with allure.step("Check"):
@@ -61,7 +61,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete admin 2"):
         page.wait_for_timeout(3000)
-        delete_added_user(page)
+        users.delete_added_user()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert("Пользователь был удален")
@@ -111,7 +111,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
             )
 
     with allure.step("Press button (Add) in modal window"):
-        press_button_add_in_modal(page)
+        users.press_button_add_in_modal()
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
@@ -126,7 +126,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added manager"):
         page.wait_for_timeout(3000)
-        delete_added_user(page)
+        users.delete_added_user()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert("Пользователь был удален")
@@ -174,7 +174,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         users.press_button_add_user()
 
     with allure.step("Cancel by button KRESTIK"):
-        page.locator(BUTTON_KRESTIK).click()
+        page.locator(BUTTON_CROSS).click()
 
     with allure.step("Check"):
         expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
@@ -194,18 +194,13 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         )
 
     with allure.step("Set industry and partner for user"):
-        set_industry_and_partner("Недвижимость",
-                                 "managerIM",
-                                 page)
+        users.set_industry_and_partner("Недвижимость","managerIM")
 
     with allure.step("Set STT for user"):
-        set_stt("Русский",
-                "Deepgram",
-                "whisper",
-                page)
+        users.set_stt("Русский","Deepgram","whisper")
 
     with allure.step("Press button (Add) in modal window"):
-        press_button_add_in_modal(page)
+        users.press_button_add_in_modal()
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
@@ -223,7 +218,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete added user"):
         page.wait_for_timeout(3000)
-        delete_added_user(page)
+        users.delete_added_user()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert("Пользователь был удален")
@@ -308,16 +303,13 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Set industry"):
-        set_industry("Недвижимость", page)
+        users.set_industry("Недвижимость")
 
     with allure.step("Set STT"):
-        set_stt("Русский",
-                "IMOT.IO",
-                "Стандарт",
-                 page)
+        users.set_stt("Русский","IMOT.IO","Стандарт")
 
     with allure.step("Press button (Add) in modal window"):
-        press_button_add_in_modal(page)
+        users.press_button_add_in_modal()
         page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
@@ -332,7 +324,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete added user"):
-        delete_added_user(page)
+        users.delete_added_user()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert("Пользователь был удален")
@@ -371,7 +363,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         users.click_employees()
 
     with allure.step("Press button (Add employee)"):
-        press_button_add_employee(page)
+        users.press_button_add_user()
 
     with allure.step("Set operator info"):
         users.set_operator(
@@ -384,7 +376,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         )
 
     with allure.step("Press button (Add) in modal window"):
-        press_button_add_in_modal(page)
+        users.press_button_add_in_modal()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert("Сотрудник успешно добавлен")
@@ -400,7 +392,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete added employee"):
-        delete_added_user(page)
+        users.delete_added_user()
 
     # with allure.step("Wait for alert and check alert message"):
     #     page.locator(SNACKBAR).wait_for(state="visible", timeout=wait_until_visible)
@@ -408,7 +400,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
     #     page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that employee deleted"):
-        expect(page.locator(BUTTON_DOBAVIT_SOTRUDNIKA)).to_be_visible(timeout=wait_until_visible)
+        expect(page.locator(BUTTON_ADD_USER)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(USER_LOGIN_IN_LEFT_MENU)).to_have_text(LOGIN, timeout=wait_until_visible)
 
     with allure.step("Delete user"):
@@ -730,7 +722,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(CHECKBOX_MERGE_ALL_TO_ONE).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        page.locator(BUTTON_DOBAVIT).click()
+        page.locator(BUTTON_ACCEPT).click()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert(alert_merge)
@@ -742,7 +734,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.locator(CHECKBOX_DIARIZATION).set_checked(checked=True)
 
     with allure.step("Try to save"):
-        page.locator(BUTTON_DOBAVIT).click()
+        page.locator(BUTTON_ACCEPT).click()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert(alert_diarization)
@@ -756,7 +748,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         #page.locator(CHECKBOX_USE_WEBHOOK).set_checked(checked=True)
 
     with allure.step("Press (Save)"):
-        page.locator(BUTTON_DOBAVIT).click()
+        page.locator(BUTTON_ACCEPT).click()
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert(action_started)
@@ -772,7 +764,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete added user"):
-        delete_added_user(page)
+        users.delete_added_user()
 
     with allure.step("Check that user deleted"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)

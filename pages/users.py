@@ -3,7 +3,21 @@ from pages.base_class import *
 
 
 BUTTON_USERS = '[data-testid="userLink"]'
-BUTTON_ADD_USER = BUTTON_DOBAVIT_SOTRUDNIKA = '[data-testid="addUserButton"]'
+BUTTON_ADD_USER = '[data-testid="addUserButton"]' # same button for employee
+BUTTON_OTMENA = '[data-testid="cancelButton"]'
+BUTTON_KORZINA = '[class*="styles_actions"]'
+
+USER_LOGIN_IN_LEFT_MENU = '[class*="headerName"]'
+CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
+RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
+CHECKBOX_DIARIZATION = '[name="diarization"]'
+CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
+CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
+CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
+CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
+CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
+CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
+CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 
 
 class Users(BaseClass):
@@ -21,7 +35,7 @@ class Users(BaseClass):
 
     def press_button_add_user(self):
         self.button_add_user.click()
-        self.page.wait_for_selector(INPUT_NAME, timeout=self.timeout)
+        self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
     def set_user(self, name, login, password, email, phone, comment, role):
@@ -70,92 +84,47 @@ class Users(BaseClass):
         self.input_password.type(password, delay=30)
         self.page.wait_for_selector(f'[value="{password}"]')
 
+    def set_stt(self, language, engine, model):
+        self.select_language.click()
+        self.page.wait_for_selector(MENU)
+        self.page.get_by_text(language, exact=True).click()
+        self.page.wait_for_timeout(1000)
 
-BUTTON_OTMENA = '[data-testid="cancelButton"]'
-BUTTON_KRESTIK = '[data-testid="closePopupButton"]'
-BUTTON_DOBAVIT = '[data-testid="acceptButton"]'
+        self.select_engine.click()
+        self.page.wait_for_selector(MENU)
+        self.page.get_by_text(engine, exact=True).click()
+        self.page.wait_for_timeout(1000)
 
-BUTTON_KORZINA = '[class*="styles_actions"]'
-BUTTON_PODTVERDIT = '[data-testid="acceptButton"]'
-BUTTON_SOTRUDNIKI_UDALIT = "//button[contains(text(),'Удалить')]"
+        self.select_model.click()
+        self.page.wait_for_selector(MENU)
+        self.page.get_by_text(model, exact=True).click()
+        self.page.wait_for_timeout(1000)
 
-INPUT_NEW_PASSWORD = '[name="newPassword"]'
-INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
+    def set_industry(self, industry):
+        self.page.locator(SELECT_INDUSTRY).locator("svg").click()
+        self.page.wait_for_selector(MENU)
+        self.page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
+        self.page.wait_for_timeout(500)
 
-USER_LOGIN_IN_LEFT_MENU = '[class*="headerName"]'
-CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
-RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
-CHECKBOX_DIARIZATION = '[name="diarization"]'
-CHECKBOX_ECONOMIZE = '[id="sttEconomize"]'
-CHECKBOX_USE_WEBHOOK = '[name="use_webhook"]'
-CHECKBOX_ADD_PUNCTUATION = '[name="add_punctuation"]'
-CHECKBOX_ENGINE_DIARIZATION = '[name="engine_diarization"]'
-CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
-CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
-CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
-CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
-BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
+    def set_industry_and_partner(self, industry, partner):
+        self.page.locator(SELECT_INDUSTRY).locator("svg").click()
+        self.page.wait_for_selector(MENU)
+        self.page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
+        self.page.wait_for_timeout(500)
+        self.page.locator(SELECT_PARTNER).locator("svg").click()
+        self.page.wait_for_selector(MENU)
+        self.page.locator(SELECT_PARTNER).get_by_text(partner, exact=True).click()
 
+    def delete_added_user(self):
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(BUTTON_KORZINA)
+        self.page.locator(BUTTON_KORZINA).click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(MODAL_WINDOW)
+        self.page.locator(BUTTON_ACCEPT).click()
 
-SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
-SELECT_PARTNER = '[data-testid="selectPartner"]'
-#SELECT_MENU = '[class*="-menu"]'
+    def press_button_add_in_modal(self):
+        self.page.wait_for_timeout(500)
+        self.page.locator(BUTTON_ACCEPT).click()
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
-FIRST_PAGE_PAGINATION = '[aria-label="1"]'
-FIRST_ROW_IN_USERS_LIST = '[aria-rowindex="2"]'
-USERS_TABLE = '[class="rs-table-body-wheel-area"]'
-
-
-def press_button_add_employee(page="page: Page"):
-    page.wait_for_selector(BUTTON_DOBAVIT_SOTRUDNIKA)
-    page.locator(BUTTON_DOBAVIT_SOTRUDNIKA).click()
-    page.wait_for_selector(INPUT_NAME)
-
-
-def set_industry(industry, page="page: Page"):
-    page.locator(SELECT_INDUSTRY).locator("svg").click()
-    page.wait_for_selector(MENU)
-    page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
-    page.wait_for_timeout(500)
-
-
-def set_industry_and_partner(industry, partner, page="page: Page"):
-    page.locator(SELECT_INDUSTRY).locator("svg").click()
-    page.wait_for_selector(MENU)
-    page.locator(SELECT_INDUSTRY).get_by_text(industry, exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator(SELECT_PARTNER).locator("svg").click()
-    page.wait_for_selector(MENU)
-    page.locator(SELECT_PARTNER).get_by_text(partner, exact=True).click()
-
-
-def set_stt(language, engine, model, page="page: Page"):
-    page.locator(SELECT_LANGUAGE).click()
-    page.wait_for_selector(MENU)
-    page.get_by_text(language, exact=True).click()
-    page.wait_for_timeout(1000)
-
-    page.locator(SELECT_ENGINE).click()
-    page.wait_for_selector(MENU)
-    page.get_by_text(engine, exact=True).click()
-    page.wait_for_timeout(1000)
-
-    page.locator(SELECT_MODEL).click()
-    page.wait_for_selector(MENU)
-    page.get_by_text(model, exact=True).click()
-    page.wait_for_timeout(1000)
-
-def delete_added_user(page="page: Page"):
-    page.wait_for_timeout(500)
-    page.wait_for_selector(BUTTON_KORZINA)
-    page.locator(BUTTON_KORZINA).click()
-    page.wait_for_timeout(500)
-    page.wait_for_selector(BUTTON_PODTVERDIT)
-    page.locator(BUTTON_PODTVERDIT).click()
-
-def press_button_add_in_modal(page="page: Page"):
-    page.wait_for_timeout(500)
-    page.locator(BUTTON_DOBAVIT).click()
-    page.wait_for_selector(MODAL_WINDOW, state="hidden")
-    #page.wait_for_timeout(1000)
-    #page.wait_for_selector(INPUT_PHONE)
