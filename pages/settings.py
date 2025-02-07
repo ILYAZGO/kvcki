@@ -1,8 +1,6 @@
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-from utils.variables import wait_until_visible
-
 BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
 INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 
@@ -129,7 +127,7 @@ class Settings(BaseClass):
         self.page.wait_for_timeout(500)
         self.input_quota_time.clear()
         self.page.wait_for_timeout(500)
-        self.input_quota_time.type(minutes, delay=30)
+        self.input_quota_time.type(minutes, delay=10)
 
     def press_add_in_quotas(self):
         """Working in table and modal window"""
@@ -157,7 +155,7 @@ class Settings(BaseClass):
         self.page.wait_for_selector(INPUT_LOGIN)
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.input_login.clear()
-        self.input_login.type(login, delay=30)
+        self.input_login.type(login, delay=10)
 
     def change_industry(self, industry):
         self.select_industry.click()
@@ -187,13 +185,13 @@ class Settings(BaseClass):
         """admin and manager can see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
-        self.input_name.type(name, delay=30)
+        self.input_name.type(name, delay=10)
         self.page.wait_for_selector(f'[value="{name}"]')
         self.input_email.clear()
-        self.input_email.type(email, delay=30)
+        self.input_email.type(email, delay=10)
         self.page.wait_for_selector(f'[value="{email}"]')
         self.input_phone.clear()
-        self.input_phone.type(phone, delay=30)
+        self.input_phone.type(phone, delay=10)
         self.page.wait_for_selector(f'[value="{phone}"]')
         self.input_comment.clear()
         self.input_comment.fill(comment)
@@ -206,13 +204,13 @@ class Settings(BaseClass):
         """user and operator cant see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
-        self.input_name.type(name, delay=30)
+        self.input_name.type(name, delay=10)
         self.page.wait_for_selector(f'[value="{name}"]')
         self.input_email.clear()
-        self.input_email.type(email, delay=30)
+        self.input_email.type(email, delay=10)
         self.page.wait_for_selector(f'[value="{email}"]')
         self.input_phone.clear()
-        self.input_phone.type(phone, delay=30)
+        self.input_phone.type(phone, delay=10)
         self.page.wait_for_selector(f'[value="{phone}"]')
         self.page.wait_for_timeout(1000)
         self.input_timezone.click()

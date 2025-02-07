@@ -19,7 +19,7 @@ class Rules(BaseClass):
         self.page.wait_for_selector(BUTTON_ADD_GROUP)
         self.button_add_group.click()
         self.page.wait_for_selector(INPUT_NEW_GROUP_NAME)
-        self.input_new_group_name.type(group_name, delay=30)
+        self.input_new_group_name.type(group_name, delay=10)
         self.modal_window.locator(BUTTON_SUBMIT).click()
         self.page.wait_for_timeout(500)
 
@@ -37,7 +37,7 @@ class Rules(BaseClass):
         self.page.wait_for_selector(BUTTON_ADD_TAG)
         self.button_add_tag.click()
         self.page.wait_for_selector(INPUT_TAG_NAME)
-        self.input_tag_name.type(rule_name, delay=30)
+        self.input_tag_name.type(rule_name, delay=10)
         self.press_key("Enter")  # kostil'
         self.page.wait_for_timeout(1000)
 
@@ -73,7 +73,7 @@ NAZVANIE_PRAVILA_TEGIROVANIYA = NAZVANIE_SLOVARYA = '[name="title"]'
 
 def fill_what_said(text, page="page: Page"):
     page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').type(text, delay=30)
-    page.keyboard.press("Enter", delay=30)
+    page.keyboard.press("Enter", delay=10)
     page.wait_for_timeout(500)
 
 def add_additional_terms(list, page="page: Page"):

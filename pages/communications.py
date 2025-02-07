@@ -124,25 +124,25 @@ class Communications(BaseClass):
 
     def fill_client_number(self, text: str):
         """Fill filter client number"""
-        self.input_client_number.type(text, delay=30)
+        self.input_client_number.type(text, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
 
     def fill_employee_number(self, text: str):
         """Fill filter employee number"""
-        self.input_employee_number.type(text, delay=30)
+        self.input_employee_number.type(text, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
 
     def fill_time(self, time: str):
         """Fill exact time"""
-        self.input_time.type(time, delay=30)
+        self.input_time.type(time, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
 
     def fill_id(self, id: str):
         """Fill ID"""
-        self.input_id.type(id, delay=30)
+        self.input_id.type(id, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
 
@@ -151,14 +151,14 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(300)
         self.input_call_duration.clear()
         self.page.wait_for_timeout(300)
-        self.input_call_duration.type(value, delay=30)
+        self.input_call_duration.type(value, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
 
     def fill_client_dict_or_text(self, search_text: str, result_text: str):
         """Fill client dict or text"""
         self.input_client_dict_or_text.clear()
-        self.input_client_dict_or_text.type(search_text, delay=30)
+        self.input_client_dict_or_text.type(search_text, delay=10)
         self.page.wait_for_timeout(300)
         self.menu.get_by_text(result_text).click()
         self.just_click.click()  # tupo click
@@ -166,7 +166,7 @@ class Communications(BaseClass):
     def fill_employee_dict_or_text(self, search_text: str, result_text: str):
         """Fill employee dict or text"""
         self.input_employee_dict_or_text.clear()
-        self.input_employee_dict_or_text.type(search_text, delay=30)
+        self.input_employee_dict_or_text.type(search_text, delay=10)
         self.page.wait_for_timeout(300)
         self.menu.get_by_text(result_text).click()
         self.just_click.click()  # tupo click
@@ -174,7 +174,7 @@ class Communications(BaseClass):
     def fill_by_tag(self, input_number: int, text: str):
         """Fill by tag"""
         self.page.wait_for_timeout(1000)
-        self.input_by_tags.nth(input_number).type(text, delay=30)
+        self.input_by_tags.nth(input_number).type(text, delay=10)
         self.page.wait_for_timeout(1500)
         self.menu.locator('[id*="-option-0"]').get_by_text(text, exact=True).click()
         self.just_click.click()  # tupo click
@@ -204,7 +204,7 @@ class Communications(BaseClass):
 
     def add_manual_tag_name(self, text: str):
         """Add manual tag name"""
-        self.input_manual_tag_name.type(text, delay=30)
+        self.input_manual_tag_name.type(text, delay=10)
         self.page.wait_for_timeout(1000)
 
     def delete_manual_tag_from_call_header(self, number: int):

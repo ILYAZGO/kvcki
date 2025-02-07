@@ -37,7 +37,7 @@ class Notifications(BaseClass):
         self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
 
     def set_notification_name(self, notification_name: str):
-        self.notification_name.type(notification_name, delay=30)
+        self.notification_name.type(notification_name, delay=10)
 
     def add_notification(self, notification_type: str):
         self.button_add_new_rule.click()
@@ -48,12 +48,12 @@ class Notifications(BaseClass):
 
     def fill_attr_for_email(self, letter_theme, email):
         self.page.wait_for_selector(INPUT_LETTER_THEME)
-        self.input_letter_theme.type(letter_theme, delay=30)
+        self.input_letter_theme.type(letter_theme, delay=10)
         self.page.wait_for_timeout(500)
-        self.input_email.type(email, delay=30)
+        self.input_email.type(email, delay=10)
 
     def fill_message(self, text: str):
-        self.input_comment.type(text, delay=30)
+        self.input_comment.type(text, delay=10)
         self.page.wait_for_timeout(500)
         self.page.locator('[aria-label="ID звонка. Пример: 123456789012345678901234"]').click()
 

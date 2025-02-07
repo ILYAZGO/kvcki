@@ -54,7 +54,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Администратор", timeout=wait_until_visible)
         page.wait_for_timeout(500)
-        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
+        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE, timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
