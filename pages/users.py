@@ -127,4 +127,5 @@ class Users(BaseClass):
         self.page.wait_for_timeout(500)
         self.page.locator(BUTTON_ACCEPT).click()
         self.page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        self.page.wait_for_selector(INPUT_PHONE, timeout=self.timeout)
 

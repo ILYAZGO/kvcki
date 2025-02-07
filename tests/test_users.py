@@ -46,7 +46,6 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Press button (Add) in modal window"):
         users.press_button_add_in_modal()
-        page.wait_for_selector('[class*="PersonalInfo_form"]', timeout=wait_until_visible)
 
     with allure.step("Check"):
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
@@ -112,7 +111,6 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Press button (Add) in modal window"):
         users.press_button_add_in_modal()
-        page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
@@ -201,13 +199,11 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Press button (Add) in modal window"):
         users.press_button_add_in_modal()
-        page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
-        #page.wait_for_timeout(2300)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Компания", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).to_have_text("Недвижимость", timeout=wait_until_visible)
@@ -310,7 +306,6 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Press button (Add) in modal window"):
         users.press_button_add_in_modal()
-        page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
@@ -752,7 +747,6 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         users.check_alert(action_started)
-        page.wait_for_selector(INPUT_PHONE, timeout=wait_until_visible)
 
     with allure.step("Check"):
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)

@@ -1,7 +1,5 @@
 from playwright.sync_api import Page, expect
-from pages.base_class import BaseClass, BUTTON_SUBMIT, MENU
-
-#BUTTON_VOITI = "[type='submit']" #have in base class also
+from pages.base_class import *
 
 ALERT_MESSAGE = '[class*="MuiAlert-message"]'
 
