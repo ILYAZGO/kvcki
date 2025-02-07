@@ -86,7 +86,7 @@ import allure
 #         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.login
 @allure.title("test_login_operator_positive")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -118,7 +118,7 @@ def test_login_operator_positive(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.login
 @allure.title("test_login_user_negotive")
 @allure.severity(allure.severity_level.NORMAL)
@@ -135,7 +135,7 @@ def test_login_user_negotive(base_url, page: Page) -> None:
         login_page.assert_alert_visible("Wrong login or password")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.login
 @allure.title("test_password_user_negotive")
 @allure.severity(allure.severity_level.NORMAL)

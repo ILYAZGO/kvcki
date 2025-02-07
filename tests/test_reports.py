@@ -6,10 +6,10 @@ from pages.reports import *
 import pytest
 import allure
 from utils.create_delete_user import create_user, delete_user
-#import random
 
 
-@pytest.mark.independent
+
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_check_dates")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -120,7 +120,7 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         expect(page.locator(LAST_DATE)).to_be_disabled()
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_change_dates_in_calendar")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -170,7 +170,7 @@ def test_reports_change_dates_in_calendar(base_url, page: Page) -> None:
         expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("2708")
         expect(page.locator('[data-id="3"]')).not_to_be_visible()
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_check_calendar_localization")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -201,7 +201,7 @@ def test_reports_check_calendar_localization(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_save_update_delete_report")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -287,7 +287,7 @@ def test_reports_save_update_delete_report(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="templatesReports"]').locator('[class*="body1"]')).to_have_text("Сохраненные отчеты")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_download_report")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -348,7 +348,7 @@ def test_reports_download_report(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == False
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_management_check_search")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -374,7 +374,7 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
         expect(page.get_by_text("тест1")).to_have_count(1)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_management_check")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -533,7 +533,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_report_send_email")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -644,7 +644,7 @@ def test_report_send_email(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_report_send_telegram")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -759,9 +759,8 @@ def test_report_send_telegram(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
-#--------------------
-#+++++++++++
-@pytest.mark.independent
+
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_go_to_communications_from_report")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -806,7 +805,7 @@ def test_reports_go_to_communications_from_report(base_url, page: Page, context:
 
 
 # rows
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_row_1_without_grouping")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -859,7 +858,7 @@ def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_row_1_time_4_values")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -992,7 +991,7 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_row_1_communications")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1042,7 +1041,7 @@ def test_reports_row_1_communications(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_row_1_operator_phone")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1105,7 +1104,7 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_row_1_client_phone")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1169,7 +1168,7 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_row_2_tag_list")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1240,7 +1239,7 @@ def test_reports_row_2_tag_list(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_rows_row_2_tagListCheckbox"]')).not_to_be_checked()
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_row_4_tag_and_value")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1337,7 +1336,7 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_rows_row_4_tagCheckbox"]')).not_to_be_checked()
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_column_1_communications")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1388,7 +1387,7 @@ def test_reports_column_1_communications(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_column_4_filter")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1475,7 +1474,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Customer")).to_be_visible()
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_column_4_tag_and_value")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1576,7 +1575,7 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_3_tagCheckbox"]')).not_to_be_checked()
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_column_4_tag_list")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1770,7 +1769,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
 
 # additional params
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_content")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1841,7 +1840,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
 
 # additional params combination
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_tag_value")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1917,7 +1916,7 @@ def test_reports_additional_params_tag_value(base_url, page: Page) -> None:
         expect(page.get_by_text("ecotelecom-support")).to_have_count(8)
 
 #
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_avg_number_tag_value")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -1993,7 +1992,7 @@ def test_reports_additional_params_avg_number_tag_value(base_url, page: Page) ->
         expect(page.locator('[aria-label="multi value number"]')).to_have_count(2)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_sum_number_tag_value")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2070,7 +2069,7 @@ def test_reports_additional_params_sum_number_tag_value(base_url, page: Page) ->
         expect(page.locator('[aria-label="multi value number"]')).to_have_count(2)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checklist_point")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2146,7 +2145,7 @@ def test_reports_additional_params_checklist_point(base_url, page: Page) -> None
         expect(page.locator('[title="0.63"]')).to_have_count(2)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checklist_point_percent")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2222,7 +2221,7 @@ def test_reports_additional_params_checklist_point_percent(base_url, page: Page)
         expect(page.locator('[title="6.35 %"]')).to_have_count(2)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checklist_question_point")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2298,7 +2297,7 @@ def test_reports_additional_params_checklist_question_point(base_url, page: Page
         expect(page.locator('[title="0.63"]')).to_have_count(2)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checklist_question_point_in_percent")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2374,7 +2373,7 @@ def test_reports_additional_params_checklist_question_point_in_percent(base_url,
         expect(page.locator('[title="6.35 %"]')).to_have_count(2)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checklist_frequent_answer_for_question")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2450,7 +2449,7 @@ def test_reports_additional_params_checklist_frequent_answer_for_question(base_u
         expect(page.locator('[title="да"]')).to_have_count(4)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_comment")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2525,7 +2524,7 @@ def test_reports_additional_params_comment(base_url, page: Page) -> None:
         #expect(page.locator('[data-id="4"]').locator('[title="qqqq,3333"]')).to_have_count(1)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checkboxes_percentage")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2598,7 +2597,7 @@ def test_reports_additional_params_checkboxes_percentage(base_url, page: Page) -
         expect(page.locator('[title="100 %"]')).to_have_count(24)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checkboxes_points")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2668,7 +2667,7 @@ def test_reports_additional_params_checkboxes_points(base_url, page: Page) -> No
         #expect(page.locator('[title="29.33"]')).to_have_count(1) #this is bug
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checkboxes_talk_time")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2737,7 +2736,7 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         expect(page.locator('[title="34.33 %"]')).to_have_count(2)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checkboxes_silence_duration")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2798,7 +2797,7 @@ def test_reports_additional_params_checkboxes_silence_duration(base_url, page: P
         expect(page.locator('[title="24:30:36"]')).to_have_count(2)
         expect(page.locator('[title="30.33 %"]')).to_have_count(2)
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checkboxes_phones")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2860,7 +2859,7 @@ def test_reports_additional_params_checkboxes_phones(base_url, page: Page) -> No
         expect(page.get_by_text("4958017857")).to_have_count(6)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_additional_params_checkboxes_sum_time_first_last_time")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -2927,7 +2926,7 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
 
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.reports
 @allure.title("test_reports_diff")
 @allure.severity(allure.severity_level.CRITICAL)

@@ -6,7 +6,7 @@ import pytest
 import allure
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.check_list
 @allure.title("test_create_rename_update_delete_check_list")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -150,7 +150,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.check_list
 @allure.title("test_check_old_check_list")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -175,7 +175,7 @@ def test_check_old_check_list(base_url, page: Page) -> None:
         expect(page.locator('[name="appraisers.0.title"]')).to_be_visible()
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.check_list
 @allure.title("test_import_check_list_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -252,7 +252,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.check_list
 @allure.title("test_import_check_list_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -332,7 +332,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.check_list
 @allure.title("test_import_check_list_disabled_for_user")
 @allure.severity(allure.severity_level.NORMAL)
@@ -358,7 +358,7 @@ def test_import_check_list_disabled_for_user(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.check_list
 @allure.title("test_compare_check_lists_by_user")
 @allure.severity(allure.severity_level.CRITICAL)

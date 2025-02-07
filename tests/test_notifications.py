@@ -6,7 +6,7 @@ import pytest
 import allure
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_first_page")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -45,7 +45,7 @@ def test_notifications_first_page(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_api_method_change")
 @allure.severity(allure.severity_level.NORMAL)
@@ -163,7 +163,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_api")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -232,7 +232,7 @@ def test_notifications_api(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_email")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -301,7 +301,7 @@ def test_notifications_email(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_telegram")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -373,7 +373,7 @@ def test_notifications_telegram(base_url,page: Page) -> None:
 
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_amo_crm")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -458,7 +458,7 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_import_rules_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -531,7 +531,7 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_notifications_import_rules_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -610,7 +610,7 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.notifications
 @allure.title("test_check_old_notification")
 @allure.severity(allure.severity_level.CRITICAL)

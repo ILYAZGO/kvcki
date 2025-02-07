@@ -6,7 +6,7 @@ from utils.create_delete_user import create_user, delete_user, give_user_to_mana
 import allure
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.adminbar
 @allure.title("test_admin_bar_with_admin")
 @allure.severity(allure.severity_level.NORMAL)
@@ -50,7 +50,7 @@ def test_admin_bar_with_admin(base_url, page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.adminbar
 @allure.title("test_admin_bar_with_manager")
 @allure.severity(allure.severity_level.NORMAL)
@@ -97,7 +97,7 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.adminbar
 @allure.title("test_language_change_by_user")
 @allure.severity(allure.severity_level.NORMAL)

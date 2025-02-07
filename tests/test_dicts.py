@@ -6,7 +6,7 @@ import pytest
 import allure
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_add_dict_inside_group")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -86,7 +86,7 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_add_dict_outside_group_disabled")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -113,8 +113,8 @@ def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
-@pytest.mark.rules
+@pytest.mark.e2e
+@pytest.mark.dictionaries
 @allure.title("test_add_group_and_dict_with_same_name")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_add_group_and_dict_with_same_name. You cant do group and dict with same name (409 status code)")
@@ -160,7 +160,7 @@ def test_add_group_and_dict_with_same_name(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_add_dict_group_rename_delete")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -230,7 +230,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_check_dict_type")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -369,7 +369,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_check_old_dict")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -395,7 +395,7 @@ def test_check_old_dict(base_url, page: Page) -> None:
         expect(page.locator(INPUT_WORDS_LIST)).to_be_visible(timeout=wait_until_visible)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_import_dict_disabled_for_user")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -422,7 +422,7 @@ def test_import_dict_disabled_for_user(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_import_group_and_dict_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -522,7 +522,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_import_group_and_dict_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -625,7 +625,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.dictionaries
 @allure.title("test_compare_dicts_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -662,8 +662,8 @@ def test_compare_dicts_by_user(base_url, page: Page) -> None:
         expect(page.get_by_text("Словарь автозамен")).to_have_count(1)
 
 
-@pytest.mark.independent
-@pytest.mark.rules
+@pytest.mark.e2e
+@pytest.mark.dictionaries
 @allure.title("test_check_dicts_search_and_sort")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_dicts_search_and_sort")

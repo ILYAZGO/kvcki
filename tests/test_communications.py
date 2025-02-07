@@ -10,7 +10,7 @@ import allure
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_dates")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Check dates buttons")
@@ -112,7 +112,7 @@ def test_check_dates(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_communications_check_calendar_localization")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_communications_check_calendar_localization")
@@ -140,8 +140,7 @@ def test_communications_check_calendar_localization(base_url, page: Page) -> Non
 
 
 @pytest.mark.calls
-@pytest.mark.test
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_all")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Searching all communications for Ecotelecom")
@@ -168,7 +167,7 @@ def test_check_search_all(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_client_number")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by client number for Ecotelecom")
@@ -196,8 +195,7 @@ def test_check_search_by_client_number(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.test
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_employee_number")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by employee's number for Ecotelecom")
@@ -224,8 +222,7 @@ def test_check_search_by_employee_number(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.test
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_client_dict_or_text")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by client dict or text for Ecotelecom")
@@ -261,9 +258,8 @@ def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 405 из 3130")
 
 
-
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_employee_dict_or_text")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by employee's dict or text for Ecotelecom")
@@ -299,7 +295,7 @@ def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_exact_time")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by exact time for Ecotelecom")
@@ -326,7 +322,7 @@ def test_check_search_by_exact_time(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_length")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by length for Ecotelecom")
@@ -371,7 +367,7 @@ def test_check_search_by_length(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_id")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by id for Ecotelecom")
@@ -398,7 +394,7 @@ def test_check_search_by_id(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_by_tag")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check search by tag for Ecotelecom")
@@ -451,7 +447,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_sort")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Check sort (6 type) all calls for Ecotelecom")
@@ -506,7 +502,7 @@ def test_check_sort(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_clear_all_fields")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("Check clear all fields by button for Ecotelecom")
@@ -556,7 +552,7 @@ def test_check_clear_all_fields(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_open_call_in_new_tab_by_user")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_open_call_in_new_tab_by_user")
@@ -600,9 +596,8 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-# 00000000000
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_open_call_in_new_tab_by_admin")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_open_call_in_new_tab_by_admin")
@@ -685,10 +680,10 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
-#----------
+
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_content_button_calls_actions")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_content_button_calls_actions (...)")
@@ -718,7 +713,7 @@ def test_check_content_button_calls_actions(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_download_button_in_calls_list")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_content_button_calls (download)")
@@ -839,7 +834,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_buttons_in_open_call")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_buttons_in_open_call")
@@ -880,7 +875,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_download_call_from_expanded_call")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_download_call_from_expanded_call")
@@ -925,7 +920,7 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_download_excel_from_expanded_call")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_check_download_excel_from_expanded_call")
@@ -1029,7 +1024,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_template")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_search_template")
@@ -1108,7 +1103,7 @@ def test_check_search_template(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_communication_comment")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_communication_comment")
@@ -1214,7 +1209,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_re_recognize_for_call_list")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check re-recognize in call list for ecotelecom. First finding by ID call with 0 length")
@@ -1558,7 +1553,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_re_recognize_for_expanded_call")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Check re-recognize in expanded call for ecotelecom. First finding by ID call with 0 length")
@@ -1898,7 +1893,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_communication_manual_tag")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_check_communication_manual_tag")
@@ -1990,7 +1985,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
 
 @pytest.mark.calls
-@pytest.mark.independent
+@pytest.mark.e2e
 @allure.title("test_check_search_and_switch_to_other_user")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("Searching all communications for Ecotelecom and switch to auto_test_user and check that calls changed")

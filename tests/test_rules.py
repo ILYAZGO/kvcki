@@ -5,7 +5,7 @@ from utils.create_delete_user import create_user, delete_user, give_user_to_mana
 import pytest
 import allure
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_add_rule_inside_group")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -64,7 +64,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_add_group_of_rules_edit_name_delete")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -141,7 +141,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_add_rule_outside_group_disabled")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -168,7 +168,7 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_add_group_and_rule_with_same_name")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -215,7 +215,7 @@ def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_check_old_rule")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -241,7 +241,7 @@ def test_check_old_rule(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="fragmentRuleWhoSaid"]')).to_be_visible(timeout=wait_until_visible)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_add_rule_inside_group_check_fragment_rule")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -373,7 +373,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_add_rule_inside_group_check_set_tag_block")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -475,7 +475,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_add_rule_inside_group_check_tag_sequence")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -582,7 +582,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_import_group_and_rule_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -685,7 +685,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_import_group_and_rule_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -789,7 +789,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_import_rule_disabled_for_user")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -816,7 +816,7 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_compare_rules_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -868,7 +868,7 @@ def test_compare_rules_by_user(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="setTagsBlock"]').locator('[name="value"]')).to_have_value("thirdrulevalue")
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.rules
 @allure.title("test_check_rules_search_and_sort")
 @allure.severity(allure.severity_level.CRITICAL)

@@ -8,7 +8,7 @@ import allure
 import re
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.integration
 @allure.title("test_usedesk")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -121,7 +121,7 @@ def test_usedesk(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.integration
 @allure.title("test_search_string")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -158,7 +158,7 @@ def test_search_string(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.integration
 @allure.title("test_integration_parameters")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -193,7 +193,7 @@ def test_integration_parameters(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="skip_empty_calls"]')).to_have_class(re.compile(r"Mui-checked"))
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.integration
 @allure.title("test_integrations_api_token")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -247,7 +247,7 @@ def test_integrations_api_token(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.integration
 @allure.title("test_integrations_api_token_list_if_500")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -291,7 +291,7 @@ def test_integrations_api_token_list_if_500(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.integration
 @allure.title("test_integrations_tag_translations")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -410,7 +410,7 @@ def test_integrations_tag_translations(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.integration
 @allure.title("test_integrations_tag_translation_list_if_500")
 @allure.severity(allure.severity_level.CRITICAL)

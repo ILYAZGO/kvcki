@@ -7,7 +7,7 @@ import allure
 import random
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_add_delete_admin_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -73,7 +73,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_add_delete_manager_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -138,7 +138,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_add_delete_user_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -235,7 +235,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_add_user_disabled_for_manager_without_right")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -263,7 +263,7 @@ def test_add_user_disabled_for_manager_without_right(base_url, page: Page) -> No
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_add_delete_user_by_manager")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -344,7 +344,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_add_delete_operator_by_user")
 @allure.severity(allure.severity_level.NORMAL)
@@ -415,7 +415,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_check_search")
 @allure.severity(allure.severity_level.NORMAL)
@@ -445,7 +445,7 @@ def test_check_search(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.independent
+@pytest.mark.e2e
 @pytest.mark.users
 @allure.title("test_check_stt_parameters_when_adding_user")
 @allure.severity(allure.severity_level.CRITICAL)
