@@ -494,7 +494,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         page.locator('[aria-label="Создать копию"]').nth(1).click()
         page.wait_for_selector(MODAL_WINDOW)
         page.locator('[name="newReportName"]').fill("reportCopy")
-        page.locator(BUTTON_CREATE).click()
+        page.locator(BUTTON_ACCEPT).click()
         page.wait_for_selector(BUTTON_GENERATE_REPORT)
 
     with allure.step("Go back to reports"):
@@ -510,8 +510,8 @@ def test_reports_management_check(base_url, page: Page) -> None:
 
     with allure.step("Delete report"):
         page.locator(BUTTON_KORZINA).nth(1).click()
-        page.wait_for_selector(BUTTON_UDALIT)
-        page.locator(BUTTON_UDALIT).click()
+        page.wait_for_selector(BUTTON_ACCEPT)
+        page.locator(BUTTON_ACCEPT).click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check alert"):
@@ -519,8 +519,8 @@ def test_reports_management_check(base_url, page: Page) -> None:
 
     with allure.step("Delete report"):
         page.locator(BUTTON_KORZINA).nth(1).click()
-        page.wait_for_selector(BUTTON_UDALIT)
-        page.locator(BUTTON_UDALIT).click()
+        page.wait_for_selector(BUTTON_ACCEPT)
+        page.locator(BUTTON_ACCEPT).click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check alert"):

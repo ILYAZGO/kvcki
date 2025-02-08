@@ -13,7 +13,6 @@ INPUT_QUOTA_TIME = '[name="time"]'
 BLOCK_LEFT_MENU = '[class*="styles_list_"]'
 LEFT_MENU_ITEM = "[class='styles_content__MNyQa']"
 BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
-BUTTON_SAVE_IN_RIGHTS = '[data-testid="acceptButton"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
@@ -79,7 +78,7 @@ class Settings(BaseClass):
         self.button_gpt_in_quotas = page.locator(BUTTON_GPT_QUOTAS)
         #self.input_chat_gpt_quota_value = page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)
         #self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
-        self.button_save_in_rights = page.locator(BUTTON_SAVE_IN_RIGHTS)
+        self.button_save_in_rights = page.locator(BUTTON_ACCEPT)
         self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
         self.input_login = page.locator(INPUT_LOGIN)
         self.input_timezone = page.locator(SELECT_TIMEZONE).locator('[type="text"]')

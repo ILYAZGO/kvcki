@@ -197,11 +197,6 @@ class Reports(BaseClass):
         self.page.wait_for_timeout(500)
 
 
-# time period
-FIRST_DATE = '[placeholder="Начальная дата"]'
-LAST_DATE = '[placeholder="Конечная дата"]'
-BUTTON_UDALIT= BUTTON_CREATE = '[data-testid="acceptButton"]'
-
 TUPO_CLICK = ".styles_questionTitle__WSOwz"
 INPUT_REPORT_NAME = '[name="report_name"]'
 

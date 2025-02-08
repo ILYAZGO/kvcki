@@ -5,7 +5,7 @@ BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
 BUTTON_GPT_SAVE = '[data-testid="acceptButton"]'
 BUTTON_GPT_CANCEL = '[data-testid="cancelButton"]'
-BUTTON_SAVE_EDITED_NAME = '[class*="styles_checkButton"]'#".styles_root__4Hw2A"
+BUTTON_SAVE_EDITED_NAME = '[class*="styles_checkButton"]'
 BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
 # SEARCH_IN_IMPORT_MODAL = '[data-testid="markup_gpt_importSearch}"]'
 

@@ -31,22 +31,22 @@ class Dicts(BaseClass):
         self.page.wait_for_selector(BUTTON_ADD_GROUP)
         self.button_add_group.click()
         self.page.wait_for_selector(INPUT_NEW_GROUP_NAME)
-        self.input_new_group_name.type(group_name, delay=30)
+        self.input_new_group_name.type(group_name, delay=10)
         self.modal_window.locator(BUTTON_SUBMIT).click()
         self.page.wait_for_timeout(500)
 
     def create_dict(self, dict_name: str, text: str):
         self.button_add_dict.click()
         self.page.wait_for_selector(INPUT_DICT_NAME)
-        self.input_dict_name.type(dict_name, delay=30)
+        self.input_dict_name.type(dict_name, delay=10)
         self.modal_window.locator(BUTTON_SUBMIT).click()
         self.page.wait_for_selector(INPUT_WORDS_LIST)
-        self.input_words_list.type(text, delay=30)
+        self.input_words_list.type(text, delay=10)
 
     def create_dict_without_text(self, dict_name: str):
         self.button_add_dict.click()
         self.page.wait_for_selector(INPUT_DICT_NAME)
-        self.input_dict_name.type(dict_name, delay=30)
+        self.input_dict_name.type(dict_name, delay=10)
         self.modal_window.locator(BUTTON_SUBMIT).click()
 
     def change_dict_type(self, current_type: str, next_type: str):
@@ -65,20 +65,15 @@ class Dicts(BaseClass):
 '''------locators for rules---------'''
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
-INPUT_NAZVANIE_TEGA = '[data-testid="markup_newRuleInput"]'
-INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 # buttons
-BUTTON_DOBAVIT_TEG = '[data-testid="markup_addTaggingRule"]'
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
 BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"
-BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 # other
 GROUP_LIST = '[class*="styles_dpBothBox_"]'
 ACTIVE_GROUP = '[class*="styles_isActive_"]'
 GROUP_ITEMS = '[class*="styles_groupItem_"]'
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
-NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
 NAZVANIE_SLOVARYA = '[name="title"]'
 
 TOOLTIP_BUTTON_DOBAVIT_SLOVAR = '[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]'

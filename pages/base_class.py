@@ -34,6 +34,9 @@ INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
 
 ALERT_MESSAGE = '[class*="styles_firstLine__"]'
 
+FIRST_DATE = '[placeholder="Начальная дата"]'
+LAST_DATE = '[placeholder="Конечная дата"]'
+
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
@@ -52,8 +55,8 @@ class BaseClass:
         self.quarter = page.locator('[data-testid="quarter"]')
         self.year = page.locator('[data-testid="year"]')
         self.all_time = page.locator('[value="all_time"]')
-        self.first_date = page.locator('[placeholder="Начальная дата"]')
-        self.last_date = page.locator('[placeholder="Конечная дата"]')
+        self.first_date = page.locator(FIRST_DATE)
+        self.last_date = page.locator(LAST_DATE)
         '''Word processing'''
         self.select_language = page.locator(SELECT_LANGUAGE).locator('[type="text"]')
         self.select_engine = page.locator(SELECT_ENGINE).locator('[type="text"]')
@@ -80,9 +83,9 @@ class BaseClass:
     def auth(self, login: str, password: str):
         """Auth"""
         self.page.wait_for_selector("[id='username']")
-        self.login.type(login, delay=20)
+        self.login.type(login, delay=10)
         self.page.wait_for_selector("[id='password']")
-        self.password.type(password, delay=20)
+        self.password.type(password, delay=10)
         self.page.wait_for_selector("[type='submit']")
         self.button_enter.click()
         self.page.wait_for_timeout(1000)
@@ -97,7 +100,7 @@ class BaseClass:
 
     def go_to_user(self, name: str):
         """Change user"""
-        self.users_list.type(name, delay=30)
+        self.users_list.type(name, delay=10)
         self.page.get_by_text(name, exact=True).click()
         #self.page.wait_for_selector('[class*="CallsHeader"]')
         self.page.wait_for_load_state(state="load", timeout=self.timeout)

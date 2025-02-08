@@ -141,7 +141,7 @@ def test_add_group_and_dict_with_same_name(base_url, page: Page) -> None:
 
     with allure.step("Click at existed group"):
         page.locator(GROUP_LIST).get_by_text("auto_dict_group").click()
-        page.wait_for_selector('[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]', state='hidden')
+        page.wait_for_selector(TOOLTIP_BUTTON_DOBAVIT_SLOVAR, state='hidden')
 
     with allure.step("Try to create rule with same name"):
         dicts.create_dict_without_text("auto_dict")
