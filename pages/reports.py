@@ -60,7 +60,7 @@ SELECT_WITH_ADDITIONAL_PARAM = '[class*="AdditionalParams_additionalSelect_"]'
 
 class Reports(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_generate_report = page.locator(BUTTON_GENERATE_REPORT)
         self.button_add_column = page.locator(BUTTON_ADD_COLUMN)
         self.button_add_row = page.locator(BUTTON_ADD_ROW)

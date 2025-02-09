@@ -53,7 +53,7 @@ AUDIO_PLAYER = '[class*="react-audio-player"]'
 
 class Communications(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.template_name = page.locator(CURRENT_TEMPLATE_NAME)
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION).locator('[type="button"]')

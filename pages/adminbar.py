@@ -5,7 +5,7 @@ BUTTON_USERS = '[data-testid="userLink"]'
 
 class AdminBar(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_users = page.locator(BUTTON_USERS)
         self.block_admin_bar = page.locator('[data-testid="adminBar"]')
         self.back_arrow = page.locator('[data-testid="adminBar"]').get_by_role("button")

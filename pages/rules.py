@@ -9,7 +9,7 @@ INPUT_TAG_NAME = '[data-testid="markup_newRuleInput"]'
 
 class Rules(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_add_group = page.locator(BUTTON_ADD_GROUP)
         self.button_add_tag = page.locator(BUTTON_ADD_TAG)
         self.input_tag_name = page.locator(INPUT_TAG_NAME)

@@ -22,7 +22,7 @@ CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 
 class Users(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_users = page.locator(BUTTON_USERS)
         self.button_add_user = page.locator(BUTTON_ADD_USER)
         self.select_role = page.locator(SELECT_ROLE).locator("svg")

@@ -10,7 +10,7 @@ INPUT_WORDS_LIST = '[name="phrases"]'
 
 class Dicts(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_markup = page.locator(BUTTON_MARKUP)
         self.button_dicts = page.locator(BUTTON_DICTS)
         self.button_add_group = page.locator(BUTTON_ADD_GROUP)

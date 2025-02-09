@@ -28,7 +28,7 @@ CHECK_BOX_AUTOGENEREATE_REPORT = '[id="checklistGenerateReport"]'
 
 class Checklists(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_check_list = page.locator(BUTTON_CHECK_LIST)
         self.button_add_check_list = page.locator(BUTTON_ADD_CHECK_LIST)
         self.input_check_list_name = page.locator(INPUT_CHECK_LIST_NAME)

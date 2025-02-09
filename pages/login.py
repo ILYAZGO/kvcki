@@ -5,7 +5,7 @@ ALERT_MESSAGE = '[class*="MuiAlert-message"]'
 
 class LoginPage(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.alert = page.locator(ALERT_MESSAGE)
         self.button_enter = page.locator(BUTTON_SUBMIT)
 

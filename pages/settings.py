@@ -67,7 +67,7 @@ BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
 
 class Settings(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_address_book = page.locator(BUTTON_ADDRESS_BOOK)
         self.input_address_book = page.locator(INPUT_ADDRESS_BOOK)
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)

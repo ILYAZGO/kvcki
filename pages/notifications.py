@@ -19,7 +19,7 @@ BLOCK_AFTER_IMPORT = '[class*="styles_btns"]'
 
 class Notifications(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.notification_name = page.locator(INPUT_NOTIFICATION_NAME)
         self.button_add_new_rule = page.locator(BLOCK_ADD_NEW_RULE).locator('[type="button"]')
         self.block_main_area = page.locator(BLOCK_RULE_MAIN_AREA)

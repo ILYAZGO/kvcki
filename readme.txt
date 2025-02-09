@@ -7,24 +7,32 @@ install requirements and browsers:
 
 from main directory:
 
-    pytest --base-url https://app.stand.imot.io/ru
+    # for e2e tests (change url if needed. define test-set if needed):
 
-   !PROFIT!
+    pytest -n auto --base-url https://app.stand.imot.io/ru tests/
+
+   # for api tests:
+
+    pytest -n auto api_tests/
+
+   !!!PROFIT!!!
+
+
 
 you can add some parameteres:
 
     --headed  (with browser head)
     --slowmo 3000  (if you want to slow tests down in 3000 ms)
-    !(DON'T USE)--numprocesses auto  (few processes same time - faster tests, but can cause troubles) (DON'T USE)!
+    --numprocesses auto / -n auto (few workers same time. will parallel tests)
 
     -m {some marker}  (you can call test-sets. look markers in pytest.ini)
 
 
     preconditions:
     admin : login-4adminIM name-adminIM
-    user : login-1userIM name-userIM
-    manager : login-3managerIM name-managerIM
-    operator : login-2operatorIM name-operatorIM
+    #user : login-1userIM name-userIM
+    #manager : login-3managerIM name-managerIM
+    #operator : login-2operatorIM name-operatorIM
 
     user for import : importFromLogin importFrom
     with group 11111 rule 22222 inside

@@ -25,7 +25,7 @@ LOGIN_IN_LEFT_MENU = ".MuiTypography-root.MuiTypography-body1.styles_headerLogin
 
 class Integrations(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.input_token = page.locator(INPUT_API_TOKEN).locator('[type="text"]')
         self.button_save = page.locator(BUTTON_SAVE)
         self.button_ok_in_dates = page.locator(BUTTON_OK_IN_DATE)

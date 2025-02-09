@@ -15,7 +15,7 @@ INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопр
 
 class GPT(BaseClass):
     def __init__(self, page: Page):
-        BaseClass.__init__(self, page)
+        super().__init__(page)
         self.button_gpt = page.locator(BUTTON_GPT)
         self.button_create_gpt_rule = page.locator(BUTTON_GPT_CREATE_RULE)
         self.input_gpt_rule_name = page.locator(INPUT_GPT_RULE_NAME)
