@@ -594,3 +594,21 @@ def create_dicts(url, login, password, user_id, amount):
                 f"\n>>>>> FOR USER {login} WITH user_id: {user_id} CREATED test_search_and_sort{i} {dict_id} INSIDE GROUP {group_id} <<<<<")
         else:
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT NAME test_search_and_sort{i}<<<<<")
+
+
+def give_access_right(url, giver_token, recipient_id, access_right_list):
+    """Admin can give for user and operator, user for operator"""
+
+    headers_for_give = {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': giver_token,
+    }
+
+    give_right = requests.put(url=url + f'/user/{recipient_id}/access_rights',  headers=headers_for_give, json=access_right_list)
+    if give_right.status_code == 204:
+        logger.opt(depth=1).info(
+            f"\n>>>>> FOR USER WITH user_id: {recipient_id} access_rights changed for {access_right_list} <<<<<")
+    else:
+        logger.opt(depth=1).info(
+            f"\n>>>>> ERROR {give_right.status_code} changing access_rights FOR USER WITH user_id: {recipient_id} <<<<<")

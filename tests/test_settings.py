@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect, Route
 from utils.variables import *
 from pages.settings import *
 from utils.dates import *
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
+from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator, give_access_right
 import pytest
 import allure
 import random
@@ -3126,3 +3126,49 @@ def test_change_role_for_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+#############
+# @pytest.mark.e2e
+# @pytest.mark.settings
+# @allure.title("test_access_right_restt_for_user")
+# @allure.severity(allure.severity_level.CRITICAL)
+# @allure.description("test_change_role_for_user_by_admin")
+# def test_access_right_restt_for_user(base_url, page: Page) -> None:
+#     settings = Settings(page)
+#
+#     with allure.step("Create admin"):
+#         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+#
+#     with allure.step("Create user"):
+#         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+#
+#     with allure.step("Go to page"):
+#         settings.navigate(base_url)
+#
+#     with allure.step("Auth with admin"):
+#         settings.auth(LOGIN_USER, PASSWORD)
+#
+#     with allure.step("Expand call"):
+#
+#
+#     with allure.step("Chek that no any stt buttons in calls"):
+#         expect(page.locator('[data-testid="calls_actions_retag"]')).to_have_count(0)
+#         expect(page.locator('[aria-label="Перетегировать"]')).to_have_count(0)
+#
+#     with allure.step("Change access_right"):
+#         rights = {"restt":True,"delete_call":False,"call_info_processing":False}
+#         give_access_right(API_URL, TOKEN_ADMIN, USER_ID_USER, rights)
+#
+#     with allure.step("Reload page"):
+#         settings.reload_page()
+#
+#     with allure.step("Chek that no any stt buttons in calls"):
+#         expect(page.locator('[data-testid="calls_actions_retag"]')).to_have_count(1)
+#         expect(page.locator('[aria-label="Перетегировать"]')).to_have_count(1)
+#
+#
+#     with allure.step("Delete admin"):
+#         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+#
+#     with allure.step("Delete user"):
+#         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
