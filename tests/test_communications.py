@@ -132,8 +132,8 @@ def test_communications_check_calendar_localization(base_url, page: Page) -> Non
         page.locator('[placeholder="Начальная дата"]').click()
 
     with allure.step("Check localization"):
-        expect(page.locator('[class="ant-picker-content"]').nth(0)).to_contain_text("пнвтсрчтптсбвс")
-        expect(page.locator('[class="ant-picker-content"]').nth(1)).to_contain_text("пнвтсрчтптсбвс")
+        expect(page.locator('[class="ant-picker-content"]').nth(0)).to_contain_text("ПнВтСрЧтПтСбВс")
+        expect(page.locator('[class="ant-picker-content"]').nth(1)).to_contain_text("ПнВтСрЧтПтСбВс")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

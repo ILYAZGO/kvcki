@@ -15,7 +15,7 @@ BUTTON_CREATE = '[data-testid="StartTaskModalContent_submit"]'
 BUTTON_PLAY = '[aria-label="Запуск интеграции"]'
 BUTTON_KORZINA = "div[class='styles_button__xgQ1q'] button[type='button']"
 BUTTON_DELETE_INTEGRATION = '[data-testid="SettingsCell_deleteBtn"]'
-BUTTON_OK_IN_DATE = "button[class='ant-btn ant-btn-primary ant-btn-sm']"
+BUTTON_OK_IN_DATE = '[class*="ant-btn-sm"]'
 BUTTON_ADD_TOKEN_OR_TRANSLATION = '[data-testid="addTranslateBtn"]'
 BUTTON_BASKET = '[class*="ant-btn"]' # in api tokens and tag translations
 NAYDENO_ZVONKOV_INTEGRATION = '//*[@id="root"]/div/div[3]/div/div[3]/div[1]/div/p'

@@ -329,6 +329,7 @@ def test_integrations_tag_translations(base_url, page: Page) -> None:
         page.locator('[id="comment"]').type("comment", delay=20)
 
     with allure.step("Press green V"):
+        page.wait_for_timeout(500)
         page.locator('[fill="#73D13D"]').click()
         page.wait_for_timeout(500)
 
