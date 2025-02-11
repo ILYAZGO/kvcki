@@ -2036,7 +2036,7 @@ def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
 @pytest.mark.calls
 @allure.title("test_access_right_restt_for_user")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_change_role_for_user_by_admin")
+@allure.description("test_access_right_restt_for_user")
 def test_access_right_restt_for_user(base_url, page: Page) -> None:
     communications = Communications(page)
 
@@ -2049,35 +2049,33 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
     with allure.step("Go to page"):
         communications.navigate(base_url)
 
-    with allure.step("Auth with admin"):
+    with allure.step("Auth with user"):
         communications.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Expand call"):
         communications.expand_call()
 
-    with allure.step("Click to actions with call button"):
+    with allure.step("Click to actions with calls button (...)"):
         communications.press_calls_action_button_in_list(0)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that no any stt buttons in menu"):
         expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
 
-    with allure.step("Click to action with one call"):
+    with allure.step("Click to action with one call button (...)"):
         communications.press_calls_action_button_in_list(1)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that no any stt buttons in menu"):
         expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
 
-
-    with allure.step("Change access_right"):
+    with allure.step("Change access right restt: True"):
         rights = {"restt": True, "delete_call": False, "call_info_processing": False}
         give_access_right(API_URL, TOKEN_ADMIN, USER_ID_USER, rights)
-
 
     with allure.step("Reload page"):
         communications.reload_page()
@@ -2085,10 +2083,10 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
     with allure.step("Expand call"):
         communications.expand_call()
 
-    with allure.step("Click to actions with call button"):
+    with allure.step("Click to actions with calls button (...)"):
         communications.press_calls_action_button_in_list(0)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that stt buttons in menu"):
         expect(page.locator(MENU)).to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
@@ -2097,7 +2095,7 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
     with allure.step("Click to action with one call"):
         communications.press_calls_action_button_in_list(1)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that stt buttons in menu"):
         expect(page.locator(MENU)).to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
@@ -2114,7 +2112,7 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
 @pytest.mark.calls
 @allure.title("test_access_right_delete_calls_for_user")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_change_role_for_user_by_admin")
+@allure.description("test_access_right_delete_calls_for_user")
 def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
     communications = Communications(page)
 
@@ -2127,35 +2125,33 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
     with allure.step("Go to page"):
         communications.navigate(base_url)
 
-    with allure.step("Auth with admin"):
+    with allure.step("Auth with user"):
         communications.auth(LOGIN_USER, PASSWORD)
 
     with allure.step("Expand call"):
         communications.expand_call()
 
-    with allure.step("Click to actions with call button"):
+    with allure.step("Click to actions with calls button (...)"):
         communications.press_calls_action_button_in_list(0)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that no any delete buttons in menu"):
         expect(page.locator(MENU)).not_to_contain_text("Удалить коммуникации")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
 
-    with allure.step("Click to action with one call"):
+    with allure.step("Click to action with one call button (...)"):
         communications.press_calls_action_button_in_list(1)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that no any delete buttons in menu"):
         expect(page.locator(MENU)).not_to_contain_text("Удалить коммуникацию")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
 
-
-    with allure.step("Change access_right"):
+    with allure.step("Change access_right delete_call: True"):
         rights = {"restt": False, "delete_call": True, "call_info_processing": False}
         give_access_right(API_URL, TOKEN_ADMIN, USER_ID_USER, rights)
-
 
     with allure.step("Reload page"):
         communications.reload_page()
@@ -2163,19 +2159,19 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
     with allure.step("Expand call"):
         communications.expand_call()
 
-    with allure.step("Click to actions with call button"):
+    with allure.step("Click to actions with calls button (...)"):
         communications.press_calls_action_button_in_list(0)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that delete button in menu"):
         expect(page.locator(MENU)).to_contain_text("Удалить коммуникации")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
 
-    with allure.step("Click to action with one call"):
+    with allure.step("Click to action with one call button (...)"):
         communications.press_calls_action_button_in_list(1)
 
-    with allure.step("Chek that no any stt buttons in calls"):
+    with allure.step("Check that delete button in menu"):
         expect(page.locator(MENU)).to_contain_text("Удалить коммуникацию")
 
     with allure.step("Close menu"):
@@ -2187,74 +2183,73 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
-# @pytest.mark.e2e
-# @pytest.mark.calls
-# @allure.title("test_access_right_delete_calls_for_user")
-# @allure.severity(allure.severity_level.CRITICAL)
-# @allure.description("test_change_role_for_user_by_admin")
-# def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
-#     communications = Communications(page)
-#
-#     with allure.step("Create admin"):
-#         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
-#
-#     with allure.step("Create user"):
-#         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
-#
-#     with allure.step("Go to page"):
-#         communications.navigate(base_url)
-#
-#     with allure.step("Auth with admin"):
-#         communications.auth(LOGIN_USER, PASSWORD)
-#
-#     with allure.step("Expand call"):
-#         communications.expand_call()
-#
-#     with allure.step("Click to action with one call"):
-#         communications.press_calls_action_button_in_list(1)
-#
-#     with allure.step("Chek that no any stt buttons in calls"):
-#         page.locator(MENU).get_by_text("Мета инфо").click()
-#         page.wait_for_selector(MODAL_WINDOW)
-#
-#     with allure.step("Chek that meta info dont have info about proccessing"):
-#         expect(page.locator(MODAL_WINDOW).locator('[]')).to_have_count(0)
-#
-#     with allure.step("Close menu"):
-#         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
-#
-#
-#     with allure.step("Change access_right"):
-#         rights = {"restt": False, "delete_call": True, "call_info_processing": False}
-#         give_access_right(API_URL, TOKEN_ADMIN, USER_ID_USER, rights)
-#
-#
-#     with allure.step("Reload page"):
-#         communications.reload_page()
-#
-#     with allure.step("Expand call"):
-#         communications.expand_call()
-#
-#     with allure.step("Click to actions with call button"):
-#         communications.press_calls_action_button_in_list(0)
-#
-#     with allure.step("Chek that no any stt buttons in calls"):
-#         expect(page.locator(MENU)).to_contain_text("Удалить коммуникации")
-#
-#     with allure.step("Close menu"):
-#         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
-#
-#     with allure.step("Click to action with one call"):
-#         communications.press_calls_action_button_in_list(1)
-#
-#     with allure.step("Chek that no any stt buttons in calls"):
-#         expect(page.locator(MENU)).to_contain_text("Удалить коммуникацию")
-#
-#     with allure.step("Close menu"):
-#         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
-#
-#     with allure.step("Delete admin"):
-#         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
-#
-#     with allure.step("Delete user"):
-#         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+@pytest.mark.e2e
+@pytest.mark.calls
+@allure.title("test_access_right_processing_info_for_user")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_access_right_processing_info_for_user")
+def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN_USER, PASSWORD)
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Click to action with one call button (...)"):
+        communications.press_calls_action_button_in_list(1)
+
+    with allure.step("Open meta info"):
+        page.wait_for_timeout(500)
+        page.locator(MENU).get_by_text("Мета инфо").click()
+        page.wait_for_selector(MODAL_WINDOW)
+
+    with allure.step("Chek that no any processing info in meta info"):
+        expect(page.locator(MODAL_WINDOW)).not_to_contain_text("Время добавления звонка")
+        expect(page.locator(MODAL_WINDOW)).not_to_contain_text("Время завершения транскрибации")
+
+    with allure.step("Close menu"):
+        page.locator(BUTTON_CROSS).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Change access_right call_info_processing: True"):
+        rights = {"restt": False, "delete_call": False, "call_info_processing": True}
+        give_access_right(API_URL, TOKEN_ADMIN, USER_ID_USER, rights)
+
+    with allure.step("Reload page"):
+        communications.reload_page()
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Click to action with one call button (...)"):
+        communications.press_calls_action_button_in_list(1)
+
+    with allure.step("Open meta info"):
+        page.wait_for_timeout(500)
+        page.locator(MENU).get_by_text("Мета инфо").click()
+        page.wait_for_selector(MODAL_WINDOW)
+
+    with allure.step("Chek that processing info in meta info"):
+        expect(page.locator(MODAL_WINDOW)).to_contain_text("Время добавления звонка")
+        #expect(page.locator(MODAL_WINDOW)).to_contain_text("Время завершения транскрибации")
+
+    with allure.step("Close menu"):
+        page.locator(BUTTON_CROSS).click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
