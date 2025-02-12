@@ -15,7 +15,7 @@ from main directory:
 
     pytest -n auto api_tests/
 
-   !!!PROFIT!!!
+   !!!!PROFIT!!!!
 
 
 
