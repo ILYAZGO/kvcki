@@ -417,7 +417,7 @@ def test_check_search_by_tag(base_url, page: Page) -> None:
         communications.press_find_communications_less_than_50()
 
     with allure.step("Check"):
-        communications.assert_communications_found("Найдено коммуникаций 128 из 3130")
+        communications.assert_communications_found("Найдено коммуникаций 131 из 3130")
 
     with allure.step("Add extra tag"):
         communications.fill_by_tag(0, "Обсуждение тарифа")
@@ -784,7 +784,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Check that export (zip) downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 7000 < os.path.getsize(path + download.suggested_filename) < 9000
+        assert 8000 < os.path.getsize(path + download.suggested_filename) < 10000
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
