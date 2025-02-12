@@ -83,7 +83,7 @@ class Communications(BaseClass):
 
     def assert_check_period_dates(self, begin: str, end: str):
         """Check first and last dates"""
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(1000)
         expect(self.first_date).to_have_value(begin)
         expect(self.last_date).to_have_value(end)
 

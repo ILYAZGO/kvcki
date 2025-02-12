@@ -3,7 +3,7 @@ from utils.variables import *
 from pages.communications import *
 from utils.dates import *
 from datetime import datetime
-from utils.create_delete_user import create_user, delete_user, give_access_right
+from utils.create_delete_user import create_user, delete_user, give_access_right, give_user_to_manager
 import os
 import pytest
 import allure
@@ -2253,3 +2253,90 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.e2e
+@pytest.mark.calls
+@allure.title("test_access_right_restt_for_manager")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_access_right_restt_for_manager")
+def test_access_right_restt_for_manager(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create manager"):
+        USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+
+    with allure.step("Create user for manager"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+
+    with allure.step("Go to page"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with manager"):
+        communications.auth(LOGIN_MANAGER, PASSWORD)
+
+    with allure.step("Go to user"):
+        communications.go_to_user(LOGIN_USER)
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Click to actions with calls button (...)"):
+        communications.press_calls_action_button_in_list(0)
+
+    with allure.step("Check that no any stt buttons in menu"):
+        expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
+
+    with allure.step("Close menu"):
+        page.locator(BUTTON_CALLS_ACTION).nth(0).click()
+
+    with allure.step("Click to action with one call button (...)"):
+        communications.press_calls_action_button_in_list(1)
+
+    with allure.step("Check that no any stt buttons in menu"):
+        expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
+
+    with allure.step("Close menu"):
+        page.locator(BUTTON_CALLS_ACTION).nth(1).click()
+
+    with allure.step("Change access right restt: True"):
+        rights = {"restt":True,"delete_user":False,"add_user":False,"set_default_engine":False,"quota_edit":False,"gpt_quota":False,"user_modules_setup":False}
+        give_access_right(API_URL, TOKEN_ADMIN, USER_ID_MANAGER, rights)
+
+    with allure.step("Reload page"):
+        communications.reload_page()
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Click to actions with calls button (...)"):
+        communications.press_calls_action_button_in_list(0)
+
+    with allure.step("Check that stt buttons in menu"):
+        expect(page.locator(MENU)).to_contain_text("Перераспознать")
+
+    with allure.step("Close menu"):
+        page.locator(BUTTON_CALLS_ACTION).nth(0).click()
+
+    with allure.step("Click to action with one call"):
+        communications.press_calls_action_button_in_list(1)
+
+    with allure.step("Check that stt buttons in menu"):
+        expect(page.locator(MENU)).to_contain_text("Перераспознать")
+
+    with allure.step("Close menu"):
+        page.locator(BUTTON_CALLS_ACTION).nth(1).click()
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete manager"):
+        delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
