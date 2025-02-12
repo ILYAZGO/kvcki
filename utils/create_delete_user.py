@@ -181,10 +181,10 @@ def create_user(URL, ROLE, PASSWORD):
                                {
                                    'client_audio': ('count-in.opus',
                                                     open(client_audio_path, 'rb'),
-                                                    'audio/opus'),
+                                                    'audio/ogg'),
                                    'operator_audio': ('count-out.opus',
                                                       open(operator_audio_path, 'rb'),
-                                                      'audio/opus')
+                                                      'audio/ogg')
                                })
 
         if upload.status_code == 200:
