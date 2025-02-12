@@ -651,7 +651,7 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
         # page.wait_for_selector('[value="6204e7cb599aff4f43f5d3a0"]', state="hidden")
         # page.wait_for_timeout(10000)
 
-        new_tab.locator("#react-select-2-input").type("Экотелеком", delay=30)
+        new_tab.locator("#react-select-2-input").type("Экотелеком", delay=10)
         new_tab.get_by_text("Экотелеком", exact=True).click()
         new_tab.wait_for_load_state(state="load", timeout=wait_until_visible)
         new_tab.wait_for_timeout(2000)
@@ -731,7 +731,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=30)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=10)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
@@ -1050,7 +1050,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_NAME).type("firstTemplate", delay=30)
+        page.locator(INPUT_NAME).type("firstTemplate", delay=10)
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -1068,7 +1068,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_NAME).type("renameTemplate", delay=30)
+        page.locator(INPUT_NAME).type("renameTemplate", delay=10)
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -1246,7 +1246,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=30)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=10)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
@@ -1589,7 +1589,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=50)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=10)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):

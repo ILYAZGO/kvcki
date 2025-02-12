@@ -48,7 +48,7 @@ class Integrations(BaseClass):
 
     def input_api_token(self):
         self.page.wait_for_selector(INPUT_API_TOKEN)
-        self.input_token.type(USEDESK_TOKEN, delay=20)
+        self.input_token.type(USEDESK_TOKEN, delay=10)
 
     def press_save(self):
         self.button_save.click()
@@ -65,7 +65,7 @@ class Integrations(BaseClass):
         self.page.wait_for_timeout(700)
 
     def set_calls_limit(self, calls_limit: str):
-        self.input_calls_limit.type(calls_limit, delay=20)
+        self.input_calls_limit.type(calls_limit, delay=10)
 
     def delete_integration(self):
         self.page.locator(BUTTON_KORZINA).click()

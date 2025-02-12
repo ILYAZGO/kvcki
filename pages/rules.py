@@ -72,7 +72,7 @@ NAZVANIE_PRAVILA_TEGIROVANIYA = NAZVANIE_SLOVARYA = '[name="title"]'
 
 
 def fill_what_said(text, page="page: Page"):
-    page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').type(text, delay=30)
+    page.locator('[data-testid="fragmentRuleWhatSaid"]').locator('[autocorrect="off"]').type(text, delay=10)
     page.keyboard.press("Enter", delay=10)
     page.wait_for_timeout(500)
 

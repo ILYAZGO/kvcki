@@ -119,7 +119,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
     with allure.step("Rename group"):
         page.wait_for_selector(BUTTON_PENCIL)
         page.locator(ACTIVE_GROUP).locator(BUTTON_PENCIL).click()
-        page.locator(INPUT_EDIT_GROUP_NAME).type("54321", delay=30)
+        page.locator(INPUT_EDIT_GROUP_NAME).type("54321", delay=10)
         page.locator(ACTIVE_GROUP).locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
 
     with allure.step("Wait and check snack bar"):

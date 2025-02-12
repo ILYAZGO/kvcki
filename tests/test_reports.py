@@ -366,7 +366,7 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
         reports.click_reports()
 
     with allure.step("Type тест1 in searchstring in menu an press magnifier"):
-        page.locator(INPUT_SEARCH).type("тест1", delay=30)
+        page.locator(INPUT_SEARCH).type("тест1", delay=10)
         page.locator(BUTTON_SUBMIT).click()
 
     with allure.step("Check that search was successful"):
@@ -438,7 +438,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         page.locator('[aria-label="Сбросить"]').click()
         page.locator('[aria-label="Изменить название"]').nth(1).click()
         page.locator('[name="reportName"]').clear()
-        page.locator('[name="reportName"]').type("changedReportName", delay=30)
+        page.locator('[name="reportName"]').type("changedReportName", delay=10)
         page.locator('[aria-label="Сохранить"]').click()
 
     with allure.step("Check that report name changed"):
@@ -571,12 +571,12 @@ def test_report_send_email(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Fill dispatch fields"):
-        page.locator('[data-testid="dispatchName_to_toEmail"]').locator('[type="text"]').type("at-email_dispatch", delay=30)
-        page.locator('[data-testid="toEmail"]').nth(0).locator('[type="text"]').type("first@mail.com", delay=30)
+        page.locator('[data-testid="dispatchName_to_toEmail"]').locator('[type="text"]').type("at-email_dispatch", delay=10)
+        page.locator('[data-testid="toEmail"]').nth(0).locator('[type="text"]').type("first@mail.com", delay=10)
         page.locator('[data-testid="addEmailBtn"]').click()
-        page.locator('[data-testid="toEmail"]').nth(1).locator('[type="text"]').type("second@mail.com", delay=30)
-        page.locator('[data-testid="emailSubject_to_toEmail"]').locator('[type="text"]').type("at-email_dispatch", delay=30)
-        page.locator('[data-testid="messageBody"]').type("at-email_dispatch", delay=30)
+        page.locator('[data-testid="toEmail"]').nth(1).locator('[type="text"]').type("second@mail.com", delay=10)
+        page.locator('[data-testid="emailSubject_to_toEmail"]').locator('[type="text"]').type("at-email_dispatch", delay=10)
+        page.locator('[data-testid="messageBody"]').type("at-email_dispatch", delay=10)
         page.locator('[data-test-id="report_id"]').click()
         page.wait_for_timeout(500)
         page.locator('[aria-label="Текст сообщения"]').click()
@@ -689,11 +689,11 @@ def test_report_send_telegram(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Fill dispatch fields"):
-        page.locator('[data-testid="dispatchName_to_toTelegram"]').locator('[type="text"]').type("at-telegram_dispatch", delay=30)
+        page.locator('[data-testid="dispatchName_to_toTelegram"]').locator('[type="text"]').type("at-telegram_dispatch", delay=10)
         page.locator('[data-testid="selectActiveTgChats"]').locator("svg").click()
         page.wait_for_selector(MENU)
         page.locator(MENU).get_by_text("AT_CHAT", exact=True).click()
-        page.locator('[data-testid="messageBody"]').type("at-telegram_dispatch", delay=30)
+        page.locator('[data-testid="messageBody"]').type("at-telegram_dispatch", delay=10)
         page.locator('[data-test-id="report_id"]').click()
         page.wait_for_timeout(500)
 

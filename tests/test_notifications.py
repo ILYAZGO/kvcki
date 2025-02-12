@@ -488,7 +488,7 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
         notifications.press_import_rules()
 
     with allure.step("Choose user import from"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("impo", delay=30)
+        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("impo", delay=10)
         page.wait_for_timeout(500)
         page.locator(MENU).get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(1000)
@@ -564,7 +564,7 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         notifications.press_import_rules()
 
     with allure.step("Choose user importFrom"):
-        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("impo", delay=30)
+        page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type("impo", delay=10)
         page.wait_for_timeout(500)
         page.locator(MENU).get_by_text("importFrom", exact=True).click()
         page.wait_for_timeout(1000)
