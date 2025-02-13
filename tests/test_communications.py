@@ -1939,17 +1939,17 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
 
-    with allure.step("Check that we can see 2 manual tags"):
-        communications.assert_tags_have_count(2)
+    with allure.step("Check that we can see tags"):
+        communications.assert_tags_have_count(4, 1)
 
-    with allure.step("Delete manual call from call header"):
+    with allure.step("Delete manual tag from call header"):
         communications.delete_manual_tag_from_call_header(0)
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег удален")
 
-    with allure.step("Check that we can see 2 manual tags"):
-        communications.assert_tags_have_count(0)
+    with allure.step("Check that we can see tags"):
+        communications.assert_tags_have_count(2, 1)
     #
 
     with allure.step("Kostyl for https://task.imot.io/browse/DEV-3083"):
@@ -1968,8 +1968,8 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
 
-    with allure.step("Check that we can see 2 manual tags"):
-        communications.assert_tags_have_count(2)
+    with allure.step("Check that we can see tags"):
+        communications.assert_tags_have_count(4, 1)
 
     with allure.step("Delete manual tag from manual tags"):
         communications.delete_manual_tag_from_manual_tags(0)
@@ -1977,8 +1977,8 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег удален")
 
-    with allure.step("Check that we can see 2 manual tags"):
-        communications.assert_tags_have_count(0)
+    with allure.step("Check that we can see tags"):
+        communications.assert_tags_have_count(2, 1)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

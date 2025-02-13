@@ -54,8 +54,8 @@ def test_address_book_fill_by_user(base_url, page: Page) -> None:
     with allure.step("Check that address book contain correct text after page reload"):
         settings.assert_address_book_text(text)
 
-    # with allure.step("Delete user"):
-    #     delete_user(API_URL, TOKEN, USER_ID)
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
 
 @pytest.mark.e2e

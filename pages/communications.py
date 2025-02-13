@@ -9,7 +9,8 @@ CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1
 COMMENT_AREA = '[class*="styles_content_"]'
 ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
 SELECT_WITH_SEARCH_MANUAL_TAGS = '[data-testid="CustomSelectWithSearch"]'
-TAG = '[data-testid*="tag-"]'
+TAG_WITHOUT_VALUE = '[data-testid*="tag-"]'
+TAG_WITH_VALUE = '[class*="styles_tagTablet"]'
 
 INPUT_CLIENT_NUMBER = '[data-testid="filters_client_phone"]'
 INPUT_CLIENT_DICT_OR_TEXT = '[data-testid="filters_client_phrases"]'
@@ -66,7 +67,8 @@ class Communications(BaseClass):
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
         self.button_calls_list_download = page.locator(BUTTON_CALLS_LIST_DOWNLOAD)
         self.sort = page.locator(CHANGE_SORT)
-        self.tag = page.locator(TAG)
+        self.tag_without_value = page.locator(TAG_WITHOUT_VALUE)
+        self.tag_with_value = page.locator(TAG_WITH_VALUE)
         self.button_clear = page.locator(BUTTON_CLEAR)
         self.call_date_and_time = page.locator(CALL_DATE_AND_TIME)
         self.just_click = page.locator(COMMUNICATIONS_SEARCH)
@@ -191,6 +193,7 @@ class Communications(BaseClass):
 
     def expand_call(self):
         """Expand call"""
+        self.page.wait_for_timeout(1000)
         self.page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=self.timeout)
         self.page.wait_for_timeout(2000)
         self.button_expand_call.click()
@@ -227,8 +230,9 @@ class Communications(BaseClass):
         self.modal_window.locator(BUTTON_SUBMIT).click()
         self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=self.timeout)
 
-    def assert_tags_have_count(self, count: int):
-        expect(self.tag).to_have_count(count, timeout=self.timeout)
+    def assert_tags_have_count(self, without_value: int, with_value: int):
+        expect(self.tag_without_value).to_have_count(without_value, timeout=self.timeout)
+        expect(self.tag_with_value).to_have_count(with_value, timeout=self.timeout)
 
     def press_add_comment(self):
         """Press add comment button"""
