@@ -321,6 +321,7 @@ def test_integrations_tag_translations(base_url, page: Page) -> None:
         expect(page.locator(ALERT_MESSAGE)).to_contain_text("Вы еще не добавили ни одного перевода")
 
     with allure.step("Press (add token)"):
+        page.wait_for_timeout(3000)
         page.locator(BUTTON_ADD_TOKEN_OR_TRANSLATION).click()
         page.wait_for_selector('[data-row-key="new-1"]', timeout=wait_until_visible)
 
