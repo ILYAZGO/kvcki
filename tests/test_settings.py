@@ -2525,13 +2525,13 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         settings.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        settings.choose_option(5)
+        settings.choose_option(6)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        settings.choose_option(6)
+        settings.choose_option(7)
 
     with allure.step("Uncheck merge"):
         page.wait_for_timeout(500)
