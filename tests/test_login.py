@@ -160,7 +160,7 @@ def test_password_user_negotive(base_url, page: Page) -> None:
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test checks first page under 4 supported locale and 1 unsupported")
 def test_first_page_locale(base_url, playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     # create a new incognito browser context.
     with allure.step("go first page RU locale"):
         context = browser.new_context(locale="ru-RU")
