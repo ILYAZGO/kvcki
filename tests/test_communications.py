@@ -684,11 +684,13 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
 
 @pytest.mark.calls
 @pytest.mark.e2e
-@allure.title("test_check_content_button_calls_actions")
+@allure.title("test_check_content_button_calls_actions_for_user")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_check_content_button_calls_actions (...)")
-def test_check_content_button_calls_actions(base_url, page: Page) -> None:
+@allure.description("test_check_content_button_calls_actions (...) for user")
+def test_check_content_button_calls_actions_for_user(base_url, page: Page) -> None:
     communications = Communications(page)
+
+    options_list = "Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов"
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -706,7 +708,7 @@ def test_check_content_button_calls_actions(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check content of button (...) calls action"):
-        expect(page.locator(MENU)).to_have_text("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов")
+        expect(page.locator(MENU)).to_have_text(options_list)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -938,7 +940,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Fill first ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=20)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=10)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
@@ -1021,6 +1023,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Check that excel export removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
+
 
 
 @pytest.mark.calls

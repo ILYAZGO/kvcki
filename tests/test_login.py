@@ -1,4 +1,6 @@
-#from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Playwright
+#from pytest_playwright.pytest_playwright import browser, device
+
 from utils.variables import *
 from pages.login import *
 from utils.create_delete_user import create_user, delete_user, create_operator
@@ -150,3 +152,93 @@ def test_password_user_negotive(base_url, page: Page) -> None:
 
     with allure.step("Check that alert message visible"):
         login_page.assert_alert_visible("Wrong login or password")
+
+
+@pytest.mark.e2e
+@pytest.mark.login
+@allure.title("test_first_page_locale")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test checks first page under 4 supported locale and 1 unsupported")
+def test_first_page_locale(base_url, playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    # create a new incognito browser context.
+    with allure.step("go first page RU locale"):
+        context = browser.new_context(locale="ru-RU")
+        # create a new page in a pristine context.
+        page = context.new_page()
+        page.goto(base_url)
+
+    with allure.step("Check lang"):
+        expect(page.locator('[placeholder="Логин"]')).to_have_count(1)
+        expect(page.locator('[placeholder="Пароль"]')).to_have_count(1)
+        expect(page.locator(BUTTON_SUBMIT)).to_have_text("Войти")
+        expect(page.locator('[class*="styles_authGreetSide_"]')).to_have_text(
+            "Добро пожаловатьВ речевую аналитикуВойдите чтобы получить доступ")
+
+        context.close()
+    with allure.step("go first page PT locale"):
+        context = browser.new_context(locale="pt-PT")
+        # create a new page in a pristine context.
+        page = context.new_page()
+        page.goto(base_url)
+
+    with allure.step("Check lang"):
+        expect(page.locator('[placeholder="Login"]')).to_have_count(1)
+        expect(page.locator('[placeholder="Senha"]')).to_have_count(1)
+        expect(page.locator(BUTTON_SUBMIT)).to_have_text("Entrar")
+        expect(page.locator('[class*="styles_authGreetSide_"]')).to_have_text(
+            "Bem-vindoÀ análise de falaEntre para ter acesso")
+
+        context.close()
+
+    with allure.step("go first page ES locale"):
+        context = browser.new_context(locale="es-ES")
+        # create a new page in a pristine context.
+        page = context.new_page()
+        page.goto(base_url)
+
+    with allure.step("Check lang"):
+        expect(page.locator('[placeholder="Inicio de sesión"]')).to_have_count(1)
+        expect(page.locator('[placeholder="Contraseña"]')).to_have_count(1)
+        expect(page.locator(BUTTON_SUBMIT)).to_have_text("Iniciar sesión")
+        expect(page.locator('[class*="styles_authGreetSide_"]')).to_have_text(
+            "BienvenidoA la analítica de vozInicie sesión para acceder")
+
+        context.close()
+
+    with allure.step("go first page EN locale"):
+        context = browser.new_context(locale="en-EN")
+        # create a new page in a pristine context.
+        page = context.new_page()
+        page.goto(base_url)
+
+    with allure.step("Check lang"):
+        expect(page.locator('[placeholder="Login"]')).to_have_count(1)
+        expect(page.locator('[placeholder="Password"]')).to_have_count(1)
+        expect(page.locator(BUTTON_SUBMIT)).to_have_text("Sign in")
+        expect(page.locator('[class*="styles_authGreetSide_"]')).to_have_text(
+            "Welcome toSpeech analyticsSign in to get access")
+
+        context.close()
+
+    with allure.step("go first page unsupported FR locale"):
+        context = browser.new_context(locale="fr-FR")
+        # create a new page in a pristine context.
+        page = context.new_page()
+        page.goto(base_url)
+
+    with allure.step("Check lang"):
+        expect(page.locator('[placeholder="Login"]')).to_have_count(1)
+        expect(page.locator('[placeholder="Password"]')).to_have_count(1)
+        expect(page.locator(BUTTON_SUBMIT)).to_have_text("Sign in")
+        expect(page.locator('[class*="styles_authGreetSide_"]')).to_have_text(
+            "Welcome toSpeech analyticsSign in to get access")
+
+        context.close()
+        browser.close()
+
+
+
+
+
+
