@@ -7,17 +7,17 @@ class LoginPage(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
         self.alert = page.locator(ALERT_MESSAGE)
-        self.button_enter = page.locator(BUTTON_SUBMIT)
+        # self.button_enter = page.locator(BUTTON_SUBMIT)
 
 
-    def quit_from_profile(self):
-        self.page.wait_for_timeout(500)
-        self.page.get_by_label("Профиль").click()
-        self.page.wait_for_selector(MENU)
-        self.menu.get_by_text("Выйти", exact=True).click()
+    # def quit_from_profile(self):
+    #     self.page.wait_for_timeout(500)
+    #     self.page.get_by_label("Профиль").click()
+    #     self.page.wait_for_selector(MENU)
+    #     self.menu.get_by_text("Выйти", exact=True).click()
 
-    def assert_quited(self):
-        expect(self.button_enter).to_be_visible()
+    # def assert_quited(self):
+    #     expect(self.button_enter).to_be_visible()
 
     def assert_alert_visible(self, text: str):
         expect(self.alert).to_be_visible()

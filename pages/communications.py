@@ -231,8 +231,9 @@ class Communications(BaseClass):
         self.page.wait_for_selector(MODAL_WINDOW, state="hidden", timeout=self.timeout)
 
     def assert_tags_have_count(self, without_value: int, with_value: int):
-        self.page.wait_for_timeout(1000)
+        self.page.wait_for_timeout(1500)
         expect(self.tag_without_value).to_have_count(without_value, timeout=self.timeout)
+        self.page.wait_for_timeout(1000)
         expect(self.tag_with_value).to_have_count(with_value, timeout=self.timeout)
 
     def press_add_comment(self):

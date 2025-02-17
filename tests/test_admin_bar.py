@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.adminbar import *
 import pytest
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager
+from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
 import allure
 
 
@@ -140,3 +140,96 @@ def test_language_change_by_user(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.e2e
+@pytest.mark.adminbar
+@allure.title("test_language_change_by_user_and_operator")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("")
+def test_language_change_by_user_and_operator(base_url, page: Page) -> None:
+    admin_bar = AdminBar(page)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Create operator"):
+        USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        admin_bar.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        admin_bar.auth(LOGIN_USER, PASSWORD)
+
+    with allure.step("Change users lang from RU to EN"):
+        admin_bar.change_lang("RU", "EN")
+
+    with allure.step("Check that users lang changed"):
+        expect(page.get_by_text("Additional filters")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Communication time interval")).to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Quit from user"):
+        admin_bar.quit_from_profile()
+
+    with allure.step("Check quited"):
+        admin_bar.assert_quited()
+
+    with allure.step("Auth with operator"):
+        admin_bar.auth(LOGIN_OPERATOR, PASSWORD)
+
+    with allure.step("Check that operators lang RU how it was created"):
+        expect(page.get_by_text("Дополнительные фильтры")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Время коммуникации")).to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Change operator lang from RU to PT"):
+        admin_bar.change_lang("RU", "PT")
+
+    with allure.step("Check that operators lang PT"):
+        expect(page.get_by_text("Filtros adicionais")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Tempo de comunicação")).to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Quit from operator"):
+        admin_bar.quit_from_profile()
+
+    with allure.step("Check quited"):
+        admin_bar.assert_quited()
+
+    with allure.step("Auth with user"):
+        admin_bar.auth(LOGIN_USER, PASSWORD)
+
+    with allure.step("Check that users lang changed"):
+        expect(page.get_by_text("Additional filters")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Communication time interval")).to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Change users lang from RU to EN"):
+        admin_bar.change_lang("EN", "ES")
+
+    with allure.step("Check that users lang changed"):
+        expect(page.get_by_text("Filtros adicionales")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Tiempo de comunicación")).to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Quit from user"):
+        admin_bar.quit_from_profile()
+
+    with allure.step("Check quited"):
+        admin_bar.assert_quited()
+
+    with allure.step("Auth with operator"):
+        admin_bar.auth(LOGIN_OPERATOR, PASSWORD)
+
+    with allure.step("Check that operators lang PT"):
+        expect(page.get_by_text("Filtros adicionais")).to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("Tempo de comunicação")).to_be_visible(timeout=wait_until_visible)
+
+    with allure.step("Quit from user"):
+        admin_bar.quit_from_profile()
+
+    with allure.step("Check quited"):
+        admin_bar.assert_quited()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+    with allure.step("Delete operator"):
+        delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)

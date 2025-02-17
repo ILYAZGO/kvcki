@@ -106,6 +106,18 @@ class BaseClass:
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(2000)
 
+    def quit_from_profile(self):
+        self.page.wait_for_timeout(500)
+        #self.page.get_by_label("Профиль").click()
+        self.page.locator('[class*="MuiIconButton-sizeSmall"]').nth(2).click()
+        self.page.wait_for_selector(MENU)
+        self.page.locator(MENU).locator('[id*="option-1"]').click()
+        #self.menu.get_by_text("Выйти", exact=True).click()
+        self.page.wait_for_timeout(2000)
+
+    def assert_quited(self):
+        expect(self.button_enter).to_be_visible()
+
     def choose_period_date(self, first_date: str, last_date: str):
         """Choose period"""
         self.page.wait_for_timeout(3000)
