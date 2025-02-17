@@ -280,7 +280,7 @@ class Communications(BaseClass):
         expect(self.template_name).to_have_text(template_name)
 
     def assert_menu_values(self, values: str):
-        expect(self.menu).to_contain_text(values)
+        expect(self.menu).to_have_text(values)
 
 
 INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'

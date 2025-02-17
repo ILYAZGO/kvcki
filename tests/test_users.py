@@ -444,11 +444,11 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
     EMAIL = f"email_{datetime.now().microsecond}{random.randint(100, 200)}@mail.ru"
     PHONE = str(random.randint(10000000000, 99999999999))
 
-    expected_languages = ("Английский (Великобритания)Английский (США)Испанский (Латинская Америка, Карибский регион, "
-                          "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
-                          "(Бразилия)Португальский (Португалия)РусскийТурецкий (Турция)УкраинскийУзбекскийАвто")
+    # expected_languages = ("Английский (Великобритания)Английский (США)Испанский (Латинская Америка, Карибский регион, "
+    #                       "код региона UN M49)Испанский (Испания)Французский (Франция)Португальский "
+    #                       "(Бразилия)Португальский (Португалия)РусскийТурецкий (Турция)УкраинскийУзбекскийАвто")
 
-    expected_engines = "DeepgramGigaAMHappyscribeNLab SpeechIMOT.IOwhisperЯндексЯндекс v3"
+    # expected_engines = "DeepgramGigaAMHappyscribeNLab SpeechIMOT.IOwhisperЯндексЯндекс v3"
     # expected_engines = "DeepgramgigaamHappyscribenexaraNLab SpeechIMOT.IOwhisperЯндексyandex_v3"
 
     alert_merge = "Опция 'Объединить дорожки в один файл' не может быть выбрана одновременно с любой из диаризаций"
@@ -490,10 +490,10 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         page.wait_for_selector(MENU)
 
     with allure.step("Check language list"):
-        expect(page.locator(MENU)).to_contain_text(expected_languages)
+        expect(page.locator(MENU)).to_contain_text(fucking_stupidity)
 
     with allure.step("Choose russian language"):
-        users.choose_option(7)
+        users.choose_option(132)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -505,7 +505,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose Deepgram"):
-        users.choose_option(0)
+        users.choose_option(1)
 
     with allure.step("Click to model"):
         users.click_model_select()
@@ -535,7 +535,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose Happyscribe"):
-        users.choose_option(2)
+        users.choose_option(3)
 
     with allure.step("Click to model"):
         users.click_model_select()
@@ -559,7 +559,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose NLab Speech"):
-        users.choose_option(3)
+        users.choose_option(4)
 
     with allure.step("Click to model"):
         users.click_model_select()
@@ -589,7 +589,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose IMOT.IO"):
-        users.choose_option(4)
+        users.choose_option(5)
 
     with allure.step("Click to model"):
         users.click_model_select()
@@ -613,7 +613,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose whisper"):
-        users.choose_option(5)
+        users.choose_option(6)
 
     with allure.step("Click to model"):
         users.click_model_select()
@@ -638,7 +638,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose Яндекс"):
-        users.choose_option(6)
+        users.choose_option(7)
 
     with allure.step("Click to model"):
         users.click_model_select()
@@ -668,7 +668,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose yandex_v3"):
-        users.choose_option(7)
+        users.choose_option(8)
 
     with allure.step("Click to model"):
         users.click_model_select()
@@ -705,7 +705,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Choose assembly_ai"):
-        users.choose_option(7)
+        users.choose_option(8)
 
     with allure.step("Click to model"):
         users.click_model_select()

@@ -37,3 +37,24 @@ CHANGED_LOGIN2 = f"auto_test_user_ch_{datetime.now().strftime('%m%d%H%M')}{datet
 #NEW_OPERATOR_NAME = NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 #NEW_NAME = NEW_LOGIN = f"auto_test_user_{datetime.now().strftime('%m%d%H%M')}0_{datetime.now().microsecond}0"
 #EMAIL12 = f"email_{datetime.now().microsecond}{random.randint(100,200)}@mail.ru"
+
+
+fucking_stupidity = ("АфрикаансАмхарскийАрабский (Объединенные Арабские Эмираты)Арабский (Бахрейн)Арабский (Алжир)Арабский"
+                     " (Египет)Арабский (Израиль)Арабский (Ирак)Арабский (Иордания)Арабский (Кувейт)Арабский (Ливан)ar-LYАрабский"
+                     " (Марокко)Арабский (Оман)Арабский (Государство Палестина)Арабский (Катар)Арабский"
+                     " (Саудовская Аравия)ar-SYАрабский (Тунис)Арабский (Йемен)as-INaz-AZbg-BGbn-INbs-BAca-ESКитайский,"
+                     " Мандаринский диалект (упрощенный, Китай)Китайский, Мандаринский диалект (упрощенный, Гонконг)Китайский,"
+                     " Мандаринский диалект (традиционный, Тайвань)cs-CZcy-GBda-DKde-ATde-CHНемецкий (Германия)el-GRАнглийский"
+                     " (Австралия)en-BZen-CAen-CBАнглийский (Великобритания)en-GHen-HKen-IEАнглийский (Индия)en-JMen-KEen-NGАнглийский"
+                     " (Новая Зеландия)en-PHen-PKen-SGen-TTen-TZАнглийский (США)en-ZAen-ZWИспанский (Латинская Америка,"
+                     " Карибский регион, код региона UN M49)es-ARes-BOes-CLes-COes-CRes-CUes-DOes-ECИспанский"
+                     " (Испания)es-GQes-GTes-HNes-MXes-NIes-PAes-PEes-PRes-PYes-SVes-USes-UYes-VEet-EEeu-ESfa-IRФинский"
+                     " (Финляндия)Филиппинский (Филиппины)fr-BEФранцузский (Канада)fr-CHФранцузский"
+                     " (Франция)ga-IEgl-ESgu-INhe-HEhe-ILhi-INhi-Latnhr-HRhu-HUhy-AMid-IDis-ISit-CHИтальянский"
+                     " (Италия)ja-JPjv-IDka-GEКазахскийkm-KHkn-INko-KRlo-LAlt-LTlv-LVmk-MKml-INmn-MNmr-INms-MYmt-MTmy-MMnb-NOne-NPnl-BEГолландский"
+                     " (Нидерланды)or-INПенджаби (Гурмукхи Индия)pa-INПольский (Польша)ps-AFПортугальский (Бразилия)Португальский"
+                     " (Португалия)ro-ROРусскийsi-LKsk-SKsl-SIso-SOsq-ALsr-RSШведский (Швеция)sw-KEsw-TZta-INte-INth-THТурецкий"
+                     " (Турция)tt-RUУкраинскийur-INУзбекскийvi-VNwuu-CNyue-CNКитайский, Кантонский (традиционный, Гонконг)Китайский"
+                     " (КНР)zh-CN-SHANDONGzh-CN-SICHUANzh-HKКитайский (Тайвань)zu-ZAАвто")
+
+expected_engines = "azureDeepgramGigaAMHappyscribeNLab SpeechIMOT.IOwhisperЯндексЯндекс v3"
