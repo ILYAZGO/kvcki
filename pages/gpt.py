@@ -83,7 +83,7 @@ class GPT(BaseClass):
 
     def rename_gpt_rule(self, old_name, new_name):
         self.button_pencil.click()
-        self.page.locator('[class*="styles_dpBothBox"]').locator(f'[value="{old_name}"]').type(new_name, delay=20)
+        self.page.locator('[class*="styles_dpBothBox"]').locator(f'[value="{old_name}"]').type(new_name, delay=10)
         self.page.locator(BUTTON_SAVE_EDITED_NAME).click()
 
 
