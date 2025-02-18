@@ -1941,6 +1941,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
+        page.wait_for_timeout(5000)
 
     with allure.step("Check that we can see tags"):
         communications.assert_tags_have_count(4, 1)
