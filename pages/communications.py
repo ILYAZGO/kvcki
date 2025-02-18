@@ -9,7 +9,7 @@ CHANGE_SORT = '//*[@id="root"]/div/div[2]/div/div[3]/div[1]/div/div[2]/div/div[1
 COMMENT_AREA = '[class*="styles_content_"]'
 ALL_COMMENTS_AREA = '[class*="styles_withAllComments_"]'
 SELECT_WITH_SEARCH_MANUAL_TAGS = '[data-testid="CustomSelectWithSearch"]'
-TAG_WITHOUT_VALUE = '[data-testid*="tag-"]'
+TAG_WITHOUT_VALUE = '[class*="styles_tagSimple"]'
 TAG_WITH_VALUE = '[class*="styles_tagTablet"]'
 
 INPUT_CLIENT_NUMBER = '[data-testid="filters_client_phone"]'
