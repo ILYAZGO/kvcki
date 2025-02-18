@@ -679,7 +679,7 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
             EMAIL,
             "1234567890",
             "Africa/Bamako",
-            "PTT"
+            "PT"
         )
 
     with allure.step("Press (Save) button"):
