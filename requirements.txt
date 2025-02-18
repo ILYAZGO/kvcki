@@ -8,4 +8,4 @@ pytest-sugar == 1.0.0
 pytest-rerunfailures == 14.0
 pytest-base-url == 2.1.0
 loguru == 0.7.3
-#pydantic == 2.10.3
+##pydantic == 2.10.3
