@@ -1910,7 +1910,6 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         communications.navigate(base_url)
 
     with allure.step("Auth with user"):
-        page.wait_for_timeout(15000)
         communications.auth(LOGIN, PASSWORD)
 
     with allure.step("Expand call"):

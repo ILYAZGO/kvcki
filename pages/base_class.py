@@ -146,7 +146,7 @@ class BaseClass:
         """Press key on keyboard"""
         self.page.wait_for_timeout(1000)
         self.page.keyboard.press(key)
-        self.page.wait_for_timeout(1000)
+        self.page.wait_for_timeout(2000)
 
     def check_alert(self, message: str):
         """Wait snackbar, check text, wait for close"""
