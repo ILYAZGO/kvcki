@@ -18,7 +18,7 @@ CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
 CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
 CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
-SELECT_USER_LANG = '[data-testid="selectLanguage"]'
+
 
 class Users(BaseClass):
     def __init__(self, page: Page):
@@ -26,7 +26,7 @@ class Users(BaseClass):
         self.button_users = page.locator(BUTTON_USERS)
         self.button_add_user = page.locator(BUTTON_ADD_USER)
         self.select_role = page.locator(SELECT_ROLE).locator("svg")
-        self.select_user_lang = page.locator(SELECT_USER_LANG).locator("svg")
+
 
     def go_to_users_list(self):
         self.page.wait_for_selector(BUTTON_USERS)

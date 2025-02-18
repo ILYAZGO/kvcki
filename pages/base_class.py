@@ -27,6 +27,7 @@ INPUT_EMAIL = '[name="email"]'
 INPUT_PHONE = '[name="phoneNumber"]'
 INPUT_COMMENT = '[name="comment"]'
 SELECT_ROLE = '[data-testid="selectRole"]'
+SELECT_USER_LANG = '[data-testid="selectLanguage"]'
 SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_PARTNER = '[data-testid="selectPartner"]'
 INPUT_NEW_PASSWORD = '[name="newPassword"]'
@@ -68,6 +69,7 @@ class BaseClass:
         self.input_phone = page.locator(INPUT_PHONE)
         self.input_comment = page.locator(INPUT_COMMENT)
         self.input_password = page.locator(INPUT_PASSWORD)
+        self.select_user_lang = page.locator(SELECT_USER_LANG).locator("svg")
         '''Other'''
         self.button_markup = page.locator(BUTTON_MARKUP)
         self.button_korzina = page.locator(BUTTON_KORZINA)

@@ -533,7 +533,8 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
             EMAIL,
             "1234567890",
             "someComment",
-            "Africa/Bamako"
+            "Africa/Bamako",
+            "PT"
         )
 
     with allure.step("Press (Save) button"):
@@ -553,7 +554,8 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
@@ -565,7 +567,8 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
@@ -602,7 +605,8 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
             EMAIL,
             "1234567890",
             "someComment",
-            "Africa/Bamako"
+            "Africa/Bamako",
+            "PT"
         )
 
     with allure.step("Press (Save) button"):
@@ -623,7 +627,8 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
@@ -636,7 +641,8 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
@@ -672,7 +678,8 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
             NEW_NAME,
             EMAIL,
             "1234567890",
-            "Africa/Bamako"
+            "Africa/Bamako",
+            "PTT"
         )
 
     with allure.step("Press (Save) button"):
@@ -692,7 +699,8 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_enabled()
@@ -706,7 +714,8 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_enabled()
@@ -806,7 +815,8 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
             EMAIL,
             "1234567890",
             "someComment",
-            "Africa/Bamako"
+            "Africa/Bamako",
+            "PT"
         )
 
     with allure.step("Press (save)"):
@@ -827,7 +837,8 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
@@ -840,7 +851,8 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
@@ -891,7 +903,8 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
             NEW_OPERATOR_NAME,
             EMAIL,
             "1234567890",
-            "Africa/Bamako"
+            "Africa/Bamako",
+            "PT"
         )
 
     with allure.step("Press (save)"):
@@ -912,7 +925,8 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
         expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
         expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
-        expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
+        expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 

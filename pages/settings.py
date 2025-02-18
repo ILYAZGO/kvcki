@@ -180,7 +180,7 @@ class Settings(BaseClass):
             if not checkbox.is_checked():
                 checkbox.click()
 
-    def fill_personal_information_admin_and_manager(self, name, email, phone, comment, timezone):
+    def fill_personal_information_admin_and_manager(self, name, email, phone, comment, timezone, user_lang):
         """admin and manager can see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
@@ -195,11 +195,16 @@ class Settings(BaseClass):
         self.input_comment.clear()
         self.input_comment.fill(comment)
         self.page.wait_for_timeout(1000)
+        self.select_user_lang.click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(user_lang, exact=True).click()
+        self.page.wait_for_timeout(500)
         self.input_timezone.click()
+        self.page.wait_for_selector(MENU)
         self.page.get_by_text(timezone).click()
         self.page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
 
-    def fill_personal_information_user_and_operator(self, name, email, phone, timezone):
+    def fill_personal_information_user_and_operator(self, name, email, phone, timezone, user_lang):
         """user and operator cant see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
@@ -212,6 +217,10 @@ class Settings(BaseClass):
         self.input_phone.type(phone, delay=10)
         self.page.wait_for_selector(f'[value="{phone}"]')
         self.page.wait_for_timeout(1000)
+        self.select_user_lang.click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(user_lang, exact=True).click()
+        self.page.wait_for_timeout(500)
         self.input_timezone.click()
         self.page.wait_for_selector(MENU)
         self.menu.get_by_text(timezone).click()

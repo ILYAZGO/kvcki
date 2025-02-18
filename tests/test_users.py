@@ -764,6 +764,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
