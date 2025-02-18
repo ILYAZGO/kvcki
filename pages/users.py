@@ -18,7 +18,7 @@ CHECKBOX_NORMALIZATION = '[name="text_normalization"]'
 CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
 CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
-
+SELECT_USER_LANG = '[data-testid="selectLanguage"]'
 
 class Users(BaseClass):
     def __init__(self, page: Page):
@@ -26,6 +26,7 @@ class Users(BaseClass):
         self.button_users = page.locator(BUTTON_USERS)
         self.button_add_user = page.locator(BUTTON_ADD_USER)
         self.select_role = page.locator(SELECT_ROLE).locator("svg")
+        self.select_user_lang = page.locator(SELECT_USER_LANG).locator("svg")
 
     def go_to_users_list(self):
         self.page.wait_for_selector(BUTTON_USERS)
@@ -38,7 +39,7 @@ class Users(BaseClass):
         self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
-    def set_user(self, name, login, password, email, phone, comment, role):
+    def set_user(self, name, login, password, email, phone, user_lang,comment, role):
         self.page.wait_for_selector(INPUT_NAME)
         self.input_name.clear()
         self.input_name.type(name, delay=10)
@@ -58,12 +59,16 @@ class Users(BaseClass):
         self.input_comment.clear()
         self.input_comment.fill(comment)
         self.page.wait_for_timeout(500)
+        self.select_user_lang.click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(user_lang, exact=True).click()
+        self.page.wait_for_timeout(500)
         self.select_role.click()
         self.page.wait_for_selector(MENU)
         self.menu.get_by_text(role, exact=True).click()
         self.page.wait_for_timeout(500)
 
-    def set_operator(self, name, login, password, phone, email, comment):
+    def set_operator(self, name, login, password, phone, email, comment, user_lang):
         self.page.wait_for_selector(INPUT_NAME)
         self.input_name.clear()
         self.input_name.type(name, delay=10)
@@ -79,6 +84,10 @@ class Users(BaseClass):
         self.page.wait_for_selector(f'[value="{email}"]')
         self.input_comment.clear()
         self.input_comment.fill(comment)
+        self.page.wait_for_timeout(500)
+        self.select_user_lang.click()
+        self.page.wait_for_selector(MENU)
+        self.menu.get_by_text(user_lang, exact=True).click()
         self.page.wait_for_timeout(500)
         self.input_password.clear()
         self.input_password.type(password, delay=10)

@@ -40,6 +40,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
             PASSWORD,
             EMAIL,
             PHONE,
+            "PT",
             "someComment",
             "Администратор"
         )
@@ -51,6 +52,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Администратор", timeout=wait_until_visible)
         page.wait_for_timeout(500)
@@ -105,6 +107,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
             PASSWORD,
             EMAIL,
             PHONE,
+            "PT",
             "someComment",
             "Интегратор"
             )
@@ -116,6 +119,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Интегратор", timeout=wait_until_visible)
         expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
@@ -187,6 +191,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
             PASSWORD,
             EMAIL,
             PHONE,
+            "PT",
             "someComment",
             "Компания"
         )
@@ -204,6 +209,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Компания", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).to_have_text("Недвижимость", timeout=wait_until_visible)
@@ -291,6 +297,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
             PASSWORD,
             EMAIL,
             PHONE,
+            "PT",
             "someComment",
             "Компания"
         )
@@ -312,6 +319,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
         page.wait_for_timeout(3400)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
         expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
@@ -367,7 +375,8 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
             PASSWORD,
             PHONE,
             EMAIL,
-            EMAIL
+            EMAIL,
+            "PT"
         )
 
     with allure.step("Press button (Add) in modal window"):
@@ -381,6 +390,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN, timeout=wait_until_visible)
         expect(page.locator(INPUT_PHONE)).to_have_value(PHONE, timeout=wait_until_visible)
         expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         #expect(page.locator(INPUT_COMMENT)).to_have_text(EMAIL7, timeout=wait_until_visible)
         expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
@@ -479,6 +489,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
             PASSWORD,
             EMAIL,
             PHONE,
+            "PT",
             "someComment",
             "Компания"
         )
