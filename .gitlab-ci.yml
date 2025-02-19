@@ -25,7 +25,7 @@ tests:
   script:
     - echo $URL_FOR_TEST
     - echo "Execute tests"
-    - pytest -m api -n 75 --reruns=${RERUNS_NUMBER} --alluredir=allure-results || echo "API tests failed, but continuing"
+    - pytest -m api -n 100 --reruns=${RERUNS_NUMBER} --alluredir=allure-results || echo "API tests failed, but continuing"
     - pytest -m e2e -n 42 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
