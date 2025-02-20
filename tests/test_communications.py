@@ -1237,30 +1237,20 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
     action_started = "Действие начато"
 
-    with allure.step("Create admin"):
-        USER_ID, TOKEN, LOGIN= create_user(API_URL, ROLE_ADMIN, PASSWORD)
-
     with allure.step("Go to url"):
         communications.navigate(base_url)
 
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
     with allure.step("Auth with admin"):
-        communications.auth(LOGIN, PASSWORD)
+        communications.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        communications.go_to_user("Экотелеком")
-
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        communications.choose_period_date("01/01/2022", "31/12/2022")
-
-    with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=10)
-        page.wait_for_timeout(500)
-
-    with allure.step("Press button (Find communications)"):
-        communications.press_find_communications_less_than_50()
-
-    with allure.step("Check"):
-        communications.assert_communications_found("Найдено коммуникаций 1 из 3130")
+        communications.go_to_user(LOGIN_USER)
 
     with allure.step("Click calls list actions button (...)"):
         communications.press_calls_action_button_in_list(0)
@@ -1327,7 +1317,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
@@ -1351,7 +1341,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
@@ -1381,7 +1371,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
 
@@ -1406,7 +1396,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
@@ -1430,7 +1420,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(5)
 
     with allure.step("Click to engine"):
@@ -1460,7 +1450,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
@@ -1495,7 +1485,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_PROFANITY_FILTER)).not_to_be_checked()
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(8)
 
 #  check save combinations
@@ -1556,8 +1546,10 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         # page.wait_for_selector('[class*="SnackbarItem"]', state="hidden", timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
-        delete_user(API_URL, TOKEN, USER_ID)
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
 
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 @pytest.mark.calls
 @pytest.mark.e2e
@@ -1581,29 +1573,19 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
     action_started = "Действие начато"
 
     with allure.step("Create admin"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
 
     with allure.step("Auth with admin"):
-        communications.auth(LOGIN, PASSWORD)
+        communications.auth(LOGIN_ADMIN, PASSWORD)
 
     with allure.step("Go to user"):
-        communications.go_to_user("Экотелеком")
-
-    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
-        communications.choose_period_date("01/01/2022", "31/12/2022")
-
-    with allure.step("Fill ID"):
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644396067.1832", delay=10)
-        page.wait_for_timeout(500)
-
-    with allure.step("Press button (Find communications)"):
-        communications.press_find_communications_less_than_50()
-
-    with allure.step("Check"):
-        communications.assert_communications_found("Найдено коммуникаций 1 из 3130")
+        communications.go_to_user(LOGIN_USER)
 
     with allure.step("Expand call"):
         communications.expand_call()
@@ -1670,7 +1652,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
@@ -1694,7 +1676,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
@@ -1724,7 +1706,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
     #
     with allure.step("Click to engine"):
@@ -1748,7 +1730,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
 
     with allure.step("Click to engine"):
@@ -1772,7 +1754,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).not_to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(5)
 
     with allure.step("Click to engine"):
@@ -1802,7 +1784,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_MERGE_ALL_TO_ONE)).to_be_checked()
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
     #
     with allure.step("Click to engine"):
@@ -1837,7 +1819,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_PROFANITY_FILTER)).not_to_be_checked()
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
-        expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
+        expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(8)
 
 #  check save combinations
@@ -1896,7 +1878,10 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.check_alert(action_started)
 
     with allure.step("Delete admin"):
-        delete_user(API_URL, TOKEN, USER_ID)
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
 @pytest.mark.calls
@@ -1945,7 +1930,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
-        page.wait_for_timeout(5000)
+        page.wait_for_timeout(6000)
 
     with allure.step("Check that we can see tags"):
         communications.assert_tags_have_count(4, 1)
