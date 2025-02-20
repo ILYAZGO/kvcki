@@ -584,7 +584,9 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
         expect(new_tab.locator('[aria-label="Перетегировать"]')).to_have_count(1)
         expect(new_tab.locator('[aria-label="Скачать"]')).to_have_count(1)
         expect(new_tab.locator('[aria-label="Excel экспорт"]')).to_have_count(1)
+        expect(new_tab.get_by_text("nlab_speech")).to_have_count(0)
         expect(new_tab.locator('[aria-label="Скопировать публичную ссылку"]')).to_have_count(1)
+        expect(new_tab.locator('[class*="styles_control__LDSPU"]')).to_have_count(1)
         expect(new_tab.locator('[class*="styles_withAllComments_"]')).to_have_count(1)
         expect(new_tab.get_by_text("Добавить комментарий")).to_have_count(1)
         expect(new_tab.locator('[class*="_manualGroup_"]')).to_have_count(1)
@@ -639,6 +641,8 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
         expect(new_tab.locator('[aria-label="Excel экспорт"]')).to_have_count(1)
         expect(new_tab.locator('[aria-label="Скопировать публичную ссылку"]')).to_have_count(1)
         expect(new_tab.locator('[class*="styles_withAllComments_"]')).to_have_count(1)
+        expect(new_tab.locator('[class*="styles_control__LDSPU"]')).to_have_count(1)
+        expect(new_tab.get_by_text("nlab_speech")).to_have_count(1)
         expect(new_tab.get_by_text("Добавить комментарий")).to_have_count(1)
         expect(new_tab.locator('[class*="_manualGroup_"]')).to_have_count(1)
 
