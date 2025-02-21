@@ -5,7 +5,7 @@ from datetime import datetime
 import random
 
 
-IMOT_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjdhZGE4ZTc5MzdkZjdmNGVhMjU1MWZkIiwiZXhwIjoxNzM5ODY2MzMyfQ.WlMHwcHL-xiwf5GVyRB1CanoBCQuh4SIn7hWTIEi4O4' # нужно вставить сюда API ключ.
+IMOT_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRmNzIyZmI4YzAzMWU5YzM5M2EyMTA0IiwiZXhwIjoxNzQwNTA0Nzg5fQ.6WJ--9AcGMNT7W7A6LPXZ9LhYvR6eXdAMNOw-Nf7KVI' # нужно вставить сюда API ключ.
 UPLOAD_ENDPOINT = 'https://api.stand.imot.io/call/'
 CHECK_ENDPOINT = 'https://api.stand.imot.io/find_call'
 unique_id= f"2ceb2380bahg63d{random.randint(100000,999999)}a96"
