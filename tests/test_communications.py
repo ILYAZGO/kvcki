@@ -576,6 +576,7 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
 
     with allure.step("Check"):
         page.wait_for_timeout(6000)
+        page.wait_for_load_state(state="load", timeout=wait_until_visible)
         #page.wait_for_selector('[class*="styles_control__LDSPU"]')
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
         expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
@@ -633,6 +634,7 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
 
     with allure.step("Check"):
         page.wait_for_timeout(6000)
+        page.wait_for_load_state(state="load", timeout=wait_until_visible)
         #page.wait_for_selector('[class*="styles_control__LDSPU"]')
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
         expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
