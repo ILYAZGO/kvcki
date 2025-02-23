@@ -753,7 +753,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.press_calls_list_download_button(0)
 
     with allure.step("Check content of button download"):
-        expect(page.locator(MENU)).to_have_text("Экспорт аудиоЭкспорт расшифровкиЭкспорт коммуникаций")
+        expect(page.locator(MENU)).to_have_text("Экспорт аудиоЭкспорт аудио (многоканальное)Экспорт расшифровкиЭкспорт коммуникаций")
 
     with allure.step("Choose (Export audio) option from opened menu"):
         # Start waiting for the download
@@ -776,6 +776,31 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
     with allure.step("Check that downloaded export (zip) removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
 
+############3
+    with allure.step("Press button (Download)"):
+        communications.press_calls_list_download_button(0)
+
+    with allure.step("Choose (Export audio) option from opened menu"):
+        # Start waiting for the download
+        with page.expect_download(timeout=60000) as download_info:
+            # Perform the action that initiates download
+            page.locator(MENU).get_by_text("Экспорт аудио (многоканальное)", exact=True).click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that export (zip) downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+        assert 500000 < os.path.getsize(path + download.suggested_filename) < 600000
+
+    with allure.step("Remove downloaded export (zip)"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that downloaded export (zip) removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+#############
 
     with allure.step("Press button (Download)"):
         communications.press_calls_list_download_button(0)
