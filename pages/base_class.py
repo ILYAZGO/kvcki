@@ -56,8 +56,8 @@ class BaseClass:
         self.quarter = page.locator('[data-testid="quarter"]')
         self.year = page.locator('[data-testid="year"]')
         self.all_time = page.locator('[value="all_time"]')
-        self.first_date = page.locator(FIRST_DATE)
-        self.last_date = page.locator(LAST_DATE)
+        self.first_date = page.locator('[date-range="start"]') #page.locator(FIRST_DATE)
+        self.last_date = page.locator('[date-range="end"]') #page.locator(LAST_DATE)
         '''Word processing'''
         self.select_language = page.locator(SELECT_LANGUAGE).locator('[type="text"]')
         self.select_engine = page.locator(SELECT_ENGINE).locator('[type="text"]')
