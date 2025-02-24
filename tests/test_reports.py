@@ -191,7 +191,7 @@ def test_reports_check_calendar_localization(base_url, page: Page) -> None:
         reports.click_reports()
 
     with allure.step("Click to calendar"):
-        page.locator('[placeholder="Начальная дата"]').click()
+        page.locator('[date-range="start"]').click()
 
     with allure.step("Check localization"):
         expect(page.locator('[class="ant-picker-content"]').nth(0)).to_contain_text("ПнВтСрЧтПтСбВс")
