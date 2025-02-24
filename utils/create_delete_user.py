@@ -202,7 +202,7 @@ def create_user(URL, ROLE, PASSWORD):
 
         # create report for user
 
-        report_name = f"auto_test_report_{random.randint(100000, 999999)}"
+        report_name = f"auto_test_report_{random.randint(1000, 999999)}"
 
         json_for_create_report = {
             "report_id": None,

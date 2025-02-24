@@ -1021,7 +1021,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
     with allure.step("Fill second ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
         page.locator(INPUT_ID).locator('[type="text"]').clear()
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268692.90190", delay=20)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268692.90190", delay=10)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
