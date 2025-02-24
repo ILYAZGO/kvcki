@@ -576,7 +576,7 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
-        page.wait_for_timeout(6000)
+        page.wait_for_timeout(9000)
         page.wait_for_load_state(state="load", timeout=wait_until_visible)
         #page.wait_for_selector('[class*="styles_control__LDSPU"]')
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
@@ -634,7 +634,7 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
-        page.wait_for_timeout(6000)
+        page.wait_for_timeout(9000)
         page.wait_for_load_state(state="load", timeout=wait_until_visible)
         #page.wait_for_selector('[class*="styles_control__LDSPU"]')
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
@@ -1962,7 +1962,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
-        page.wait_for_timeout(6000)
+        page.wait_for_timeout(9000)
 
     with allure.step("Check that we can see tags"):
         communications.assert_tags_have_count(4, 1)
