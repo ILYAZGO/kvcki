@@ -103,7 +103,7 @@ def create_user(URL, ROLE, PASSWORD):
         }
 
         # upload call
-        _unique_id = f"2ceb2380bahg54d{random.randint(100000, 999999)}a96"
+        _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
         current_time = datetime.now(timezone.utc)
 
         _call_id = upload_call_to_imotio(
