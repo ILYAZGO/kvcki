@@ -1903,6 +1903,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Press (Save)"):
         communications.click_submit_in_word_processing()
+        page.wait_for_timeout(2000)
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert(action_started)
