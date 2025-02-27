@@ -232,9 +232,9 @@ class Communications(BaseClass):
 
     def assert_tags_have_count(self, without_value: int, with_value: int):
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
-        self.page.wait_for_timeout(2000)
+        self.page.wait_for_timeout(2500)
         expect(self.tag_with_value).to_have_count(with_value, timeout=self.timeout)
-        self.page.wait_for_timeout(2000)
+        self.page.wait_for_timeout(2500)
         expect(self.tag_without_value).to_have_count(without_value, timeout=self.timeout)
 
     def press_add_comment(self):

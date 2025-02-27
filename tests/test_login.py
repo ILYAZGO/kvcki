@@ -135,6 +135,7 @@ def test_login_user_negotive(base_url, page: Page) -> None:
 
     with allure.step("Check that alert message visible"):
         login_page.assert_alert_visible("Wrong login or password")
+        login_page.assert_button_enter_enabled()
 
 
 @pytest.mark.e2e
@@ -152,6 +153,7 @@ def test_password_user_negotive(base_url, page: Page) -> None:
 
     with allure.step("Check that alert message visible"):
         login_page.assert_alert_visible("Wrong login or password")
+        login_page.assert_button_enter_enabled()
 
 
 @pytest.mark.e2e
