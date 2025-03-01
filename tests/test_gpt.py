@@ -204,6 +204,117 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
+#############
+@pytest.mark.e2e
+@pytest.mark.gpt
+@allure.title("test_additional_params_gpt_rule_by_user")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_additional_params_gpt_rule_by_user")
+def test_new_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
+    gpt = GPT(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        gpt.navigate("http://192.168.10.101/feature-dev-3011/")
+
+    with allure.step("Auth"):
+        gpt.auth(LOGIN, PASSWORD)
+
+    with allure.step("Go to GPT"):
+        gpt.go_to_gpt()
+
+    with allure.step("Click (Create new rule)"):
+        gpt.click_create_new_gpt_rule()
+
+    with allure.step("Create GPT rule with one question"):
+        gpt.fill_gpt_rule_with_one("addParams")
+
+    with allure.step("Press (Save) button"):
+        press_save_in_gpt(page)
+
+    with allure.step("Wait for alert and check alert message"):
+        gpt.check_alert("Правило сохранено")
+
+    with allure.step("Check that saved"):
+        expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled()
+        expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled()
+
+    with allure.step("Fill Assistant text"):
+        page.locator('[placeholder="..."]').fill("SomeText")
+
+
+    with allure.step("Check that all parameters visible"):
+        expect(page.locator('[name*="gpt"]')).to_have_count(3)
+
+        expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
+        expect(page.get_by_text("Движок")).to_have_count(1)
+        expect(page.get_by_text("Модель")).to_have_count(1)
+        expect(page.get_by_text("Температура")).to_have_count(1)
+        expect(page.locator('[name="imotio_gpt"]')).to_have_attribute("aria-pressed", "true")
+        expect(page.locator('[class*="modelSelect_"]').locator('[id*="-input"]')).to_be_disabled()
+        expect(page.locator('[placeholder="..."]')).to_have_text("SomeText")
+
+    with allure.step("switch to yandex"):
+        page.locator('[name="yandex_gpt"]').click()
+
+    with allure.step("check models list"):
+        page.locator('[class*="modelSelect_"]').locator('[class*="singleValue"]').click()
+        page.wait_for_selector(MENU)
+        expect(page.locator(MENU)).to_have_text("summarizationyandexgptyandexgpt-lite")
+
+    with allure.step("Check that all parameters visible"):
+        expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
+        expect(page.get_by_text("Движок")).to_have_count(1)
+        expect(page.get_by_text("Модель")).to_have_count(1)
+        expect(page.get_by_text("Температура")).to_have_count(1)
+        expect(page.locator('[name="yandex_gpt"]')).to_have_attribute("aria-pressed", "true")
+        expect(page.locator('[placeholder="..."]')).to_have_text("SomeText")
+
+    with allure.step("switch to yandex"):
+        page.locator('[name="chat_gpt"]').click()
+
+    with allure.step("check models list"):
+        page.locator('[class*="modelSelect_"]').locator('[class*="singleValue"]').click()
+        page.wait_for_selector(MENU)
+        expect(page.locator(MENU)).to_have_text("autochatgpt-4o-latestgpt-4ogpt-4o-mini")
+
+    with allure.step("Check that all parameters visible"):
+        expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
+        expect(page.get_by_text("Движок")).to_have_count(1)
+        expect(page.get_by_text("Модель")).to_have_count(1)
+        expect(page.get_by_text("Температура")).to_have_count(1)
+        expect(page.locator('[name="chat_gpt"]')).to_have_attribute("aria-pressed", "true")
+        expect(page.locator('[placeholder="..."]')).to_have_text("SomeText")
+
+
+    with allure.step("Press (Save) button"):
+        press_save_in_gpt(page)
+
+    with allure.step("Wait for alert and check alert message"):
+        gpt.check_alert("Правило сохранено")
+
+    with allure.step("Turn on rule"):
+        gpt.turn_on_rule()
+        # tupo click
+        page.locator('[aria-label="Фильтр применимости правила"]').click()
+        page.wait_for_timeout(500)
+
+    with allure.step("Delete rule"):
+        gpt.delete_rule()
+
+    with allure.step("Wait for alert and check alert message"):
+        gpt.check_alert("Правило GPT удалено")
+
+    with allure.step("Check deleted"):
+        expect(page.locator('[class*="styles_dpBothBox_"]').get_by_text("addParams")).not_to_be_visible()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+##########
 @pytest.mark.e2e
 @pytest.mark.gpt
 @allure.title("test_import_gpt_rule_by_admin")
