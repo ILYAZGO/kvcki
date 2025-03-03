@@ -1,13 +1,9 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
-from utils.dates import *
 from api_tests.common import *
 import requests
 import pytest
 import allure
-import time
-from datetime import datetime
-from uuid import UUID
 
 
 gpt_engines = ["chat_gpt","yandex_gpt","imotio_gpt"]
@@ -139,6 +135,20 @@ imotio_gpt = {
             "maximum": 50.0,
             "minimum": -1.0,
             "title": "Top K",
+            "type": "number"
+        },
+        "max_tokens": {
+            "default": 1024,
+            "maximum": 8192,
+            "minimum": 128,
+            "title": "Max Tokens",
+            "type": "integer"
+        },
+        "repetition_penalty": {
+            "default": 1,
+            "maximum": 1.0,
+            "minimum": 2.0,
+            "title": "Repetition Penalty",
             "type": "number"
         }
     },
