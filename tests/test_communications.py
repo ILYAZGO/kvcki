@@ -1957,15 +1957,15 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Press (add comment)"):
         communications.press_key("Enter")
-        #page.wait_for_timeout(2000)
+
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
-        page.wait_for_timeout(9000)
+
 
     with allure.step("Check that we can see tags"):
-        expect(page.locator('[class*="styles_tagsBlock"]').nth(1)).to_have_text("sscsc")
-        communications.assert_tags_have_count(4, 1)
+        expect(page.get_by_text("manual_tag")).to_have_count(2)
+        #communications.assert_tags_have_count(4, 1)
 
     with allure.step("Delete manual tag from call header"):
         communications.delete_manual_tag_from_call_header(0)
@@ -1974,7 +1974,8 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         communications.check_alert("Тег удален")
 
     with allure.step("Check that we can see tags"):
-        communications.assert_tags_have_count(2, 1)
+        expect(page.get_by_text("manual_tag")).to_have_count(0)
+        #communications.assert_tags_have_count(2, 1)
     #
 
     with allure.step("Kostyl for https://task.imot.io/browse/DEV-3083"):
@@ -1994,7 +1995,8 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         communications.check_alert("Тег успешно добавлен")
 
     with allure.step("Check that we can see tags"):
-        communications.assert_tags_have_count(4, 1)
+        expect(page.get_by_text("manual_tag")).to_have_count(2)
+        #communications.assert_tags_have_count(4, 1)
 
     with allure.step("Delete manual tag from manual tags"):
         communications.delete_manual_tag_from_manual_tags(0)
@@ -2003,7 +2005,8 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         communications.check_alert("Тег удален")
 
     with allure.step("Check that we can see tags"):
-        communications.assert_tags_have_count(2, 1)
+        expect(page.get_by_text("manual_tag")).to_have_count(0)
+        #communications.assert_tags_have_count(2, 1)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
