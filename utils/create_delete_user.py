@@ -375,23 +375,28 @@ def delete_user(URL, token, USER_ID ):
         logger.opt(depth=1).info(f"\n>>>>> USER {USER_ID} NOT DELETED <<<<<")
 
 
-def give_user_to_manager(URL, USER_ID_MANAGER, USER_ID_USER, token):
+def give_users_to_manager(URL, USER_ID_MANAGER, USER_ID_USERS: list, token):
 
     headers_for_giving = {
         'accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
         'Authorization': token,
     }
-    importFrom_id = '64b923905f95f6305573e619'
-    json_with_id = [USER_ID_USER, importFrom_id]
+    #importFrom_id = '64b923905f95f6305573e619'
+    #json_with_id = [USER_ID_USER, importFrom_id]
 
-    give_user = requests.put(url=URL + f"/user/{USER_ID_MANAGER}/user_limitation", headers=headers_for_giving, json=json_with_id)
-
+    give_user = requests.put(url=URL + f"/user/{USER_ID_MANAGER}/user_limitation", headers=headers_for_giving, json=USER_ID_USERS)
 
     if give_user.status_code == 204:
-        logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
+        logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USERS} GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
     else:
-        logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
+        logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USERS} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
+
+
+    # if give_user.status_code == 204:
+    #     logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
+    # else:
+    #     logger.opt(depth=1).info(f"\n>>>>> USERS {USER_ID_USER}  and {importFrom_id} WAS NOT GIVED TO MANAGER {USER_ID_MANAGER} <<<<<")
 
 
 def give_manager_all_rights(URL, USER_ID_MANAGER, token ):

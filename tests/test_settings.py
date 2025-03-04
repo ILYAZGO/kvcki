@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect, Route
 from utils.variables import *
 from pages.settings import *
 from utils.dates import *
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator, give_access_right
+from utils.create_delete_user import create_user, delete_user, give_users_to_manager, create_operator, give_access_right
 import pytest
 import allure
 import random
@@ -244,7 +244,7 @@ def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
-        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER], TOKEN_MANAGER)
 
     with allure.step("Create operator"):
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
@@ -1206,7 +1206,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
 
     with allure.step("Create user"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
-        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER], TOKEN_MANAGER)
 
     with allure.step("Create operator"):
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)

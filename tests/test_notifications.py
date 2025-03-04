@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.notifications import *
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager
+from utils.create_delete_user import create_user, delete_user, give_users_to_manager
 import pytest
 import allure
 
@@ -546,7 +546,7 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Give user to manager"):
-        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER, importFrom_user_id], TOKEN_MANAGER)
 
     with allure.step("Go to url"):
         notifications.navigate(base_url)

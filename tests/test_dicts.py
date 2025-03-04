@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.dicts import *
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_dicts
+from utils.create_delete_user import create_user, delete_user, give_users_to_manager, create_dicts
 import pytest
 import allure
 
@@ -537,7 +537,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("give user to manager"):
-        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER, importFrom_user_id], TOKEN_MANAGER)
 
     with allure.step("Go to url"):
         dicts.navigate(base_url)

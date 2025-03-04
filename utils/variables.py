@@ -22,6 +22,8 @@ PASSWORD = "Qaz123wsX"
 ECOTELECOM = "ecotelecom"  # used for calls and reports test
 ECOPASS = "ecopass1)"      # used for calls and reports test
 
+importFrom_user_id = '64b923905f95f6305573e619'
+
 LOGIN_NEGOTIVE = "1userI"
 PASSWORD_NEGOTIVE = "Qaz123ws"
 

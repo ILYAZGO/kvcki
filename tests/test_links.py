@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.links import *
 import pytest
-from utils.create_delete_user import create_user, delete_user, give_user_to_manager, create_operator
+from utils.create_delete_user import create_user, delete_user
 import allure
 
 

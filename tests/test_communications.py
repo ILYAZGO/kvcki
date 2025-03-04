@@ -3,7 +3,7 @@ from utils.variables import *
 from pages.communications import *
 from utils.dates import *
 from datetime import datetime
-from utils.create_delete_user import create_user, delete_user, give_access_right, give_user_to_manager
+from utils.create_delete_user import create_user, delete_user, give_access_right, give_users_to_manager
 import os
 import pytest
 import allure
@@ -2295,7 +2295,7 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
 
     with allure.step("Create user for manager"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
-        give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
+        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER], TOKEN_MANAGER)
 
     with allure.step("Go to page"):
         communications.navigate(base_url)
