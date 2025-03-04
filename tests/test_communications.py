@@ -1957,13 +1957,14 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
 
     with allure.step("Press (add comment)"):
         communications.press_key("Enter")
-        page.wait_for_timeout(2000)
+        #page.wait_for_timeout(2000)
 
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
         page.wait_for_timeout(9000)
 
     with allure.step("Check that we can see tags"):
+        expect(page.locator('[class*="styles_tagsBlock"]')).to_have_text("sscsc")
         communications.assert_tags_have_count(4, 1)
 
     with allure.step("Delete manual tag from call header"):
