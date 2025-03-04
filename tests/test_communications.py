@@ -1964,7 +1964,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
         page.wait_for_timeout(9000)
 
     with allure.step("Check that we can see tags"):
-        expect(page.locator('[class*="styles_tagsBlock"]')).to_have_text("sscsc")
+        expect(page.locator('[class*="styles_tagsBlock"]').nth(1)).to_have_text("sscsc")
         communications.assert_tags_have_count(4, 1)
 
     with allure.step("Delete manual tag from call header"):
