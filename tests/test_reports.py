@@ -1796,7 +1796,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         reports.click_gear_in_rows()
 
     with allure.step("Check content of modal window for rows. 21 checkbox, 7 add params, 2 buttons"):
-        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(22)
+        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(23)
         expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
         expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
         expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
@@ -1817,7 +1817,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         reports.click_gear_in_columns("0")
 
     with allure.step("Check content of modal window for columns. 22 checkbox, 8 add params, 2 buttons"):
-        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(23)
+        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(25)
         expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
         expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
         expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
@@ -2915,8 +2915,11 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
         reports.press_generate_report()
 
     with allure.step("check"):
+
+        #  REMINDER: add Средняя длительность коммуникаций!!! https://task.imot.io/browse/DEV-3365
+
         # check headers
-        expect(page.locator('[aria-label="Суммарное время"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Длительность коммуникаций"]')).to_have_count(2)
         expect(page.locator('[aria-label="Время первой коммуникации"]')).to_have_count(2)
         expect(page.locator('[aria-label="Время последней коммуникации"]')).to_have_count(2)
         # check sum
