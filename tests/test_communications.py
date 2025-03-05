@@ -633,7 +633,7 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
-        new_tab.wait_for_timeout(5000)
+        new_tab.wait_for_timeout(10000)
         new_tab.reload()
         new_tab.wait_for_load_state(state="load", timeout=wait_until_visible)
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
@@ -2300,7 +2300,7 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
 
     with allure.step("Create user for manager"):
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
-        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER], TOKEN_MANAGER)
+        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER, importFrom_user_id], TOKEN_MANAGER)
 
     with allure.step("Go to page"):
         communications.navigate(base_url)
