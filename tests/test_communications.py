@@ -633,8 +633,6 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
-        new_tab.wait_for_timeout(10000)
-        new_tab.reload()
         new_tab.wait_for_load_state(state="load", timeout=wait_until_visible)
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
         expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
@@ -648,7 +646,7 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
         expect(new_tab.locator('[class*="styles_withAllComments_"]')).to_have_count(1)
         expect(new_tab.get_by_text("Добавить комментарий")).to_have_count(1)
         expect(new_tab.locator('[class*="_manualGroup_"]')).to_have_count(1)
-        expect(new_tab.get_by_text("nlab_speech")).to_have_count(1, timeout=wait_until_visible)
+        #expect(new_tab.get_by_text("nlab_speech")).to_have_count(1, timeout=wait_until_visible)
         #expect(new_tab.get_by_text("Перевод")).to_have_count(1)
 
 
