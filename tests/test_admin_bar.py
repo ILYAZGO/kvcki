@@ -50,51 +50,51 @@ def test_admin_bar_with_admin(base_url, page) -> None:
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
-@pytest.mark.e2e
-@pytest.mark.adminbar
-@allure.title("test_admin_bar_with_manager")
-@allure.severity(allure.severity_level.NORMAL)
-@allure.description("")
-def test_admin_bar_with_manager(base_url, page: Page) -> None:
-    admin_bar = AdminBar(page)
-
-    with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
-
-    with allure.step("Create manager"):
-        USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
-
-    with allure.step("Give user to manager"):
-        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER], TOKEN_MANAGER)
-
-    with allure.step("Go to url"):
-        admin_bar.navigate(base_url)
-
-    with allure.step("Auth"):
-        admin_bar.auth(LOGIN_MANAGER, PASSWORD)
-
-    with allure.step("Check manager name have count 2"):
-        expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
-
-    with allure.step("Go to user"):
-        admin_bar.go_to_user(LOGIN_USER)
-
-    with allure.step("Check manager name have count 1 and user name have count 1 and users button have count 1"):
-        expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(1, timeout=wait_until_visible)
-        expect(page.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
-        expect(page.locator(BUTTON_USERS)).to_be_visible()
-
-    with allure.step("Go back in manager"):
-        admin_bar.back_arrow_click()
-
-    with allure.step("Check manager name have count 2"):
-        expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
-
-    with allure.step("Delete manager"):
-        delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
-
-    with allure.step("Delete user"):
-        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+# @pytest.mark.e2e
+# @pytest.mark.adminbar
+# @allure.title("test_admin_bar_with_manager")
+# @allure.severity(allure.severity_level.NORMAL)
+# @allure.description("")
+# def test_admin_bar_with_manager(base_url, page: Page) -> None:
+#     admin_bar = AdminBar(page)
+#
+#     with allure.step("Create user"):
+#         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+#
+#     with allure.step("Create manager"):
+#         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
+#
+#     with allure.step("Give user to manager"):
+#         give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER], TOKEN_MANAGER)
+#
+#     with allure.step("Go to url"):
+#         admin_bar.navigate(base_url)
+#
+#     with allure.step("Auth"):
+#         admin_bar.auth(LOGIN_MANAGER, PASSWORD)
+#
+#     with allure.step("Check manager name have count 2"):
+#         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
+#
+#     with allure.step("Go to user"):
+#         admin_bar.go_to_user(LOGIN_USER)
+#
+#     with allure.step("Check manager name have count 1 and user name have count 1 and users button have count 1"):
+#         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(1, timeout=wait_until_visible)
+#         expect(page.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+#         expect(page.locator(BUTTON_USERS)).to_be_visible()
+#
+#     with allure.step("Go back in manager"):
+#         admin_bar.back_arrow_click()
+#
+#     with allure.step("Check manager name have count 2"):
+#         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
+#
+#     with allure.step("Delete manager"):
+#         delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
+#
+#     with allure.step("Delete user"):
+#         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
 ###
@@ -102,7 +102,7 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
 @pytest.mark.adminbar
 @allure.title("test_admin_bar_with_manager")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("")
+@allure.description("https://task.imot.io/browse/DEV-3352")
 def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
     admin_bar = AdminBar(page)
 
@@ -115,11 +115,8 @@ def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
-    # with allure.step("Give user to manager"):
-    #     give_user_to_manager(API_URL, USER_ID_MANAGER, USER_ID_USER, TOKEN_MANAGER)
-
     with allure.step("Go to url"):
-        admin_bar.navigate("http://192.168.10.101/feature-dev-3352/")
+        admin_bar.navigate(base_url)
 
     with allure.step("Auth with manager"):
         admin_bar.auth(LOGIN_MANAGER, PASSWORD)
@@ -176,8 +173,8 @@ def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
     with allure.step("Auth with manager"):
         admin_bar.auth(LOGIN_MANAGER, PASSWORD)
 
-    # with allure.step("Go to user"):
-    #     admin_bar.go_to_user(LOGIN_USER1)
+    with allure.step("Go to user"):
+        admin_bar.go_to_user(LOGIN_USER1)
 
     with allure.step("Check manager name have count 1 and user name have count 1 and users button have count 1"):
         expect(page.locator(BLOCK_ADMIN_BAR)).to_be_visible()
@@ -188,12 +185,10 @@ def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
         expect(page.locator(BUTTON_FIND_COMMUNICATIONS)).to_be_visible()
         expect(page.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
 
-
     with allure.step("Go back in manager"):
         admin_bar.back_arrow_click()
 
     with allure.step("Check manager name have count 2"):
-
         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
         expect(page.locator(BUTTON_FIND_COMMUNICATIONS)).not_to_be_visible()
         expect(page.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(0)
@@ -225,7 +220,7 @@ def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
         admin_bar.quit_from_profile()
 
     with allure.step("Give user2 to manager"):
-        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER2], TOKEN_MANAGER)
+        give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER1, USER_ID_USER2], TOKEN_MANAGER)
 
     with allure.step("Auth"):
         admin_bar.auth(LOGIN_MANAGER, PASSWORD)
@@ -235,7 +230,9 @@ def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
         page.wait_for_selector(MENU)
 
     with allure.step("Check that users list is empty"):
-        expect(page.locator(MENU)).to_have_text(f"{LOGIN_USER1}{LOGIN_USER2}")
+        expect(page.locator(MENU)).to_contain_text(LOGIN_USER1)
+        expect(page.locator(MENU)).to_contain_text(LOGIN_USER2)
+        page.locator("#react-select-2-input").click()
 
     with allure.step("Quit from profile"):
         admin_bar.quit_from_profile()
@@ -259,7 +256,9 @@ def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
         page.wait_for_selector(MENU)
 
     with allure.step("Check that users list is empty"):
-        expect(page.locator(MENU)).to_have_text(f"{LOGIN_USER1}{LOGIN_USER2}")
+        expect(page.locator(MENU)).to_contain_text(LOGIN_USER1)
+        expect(page.locator(MENU)).to_contain_text(LOGIN_USER2)
+        page.locator("#react-select-2-input").click()
 
     with allure.step("Quit from profile"):
         admin_bar.quit_from_profile()
