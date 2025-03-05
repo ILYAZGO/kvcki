@@ -103,7 +103,7 @@ def test_admin_bar_with_admin(base_url, page) -> None:
 @allure.title("test_admin_bar_with_manager")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("https://task.imot.io/browse/DEV-3352")
-def test_new_admin_bar_with_manager(base_url, page: Page) -> None:
+def test_admin_bar_with_manager(base_url, page: Page) -> None:
     admin_bar = AdminBar(page)
 
     with allure.step("Create user1"):
