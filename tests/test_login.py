@@ -125,13 +125,14 @@ def test_login_operator_positive(base_url, page: Page) -> None:
 @allure.title("test_login_user_negotive")
 @allure.severity(allure.severity_level.NORMAL)
 def test_login_user_negotive(base_url, page: Page) -> None:
+    wrong_login = "1userI"
     login_page = LoginPage(page)
 
     with allure.step("Go to url"):
         login_page.navigate(base_url)
 
     with allure.step("Auth"):
-        login_page.auth(LOGIN_NEGOTIVE, PASSWORD)
+        login_page.auth(wrong_login, PASSWORD)
 
     with allure.step("Check that alert message visible"):
         login_page.assert_alert_visible("Wrong login or password")
@@ -143,13 +144,14 @@ def test_login_user_negotive(base_url, page: Page) -> None:
 @allure.title("test_password_user_negotive")
 @allure.severity(allure.severity_level.NORMAL)
 def test_password_user_negotive(base_url, page: Page) -> None:
+    wrong_password = "Qaz123ws"
     login_page = LoginPage(page)
 
     with allure.step("Go to url"):
         login_page.navigate(base_url)
 
     with allure.step("Auth"):
-        login_page.auth(USER, PASSWORD_NEGOTIVE)
+        login_page.auth(ECOTELECOM, wrong_password)
 
     with allure.step("Check that alert message visible"):
         login_page.assert_alert_visible("Wrong login or password")

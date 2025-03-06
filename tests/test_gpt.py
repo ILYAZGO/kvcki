@@ -109,102 +109,6 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-# @pytest.mark.e2e
-# @pytest.mark.gpt
-# @allure.title("test_additional_params_gpt_rule_by_user")
-# @allure.severity(allure.severity_level.CRITICAL)
-# @allure.description("test_additional_params_gpt_rule_by_user")
-# def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
-#     gpt = GPT(page)
-#
-#     with allure.step("Create user"):
-#         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-#
-#     with allure.step("Go to url"):
-#         gpt.navigate(base_url)
-#
-#     with allure.step("Auth"):
-#         gpt.auth(LOGIN, PASSWORD)
-#
-#     with allure.step("Go to GPT"):
-#         gpt.go_to_gpt()
-#
-#     with allure.step("Click (Create new rule)"):
-#         gpt.click_create_new_gpt_rule()
-#
-#     with allure.step("Create GPT rule with one question"):
-#         gpt.fill_gpt_rule_with_one("addParams")
-#
-#     with allure.step("Press (Save) button"):
-#         press_save_in_gpt(page)
-#
-#     with allure.step("Wait for alert and check alert message"):
-#         gpt.check_alert("Правило сохранено")
-#
-#     with allure.step("Check that saved"):
-#         expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled()
-#         expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled()
-#
-#     with allure.step("Press (Add settings)"):
-#         gpt.press_add_settings()
-#
-#     with allure.step("Click all parameters"):
-#         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(0).click()
-#         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(1).click()
-#         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(2).click()
-#         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(3).click()
-#         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(4).click()
-#         # tupo click
-#         page.locator('[aria-label="Фильтр применимости правила"]').click()
-#         page.wait_for_timeout(500)
-#
-#     with allure.step("Check that all parameters visible"):
-#         expect(page.get_by_text("Движок")).to_have_count(1)
-#         expect(page.get_by_text("Модель")).to_have_count(1)
-#         expect(page.get_by_text("Температура")).to_have_count(1)
-#         expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
-#         expect(page.get_by_text("Frequency Penalty")).to_have_count(1)
-#         expect(page.get_by_text("Presence Penalty")).to_have_count(1)
-#
-#     with allure.step("Change to yandex and add parameters for yandex"):
-#         page.wait_for_timeout(1000)
-#         page.locator('[name="yandex_gpt"]').click()
-#         page.wait_for_timeout(500)
-#         page.get_by_role("button", name="Добавить настройки").click()
-#         page.wait_for_timeout(500)
-#         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(1).click()
-#         page.locator(MENU).locator('[class="customStyles_option__raDTJ"]').nth(2).click()
-#         page.locator('[placeholder="..."]').fill("SomeText")
-#         # tupo click
-#         page.locator('[aria-label="Фильтр применимости правила"]').click()
-#         page.wait_for_timeout(500)
-#
-#     with allure.step("Press (Save) button"):
-#         press_save_in_gpt(page)
-#
-#     with allure.step("Wait for alert and check alert message"):
-#         gpt.check_alert("Правило сохранено")
-#
-#     with allure.step("Turn on rule"):
-#         gpt.turn_on_rule()
-#         # tupo click
-#         page.locator('[aria-label="Фильтр применимости правила"]').click()
-#         page.wait_for_timeout(500)
-#
-#     with allure.step("Delete rule"):
-#         gpt.delete_rule()
-#
-#     with allure.step("Wait for alert and check alert message"):
-#         gpt.check_alert("Правило GPT удалено")
-#
-#     with allure.step("Check deleted"):
-#         expect(page.locator('[class*="styles_dpBothBox_"]').get_by_text("addParams")).not_to_be_visible()
-#
-#     with allure.step("Delete user"):
-#         delete_user(API_URL, TOKEN, USER_ID)
-
-
-#############
 @pytest.mark.e2e
 @pytest.mark.gpt
 @allure.title("test_additional_params_gpt_rule_by_user")
@@ -247,7 +151,6 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
 
     with allure.step("Check that all parameters visible"):
         expect(page.locator('[name*="gpt"]')).to_have_count(3)
-
         expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
         expect(page.get_by_text("Движок")).to_have_count(1)
         expect(page.get_by_text("Модель")).to_have_count(1)
@@ -298,7 +201,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("Turn on rule"):
         gpt.turn_on_rule()
         # tupo click
-        page.locator('[aria-label="Фильтр применимости правила"]').click()
+        page.locator('[aria-label="Фильтры коммуникаций"]').click()
         page.wait_for_timeout(500)
 
     with allure.step("Delete rule"):

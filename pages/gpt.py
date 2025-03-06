@@ -95,7 +95,7 @@ def add_filter(filterType, filterName, page="page: Page"):
     page.locator('[style="margin-top: 5px;"]').get_by_role("button").click()
     page.locator('[class*="-menu"]').get_by_text(filterType, exact=True).nth(1).click()
     page.wait_for_timeout(500)
-    page.locator('[aria-label="Фильтр применимости правила"]').click()
+    page.locator('[aria-label="Фильтры коммуникаций"]').click()
     page.wait_for_timeout(500)
     page.locator('[data-testid="filters_search_by_tags"]').locator('[autocorrect=off]').fill(filterName)
     page.wait_for_timeout(2300)
