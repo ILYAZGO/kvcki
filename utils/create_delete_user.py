@@ -430,7 +430,8 @@ def create_rules(url, login, password, user_id, amount):
     }
     get_token_for_user = r.post(url=url + "/token", headers=headers_for_get_token, data=data_for_user).json()
 
-    token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
+    #token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
+    token_for_user = f"Bearer {get_token_for_user['access_token']}"
 
     headers_for_user = {
         'accept': 'application/json',
@@ -496,7 +497,8 @@ def create_dicts(url, login, password, user_id, amount):
     }
     get_token_for_user = r.post(url=url + "/token", headers=headers_for_get_token, data=data_for_user).json()
 
-    token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
+    #token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
+    token_for_user = f"Bearer {get_token_for_user['access_token']}"
 
     headers_for_user = {
         'accept': 'application/json',
@@ -546,6 +548,7 @@ def give_access_right(url, giver_token, recipient_id, access_right_list):
     }
 
     give_right = r.put(url=url + f'/user/{recipient_id}/access_rights',  headers=headers_for_give, json=access_right_list)
+
     if give_right.status_code == 204:
         logger.opt(depth=1).info(
             f"\n>>>>> FOR USER WITH user_id: {recipient_id} access_rights changed for {access_right_list} <<<<<")

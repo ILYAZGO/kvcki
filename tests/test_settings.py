@@ -1147,7 +1147,7 @@ def test_admin_check_industry_and_partner_for_user_and_operator(base_url, page: 
         expect(page.locator(SELECT_PARTNER)).to_be_visible()
 
     with allure.step("Check industrys list"):
-        settings.assert_industrys_list(industys_list)
+        settings.assert_industries_list(industys_list)
 
     with allure.step("Change industry"):
         settings.change_industry('E-commerce')
@@ -1229,7 +1229,7 @@ def test_manager_check_industry_and_partner_for_user_and_operator(base_url, page
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
 
     with allure.step("Check industrys list"):
-        settings.assert_industrys_list(industys_list)
+        settings.assert_industries_list(industys_list)
 
     with allure.step("Change industry"):
         settings.change_industry('E-commerce')
