@@ -71,7 +71,9 @@ class Reports(BaseClass):
 
     def press_create_report(self):
         self.page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
+        self.page.wait_for_timeout(500)
         self.page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
+        self.page.wait_for_timeout(500)
         self.page.wait_for_selector(BUTTON_GENERATE_REPORT)
 
     def press_generate_report(self):
@@ -126,6 +128,17 @@ class Reports(BaseClass):
     def choose_where_send_report(self, value: str):
         self.menu.get_by_text(value, exact=True).click()
         self.page.wait_for_selector(MODAL_WINDOW)
+
+    def click_checkbox_in_tag_and_value(self, row_or_column: str, number: str):
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_tagCheckbox"]').click()
+
+    def click_checkbox_in_tag_list(self, row_or_column: str, number: str):
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_tagListCheckbox"]').click()
+
+    def choose_grouping_without_parameters(self, row_or_column: str,  number: str, select: str):
+        """Works if you want to choose grouping without other parameters"""
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_select"]').click()
+        self.menu.get_by_text(select, exact=True).click()
 
 
     # additional params
@@ -196,15 +209,7 @@ class Reports(BaseClass):
         self.page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
         self.page.wait_for_timeout(500)
 
-
-TUPO_CLICK = ".styles_questionTitle__WSOwz"
 INPUT_REPORT_NAME = '[name="report_name"]'
-
-def click_checkbox_in_tag_and_value(number, page="page: Page"):
-    page.locator(f'[data-testid="report_columns_column_{number}_tagCheckbox"]').click()
-
-def click_checkbox_in_tag_list(number, page="page: Page"):
-    page.locator(f'[data-testid="report_columns_column_{number}_tagListCheckbox"]').click()
 
 def press_save_current(page="page: Page"):
     page.locator(BUTTON_REPORT_UPDATE).click()
@@ -260,33 +265,11 @@ def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Pag
     page.locator(MENU).get_by_text(tagValue, exact=True).click()
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
-
-def fill_column_by_communication(number, page="page: Page"):
-    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
-    page.locator(MENU).get_by_text("По количеству коммуникаций", exact=True).click()
-
-
 def fill_row_by_date(number, select, time, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
     page.locator(MENU).get_by_text(select, exact=True).click()
     page.locator(f'[data-testid="report_rows_row_{number}_time"]').click()
     page.locator(MENU).get_by_text(time, exact=True).click()
-
-
-def fill_row_operator_phone(number, select, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
-    page.locator(MENU).get_by_text(select, exact=True).click()
-
-
-def fill_row_without_grouping(number, select, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
-    page.locator(MENU).get_by_text(select, exact=True).click()
-
-
-def fill_row_communications(number, select, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
-    page.locator('[class*="menu"]').get_by_text(select, exact=True).click()
-
 
 def fill_row_by_tag_and_value(number, select, tagName, tagValue, page="page: Page"):
     page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
@@ -312,19 +295,13 @@ def fill_row_by_tag_list(number, select, tagName, page="page: Page"):
     page.wait_for_timeout(500)
     page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 
-def click_checkbox_row_in_tag_and_value(number, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_tagCheckbox"]').click()
-
-def click_checkbox_row_in_tag_list(number, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_tagListCheckbox"]').click()
-
 
 def add_checklist_to_report(checkListName, page="page: Page"):
     page.locator(BUTTON_CHANGE_FILTERS).click()
     page.locator('[id="Фильтровать по числовым тегам"]').click()
     page.mouse.wheel(delta_x=0, delta_y=10000)
     page.get_by_text("По чек-листам").nth(1).click()
-    page.locator(TUPO_CLICK).click()
+    page.locator(".styles_questionTitle__WSOwz").click()
     page.locator('[autocorrect=off]').nth(0).type("автотест", delay=10)
     page.wait_for_timeout(500)
     page.get_by_text(checkListName, exact=True).first.click()

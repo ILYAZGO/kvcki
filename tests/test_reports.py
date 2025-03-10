@@ -235,7 +235,7 @@ def test_reports_save_update_delete_report(base_url, page: Page) -> None:
         expect(page.locator('[class="modal-btns"]').locator(BUTTON_SUBMIT)).to_be_disabled(timeout=wait_until_visible)
 
     with allure.step("Input report name - auto_test_report"):
-        page.locator(INPUT_REPORT_NAME).fill("auto_test_report")
+        page.locator(INPUT_REPORT_NAME).type("auto_test_report", delay=10)
 
     with allure.step("Check that button (add) enabled"):
         expect(page.locator('[class="modal-btns"]').locator(BUTTON_SUBMIT)).to_be_enabled(timeout=wait_until_visible)
@@ -281,7 +281,7 @@ def test_reports_save_update_delete_report(base_url, page: Page) -> None:
         page.wait_for_selector('[class="modal-btns"]')
 
         page.get_by_text("Удалить", exact=True).click()
-        page.wait_for_timeout(900)
+        page.wait_for_timeout(1000)
 
     with allure.step("Check that report deleted"):
         expect(page.locator('[data-testid="templatesReports"]').locator('[class*="body1"]')).to_have_text("Сохраненные отчеты")
@@ -406,7 +406,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         reports.press_save_as_new()
 
     with allure.step("Fill report name"):
-        page.locator(INPUT_REPORT_NAME).type("auto_test_report", delay=20)
+        page.locator(INPUT_REPORT_NAME).type("auto_test_report", delay=10)
 
     with allure.step("Press (submit)"):
         page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT).click()
@@ -463,6 +463,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
         reports.reload_page()
 
     with allure.step("Check that all changes saved"):
+        page.wait_for_load_state(state="load", timeout=wait_until_visible)
         expect(page.locator('[aria-label="changedReportName"]')).to_have_count(1)
         expect(page.locator(FIRST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
         expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
@@ -705,7 +706,7 @@ def test_report_send_telegram(base_url, page: Page) -> None:
         page.get_by_text("Выберите день месяца").click()
         page.wait_for_selector(MENU)
         page.locator(MENU).get_by_text("2", exact=True).click()
-        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+        page.locator('[placeholder="00:00"]').type("1111", delay=10)
         # every week
         page.get_by_text("Каждый месяц", exact=True).click()
         page.wait_for_selector(MENU)
@@ -713,12 +714,12 @@ def test_report_send_telegram(base_url, page: Page) -> None:
         page.get_by_text("Выберите день недели", exact=True).click()
         page.wait_for_selector(MENU)
         page.locator(MENU).get_by_text("Вторник", exact=True).click()
-        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+        page.locator('[placeholder="00:00"]').type("1111", delay=10)
         # every day
         page.get_by_text("Каждую неделю", exact=True).click()
         page.wait_for_selector(MENU)
         page.locator(MENU).get_by_text("Каждый день", exact=True).click()
-        page.locator('[placeholder="00:00"]').type("1111", delay=20)
+        page.locator('[placeholder="00:00"]').type("1111", delay=10)
 
     with allure.step("Press (Send)"):
         page.locator('[data-testid="sendButton_to_toTelegram"]').click()
@@ -832,7 +833,7 @@ def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Make row without grouping"):
-        fill_row_without_grouping("1", "Без группировки", page)
+        reports.choose_grouping_without_parameters("row", "1", "Без группировки")
 
     #fill_column_by_communication("0", page)
 
@@ -888,7 +889,8 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         fill_row_by_date("1", "Времени", "По дням", page)
 
     with allure.step("Fill column (by communications) by default"):
-        fill_column_by_communication("0", page)
+        #fill_column_by_communication("0", page)
+        reports.choose_grouping_without_parameters("column","0", "По количеству коммуникаций")
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1018,7 +1020,7 @@ def test_reports_row_1_communications(base_url, page: Page) -> None:
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Choose row by communications"):
-        fill_row_communications("1", "Коммуникации", page)
+        reports.choose_grouping_without_parameters("row","1", "Коммуникации")
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1068,10 +1070,11 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Fill row by operators phone"):
-        fill_row_operator_phone("1", "Номеру сотрудника", page)
+        reports.choose_grouping_without_parameters("row", "1", "Номеру сотрудника")
 
     with allure.step("Fill column by communication"):
-        fill_column_by_communication("0", page)
+        #fill_column_by_communication("0", page)
+        reports.choose_grouping_without_parameters("column", "0", "По количеству коммуникаций")
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1130,12 +1133,11 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
-    with allure.step("Fill row by operators phone"):
-        #fill_row_operator_phone("1", "По номеру клиента", page)
-        fill_row_operator_phone("1", "Номеру клиента", page)
+    with allure.step("Fill row by client number"):
+        reports.choose_grouping_without_parameters("row","1", "Номеру клиента")
 
     with allure.step("Fill column by communication"):
-        fill_column_by_communication("0", page)
+        reports.choose_grouping_without_parameters("column", "0", "По количеству коммуникаций")
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1204,12 +1206,12 @@ def test_reports_row_2_tag_list(base_url, page: Page) -> None:
         fill_row_by_tag_list("2", "По списку тегов", "hangup", page)
 
     with allure.step("Uncheck check box in 2nd row"):
-        click_checkbox_row_in_tag_list("2", page)
+        reports.click_checkbox_in_tag_list("row", "2")
 
         expect(page.locator('[data-testid="report_rows_row_2_tagListCheckbox"]')).not_to_be_checked()
 
     with allure.step("Fill column by communications"):
-        fill_column_by_communication("0", page)
+        reports.choose_grouping_without_parameters("column", "0", "По количеству коммуникаций")
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1281,7 +1283,7 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         fill_row_by_tag_and_value("3", "Тегу и значениям", "CALLID", "Выбрать все", page)
 
     with allure.step("Uncheck checkbox in 3d row"):
-        click_checkbox_row_in_tag_and_value("3",page)
+        reports.click_checkbox_in_tag_and_value("row", "3")
 
         expect(page.locator('[data-testid="report_rows_row_3_tagCheckbox"]')).not_to_be_checked()
 
@@ -1292,12 +1294,13 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         fill_row_by_tag_and_value("4", "Тегу и значениям", "queue", "Выбрать все", page)
 
     with allure.step("Uncheck checkbox in 4th row"):
-        click_checkbox_row_in_tag_and_value("4",page)
+        reports.click_checkbox_in_tag_and_value("row", "4")
 
         expect(page.locator('[data-testid="report_rows_row_4_tagCheckbox"]')).not_to_be_checked()
 
     with allure.step("Fill column with communications"):
-        fill_column_by_communication("0", page)
+        #fill_column_by_communication("0", page)
+        reports.choose_grouping_without_parameters("column", "0", "По количеству коммуникаций")
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1363,7 +1366,8 @@ def test_reports_column_1_communications(base_url, page: Page) -> None:
         add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
 
     with allure.step("Add column with communications"):
-        fill_column_by_communication("0",page)
+        #fill_column_by_communication("0",page)
+        reports.choose_grouping_without_parameters("column", "0", "По количеству коммуникаций")
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1519,7 +1523,7 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         fill_column_by_tag_and_value("2","CALLID", "Выбрать все", page)
 
     with allure.step("Uncheck checkbox in 2rd row"):
-        click_checkbox_in_tag_and_value("2",page)
+        reports.click_checkbox_in_tag_and_value("column","2")
 
         expect(page.locator('[data-testid="report_columns_column_2_tagCheckbox"]')).not_to_be_checked()
 
@@ -1531,7 +1535,7 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         fill_column_by_tag_and_value("3", "queue", "Выбрать все", page)
 
     with allure.step("Uncheck checkbox in 3rd column"):
-        click_checkbox_in_tag_and_value("3",page)
+        reports.click_checkbox_in_tag_and_value("column","3")
 
         expect(page.locator('[data-testid="report_columns_column_3_tagCheckbox"]')).not_to_be_checked()
 
@@ -1620,7 +1624,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         fill_column_by_tag_list("2", "hangup", "k", page=page)
 
     with allure.step("Uncheck checkbox in 2nd column"):
-        click_checkbox_in_tag_list("2",page)
+        reports.click_checkbox_in_tag_list("column", "2")
 
         expect(page.locator('[data-testid="report_columns_column_2_tagListCheckbox"]')).not_to_be_checked()
 
@@ -1632,7 +1636,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         fill_column_by_tag_list("3", "multi value", "multi value number", page=page)
 
     with allure.step("Uncheck checkbox in 3rd column"):
-        click_checkbox_in_tag_list("3",page)
+        reports.click_checkbox_in_tag_list("column", "3")
 
         expect(page.locator('[data-testid="report_columns_column_3_tagListCheckbox"]')).not_to_be_checked()
 
@@ -1673,98 +1677,6 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
 
         expect(page.locator('[data-testid="report_columns_column_2_tagListInput"]').locator('[type="text"]')).to_have_value("hangup, k")
         expect(page.locator('[data-testid="report_columns_column_3_tagListInput"]').locator('[type="text"]')).to_have_value("multi value, multi value number")
-
-
-# @pytest.mark.independent
-# @pytest.mark.reports
-# @allure.title("test_flying_additional_params")
-# @allure.severity(allure.severity_level.CRITICAL)
-# @allure.description("test_flying_additional_params")
-# def est_flying_additional_params(base_url, page: Page) -> None:  #disabled
-#
-#     report_name=f"flying_report_{today}_{random.randint(100, 200)}"
-#
-#     with allure.step("Create user"):
-#         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
-#
-#     with allure.step("Go to url"):
-#         reports.navigate(base_url)
-#
-#     with allure.step("Auth with admin"):
-#         auth(LOGIN, PASSWORD, page)
-#
-#     with allure.step("Go to user"):
-#         page.locator("#react-select-2-input").fill("Novostroi_test")
-#         page.wait_for_timeout(350)
-#         page.get_by_text("Novostroi_test", exact=True).click()
-#         page.wait_for_selector('[class*="CallsHeader"]')
-#
-#     with allure.step("Go to reports"):
-#         go_to_reports(page)
-#
-#     with allure.step("Press (Create report)"):
-#         press_create_report(page)
-#
-#     with allure.step("Choose period"):
-#         choose_preiod_date(first_day_month_ago, today, page)
-#
-#     with allure.step("Add row with Tag and value"):
-#         fill_row_by_tag_and_value("1", "Тегу и значениям", "Сотрудник", "Лиза", page)
-#
-#     with allure.step("add additional param"):
-#         page.locator('[data-testid="report_columns"]').locator('[width="24"]').click()
-#         page.locator('[data-testid="checklistQuestionChange"]').click()
-#         page.locator('[class*="AdditionalParams_search_"]').locator(".css-12ol9ef").click()
-#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-4"]').click()
-#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-5"]').click()
-#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-6"]').click()
-#         page.locator('[class*="AdditionalParams_search_"]').locator('[class*="-menu"]').locator('[id*="-option-7"]').click()
-#         page.get_by_role("button", name="Применить").click()
-#
-#     with allure.step("Press (Generate report)"):
-#         press_generate_report(page)
-#
-#     with allure.step("Check that report generated and all values okey"):
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
-#
-#     with allure.step("Save report"):
-#         page.locator(BUTTON_SAVE_AS_NEW).click()
-#         page.wait_for_selector('[class="modal-btns"]')
-#         page.locator(INPUT_REPORT_NAME).fill(report_name)
-#         page.locator('[class="modal-btns"]').locator('[type="submit"]').click()
-#         page.wait_for_timeout(1000)
-#         page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
-#
-#     with allure.step("Go to settings"):
-#         page.wait_for_selector('[value="settings"]')
-#         page.locator('[value="settings"]').click()
-#         page.wait_for_timeout(500)
-#         page.wait_for_selector('[name="login"]')
-#
-#     with allure.step("Reload page"):
-#         page.reload()
-#         page.wait_for_timeout(500)
-#
-#     with allure.step("Go back to reports"):
-#         go_to_reports(page)
-#
-#     with allure.step("Choose report"):
-#         page.locator('[name="searchString"]').fill(report_name)
-#         page.wait_for_timeout(500)
-#         page.get_by_text(report_name).nth(0).click()
-#         page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
-#
-#     with allure.step("BINGO"):
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="222 / 222"]')).to_have_count(1)
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="90909 / 234234"]')).to_have_count(1)
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="444 / 444"]')).to_have_count(1)
-#         expect(page.locator('[aria-rowindex="2"]').locator('[aria-label="4555 / 5555"]')).to_have_count(1)
-#
-#     with allure.step("Delete user"):
-#         delete_user(API_URL, TOKEN, USER_ID)
 
 
 # additional params
