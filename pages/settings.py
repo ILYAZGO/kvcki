@@ -125,7 +125,7 @@ class Settings(BaseClass):
     def fill_quota_time(self, minutes: str):
         self.page.wait_for_timeout(500)
         self.input_quota_time.clear()
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(1000)
         self.input_quota_time.type(minutes, delay=10)
 
     def press_add_in_quotas(self):

@@ -1445,7 +1445,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Reload page and check that saved and have residue"):
         settings.reload_page()
-        expect(page.get_by_text("Ограничение 150 USD")).to_have_count(1)
+        expect(page.get_by_text("Ограничение 150 USD")).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text("150.00")).to_have_count(2)
 
         # yandex
@@ -1474,7 +1474,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Reload page and check that saved and have residue"):
         settings.reload_page()
-        expect(page.get_by_text("Ограничение 15000 RUB")).to_have_count(1)
+        expect(page.get_by_text("Ограничение 15000 RUB")).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text("15000.00")).to_have_count(2)
 
         # imotio
@@ -1503,7 +1503,7 @@ def test_giving_gpt_quota_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Reload page and check that saved and have residue"):
         settings.reload_page()
-        expect(page.get_by_text("Ограничение 1000000 RUB")).to_have_count(1)
+        expect(page.get_by_text("Ограничение 1000000 RUB")).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text("1000000.00")).to_have_count(2)
 
     with allure.step("Delete admin"):
