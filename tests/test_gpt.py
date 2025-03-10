@@ -34,7 +34,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]')).to_be_checked()
 
     with allure.step("Try to save empty rule"):
-        press_save_in_gpt(page)
+        gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Заполните все обязательные поля")
@@ -46,7 +46,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         add_filter("По тегам", "auto_rule", page)
 
     with allure.step("Press (Save) button"):
-        press_save_in_gpt(page)
+        gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило сохранено")
@@ -67,7 +67,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         page.get_by_role("button", name="Удалить вопрос").nth(1).click()
 
     with allure.step("Press (Save) button"):
-        press_save_in_gpt(page)
+        gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило сохранено")
@@ -91,7 +91,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]')).not_to_be_checked()
 
     with allure.step("Try to save empty rule"):
-        press_save_in_gpt(page)
+        gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Заполните все обязательные поля")
@@ -136,7 +136,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.fill_gpt_rule_with_one("addParams")
 
     with allure.step("Press (Save) button"):
-        press_save_in_gpt(page)
+        gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило сохранено")
@@ -193,7 +193,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
 
 
     with allure.step("Press (Save) button"):
-        press_save_in_gpt(page)
+        gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
         gpt.check_alert("Правило сохранено")
@@ -256,6 +256,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
     with allure.step("Press (Go on)"):
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
+        page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
         page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()
@@ -334,6 +335,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
     with allure.step("Press (Go on)"):
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
+        page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
         page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()

@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 BUTTON_USERS = '[data-testid="userLink"]'
@@ -23,6 +23,24 @@ class AdminBar(BaseClass):
         self.page.wait_for_timeout(500)
         self.languages_menu.get_by_role("option", name=to).click()
         self.page.wait_for_selector('[class*="Hint_question__title"]')
+
+    def check_user_list_have_text(self, text: str):
+        """Check that user list have exact text"""
+        self.users_list.click()
+        self.page.wait_for_selector(MENU)
+        expect(self.menu).to_have_text(text)
+        self.users_list.click()
+
+    def check_user_list_contain_text(self, text: str):
+        """Check that user list contain text"""
+        self.users_list.click()
+        self.page.wait_for_selector(MENU)
+        expect(self.menu).to_contain_text(text)
+        self.users_list.click()
+
+    def assert_text(self, text: str):
+        """Check that user can see text"""
+        expect(self.page.get_by_text(text)).to_be_visible(timeout=self.timeout)
 
 
 

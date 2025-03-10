@@ -1,5 +1,5 @@
+#from playwright.sync_api import Page, expect
 from pages.base_class import *
-from playwright.sync_api import Page, expect
 
 BUTTON_DICTS = '[data-testid="markup_nav_dicts"]'
 BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'

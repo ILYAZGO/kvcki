@@ -1,5 +1,5 @@
+#from playwright.sync_api import Page, expect
 from pages.base_class import *
-from playwright.sync_api import Page, expect
 
 BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
@@ -86,10 +86,10 @@ class GPT(BaseClass):
         self.page.locator('[class*="styles_dpBothBox"]').locator(f'[value="{old_name}"]').type(new_name, delay=10)
         self.page.locator(BUTTON_SAVE_EDITED_NAME).click()
 
+    def press_save_in_gpt(self):
+        self.page.locator(BUTTON_ACCEPT).click(force=True)
+        self.page.wait_for_timeout(500)
 
-def press_save_in_gpt(page="page: Page"):
-    page.locator(BUTTON_GPT_SAVE).click(force=True)
-    page.wait_for_timeout(500)
 
 def add_filter(filterType, filterName, page="page: Page"):
     page.locator('[style="margin-top: 5px;"]').get_by_role("button").click()
