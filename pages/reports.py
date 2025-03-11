@@ -18,6 +18,7 @@ BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 BUTTON_RETAG = '[data-testid="calls_actions_retag"]'
 BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
 NAYDENO_ZVONKOV = '[class*="CallsHeader_callsTitleText"]'
+INPUT_REPORT_NAME = '[name="report_name"]'
 
 # additional params
 BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS = '[data-testid="tagNameChange"]'
@@ -140,6 +141,59 @@ class Reports(BaseClass):
         self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_select"]').click()
         self.menu.get_by_text(select, exact=True).click()
 
+    def choose_tag_and_value(self, row_or_column: str, number: str, select: str, tag_name: str, tag_value: str):
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_select"]').click()
+        self.menu.get_by_text(select, exact=True).click()
+        self.page.wait_for_timeout(500)
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_tagSelect"]').click()
+        self.page.wait_for_timeout(500)
+        self.menu.get_by_text(tag_name, exact=True).click()
+        self.page.wait_for_timeout(500)
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_tagValues"]').click()
+        self.page.wait_for_timeout(500)
+        self.page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tag_value, exact=True).click()
+        self.page.wait_for_timeout(1000)
+        self.page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+    def choose_tag_list(self, row_or_column, number: str, *args):
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}_select"]').click()
+        self.menu.get_by_text("По списку тегов", exact=True).click()
+        self.page.locator(f'[data-testid="report_{row_or_column}s_{row_or_column}_{number}__tagListValues"]').click()
+        for i in args:
+            self.page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(i, exact=True).click()
+        self.page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+    def choose_row_by_date(self, number: str, select: str, time: str):
+        """Choose row by date. Columns don't have"""
+        self.page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
+        self.menu.get_by_text(select, exact=True).click()
+        self.page.locator(f'[data-testid="report_rows_row_{number}_time"]').click()
+        self.menu.get_by_text(time, exact=True).click()
+
+    def add_checklist_to_report(self, check_list_name):
+        self.page.locator(BUTTON_CHANGE_FILTERS).click()
+        self.page.locator('[id="Фильтровать по числовым тегам"]').click()
+        self.page.mouse.wheel(delta_x=0, delta_y=10000)
+        self.page.get_by_text("По чек-листам").nth(1).click()
+        self.page.locator(".styles_questionTitle__WSOwz").click()
+        self.page.locator('[autocorrect=off]').nth(0).type("автотест", delay=10)
+        self.page.wait_for_timeout(500)
+        self.page.get_by_text(check_list_name, exact=True).first.click()
+        self.page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
+    def fill_column_by_exact_filter(self, number: str, column_name: str, tag_name: str, tag_value: str):
+        self.page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
+        self.menu.get_by_text("Точный фильтр", exact=True).click()
+        self.page.locator(f'[data-testid="report_columns_column_{number}_searchInput"]').locator('[type="text"]').type(
+            column_name, delay=10)
+        self.page.locator(f'[data-testid="report_columns_column_{number}_searchFilters"]').click()
+        self.page.wait_for_timeout(500)
+        self.menu.get_by_text(tag_name, exact=True).click()
+        self.page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+        self.page.locator('[data-testid="report_columns"]').get_by_text("Все", exact=True).click()
+        self.menu.get_by_text(tag_value, exact=True).click()
+        self.page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
+
 
     # additional params
     def click_apply_in_additional_params(self):
@@ -209,7 +263,7 @@ class Reports(BaseClass):
         self.page.wait_for_selector(SELECT_WITH_ADDITIONAL_PARAM)
         self.page.wait_for_timeout(500)
 
-INPUT_REPORT_NAME = '[name="report_name"]'
+
 
 def press_save_current(page="page: Page"):
     page.locator(BUTTON_REPORT_UPDATE).click()
@@ -229,81 +283,4 @@ def press_save_current(page="page: Page"):
 #     page.get_by_role("button", name="Удалить").click()
 
 
-def fill_column_by_tag_and_value(number, tagName, tagValue, page="page: Page"):
-    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
-    page.locator(MENU).get_by_text("Тегу и значениям", exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator(f'[data-testid="report_columns_column_{number}_tagSelect"]').click()
-    page.wait_for_timeout(500)
-    page.locator(MENU).get_by_text(tagName, exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator(f'[data-testid="report_columns_column_{number}_tagValues"]').click()
-    page.wait_for_timeout(500)
-    page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagValue, exact=True).click()
-    page.wait_for_timeout(1000)
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
-
-
-def fill_column_by_tag_list(number, *args, page="page: Page"):
-    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
-    page.locator(MENU).get_by_text("По списку тегов", exact=True).click()
-    page.locator(f'[data-testid="report_columns_column_{number}__tagListValues"]').click()
-    for i in args:
-        page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(i, exact=True).click()
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
-
-
-def fill_column_by_filter(number, columnName, tagName, tagValue, page="page: Page"):
-    page.locator(f'[data-testid="report_columns_column_{number}_select"]').click()
-    page.locator(MENU).get_by_text("Точный фильтр", exact=True).click()
-    page.locator(f'[data-testid="report_columns_column_{number}_searchInput"]').locator('[type="text"]').fill(columnName)
-    page.locator(f'[data-testid="report_columns_column_{number}_searchFilters"]').click()
-    page.wait_for_timeout(500)
-    page.locator(MENU).get_by_text(tagName, exact=True).click()
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
-    page.locator('[data-testid="report_columns"]').get_by_text("Все", exact=True).click()
-    page.locator(MENU).get_by_text(tagValue, exact=True).click()
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
-
-def fill_row_by_date(number, select, time, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
-    page.locator(MENU).get_by_text(select, exact=True).click()
-    page.locator(f'[data-testid="report_rows_row_{number}_time"]').click()
-    page.locator(MENU).get_by_text(time, exact=True).click()
-
-def fill_row_by_tag_and_value(number, select, tagName, tagValue, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
-    page.locator(MENU).get_by_text(select, exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator(f'[data-testid="report_rows_row_{number}_tagSelect"]').click()
-    page.wait_for_timeout(500)
-    page.locator(MENU).get_by_text(tagName, exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator(f'[data-testid="report_rows_row_{number}_tagValues"]').click()
-    page.wait_for_timeout(500)
-    page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagValue, exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
-
-def fill_row_by_tag_list(number, select, tagName, page="page: Page"):
-    page.locator(f'[data-testid="report_rows_row_{number}_select"]').click()
-    page.locator(MENU).get_by_text(select, exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator(f'[data-testid="report_rows_row_{number}__tagListValues"]').click()
-    page.wait_for_timeout(500)
-    page.locator('[class*="EnhancedSelect_selectOptions"]').get_by_text(tagName, exact=True).click()
-    page.wait_for_timeout(500)
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
-
-
-def add_checklist_to_report(checkListName, page="page: Page"):
-    page.locator(BUTTON_CHANGE_FILTERS).click()
-    page.locator('[id="Фильтровать по числовым тегам"]').click()
-    page.mouse.wheel(delta_x=0, delta_y=10000)
-    page.get_by_text("По чек-листам").nth(1).click()
-    page.locator(".styles_questionTitle__WSOwz").click()
-    page.locator('[autocorrect=off]').nth(0).type("автотест", delay=10)
-    page.wait_for_timeout(500)
-    page.get_by_text(checkListName, exact=True).first.click()
-    page.locator('[class*="subtitle1 styles_searchTitleLeftText"]').click()
 

@@ -225,7 +225,7 @@ def test_reports_save_update_delete_report(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Press (Save as new)"):
         reports.press_save_as_new()
@@ -311,7 +311,7 @@ def test_reports_download_report(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Press generate report"):
         reports.press_generate_report()
@@ -830,7 +830,7 @@ def test_reports_row_1_without_grouping(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Make row without grouping"):
         reports.choose_grouping_without_parameters("row", "1", "Без группировки")
@@ -883,10 +883,11 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Choose first option (by days)"):
-        fill_row_by_date("1", "Времени", "По дням", page)
+        reports.choose_row_by_date("1", "Времени", "По дням")
+        #fill_row_by_date("1", "Времени", "По дням", page)
 
     with allure.step("Fill column (by communications) by default"):
         #fill_column_by_communication("0", page)
@@ -916,7 +917,8 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
     with allure.step("Choose second option (by weeks)"):
-        fill_row_by_date("1", "Времени", "По неделям", page)
+        reports.choose_row_by_date("1", "Времени", "По неделям")
+        #fill_row_by_date("1", "Времени", "По неделям", page)
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -938,7 +940,8 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
     with allure.step("Choose second option (by month)"):
-        fill_row_by_date("1", "Времени", "По месяцам", page)
+        reports.choose_row_by_date("1", "Времени", "По месяцам")
+        #fill_row_by_date("1", "Времени", "По месяцам", page)
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -960,7 +963,8 @@ def test_reports_row_1_time_4_values(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_0_select"]')).to_have_text("По количеству коммуникаций")
 
     with allure.step("Choose second option (by hours)"):
-        fill_row_by_date("1", "Времени", "По часам", page)
+        reports.choose_row_by_date("1", "Времени", "По часам")
+        #fill_row_by_date("1", "Времени", "По часам", page)
 
     with allure.step("Press (Generate report)"):
         reports.press_generate_report()
@@ -1017,7 +1021,7 @@ def test_reports_row_1_communications(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Choose row by communications"):
         reports.choose_grouping_without_parameters("row","1", "Коммуникации")
@@ -1067,7 +1071,7 @@ def test_reports_row_1_operator_phone(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Fill row by operators phone"):
         reports.choose_grouping_without_parameters("row", "1", "Номеру сотрудника")
@@ -1131,7 +1135,7 @@ def test_reports_row_1_client_phone(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Fill row by client number"):
         reports.choose_grouping_without_parameters("row","1", "Номеру клиента")
@@ -1194,16 +1198,18 @@ def test_reports_row_2_tag_list(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Add first row by tag list"):
-        fill_row_by_tag_list("1", "По списку тегов", "direction", page)
+        reports.choose_tag_list("row", "1", "direction")
+        #fill_row_by_tag_list("1", "По списку тегов", "direction", page)
 
     with allure.step("Press (Add row)"):
         reports.press_add_row()
 
     with allure.step("Add second row by tag list"):
-        fill_row_by_tag_list("2", "По списку тегов", "hangup", page)
+        reports.choose_tag_list("row", "2", "hangup")
+        #fill_row_by_tag_list("2", "По списку тегов", "hangup", page)
 
     with allure.step("Uncheck check box in 2nd row"):
         reports.click_checkbox_in_tag_list("row", "2")
@@ -1265,22 +1271,25 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)"):
-        add_checklist_to_report("Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)", page)
+        reports.add_checklist_to_report("Чек лист звонка (не трогать, автотест повзязан на баллы которые получаются в результате применения этого чек листа)")
 
     with allure.step("Add row with Tag and value"):
-        fill_row_by_tag_and_value("1", "Тегу и значениям", "direction", "incoming", page)
+        reports.choose_tag_and_value("row", "1", "Тегу и значениям", "direction", "incoming")
+        #fill_row_by_tag_and_value("1", "Тегу и значениям", "direction", "incoming", page)
 
     with allure.step("Press (Add row)"):
         reports.press_add_row()
 
     with allure.step("Add row with Tag and value"):
-        fill_row_by_tag_and_value("2", "Тегу и значениям", "hangup", "operator", page)
+        reports.choose_tag_and_value("row", "2", "Тегу и значениям", "hangup", "operator")
+        #fill_row_by_tag_and_value("2", "Тегу и значениям", "hangup", "operator", page)
 
     with allure.step("Press (Add row)"):
         reports.press_add_row()
 
     with allure.step("Add row with Tag and value"):
-        fill_row_by_tag_and_value("3", "Тегу и значениям", "CALLID", "Выбрать все", page)
+        reports.choose_tag_and_value("row", "3", "Тегу и значениям", "CALLID", "Выбрать все")
+        #fill_row_by_tag_and_value("3", "Тегу и значениям", "CALLID", "Выбрать все", page)
 
     with allure.step("Uncheck checkbox in 3d row"):
         reports.click_checkbox_in_tag_and_value("row", "3")
@@ -1291,7 +1300,8 @@ def test_reports_row_4_tag_and_value(base_url, page: Page) -> None:
         reports.press_add_row()
 
     with allure.step("Add row with Tag and value"):
-        fill_row_by_tag_and_value("4", "Тегу и значениям", "queue", "Выбрать все", page)
+        reports.choose_tag_and_value("row", "4", "Тегу и значениям", "queue", "Выбрать все")
+        #fill_row_by_tag_and_value("4", "Тегу и значениям", "queue", "Выбрать все", page)
 
     with allure.step("Uncheck checkbox in 4th row"):
         reports.click_checkbox_in_tag_and_value("row", "4")
@@ -1363,7 +1373,7 @@ def test_reports_column_1_communications(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     with allure.step("Add column with communications"):
         #fill_column_by_communication("0",page)
@@ -1415,32 +1425,36 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     # 0
     with allure.step("Fill 0 column fith filter"):
-        fill_column_by_filter("0", "zero", "Адрес подключения", "девятнадцать", page)
+        reports.fill_column_by_exact_filter("0", "zero", "Адрес подключения", "девятнадцать")
+        #fill_column_by_filter("0", "zero", "Адрес подключения", "девятнадцать", page)
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 1
     with allure.step("Fill 1 column fith filter"):
-        fill_column_by_filter("1", "first", "Клиент-должность", "Монтажник Восток", page)
+        reports.fill_column_by_exact_filter("1", "first", "Клиент-должность", "Монтажник Восток")
+        #fill_column_by_filter("1", "first", "Клиент-должность", "Монтажник Восток", page)
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 2
     with allure.step("Fill 2 column fith filter"):
-        fill_column_by_filter("2", "second", "Должность", "Бухгалтер", page)
+        reports.fill_column_by_exact_filter("2", "second", "Должность", "Бухгалтер")
+        #fill_column_by_filter("2", "second", "Должность", "Бухгалтер", page)
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 3
     with allure.step("Fill 3 column fith filter"):
-        fill_column_by_filter("3", "third", "Клиент", "Customer", page)
+        reports.fill_column_by_exact_filter("3", "third", "Клиент", "Customer")
+        #fill_column_by_filter("3", "third", "Клиент", "Customer", page)
 
     with allure.step("Press generate report"):
         reports.press_generate_report()
@@ -1502,25 +1516,25 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     # 0
     with allure.step("Add row with Tag and value"):
-        fill_column_by_tag_and_value("0", "direction", "outgoing", page)
+        reports.choose_tag_and_value("column", "0", "Тегу и значениям", "direction", "outgoing")
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 1
     with allure.step("Add row with Tag and value"):
-        fill_column_by_tag_and_value("1","hangup", "operator", page)
+        reports.choose_tag_and_value("column", "1", "Тегу и значениям", "hangup", "operator")
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 2
     with allure.step("Add row with Tag and value"):
-        fill_column_by_tag_and_value("2","CALLID", "Выбрать все", page)
+        reports.choose_tag_and_value("column", "2", "Тегу и значениям", "CALLID", "Выбрать все")
 
     with allure.step("Uncheck checkbox in 2rd row"):
         reports.click_checkbox_in_tag_and_value("column","2")
@@ -1532,7 +1546,7 @@ def test_reports_column_4_tag_and_value(base_url, page: Page) -> None:
 
     # 3
     with allure.step("Add column with Tag and value"):
-        fill_column_by_tag_and_value("3", "queue", "Выбрать все", page)
+        reports.choose_tag_and_value("column", "3", "Тегу и значениям", "queue", "Выбрать все")
 
     with allure.step("Uncheck checkbox in 3rd column"):
         reports.click_checkbox_in_tag_and_value("column","3")
@@ -1603,25 +1617,25 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
         reports.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Add filter check-list : Второй чеклист (тоже нужен для автотестов, не трогать)"):
-        add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)", page)
+        reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     # 0
     with allure.step("Add first row by tag list"):
-        fill_column_by_tag_list("0", "11", "asterisk_context", page=page)
+        reports.choose_tag_list("column", "0", "11", "asterisk_context")
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 1
     with allure.step("Add column with Tag list"):
-        fill_column_by_tag_list("1", "CALLID", "direction", page=page)
+        reports.choose_tag_list("column", "1", "CALLID", "direction")
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 2
     with allure.step("Add column with Tag list"):
-        fill_column_by_tag_list("2", "hangup", "k", page=page)
+        reports.choose_tag_list("column", "2", "hangup", "k")
 
     with allure.step("Uncheck checkbox in 2nd column"):
         reports.click_checkbox_in_tag_list("column", "2")
@@ -1633,7 +1647,7 @@ def test_reports_column_4_tag_list(base_url, page: Page) -> None:
 
     # 3
     with allure.step("Add column with Tag list"):
-        fill_column_by_tag_list("3", "multi value", "multi value number", page=page)
+        reports.choose_tag_list("column", "3", "multi value", "multi value number")
 
     with allure.step("Uncheck checkbox in 3rd column"):
         reports.click_checkbox_in_tag_list("column", "3")
