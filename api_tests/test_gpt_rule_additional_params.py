@@ -15,7 +15,9 @@ chat_gpt = {
                 "auto",
                 "chatgpt-4o-latest",
                 "gpt-4o",
-                "gpt-4o-mini"
+                "gpt-4o-mini",
+                "o1",
+                "o3-mini"
             ],
             "title": "ChatGPTModel",
             "type": "string"
