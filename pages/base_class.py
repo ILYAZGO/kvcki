@@ -98,7 +98,9 @@ class BaseClass:
         """Reload page, wait for load and 1 second more"""
         self.page.reload()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
-        self.page.wait_for_timeout(1500)
+        self.page.wait_for_selector('[alt="Imot.io loader"]', state="hidden")
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(1000)
 
     def go_to_user(self, name: str):
         """Change user"""
