@@ -2,7 +2,7 @@ from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from utils.dates import *
 from api_tests.common import *
-import requests
+import requests as r
 import pytest
 import allure
 import time
@@ -11,7 +11,6 @@ from uuid import UUID
 
 actions = ["analyze", "apply_gpt", "stt", "swap_channels", "get_api_tags", "apply_notify_rules", "apply_addressbook_tags", "delete"]
 
-#@pytest.mark.independent
 @pytest.mark.api
 @allure.title("test_settings_actions_with_communcations")
 @allure.severity(allure.severity_level.NORMAL)
@@ -38,7 +37,7 @@ def test_settings_actions_with_communcations(task_type):
             "call_info_processing": True
         }
 
-        give_rights_to_user = requests.put(url=API_URL + f"/user/{USER_ID}/access_rights", headers=headers_for_rights, json=data_for_rights)
+        give_rights_to_user = r.put(url=API_URL + f"/user/{USER_ID}/access_rights", headers=headers_for_rights, json=data_for_rights)
 
     with allure.step("Check status code == 204"):
         assert give_rights_to_user.status_code == 204
@@ -73,9 +72,9 @@ def test_settings_actions_with_communcations(task_type):
         }
 
         if task_type == "stt":
-            create_task = requests.post(url=API_URL + "/calls/action", headers=headers, json=data_for_stt)
+            create_task = r.post(url=API_URL + "/calls/action", headers=headers, json=data_for_stt)
         else:
-            create_task = requests.post(url=API_URL + "/calls/action", headers=headers, json=data)
+            create_task = r.post(url=API_URL + "/calls/action", headers=headers, json=data)
 
         task_id = create_task.json()["task_id"]
 
@@ -88,7 +87,7 @@ def test_settings_actions_with_communcations(task_type):
         time.sleep(5)
 
     with allure.step("Get tasks"):
-        get_progress_tasks = requests.get(url=API_URL + "/progress_tasks", headers=headers)
+        get_progress_tasks = r.get(url=API_URL + "/progress_tasks", headers=headers)
         json_get_progress_tasks = get_progress_tasks.json()
 
     with allure.step("Check status code == 200 and response"):
@@ -107,7 +106,7 @@ def test_settings_actions_with_communcations(task_type):
         assert json_get_progress_tasks[0]["current"] == 1
 
     with allure.step("Get task"):
-        get_task_status = requests.get(url=API_URL + f"/task/{task_id}/status", headers=headers)
+        get_task_status = r.get(url=API_URL + f"/task/{task_id}/status", headers=headers)
         json_get_task_status = get_task_status.json()
 
     with allure.step("Check status code == 200 and response"):
@@ -126,13 +125,13 @@ def test_settings_actions_with_communcations(task_type):
         assert json_get_task_status["current"] == 1
 
     with allure.step("Delete task"):
-        delete_task = requests.delete(url=API_URL + f"/task/{task_id}", headers=headers)
+        delete_task = r.delete(url=API_URL + f"/task/{task_id}", headers=headers)
 
     with allure.step("Check that status code == 204"):
         assert delete_task.status_code == 204
 
     with allure.step("Get tasks and check status code == 200 and []"):
-        get_progress_tasks = requests.get(url=API_URL + "/progress_tasks", headers=headers)
+        get_progress_tasks = r.get(url=API_URL + "/progress_tasks", headers=headers)
 
         assert  get_progress_tasks.status_code == 200
         assert get_progress_tasks.json() == []

@@ -22,11 +22,7 @@ def test_create_update_delete_operator_positive():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Create operator by user"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
         json = {
             "role":"operator",
@@ -170,11 +166,7 @@ def test_give_take_report_to_from_operator():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Create operator by user"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
         json = {
             "role":"operator",

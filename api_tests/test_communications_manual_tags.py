@@ -2,7 +2,7 @@ from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from api_tests.common import *
 from utils.dates import *
-import requests
+import requests as r
 import pytest
 import allure
 import time
@@ -20,13 +20,9 @@ def test_communications_manual_tags():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Get call_id from today's search calls"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
-        get_calls = requests.post(url=API_URL + f'/search_calls/?start_date={today.strftime("%Y-%m-%d")}&end_date={today.strftime("%Y-%m-%d")}', headers=headers)
+        get_calls = r.post(url=API_URL + f'/search_calls/?start_date={today.strftime("%Y-%m-%d")}&end_date={today.strftime("%Y-%m-%d")}', headers=headers)
         call_id = get_calls.json()["call_ids"][0].replace('"', '')
 
     with allure.step("Check status code == 200 and we get call_id in response"):
@@ -35,7 +31,7 @@ def test_communications_manual_tags():
 
 
     with allure.step("Check that call dont have any manual tags"):
-        get_manual_tags_list = requests.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
+        get_manual_tags_list = r.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
 
     with allure.step("Check status code == 200 and list is empty"):
         assert get_calls.status_code == 200
@@ -45,7 +41,7 @@ def test_communications_manual_tags():
 
         manual_tag_payload = {"name":"auto_api_test","tagType":"manual"}
 
-        add_manual_tag = requests.post(url=API_URL + f"/call/{call_id}/tag", headers=headers, json=manual_tag_payload)
+        add_manual_tag = r.post(url=API_URL + f"/call/{call_id}/tag", headers=headers, json=manual_tag_payload)
 
         manual_tag_id = add_manual_tag.text.replace('"', '')
 
@@ -54,14 +50,14 @@ def test_communications_manual_tags():
         assert len(manual_tag_id) == 24
 
     with allure.step("Check that call have manual tags"):
-        get_manual_tags_list = requests.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
+        get_manual_tags_list = r.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
 
     with allure.step("Check status code == 200 and tag exists"):
         assert get_calls.status_code == 200
         assert get_manual_tags_list.text == '["auto_api_test"]'
 
     with allure.step("Delete manual tag"):
-        delete_manual_tag = requests.delete(url=API_URL + f"/call/{call_id}/tag/{manual_tag_id}", headers=headers)
+        delete_manual_tag = r.delete(url=API_URL + f"/call/{call_id}/tag/{manual_tag_id}", headers=headers)
 
     with allure.step("Check status code == 204"):
         assert delete_manual_tag.status_code == 204
@@ -69,7 +65,7 @@ def test_communications_manual_tags():
         time.sleep(23)
 
     with allure.step("Check that call dont have any manual tags"):
-        get_manual_tags_list = requests.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
+        get_manual_tags_list = r.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
 
     with allure.step("Check status code == 200 and list is empty"):
         assert get_calls.status_code == 200

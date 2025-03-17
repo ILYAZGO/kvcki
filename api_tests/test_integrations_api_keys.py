@@ -19,11 +19,7 @@ def test_integrations_create_delete_api_token():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("GET /api_keys status code==403 with ecotelecom user_id"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
         get_tokens = requests.get(url=API_URL + f'/user/{ecotelecom_id}/api_keys', headers=headers)
 
@@ -124,7 +120,6 @@ def test_integrations_create_delete_api_token():
     with allure.step("Check status code == 200 and empty"):
         assert get_tokens.status_code == 200
         assert get_tokens.text == "[]"
-
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

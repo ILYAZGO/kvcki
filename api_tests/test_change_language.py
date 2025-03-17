@@ -1,8 +1,7 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
-from utils.dates import *
 from api_tests.common import *
-import requests
+import requests as r
 import pytest
 import allure
 
@@ -21,13 +20,8 @@ def test_change_lang_for_user(language):
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Get user info"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
-
-        get_lang = requests.get(url=API_URL + f"/user/me", headers=headers)
+        headers = {'Authorization': user_token}
+        get_lang = r.get(url=API_URL + f"/user/me", headers=headers)
 
     with allure.step("Check language"):
         assert get_lang.json()["language"] == "ru"
@@ -38,7 +32,7 @@ def test_change_lang_for_user(language):
             "language":language
         }
 
-        change_lang = requests.patch(url=API_URL + f"/user/{USER_ID}", headers=headers, json=payload)
+        change_lang = r.patch(url=API_URL + f"/user/{USER_ID}", headers=headers, json=payload)
 
     with allure.step("Check status code == 204 or 403 if not valid"):
         if language == langs[4]:
@@ -53,7 +47,7 @@ def test_change_lang_for_user(language):
             assert change_lang.status_code == 204
 
     with allure.step("Get user info"):
-        get_updated_lang = requests.get(url=API_URL + f"/user/me", headers=headers)
+        get_updated_lang = r.get(url=API_URL + f"/user/me", headers=headers)
 
     with allure.step("Check that language changed or keep old in not valid"):
         if language in [langs[4], langs[5], langs[6]]:
