@@ -166,9 +166,6 @@ def test_search_string(base_url, page: Page) -> None:
 def test_integration_parameters(base_url, page: Page) -> None:
     integrations = Integrations(page)
 
-    with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-
     with allure.step("Go to url"):
         integrations.navigate(base_url)
 

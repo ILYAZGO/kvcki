@@ -85,6 +85,16 @@ def create_user(url, role, password):
         else:
             logger.opt(depth=1).info(f"\n>>>>> ERROR GIVING QUOTA {give_quota.status_code} <<<<<")
 
+        # giving gpt quota
+        gpt_quota = [{"key":"imotio_gpt","day_limit":1000}]
+
+        give_gpt_quota = r.patch(url=url + f"/user/{user_id}/gpt_quotas", headers=headers_for_create, json=gpt_quota)
+
+        if give_gpt_quota.status_code == 204:
+            logger.opt(depth=1).info(f"\n>>>>> USER {name} WITH user_id: {user_id} IS GIVEN GPT QUOTA OF 1000 PER DAY <<<<<")
+        else:
+            logger.opt(depth=1).info(f"\n>>>>> ERROR GIVING GPT QUOTA {give_gpt_quota.status_code} <<<<<")
+
         # get token for user
         ##get token
         data_for_user = {
