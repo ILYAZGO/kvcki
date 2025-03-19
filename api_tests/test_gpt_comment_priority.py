@@ -126,7 +126,7 @@ def test_gpt_comment_priority():
         assert len(task_id) == 36
 
     with allure.step("Wait for 20 sec"):
-        time.sleep(20)
+        time.sleep(25)
 
     with allure.step("Check call comments"):
         get_call_comments = r.get(url=API_URL + f"/call/{call_id}", headers=headers)

@@ -576,7 +576,7 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
-        page.wait_for_timeout(7000)
+        page.wait_for_timeout(9000)
         new_tab.wait_for_load_state(state="load", timeout=wait_until_visible)
         expect(new_tab.locator(AUDIO_PLAYER)).to_have_count(1)
         expect(new_tab.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)

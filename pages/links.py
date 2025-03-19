@@ -7,4 +7,5 @@ class Links(BaseClass):
         super().__init__(page)
 
     def assert_url(self, link):
+        self.page.wait_for_selector('[alt="Imot.io loader"]', state="hidden")
         expect(self.page).to_have_url(link)
