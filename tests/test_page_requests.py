@@ -19,7 +19,7 @@ def test_experiment(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        communications.navigate("http://192.168.10.101/feature-dev-3409/")
+        communications.navigate(base_url)
         page.wait_for_timeout(2000)
 
     with allure.step("Request capture start"):
