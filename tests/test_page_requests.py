@@ -14,10 +14,6 @@ def est_communications_requests(base_url, page: Page) -> None:
     page_requests = PageRequests(page)
 
     communications_requests = []
-    rules_requests = []
-    dicts_requests = []
-    check_lists_requests = []
-    gpt_requests = []
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -56,7 +52,33 @@ def est_communications_requests(base_url, page: Page) -> None:
         assert sum('/search_criterias/' in entry.get('url', '') for entry in communications_requests) == 4 # 2 here 2 with /default_keys
         assert sum('/search_calls/' in entry.get('url', '') for entry in communications_requests) == 2
         assert sum(f'/user/{USER_ID}?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 1
-        page.wait_for_timeout(5000)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_markup_requests")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_markup_requests. rules, dicts, checklists, gpt")
+def test_markup_requests(base_url, page: Page) -> None:
+    page_requests = PageRequests(page)
+
+    rules_requests = []
+    dicts_requests = []
+    checklists_requests = []
+    gpt_requests = []
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page_requests.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        page_requests.auth(LOGIN, PASSWORD)
+        page.wait_for_timeout(14000)
 
     with allure.step("Request capture start"):
         page.on("request", lambda request: (
@@ -65,8 +87,9 @@ def est_communications_requests(base_url, page: Page) -> None:
                 'method': request.method
             }) if request.resource_type in ['xhr', 'fetch'] else None
         ))
-    # with allure.step("Go to markup"):
-    #     communications.click_markup()
+
+    with allure.step("Go to markup"):
+        page_requests.click_markup()
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
@@ -76,6 +99,64 @@ def est_communications_requests(base_url, page: Page) -> None:
         assert sum('/tag_rule_groups/' in entry.get('url', '') for entry in rules_requests) == 1
         assert sum('/tag_rules/?sort=update_time&sort_desc=true&show_disabled=true' in entry.get('url', '') for entry in rules_requests) == 1
         assert sum('/active_dicts/' in entry.get('url', '') for entry in rules_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            dicts_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Click dicts"):
+        page_requests.click_dicts()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(7000)
+        assert len(dicts_requests) == 5
+        assert sum('/users/?with_childs=false&filter_only_users=true' in entry.get('url', '') for entry in dicts_requests) == 1
+        assert sum('/search_criterias/' in entry.get('url', '') for entry in dicts_requests) == 1
+        assert sum('/dict_groups/' in entry.get('url', '') for entry in dicts_requests) == 1
+        assert sum('/dicts/?sort=title&sort_desc=false&show_disabled=true' in entry.get('url', '') for entry in dicts_requests) == 1
+        assert sum('/active_dicts/' in entry.get('url', '') for entry in dicts_requests) == 1
+
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            checklists_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Click dicts"):
+        page_requests.click_check_list()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(7000)
+        assert len(checklists_requests) == 4
+        assert sum('/users/?with_childs=false&filter_only_users=true' in entry.get('url', '') for entry in checklists_requests) == 1
+        assert sum('/search_criterias/' in entry.get('url', '') for entry in checklists_requests) == 1
+        assert sum('/checklists/' in entry.get('url', '') for entry in checklists_requests) == 2
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            gpt_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Click dicts"):
+        page_requests.click_gpt()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(7000)
+        # if no any gpt rules
+        assert len(gpt_requests) == 3
+        assert sum('/users/?with_childs=false&filter_only_users=true' in entry.get('url', '') for entry in gpt_requests) == 1
+        assert sum('/search_criterias/' in entry.get('url', '') for entry in gpt_requests) == 1
+        assert sum('/gpt/' in entry.get('url', '') for entry in gpt_requests) == 1
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
