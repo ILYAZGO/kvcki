@@ -1,16 +1,16 @@
 from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright
 from utils.variables import *
 from pages.page_requests import *
-from utils.create_delete_user import create_user, delete_user, give_access_right, give_users_to_manager
+from utils.create_delete_user import create_user, delete_user
 import pytest
 import allure
 
 @pytest.mark.page_requests
 @pytest.mark.e2e
-@allure.title("test_communications_requests")
+@allure.title("test_communications_requests_by_user")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_communications_requests")
-def est_communications_requests(base_url, page: Page) -> None:
+@allure.description("test_communications_requests_by_user")
+def test_communications_requests_by_user(base_url, page: Page) -> None:
     page_requests = PageRequests(page)
 
     communications_requests = []
@@ -19,7 +19,7 @@ def est_communications_requests(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page_requests.navigate(base_url)
+        page_requests.navigate("http://192.168.10.101/feature-dev-3427/ru/auth")
         page.wait_for_timeout(2000)
 
     with allure.step("Request capture start"):
@@ -37,23 +37,69 @@ def est_communications_requests(base_url, page: Page) -> None:
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
-        assert len(communications_requests) == 24
+        assert len(communications_requests) == 21
         assert sum('/token' in entry.get('url', '') for entry in communications_requests) == 1
-        assert sum('/user/me/access_rights' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum('/user/me/access_rights' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/search_criterias/default_keys' in entry.get('url', '') for entry in communications_requests) == 2
         assert sum('/search_filters/' in entry.get('url', '') for entry in communications_requests) == 2
-        assert sum('/user/me?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 3
-        assert sum('/reports' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum('/user/me?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum('/reports' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/translation/get_all_languages' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/get_date_range_by_period?period=today' in entry.get('url', '') for entry in communications_requests) == 1
-        assert sum('/users/?with_childs=true' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum('/users/?with_childs=true' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/open_id/list' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/user/filter?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 2
         assert sum('/search_criterias/' in entry.get('url', '') for entry in communications_requests) == 4 # 2 here 2 with /default_keys
         assert sum('/search_calls/' in entry.get('url', '') for entry in communications_requests) == 2
         assert sum(f'/user/{USER_ID}?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum(f'/set_filter_user?user_id={USER_ID}' in entry.get('url', '') for entry in communications_requests) == 1
 
     with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+@pytest.mark.page_requests
+@pytest.mark.e2e
+@allure.title("test_communications_requests_by_admin")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_communications_requests_by_admin")
+def test_communications_requests_by_admin(base_url, page: Page) -> None:
+    page_requests = PageRequests(page)
+
+    communications_requests = []
+
+    with allure.step("Create admin"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Go to url"):
+        page_requests.navigate("http://192.168.10.101/feature-dev-3427/ru/auth")
+        page.wait_for_timeout(2000)
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            communications_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Auth with admin"):
+        page_requests.auth(LOGIN, PASSWORD)
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(7000)
+        assert len(communications_requests) == 12
+        assert sum('/token' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum('/user/me/access_rights' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum('/user/me?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum('/translation/get_all_languages' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum('/users/?with_childs=true' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum('/users/?with_childs=false' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum('/open_id/list' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum('/user/filter?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum(f'/user/{USER_ID}?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 1
+        assert sum(f'/set_filter_user?user_id={USER_ID}' in entry.get('url', '') for entry in communications_requests) == 1
+
+    with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
 
 
