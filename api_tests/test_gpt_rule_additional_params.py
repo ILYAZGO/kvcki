@@ -139,20 +139,20 @@ imotio_gpt = {
             "title": "Top K",
             "type": "number"
         },
-        "max_tokens": {
-            "default": 1024,
-            "maximum": 8192,
-            "minimum": 128,
-            "title": "Max Tokens",
-            "type": "integer"
-        },
-        "repetition_penalty": {
-            "default": 1,
-            "maximum": 1.0,
-            "minimum": 2.0,
-            "title": "Repetition Penalty",
-            "type": "number"
-        }
+        # "max_tokens": {
+        #     "default": 1024,
+        #     "maximum": 8192,
+        #     "minimum": 128,
+        #     "title": "Max Tokens",
+        #     "type": "integer"
+        # },
+        # "repetition_penalty": {
+        #     "default": 1,
+        #     "maximum": 1.0,
+        #     "minimum": 2.0,
+        #     "title": "Repetition Penalty",
+        #     "type": "number"
+        # }
     },
     "title": "VLLMOptions",
     "type": "object"
