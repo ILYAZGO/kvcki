@@ -5,7 +5,7 @@ from utils.create_delete_user import create_user, delete_user, give_access_right
 import pytest
 import allure
 
-@pytest.mark.calls
+@pytest.mark.page_requests
 @pytest.mark.e2e
 @allure.title("test_communications_requests")
 @allure.severity(allure.severity_level.NORMAL)
@@ -57,12 +57,12 @@ def est_communications_requests(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.calls
+@pytest.mark.page_requests
 @pytest.mark.e2e
-@allure.title("test_markup_requests")
+@allure.title("test_markup_requests_by_user")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_markup_requests. rules, dicts, checklists, gpt")
-def test_markup_requests(base_url, page: Page) -> None:
+def test_markup_requests_by_user(base_url, page: Page) -> None:
     page_requests = PageRequests(page)
 
     rules_requests = []
@@ -162,12 +162,12 @@ def test_markup_requests(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
-@pytest.mark.calls
+@pytest.mark.page_requests
 @pytest.mark.e2e
-@allure.title("test_notifications_requests")
+@allure.title("test_notifications_requests_by_user")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_notifications_requests")
-def test_notifications_requests(base_url, page: Page) -> None:
+@allure.description("test_notifications_requests_by_user")
+def test_notifications_requests_by_user(base_url, page: Page) -> None:
     page_requests = PageRequests(page)
 
     notifications_requests = []
@@ -207,12 +207,12 @@ def test_notifications_requests(base_url, page: Page) -> None:
 
 
 
-@pytest.mark.calls
+@pytest.mark.page_requests
 @pytest.mark.e2e
-@allure.title("test_settings_requests")
+@allure.title("test_settings_requests_by_user")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_settings_requests")
-def test_settings_requests(base_url, page: Page) -> None:
+@allure.description("test_settings_requests_by_user")
+def test_settings_requests_by_user(base_url, page: Page) -> None:
     page_requests = PageRequests(page)
 
     settings_requests = []
@@ -246,6 +246,48 @@ def test_settings_requests(base_url, page: Page) -> None:
         assert sum('/all_timezones' in entry.get('url', '') for entry in settings_requests) == 1
         assert sum(f'/user/{USER_ID}?with_quota=true' in entry.get('url', '') for entry in settings_requests) == 1
 
-
     with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.page_requests
+@pytest.mark.e2e
+@allure.title("test_users_list_requests_by_admin")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_users_list_requests_by_admin")
+def test_users_list_requests_by_admin(base_url, page: Page) -> None:
+    page_requests = PageRequests(page)
+
+    users_list_requests = []
+
+    with allure.step("Create admin"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Go to url"):
+        page_requests.navigate(base_url)
+
+    with allure.step("Auth with admin"):
+        page_requests.auth(LOGIN, PASSWORD)
+        page.wait_for_timeout(10000)
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            users_list_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to users list"):
+        page_requests.go_to_users_list()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(7000)
+        assert len(users_list_requests) == 4
+        assert sum('/industries' in entry.get('url', '') for entry in users_list_requests) == 1
+        assert sum('/users/?filter_only_managers=true' in entry.get('url', '') for entry in users_list_requests) == 1
+        assert sum('/stt/get_all_languages' in entry.get('url', '') for entry in users_list_requests) == 1
+        assert sum('/users/?with_childs=true&with_quota=true' in entry.get('url', '') for entry in users_list_requests) == 1
+
+    with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
