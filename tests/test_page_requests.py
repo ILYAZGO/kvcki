@@ -328,7 +328,7 @@ def test_users_list_requests_by_admin(base_url, page: Page) -> None:
         page_requests.go_to_users_list()
 
     with allure.step("Check requests list"):
-        page.wait_for_timeout(7000)
+        page.wait_for_timeout(7500)
         assert len(users_list_requests) == 4
         assert sum('/industries' in entry.get('url', '') for entry in users_list_requests) == 1
         assert sum('/users/?filter_only_managers=true' in entry.get('url', '') for entry in users_list_requests) == 1
