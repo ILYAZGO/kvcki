@@ -170,7 +170,7 @@ def test_first_page_locale(base_url, playwright: Playwright) -> None:
         context = browser.new_context(locale="ru-RU")
         # create a new page in a pristine context.
         page = context.new_page()
-        page.goto("https://app.stand.imot.io/")
+        page.goto(base_url)
 
     with allure.step("Check lang"):
         expect(page.locator('[placeholder="Логин"]')).to_have_count(1)
@@ -184,7 +184,7 @@ def test_first_page_locale(base_url, playwright: Playwright) -> None:
         context = browser.new_context(locale="pt-PT")
         # create a new page in a pristine context.
         page = context.new_page()
-        page.goto("https://app.stand.imot.io/")
+        page.goto(base_url)
 
     with allure.step("Check lang"):
         expect(page.locator('[placeholder="Login"]')).to_have_count(1)
@@ -199,7 +199,7 @@ def test_first_page_locale(base_url, playwright: Playwright) -> None:
         context = browser.new_context(locale="es-ES")
         # create a new page in a pristine context.
         page = context.new_page()
-        page.goto("https://app.stand.imot.io/")
+        page.goto(base_url)
 
     with allure.step("Check lang"):
         expect(page.locator('[placeholder="Inicio de sesión"]')).to_have_count(1)
@@ -214,7 +214,7 @@ def test_first_page_locale(base_url, playwright: Playwright) -> None:
         context = browser.new_context(locale="en-EN")
         # create a new page in a pristine context.
         page = context.new_page()
-        page.goto("https://app.stand.imot.io/")
+        page.goto(base_url)
 
     with allure.step("Check lang"):
         expect(page.locator('[placeholder="Login"]')).to_have_count(1)
@@ -229,7 +229,7 @@ def test_first_page_locale(base_url, playwright: Playwright) -> None:
         context = browser.new_context(locale="fr-FR")
         # create a new page in a pristine context.
         page = context.new_page()
-        page.goto("https://app.stand.imot.io/")
+        page.goto(base_url)
 
     with allure.step("Check lang"):
         expect(page.locator('[placeholder="Login"]')).to_have_count(1)
