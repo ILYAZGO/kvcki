@@ -19,7 +19,7 @@ def test_communications_requests_by_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        page_requests.navigate("http://192.168.10.101/feature-dev-3427/ru/auth")
+        page_requests.navigate(base_url)
         page.wait_for_timeout(2000)
 
     with allure.step("Request capture start"):
@@ -71,7 +71,7 @@ def test_communications_requests_by_admin(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Go to url"):
-        page_requests.navigate("http://192.168.10.101/feature-dev-3427/ru/auth")
+        page_requests.navigate(base_url)
         page.wait_for_timeout(2000)
 
     with allure.step("Request capture start"):
