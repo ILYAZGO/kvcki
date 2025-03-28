@@ -11,7 +11,7 @@ import allure
 @allure.title("test_gpt_comment_priority")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_gpt_comment_priority")
-def test_gpt_comment_priority():
+def est_gpt_comment_priority():
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)

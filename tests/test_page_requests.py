@@ -37,7 +37,7 @@ def test_communications_requests_by_user(base_url, page: Page) -> None:
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
-        assert len(communications_requests) == 21
+        assert len(communications_requests) == 20
         assert sum('/token' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/user/me/access_rights' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/search_criterias/default_keys' in entry.get('url', '') for entry in communications_requests) == 2
@@ -48,7 +48,7 @@ def test_communications_requests_by_user(base_url, page: Page) -> None:
         assert sum('/get_date_range_by_period?period=today' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/users/?with_childs=true' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/open_id/list' in entry.get('url', '') for entry in communications_requests) == 1
-        assert sum('/user/filter?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum('/user/filter?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/search_criterias/' in entry.get('url', '') for entry in communications_requests) == 4 # 2 here 2 with /default_keys
         assert sum('/search_calls/' in entry.get('url', '') for entry in communications_requests) == 2
         assert sum(f'/user/{USER_ID}?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 1
@@ -87,7 +87,7 @@ def test_communications_requests_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
-        assert len(communications_requests) == 12
+        assert len(communications_requests) == 11
         assert sum('/token' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/user/me/access_rights' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/user/me?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 2
@@ -95,7 +95,7 @@ def test_communications_requests_by_admin(base_url, page: Page) -> None:
         assert sum('/users/?with_childs=true' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/users/?with_childs=false' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/open_id/list' in entry.get('url', '') for entry in communications_requests) == 1
-        assert sum('/user/filter?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 2
+        assert sum('/user/filter?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum(f'/user/{USER_ID}?with_quota=true' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum(f'/set_filter_user?user_id={USER_ID}' in entry.get('url', '') for entry in communications_requests) == 1
 
