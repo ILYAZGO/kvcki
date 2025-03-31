@@ -2371,3 +2371,131 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
+
+@pytest.mark.e2e
+@pytest.mark.calls
+@allure.title("test_open_other_pages_from_communications")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_open_other_pages_from_communications. after https://task.imot.io/browse/DEV-3452")
+def test_open_other_pages_from_communications(base_url, page: Page, context: BrowserContext) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Go to user"):
+        communications.go_to_user(LOGIN_USER)
+
+    with allure.step("Open markup in new tab"):
+        with context.expect_page() as new_tab_event:
+            page.locator(BUTTON_MARKUP).click(modifiers=["Control"])
+            new_tab=new_tab_event.value
+            new_tab.wait_for_timeout(5000)
+
+    # with allure.step("Check"):
+    #     expect(new_tab.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+    #     expect(new_tab.locator('[data-testid="markup_addGroup"]')).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Close tab"):
+        new_tab.close()
+
+    with allure.step("Open notifications in new tab"):
+        with context.expect_page() as new_tab_event:
+            page.locator(BUTTON_NOTIFICATIONS).click(modifiers=["Control"])
+            new_tab=new_tab_event.value
+            new_tab.wait_for_timeout(5000)
+
+    # with allure.step("Check"):
+    #     expect(new_tab.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+    #     expect(new_tab.locator('[class*="styles_addNewRule_"]')).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Close tab"):
+        new_tab.close()
+
+    with allure.step("Open deals in new tab"):
+        with context.expect_page() as new_tab_event:
+            page.locator(BUTTON_DEALS).click(modifiers=["Control"])
+            new_tab=new_tab_event.value
+            new_tab.wait_for_timeout(5000)
+
+    # with allure.step("Check"):
+    #     expect(new_tab.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+    #     expect(new_tab.locator('[data-testid="deals_btns_find"]')).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Close tab"):
+        new_tab.close()
+
+    with allure.step("Open settings in new tab"):
+        with context.expect_page() as new_tab_event:
+            page.locator(BUTTON_SETTINGS).click(modifiers=["Control"])
+            new_tab=new_tab_event.value
+            new_tab.wait_for_timeout(5000)
+
+    # with allure.step("Check"):
+    #     expect(new_tab.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+    #     expect(new_tab.locator(BUTTON_SUBMIT)).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Close tab"):
+        new_tab.close()
+
+# reports
+    with allure.step("Open create report in new tab"):
+        communications.click_reports()
+        with context.expect_page() as new_tab_event:
+            page.locator('[href*="/report/create"]').click(modifiers=["Control"])
+            new_tab=new_tab_event.value
+            new_tab.wait_for_timeout(5000)
+
+    # with allure.step("Check"):
+    #     expect(new_tab.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+    #     expect(new_tab.locator('[data-testid="reportMake"]')).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Close tab"):
+        new_tab.close()
+
+    with allure.step("Open report management in new tab"):
+        communications.click_reports()
+        with context.expect_page() as new_tab_event:
+            page.locator('[href*="/reports"]').click(modifiers=["Control"])
+            new_tab=new_tab_event.value
+            new_tab.wait_for_timeout(5000)
+
+    # with allure.step("Check"):
+    #     expect(new_tab.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+    #     expect(new_tab.locator('[data-testid="addUserButton"]')).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Close tab"):
+        new_tab.close()
+
+    with allure.step("Open report in new tab"):
+        communications.click_reports()
+        with context.expect_page() as new_tab_event:
+            page.locator('[href*="/report/"]').nth(1).click(modifiers=["Control"])
+            new_tab=new_tab_event.value
+            new_tab.wait_for_timeout(5000)
+
+    # with allure.step("Check"):
+    #     expect(new_tab.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
+    #     expect(new_tab.locator('[data-testid="reportMake"]')).to_have_count(1, timeout=wait_until_visible)
+
+    with allure.step("Close tab"):
+        new_tab.close()
+
+# reports
+
+
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
