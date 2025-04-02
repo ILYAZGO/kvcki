@@ -9,14 +9,16 @@ import time
 from uuid import UUID
 
 
-actions = ["analyze", "apply_gpt", "stt", "swap_channels", "get_api_tags", "apply_notify_rules", "apply_addressbook_tags", "delete"]
+actions = ["analyze", "apply_gpt", "stt", "swap_channels", "get_api_tags", "apply_notify_rules",
+           "apply_addressbook_tags", "delete"]
+           #"call_reload_source_integration", "handle_continuous_recordings", "restore_continuous_recordings"]
 
 @pytest.mark.api
 @allure.title("test_settings_actions_with_communcations")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_settings_actions_with_communcations. settings, actions with communications. parametrize")
 @pytest.mark.parametrize("task_type", actions)
-def test_settings_actions_with_communcations(task_type):
+def test_settings_actions_with_communications(task_type):
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -84,7 +86,7 @@ def test_settings_actions_with_communcations(task_type):
         assert UUID(task_id).version == 4  # Check if it's a version 4 UUID
 
     with allure.step("Sleep 5 sec"):
-        time.sleep(5)
+        time.sleep(10)
 
     with allure.step("Get tasks"):
         get_progress_tasks = r.get(url=API_URL + "/progress_tasks", headers=headers)
