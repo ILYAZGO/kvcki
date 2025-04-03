@@ -3,6 +3,7 @@ from utils.variables import *
 from pages.settings import *
 from utils.dates import *
 from utils.create_delete_user import create_user, delete_user, give_users_to_manager, create_operator, give_access_right
+import os
 import pytest
 import allure
 import random
@@ -1795,6 +1796,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
         expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(alert_massage)
         expect(page.locator(SEARCH_IN_CONSUMPTION_AUDIO)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_disabled()
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
 
     with allure.step("Go to consumption history GPT"):
@@ -1804,6 +1806,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
         expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(alert_massage)
         expect(page.locator(SEARCH_IN_CONSUMPTION_GPT)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по движку, модели, типу коммуникации или запросу"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_disabled()
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
 
     with allure.step("Go to consumption history chats"):
@@ -1813,6 +1816,7 @@ def test_user_consumption_history_if_empty(base_url, page: Page) -> None:
         expect(page.locator(CONSUMPTION_ERROR_FIRST_LINE)).to_contain_text(alert_massage)
         expect(page.locator(SEARCH_IN_CONSUMPTION_CHATS)).to_have_count(1)
         expect(page.locator('[placeholder="Поиск по источнику"]')).to_have_count(1)
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_disabled()
         expect(page.locator(CALENDAR_IN_CONSUMPTION)).to_have_count(1)
 
     with allure.step("Delete user"):
@@ -1892,6 +1896,123 @@ def test_user_consumption_history_if_500(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+#####################
+@pytest.mark.e2e
+@pytest.mark.settings
+@allure.title("test_user_consumption_history_export")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_user_consumption_history_export")
+def test_user_consumption_history_export(base_url, page: Page) -> None:
+    settings = Settings(page)
+
+    with allure.step("Go to page"):
+        settings.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        settings.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to settings"):
+        settings.click_settings()
+
+    with allure.step("Go to consumption history"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY).click()
+
+    with allure.step("Check (EX) button is enabled"):
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_enabled()
+
+    with allure.step("Input date"):
+        settings.choose_period_date("03/04/2025", "03/04/2025")
+
+    with allure.step("Click (EX)"):
+        # Start waiting for the download
+        with page.expect_download(timeout=60000) as download_info:
+            # Perform the action that initiates download
+            page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]').click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that export downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+        assert 5000 < os.path.getsize(path + download.suggested_filename) < 6000
+
+    with allure.step("Remove downloaded export"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that downloaded export removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+    with allure.step("Go to consumption history GPT"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_GPT).click()
+
+    with allure.step("Check (EX) button is enabled"):
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_enabled()
+
+    with allure.step("Input date"):
+        settings.choose_period_date("03/04/2025", "03/04/2025")
+
+    with allure.step("Click (EX)"):
+        # Start waiting for the download
+        with page.expect_download(timeout=60000) as download_info:
+            # Perform the action that initiates download
+            page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]').click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that export downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+        assert 5500 < os.path.getsize(path + download.suggested_filename) < 6000
+
+    with allure.step("Remove downloaded export"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that downloaded export removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+    with allure.step("Go to consumption history chats"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
+
+    with allure.step("Check (EX) button is enabled"):
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_enabled()
+
+    with allure.step("Input date"):
+        settings.choose_period_date("03/04/2025", "03/04/2025")
+
+    with allure.step("Click (EX)"):
+        # Start waiting for the download
+        with page.expect_download(timeout=60000) as download_info:
+            # Perform the action that initiates download
+            page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]').click()
+        download = download_info.value
+        path = f'{os.getcwd()}/'
+
+        # Wait for the download process to complete and save the downloaded file somewhere
+        download.save_as(path + download.suggested_filename)
+
+    with allure.step("Check that export downloaded"):
+        assert os.path.isfile(path + download.suggested_filename) == True
+        assert 5000 < os.path.getsize(path + download.suggested_filename) < 6000
+
+    with allure.step("Remove downloaded export"):
+        os.remove(path + download.suggested_filename)
+
+    with allure.step("Check that downloaded export removed"):
+        assert os.path.isfile(path + download.suggested_filename) == False
+
+
+
+
+
+
+
+
+#################
 
 
 @pytest.mark.e2e
