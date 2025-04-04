@@ -702,7 +702,8 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
 def test_check_content_button_calls_actions_for_user(base_url, page: Page) -> None:
     communications = Communications(page)
 
-    options_list = "Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуФильтр тегов"
+    options_list = ("Применить GPTПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную"
+                    " книгуФильтр теговПеревыгрузить из интеграцииОбработать непрерывные записиВосстановить непрерывные записи")
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
@@ -908,7 +909,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
         page.locator(OPEN_CALL_AREA).locator(BUTTON_CALLS_ACTION).locator('[type="button"]').click()
 
     with (allure.step("Check content in opened menu")):
-        expect(page.locator(OPEN_CALL_AREA).locator(MENU)).to_have_text("Удаленные тегиПоказать скрытые тегиМета инфоПоменять аудио каналыЗагрузить теги из crmПрименить информированиеПрименить адресную книгуРедактировать правило оповещения")
+        expect(page.locator(OPEN_CALL_AREA).locator(MENU)).to_have_text("Поменять аудио каналыПрименить адресную книгуПрименить информированиеУдаленные тегиЗагрузить теги из crmПеревыгрузить из интеграцииПоказать скрытые тегиМета инфоРедактировать правило оповещения")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
