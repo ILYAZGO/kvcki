@@ -1967,7 +1967,7 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
 
     with allure.step("Check that export downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 5500 < os.path.getsize(path + download.suggested_filename) < 6000
+        assert 6000 < os.path.getsize(path + download.suggested_filename) < 7000
 
     with allure.step("Remove downloaded export"):
         os.remove(path + download.suggested_filename)

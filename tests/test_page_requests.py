@@ -145,6 +145,7 @@ def test_markup_requests_by_user(base_url, page: Page) -> None:
         assert sum('/tag_rule_groups/' in entry.get('url', '') for entry in rules_requests) == 1
         assert sum('/tag_rules/?sort=update_time&sort_desc=true&show_disabled=true' in entry.get('url', '') for entry in rules_requests) == 1
         assert sum('/active_dicts/' in entry.get('url', '') for entry in rules_requests) == 1
+        assert sum('/tag_rules_dep_check/' in entry.get('url', '') for entry in rules_requests) == 1
 
     with allure.step("Request capture start"):
         page.on("request", lambda request: (
