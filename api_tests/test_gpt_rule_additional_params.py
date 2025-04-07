@@ -62,7 +62,7 @@ yandex_gpt = {
     "$defs": {
         "YandexGPTModel": {
             "enum": [
-                "summarization",
+                # "summarization",
                 "yandexgpt",
                 "yandexgpt-lite"
             ],

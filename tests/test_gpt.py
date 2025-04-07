@@ -165,7 +165,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("check models list"):
         page.locator('[class*="modelSelect_"]').locator('[class*="singleValue"]').click()
         page.wait_for_selector(MENU)
-        expect(page.locator(MENU)).to_have_text("summarizationyandexgptyandexgpt-lite")
+        expect(page.locator(MENU)).to_have_text("yandexgptyandexgpt-lite")
 
     with allure.step("Check that all parameters visible"):
         expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)

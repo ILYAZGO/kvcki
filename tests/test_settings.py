@@ -2007,11 +2007,6 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
 
 
 
-
-
-
-
-
 #################
 
 
