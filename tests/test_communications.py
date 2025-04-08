@@ -2498,3 +2498,57 @@ def test_open_other_pages_from_communications(base_url, page: Page, context: Bro
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_go_to_gpt_from_call")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_go_to_gpt_from_call")
+def test_go_to_gpt_from_call(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Go to Gpt from call"):
+        page.locator('[href*="/call/gpt?callId="]').click()
+
+    with allure.step("Check that opened"):
+        expect(page.locator('[class*="styles_back"]')).to_have_count(1)
+        expect(page.get_by_text("Применение GPT правила")).to_have_count(1)
+        expect(page.get_by_text("Произвольный запрос")).to_have_count(1)
+        expect(page.get_by_text("Дополнительные настройки")).to_have_count(1)
+        expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
+        expect(page.get_by_text("Движок")).to_have_count(1)
+        expect(page.get_by_text("Модель")).to_have_count(1)
+        expect(page.get_by_text("Температура")).to_have_count(1)
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(page.locator('[data-testid="saveButton"]')).to_be_disabled()
+
+    with allure.step("Fill question and assistant text"):
+        page.locator('[placeholder="Сформулируйте свой вопрос..."]').type("12345", delay=10)
+
+    with allure.step("Check that buttons enabled"):
+        expect(page.locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(page.locator('[data-testid="saveButton"]')).to_be_enabled()
+
+    with allure.step("Press (save to rules)"):
+        page.wait_for_timeout(2000)
+        page.locator('[data-testid="saveButton"]').click()
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check that question have"):
+        expect(page.locator('[placeholder="Сформулируйте свой вопрос..."]')).to_have_text("12345")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
