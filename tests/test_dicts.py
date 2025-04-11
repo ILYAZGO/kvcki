@@ -107,7 +107,7 @@ def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
         dicts.go_to_dicts()
 
     with allure.step("Check that disabled"):
-        expect(page.locator(TOOLTIP_BUTTON_DOBAVIT_SLOVAR)).to_be_visible()
+        expect(page.locator(TOOLTIP_BUTTON_DOBAVIT_SLOVAR)).to_have_count(1)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

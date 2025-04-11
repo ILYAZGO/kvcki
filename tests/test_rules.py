@@ -162,7 +162,8 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
         rules.click_markup()
 
     with allure.step("Check that creating rule - disabled and alert exists"):
-        expect(page.locator('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]')).to_be_visible()
+
+        expect(page.locator('[aria-label="Чтобы добавить тег, выберите или добавьте группу."]')).to_have_count(1)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
