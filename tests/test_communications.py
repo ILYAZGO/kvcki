@@ -22,7 +22,6 @@ def test_check_dates(base_url, page: Page) -> None:
 
     with allure.step("Auth with Ecotelecom"):
         communications.auth(ECOTELECOM, ECOPASS)
-        #page.wait_for_timeout(50000)
 
     with allure.step("Check first and last dates in view. Today by default"):
         communications.assert_check_period_dates(today.strftime("%d/%m/%Y"), today.strftime("%d/%m/%Y"))
@@ -385,13 +384,18 @@ def test_check_search_by_id(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill ID"):
-        communications.fill_id("1644474236.14425")
+        communications.fill_id("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
 
-    with allure.step("Check"):
+    with allure.step("Check that commincation found"):
         communications.assert_communications_found("Найдено коммуникаций 1 из 3130")
+
+    with allure.step("Check extra"):
+        expect(page.get_by_text("Теги сделки")).to_have_count(1)
+        expect(page.get_by_text("Теги коммуникации")).to_have_count(1)
+        expect(page.get_by_text("Теги фрагментов")).to_have_count(1)
 
 
 @pytest.mark.calls
@@ -593,7 +597,6 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
         expect(new_tab.locator('[class*="_manualGroup_"]')).to_have_count(1)
         expect(new_tab.get_by_text("nlab_speech")).to_have_count(0)
         #expect(new_tab.get_by_text("Перевод")).to_have_count(1)
-
 
     with allure.step("Close context"):
         new_tab.close()
@@ -1407,7 +1410,6 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
         expect(page.locator('[type="checkbox"]')).to_have_count(3)
-
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -2490,7 +2492,6 @@ def test_open_other_pages_from_communications(base_url, page: Page, context: Bro
 
     with allure.step("Close tab"):
         new_tab.close()
-
 # reports
 
     with allure.step("Delete admin"):
