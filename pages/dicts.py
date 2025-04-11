@@ -76,7 +76,7 @@ GROUP_ITEMS = '[class*="styles_groupItem_"]'
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NAZVANIE_SLOVARYA = '[name="title"]'
 
-TOOLTIP_BUTTON_DOBAVIT_SLOVAR = '[aria-label="Чтобы добвить словарь, выберите или добавьте группу."]'
+TOOLTIP_BUTTON_DOBAVIT_SLOVAR = '[aria-label="Чтобы добавить словарь, выберите или добавьте группу.."]'
 BUTTON_IMPORTIROVAT_SLOVARI = '[data-testid="markup_importDicts"]'
 # other
 CLICK_ON_GROUP = "//p[normalize-space()='12345']"
