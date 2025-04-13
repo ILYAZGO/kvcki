@@ -610,8 +610,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         rules.click_markup()
 
     with allure.step("Press (Import rules) button"):
-        page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
-        page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
+        rules.click_import_rules()
 
     with allure.step("Select user ImportFrom in modal window"):
         rules.choose_user_import_from("importFrom")
@@ -716,8 +715,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         rules.click_markup()
 
     with allure.step("Press (Import rules) button"):
-        page.wait_for_selector(BUTTON_IMPORTIROVAT_PRAVILA)
-        page.locator(BUTTON_IMPORTIROVAT_PRAVILA).click()
+        rules.click_import_rules()
 
     with allure.step("Select user ImportFrom in modal window"):
         rules.choose_user_import_from("importFrom")
@@ -811,7 +809,7 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
         rules.click_markup()
 
     with allure.step("Check that button for import not visible"):
-        expect(page.locator(BUTTON_IMPORTIROVAT_PRAVILA)).not_to_be_visible()
+        expect(page.locator(BUTTON_IMPORT_RULES)).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -891,13 +889,13 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         rules.click_markup()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("test ", delay=20)
+        page.locator(INPUT_SEARCH).nth(1).type("test ", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.locator(INPUT_SEARCH).nth(1)).to_have_value("test ")
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=20)
+        page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_rule", exact=True)).to_be_visible()
@@ -906,7 +904,7 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         page.locator(INPUT_SEARCH).nth(1).clear()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("sort", delay=20)
+        page.locator(INPUT_SEARCH).nth(1).type("sort", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_rule", exact=True)).not_to_be_visible()
@@ -915,43 +913,43 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         rules.change_sort("Сначала обновленные", "По алфавиту")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        rules.assert_first_group_name("test_search_and_sort1")
 
     with allure.step("Change sort"):
         rules.change_sort("По алфавиту", "По алфавиту с конца")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+        rules.assert_first_group_name("test_search_and_sort5")
 
     with allure.step("Change sort"):
         rules.change_sort("По алфавиту с конца", "Сначала новые")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+        rules.assert_first_group_name("test_search_and_sort5")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала новые", "Сначала старые")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        rules.assert_first_group_name("test_search_and_sort1")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала старые", "Сначала обновленные")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+        rules.assert_first_group_name("test_search_and_sort5")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала обновленные", "Сначала не обновленные")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        rules.assert_first_group_name("test_search_and_sort1")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала не обновленные", "По алфавиту")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        rules.assert_first_group_name("test_search_and_sort1")
 
     page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.click()
     page.wait_for_timeout(500)

@@ -6,6 +6,16 @@ INPUT_NEW_GROUP_NAME = '[name="groupName"]'
 ACTIVE_GROUP = '[class*="styles_isActive_"]'
 BUTTON_ADD_TAG = '[data-testid="markup_addTaggingRule"]'
 INPUT_TAG_NAME = '[data-testid="markup_newRuleInput"]'
+BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
+BUTTON_ADD_SEQUENCE = '[data-testid="addNewTagSequenceItemBtn"]'
+BUTTON_DELETE_SEQUENCE = '[data-testid="TagSequenceDeleteItem"]'
+LIST_PRESENCE_ONE_OF_TAGS = '[data-testid="presenceOfOneOfTags"]'
+LIST_PRESENCE_ONE_OF_TAGS_IN_INTERVAL_AFTER = '[data-testid="presenceOfOneOfTagsInSpecifiedIntervalAfter"]'
+INPUT_INTERVAL_BETWEEN_TAGS = '[data-testid="intervalBetweenTags"]'
+CHECK_BOX_ABSENCE_OF_TAGS = '[data-testid="triggeredInAbsenceOfTags"]'
+CHECK_BOX_REVERSE_LOGIC = '[data-testid="reverseLogic"]'
+BUTTON_IMPORT_RULES = '[data-testid="markup_importTagRules"]'
+GROUP_LIST = '[class*="styles_dpBothBox_"]'
 
 class Rules(BaseClass):
     def __init__(self, page: Page):
@@ -41,6 +51,10 @@ class Rules(BaseClass):
         self.press_key("Enter")  # kostil'
         self.page.wait_for_timeout(1000)
 
+    def click_import_rules(self):
+        self.page.wait_for_selector(BUTTON_IMPORT_RULES)
+        self.page.locator(BUTTON_IMPORT_RULES).click()
+
     def change_sort(self, current: str, change_to: str ):
         self.page.get_by_text(current, exact=True).click()
         self.page.wait_for_selector(MENU)
@@ -48,27 +62,17 @@ class Rules(BaseClass):
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
+    def assert_first_group_name(self, name: str):
+        expect(self.page.locator('[data-testid="test"]').first).to_contain_text(name)
+
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
-INPUT_CHOOSE_USER_FOR_IMPORT = '[data-testid="markup_importUserSelect"]'
 
 # buttons
 BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
-#BUTTON_PENCIL = '[aria-label="Изменить название"]'
-BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
-BUTTON_ADD_SEQUENCE = '[data-testid="addNewTagSequenceItemBtn"]'
-BUTTON_DELETE_SEQUENCE = '[data-testid="TagSequenceDeleteItem"]'
-LIST_PRESENCE_ONE_OF_TAGS = '[data-testid="presenceOfOneOfTags"]'
-LIST_PRESENCE_ONE_OF_TAGS_IN_INTERVAL_AFTER = '[data-testid="presenceOfOneOfTagsInSpecifiedIntervalAfter"]'
-INPUT_INTERVAL_BETWEEN_TAGS = '[data-testid="intervalBetweenTags"]'
-CHECK_BOX_ABSENCE_OF_TAGS = '[data-testid="triggeredInAbsenceOfTags"]'
-CHECK_BOX_REVERSE_LOGIC = '[data-testid="reverseLogic"]'
-BUTTON_IMPORTIROVAT_PRAVILA = '[data-testid="markup_importTagRules"]'
-GROUP_LIST = '[class*="styles_dpBothBox_"]'
 
 CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
-NI4EGO_NE_NAYDENO = '[class*="styles_noFound"]'
-NAZVANIE_PRAVILA_TEGIROVANIYA = NAZVANIE_SLOVARYA = '[name="title"]'
+NAZVANIE_PRAVILA_TEGIROVANIYA = '[name="title"]'
 
 
 def fill_what_said(text, page="page: Page"):
