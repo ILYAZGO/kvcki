@@ -21,11 +21,7 @@ def test_create_update_delete_check_list():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("GET /checklists/ empty without ?rule_owner"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
         get_checklists = requests.get(url=API_URL + "/checklists/", headers=headers)
 

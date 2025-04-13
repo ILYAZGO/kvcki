@@ -1,7 +1,7 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from api_tests.common import *
-import requests
+import requests as r
 import pytest
 import allure
 
@@ -22,21 +22,17 @@ def test_create_update_delete_email_notification_rule():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Get call_id from today's search calls"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
     with allure.step("Get available directions"):
-        get_available_directions = requests.get(url=API_URL + "/notify_rules/available_directions", headers=headers)
+        get_available_directions = r.get(url=API_URL + "/notify_rules/available_directions", headers=headers)
 
     with allure.step("Check available directions status code == 200 and list"):
         assert get_available_directions.status_code == 200
         assert get_available_directions.json() == available_directions
 
     with allure.step("Check notify rule variables"):
-        get_notify_rule_variables = requests.get(url=API_URL + "/notify_rules/notify_rule_variables", headers=headers)
+        get_notify_rule_variables = r.get(url=API_URL + "/notify_rules/notify_rule_variables", headers=headers)
         json_get_notify_rule_variables = get_notify_rule_variables.json()
 
     with allure.step("Check status code == 200 and content"):
@@ -62,28 +58,28 @@ def test_create_update_delete_email_notification_rule():
         assert actual_keys_descriptions == expected_keys_descriptions
 
     with allure.step("Get notify rules empty list "):
-        get_notify_rules_list = requests.get(url=API_URL + "/notify_rules/", headers=headers)
+        get_notify_rules_list = r.get(url=API_URL + "/notify_rules/", headers=headers)
 
         assert get_notify_rules_list.status_code == 200
         assert get_notify_rules_list.text == "[]"
 
     ####
     with allure.step("GET /notify_rules/ empty with fake ?rule_owner"):
-        get_notify_rules_list = requests.get(url=API_URL + f'/notify_rules/?rule_owner={fake_id}', headers=headers)
+        get_notify_rules_list = r.get(url=API_URL + f'/notify_rules/?rule_owner={fake_id}', headers=headers)
 
     with allure.step("Check status code == 404 and Setting rule_owner not allowed"):
         assert get_notify_rules_list.status_code == 403
         assert get_notify_rules_list.text == '{"detail":"Setting rule_owner not allowed"}'
 
     with allure.step("GET /notify_rules/ empty with ecotelecom ?rule_owner"):
-        get_notify_rules_list = requests.get(url=API_URL + f'/notify_rules/?rule_owner={ecotelecom_id}', headers=headers)
+        get_notify_rules_list = r.get(url=API_URL + f'/notify_rules/?rule_owner={ecotelecom_id}', headers=headers)
 
     with allure.step("Check status code == 403 and Setting rule_owner not allowed"):
         assert get_notify_rules_list.status_code == 403
         assert get_notify_rules_list.text == '{"detail":"Setting rule_owner not allowed"}'
 
     with allure.step("GET /notify_rules/ empty with broken ?rule_owner"):
-        get_notify_rules_list = requests.get(url=API_URL + f'/notify_rules/?rule_owner={fake_id[:10]}', headers=headers)
+        get_notify_rules_list = r.get(url=API_URL + f'/notify_rules/?rule_owner={fake_id[:10]}', headers=headers)
 
     with allure.step("Check status code == 422 and empty"):
         assert get_notify_rules_list.status_code == 422
@@ -121,7 +117,7 @@ def test_create_update_delete_email_notification_rule():
                 "items":[{"key":"search_by_tags","logic":"and","complexValues":[{"name":"auto_rule"}]}]},
             "direction":direction}
 
-        create_notify_rule = requests.post(url=API_URL + "/notify_rules/", headers=headers, json=rule_payload)
+        create_notify_rule = r.post(url=API_URL + "/notify_rules/", headers=headers, json=rule_payload)
         notify_rule_id = create_notify_rule.text.replace('"', '')
 
     with allure.step("Check status code == 200 and rule_id in response"):
@@ -129,7 +125,7 @@ def test_create_update_delete_email_notification_rule():
         assert len(notify_rule_id) == 24
 
     with allure.step("Get notify rules list with created notify rule"):
-        get_notify_rules_list = requests.get(url=API_URL + "/notify_rules/", headers=headers)
+        get_notify_rules_list = r.get(url=API_URL + "/notify_rules/", headers=headers)
 
         rule_description = [
             {
@@ -148,13 +144,13 @@ def test_create_update_delete_email_notification_rule():
     with allure.step("Update notify rule"):
         rule_payload["title"] = "updated_title"
         rule_payload["apiMethod"] = "POST"
-        update_notify_rule = requests.put(url=API_URL + f"/notify_rules/{notify_rule_id}", headers=headers, json=rule_payload)
+        update_notify_rule = r.put(url=API_URL + f"/notify_rules/{notify_rule_id}", headers=headers, json=rule_payload)
 
     with allure.step("Check status code == 204"):
         assert update_notify_rule.status_code == 204
 
     with allure.step("Get notify rules list with updated value"):
-        get_notify_rules_list = requests.get(url=API_URL + "/notify_rules/", headers=headers)
+        get_notify_rules_list = r.get(url=API_URL + "/notify_rules/", headers=headers)
 
         rule_description_updated = [
             {
@@ -171,13 +167,13 @@ def test_create_update_delete_email_notification_rule():
         assert get_notify_rules_list.json() == rule_description_updated
 
     with allure.step("Delete notify rule"):
-        delete_notify_rule = requests.delete(url=API_URL + f"/notify_rules/{notify_rule_id}", headers=headers)
+        delete_notify_rule = r.delete(url=API_URL + f"/notify_rules/{notify_rule_id}", headers=headers)
 
     with allure.step("Check status code == 204"):
         assert delete_notify_rule.status_code == 204
 
     with allure.step("Get empty notify rules list"):
-        get_notify_rules_list = requests.get(url=API_URL + "/notify_rules/", headers=headers)
+        get_notify_rules_list = r.get(url=API_URL + "/notify_rules/", headers=headers)
 
         assert get_notify_rules_list.status_code == 200
         assert get_notify_rules_list.text == "[]"

@@ -2,7 +2,7 @@ from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from utils.dates import *
 from api_tests.common import *
-import requests
+import requests as r
 import pytest
 import allure
 
@@ -23,14 +23,10 @@ def test_periods(period_type):
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Create operator by user"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
     with allure.step("Get period"):
-        get_period = requests.get(url=API_URL + f"/get_date_range_by_period?period={period_type}", headers=headers)
+        get_period = r.get(url=API_URL + f"/get_date_range_by_period?period={period_type}", headers=headers)
 
     with allure.step("Check status code == 200"):
 

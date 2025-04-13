@@ -1,7 +1,7 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from api_tests.common import *
-import requests
+import requests as r
 import pytest
 import allure
 
@@ -172,13 +172,9 @@ def test_gpt_engine_selectors():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Get gpt engines list"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
-        get_gpt_engine_selectors = requests.get(url=API_URL + "/gpt/gpt_engine_selectors", headers=headers)
+        get_gpt_engine_selectors = r.get(url=API_URL + "/gpt/gpt_engine_selectors", headers=headers)
 
     with allure.step("Check status code == 200 and list correct"):
         assert get_gpt_engine_selectors.status_code == 200
@@ -201,13 +197,9 @@ def test_gpt_options(gpt_engine):
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Get options for engine"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
-        get_gpt_engine_selectors = requests.get(url=API_URL + f"/gpt/{gpt_engine}/gpt_options", headers=headers)
+        get_gpt_engine_selectors = r.get(url=API_URL + f"/gpt/{gpt_engine}/gpt_options", headers=headers)
 
     with allure.step("Chck status code ==200 and json with options is correct for engine"):
         assert get_gpt_engine_selectors.status_code == 200

@@ -1,7 +1,7 @@
 from utils.create_delete_user import create_user, delete_user
 from utils.variables import *
 from api_tests.common import *
-import requests
+import requests as r
 import pytest
 import allure
 
@@ -19,13 +19,9 @@ def test_integrations_services_list():
         user_token = get_token(API_URL, LOGIN, PASSWORD)
 
     with allure.step("Get gpt engines list"):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': user_token,
-        }
+        headers = {'Authorization': user_token}
 
-        get_services_list = requests.get(url=API_URL + "/integrations/services?detail=true", headers=headers)
+        get_services_list = r.get(url=API_URL + "/integrations/services?detail=true", headers=headers)
 
         count = sum(1 for item in get_services_list.json() if "service_name" in item) # total integrations count
 
