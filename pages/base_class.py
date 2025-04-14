@@ -8,6 +8,14 @@ BUTTON_DEALS = '[value="deals"]'
 BUTTON_SETTINGS = '[value="settings"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_EMPLOYEES = '[href*="settings/employees"]'
+BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
+BLOCK_ACTION_SELECT = '[class="action-block"]'
+BUTTON_QUOTAS = '[href*="settings/quotas"]'
+BUTTON_CONSUMPTION_HISTORY = '[href*="-consumption-history"]'
+BUTTON_TARIFFICATION = '[href*="/settings/billing"]'
+BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
+INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
+BUTTON_INTEGRATIONS_IN_MENU = '[href*="settings/integrations"]'
 BUTTON_SUBMIT = '[type="submit"]'
 BUTTON_ACCEPT = '[data-testid="acceptButton"]'
 MENU = '[class*="-menu"]'
@@ -76,6 +84,9 @@ class BaseClass:
         self.button_korzina = page.locator(BUTTON_KORZINA)
         self.button_pencil = page.locator(BUTTON_PENCIL)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
+        self.button_quotas = page.locator(BUTTON_QUOTAS)
+        self.button_address_book = page.locator(BUTTON_ADDRESS_BOOK)
+        self.button_integrations_in_menu = page.locator(BUTTON_INTEGRATIONS_IN_MENU)
 
 
     def navigate(self, url: str):
@@ -201,6 +212,25 @@ class BaseClass:
         self.button_employees.click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_selector('[role="grid"]')
+
+    def click_actions_with_calls(self):
+        self.page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
+        self.page.wait_for_selector(BLOCK_ACTION_SELECT)
+
+    def click_quota(self):
+        self.page.wait_for_timeout(500)
+        self.button_quotas.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector('[role="grid"]')
+
+    def click_address_book(self):
+        """Click address book button"""
+        self.button_address_book.click()
+        self.page.wait_for_selector(INPUT_ADDRESS_BOOK)
+
+    def press_integrations_in_menu(self):
+        self.button_integrations_in_menu.click(timeout=self.timeout)
+        self.page.wait_for_timeout(700)
 
     def click_language_select(self):
         """Select language in word processing"""

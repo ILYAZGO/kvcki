@@ -1,13 +1,9 @@
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-BUTTON_ADDRESS_BOOK = '[href*="/address-book"]'
-INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
-
 BUTTON_PERSONAL_INFO = '[href*="/profile"]'
 BUTTON_RIGHTS = '[href*="/access-rights"]'
-BUTTON_EMPLOYEES = '[href*="settings/employees"]'
-BUTTON_QUOTAS = '[href*="settings/quotas"]'
+
 INPUT_QUOTA_TIME = '[name="time"]'
 
 BLOCK_LEFT_MENU = '[class*="styles_list_"]'
@@ -16,9 +12,6 @@ BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
-
-BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
-BLOCK_ACTION_SELECT = '[class="action-block"]'
 BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
@@ -34,7 +27,7 @@ CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 
-BUTTON_CONSUMPTION_HISTORY = '[href*="-consumption-history"]'
+
 BUTTON_CONSUMPTION_HISTORY_AUDIO = '[href*="-consumption-history/audio"]'
 BUTTON_CONSUMPTION_HISTORY_GPT = '[href*="-consumption-history/gpt"]'
 BUTTON_CONSUMPTION_HISTORY_CHATS = '[href*="-consumption-history/dialogs"]'
@@ -49,7 +42,6 @@ TOTAL_CHATS = '[class*="communicationsStyles_chatsValuesWrapper_"]'
 CONSUMPTION_ERROR_FIRST_LINE = '[class*="styles_firstLine"]'
 CONSUMPTION_ERROR_SECOND_LINE = '[class*="styles_secondLine"]'
 
-BUTTON_TARIFFICATION = '[href*="/settings/billing"]'
 BUTTON_RATES = '[href*="/settings/billing/aboutRates"]'
 BUTTON_WRITEOFFS = '[href*="/settings/billing/writeoffs"]'
 BUTTON_CHARGES = '[href*="/settings/billing/payments"]'
@@ -68,13 +60,10 @@ BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
 class Settings(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
-        self.button_address_book = page.locator(BUTTON_ADDRESS_BOOK)
         self.input_address_book = page.locator(INPUT_ADDRESS_BOOK)
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
         self.button_rights = page.locator(BUTTON_RIGHTS)
-        # self.button_employees = page.locator(BUTTON_EMPLOYEES)
         self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
-        self.button_quotas = page.locator(BUTTON_QUOTAS)
         self.button_gpt_in_quotas = page.locator(BUTTON_GPT_QUOTAS)
         #self.input_chat_gpt_quota_value = page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)
         #self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
@@ -85,12 +74,6 @@ class Settings(BaseClass):
         self.select_industry = page.locator(SELECT_INDUSTRY)
         self.select_partner = page.locator(SELECT_PARTNER)
         self.select_role = page.locator(SELECT_ROLE).locator('[type="text"]')
-
-
-    def click_address_book(self):
-        """Click address book button"""
-        self.button_address_book.click()
-        self.page.wait_for_selector(INPUT_ADDRESS_BOOK)
 
     def fill_address_book(self, text: str):
         """Fill address book with text"""
@@ -116,12 +99,6 @@ class Settings(BaseClass):
         self.button_word_pocessing.click()
         self.page.wait_for_selector(SELECT_LANGUAGE)
 
-    def click_quota(self):
-        self.page.wait_for_timeout(500)
-        self.button_quotas.click()
-        self.page.wait_for_timeout(500)
-        self.page.wait_for_selector('[role="grid"]')
-
     def fill_quota_time(self, minutes: str):
         self.page.wait_for_timeout(500)
         self.input_quota_time.clear()
@@ -140,10 +117,6 @@ class Settings(BaseClass):
     def press_save_in_rights(self):
         self.button_save_in_rights.click()
         self.page.wait_for_timeout(500)
-
-    def click_actions_with_calls(self):
-        self.page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
-        self.page.wait_for_selector(BLOCK_ACTION_SELECT)
 
     def go_to_operator_from_table(self):
         self.page.locator('[aria-rowindex="2"]').locator('[class="rs-table-cell rs-table-cell-first"]').click()

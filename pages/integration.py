@@ -6,7 +6,7 @@ from playwright.sync_api import Page, expect
 INPUT_API_TOKEN = '[data-testid="api_token"]'
 INPUT_CALLS_LIMIT = '[name="maxNewCalls"]'
 
-BUTTON_INTEGRATIONS_IN_MENU = '[href*="settings/integrations"]'
+# BUTTON_INTEGRATIONS_IN_MENU = '[href*="settings/integrations"]'
 TAB_API_TOKEN = '[href*="/api-tokens"]'
 BUTTON_CONNECT = ".styles_goToIntegrationsList__KXaHU"
 BUTTON_SAVE = '[data-testid="AccessKeysTab_submit"]'
@@ -32,11 +32,11 @@ class Integrations(BaseClass):
         self.input_calls_limit = page.locator(INPUT_CALLS_LIMIT)
         self.button_play = page.locator(BUTTON_PLAY).locator('[type="button"]')
         self.button_connect = page.locator(BUTTON_CONNECT)
-        self.button_integrations_in_menu = page.locator(BUTTON_INTEGRATIONS_IN_MENU)
+        # self.button_integrations_in_menu = page.locator(BUTTON_INTEGRATIONS_IN_MENU)
 
-    def press_integrations_in_menu(self):
-        self.button_integrations_in_menu.click(timeout=self.timeout)
-        self.page.wait_for_timeout(700)
+    # def press_integrations_in_menu(self):
+    #     self.button_integrations_in_menu.click(timeout=self.timeout)
+    #     self.page.wait_for_timeout(700)
 
     def press_connect(self):
         self.button_connect.click()
