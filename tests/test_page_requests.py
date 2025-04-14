@@ -582,6 +582,222 @@ def test_settings_requests_by_user(base_url, page: Page) -> None:
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
+
+@pytest.mark.page_requests
+@pytest.mark.e2e
+@allure.title("test_settings_requests_by_admin")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_settings_requests_by_admin")
+def test_settings_requests_by_admin(base_url, page: Page) -> None:
+    page_requests = PageRequests(page)
+
+    personal_info_requests = []
+    rights_requests = []
+    employees_requests = []
+    actions_requests = []
+    stt_requests = []
+    quota_requests = []
+    consumption_requests = []
+    tariffication_requests = []
+    address_book_requests = []
+    integrations_requests = []
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        page_requests.navigate(base_url)
+
+    with allure.step("Auth with admin"):
+        page_requests.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Go to user"):
+        page_requests.go_to_user(LOGIN_USER)
+        page.wait_for_timeout(10000)
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            rights_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.click_rights()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(rights_requests) == 2
+        assert sum(f'/user/{USER_ID_USER}/access_rights' in entry.get('url', '') for entry in rights_requests) == 1
+        assert sum(f'/user/{USER_ID_USER}/access_rights_description' in entry.get('url', '') for entry in rights_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            personal_info_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.click_settings()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(7000)
+        assert len(personal_info_requests) == 4
+        assert sum('/industries' in entry.get('url', '') for entry in personal_info_requests) == 1  #403 {"detail":"Industry handling not allowed"}
+        assert sum('/users/?filter_only_managers=true' in entry.get('url', '') for entry in personal_info_requests) == 1
+        assert sum('/all_timezones' in entry.get('url', '') for entry in personal_info_requests) == 1
+        assert sum(f'/user/{USER_ID_USER}?with_quota=true' in entry.get('url', '') for entry in personal_info_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            employees_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.click_employees()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(employees_requests) == 1
+        assert sum(f'/user/{USER_ID_USER}/operators' in entry.get('url', '') for entry in employees_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            actions_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.click_actions_with_calls()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(actions_requests) == 1
+        assert sum(f'/progress_tasks' in entry.get('url', '') for entry in actions_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            stt_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.click_word_processing()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(stt_requests) == 5
+        assert sum(f'/user/{USER_ID_USER}?with_quota=true' in entry.get('url', '') for entry in stt_requests) == 1
+        assert sum(f'/stt/get_all_languages' in entry.get('url', '') for entry in stt_requests) == 1
+        assert sum(f'/stt/ru-RU/engines' in entry.get('url', '') for entry in stt_requests) == 1
+        assert sum(f'/stt/ru-RU/nlab_speech/models' in entry.get('url', '') for entry in stt_requests) == 1
+        assert sum(f'/stt/nlab_speech/stt_options' in entry.get('url', '') for entry in stt_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            quota_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.click_quota()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(quota_requests) == 2
+        assert sum(f'/user/{USER_ID_USER}/quotas' in entry.get('url', '') for entry in quota_requests) == 2 #need fix
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            consumption_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page.locator(BUTTON_CONSUMPTION_HISTORY).click()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(consumption_requests) == 1
+        assert sum(f'/user/{USER_ID_USER}/history/calls?' in entry.get('url', '') for entry in consumption_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            tariffication_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page.locator(BUTTON_TARIFFICATION).click()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(tariffication_requests) == 1
+        assert sum(f'/billing/billing_info' in entry.get('url', '') for entry in tariffication_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            address_book_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.click_address_book()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(address_book_requests) == 1
+        assert sum(f'/user/{USER_ID_USER}/address_book/csv' in entry.get('url', '') for entry in address_book_requests) == 1
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            integrations_requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Go to settings"):
+        page_requests.press_integrations_in_menu()
+
+    with allure.step("Check requests list"):
+        page.wait_for_timeout(5000)
+        assert len(integrations_requests) == 2
+        assert sum(f'/integrations/services?detail=true' in entry.get('url', '') for entry in integrations_requests) == 1
+        assert sum(f'/integrations/{USER_ID_USER}' in entry.get('url', '') for entry in integrations_requests) == 1
+
+###
+    #download communications. no any requests yet
+###
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+
 @pytest.mark.page_requests
 @pytest.mark.e2e
 @allure.title("test_settings_requests_by_admin")

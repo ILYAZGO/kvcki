@@ -2,7 +2,6 @@ from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 BUTTON_PERSONAL_INFO = '[href*="/profile"]'
-BUTTON_RIGHTS = '[href*="/access-rights"]'
 
 INPUT_QUOTA_TIME = '[name="time"]'
 
@@ -12,7 +11,7 @@ BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
-BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
+#BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
 RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
@@ -62,8 +61,7 @@ class Settings(BaseClass):
         super().__init__(page)
         self.input_address_book = page.locator(INPUT_ADDRESS_BOOK)
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
-        self.button_rights = page.locator(BUTTON_RIGHTS)
-        self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
+        #self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
         self.button_gpt_in_quotas = page.locator(BUTTON_GPT_QUOTAS)
         #self.input_chat_gpt_quota_value = page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)
         #self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
@@ -90,14 +88,14 @@ class Settings(BaseClass):
         self.button_personal_info.click()
         self.page.wait_for_selector(INPUT_LOGIN)
 
-    def click_rights(self):
-        self.button_rights.click()
-        self.page.wait_for_timeout(1000)
-        self.page.wait_for_selector('[data-testid="acceptButton"]')
+    # def click_rights(self):
+    #     self.button_rights.click()
+    #     self.page.wait_for_timeout(1000)
+    #     self.page.wait_for_selector(BUTTON_ACCEPT)
 
-    def click_word_processing(self):
-        self.button_word_pocessing.click()
-        self.page.wait_for_selector(SELECT_LANGUAGE)
+    # def click_word_processing(self):
+    #     self.button_word_pocessing.click()
+    #     self.page.wait_for_selector(SELECT_LANGUAGE)
 
     def fill_quota_time(self, minutes: str):
         self.page.wait_for_timeout(500)

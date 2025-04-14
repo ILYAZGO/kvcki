@@ -32,11 +32,6 @@ class Integrations(BaseClass):
         self.input_calls_limit = page.locator(INPUT_CALLS_LIMIT)
         self.button_play = page.locator(BUTTON_PLAY).locator('[type="button"]')
         self.button_connect = page.locator(BUTTON_CONNECT)
-        # self.button_integrations_in_menu = page.locator(BUTTON_INTEGRATIONS_IN_MENU)
-
-    # def press_integrations_in_menu(self):
-    #     self.button_integrations_in_menu.click(timeout=self.timeout)
-    #     self.page.wait_for_timeout(700)
 
     def press_connect(self):
         self.button_connect.click()

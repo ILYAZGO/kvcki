@@ -6,10 +6,12 @@ BUTTON_MARKUP = '[value="tags"]'
 BUTTON_NOTIFICATIONS = '[value="notifications"]'
 BUTTON_DEALS = '[value="deals"]'
 BUTTON_SETTINGS = '[value="settings"]'
+BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_EMPLOYEES = '[href*="settings/employees"]'
 BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
 BLOCK_ACTION_SELECT = '[class="action-block"]'
+BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 BUTTON_QUOTAS = '[href*="settings/quotas"]'
 BUTTON_CONSUMPTION_HISTORY = '[href*="-consumption-history"]'
 BUTTON_TARIFFICATION = '[href*="/settings/billing"]'
@@ -87,7 +89,8 @@ class BaseClass:
         self.button_quotas = page.locator(BUTTON_QUOTAS)
         self.button_address_book = page.locator(BUTTON_ADDRESS_BOOK)
         self.button_integrations_in_menu = page.locator(BUTTON_INTEGRATIONS_IN_MENU)
-
+        self.button_rights = page.locator(BUTTON_RIGHTS)
+        self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
 
     def navigate(self, url: str):
         """Opens main page"""
@@ -207,6 +210,11 @@ class BaseClass:
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
+    def click_rights(self):
+        self.button_rights.click()
+        self.page.wait_for_timeout(1000)
+        self.page.wait_for_selector(BUTTON_ACCEPT)
+
     def click_employees(self):
         """Click employees in left menu"""
         self.button_employees.click()
@@ -216,6 +224,10 @@ class BaseClass:
     def click_actions_with_calls(self):
         self.page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
         self.page.wait_for_selector(BLOCK_ACTION_SELECT)
+
+    def click_word_processing(self):
+        self.button_word_pocessing.click()
+        self.page.wait_for_selector(SELECT_LANGUAGE)
 
     def click_quota(self):
         self.page.wait_for_timeout(500)
