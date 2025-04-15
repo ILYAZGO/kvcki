@@ -2522,7 +2522,7 @@ def test_go_to_gpt_from_call(base_url, page: Page) -> None:
         communications.expand_call()
 
     with allure.step("Go to Gpt from call"):
-        page.locator('[href*="/call/gpt?callId="]').click()
+        page.locator(BUTTON_GPT).click()
 
     with allure.step("Check that opened"):
         expect(page.locator('[class*="styles_back"]')).to_have_count(1)
@@ -2553,3 +2553,94 @@ def test_go_to_gpt_from_call(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_public_link_from_call_by_user")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_public_link_from_call_by_user")
+def test_public_link_from_call_by_user(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Click to (public link) button"):
+        page.locator('[aria-label="Скопировать публичную ссылку"]').locator('[type="button"]').click()
+        page.wait_for_timeout(1000)
+        page.evaluate("""
+                () => {
+                    const input = document.createElement('input');
+                    input.id = 'temp-clipboard-input';
+                    document.body.appendChild(input);
+                }
+            """)
+        page.focus("#temp-clipboard-input")
+        page.keyboard.press("Control+V")
+        copied_link = page.eval_on_selector("#temp-clipboard-input", "el => el.value")
+        page.evaluate("document.getElementById('temp-clipboard-input').remove()")
+
+        assert "&public=true" in copied_link
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_public_link_from_call_by_admin")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_public_link_from_call_by_admin")
+def test_public_link_from_call_by_admin(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with admin"):
+        communications.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Go to user"):
+        communications.go_to_user(LOGIN_USER)
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Click to (public link) button"):
+        page.locator('[aria-label="Скопировать публичную ссылку"]').locator('[type="button"]').click()
+        page.wait_for_timeout(1000)
+        page.evaluate("""
+                () => {
+                    const input = document.createElement('input');
+                    input.id = 'temp-clipboard-input';
+                    document.body.appendChild(input);
+                }
+            """)
+        page.focus("#temp-clipboard-input")
+        page.keyboard.press("Control+V")
+        copied_link = page.eval_on_selector("#temp-clipboard-input", "el => el.value")
+        page.evaluate("document.getElementById('temp-clipboard-input').remove()")
+
+        assert "&public=true" in copied_link
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
