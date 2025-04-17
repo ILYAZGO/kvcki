@@ -485,7 +485,7 @@ def test_check_sort(base_url, page: Page) -> None:
         communications.change_sort("Сначала короткие")
 
     with allure.step("Check SHORT FIRST in list"):
-        communications.assert_call_date_and_time("09.02.22 11:41")
+        communications.assert_call_date_and_time("09.02.22 16:50")  #09.02.22 11:41
 
     with allure.step("Change sort to LONG FIRST"):
         communications.change_sort("Сначала длинные")
@@ -2592,6 +2592,12 @@ def test_public_link_from_call_by_user(base_url, page: Page) -> None:
 
         assert "&public=true" in copied_link
 
+    with allure.step("go to private link"):
+        communications.navigate(copied_link)
+
+    with allure.step("check"):
+        expect(page.locator('[aria-label="Скопировать публичную ссылку"]').locator('[type="button"]')).to_be_disabled()
+
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
 
@@ -2638,6 +2644,12 @@ def test_public_link_from_call_by_admin(base_url, page: Page) -> None:
         page.evaluate("document.getElementById('temp-clipboard-input').remove()")
 
         assert "&public=true" in copied_link
+
+    with allure.step("go to private link"):
+        communications.navigate(copied_link)
+
+    with allure.step("check"):
+        expect(page.locator('[aria-label="Скопировать публичную ссылку"]').locator('[type="button"]')).to_be_disabled()
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)

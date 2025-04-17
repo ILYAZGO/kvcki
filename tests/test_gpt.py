@@ -181,7 +181,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("check models list"):
         page.locator('[class*="modelSelect_"]').locator('[class*="singleValue"]').click()
         page.wait_for_selector(MENU)
-        expect(page.locator(MENU)).to_have_text("autochatgpt-4o-latestgpt-4ogpt-4o-minio1o3-mini")
+        expect(page.locator(MENU)).to_have_text("autochatgpt-4o-latestgpt-4.1gpt-4.1-minigpt-4.1-nanogpt-4ogpt-4o-minio1o3-minio4-mini")
 
     with allure.step("Check that all parameters visible"):
         expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
