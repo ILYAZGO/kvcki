@@ -270,4 +270,5 @@ class BaseClass:
         self.page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type(username, delay=10)
         self.menu.get_by_text(username, exact=True).click()
         self.page.wait_for_selector('[data-testid*="_importSearch}"]', timeout=self.timeout)
+        self.page.wait_for_timeout(1000)
 
