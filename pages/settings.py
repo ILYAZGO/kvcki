@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 BUTTON_PERSONAL_INFO = '[href*="/profile"]'
+BUTTON_UPLOAD = '[href*="/upload"]'
 
 INPUT_QUOTA_TIME = '[name="time"]'
 
@@ -55,6 +56,8 @@ BLOCK_GPT_QUOTAS = '[class*="styles_quotasWrapper"]'
 INPUT_NEW_QUOTA = '[placeholder="Новое значение"]'
 BLOCK_WITH_SAVE_BUTTON = '[class*="styles_saveButton"]'
 BLOCK_WITH_AMOUNT = '[class*="styles_amount_"]'
+BUTTON_CREATE_COMMUNICATIONS = '[data-testid="upload_create_communications"]'
+BUTTON_DELETE_ALL_COMMUNICATIONS = '[data-testid="upload_delete_communications"]'
 
 class Settings(BaseClass):
     def __init__(self, page: Page):
@@ -219,6 +222,11 @@ class Settings(BaseClass):
         self.select_role.click()
         self.page.wait_for_selector(MENU)
         self.menu.get_by_text(role).click()
+
+    def click_to_upload_files(self):
+        self.page.locator(BUTTON_UPLOAD).click()
+        self.page.wait_for_selector(BUTTON_CREATE_COMMUNICATIONS, timeout=self.timeout)
+
 
 
 def all_checkboxes_to_be_checked(page="page: Page"):

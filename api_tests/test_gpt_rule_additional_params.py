@@ -14,10 +14,14 @@ chat_gpt = {
             "enum": [
                 "auto",
                 "chatgpt-4o-latest",
+                "gpt-4.1",
+                "gpt-4.1-mini",
+                "gpt-4.1-nano",
                 "gpt-4o",
                 "gpt-4o-mini",
                 "o1",
-                "o3-mini"
+                "o3-mini",
+                "o4-mini",
             ],
             "title": "ChatGPTModel",
             "type": "string"
