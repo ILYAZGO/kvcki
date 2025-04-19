@@ -3308,8 +3308,8 @@ def test_change_role_for_user_by_admin(base_url, page: Page) -> None:
 @pytest.mark.settings
 @allure.title("test_upload_file_for_user_by_admin")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("test_change_role_for_user_by_admin")
-def test_change_role_for_user_by_admin(base_url, page: Page) -> None:
+@allure.description("test_upload_file_for_user_by_admin")
+def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
     settings = Settings(page)
 
     with allure.step("Create admin"):
@@ -3380,6 +3380,90 @@ def test_change_role_for_user_by_admin(base_url, page: Page) -> None:
     with allure.step("Check"):
         expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_disabled()
         expect(page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)).not_to_be_visible()
+        expect(page.locator('[title="stereo.opus"]')).to_have_count(0)
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+
+@pytest.mark.e2e
+@pytest.mark.settings
+@allure.title("test_upload_errors_file_for_user_by_admin")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_upload_errors_file_for_user_by_admin")
+def test_upload_errors_file_for_user_by_admin(base_url, page: Page) -> None:
+    settings = Settings(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to page"):
+        settings.navigate(base_url)
+
+    with allure.step("Auth with admin"):
+        settings.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Go to user"):
+        settings.go_to_user(LOGIN_USER)
+
+    with allure.step("Go to settings"):
+        settings.click_settings()
+
+    with allure.step("Go to upload"):
+        settings.click_to_upload_files()
+
+    with allure.step("Upload file"):
+        page.locator('[name="audio"]').set_input_files("audio/2G.opus")
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check alert for file more than 1G"):
+        settings.check_alert("Размер загружаемого файла превышает  1 гб")
+
+    with allure.step("Upload file with wrong format"):
+        page.locator('[name="audio"]').set_input_files("audio/text.txt")
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check alert for file with wrong format"):
+        settings.check_alert("Формат файла не соответствует требованиям")
+
+    with allure.step("Upload normal audio"):
+        page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check that normal audio downloaded"):
+        expect(page.locator('[title="stereo.opus"]')).to_have_count(1)
+
+    with allure.step("Upload normal audio again"):
+        page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
+        page.wait_for_timeout(2000)
+
+    with allure.step("Check alert for file which was already uploaded"):
+        settings.check_alert("Загружен дубликат файла")
+
+# clear
+    with allure.step("Use (Delete all) button"):
+        page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS).click()
+        page.wait_for_selector(MODAL_WINDOW)
+
+    with allure.step("Accept in modal window"):
+        page.locator(MODAL_WINDOW).locator('[data-testid="upload_delete_all_ok"]').click()
+        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+
+    with allure.step("Check alert"):
+        settings.check_alert("Файлы успешно удалены")
+
+    with allure.step("Check"):
+        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_disabled()
+        expect(page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)).not_to_be_visible()
+        expect(page.locator('[title="2G.opus"]')).to_have_count(0)
+        expect(page.locator('[title="text.txt"]')).to_have_count(0)
         expect(page.locator('[title="stereo.opus"]')).to_have_count(0)
 
     with allure.step("Delete admin"):
