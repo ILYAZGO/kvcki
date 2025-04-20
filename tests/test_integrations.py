@@ -111,6 +111,22 @@ def test_usedesk(base_url, page: Page) -> None:
     with allure.step("Go back to integrations list"):
         page.locator('[class*="styles_category"]').nth(0).click()
 
+    with allure.step("Go to settings"):
+        page.locator('[aria-label="Настройки"]').click()
+        page.wait_for_selector('[href*="/parameters"]')
+
+    with allure.step("Make integration inActive"):
+        page.locator('[type="checkbox"]').click()
+
+    with allure.step("Check alert"):
+        integrations.check_alert("Данные сохранены")
+
+    with allure.step("Check integration status"):
+        expect(page.locator('[class*="styles_statusTitleDisconnected_"]')).to_have_count(1)
+
+    with allure.step("Go to integrations"):
+        page.locator(BUTTON_INTEGRACII).click()
+
     with allure.step("Delete integration"):
         integrations.delete_integration()
 
