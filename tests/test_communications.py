@@ -2529,7 +2529,7 @@ def test_go_to_gpt_from_call(base_url, page: Page) -> None:
         expect(page.get_by_text("Применение GPT правила")).to_have_count(1)
         expect(page.get_by_text("Произвольный запрос")).to_have_count(1)
         expect(page.get_by_text("Дополнительные настройки")).to_have_count(1)
-        expect(page.get_by_text("Вспомогательный текст")).to_have_count(1)
+        expect(page.get_by_text("Системный текст")).to_have_count(1)
         expect(page.get_by_text("Движок")).to_have_count(1)
         expect(page.get_by_text("Модель")).to_have_count(1)
         expect(page.get_by_text("Температура")).to_have_count(1)
