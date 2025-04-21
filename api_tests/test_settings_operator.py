@@ -14,21 +14,41 @@ from datetime import datetime
 def test_create_update_delete_operator_positive():
     NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
     CHANGED_OPERATOR_LOGIN = f"auto_test_operator_changed{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
+    EMAIL = f"mail{datetime.now().microsecond}@mail.ru"
+    CHANGED_EMAIL = f"{datetime.now().microsecond}mail@mail.ru"
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Get token for user"):
         user_token = get_token(API_URL, LOGIN, PASSWORD)
-
-    with allure.step("Create operator by user"):
         headers = {'Authorization': user_token}
 
+    with allure.step("Create operator with not valid email by user"):
         json = {
             "role":"operator",
             "login":NEW_OPERATOR_LOGIN,
             "name":NEW_OPERATOR_LOGIN,
             "email":NEW_OPERATOR_LOGIN,
+            "password":PASSWORD,
+            "comment":NEW_OPERATOR_LOGIN,
+            "parentUser":USER_ID,
+            "phoneNumber":NEW_OPERATOR_LOGIN
+        }
+
+        create_operator = requests.post(url=API_URL + "/user", headers=headers, json=json)
+        #operator_id = create_operator.text.replace('"', '')
+
+    with allure.step("Check status code == 409"):
+        assert create_operator.status_code == 409
+        assert create_operator.text == '{"detail":"User email is not a valid"}'
+
+    with allure.step("Create operator with not valid email by user"):
+        json = {
+            "role":"operator",
+            "login":NEW_OPERATOR_LOGIN,
+            "name":NEW_OPERATOR_LOGIN,
+            "email":EMAIL,
             "password":PASSWORD,
             "comment":NEW_OPERATOR_LOGIN,
             "parentUser":USER_ID,
@@ -60,7 +80,7 @@ def test_create_update_delete_operator_positive():
                 "comment": NEW_OPERATOR_LOGIN,
                 "useBilling": False,
                 "lanbillingInfo": None,
-                "email": NEW_OPERATOR_LOGIN,
+                "email": EMAIL,
                 "phoneNumber": NEW_OPERATOR_LOGIN,
                 "password": "**********",
                 "language": "ru",
@@ -84,7 +104,7 @@ def test_create_update_delete_operator_positive():
             "login":NEW_OPERATOR_LOGIN,   #user cant change login for operator
             "name":CHANGED_OPERATOR_LOGIN,
             "timezone":"",
-            "email":CHANGED_OPERATOR_LOGIN,
+            "email":CHANGED_EMAIL,
             "phoneNumber":CHANGED_OPERATOR_LOGIN,
             "password":"**********",
             "comment":CHANGED_OPERATOR_LOGIN,
@@ -117,7 +137,7 @@ def test_create_update_delete_operator_positive():
                 "comment": CHANGED_OPERATOR_LOGIN,
                 "useBilling": False,
                 "lanbillingInfo": None,
-                "email": CHANGED_OPERATOR_LOGIN,
+                "email": CHANGED_EMAIL,
                 "phoneNumber": CHANGED_OPERATOR_LOGIN,
                 "password": "**********",
                 "language": "ru",
