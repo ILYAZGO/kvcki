@@ -121,7 +121,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        gpt.navigate("http://192.168.10.101/feature-dev-3461/")
+        gpt.navigate(base_url)
 
     with allure.step("Auth"):
         gpt.auth(LOGIN, PASSWORD)
@@ -233,7 +233,7 @@ def test_additional_params_gpt_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
-        gpt.navigate("http://192.168.10.101/feature-dev-3461/")
+        gpt.navigate(base_url)
 
     with allure.step("Auth"):
         gpt.auth(LOGIN_ADMIN, PASSWORD)
