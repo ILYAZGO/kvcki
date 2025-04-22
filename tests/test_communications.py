@@ -1189,13 +1189,13 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator(BUTTON_ADD_COMMENT_TITLE).click()
 
     with allure.step("Fill title"):
-        page.locator('[id*="post_comment_"]').locator('[class*="styles_title_"]').type("CommentTitle", delay=20)
+        page.locator('[id*="post_comment_"]').locator('[class*="styles_title_"]').type("CommentTitle", delay=10)
 
     with allure.step("Check that button (add comment) still disabled"):
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1)).to_be_disabled()
 
     with allure.step("Fill comment"):
-        page.locator('[class*="styles_textareaWrapper"]').locator('[class*="styles_textarea_"]').type("CommentText", delay=20)
+        page.locator('[class*="styles_textareaWrapper"]').locator('[class*="styles_textarea_"]').type("CommentText", delay=10)
 
     with allure.step("Press (add comment)"):
         page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1).click()
@@ -1207,6 +1207,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         expect(page.locator(COMMENT_AREA).locator('[class*="styles_head_"]').locator('[height="18"]')).to_have_count(1)
         expect(page.locator(COMMENT_AREA).locator('[class*="styles_title_"]')).to_have_text("CommentTitle")
         expect(page.locator(COMMENT_AREA).locator('[class*="styles_message_"]')).to_have_text("CommentText")
+        expect(page.locator(COMMENT_AREA).locator('[class*="styles_whose"]')).to_have_text("Коммуникация")
 
     with allure.step("Press to (...) comment options"):
         page.locator('[class*="styles_optionsSelect_"]').click()
@@ -1218,11 +1219,11 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Edit title"):
         page.locator('[class*="styles_editableInput"]').clear()
-        page.locator('[class*="styles_editableInput"]').fill("EditedTitle")
+        page.locator('[class*="styles_editableInput"]').type("EditedTitle", delay=10)
 
     with allure.step("Edit comment text"):
         page.locator('[class*="styles_editableTextarea"]').clear()
-        page.locator('[class*="styles_editableTextarea"]').fill("EditedText")
+        page.locator('[class*="styles_editableTextarea"]').type("EditedText", delay=10)
 
     with allure.step("Save edited comment"):
         page.locator('[class*="styles_checkButton_"]').click()
