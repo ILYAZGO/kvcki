@@ -2657,3 +2657,83 @@ def test_public_link_from_call_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_public_link_from_call_by_admin_to_not_logged_user")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_public_link_from_call_by_admin_to_not_logged_user")
+def test_public_link_from_call_by_admin_to_not_logged_user(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with admin"):
+        communications.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Go to user"):
+        communications.go_to_user(LOGIN_USER)
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Click to (public link) button"):
+        page.locator('[aria-label="Скопировать публичную ссылку"]').locator('[type="button"]').click()
+        page.wait_for_timeout(1000)
+        page.evaluate("""
+                () => {
+                    const input = document.createElement('input');
+                    input.id = 'temp-clipboard-input';
+                    document.body.appendChild(input);
+                }
+            """)
+        page.focus("#temp-clipboard-input")
+        page.keyboard.press("Control+V")
+        copied_link = page.eval_on_selector("#temp-clipboard-input", "el => el.value")
+        page.evaluate("document.getElementById('temp-clipboard-input').remove()")
+
+        assert "&public=true" in copied_link
+
+    with allure.step("Quit from profile"):
+        communications.quit_from_profile()
+
+    with allure.step("go to private link"):
+        communications.navigate(copied_link)
+
+    with allure.step("check"):
+        expect(page.locator(BUTTON_COMMUNICATIONS)).not_to_be_visible()
+        expect(page.locator(BUTTON_REPORTS)).not_to_be_visible()
+        expect(page.locator(BUTTON_MARKUP)).not_to_be_visible()
+        expect(page.locator(BUTTON_NOTIFICATIONS)).not_to_be_visible()
+        expect(page.locator(BUTTON_DEALS)).not_to_be_visible()
+        expect(page.locator(BUTTON_SETTINGS)).not_to_be_visible()
+        expect(page.locator(AUDIO_PLAYER)).to_be_visible()
+        #expect(page.locator(BUTTON_CALLS_ACTION)).to_be_disabled()
+        expect(page.locator(BUTTON_EXPAND_CALL)).not_to_be_visible()
+        expect(page.locator(BUTTON_GPT)).not_to_be_visible()
+        expect(page.locator(BUTTON_SHARE_CALL)).not_to_be_visible()
+        expect(page.locator(BUTTON_ADD_COMMENT)).not_to_be_visible()
+        expect(page.get_by_text("0987654321")).not_to_be_visible()
+        expect(page.get_by_text("Теги коммуникации")).to_be_visible()
+        expect(page.get_by_text("00:00:38")).to_be_visible()
+        expect(page.get_by_text("1234567890")).to_be_visible()
+        #expect(page.get_by_text("23.04.25 10:16")).to_be_visible()
+
+        # expect(page.locator(BUTTON_SHARE_CALL)).not_to_be_visible()
+        # expect(page.locator(BUTTON_SHARE_CALL)).not_to_be_visible()
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+

@@ -5,6 +5,8 @@ import calendar
 #.strftime("%Y-%m-%d")
 
 today = datetime.now()
+today_with_dots = today.strftime("%d.%m.%y")
+
 yesterday = (today - timedelta(days=1))
 
 first_day_this_week = today - timedelta(days=today.weekday())
