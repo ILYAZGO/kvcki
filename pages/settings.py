@@ -12,7 +12,6 @@ BLOCK_PERSONAL_INFO = '[class*="LeftMenuLayout_content"]'
 BLOCK_ONE_RIGHT = '[class*="styles_toggleItem_"]'
 
 SELECT_TIMEZONE = '[data-testid="selectTimezone"]'
-#BUTTON_WORD_PROCESSING = '[href*="/word-processing"]'
 
 CHECKBOX_MERGE_ALL_TO_ONE = '[name="merge_all_to_one_audio"]'
 RECOGNITION_PRIORITY = '[data-testid="count_per_iteration"]'
@@ -26,7 +25,6 @@ CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
 CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
-
 
 BUTTON_CONSUMPTION_HISTORY_AUDIO = '[href*="-consumption-history/audio"]'
 BUTTON_CONSUMPTION_HISTORY_GPT = '[href*="-consumption-history/gpt"]'

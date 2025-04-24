@@ -5,8 +5,6 @@ from playwright.sync_api import Page, expect
 
 INPUT_API_TOKEN = '[data-testid="api_token"]'
 INPUT_CALLS_LIMIT = '[name="maxNewCalls"]'
-
-# BUTTON_INTEGRATIONS_IN_MENU = '[href*="settings/integrations"]'
 TAB_API_TOKEN = '[href*="/api-tokens"]'
 BUTTON_CONNECT = ".styles_goToIntegrationsList__KXaHU"
 BUTTON_SAVE = '[data-testid="AccessKeysTab_submit"]'

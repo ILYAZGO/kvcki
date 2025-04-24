@@ -1,4 +1,3 @@
-#from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
@@ -7,7 +6,6 @@ BUTTON_GPT_SAVE = '[data-testid="acceptButton"]'
 BUTTON_GPT_CANCEL = '[data-testid="cancelButton"]'
 BUTTON_SAVE_EDITED_NAME = '[class*="styles_checkButton"]'
 BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
-# SEARCH_IN_IMPORT_MODAL = '[data-testid="markup_gpt_importSearch}"]'
 
 INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
 INPUT_GPT_TEG_NAME = '[placeholder="Название"]'
