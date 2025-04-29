@@ -22,6 +22,9 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         rules.auth(LOGIN, PASSWORD)
 
+    with allure.step("Go to markup"):
+        rules.click_markup()
+
     with allure.step("Press (Create group)"):
         rules.press_create_group()
 
@@ -130,7 +133,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
 
     with allure.step("Add rule name"):
-        rules.input_new_group_name("99999")
+        rules.input_new_group_name("12345")
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Группа добавлена")
@@ -221,7 +224,7 @@ def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
         expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
 
     with allure.step("Add rule name"):
-        rules.input_new_group_name("99999")
+        rules.input_new_group_name("auto_rule_group")
 
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Такая группа уже существует")
@@ -986,6 +989,9 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
 
     with allure.step("Check that button for import not visible"):
         expect(page.locator(INPUT_SEARCH).nth(1)).to_have_value("test ")
+
+    with allure.step("Clear search"):
+        page.locator(INPUT_SEARCH).nth(1).clear()
 
     with allure.step("Filter rules by sort"):
         page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=10)

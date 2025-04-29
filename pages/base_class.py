@@ -100,7 +100,7 @@ class BaseClass:
         self.button_gpt = page.locator(BUTTON_GPT)
         self.button_users = page.locator(BUTTON_USERS)
         self.button_add_group = page.locator(BUTTON_ADD_GROUP)
-        self.input_new_group_name = page.locator(INPUT_NEW_GROUP_NAME)
+        self.input_new_group_name_field = page.locator(INPUT_NEW_GROUP_NAME)
         self.button_korzina = page.locator(BUTTON_KORZINA)
         self.button_pencil = page.locator(BUTTON_PENCIL)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
@@ -335,8 +335,8 @@ class BaseClass:
 
     def input_new_group_name(self, group_name: str):
         """Type new group name"""
-        self.input_new_group_name.type(group_name, delay=10)
-        # self.modal_window.locator(BUTTON_ACCEPT).click()
-        self.page.locator(BUTTON_ACCEPT).click()
+        self.input_new_group_name_field.type(group_name, delay=10)
+        self.modal_window.locator(BUTTON_ACCEPT).click()
+        #self.page.locator(BUTTON_ACCEPT).click()
         self.page.wait_for_timeout(500)
 
