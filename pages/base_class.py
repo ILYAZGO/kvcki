@@ -336,6 +336,7 @@ class BaseClass:
     def input_new_group_name(self, group_name: str):
         """Type new group name"""
         self.input_new_group_name.type(group_name, delay=10)
-        self.modal_window.locator(BUTTON_ACCEPT).click()
+        # self.modal_window.locator(BUTTON_ACCEPT).click()
+        self.page.locator(BUTTON_ACCEPT).click()
         self.page.wait_for_timeout(500)
 
