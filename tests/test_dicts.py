@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.dicts import *
 from utils.create_delete_user import create_user, delete_user, give_users_to_manager, create_dicts
@@ -23,11 +23,23 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         dicts.auth(LOGIN, PASSWORD)
 
-    with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+    with allure.step("Go to markup"):
+        dicts.click_markup()
 
-    with allure.step("Create group"):
-        dicts.create_group("12345")
+    with allure.step("Go to dicts"):
+        dicts.click_to_dicts()
+
+    # with allure.step("Create group"):
+    #     dicts.create_group("12345")
+
+    with allure.step("Press (Create group)"):
+        dicts.press_create_group()
+
+    with allure.step("Check that (Add) button disabled"):
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+
+    with allure.step("Add group name"):
+        dicts.input_new_group_name("12345")
 
     with allure.step("Wait and check snack bar"):
         dicts.check_alert("Группа добавлена")
@@ -103,8 +115,11 @@ def test_add_dict_outside_group_disabled(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         dicts.auth(LOGIN, PASSWORD)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
 
     with allure.step("Check that disabled"):
         expect(page.locator(TOOLTIP_BUTTON_DOBAVIT_SLOVAR)).to_have_count(1)
@@ -130,11 +145,23 @@ def test_add_group_and_dict_with_same_name(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         dicts.auth(LOGIN, PASSWORD)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
+
+    # with allure.step("Create group with same name"):
+    #     dicts.create_group("auto_dict_group")
+
+    with allure.step("Press (Create group)"):
+        dicts.press_create_group()
+
+    with allure.step("Check that (Add) button disabled"):
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
 
     with allure.step("Create group with same name"):
-        dicts.create_group("auto_dict_group")
+        dicts.input_new_group_name("auto_dict_group")
 
     with allure.step("Wait and check snack bar"):
         dicts.check_alert("Такая группа уже существует")
@@ -177,11 +204,15 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         dicts.auth(LOGIN, PASSWORD)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
     #
     with allure.step("Press (Add group)"):
-        page.locator(BUTTON_ADD_GROUP).click()
+        dicts.press_create_group()
+        #page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (Cancel)"):
         page.locator(BUTTON_OTMENA).click()
@@ -190,7 +221,8 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         expect(page.locator(GROUP_ITEMS)).to_have_count(2)
 
     with allure.step("Press (Add group)"):
-        page.locator(BUTTON_ADD_GROUP).click()
+        dicts.press_create_group()
+        #page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (cross button)"):
         page.locator(BUTTON_CROSS).click()
@@ -198,8 +230,17 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
     with allure.step("Check canceled"):
         expect(page.locator(GROUP_ITEMS)).to_have_count(2)
     #
-    with allure.step("Create group"):
-        dicts.create_group("12345")
+    # with allure.step("Create group"):
+    #     dicts.create_group("12345")
+
+    with allure.step("Press (Create group)"):
+        dicts.press_create_group()
+
+    with allure.step("Check that (Add) button disabled"):
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+
+    with allure.step("Add group name"):
+        dicts.input_new_group_name("12345")
 
     with allure.step("Wait and check snack bar"):
         dicts.check_alert("Группа добавлена")
@@ -247,11 +288,23 @@ def test_check_dict_type(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         dicts.auth(LOGIN, PASSWORD)
 
-    with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+    with allure.step("Go to markup"):
+        dicts.click_markup()
 
-    with allure.step("Create group"):
-        dicts.create_group("12345")
+    with allure.step("Go to dicts"):
+        dicts.click_to_dicts()
+
+    # with allure.step("Create group"):
+    #     dicts.create_group("12345")
+
+    with allure.step("Press (Create group)"):
+        dicts.press_create_group()
+
+    with allure.step("Check that (Add) button disabled"):
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+
+    with allure.step("Add group name"):
+        dicts.input_new_group_name("12345")
 
     with allure.step("Wait and check snack bar"):
         dicts.check_alert("Группа добавлена")
@@ -383,8 +436,11 @@ def test_check_old_dict(base_url, page: Page) -> None:
     with allure.step("Auth with ECOTELECOM"):
         dicts.auth(ECOTELECOM, ECOPASS)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
         page.wait_for_selector('[href*="/tags?group"]')
 
     with allure.step("Click to first dict"):
@@ -412,8 +468,11 @@ def test_import_dict_disabled_for_user(base_url, page: Page) -> None:
     with allure.step("Auth with user"):
         dicts.auth(LOGIN, PASSWORD)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
 
     with allure.step("Check"):
         expect(page.locator(BUTTON_IMPORTIROVAT_SLOVARI)).not_to_be_visible()
@@ -445,8 +504,11 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
     with allure.step("Go to user"):
         dicts.go_to_user(LOGIN_USER)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
 
     with allure.step("Press (Import dicts) button"):
         page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
@@ -548,8 +610,11 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
     with allure.step("Go to user"):
         dicts.go_to_user(LOGIN_USER)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
 
     with allure.step("Press (Import dicts) button"):
         page.locator(BUTTON_IMPORTIROVAT_SLOVARI).click()
@@ -639,8 +704,11 @@ def test_compare_dicts_by_user(base_url, page: Page) -> None:
     with allure.step("Auth with user for check comparelogin"):
         dicts.auth(USER_FOR_CHECK, PASSWORD)
 
+    with allure.step("Go to markup"):
+        dicts.click_markup()
+
     with allure.step("Go to dicts"):
-        dicts.go_to_dicts()
+        dicts.click_to_dicts()
 
     with allure.step("Go to first rule"):
         page.get_by_text("firstdict").click()
@@ -681,10 +749,13 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
         dicts.auth(LOGIN, PASSWORD)
 
     with allure.step("Go to markup"):
-        dicts.go_to_dicts()
+        dicts.click_markup()
+
+    with allure.step("Go to dicts"):
+        dicts.click_to_dicts()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("test ", delay=20)
+        page.locator(INPUT_SEARCH).nth(1).type("test ", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.locator(INPUT_SEARCH).nth(1)).to_have_value("test ")

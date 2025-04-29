@@ -349,3 +349,132 @@ def test_language_change_by_user_and_operator(base_url, page: Page) -> None:
 
     with allure.step("Delete operator"):
         delete_user(API_URL, TOKEN_OPERATOR, USER_ID_OPERATOR)
+
+
+@pytest.mark.e2e
+@pytest.mark.adminbar
+@allure.title("test_check_page_titles_by_user_itself")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_page_titles_by_user_itself")
+def test_check_page_titles_by_user_itself(base_url, page: Page) -> None:
+    admin_bar = AdminBar(page)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        admin_bar.navigate(base_url)
+
+    with allure.step("Auth"):
+        admin_bar.auth(LOGIN_USER, PASSWORD)
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Коммуникации | IMOT.io")
+
+    with allure.step("Go to create reports"):
+        admin_bar.click_reports()
+        admin_bar.press_create_report()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Отчёты | IMOT.io")
+
+    with allure.step("Go to create reports"):
+        admin_bar.click_reports()
+        admin_bar.press_report_management()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Управление списком отчетов | IMOT.io")
+
+    with allure.step("Go to markup (rules)"):
+        admin_bar.click_markup()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Разметка | IMOT.io")
+
+    with allure.step("go markup (dicts)"):
+        admin_bar.click_to_dicts()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Разметка | IMOT.io")
+
+    with allure.step("go markup (checklists)"):
+        admin_bar.click_check_lists()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Разметка | IMOT.io")
+
+    with allure.step("go markup (gpt)"):
+        admin_bar.click_gpt()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Разметка | IMOT.io")
+
+    with allure.step("go notifications"):
+        admin_bar.click_notifications()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Оповещения | IMOT.io")
+
+    with allure.step("go settings"):
+        admin_bar.click_settings()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Настройки | IMOT.io")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
+
+
+@pytest.mark.e2e
+@pytest.mark.adminbar
+@allure.title("test_check_page_titles_by_admin_itself")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_page_titles_by_admin_itself")
+def test_check_page_titles_by_admin_itself(base_url, page: Page) -> None:
+    admin_bar = AdminBar(page)
+
+    with allure.step("Create admin"):
+        USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
+
+    with allure.step("Go to url"):
+        admin_bar.navigate(base_url)
+
+    with allure.step("Auth"):
+        admin_bar.auth(LOGIN_ADMIN, PASSWORD)
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Коммуникации | IMOT.io")
+
+    with allure.step("Go to markup"):
+        admin_bar.click_markup()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Разметка | IMOT.io")
+
+    with allure.step("Go to deals"):
+        page.locator(BUTTON_DEALS).click()
+        page.wait_for_timeout(1000)
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Сделки | IMOT.io")
+
+    with allure.step("go notifications"):
+        admin_bar.click_notifications()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Оповещения | IMOT.io")
+
+    with allure.step("go settings"):
+        admin_bar.click_settings()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Настройки | IMOT.io")
+
+    with allure.step("Go to users"):
+        admin_bar.go_to_users_list()
+
+    with allure.step("Check title"):
+        expect(page).to_have_title("Пользователи | IMOT.io")
+
+    with allure.step("Delete admin"):
+        delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)

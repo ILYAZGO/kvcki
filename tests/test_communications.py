@@ -1177,7 +1177,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]')).not_to_be_checked()
 
     with allure.step("Check that we can close comment form with X"):
-        page.locator(BUTTON_CROSS).click()
+        page.locator(BUTTON_CLOSE).click()
 
     with allure.step("Press (add comment)"):
         communications.press_add_comment()

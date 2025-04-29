@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 # inputs
@@ -16,7 +16,6 @@ INPUT_SORT_ORDER = '[name="priority"]'
 
 # buttons
 BUTTON_CHANGE_FILTERS = '[class*="styles_btnTitle_"]'
-BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
 BUTTON_ADD_CHECK_LIST = '[data-testid="markup_addChecklists"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_SAVE_EDITED_NAME = '[class*="checkButton"]'
@@ -29,18 +28,18 @@ CHECK_BOX_AUTOGENEREATE_REPORT = '[id="checklistGenerateReport"]'
 class Checklists(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
-        self.button_check_list = page.locator(BUTTON_CHECK_LIST)
         self.button_add_check_list = page.locator(BUTTON_ADD_CHECK_LIST)
         self.input_check_list_name = page.locator(INPUT_CHECK_LIST_NAME)
         self.button_change_filters = page.locator(BUTTON_CHANGE_FILTERS)
 
-    def go_to_check_list(self):
+    def click_check_lists(self):
         """Go to check lists"""
-        self.page.wait_for_selector(BUTTON_MARKUP)
-        self.button_markup.click()
-        self.page.wait_for_selector(BUTTON_CHECK_LIST)
-        self.page.wait_for_timeout(500)
+        # self.page.wait_for_selector(BUTTON_MARKUP)
+        # self.button_markup.click()
+        # self.page.wait_for_selector(BUTTON_CHECK_LIST)
+        # self.page.wait_for_timeout(500)
         self.button_check_list.click()
+        self.page.wait_for_timeout(500)
 
     def create_check_list_with_questions_and_answers(self, check_list_name, first_question_title, second_question_title):
         """Creates 1st question with 2 answers and points and 2nd question with answer and points then delete 2nd question"""

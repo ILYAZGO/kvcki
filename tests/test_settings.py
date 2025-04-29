@@ -1317,7 +1317,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         settings.fill_quota_time("100")
 
     with allure.step("press (add)"):
-        settings.press_add_in_quotas()
+        settings.press_add_in_modal_in_quotas()
         #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
 
     with allure.step("Wait for snackbar and check"):
@@ -1356,7 +1356,7 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         settings.fill_quota_time("100")
 
     with allure.step("press (add)"):
-        settings.press_add_in_quotas()
+        settings.press_add_in_modal_in_quotas()
         #page.wait_for_selector('[aria-rowindex="2"]', timeout=wait_until_visible)
 
     with allure.step("Wait for snackbar and check"):

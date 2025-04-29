@@ -1,15 +1,15 @@
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
-BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
+# BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
+# BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
 BUTTON_SAVE_AS_NEW = '[data-testid="reportNewSave"]'
 BUTTON_REPORT_UPDATE = '[data-testid="reportUpdate"]'
 BUTTON_CHANGE_FILTERS = '[data-testid="report_filters_addCriterias"]'
 BUTTON_COLLAPSE_EXPAND = '[class*="ShowHideCheck_checkTitle"]'
 BUTTON_ADD_COLUMN = '[data-testid="report_rows_addColumn"]'
 BUTTON_ADD_ROW = '[data-testid="report_rows_addRow"]'
-BUTTON_MANAGE_REPORTS = '[href*="/reports"]'
+# BUTTON_MANAGE_REPORTS = '[href*="/reports"]'
 BUTTON_CREATE_REPORT_IN_MANAGEMENT = '[data-testid="addUserButton"]'
 
 INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
@@ -70,12 +70,12 @@ class Reports(BaseClass):
         self.select_with_additional_param = page.locator(SELECT_WITH_ADDITIONAL_PARAM).locator('[type="text"]')
         self.button_gear_in_row = page.locator('[data-testid="report_rows_row_1_settings_btn"]')
 
-    def press_create_report(self):
-        self.page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
-        self.page.wait_for_timeout(500)
-        self.page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
-        self.page.wait_for_timeout(500)
-        self.page.wait_for_selector(BUTTON_GENERATE_REPORT)
+    # def press_create_report(self):
+    #     self.page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
+    #     self.page.wait_for_timeout(500)
+    #     self.page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
+    #     self.page.wait_for_timeout(500)
+    #     self.page.wait_for_selector(BUTTON_GENERATE_REPORT)
 
     def press_generate_report(self):
         self.page.wait_for_timeout(500)
@@ -105,10 +105,10 @@ class Reports(BaseClass):
         self.page.locator(BUTTON_CREATE_REPORT_IN_MANAGEMENT).click()
         self.page.wait_for_selector(BUTTON_GENERATE_REPORT)
 
-    def press_report_management(self):
-        self.page.wait_for_selector(BUTTON_MANAGE_REPORTS)
-        self.page.locator(BUTTON_MANAGE_REPORTS).click()
-        self.page.wait_for_selector('[role="table"]', timeout=self.timeout)
+    # def press_report_management(self):
+    #     self.page.wait_for_selector(BUTTON_MANAGE_REPORTS)
+    #     self.page.locator(BUTTON_MANAGE_REPORTS).click()
+    #     self.page.wait_for_selector('[role="table"]', timeout=self.timeout)
 
     def press_save_as_new(self):
         self.page.wait_for_timeout(500)
@@ -269,18 +269,6 @@ def press_save_current(page="page: Page"):
     page.locator(BUTTON_REPORT_UPDATE).click()
     page.wait_for_selector('[class="modal-btns"]')
 
-
-# def change_grouping_period(period, page="page: Page"):
-#     page.get_by_text("По дням", exact=True).click()
-#     page.wait_for_timeout(500)
-#     page.get_by_text(period, exact=True).click()
-#     page.wait_for_timeout(500)
-#
-#
-# def delete_current_report(page="page: Page"):
-#     page.locator('[class=" css-izdlur"]').click()
-#     page.get_by_text("Удалить шаблон", exact=True).click()
-#     page.get_by_role("button", name="Удалить").click()
 
 
 

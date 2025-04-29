@@ -1,10 +1,8 @@
 from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-
-BUTTON_USERS = '[data-testid="userLink"]'
+# BUTTON_USERS = '[data-testid="userLink"]'
 BUTTON_ADD_USER = '[data-testid="addUserButton"]' # same button for employee
-BUTTON_OTMENA = '[data-testid="cancelButton"]'
 BUTTON_KORZINA = '[class*="styles_actions"]'
 
 USER_LOGIN_IN_LEFT_MENU = '[class*="headerName"]'
@@ -19,20 +17,17 @@ CHECKBOX_PROFANITY_FILTER = '[name="profanity_filter"]'
 CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 
-
 class Users(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
-        self.button_users = page.locator(BUTTON_USERS)
         self.button_add_user = page.locator(BUTTON_ADD_USER)
         self.select_role = page.locator(SELECT_ROLE).locator("svg")
 
-
-    def go_to_users_list(self):
-        self.page.wait_for_selector(BUTTON_USERS)
-        self.button_users.click()
-        self.page.wait_for_timeout(1000)
-        self.page.wait_for_selector('[class="circular-progress"]', state='hidden', timeout=self.timeout)
+    # def go_to_users_list(self):
+    #     self.page.wait_for_selector(BUTTON_USERS)
+    #     self.button_users.click()
+    #     self.page.wait_for_timeout(1000)
+    #     self.page.wait_for_selector('[class="circular-progress"]', state='hidden', timeout=self.timeout)
 
     def press_button_add_user(self):
         self.button_add_user.click()

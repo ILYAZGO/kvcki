@@ -9,7 +9,7 @@ from main directory:
 
    # for e2e tests (change url if needed. define test-set if needed):
 
-    pytest -n auto --base-url https://app.stand.imot.io/ru tests/
+    pytest -n auto --base-url https://app.stand.imot.io/ tests/
 
    # for api tests:
 

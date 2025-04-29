@@ -109,6 +109,12 @@ class Settings(BaseClass):
         self.page.get_by_role("button", name="Добавить", exact=True).click()
         self.page.wait_for_selector(MODAL_WINDOW)
 
+    def press_add_in_modal_in_quotas(self):
+        """Working in table and modal window"""
+        self.page.wait_for_selector(BUTTON_ACCEPT)
+        self.page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT).click()
+        self.page.wait_for_selector(MODAL_WINDOW)
+
     def press_save(self):
         self.page.get_by_role("button", name="Сохранить").click()
         self.page.wait_for_timeout(500)

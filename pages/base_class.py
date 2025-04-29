@@ -2,10 +2,18 @@ from playwright.sync_api import Page, expect
 
 BUTTON_COMMUNICATIONS = '[value="calls"]'
 BUTTON_REPORTS = '[value="reports"]'
+BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
+BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
+BUTTON_MANAGE_REPORTS = '[href*="/reports"]'
 BUTTON_MARKUP = '[value="tags"]'
+BUTTON_DICTS = '[data-testid="markup_nav_dicts"]'
+BUTTON_ADD_DICT = '[data-testid="markup_addDict"]'
+BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
+BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_NOTIFICATIONS = '[value="notifications"]'
 BUTTON_DEALS = '[value="deals"]'
 BUTTON_SETTINGS = '[value="settings"]'
+BUTTON_USERS = '[data-testid="userLink"]'
 BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
 BUTTON_EMPLOYEES = '[href*="settings/employees"]'
@@ -20,12 +28,16 @@ INPUT_ADDRESS_BOOK = '[class*="AddressBookTextArea"]'
 BUTTON_INTEGRATIONS_IN_MENU = '[href*="settings/integrations"]'
 BUTTON_SUBMIT = '[type="submit"]'
 BUTTON_ACCEPT = '[data-testid="acceptButton"]'
+BUTTON_OTMENA = '[data-testid="cancelButton"]'
 MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
-BUTTON_CROSS = '[data-testid="CloseIcon"]'
+BUTTON_CROSS = '[data-testid="closePopupButton"]'
+BUTTON_CLOSE = '[data-testid="CloseIcon"]'
 INPUT_SEARCH = '[name="searchString"]'
 BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
+BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'
+INPUT_NEW_GROUP_NAME = '[name="groupName"]'
 
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'
@@ -83,6 +95,12 @@ class BaseClass:
         self.select_user_lang = page.locator(SELECT_USER_LANG).locator("svg")
         '''Other'''
         self.button_markup = page.locator(BUTTON_MARKUP)
+        self.button_dicts = page.locator(BUTTON_DICTS)
+        self.button_check_list = page.locator(BUTTON_CHECK_LIST)
+        self.button_gpt = page.locator(BUTTON_GPT)
+        self.button_users = page.locator(BUTTON_USERS)
+        self.button_add_group = page.locator(BUTTON_ADD_GROUP)
+        self.input_new_group_name = page.locator(INPUT_NEW_GROUP_NAME)
         self.button_korzina = page.locator(BUTTON_KORZINA)
         self.button_pencil = page.locator(BUTTON_PENCIL)
         self.button_employees = page.locator(BUTTON_EMPLOYEES)
@@ -203,11 +221,42 @@ class BaseClass:
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
+    def press_create_report(self):
+        self.page.wait_for_selector(BUTTON_CREATE_REPORT_IN_MENU)
+        self.page.wait_for_timeout(500)
+        self.page.locator(BUTTON_CREATE_REPORT_IN_MENU).click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(BUTTON_GENERATE_REPORT)
+
+    def press_report_management(self):
+        self.page.wait_for_selector(BUTTON_MANAGE_REPORTS)
+        self.page.locator(BUTTON_MANAGE_REPORTS).click()
+        self.page.wait_for_selector('[role="table"]', timeout=self.timeout)
+
     def click_markup(self):
         """Click Markup"""
         self.page.wait_for_selector(BUTTON_MARKUP)
         self.button_markup.click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+
+    def click_to_dicts(self):
+        self.page.wait_for_timeout(1000)
+        self.button_dicts.click()
+        self.page.wait_for_timeout(500)
+        #self.page.wait_for_selector(BUTTON_ADD_DICT)
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+
+    def click_check_lists(self):
+        """Go to check lists"""
+        self.button_check_list.click()
+        self.page.wait_for_timeout(500)
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+
+    def click_gpt(self):
+        self.page.wait_for_selector(BUTTON_GPT, timeout=self.timeout)
+        self.button_gpt.click()
+        self.page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=self.timeout)
         self.page.wait_for_timeout(500)
 
     def click_rights(self):
@@ -220,6 +269,12 @@ class BaseClass:
         self.button_employees.click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_selector('[role="grid"]')
+
+    def go_to_users_list(self):
+        self.page.wait_for_selector(BUTTON_USERS)
+        self.button_users.click()
+        self.page.wait_for_timeout(1000)
+        self.page.wait_for_selector('[class="circular-progress"]', state='hidden', timeout=self.timeout)
 
     def click_actions_with_calls(self):
         self.page.locator(BUTTON_ACTIONS_WITH_CALLS).click()
@@ -271,4 +326,16 @@ class BaseClass:
         self.menu.get_by_text(username, exact=True).click()
         self.page.wait_for_selector('[data-testid*="_importSearch}"]', timeout=self.timeout)
         self.page.wait_for_timeout(1000)
+
+    def press_create_group(self):
+        """Press create group in markup"""
+        self.page.wait_for_selector(BUTTON_ADD_GROUP)
+        self.button_add_group.click()
+        self.page.wait_for_selector(INPUT_NEW_GROUP_NAME)
+
+    def input_new_group_name(self, group_name: str):
+        """Type new group name"""
+        self.input_new_group_name.type(group_name, delay=10)
+        self.modal_window.locator(BUTTON_ACCEPT).click()
+        self.page.wait_for_timeout(500)
 

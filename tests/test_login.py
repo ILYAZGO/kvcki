@@ -104,6 +104,9 @@ def test_login_operator_positive(base_url, page: Page) -> None:
     with allure.step("Go to url"):
         login_page.navigate(base_url)
 
+    with allure.step("Check registration button not visible"):
+        expect(page.get_by_text("Зарегистрироваться")).not_to_be_visible()
+
     with allure.step("Auth"):
         login_page.auth(LOGIN_OPERATOR, PASSWORD)
 
@@ -112,6 +115,9 @@ def test_login_operator_positive(base_url, page: Page) -> None:
 
     with allure.step("Check that quit was successful"):
         login_page.assert_quited()
+
+    with allure.step("Check registration button not visible"):
+        expect(page.get_by_text("Зарегистрироваться")).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)

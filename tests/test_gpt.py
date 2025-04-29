@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.gpt import *
 from utils.create_delete_user import create_user, delete_user, give_users_to_manager
@@ -23,8 +23,11 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("Auth"):
         gpt.auth(LOGIN, PASSWORD)
 
+    with allure.step("Go to markup"):
+        gpt.click_markup()
+
     with allure.step("Go to GPT"):
-        gpt.go_to_gpt()
+        gpt.click_gpt()
 
     with allure.step("Click (Create new rule)"):
         gpt.click_create_new_gpt_rule()
@@ -52,8 +55,8 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that created and have 2 questions and filter"):
-        expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled(timeout=wait_until_visible)
-        expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled(timeout=wait_until_visible)
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled(timeout=wait_until_visible)
+        expect(page.locator(BUTTON_OTMENA)).to_be_disabled(timeout=wait_until_visible)
         expect(page.get_by_text("Вопрос 2")).to_have_count(1)
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
 
@@ -73,8 +76,8 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that question deleted"):
-        expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled(timeout=wait_until_visible)
-        expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled(timeout=wait_until_visible)
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled(timeout=wait_until_visible)
+        expect(page.locator(BUTTON_OTMENA)).to_be_disabled(timeout=wait_until_visible)
         expect(page.get_by_text("Вопрос 2")).to_have_count(0)
 
     with allure.step("Rename GPT rule"):
@@ -126,8 +129,11 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
     with allure.step("Auth"):
         gpt.auth(LOGIN, PASSWORD)
 
+    with allure.step("Go to markup"):
+        gpt.click_markup()
+
     with allure.step("Go to GPT"):
-        gpt.go_to_gpt()
+        gpt.click_gpt()
 
     with allure.step("Click (Create new rule)"):
         gpt.click_create_new_gpt_rule()
@@ -142,8 +148,8 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that saved"):
-        expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled()
-        expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled()
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(page.locator(BUTTON_OTMENA)).to_be_disabled()
 
     with allure.step("Fill Assistant text"):
         page.locator('[placeholder="..."]').fill("SomeText")
@@ -241,8 +247,11 @@ def test_additional_params_gpt_rule_by_admin(base_url, page: Page) -> None:
     with allure.step("Go to user import to"):
         gpt.go_to_user(LOGIN_USER)
 
+    with allure.step("Go to markup"):
+        gpt.click_markup()
+
     with allure.step("Go to GPT"):
-        gpt.go_to_gpt()
+        gpt.click_gpt()
 
     with allure.step("Click (Create new rule)"):
         gpt.click_create_new_gpt_rule()
@@ -257,8 +266,8 @@ def test_additional_params_gpt_rule_by_admin(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that saved"):
-        expect(page.locator(BUTTON_GPT_SAVE)).to_be_disabled()
-        expect(page.locator(BUTTON_GPT_CANCEL)).to_be_disabled()
+        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(page.locator(BUTTON_OTMENA)).to_be_disabled()
 
     with allure.step("Fill Assistant text"):
         page.locator('[placeholder="..."]').nth(0).type("SomeText", delay=10)
@@ -367,8 +376,11 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
     with allure.step("Go to user import to"):
         gpt.go_to_user(LOGIN_USER)
 
-    with allure.step("Go to gpt"):
-        gpt.go_to_gpt()
+    with allure.step("Go to markup"):
+        gpt.click_markup()
+
+    with allure.step("Go to GPT"):
+        gpt.click_gpt()
 
     with allure.step("Press import button"):
         page.locator(BUTTON_IMPORT_GPT).click()
@@ -446,8 +458,11 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
     with allure.step("Go to user import to"):
         gpt.go_to_user(LOGIN_USER)
 
-    with allure.step("Go to gpt"):
-        gpt.go_to_gpt()
+    with allure.step("Go to markup"):
+        gpt.click_markup()
+
+    with allure.step("Go to GPT"):
+        gpt.click_gpt()
 
     with allure.step("Press import button"):
         page.locator(BUTTON_IMPORT_GPT).click()
@@ -516,8 +531,11 @@ def test_import_gpt_rules_disabled_for_user(base_url, page: Page) -> None:
     with allure.step("Auth"):
         gpt.auth(LOGIN_USER, PASSWORD)
 
-    with allure.step("Go to gpt"):
-        gpt.go_to_gpt()
+    with allure.step("Go to markup"):
+        gpt.click_markup()
+
+    with allure.step("Go to GPT"):
+        gpt.click_gpt()
 
     with allure.step("Check that for user gpt rules import disabled"):
         expect(page.locator(BUTTON_IMPORT_GPT)).not_to_be_visible()
