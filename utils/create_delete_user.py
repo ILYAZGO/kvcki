@@ -17,7 +17,7 @@ for delete user write after test :
 delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
-def create_user(url, role, password):
+def create_user(url: str, role: str, password: str):
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
         'accept': 'application/json',
@@ -32,7 +32,7 @@ def create_user(url, role, password):
         # 'client_secret': '',
     }
 
-    get_token = r.post(url=url + "/token", headers=headers_for_get_token, data=data).json()
+    get_token = r.post(f"{url}/token", headers=headers_for_get_token, data=data).json()
 
     #token = f"{get_token['token_type'].capitalize()} {get_token['access_token']}"
     token = f"Bearer {get_token['access_token']}"
@@ -63,7 +63,7 @@ def create_user(url, role, password):
         }
     }
 
-    create = r.post(url=url + "/user", headers=headers_for_create, json=json_for_create)
+    create = r.post(f"{url}/user", headers=headers_for_create, json=json_for_create)
     user_id = create.text.replace('"', '')
 
     if create.status_code == 200:
@@ -104,7 +104,7 @@ def create_user(url, role, password):
             'client_id': '',
             'client_secret': '',
         }
-        get_token_for_user = r.post(url=url + "/token", headers=headers_for_get_token, data=data_for_user).json()
+        get_token_for_user = r.post(f"{url}/token", headers=headers_for_get_token, data=data_for_user).json()
 
         token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
 
@@ -151,8 +151,8 @@ def create_user(url, role, password):
             "title": "auto_dict_group",
             "enabled": True
         }
-        add_rule_group = r.post(url=url + "/tag_rule_group/", headers=headers_for_user, json=rule_group)
-        add_dict_group = r.post(url=url + "/dict_group/", headers=headers_for_user, json=dict_group)
+        add_rule_group = r.post(f"{url}/tag_rule_group/", headers=headers_for_user, json=rule_group)
+        add_dict_group = r.post(f"{url}/dict_group/", headers=headers_for_user, json=dict_group)
 
         rule_group_id = add_rule_group.text.replace('"', '')
         dict_group_id = add_dict_group.text.replace('"', '')
@@ -185,7 +185,7 @@ def create_user(url, role, password):
             "allowedActions": [],
             "timeTagRules": []}
 
-        add_rule = r.post(url=url + "/tag_rule/", headers=headers_for_user, json=rule)
+        add_rule = r.post(f"{url}/tag_rule/", headers=headers_for_user, json=rule)
 
         rule_id = add_rule.text.replace('"', '')
 
@@ -202,7 +202,7 @@ def create_user(url, role, password):
                 "allowedUsers": [],
                 "phrases": ["auto_dict"]}
 
-        add_dict = r.post(url=url + "/dict/", headers=headers_for_user, json=dict)
+        add_dict = r.post(f"{url}/dict/", headers=headers_for_user, json=dict)
         dict_id = add_dict.text.replace('"', '')
 
         if add_dict.status_code == 201:
@@ -341,7 +341,7 @@ def create_operator(url: str, parent_user_id: str, password: str):
         'password': 'Qaz123wsX'
     }
 
-    get_token = r.post(url=url + "/token", headers=headers_for_get_token, data=data).json()
+    get_token = r.post(f"{url}/token", headers=headers_for_get_token, data=data).json()
     # token = f"{get_token['token_type'].capitalize()} {get_token['access_token']}"
     token = f"Bearer {get_token['access_token']}"
 
@@ -370,7 +370,7 @@ def create_operator(url: str, parent_user_id: str, password: str):
     return user_id, token, login
 
 
-def delete_user(url, token, user_id):
+def delete_user(url: str, token: str, user_id: str):
 
     headers_for_delete = {
         'accept': '*/*',
@@ -385,7 +385,7 @@ def delete_user(url, token, user_id):
         logger.opt(depth=1).info(f"\n>>>>> USER {user_id} NOT DELETED <<<<<")
 
 
-def give_users_to_manager(url, user_id_manager, user_id_users: list, token):
+def give_users_to_manager(url: str, user_id_manager: str, user_id_users: list, token: str):
 
     headers_for_giving = {
         'accept': 'application/json, text/plain, */*',
@@ -403,7 +403,7 @@ def give_users_to_manager(url, user_id_manager, user_id_users: list, token):
         logger.opt(depth=1).info(f"\n>>>>> USERS {user_id_users} WAS NOT GIVED TO MANAGER {user_id_manager} <<<<<")
 
 
-def give_manager_all_rights(url, user_id_manager, token ):
+def give_manager_all_rights(url: str, user_id_manager: str, token: str):
     headers = {
         'accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
@@ -421,7 +421,7 @@ def give_manager_all_rights(url, user_id_manager, token ):
 
 
 
-def create_rules(url, login, password, user_id, amount):
+def create_rules(url: str, login: str, password: str, user_id: str, amount):
 
     headers_for_get_token = {
         'accept': 'application/json',
@@ -488,7 +488,7 @@ def create_rules(url, login, password, user_id, amount):
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} RULE NAME test_search_and_sort{i}<<<<<")
 
 
-def create_dicts(url, login, password, user_id, amount):
+def create_dicts(url: str, login: str, password: str, user_id: str, amount):
 
     headers_for_get_token = {
         'accept': 'application/json',
@@ -545,7 +545,7 @@ def create_dicts(url, login, password, user_id, amount):
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT NAME test_search_and_sort{i}<<<<<")
 
 
-def give_access_right(url, giver_token, recipient_id, access_right_list):
+def give_access_right(url: str, giver_token: str, recipient_id: str, access_right_list):
     """Admin can give for user and operator, user for operator"""
 
     headers_for_give = {
