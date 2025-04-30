@@ -327,7 +327,7 @@ def create_user(url, role, password):
     return user_id, token, login
 
 
-def create_operator(url, parent_user_id, password):
+def create_operator(url: str, parent_user_id: str, password: str):
 
     name = login = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
@@ -338,17 +338,14 @@ def create_operator(url, parent_user_id, password):
 
     data = {
         'username': '4adminIM',
-        'password': 'Qaz123wsX',
-        # 'scope': '',
-        # 'client_id': '',
-        # 'client_secret': '',
+        'password': 'Qaz123wsX'
     }
 
     get_token = r.post(url=url + "/token", headers=headers_for_get_token, data=data).json()
     # token = f"{get_token['token_type'].capitalize()} {get_token['access_token']}"
     token = f"Bearer {get_token['access_token']}"
 
-    json = {
+    payload = {
         'role': 'operator',
         'login': login,
         'name': name,
@@ -362,7 +359,7 @@ def create_operator(url, parent_user_id, password):
         'Authorization': token,
     }
 
-    create = r.post(url=url + "/user", headers=headers_for_create, json=json)
+    create = r.post(f"{url}/user", headers=headers_for_create, json=payload)
     user_id = create.text.replace('"', '')
 
     if create.status_code == 200:
@@ -398,7 +395,7 @@ def give_users_to_manager(url, user_id_manager, user_id_users: list, token):
     #importFrom_id = '64b923905f95f6305573e619'
     #json_with_id = [USER_ID_USER, importFrom_id]
 
-    give_user = r.put(url=url + f"/user/{user_id_manager}/user_limitation", headers=headers_for_giving, json=user_id_users)
+    give_user = r.put(f"{url}/user/{user_id_manager}/user_limitation", headers=headers_for_giving, json=user_id_users)
 
     if give_user.status_code == 204:
         logger.opt(depth=1).info(f"\n>>>>> USERS {user_id_users} GIVED TO MANAGER {user_id_manager} <<<<<")
@@ -415,7 +412,7 @@ def give_manager_all_rights(url, user_id_manager, token ):
     json_with_rights = {'restt': 'true','delete_user': 'true', 'add_user': 'true','set_default_engine': 'true',
             'quota_edit': 'true', 'gpt_quota': 'true','user_modules_setup': 'true'}
 
-    give_rights = r.put(url=url + f"/user/{user_id_manager}/access_rights", headers=headers, json=json_with_rights)
+    give_rights = r.put(f"{url}/user/{user_id_manager}/access_rights", headers=headers, json=json_with_rights)
 
     if give_rights.status_code == 204:
         logger.opt(depth=1).info(f"\n>>>>> MANAGER {user_id_manager} NOW HAVE ALL RIGHTS <<<<<")
@@ -438,7 +435,7 @@ def create_rules(url, login, password, user_id, amount):
         'client_id': '',
         'client_secret': '',
     }
-    get_token_for_user = r.post(url=url + "/token", headers=headers_for_get_token, data=data_for_user).json()
+    get_token_for_user = r.post(f"{url}/token", headers=headers_for_get_token, data=data_for_user).json()
 
     #token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
     token_for_user = f"Bearer {get_token_for_user['access_token']}"
@@ -453,7 +450,7 @@ def create_rules(url, login, password, user_id, amount):
         "title": "auto_sort_group",
         "enabled": True
     }
-    add_rule_group = r.post(url=url + "/tag_rule_group/", headers=headers_for_user, json=rule_group)
+    add_rule_group = r.post(f"{url}/tag_rule_group/", headers=headers_for_user, json=rule_group)
 
     group_id = add_rule_group.text.replace('"', '')
 
@@ -505,7 +502,7 @@ def create_dicts(url, login, password, user_id, amount):
         'client_id': '',
         'client_secret': '',
     }
-    get_token_for_user = r.post(url=url + "/token", headers=headers_for_get_token, data=data_for_user).json()
+    get_token_for_user = r.post(f"{url}/token", headers=headers_for_get_token, data=data_for_user).json()
 
     #token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
     token_for_user = f"Bearer {get_token_for_user['access_token']}"

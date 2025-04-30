@@ -99,17 +99,17 @@ class Users(BaseClass):
     def set_industry(self, industry):
         self.page.locator(SELECT_INDUSTRY).locator("svg").click()
         self.page.wait_for_selector(MENU)
-        self.page.locator(MENU).get_by_text(industry, exact=True).click()
+        self.menu.get_by_text(industry, exact=True).click()
         self.page.wait_for_timeout(500)
 
     def set_industry_and_partner(self, industry, partner):
         self.page.locator(SELECT_INDUSTRY).locator("svg").click()
         self.page.wait_for_selector(MENU)
-        self.page.locator(MENU).get_by_text(industry, exact=True).click()
+        self.menu.get_by_text(industry, exact=True).click()
         self.page.wait_for_timeout(500)
         self.page.locator(SELECT_PARTNER).locator("svg").click()
         self.page.wait_for_selector(MENU)
-        self.page.locator(MENU).get_by_text(partner, exact=True).click()
+        self.menu.get_by_text(partner, exact=True).click()
 
     def delete_added_user(self):
         self.page.wait_for_timeout(500)

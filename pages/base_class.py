@@ -121,7 +121,7 @@ class BaseClass:
         self.login.type(login, delay=10)
         self.page.wait_for_selector("[id='password']")
         self.password.type(password, delay=10)
-        self.page.wait_for_selector("[type='submit']")
+        self.page.wait_for_selector(BUTTON_SUBMIT)
         self.button_enter.click()
         self.page.wait_for_timeout(1000)
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
@@ -148,7 +148,7 @@ class BaseClass:
         #self.page.get_by_label("Профиль").click()
         self.page.locator('[class*="MuiIconButton-sizeSmall"]').nth(2).click()
         self.page.wait_for_selector(MENU)
-        self.page.locator(MENU).locator('[id*="option-1"]').click()
+        self.menu.locator('[id*="option-1"]').click()
         #self.menu.get_by_text("Выйти", exact=True).click()
         self.page.wait_for_timeout(2000)
 
@@ -303,19 +303,19 @@ class BaseClass:
         """Select language in word processing"""
         self.select_language.click()
         self.page.wait_for_selector(MENU)
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(500)
 
     def click_engine_select(self):
         """Select engine in word processing"""
         self.select_engine.click()
         self.page.wait_for_selector(MENU)
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(500)
 
     def click_model_select(self):
         """Select model in word processing"""
         self.select_model.click()
         self.page.wait_for_selector(MENU)
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(500)
 
     def choose_option(self, option_number: int):
         """Choose option from menu"""
