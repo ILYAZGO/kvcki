@@ -1,9 +1,6 @@
 from pages.base_class import *
 
-# BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_GPT_CREATE_RULE = '[data-testid="markup_addGroup"]'
-# BUTTON_GPT_SAVE = '[data-testid="acceptButton"]'
-# BUTTON_GPT_CANCEL = '[data-testid="cancelButton"]'
 BUTTON_SAVE_EDITED_NAME = '[class*="styles_checkButton"]'
 BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
 
@@ -18,14 +15,6 @@ class GPT(BaseClass):
         self.input_gpt_rule_name = page.locator(INPUT_GPT_RULE_NAME)
         self.input_gpt_tag_name = page.locator(INPUT_GPT_TEG_NAME)
         self.input_gpt_question = page.locator(INPUT_GPT_QUESTION)
-
-    # def click_gpt(self):
-    #     # self.page.wait_for_selector(BUTTON_MARKUP, timeout=self.timeout)
-    #     # self.button_markup.click()
-    #     self.page.wait_for_selector(BUTTON_GPT, timeout=self.timeout)
-    #     self.button_gpt.click()
-    #     self.page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=self.timeout)
-    #     self.page.wait_for_timeout(500)
 
     def delete_rule(self):
         self.page.wait_for_selector(BUTTON_KORZINA)
@@ -47,9 +36,6 @@ class GPT(BaseClass):
 
     def fill_gpt_rule_with_one(self, gpt_rule_name: str):
         """Creates gpt rule with one question"""
-        # self.button_create_gpt_rule.click()
-        # self.page.wait_for_timeout(500)
-        # self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
         self.input_gpt_rule_name.type(gpt_rule_name, delay=10)
         self.page.wait_for_timeout(1000)
         self.input_gpt_tag_name.type("GPTteg1", delay=10)
@@ -58,9 +44,7 @@ class GPT(BaseClass):
         self.page.wait_for_timeout(500)
 
     def fill_gpt_rule_with_two(self, gpt_rule_name: str):
-        # self.button_create_gpt_rule.click()
-        # self.page.wait_for_timeout(500)
-        # self.page.wait_for_selector(INPUT_GPT_RULE_NAME)
+        """Creates gpt rule with two questions"""
         self.input_gpt_rule_name.type(gpt_rule_name, delay=10)
         self.page.wait_for_timeout(1000)
         self.input_gpt_tag_name.type("GPTteg1", delay=10)

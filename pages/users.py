@@ -1,7 +1,5 @@
-from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-# BUTTON_USERS = '[data-testid="userLink"]'
 BUTTON_ADD_USER = '[data-testid="addUserButton"]' # same button for employee
 BUTTON_KORZINA = '[class*="styles_actions"]'
 
@@ -22,12 +20,6 @@ class Users(BaseClass):
         super().__init__(page)
         self.button_add_user = page.locator(BUTTON_ADD_USER)
         self.select_role = page.locator(SELECT_ROLE).locator("svg")
-
-    # def go_to_users_list(self):
-    #     self.page.wait_for_selector(BUTTON_USERS)
-    #     self.button_users.click()
-    #     self.page.wait_for_timeout(1000)
-    #     self.page.wait_for_selector('[class="circular-progress"]', state='hidden', timeout=self.timeout)
 
     def press_button_add_user(self):
         self.button_add_user.click()

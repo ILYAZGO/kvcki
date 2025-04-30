@@ -89,15 +89,6 @@ class Settings(BaseClass):
         self.button_personal_info.click()
         self.page.wait_for_selector(INPUT_LOGIN)
 
-    # def click_rights(self):
-    #     self.button_rights.click()
-    #     self.page.wait_for_timeout(1000)
-    #     self.page.wait_for_selector(BUTTON_ACCEPT)
-
-    # def click_word_processing(self):
-    #     self.button_word_pocessing.click()
-    #     self.page.wait_for_selector(SELECT_LANGUAGE)
-
     def fill_quota_time(self, minutes: str):
         self.page.wait_for_timeout(500)
         self.input_quota_time.clear()
