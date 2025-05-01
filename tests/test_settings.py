@@ -1918,8 +1918,8 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
     with allure.step("Go to consumption history"):
         page.locator(BUTTON_CONSUMPTION_HISTORY).click()
 
-    with allure.step("Check (EX) button is enabled"):
-        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_enabled()
+    with allure.step("Check (EX) button is disabled"):
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_disabled()
 
     with allure.step("Input date"):
         settings.choose_period_date("03/04/2025", "03/04/2025")
@@ -1978,8 +1978,8 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
     with allure.step("Go to consumption history chats"):
         page.locator(BUTTON_CONSUMPTION_HISTORY_CHATS).click()
 
-    with allure.step("Check (EX) button is enabled"):
-        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_enabled()
+    with allure.step("Check (EX) button is disabled"):
+        expect(page.locator('[aria-label="Excel экспорт"]').locator('[type="button"]')).to_be_disabled()
 
     with allure.step("Input date"):
         settings.choose_period_date("03/04/2025", "03/04/2025")
