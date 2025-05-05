@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.check_lists import *
 from utils.create_delete_user import create_user, delete_user, give_users_to_manager, create_operator
@@ -39,10 +39,9 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         expect(page.locator(INPUT_SORT_ORDER)).to_have_value("0")
 
         page.locator(INPUT_SORT_ORDER).clear()
-        page.locator(INPUT_SORT_ORDER).fill("1000")
+        page.locator(INPUT_SORT_ORDER).type("1000", delay=10)
 
     with allure.step("Press button (Save)"):
-        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         checklists.press_button_save()
 
     with allure.step("Check alert"):
@@ -60,7 +59,6 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Save)"):
-        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         checklists.press_button_save()
 
     with allure.step("Check alert"):
@@ -92,7 +90,6 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         page.locator('[id="checklistGenerateReport"]').click()
 
     with allure.step("Press button (Save)"):
-        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         checklists.press_button_save()
 
     with allure.step("Check alert"):
@@ -112,7 +109,6 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         page.locator(CHECK_BOX_AUTOGENEREATE_REPORT).click()
 
     with allure.step("Press button (Save)"):
-        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         checklists.press_button_save()
 
     with allure.step("Check alert"):
@@ -128,7 +124,6 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         checklists.delete_appriser()
 
     with allure.step("Press button (Save)"):
-        #page.wait_for_selector('[data-testid="filters_search_by_tags"]', timeout=wait_until_visible)
         checklists.press_button_save()
 
     with allure.step("Check alert"):

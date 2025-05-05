@@ -12,6 +12,7 @@ BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
 BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_NOTIFICATIONS = '[value="notifications"]'
 BUTTON_DEALS = '[value="deals"]'
+BUTTON_FIND_DEALS = '[data-testid="deals_btns_find"]'
 BUTTON_SETTINGS = '[value="settings"]'
 BUTTON_USERS = '[data-testid="userLink"]'
 BUTTON_RIGHTS = '[href*="/access-rights"]'
@@ -193,6 +194,13 @@ class BaseClass:
         """Click Notifications"""
         self.page.wait_for_selector(BUTTON_NOTIFICATIONS, timeout=self.timeout)
         self.page.locator(BUTTON_NOTIFICATIONS).click()
+        self.page.wait_for_load_state(state="load", timeout=self.timeout)
+        self.page.wait_for_timeout(500)
+
+    def click_deals(self):
+        """Click Deals"""
+        self.page.wait_for_selector(BUTTON_DEALS, timeout=self.timeout)
+        self.page.locator(BUTTON_DEALS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
 

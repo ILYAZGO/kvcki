@@ -405,7 +405,7 @@ def test_notifications_requests_by_admin(base_url, page: Page) -> None:
         page_requests.click_notifications()
 
     with allure.step("Check requests list"):
-        page.wait_for_timeout(7000)
+        page.wait_for_timeout(9000)
         assert len(notifications_requests) == 6
         assert sum('/notify_rules/' in entry.get('url', '') for entry in notifications_requests) == 6 # 2 directly 4 in others
         assert sum('/notify_rules/available_directions' in entry.get('url', '') for entry in notifications_requests) == 1

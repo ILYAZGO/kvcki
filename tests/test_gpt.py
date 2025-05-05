@@ -40,7 +40,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
-        gpt.check_alert("Заполните все обязательные поля")
+        expect(page.get_by_text("Поле обязательно для заполнения")).to_have_count(3)
 
     with allure.step("Create GPT rule with 2 questions"):
         gpt.fill_gpt_rule_with_two("GPTrule")
@@ -97,7 +97,8 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.press_save_in_gpt()
 
     with allure.step("Wait for alert and check alert message"):
-        gpt.check_alert("Заполните все обязательные поля")
+        page.wait_for_selector('[class*="styles_errorCheckbox_"]')
+        expect(page.locator('[class*="styles_errorCheckbox_"]')).to_have_text("Выберите вариант")
 
     with allure.step("Delete rule"):
         gpt.delete_rule()

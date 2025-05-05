@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.adminbar import *
 import pytest
@@ -452,8 +452,7 @@ def test_check_page_titles_by_admin_itself(base_url, page: Page) -> None:
         expect(page).to_have_title("Разметка | IMOT.io")
 
     with allure.step("Go to deals"):
-        page.locator(BUTTON_DEALS).click()
-        page.wait_for_timeout(1000)
+        admin_bar.click_deals()
 
     with allure.step("Check title"):
         expect(page).to_have_title("Сделки | IMOT.io")
