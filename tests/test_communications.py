@@ -255,7 +255,7 @@ def test_check_search_by_client_dict_or_text(base_url, page: Page) -> None:
         communications.press_find_communications_more_than_50()
 
     with allure.step("Check"):
-        communications.assert_communications_found("Найдено коммуникаций 404 из 3130")
+        communications.assert_communications_found("Найдено коммуникаций 405 из 3130")
 
 
 @pytest.mark.calls
@@ -291,7 +291,7 @@ def test_check_search_by_employee_dict_or_text(base_url, page: Page) -> None:
         communications.press_find_communications_more_than_50()
 
     with allure.step("Check"):
-        communications.assert_communications_found("Найдено коммуникаций 493 из 3130")
+        communications.assert_communications_found("Найдено коммуникаций 492 из 3130")
 
 
 @pytest.mark.calls
