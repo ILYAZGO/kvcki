@@ -1428,9 +1428,9 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         reports.add_checklist_to_report("Второй чеклист (тоже нужен для автотестов, не трогать)")
 
     # 0
-    with allure.step("Fill 0 column fith filter"):
-        reports.fill_column_by_exact_filter("0", "zero", "Адрес подключения", "девятнадцать")
-        #fill_column_by_filter("0", "zero", "Адрес подключения", "девятнадцать", page)
+    with allure.step("Fill 0 column with filter"):
+        #reports.fill_column_by_exact_filter("0", "zero", "Адрес подключения", "девятнадцать")
+        reports.fill_column_by_exact_filter("0", "zero", "Имя", "АРИНА")
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
@@ -1438,7 +1438,6 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
     # 1
     with allure.step("Fill 1 column fith filter"):
         reports.fill_column_by_exact_filter("1", "first", "Клиент-должность", "Монтажник Восток")
-        #fill_column_by_filter("1", "first", "Клиент-должность", "Монтажник Восток", page)
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
@@ -1446,15 +1445,14 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
     # 2
     with allure.step("Fill 2 column fith filter"):
         reports.fill_column_by_exact_filter("2", "second", "Должность", "Бухгалтер")
-        #fill_column_by_filter("2", "second", "Должность", "Бухгалтер", page)
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
 
     # 3
     with allure.step("Fill 3 column fith filter"):
-        reports.fill_column_by_exact_filter("3", "third", "Клиент", "Customer")
-        #fill_column_by_filter("3", "third", "Клиент", "Customer", page)
+        #reports.fill_column_by_exact_filter("3", "third", "Клиент", "Customer")
+        reports.fill_column_by_exact_filter("3", "third", "Клиент", "Александр")
 
     with allure.step("Press generate report"):
         reports.press_generate_report()
@@ -1463,7 +1461,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
         expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
         expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
-        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("5")
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("5") #5
         expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("8") #8
         expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6") #6
         expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("19") #19
@@ -1486,10 +1484,10 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_3_searchInput"]').locator('[type="text"]')).to_have_value("third")
 
         # check tags
-        expect(page.locator('[data-testid="report_columns"]').get_by_text("Выбрать все")).to_be_visible()
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("АРИНА")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Монтажник Восток")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Бухгалтер")).to_be_visible()
-        expect(page.locator('[data-testid="report_columns"]').get_by_text("Customer")).to_be_visible()
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("Александр")).to_be_visible()
 
 
 @pytest.mark.e2e

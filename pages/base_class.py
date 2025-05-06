@@ -158,7 +158,7 @@ class BaseClass:
 
     def choose_period_date(self, first_date: str, last_date: str):
         """Choose period"""
-        self.page.wait_for_timeout(3000)
+        self.page.wait_for_timeout(2500)
         self.page.wait_for_selector('[class="ant-space-item"]', timeout=self.timeout)
         self.page.wait_for_timeout(2000)
         self.first_date.click()
