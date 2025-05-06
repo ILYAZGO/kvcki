@@ -3339,7 +3339,7 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Upload file"):
         page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
-        page.wait_for_timeout(5000)
+        page.wait_for_timeout(6000)
 
     with allure.step("Check"):
         expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_enabled()
@@ -3364,7 +3364,7 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Upload file"):
         page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
-        page.wait_for_timeout(5000)
+        page.wait_for_timeout(8000)
 
     with allure.step("Delete from list"):
         page.locator('[title="Remove file"]').click()
