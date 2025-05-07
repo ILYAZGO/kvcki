@@ -125,7 +125,8 @@ def test_create_update_delete_check_list():
                 "enabled": True,
                 "deleted": False,
                 "priority": 1,
-                "maxPoints": 1.0
+                "maxPoints": 1.0,
+                'minPoints': 0.0
             }
         ]
 

@@ -37,17 +37,17 @@ def test_create_update_delete_email_notification_rule():
 
     with allure.step("Check status code == 200 and content"):
         expected_keys_call_vars = {
-            "call_id", "client_phone", "operator_phone", "call_time", "call_timestamp",
-            "duration", "unique_id", "conversation_id", "call_points", "call_max_points",
-            "link", "link_old", "link_new", "public_link", "public_link_old", "public_link_new",
-            "get_fragments('tag_name', 2, 2)", "get_all_text(1000)", "in_line()", "json()", "get_stt_json()"
+            'call_id', 'duration', 'public_link_old', 'link_old', 'get_stt_json()', 'public_link_new',
+            'call_min_points', 'conversation_id', 'json()', 'public_link', 'operator_phone', 'call_max_points',
+            'get_all_text(1000)', "get_fragments('tag_name', 2, 2)", 'call_time', 'link', 'call_timestamp',
+            'client_phone', 'unique_id', 'link_new', 'call_points', 'in_line()'
         }
         expected_keys_descriptions = {
-            "call_id", "client_phone", "operator_phone", "call_time", "call_timestamp",
-            "duration", "unique_id", "conversation_id", "call_points", "call_max_points",
-            "link", "public_link", "get_fragments('tag_name', 2, 2)",
-            "get_all_text(1000)", "in_line()", "json()", "get_stt_json()"
+            'unique_id', 'client_phone', 'call_points', 'json()', 'call_min_points', 'get_all_text(1000)', 'in_line()',
+            'call_id', "get_fragments('tag_name', 2, 2)", 'duration', 'operator_phone', 'link', 'public_link',
+            'get_stt_json()', 'call_timestamp', 'call_max_points', 'call_time', 'conversation_id'
         }
+
         actual_keys_call_vars = set(json_get_notify_rule_variables["call_vars"].keys())
         actual_keys_descriptions = set(json_get_notify_rule_variables["descriptions"].keys())
 
