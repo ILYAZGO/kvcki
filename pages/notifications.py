@@ -33,11 +33,11 @@ class Notifications(BaseClass):
     def choose_block(self, block_number: int):
         self.page.locator(BUTTON_NOTIFICATIONS).click()
         self.page.wait_for_timeout(1000)
-        self.page.locator('[class*="styles_notifyList"]').locator(".styles_root__cx1Gi").nth(block_number).click()
+        self.page.locator('[class*="notifyList"]').locator(".styles_root__cx1Gi").nth(block_number).click()
         self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
 
     def set_notification_name(self, notification_name: str):
-        self.notification_name.type(notification_name, delay=10)
+        self.notification_name.type(notification_name, delay=5)
 
     def add_notification(self, notification_type: str):
         self.button_add_new_rule.click()

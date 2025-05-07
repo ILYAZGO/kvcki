@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 BUTTON_PERSONAL_INFO = '[href*="/profile"]'
@@ -62,7 +62,6 @@ class Settings(BaseClass):
         super().__init__(page)
         self.input_address_book = page.locator(INPUT_ADDRESS_BOOK)
         self.button_personal_info = page.locator(BUTTON_PERSONAL_INFO)
-        #self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
         self.button_gpt_in_quotas = page.locator(BUTTON_GPT_QUOTAS)
         #self.input_chat_gpt_quota_value = page.locator(BLOCK_CHAT_GPT).locator(INPUT_NEW_QUOTA)
         #self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
@@ -153,13 +152,13 @@ class Settings(BaseClass):
         """admin and manager can see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
-        self.input_name.type(name, delay=10)
+        self.input_name.type(name, delay=5)
         self.page.wait_for_selector(f'[value="{name}"]')
         self.input_email.clear()
-        self.input_email.type(email, delay=10)
+        self.input_email.type(email, delay=5)
         self.page.wait_for_selector(f'[value="{email}"]')
         self.input_phone.clear()
-        self.input_phone.type(phone, delay=10)
+        self.input_phone.type(phone, delay=5)
         self.page.wait_for_selector(f'[value="{phone}"]')
         self.input_comment.clear()
         self.input_comment.fill(comment)
@@ -177,13 +176,13 @@ class Settings(BaseClass):
         """user and operator cant see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
-        self.input_name.type(name, delay=10)
+        self.input_name.type(name, delay=5)
         self.page.wait_for_selector(f'[value="{name}"]')
         self.input_email.clear()
-        self.input_email.type(email, delay=10)
+        self.input_email.type(email, delay=5)
         self.page.wait_for_selector(f'[value="{email}"]')
         self.input_phone.clear()
-        self.input_phone.type(phone, delay=10)
+        self.input_phone.type(phone, delay=5)
         self.page.wait_for_selector(f'[value="{phone}"]')
         self.page.wait_for_timeout(1000)
         self.select_user_lang.click()

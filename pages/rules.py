@@ -20,20 +20,8 @@ GROUP_LIST = '[class*="styles_dpBothBox_"]'
 class Rules(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
-        # self.button_add_group = page.locator(BUTTON_ADD_GROUP)
         self.button_add_tag = page.locator(BUTTON_ADD_TAG)
         self.input_tag_name = page.locator(INPUT_TAG_NAME)
-        # self.input_new_group_name = page.locator(INPUT_NEW_GROUP_NAME)
-
-    # def press_create_group(self):
-    #     self.page.wait_for_selector(BUTTON_ADD_GROUP)
-    #     self.button_add_group.click()
-    #     self.page.wait_for_selector(INPUT_NEW_GROUP_NAME)
-    #
-    # def input_new_group_name(self, group_name: str):
-    #     self.input_new_group_name.type(group_name, delay=10)
-    #     self.modal_window.locator(BUTTON_ACCEPT).click()
-    #     self.page.wait_for_timeout(500)
 
     def delete_group(self):
         self.page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
@@ -73,9 +61,6 @@ class Rules(BaseClass):
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 
 # buttons
-#BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
-
-#CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NAZVANIE_PRAVILA_TEGIROVANIYA = '[name="title"]'
 
 

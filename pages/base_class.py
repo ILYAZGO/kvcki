@@ -119,9 +119,9 @@ class BaseClass:
     def auth(self, login: str, password: str):
         """Auth"""
         self.page.wait_for_selector("[id='username']")
-        self.login.type(login, delay=10)
+        self.login.type(login, delay=5)
         self.page.wait_for_selector("[id='password']")
-        self.password.type(password, delay=10)
+        self.password.type(password, delay=5)
         self.page.wait_for_selector(BUTTON_SUBMIT)
         self.button_enter.click()
         self.page.wait_for_timeout(1000)
@@ -345,6 +345,5 @@ class BaseClass:
         """Type new group name"""
         self.input_new_group_name_field.type(group_name, delay=10)
         self.modal_window.locator(BUTTON_ACCEPT).click()
-        #self.page.locator(BUTTON_ACCEPT).click()
         self.page.wait_for_timeout(500)
 

@@ -69,7 +69,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         notifications.add_notification("API")
 
     with allure.step("Set notification name"):
-        notifications.set_notification_name("auto-test-api_method_change")
+        notifications.set_notification_name("api_change")
 
     with allure.step("Set url and headers"):
         notifications.set_url_and_headers("https://www.google.com/", "someHeaders")
@@ -87,7 +87,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
-        notifications.go_back_in_rule_after_save("auto-test-api_method_change")
+        notifications.go_back_in_rule_after_save("api_change")
 
     with allure.step("Page reload"):
         page.reload()
@@ -106,7 +106,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
-        notifications.go_back_in_rule_after_save("auto-test-api_method_change")
+        notifications.go_back_in_rule_after_save("api_change")
 
     with allure.step("Page reload"):
         page.reload()
@@ -125,7 +125,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
-        notifications.go_back_in_rule_after_save("auto-test-api_method_change")
+        notifications.go_back_in_rule_after_save("api_change")
 
     with allure.step("Page reload"):
         page.reload()
@@ -144,7 +144,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         notifications.check_alert("Данные сохранены")
 
     with allure.step("Go back in rule after save"):
-        notifications.go_back_in_rule_after_save("auto-test-api_method_change")
+        notifications.go_back_in_rule_after_save("api_change")
 
     with allure.step("Page reload"):
         page.reload()
@@ -504,7 +504,7 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Go to new rules"):
         page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="К новым правилам").click()
-        page.wait_for_timeout(1800)
+        page.wait_for_timeout(2000)
 
     with allure.step("Check that import was successful"):
         expect(page.get_by_text("pochta")).to_be_visible(timeout=wait_until_visible)
