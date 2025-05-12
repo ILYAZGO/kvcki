@@ -1430,7 +1430,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
     # 0
     with allure.step("Fill 0 column with filter"):
         #reports.fill_column_by_exact_filter("0", "zero", "Адрес подключения", "девятнадцать")
-        reports.fill_column_by_exact_filter("0", "zero", "Имя", "АРИНА")
+        reports.fill_column_by_exact_filter("0", "zero", "Отдел", "Контроля Качества")
 
     with allure.step("Press (Add column)"):
         reports.press_add_column()
@@ -1451,7 +1451,6 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
 
     # 3
     with allure.step("Fill 3 column fith filter"):
-        #reports.fill_column_by_exact_filter("3", "third", "Клиент", "Customer")
         reports.fill_column_by_exact_filter("3", "third", "Клиент", "Александр")
 
     with allure.step("Press generate report"):
@@ -1461,10 +1460,10 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="08-02-2022"]')).to_be_visible()
         expect(page.locator('[aria-label="09-02-2022"]')).to_be_visible()
         expect(page.locator('[aria-label="10-02-2022"]')).to_be_visible()
-        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("5") #5
-        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("8") #8
+        expect(page.locator('[data-id="0"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6") #5
+        expect(page.locator('[data-id="1"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("10") #8
         expect(page.locator('[data-id="2"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("6") #6
-        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("19") #19
+        expect(page.locator('[data-id="3"]').locator('[data-field="row_sum_calls_count"]')).to_have_text("22") #19
 
     with allure.step("Expand reports parameters"):
         reports.expand_report()
@@ -1484,7 +1483,7 @@ def test_reports_column_4_filter(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="report_columns_column_3_searchInput"]').locator('[type="text"]')).to_have_value("third")
 
         # check tags
-        expect(page.locator('[data-testid="report_columns"]').get_by_text("АРИНА")).to_be_visible()
+        expect(page.locator('[data-testid="report_columns"]').get_by_text("Контроля Качества")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Монтажник Восток")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Бухгалтер")).to_be_visible()
         expect(page.locator('[data-testid="report_columns"]').get_by_text("Александр")).to_be_visible()
