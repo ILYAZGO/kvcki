@@ -116,7 +116,7 @@ class Communications(BaseClass):
     def assert_communications_found(self, text: str):
         expect(self.communications_found.nth(0)).to_have_text(text, timeout=self.timeout)
 
-    def change_sort(self, sort_type):
+    def change_sort(self, sort_type: str):
         """Change sort"""
         self.sort.click()
         self.menu.get_by_text(sort_type).click()

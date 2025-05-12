@@ -17,7 +17,7 @@ class AdminBar(BaseClass):
         """Back arrow click"""
         self.back_arrow.click()
 
-    def change_lang(self, current, to):
+    def change_lang(self, current: str, to: str):
         """Change language"""
         self.language.get_by_role("button", name=current).click()
         self.page.wait_for_timeout(500)
