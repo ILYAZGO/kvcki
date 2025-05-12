@@ -3,6 +3,7 @@ from playwright.sync_api import Page, expect, Route, BrowserContext
 from utils.variables import *
 from utils.dates import *
 from pages.reports import *
+from openpyxl import load_workbook
 import pytest
 import allure
 from utils.create_delete_user import create_user, delete_user
@@ -339,6 +340,26 @@ def test_reports_download_report(base_url, page: Page) -> None:
     with allure.step("Check that file was downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
         page.wait_for_timeout(500)
+
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        assert sheet["A1"].value == "Время"
+        assert sheet["A3"].value == "08-02-2022"
+        assert sheet["A4"].value == "09-02-2022"
+        assert sheet["A5"].value == "10-02-2022"
+        assert sheet["A6"].value == "Вошедшие"
+        assert sheet["B3"].value == 10
+        assert sheet["B4"].value == 38
+        assert sheet["B5"].value == 15
+        assert sheet["B6"].value == 63
+        assert sheet["C3"].value == 10
+        assert sheet["C4"].value == 38
+        assert sheet["C5"].value == 15
+        assert sheet["C6"].value == 63
+        assert sheet.max_row == 6
+        assert sheet.max_column == 3
 
     with allure.step("Remove downloaded file"):
         os.remove(path + download.suggested_filename)

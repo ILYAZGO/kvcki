@@ -7,6 +7,7 @@ from utils.create_delete_user import create_user, delete_user, give_access_right
 import os
 import pytest
 import allure
+from openpyxl import load_workbook
 
 
 @pytest.mark.calls
@@ -782,7 +783,6 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
     with allure.step("Check that downloaded export (zip) removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
 
-############3
     with allure.step("Press button (Download)"):
         communications.press_calls_list_download_button(0)
 
@@ -806,7 +806,6 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
     with allure.step("Check that downloaded export (zip) removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
-#############
 
     with allure.step("Press button (Download)"):
         communications.press_calls_list_download_button(0)
@@ -828,6 +827,14 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
     with allure.step("Check that export (zip) downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
         assert 8000 < os.path.getsize(path + download.suggested_filename) < 20000
+
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet.max_row == 55
+        assert sheet.max_column == 4
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
@@ -862,6 +869,14 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
     with allure.step("Check that export (zip) downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
         assert 6000 < os.path.getsize(path + download.suggested_filename) < 7000
+
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        assert sheet["A1"].value == "Выгрузка списка звонков"
+        assert sheet.max_row == 3
+        assert sheet.max_column == 35
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
@@ -981,7 +996,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Fill first ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=10)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=5)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
@@ -1012,6 +1027,14 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
     with allure.step("Check that excel export downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
         assert os.path.getsize(path + download.suggested_filename) > 7300
+
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet.max_row == 55
+        assert sheet.max_column == 4
 
     with allure.step("Remove downloaded excel export"):
         os.remove(path + download.suggested_filename)
@@ -1058,6 +1081,14 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
     with allure.step("Check that excel export downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
         assert os.path.getsize(path + download.suggested_filename) > 7100
+
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet.max_row == 47
+        assert sheet.max_column == 4
 
     with allure.step("Remove downloaded excel export"):
         os.remove(path + download.suggested_filename)

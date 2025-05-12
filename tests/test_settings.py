@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect, Route
+from openpyxl import load_workbook
 from utils.variables import *
 from pages.settings import *
 from utils.dates import *
@@ -1939,6 +1940,14 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == True
         assert 5000 < os.path.getsize(path + download.suggested_filename) < 6000
 
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        #assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet.max_row == 3
+        assert sheet.max_column == 5
+
     with allure.step("Remove downloaded export"):
         os.remove(path + download.suggested_filename)
 
@@ -1968,6 +1977,14 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
     with allure.step("Check that export downloaded"):
         assert os.path.isfile(path + download.suggested_filename) == True
         assert 6000 < os.path.getsize(path + download.suggested_filename) < 7000
+
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        #assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet.max_row == 6
+        assert sheet.max_column == 8
 
     with allure.step("Remove downloaded export"):
         os.remove(path + download.suggested_filename)
@@ -1999,15 +2016,19 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == True
         assert 5000 < os.path.getsize(path + download.suggested_filename) < 6000
 
+    with allure.step("Check what we have inside excel"):
+        wb = load_workbook(path + download.suggested_filename)
+        sheet = wb.active
+
+        #assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet.max_row == 3
+        assert sheet.max_column == 3
+
     with allure.step("Remove downloaded export"):
         os.remove(path + download.suggested_filename)
 
     with allure.step("Check that downloaded export removed"):
         assert os.path.isfile(path + download.suggested_filename) == False
-
-
-
-#################
 
 
 @pytest.mark.e2e
