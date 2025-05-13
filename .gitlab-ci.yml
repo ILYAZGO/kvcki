@@ -26,7 +26,7 @@ tests:
     - echo $URL_FOR_TEST
     - echo "Execute tests"
     - pytest -m api -n 100 --reruns=${RERUNS_NUMBER} --alluredir=allure-results || echo "API tests failed, but continuing"
-    - pytest -m e2e -n 64 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m e2e -n 100 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
     - echo "Send notification to telegram"
