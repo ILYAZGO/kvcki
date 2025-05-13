@@ -103,7 +103,7 @@ def test_settings_actions_with_communications(task_type):
         assert today.strftime("%Y-%m-%d") in json_get_progress_tasks[0]["done_time"]
         #assert json_get_progress_tasks[0]["title"] == {}
         #  https://task.imot.io/browse/DEV-3222
-        assert json_get_progress_tasks[0]["task_interval"] == f"коммуникации за: {today_with_dots}-{today_with_dots}"
+        assert json_get_progress_tasks[0]["task_interval"] == f"Коммуникации за: {today_with_dots}-{today_with_dots}"
         assert json_get_progress_tasks[0]["total"] == 1
         assert json_get_progress_tasks[0]["current"] == 1
 
