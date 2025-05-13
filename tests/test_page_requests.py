@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright
+#from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright
 from utils.variables import *
 from pages.page_requests import *
 from utils.create_delete_user import create_user, delete_user
@@ -156,7 +156,7 @@ def test_markup_requests_by_user(base_url, page: Page) -> None:
         ))
 
     with allure.step("Click dicts"):
-        page_requests.click_dicts()
+        page_requests.click_to_dicts()
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
@@ -176,8 +176,8 @@ def test_markup_requests_by_user(base_url, page: Page) -> None:
             }) if request.resource_type in ['xhr', 'fetch'] else None
         ))
 
-    with allure.step("Click dicts"):
-        page_requests.click_check_list()
+    with allure.step("Click check lists"):
+        page_requests.click_check_lists()
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
@@ -267,7 +267,7 @@ def test_markup_requests_by_admin(base_url, page: Page) -> None:
         ))
 
     with allure.step("Click dicts"):
-        page_requests.click_dicts()
+        page_requests.click_to_dicts()
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
@@ -287,8 +287,8 @@ def test_markup_requests_by_admin(base_url, page: Page) -> None:
             }) if request.resource_type in ['xhr', 'fetch'] else None
         ))
 
-    with allure.step("Click dicts"):
-        page_requests.click_check_list()
+    with allure.step("Click check lists"):
+        page_requests.click_check_lists()
 
     with allure.step("Check requests list"):
         page.wait_for_timeout(7000)
@@ -405,7 +405,7 @@ def test_notifications_requests_by_admin(base_url, page: Page) -> None:
         page_requests.click_notifications()
 
     with allure.step("Check requests list"):
-        page.wait_for_timeout(9000)
+        page.wait_for_timeout(10000)
         assert len(notifications_requests) == 6
         assert sum('/notify_rules/' in entry.get('url', '') for entry in notifications_requests) == 6 # 2 directly 4 in others
         assert sum('/notify_rules/available_directions' in entry.get('url', '') for entry in notifications_requests) == 1

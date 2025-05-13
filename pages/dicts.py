@@ -1,39 +1,16 @@
 #from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-#BUTTON_DICTS = '[data-testid="markup_nav_dicts"]'
-#BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'
-#INPUT_NEW_GROUP_NAME = '[name="groupName"]'
-# BUTTON_ADD_DICT = '[data-testid="markup_addDict"]'
 INPUT_DICT_NAME = '[name="dictName"]'
 INPUT_WORDS_LIST = '[name="phrases"]'
 
 class Dicts(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
-        #self.button_markup = page.locator(BUTTON_MARKUP)
         self.button_dicts = page.locator(BUTTON_DICTS)
-        # self.button_add_group = page.locator(BUTTON_ADD_GROUP)
-        # self.input_new_group_name = page.locator(INPUT_NEW_GROUP_NAME)
         self.input_dict_name = page.locator(INPUT_DICT_NAME)
         self.input_words_list = page.locator(INPUT_WORDS_LIST)
         self.button_add_dict = page.locator(BUTTON_ADD_DICT)
-
-    # def click_to_dicts(self):
-    #     # self.page.wait_for_selector(BUTTON_MARKUP)
-    #     # self.button_markup.click()
-    #     # self.page.wait_for_selector(BUTTON_DICTS)
-    #     self.button_dicts.click()
-    #     self.page.wait_for_selector(BUTTON_ADD_DICT)
-    #     self.page.wait_for_load_state(state="load", timeout=self.timeout)
-
-    # def create_group(self, group_name: str):
-    #     self.page.wait_for_selector(BUTTON_ADD_GROUP)
-    #     self.button_add_group.click()
-    #     self.page.wait_for_selector(INPUT_NEW_GROUP_NAME)
-    #     self.input_new_group_name.type(group_name, delay=10)
-    #     self.modal_window.locator(BUTTON_ACCEPT).click()
-    #     self.page.wait_for_timeout(500)
 
     def create_dict(self, dict_name: str, text: str):
         self.button_add_dict.click()

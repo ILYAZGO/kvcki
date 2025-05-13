@@ -3,41 +3,13 @@ from pages.base_class import *
 
 BUTTON_DICTS = '[data-testid="markup_nav_dicts"]'
 BUTTON_ADD_DICT = '[data-testid="markup_addDict"]'
-BUTTON_CHECK_LIST = '[data-testid="markup_nav_checklists"]'
-BUTTON_GPT = '[data-testid="markup_nav_gpt"]'
 BUTTON_USERS = '[data-testid="userLink"]'
 
 
 class PageRequests(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
-        self.button_gpt = page.locator(BUTTON_GPT)
         self.button_dicts = page.locator(BUTTON_DICTS)
-        self.button_check_list = page.locator(BUTTON_CHECK_LIST)
-        self.button_users = page.locator(BUTTON_USERS)
-
-
-    def click_dicts(self):
-        self.button_dicts.click()
-        self.page.wait_for_selector(BUTTON_ADD_DICT)
-        self.page.wait_for_load_state(state="load", timeout=self.timeout)
-
-    def click_check_list(self):
-        """Go to check lists"""
-        self.button_check_list.click()
-        self.page.wait_for_timeout(500)
-
-    def click_gpt(self):
-        self.button_gpt.click()
-        self.page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=self.timeout)
-        self.page.wait_for_timeout(500)
-
-    def go_to_users_list(self):
-        self.page.wait_for_selector(BUTTON_USERS)
-        self.button_users.click()
-        self.page.wait_for_timeout(1000)
-        self.page.wait_for_selector('[class="circular-progress"]', state='hidden', timeout=self.timeout)
-
 
 
 
