@@ -36,26 +36,26 @@ class GPT(BaseClass):
 
     def fill_gpt_rule_with_one(self, gpt_rule_name: str):
         """Creates gpt rule with one question"""
-        self.input_gpt_rule_name.type(gpt_rule_name, delay=10)
+        self.input_gpt_rule_name.type(gpt_rule_name, delay=5)
         self.page.wait_for_timeout(1000)
-        self.input_gpt_tag_name.type("GPTteg1", delay=10)
+        self.input_gpt_tag_name.type("GPTteg1", delay=5)
         self.page.wait_for_timeout(500)
-        self.input_gpt_question.type("GPTquestion1", delay=10)
+        self.input_gpt_question.type("GPTquestion1", delay=5)
         self.page.wait_for_timeout(500)
 
     def fill_gpt_rule_with_two(self, gpt_rule_name: str):
         """Creates gpt rule with two questions"""
-        self.input_gpt_rule_name.type(gpt_rule_name, delay=10)
+        self.input_gpt_rule_name.type(gpt_rule_name, delay=5)
         self.page.wait_for_timeout(1000)
-        self.input_gpt_tag_name.type("GPTteg1", delay=10)
+        self.input_gpt_tag_name.type("GPTteg1", delay=5)
         self.page.wait_for_timeout(500)
-        self.input_gpt_question.type("GPTquestion1", delay=10)
+        self.input_gpt_question.type("GPTquestion1", delay=5)
         self.page.wait_for_timeout(500)
         self.page.get_by_role("button", name="Добавить вопрос").click()
         self.page.wait_for_timeout(1000)
-        self.input_gpt_tag_name.nth(1).type("GPTteg2", delay=10)
+        self.input_gpt_tag_name.nth(1).type("GPTteg2", delay=5)
         self.page.wait_for_timeout(500)
-        self.input_gpt_question.nth(1).type("GPTquestion2", delay=10)
+        self.input_gpt_question.nth(1).type("GPTquestion2", delay=5)
         self.page.wait_for_timeout(500)
 
     def turn_on_rule(self):
@@ -64,7 +64,7 @@ class GPT(BaseClass):
 
     def rename_gpt_rule(self, old_name, new_name):
         self.button_pencil.click()
-        self.page.locator('[class*="styles_dpBothBox"]').locator(f'[value="{old_name}"]').type(new_name, delay=10)
+        self.page.locator('[class*="styles_dpBothBox"]').locator(f'[value="{old_name}"]').type(new_name, delay=5)
         self.page.locator(BUTTON_SAVE_EDITED_NAME).click()
 
     def press_save_in_gpt(self):

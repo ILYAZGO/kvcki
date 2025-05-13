@@ -92,7 +92,7 @@ class Settings(BaseClass):
         self.page.wait_for_timeout(500)
         self.input_quota_time.clear()
         self.page.wait_for_timeout(1000)
-        self.input_quota_time.type(minutes, delay=10)
+        self.input_quota_time.type(minutes, delay=5)
 
     def press_add_in_quotas(self):
         """Working in table and modal window"""
@@ -118,13 +118,13 @@ class Settings(BaseClass):
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_selector(INPUT_LOGIN)
 
-    def change_login(self, login):
+    def change_login(self, login: str):
         self.page.wait_for_selector(INPUT_LOGIN)
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.input_login.clear()
-        self.input_login.type(login, delay=10)
+        self.input_login.type(login, delay=5)
 
-    def change_industry(self, industry):
+    def change_industry(self, industry: str):
         self.select_industry.click()
         self.page.wait_for_selector(MENU)
         self.menu.get_by_text(industry, exact=True).click()
@@ -135,7 +135,7 @@ class Settings(BaseClass):
         expect(self.menu).to_contain_text(industries_list)
         self.input_phone.click()
 
-    def change_partner(self, partner):
+    def change_partner(self, partner: str):
         self.select_partner.click()
         self.page.wait_for_selector(MENU)
         self.page.locator(MENU).get_by_text(partner, exact=True).click()
@@ -148,7 +148,7 @@ class Settings(BaseClass):
             if not checkbox.is_checked():
                 checkbox.click()
 
-    def fill_personal_information_admin_and_manager(self, name, email, phone, comment, timezone, user_lang):
+    def fill_personal_information_admin_and_manager(self, name: str, email: str, phone: str, comment: str, timezone: str, user_lang: str):
         """admin and manager can see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
@@ -172,7 +172,7 @@ class Settings(BaseClass):
         self.page.get_by_text(timezone).click()
         self.page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
 
-    def fill_personal_information_user_and_operator(self, name, email, phone, timezone, user_lang):
+    def fill_personal_information_user_and_operator(self, name: str, email: str, phone: str, timezone: str, user_lang: str):
         """user and operator cant see and write comment"""
         self.page.wait_for_timeout(500)
         self.input_name.clear()
@@ -191,6 +191,7 @@ class Settings(BaseClass):
         self.page.wait_for_timeout(500)
         self.input_timezone.click()
         self.page.wait_for_selector(MENU)
+        self.page.wait_for_timeout(500)
         self.menu.get_by_text(timezone).click()
         self.page.wait_for_selector(f'[value="{timezone}"]', state="hidden")
         self.page.wait_for_timeout(500)
@@ -210,7 +211,7 @@ class Settings(BaseClass):
 
     def fill_quota_value(self, number: int, value: str):
         self.page.locator('[placeholder="Новое значение"]').nth(number).clear()
-        self.page.locator('[placeholder="Новое значение"]').nth(number).type(value, delay=10)
+        self.page.locator('[placeholder="Новое значение"]').nth(number).type(value, delay=5)
 
     def change_role(self, role: str):
         self.select_role.click()

@@ -29,9 +29,6 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
     with allure.step("Go to dicts"):
         dicts.click_to_dicts()
 
-    # with allure.step("Create group"):
-    #     dicts.create_group("12345")
-
     with allure.step("Press (Create group)"):
         dicts.press_create_group()
 
@@ -151,9 +148,6 @@ def test_add_group_and_dict_with_same_name(base_url, page: Page) -> None:
     with allure.step("Go to dicts"):
         dicts.click_to_dicts()
 
-    # with allure.step("Create group with same name"):
-    #     dicts.create_group("auto_dict_group")
-
     with allure.step("Press (Create group)"):
         dicts.press_create_group()
 
@@ -212,7 +206,6 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
     #
     with allure.step("Press (Add group)"):
         dicts.press_create_group()
-        #page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (Cancel)"):
         page.locator(BUTTON_OTMENA).click()
@@ -222,16 +215,12 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
 
     with allure.step("Press (Add group)"):
         dicts.press_create_group()
-        #page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (cross button)"):
         page.locator(BUTTON_CROSS).click()
 
     with allure.step("Check canceled"):
         expect(page.locator(GROUP_ITEMS)).to_have_count(2)
-    #
-    # with allure.step("Create group"):
-    #     dicts.create_group("12345")
 
     with allure.step("Press (Create group)"):
         dicts.press_create_group()
@@ -293,9 +282,6 @@ def test_check_dict_type(base_url, page: Page) -> None:
 
     with allure.step("Go to dicts"):
         dicts.click_to_dicts()
-
-    # with allure.step("Create group"):
-    #     dicts.create_group("12345")
 
     with allure.step("Press (Create group)"):
         dicts.press_create_group()

@@ -1,7 +1,5 @@
 import requests as r
 import random
-#import json
-#import os
 import time
 from send_file2 import upload_call_to_imotio
 from datetime import datetime, timedelta, timezone
@@ -26,10 +24,7 @@ def create_user(url: str, role: str, password: str):
 
     data = {
         'username': '4adminIM',
-        'password': 'Qaz123wsX',
-        # 'scope': '',
-        # 'client_id': '',
-        # 'client_secret': '',
+        'password': 'Qaz123wsX'
     }
 
     get_token = r.post(f"{url}/token", headers=headers_for_get_token, data=data).json()
@@ -100,9 +95,9 @@ def create_user(url: str, role: str, password: str):
         data_for_user = {
             'username': name,
             'password': password,
-            'scope': '',
-            'client_id': '',
-            'client_secret': '',
+            # 'scope': '',
+            # 'client_id': '',
+            # 'client_secret': '',
         }
         get_token_for_user = r.post(f"{url}/token", headers=headers_for_get_token, data=data_for_user).json()
 
@@ -342,7 +337,6 @@ def create_operator(url: str, parent_user_id: str, password: str):
     }
 
     get_token = r.post(f"{url}/token", headers=headers_for_get_token, data=data).json()
-    # token = f"{get_token['token_type'].capitalize()} {get_token['access_token']}"
     token = f"Bearer {get_token['access_token']}"
 
     payload = {

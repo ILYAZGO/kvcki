@@ -34,9 +34,6 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
     with allure.step("Add group name"):
         rules.input_new_group_name("99999")
 
-    # with allure.step("Create group"):
-    #     rules.create_group("99999")
-
     with allure.step("Wait and check snack bar"):
         rules.check_alert("Группа добавлена")
 
@@ -102,7 +99,6 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
     #
     with allure.step("Press (Add group) button"):
         rules.press_create_group()
-        # page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (Cancel) button"):
         page.locator(BUTTON_OTMENA).click()
@@ -113,7 +109,6 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
 
     with allure.step("Press (Add group) button"):
         rules.press_create_group()
-        # page.locator(BUTTON_ADD_GROUP).click()
 
     with allure.step("Press (X) button"):
         page.locator(BUTTON_CROSS).click()
@@ -121,10 +116,6 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
     with allure.step("Check cancelled"):
         expect(page.locator('[aria-label="Вкл/Выкл"]')).to_have_count(2, timeout=wait_until_visible)
         #expect(page.locator(NI4EGO_NE_NAYDENO)).to_be_visible(timeout=wait_until_visible)  # надпись Ничего не найдено
-    #
-
-    # with allure.step("Create group"):
-    #     rules.create_group("12345")
 
     with allure.step("Press (Create group)"):
         rules.press_create_group()
@@ -145,7 +136,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
     with allure.step("Rename group"):
         page.wait_for_selector(BUTTON_PENCIL)
         page.locator(ACTIVE_GROUP).locator(BUTTON_PENCIL).click()
-        page.locator(INPUT_EDIT_GROUP_NAME).type("54321", delay=10)
+        page.locator(INPUT_EDIT_GROUP_NAME).type("54321", delay=5)
         page.locator(ACTIVE_GROUP).locator(BUTTON_SAVE_EDITED_NAME).get_by_role("button").first.click()
 
     with allure.step("Wait and check snack bar"):
@@ -214,9 +205,6 @@ def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
     with allure.step("Go to markup"):
         rules.click_markup()
 
-    # with allure.step("Create group with same name"):
-    #     rules.create_group("auto_rule_group")
-
     with allure.step("Press (Create group)"):
         rules.press_create_group()
 
@@ -232,9 +220,6 @@ def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
     with allure.step("Click at existed group"):
         page.locator(GROUP_LIST).get_by_text("auto_rule_group").click()
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
-
-    # with allure.step("Try to create rule with same name"):
-    #     rules.create_rule("auto_rule")
 
     with allure.step("Press (Create rule)"):
         rules.press_create_rule()
@@ -305,9 +290,6 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
     with allure.step("Go to markup"):
         rules.click_markup()
 
-    # with allure.step("Create group"):
-    #     rules.create_group("99999")
-
     with allure.step("Press (Create group)"):
         rules.press_create_group()
 
@@ -323,9 +305,6 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
-
-    # with allure.step("Create rule"):
-    #     rules.create_rule("88888")
 
     with allure.step("Press (Create rule)"):
         rules.press_create_rule()
@@ -455,9 +434,6 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
     with allure.step("Go to markup"):
         rules.click_markup()
 
-    # with allure.step("Create group"):
-    #     rules.create_group("99999")
-
     with allure.step("Press (Create group)"):
         rules.press_create_group()
 
@@ -473,9 +449,6 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
-
-    # with allure.step("Create rule"):
-    #     rules.create_rule("set_tags")
 
     with allure.step("Press (Create rule)"):
         rules.press_create_rule()
@@ -575,9 +548,6 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
     with allure.step("Go to markup"):
         rules.click_markup()
 
-    # with allure.step("Create_group"):
-    #     rules.create_group("99999")
-
     with allure.step("Press (Create group)"):
         rules.press_create_group()
 
@@ -593,9 +563,6 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
     with allure.step("Click at group"):
         page.locator(GROUP_LIST).get_by_text("99999").click()
         page.wait_for_selector('[aria-label="Чтобы добвить тег, выберите или добавьте группу."]', state='hidden')
-
-    # with allure.step("Create rule"):
-    #     rules.create_rule("tag_seq")
 
     with allure.step("Press (Create rule)"):
         rules.press_create_rule()
