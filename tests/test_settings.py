@@ -1944,7 +1944,19 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
         wb = load_workbook(path + download.suggested_filename)
         sheet = wb.active
 
-        #assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet["A1"].value == "Дата"
+        assert sheet["A2"].value == "2025-04-03"
+        assert sheet["A3"].value == "Итого за период"
+        assert sheet["B1"].value == "Источник"
+        assert sheet["B2"].value == "manual"
+        assert sheet["C1"].value == "Количество коммуникаций"
+        assert sheet["C2"].value == 1
+        assert sheet["D1"].value == "Суммарная длительность в минутах"
+        assert sheet["D2"].value == 2
+        assert sheet["D3"].value == 2
+        assert sheet["E1"].value == "Суммарная длительность в часах"
+        assert sheet["E2"].value == "00:02"
+        assert sheet["E3"].value == "00:02"
         assert sheet.max_row == 3
         assert sheet.max_column == 5
 
@@ -1982,7 +1994,48 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
         wb = load_workbook(path + download.suggested_filename)
         sheet = wb.active
 
-        #assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet["A1"].value == "Дата"
+        assert sheet["A2"].value == "2025-04-03"
+        assert sheet["A3"].value == "2025-04-03"
+        assert sheet["A4"].value == "2025-04-03"
+        assert sheet["A5"].value == "2025-04-03"
+        assert sheet["A6"].value == "Итого за период"
+        assert sheet["B1"].value == "Движок"
+        assert sheet["B2"].value == "imotio_gpt"
+        assert sheet["B3"].value == "chat_gpt"
+        assert sheet["B4"].value == "imotio_gpt"
+        assert sheet["B5"].value == "chat_gpt"
+        assert sheet["C1"].value == "Модель"
+        assert sheet["C2"].value == "auto"
+        assert sheet["C3"].value == "auto"
+        assert sheet["C4"].value == "auto"
+        assert sheet["C5"].value == "gpt-3.5-turbo"
+        assert sheet["D1"].value == "Тип коммуникации"
+        assert sheet["D2"].value == "call"
+        assert sheet["D3"].value == "call"
+        assert sheet["D4"].value == "call"
+        assert sheet["D5"].value == "call"
+        assert sheet["E1"].value == "Запрос GPT"
+        assert sheet["E2"].value == "Информация отсутствует"
+        assert sheet["E3"].value == "Информация отсутствует"
+        assert sheet["E4"].value == "Проверочное правило"
+        assert sheet["E5"].value == "Информация отсутствует"
+        assert sheet["F1"].value == "Количество запросов"
+        assert sheet["F2"].value == 50
+        assert sheet["F3"].value == 48
+        assert sheet["F4"].value == 4
+        assert sheet["F5"].value == 4
+        assert sheet["G1"].value == "Количество коммуникаций"
+        assert sheet["G2"].value == 2
+        assert sheet["G3"].value == 1
+        assert sheet["G4"].value == 1
+        assert sheet["G5"].value == 1
+        assert sheet["H1"].value == "Сумма (руб)"
+        assert sheet["H2"].value == 0
+        assert sheet["H3"].value == 0.06
+        assert sheet["H4"].value == 0
+        assert sheet["H5"].value == 0.12
+        assert sheet["H6"].value == 0.18
         assert sheet.max_row == 6
         assert sheet.max_column == 8
 
@@ -2020,7 +2073,14 @@ def test_user_consumption_history_export(base_url, page: Page) -> None:
         wb = load_workbook(path + download.suggested_filename)
         sheet = wb.active
 
-        #assert sheet["A1"].value == "Экспорт расшифровки звонков"
+        assert sheet["A1"].value == "Дата"
+        assert sheet["A2"].value == "2025-04-03"
+        assert sheet["A3"].value == "Итого за период"
+        assert sheet["B1"].value == "Источник"
+        assert sheet["B2"].value == "usedesk"
+        assert sheet["C1"].value == "Количество чатов"
+        assert sheet["C2"].value == 1
+        assert sheet["C3"].value == 1
         assert sheet.max_row == 3
         assert sheet.max_column == 3
 
