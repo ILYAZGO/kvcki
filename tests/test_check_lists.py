@@ -35,11 +35,11 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
     with allure.step("Fill filter"):
         checklists.add_filter_by_tags("auto_rule")
 
-    with allure.step("Change sort order"):
+    with allure.step("Check sort order = 0"):
         expect(page.locator(INPUT_SORT_ORDER)).to_have_value("0")
 
-        page.locator(INPUT_SORT_ORDER).clear()
-        page.locator(INPUT_SORT_ORDER).type("1000", delay=10)
+    with allure.step("Change sort order"):
+        checklists.change_sort_order_to("1000")
 
     with allure.step("Press button (Save)"):
         checklists.press_button_save()
@@ -69,7 +69,7 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
 
     with allure.step("Rename from left list (Pencil)"):
         page.wait_for_selector(BUTTON_PENCIL)
-        page.locator(BUTTON_PENCIL).click()
+        page.locator(BUTTON_PENCIL).nth(1).click()
         page.wait_for_timeout(1000)
         page.locator('[class*="styles_titleBlock"]').locator(INPUT_LEFT_CHECK_LIST_NAME).clear()
         page.locator('[class*="styles_titleBlock"]').locator(INPUT_LEFT_CHECK_LIST_NAME).fill("98765")
@@ -133,6 +133,12 @@ def test_create_update_delete_check_list(base_url, page: Page) -> None:
         page.reload()
         page.wait_for_selector(INPUT_CHECK_LIST_NAME, timeout=wait_until_visible)
         expect(page.locator('[name="appraisers.0.title"]')).not_to_be_visible()
+
+    with allure.step("Delete created check-list"):
+        checklists.delete_check_list()
+
+    with allure.step("Wait for alert and check alert message"):
+        checklists.check_alert("Чек-лист удален")
 
     with allure.step("Delete created check-list"):
         checklists.delete_check_list()
@@ -237,16 +243,21 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
 
-    with allure.step("Check that deleted"):
-        expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
-
     with allure.step("Delete second check-list"):
         checklists.delete_check_list()
 
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
 
+    with allure.step("Delete third check-list"):
+        checklists.delete_check_list()
+
+    with allure.step("Wait for alert and check alert message"):
+        checklists.check_alert("Чек-лист удален")
+
     with allure.step("Check that deleted"):
+        expect(page.get_by_text("auto_call_ch_list")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
@@ -320,16 +331,21 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
 
-    with allure.step("Check that deleted"):
-        expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
-
     with allure.step("Delete second check-list"):
         checklists.delete_check_list()
 
     with allure.step("Wait for alert and check alert message"):
         checklists.check_alert("Чек-лист удален")
 
+    with allure.step("Delete third check-list"):
+        checklists.delete_check_list()
+
+    with allure.step("Wait for alert and check alert message"):
+        checklists.check_alert("Чек-лист удален")
+
     with allure.step("Check that deleted"):
+        expect(page.get_by_text("auto_call_ch_list")).not_to_be_visible(timeout=wait_until_visible)
+        expect(page.get_by_text("12345")).not_to_be_visible(timeout=wait_until_visible)
         expect(page.get_by_text("98765")).not_to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete manager"):
@@ -417,3 +433,78 @@ def test_compare_check_lists_by_user(base_url, page: Page) -> None:
         expect(page.locator('[name="questions.0.title"]')).to_have_value("question2")
         expect(page.locator('[name="questions.0.answers.0.answer"]')).to_have_value("answer2")
         expect(page.locator('[name="questions.0.answers.0.point"]')).to_have_value("9")
+
+
+@pytest.mark.e2e
+@pytest.mark.check_list
+@allure.title("test_copy_check_list_by_user")
+@allure.severity(allure.severity_level.NORMAL)
+def test_copy_check_list_by_user(base_url, page: Page) -> None:
+    checklists = Checklists(page)
+
+    with allure.step("Create user"):
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        checklists.navigate(base_url)
+
+    with allure.step("Auth"):
+        checklists.auth(LOGIN_USER, PASSWORD)
+
+    with allure.step("Go to markup"):
+        checklists.click_markup()
+
+    with allure.step("Go to check-lists"):
+        checklists.click_check_lists()
+
+    with allure.step("Create check-list"):
+        checklists.create_check_list_with_questions_and_answers("Original", "first", "second")
+
+    with allure.step("Add filter"):
+        checklists.add_filter_by_tags("auto_rule")
+
+    with allure.step("Check sort order = 0"):
+        expect(page.locator(INPUT_SORT_ORDER)).to_have_value("0")
+
+    with allure.step("Change sort order"):
+        checklists.change_sort_order_to("1000")
+
+    with allure.step("Create appriser"):
+        checklists.create_appriser("App", "5")
+
+    with allure.step("Save checkList"):
+        checklists.press_button_save()
+
+    with allure.step("Check alert"):
+        checklists.check_alert("Чек-лист добавлен")
+
+    with allure.step("Press (copy)"):
+        checklists.press_button_copy()
+
+    with allure.step("Check copy modal"):
+        expect(page.locator(MODAL_WINDOW).get_by_text("Original")).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+
+    with allure.step("Change name for copy"):
+        checklists.change_name_for_copy("Copy")
+
+    with allure.step("Press (create)"):
+        page.locator(BUTTON_ACCEPT).click()
+
+    with allure.step("Check alert"):
+        checklists.check_alert("Чек-лист добавлен")
+
+    with allure.step("Check copy"):
+
+        expect(page.get_by_text("Copy")).to_have_count(1)
+        expect(page.locator(INPUT_FIRST_QUESTION)).to_have_value("first")
+        #expect(page.locator(INPUT_SECOND_QUESTION)).to_have_value("second")
+        expect(page.get_by_text("auto_rule")).to_have_count(1)
+        expect(page.locator('[name="appraisers.0.title"]')).to_have_value("App")
+        expect(page.locator(INPUT_SORT_ORDER)).to_have_value("1000")
+
+
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER, USER_ID_USER)
