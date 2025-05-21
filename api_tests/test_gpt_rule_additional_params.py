@@ -37,7 +37,7 @@ chat_gpt = {
             "default": "auto"
         },
         "temperature": {
-            "default": 1,
+            "default": 0,
             "maximum": 2.0,
             "minimum": 0.0,
             "title": "Temperature",
@@ -84,7 +84,7 @@ yandex_gpt = {
             "default": "yandexgpt-lite"
         },
         "temperature": {
-            "default": 0.6,
+            "default": 0,
             "maximum": 1.0,
             "minimum": 0.0,
             "title": "Temperature",
@@ -116,7 +116,7 @@ imotio_gpt = {
             "default": "auto"
         },
         "temperature": {
-            "default": 0.1,
+            "default": 0,
             "maximum": 0.4,
             "minimum": 0.0,
             "title": "Temperature",
