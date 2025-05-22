@@ -51,6 +51,7 @@ CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
+BLOCK_ONE_COMMUNICATION = '[class*="MuiAccordionSummary-content"]'
 
 
 class Communications(BaseClass):
@@ -214,7 +215,7 @@ class Communications(BaseClass):
     def delete_manual_tag_from_call_header(self, number: int):
         """Press pencil and delete manual tag from call header"""
         self.page.wait_for_timeout(500)
-        self.page.locator('[class*="MuiAccordionSummary-content"]').locator('[fill="#d9f7be"]').nth(number).click()
+        self.page.locator(BLOCK_ONE_COMMUNICATION).locator('[fill="#d9f7be"]').nth(number).click()
         self.page.wait_for_selector('[role="tooltip"]')
         self.page.locator('[role="tooltip"]').get_by_text("Удалить").click()
         self.page.wait_for_selector(MODAL_WINDOW)

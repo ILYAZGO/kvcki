@@ -2768,3 +2768,123 @@ def test_public_link_from_call_by_admin_to_not_logged_user(base_url, page: Page)
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
 
 
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_communication_check_list_in_open_call")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_communication_check_list_in_open_call")
+def test_communication_check_list_in_open_call(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+        page.wait_for_timeout(10000)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Check"):
+        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="scorePercent"]')).to_have_text("50%")
+        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="callScore_"]')).to_have_text("0 баллов")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]')).to_have_text("50%")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]')).to_have_text("0 баллов")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]')).to_have_text("auto_call_ch_list")
+        expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
+                            'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]'))
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]')).to_have_text("мин: -10макс: 10")
+
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_deal_check_list_in_open_call")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_deal_check_list_in_open_call")
+def test_deal_check_list_in_open_call(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with Ecotelecom"):
+        communications.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        communications.choose_period_date("01/01/2022", "31/12/2022")
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644299058.90329", delay=10)
+        page.wait_for_timeout(500)
+
+    with allure.step("Press button (Find communications)"):
+        communications.press_find_communications_less_than_50()
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    # with allure.step("Check"):
+        # expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="scorePercent"]')).to_have_text("50%")
+        # expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="callScore_"]')).to_have_text("0 баллов")
+        # expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]')).to_have_text("50%")
+        # expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]')).to_have_text("0 баллов")
+        # expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]')).to_have_text("auto_call_ch_list")
+        # expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
+        #                     'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]'))
+        # expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]')).to_have_text("мин: -10макс: 10")
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_communication_and_deal_check_list_in_open_call")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_communication_and_deal_check_list_in_open_call")
+def test_communication_and_deal_check_list_in_open_call(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with Ecotelecom"):
+        communications.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        communications.choose_period_date("01/01/2022", "31/12/2022")
+
+    with allure.step("Fill ID to find call"):
+        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644298753.90325", delay=10)
+        page.wait_for_timeout(500)
+
+    with allure.step("Press button (Find communications)"):
+        communications.press_find_communications_less_than_50()
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Check"):
+        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="_allScore_"]')).to_have_text("100%50 баллов59%27 баллов")
+
+        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]').nth(0)).to_have_text("Чеклист только с при приоритетной оценкой")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]').nth(0)).to_have_text("100%")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]').nth(0)).to_have_text("50 баллов")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]').nth(0)).to_have_text("мин: 0макс: 50")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class="ChekListAppraised"]')).to_have_text("Сработала приоритетная оценка")
+
+        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]').nth(1)).to_have_text("Тестовый чеклист сделки")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]').nth(1)).to_have_text("59%")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]').nth(1)).to_have_text("27 баллов")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]').nth(1)).to_have_text("мин: 0макс: 46")
+
+        expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
+                            'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]')).to_have_count(2)
+
+

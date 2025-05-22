@@ -496,15 +496,14 @@ def test_copy_check_list_by_user(base_url, page: Page) -> None:
         checklists.check_alert("Чек-лист добавлен")
 
     with allure.step("Check copy"):
-
         expect(page.get_by_text("Copy")).to_have_count(1)
         expect(page.locator(INPUT_FIRST_QUESTION)).to_have_value("first")
-        #expect(page.locator(INPUT_SECOND_QUESTION)).to_have_value("second")
+        expect(page.locator('[name="questions.0.answers.0.point"]')).to_have_value("1")
+        expect(page.locator('[name="questions.0.answers.1.point"]')).to_have_value("2")
         expect(page.get_by_text("auto_rule")).to_have_count(1)
         expect(page.locator('[name="appraisers.0.title"]')).to_have_value("App")
+        expect(page.locator('[name="appraisers.0.points"]')).to_have_value("5")
         expect(page.locator(INPUT_SORT_ORDER)).to_have_value("1000")
-
-
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
