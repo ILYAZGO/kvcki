@@ -1761,7 +1761,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         reports.click_gear_in_columns("0")
 
     with allure.step("Check content of modal window for columns. 22 checkbox, 8 add params, 2 buttons"):
-        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(25)
+        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(31)
         expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
         expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
         expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
