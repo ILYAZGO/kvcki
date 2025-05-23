@@ -833,7 +833,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         sheet = wb.active
 
         assert sheet["A1"].value == "Экспорт расшифровки звонков"
-        assert sheet.max_row == 55
+        assert sheet.max_row == 54
         assert sheet.max_column == 4
 
     with allure.step("Remove downloaded export (zip)"):
@@ -1033,7 +1033,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         sheet = wb.active
 
         assert sheet["A1"].value == "Экспорт расшифровки звонков"
-        assert sheet.max_row == 55
+        assert sheet.max_row == 54
         assert sheet.max_column == 4
 
     with allure.step("Remove downloaded excel export"):
