@@ -26,8 +26,35 @@ def test_create_update_delete_check_list():
         get_checklists = requests.get(url=API_URL + "/checklists/", headers=headers)
 
     with allure.step("Check status code == 200 and empty"):
+#         default_checklist = [
+#     {
+#         "id": "683031072947e3a35b2c33f4",
+#         "owner": USER_ID,
+#         "enabledUsers": [],
+#         "title": "auto_call_ch_list",
+#         "entityType": "CALL",
+#         "enabled": True,
+#         "deleted": False,
+#         "priority": 0,
+#         "maxPoints": 10.0,
+#         "minPoints": -10.0
+#     }
+# ]
         assert get_checklists.status_code == 200
-        assert get_checklists.text == "[]"
+        response_data = get_checklists.json()
+
+        assert len(response_data) == 1
+        checklist = response_data[0]
+
+        assert checklist["owner"] == USER_ID
+        assert checklist["enabledUsers"] == []
+        assert checklist["title"] == "auto_call_ch_list"
+        assert checklist["entityType"] == "CALL"
+        assert checklist["enabled"] is True
+        assert checklist["deleted"] is False
+        assert checklist["priority"] == 0
+        assert checklist["maxPoints"] == 10.0
+        assert checklist["minPoints"] == -10.0
 
     with allure.step("GET /checklists/ empty with fake ?rule_owner"):
         get_checklists = requests.get(url=API_URL + f'/checklists/?rule_owner={fake_id}', headers=headers)
