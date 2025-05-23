@@ -2823,7 +2823,7 @@ def test_deal_check_list_in_open_call(base_url, page: Page) -> None:
 
     with allure.step("Fill ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644299058.90329", delay=10)
+        page.locator(INPUT_ID).locator('[type="text"]').type("1644268692.90190", delay=10)
         page.wait_for_timeout(500)
 
     with allure.step("Press button (Find communications)"):
@@ -2832,15 +2832,15 @@ def test_deal_check_list_in_open_call(base_url, page: Page) -> None:
     with allure.step("Expand call"):
         communications.expand_call()
 
-    # with allure.step("Check"):
-        # expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="scorePercent"]')).to_have_text("50%")
-        # expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="callScore_"]')).to_have_text("0 баллов")
-        # expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]')).to_have_text("50%")
-        # expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]')).to_have_text("0 баллов")
-        # expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]')).to_have_text("auto_call_ch_list")
-        # expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
-        #                     'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]'))
-        # expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]')).to_have_text("мин: -10макс: 10")
+    with allure.step("Check"):
+        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="scorePercent"]')).to_have_text("59%")
+        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="callScore_"]')).to_have_text("27 баллов")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]')).to_have_text("59%")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]')).to_have_text("27 баллов")
+        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]')).to_have_text("Тестовый чеклист сделки")
+        expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
+                            'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]'))
+        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]')).to_have_text("мин: 0макс: 46")
 
 @pytest.mark.calls
 @pytest.mark.e2e
