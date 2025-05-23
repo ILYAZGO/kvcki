@@ -876,7 +876,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
         assert sheet["A1"].value == "Выгрузка списка звонков"
         assert sheet.max_row == 3
-        assert sheet.max_column == 35
+        assert sheet.max_column == 34
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
