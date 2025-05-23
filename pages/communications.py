@@ -146,6 +146,7 @@ class Communications(BaseClass):
 
     def fill_id(self, id: str):
         """Fill ID"""
+        self.page.wait_for_selector(INPUT_ID, timeout=self.timeout)
         self.input_id.type(id, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click

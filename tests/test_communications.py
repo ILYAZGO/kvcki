@@ -749,9 +749,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=10)
-        page.wait_for_timeout(500)
+        communications.fill_id("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -995,9 +993,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill first ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268426.90181", delay=5)
-        page.wait_for_timeout(500)
+        communications.fill_id("1644268426.90181")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -2822,9 +2818,7 @@ def test_deal_check_list_in_open_call(base_url, page: Page) -> None:
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644268692.90190", delay=10)
-        page.wait_for_timeout(500)
+        communications.fill_id("1644268692.90190")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
@@ -2860,9 +2854,7 @@ def test_communication_and_deal_check_list_in_open_call(base_url, page: Page) ->
         communications.choose_period_date("01/01/2022", "31/12/2022")
 
     with allure.step("Fill ID to find call"):
-        page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)
-        page.locator(INPUT_ID).locator('[type="text"]').type("1644298753.90325", delay=10)
-        page.wait_for_timeout(500)
+        communications.fill_id("1644298753.90325")
 
     with allure.step("Press button (Find communications)"):
         communications.press_find_communications_less_than_50()
