@@ -629,7 +629,6 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
 
     with allure.step("Go to user"):
         communications.go_to_user(LOGIN_USER)
-        page.wait_for_load_state(state="load", timeout=wait_until_visible)
         page.wait_for_timeout(5000)
 
     with allure.step("Open new tab"):
@@ -845,7 +844,6 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         page.locator(BUTTON_CROSS).click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
-    #@
     with allure.step("Press button (Download)"):
         communications.press_calls_list_download_button(0)
 
@@ -897,6 +895,9 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 def test_check_buttons_in_open_call(base_url, page: Page) -> None:
     communications = Communications(page)
 
+    text = ("Поменять аудио каналыПрименить адресную книгуПрименить информированиеУдаленные тегиЗагрузить теги из "
+            "crmПеревыгрузить из интеграцииПоказать скрытые тегиМета инфоРедактировать правило оповещения")
+
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
@@ -925,7 +926,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
         page.locator(OPEN_CALL_AREA).locator(BUTTON_CALLS_ACTION).locator('[type="button"]').click()
 
     with (allure.step("Check content in opened menu")):
-        expect(page.locator(OPEN_CALL_AREA).locator(MENU)).to_have_text("Поменять аудио каналыПрименить адресную книгуПрименить информированиеУдаленные тегиЗагрузить теги из crmПеревыгрузить из интеграцииПоказать скрытые тегиМета инфоРедактировать правило оповещения")
+        expect(page.locator(OPEN_CALL_AREA).locator(MENU)).to_have_text(text)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -1121,7 +1122,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_NAME).type("firstTemplate", delay=10)
+        communications.fill_name("firstTemplate")
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -1139,7 +1140,7 @@ def test_check_search_template(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_disabled()
 
     with allure.step("Fill template name"):
-        page.locator(INPUT_NAME).type("renameTemplate", delay=10)
+        communications.fill_name("renameTemplate")
 
     with allure.step("Check that (add) button enabled"):
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_SUBMIT)).to_be_enabled()
@@ -2786,15 +2787,12 @@ def test_communication_check_list_in_open_call(base_url, page: Page) -> None:
         communications.expand_call()
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="scorePercent"]')).to_have_text("50%")
-        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="callScore_"]')).to_have_text("0 баллов")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]')).to_have_text("50%")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]')).to_have_text("0 баллов")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]')).to_have_text("auto_call_ch_list")
-        expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
-                            'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]'))
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]')).to_have_text("мин: -10макс: 10")
-
+        expect(page.locator(CHECK_LIST_VALUES_IN_CALL_HEADER)).to_have_text("50%0 баллов")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_PERCENT)).to_have_text("50%")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(POINTS_IN_CHECK_LISTS_LIST)).to_have_text("0 баллов")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_NAME)).to_have_text("auto_call_ch_list")
+        expect(page.locator(TOOLTIP_IN_CHECK_LIST)).to_have_count(1)
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_MIN_MAX)).to_have_text("мин: -10макс: 10")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -2827,14 +2825,12 @@ def test_deal_check_list_in_open_call(base_url, page: Page) -> None:
         communications.expand_call()
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="scorePercent"]')).to_have_text("59%")
-        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="callScore_"]')).to_have_text("27 баллов")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]')).to_have_text("59%")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]')).to_have_text("27 баллов")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]')).to_have_text("Тестовый чеклист сделки")
-        expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
-                            'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]'))
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]')).to_have_text("мин: 0макс: 46")
+        expect(page.locator(CHECK_LIST_VALUES_IN_CALL_HEADER)).to_have_text("59%27 баллов")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_PERCENT)).to_have_text("59%")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(POINTS_IN_CHECK_LISTS_LIST)).to_have_text("27 баллов")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_NAME)).to_have_text("Тестовый чеклист сделки")
+        expect(page.locator(TOOLTIP_IN_CHECK_LIST)).to_have_count(1)
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_MIN_MAX)).to_have_text("мин: 0макс: 46")
 
 @pytest.mark.calls
 @pytest.mark.e2e
@@ -2863,20 +2859,20 @@ def test_communication_and_deal_check_list_in_open_call(base_url, page: Page) ->
         communications.expand_call()
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_ONE_COMMUNICATION).locator('[class*="_allScore_"]')).to_have_text("100%50 баллов59%27 баллов")
-
-        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]').nth(0)).to_have_text("Чеклист только с при приоритетной оценкой")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]').nth(0)).to_have_text("100%")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]').nth(0)).to_have_text("50 баллов")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]').nth(0)).to_have_text("мин: 0макс: 50")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class="ChekListAppraised"]')).to_have_text("Сработала приоритетная оценка")
-
-        expect(page.locator('[class="CheckListGroup"]').locator('[class="CheckListGroupLabel"]').nth(1)).to_have_text("Тестовый чеклист сделки")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="scorePercent"]').nth(1)).to_have_text("59%")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="pointsWithQuestion_"]').nth(1)).to_have_text("27 баллов")
-        expect(page.locator('[class="CheckListGroup"]').locator('[class*="_minMaxPoints_"]').nth(1)).to_have_text("мин: 0макс: 46")
-
-        expect(page.locator('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
-                            'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]')).to_have_count(2)
+        # check percent and points for two check-lists
+        expect(page.locator(CHECK_LIST_VALUES_IN_CALL_HEADER)).to_have_text("100%50 баллов59%27 баллов")
+        # check first check-list
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_NAME).nth(0)).to_have_text("Чеклист только с при приоритетной оценкой")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_PERCENT).nth(0)).to_have_text("100%")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(POINTS_IN_CHECK_LISTS_LIST).nth(0)).to_have_text("50 баллов")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_MIN_MAX).nth(0)).to_have_text("мин: 0макс: 50")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator('[class="ChekListAppraised"]')).to_have_text("Сработала приоритетная оценка")
+        # check second check-list
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_NAME).nth(1)).to_have_text("Тестовый чеклист сделки")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_PERCENT).nth(1)).to_have_text("59%")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(POINTS_IN_CHECK_LISTS_LIST).nth(1)).to_have_text("27 баллов")
+        expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_MIN_MAX).nth(1)).to_have_text("мин: 0макс: 46")
+        # check (?) for both check-list
+        expect(page.locator(TOOLTIP_IN_CHECK_LIST)).to_have_count(2)
 
 

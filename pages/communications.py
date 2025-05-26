@@ -52,7 +52,14 @@ CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
 BLOCK_ONE_COMMUNICATION = '[class*="MuiAccordionSummary-content"]'
-
+BLOCK_CHECK_LISTS = '[class*="_CallsCheckLists_"]'
+TOOLTIP_IN_CHECK_LIST = ('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
+                         'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]')
+CHECK_LIST_PERCENT = '[class*="scorePercent"]'
+CHECK_LIST_NAME = '[class="CheckListGroupLabel"]'
+CHECK_LIST_MIN_MAX ='[class*="_minMaxPoints_"]'
+POINTS_IN_CHECK_LISTS_LIST = '[class*="pointsWithQuestion_"]'
+CHECK_LIST_VALUES_IN_CALL_HEADER = '[class*="_allScore_"]'
 
 class Communications(BaseClass):
     def __init__(self, page: Page):
@@ -144,18 +151,18 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
 
-    def fill_id(self, id: str):
+    def fill_id(self, communication_id: str):
         """Fill ID"""
         self.page.wait_for_selector(INPUT_ID, timeout=self.timeout)
-        self.input_id.type(id, delay=10)
+        self.input_id.type(communication_id, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
 
     def fill_search_length(self, value: str):
         """Fill search length"""
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(500)
         self.input_call_duration.clear()
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(500)
         self.input_call_duration.type(value, delay=10)
         self.page.wait_for_timeout(500)
         self.just_click.click()  # tupo click
@@ -164,7 +171,7 @@ class Communications(BaseClass):
         """Fill client dict or text"""
         self.input_client_dict_or_text.clear()
         self.input_client_dict_or_text.type(search_text, delay=10)
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(500)
         self.menu.get_by_text(result_text).click()
         self.just_click.click()  # tupo click
 
@@ -172,7 +179,7 @@ class Communications(BaseClass):
         """Fill employee dict or text"""
         self.input_employee_dict_or_text.clear()
         self.input_employee_dict_or_text.type(search_text, delay=10)
-        self.page.wait_for_timeout(300)
+        self.page.wait_for_timeout(500)
         self.menu.get_by_text(result_text).click()
         self.just_click.click()  # tupo click
 
@@ -246,6 +253,7 @@ class Communications(BaseClass):
         self.page.wait_for_selector('[class*="styles_textareaWrapper"]')
 
     def click_submit_in_word_processing(self):
+        """Press (submit) in word pocessing modal"""
         self.page.wait_for_timeout(500)
         self.button_submit_in_word_processing.click()
         self.page.wait_for_timeout(500)
@@ -287,8 +295,12 @@ class Communications(BaseClass):
     def assert_menu_values(self, values: str):
         expect(self.menu).to_have_text(values)
 
+    def fill_name(self, name: str):
+        """Used for fill new search template name, but can be used for any name if same selector"""
+        self.input_name.type(name, delay=5)
 
-INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
+
+#INPUT_PO_TEGAM_NEW = '//html/body/div/div/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/div/div/div[4]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input'
 
 
 
