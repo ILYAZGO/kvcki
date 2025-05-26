@@ -25,27 +25,14 @@ def test_create_update_delete_check_list():
 
         get_checklists = requests.get(url=API_URL + "/checklists/", headers=headers)
 
-    with allure.step("Check status code == 200 and empty"):
-#         default_checklist = [
-#     {
-#         "id": "683031072947e3a35b2c33f4",
-#         "owner": USER_ID,
-#         "enabledUsers": [],
-#         "title": "auto_call_ch_list",
-#         "entityType": "CALL",
-#         "enabled": True,
-#         "deleted": False,
-#         "priority": 0,
-#         "maxPoints": 10.0,
-#         "minPoints": -10.0
-#     }
-# ]
+    with allure.step("Check status code == 200 and have default checklist"):
         assert get_checklists.status_code == 200
         response_data = get_checklists.json()
 
         assert len(response_data) == 1
         checklist = response_data[0]
 
+        # checking default check list without id. id is unique for every check list
         assert checklist["owner"] == USER_ID
         assert checklist["enabledUsers"] == []
         assert checklist["title"] == "auto_call_ch_list"
@@ -141,24 +128,40 @@ def test_create_update_delete_check_list():
     with allure.step("GET /checklists/"):
         get_checklists = requests.get(url=API_URL + "/checklists/", headers=headers)
 
-    with allure.step("Check status code == 200 and 1 check 1 check list in list"):
-        check_lists_list = [
-            {
-                "id": check_list_id,
-                "owner": USER_ID,
-                "enabledUsers": [],
-                "title": check_list_title,
-                "entityType": "CALL",
-                "enabled": True,
-                "deleted": False,
-                "priority": 1,
-                "maxPoints": 1.0,
-                'minPoints': 0.0
-            }
-        ]
+    with allure.step("Check status code == 200 and have 2 check lists in list. Check that we created"):
+        # check_lists_list = [
+        #     {
+        #         "id": check_list_id,
+        #         "owner": USER_ID,
+        #         "enabledUsers": [],
+        #         "title": check_list_title,
+        #         "entityType": "CALL",
+        #         "enabled": True,
+        #         "deleted": False,
+        #         "priority": 1,
+        #         "maxPoints": 1.0,
+        #         'minPoints': 0.0
+        #     }
+        # ]
 
         assert get_checklists.status_code == 200
-        assert get_checklists.json() == check_lists_list
+        # assert get_checklists.json() == check_lists_list
+
+        response_data = get_checklists.json()
+
+        assert len(response_data) == 2
+        checklist = response_data[1]
+
+        assert checklist["id"] == check_list_id
+        assert checklist["owner"] == USER_ID
+        assert checklist["enabledUsers"] == []
+        assert checklist["title"] == check_list_title
+        assert checklist["entityType"] == "CALL"
+        assert checklist["enabled"] is True
+        assert checklist["deleted"] is False
+        assert checklist["priority"] == 1
+        assert checklist["maxPoints"] == 1.0
+        assert checklist["minPoints"] == 0.0
 
     with allure.step("GET /checklists/check_list_id"):
         get_check_list_by_id = requests.get(url=API_URL + f'/checklists/{check_list_id}', headers=headers)
@@ -192,9 +195,23 @@ def test_create_update_delete_check_list():
     with allure.step("GET /checklists/ empty without ?rule_owner"):
          get_checklists = requests.get(url=API_URL + "/checklists/", headers=headers)
 
-    with allure.step("Check status code == 200 and empty"):
+    with allure.step("Check status code == 200 and have default checklist"):
         assert get_checklists.status_code == 200
-        assert get_checklists.text == "[]"
+        response_data = get_checklists.json()
+
+        assert len(response_data) == 1
+        checklist = response_data[0]
+
+        # checking default check list without id. id is unique for every check list
+        assert checklist["owner"] == USER_ID
+        assert checklist["enabledUsers"] == []
+        assert checklist["title"] == "auto_call_ch_list"
+        assert checklist["entityType"] == "CALL"
+        assert checklist["enabled"] is True
+        assert checklist["deleted"] is False
+        assert checklist["priority"] == 0
+        assert checklist["maxPoints"] == 10.0
+        assert checklist["minPoints"] == -10.0
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
