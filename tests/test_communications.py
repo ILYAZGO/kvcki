@@ -1265,9 +1265,10 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.wait_for_selector(MENU)
 
     with allure.step("Choose and click (delete)"):
-        page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
-        page.wait_for_timeout(500)
-        page.wait_for_selector(MODAL_WINDOW)
+        communications.choose_from_menu_by_text_and_wait_for_modal("Удалить комментарий")
+        # page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
+        # page.wait_for_timeout(500)
+        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Confirm deleting"):
         page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
@@ -1322,9 +1323,10 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Choose re-recognize in menu"):
-        page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
-        page.wait_for_timeout(1000)
-        page.wait_for_selector(MODAL_WINDOW)
+        communications.choose_from_menu_by_text_and_wait_for_modal("Перераспознать")
+        # page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
+        # page.wait_for_timeout(1000)
+        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Check modal window content"):
         expect(page.locator('[class*="styles_sttAllFoudCalls_"]')).to_contain_text(" (количество коммуникаций:  1)")
@@ -1659,8 +1661,9 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Choose re-recognize in menu"):
-        page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
-        page.wait_for_selector(MODAL_WINDOW)
+        communications.choose_from_menu_by_text_and_wait_for_modal("Перераспознать")
+        # page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
+        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Check modal window content"):
         expect(page.locator(SELECT_LANGUAGE)).to_contain_text("Русский")
@@ -2273,9 +2276,10 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Open meta info"):
-        page.wait_for_timeout(500)
-        page.locator(MENU).get_by_text("Мета инфо").click()
-        page.wait_for_selector(MODAL_WINDOW)
+        communications.choose_from_menu_by_text_and_wait_for_modal("Мета инфо")
+        # page.wait_for_timeout(500)
+        # page.locator(MENU).get_by_text("Мета инфо").click()
+        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Chek that no any processing info in meta info"):
         expect(page.locator(MODAL_WINDOW)).not_to_contain_text("Время добавления звонка")
@@ -2299,9 +2303,10 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Open meta info"):
-        page.wait_for_timeout(500)
-        page.locator(MENU).get_by_text("Мета инфо").click()
-        page.wait_for_selector(MODAL_WINDOW)
+        communications.choose_from_menu_by_text_and_wait_for_modal("Мета инфо")
+        # page.wait_for_timeout(500)
+        # page.locator(MENU).get_by_text("Мета инфо").click()
+        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Chek that processing info in meta info"):
         expect(page.locator(MODAL_WINDOW)).to_contain_text("Время добавления звонка")
@@ -2563,22 +2568,22 @@ def test_go_to_gpt_from_call(base_url, page: Page) -> None:
         expect(page.get_by_text("Модель")).to_have_count(1)
         expect(page.get_by_text("Температура")).to_have_count(1)
         expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
-        expect(page.locator('[data-testid="saveButton"]')).to_be_disabled()
+        expect(page.locator(BUTTON_SAVE)).to_be_disabled()
 
     with allure.step("Fill question and assistant text"):
-        page.locator('[placeholder="Сформулируйте свой вопрос..."]').type("12345", delay=10)
+        page.locator(INPUT_GPT_QUESTION).type("12345", delay=10)
 
     with allure.step("Check that buttons enabled"):
         expect(page.locator(BUTTON_ACCEPT)).to_be_enabled()
-        expect(page.locator('[data-testid="saveButton"]')).to_be_enabled()
+        expect(page.locator(BUTTON_SAVE)).to_be_enabled()
 
     with allure.step("Press (save to rules)"):
         page.wait_for_timeout(2000)
-        page.locator('[data-testid="saveButton"]').click()
+        page.locator(BUTTON_SAVE).click()
         page.wait_for_timeout(2000)
 
     with allure.step("Check that question have"):
-        expect(page.locator('[placeholder="Сформулируйте свой вопрос..."]')).to_have_text("12345")
+        expect(page.locator(INPUT_GPT_QUESTION)).to_have_text("12345")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

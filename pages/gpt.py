@@ -6,7 +6,6 @@ BUTTON_IMPORT_GPT = '[data-testid="markup_importDicts"]'
 
 INPUT_GPT_RULE_NAME = '[placeholder="Название правила"]'
 INPUT_GPT_TEG_NAME = '[placeholder="Название"]'
-INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
 
 class GPT(BaseClass):
     def __init__(self, page: Page):

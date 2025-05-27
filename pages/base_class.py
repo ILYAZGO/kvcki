@@ -30,6 +30,7 @@ BUTTON_INTEGRATIONS_IN_MENU = '[href*="settings/integrations"]'
 BUTTON_SUBMIT = '[type="submit"]'
 BUTTON_ACCEPT = '[data-testid="acceptButton"]'
 BUTTON_OTMENA = '[data-testid="cancelButton"]'
+BUTTON_SAVE = '[data-testid="saveButton"]'
 MENU = '[class*="-menu"]'
 MODAL_WINDOW = '[role="dialog"]'
 BUTTON_CROSS = '[data-testid="closePopupButton"]'
@@ -56,6 +57,7 @@ SELECT_INDUSTRY = '[data-testid="selectIndustry"]'
 SELECT_PARTNER = '[data-testid="selectPartner"]'
 INPUT_NEW_PASSWORD = '[name="newPassword"]'
 INPUT_NEW_PASSWORD_REPEAT = '[name="newPasswordRepeat"]'
+INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопрос..."]'
 
 ALERT_MESSAGE = '[class*="styles_firstLine__"]'
 
@@ -328,6 +330,12 @@ class BaseClass:
     def choose_option(self, option_number: int):
         """Choose option from menu"""
         self.menu.locator(f'[id$="-option-{option_number}"]').click()
+
+    def choose_from_menu_by_text_and_wait_for_modal(self, name: str):
+        self.page.wait_for_timeout(500)
+        self.menu.get_by_text(name, exact=True).click()
+        self.page.wait_for_timeout(1000)
+        self.page.wait_for_selector(MODAL_WINDOW)
 
     def choose_user_import_from(self, username: str):
         self.page.locator('[class*="CustomSelect_simpleSelect"]').locator('[type="text"]').type(username, delay=10)
