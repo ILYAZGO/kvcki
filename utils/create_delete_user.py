@@ -15,7 +15,7 @@ for delete user write after test :
 delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
-def create_user(url: str, role: str, password: str):
+def create_user(url: str, role: str, password: str, gpt_rule=False):
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
         'accept': 'application/json',
@@ -189,35 +189,38 @@ def create_user(url: str, role: str, password: str):
         #         f"\n>>>>> ERROR CREATING CHECKLIST {add_deal_check_list.status_code} <<<<<")
 
         # create gpt rule
-        # gpt_rule = {
-        #     "engine":"imotio_gpt",
-        #     "model":"auto",
-        #     "systemText":"",
-        #     "userTextTemplate":"",
-        #     "temperature":"0",
-        #     "title":"auto_gpt_rule",
-        #     "simpleQuestions":
-        #         [
-        #             {"question":"If there's text in the call, make the tag “text”.",
-        #              "tagName":"question_name",
-        #              "isComment":False,
-        #              "isTag":True,
-        #              "tagSeparators":"",
-        #              "priority":0,
-        #              "yamlKey":""
-        #              }
-        #         ]
-        # }
-        #
-        # add_gpt_rule = r.post(f"{url}/gpt/", headers=headers_for_user, json=gpt_rule)
-        # gpt_rule_id = add_gpt_rule.text.replace('"', '')
-        #
-        # if add_gpt_rule.status_code == 200:
-        #     logger.opt(depth=1).info(
-        #         f"\n>>>>> FOR USER {name} CREATED communication check list {gpt_rule_id}<<<<<")
-        # else:
-        #     logger.opt(depth=1).info(
-        #         f"\n>>>>> ERROR CREATING CHECKLIST {add_gpt_rule.status_code} <<<<<")
+        if gpt_rule:
+            gpt_rule = {
+                "engine":"imotio_gpt",
+                "model":"auto",
+                "systemText":"",
+                "userTextTemplate":"",
+                "temperature":"0",
+                "title":"auto_gpt_rule",
+                "simpleQuestions":
+                    [
+                        {"question":"If there's text in the call, make the tag “text”.",
+                         "tagName":"question_name",
+                         "isComment":False,
+                         "isTag":True,
+                         "tagSeparators":"",
+                         "priority":0,
+                         "yamlKey":""
+                         }
+                    ]
+            }
+
+            add_gpt_rule = r.post(f"{url}/gpt/", headers=headers_for_user, json=gpt_rule)
+            gpt_rule_id = add_gpt_rule.text.replace('"', '')
+
+            if add_gpt_rule.status_code == 200:
+                logger.opt(depth=1).info(
+                    f"\n>>>>> FOR USER {name} CREATED communication check list {gpt_rule_id}<<<<<")
+            else:
+                logger.opt(depth=1).info(
+                    f"\n>>>>> ERROR CREATING CHECKLIST {add_gpt_rule.status_code} <<<<<")
+        else:
+            pass
 
         # upload call
         _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
