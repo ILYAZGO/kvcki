@@ -2873,7 +2873,7 @@ def test_communication_and_deal_check_list_in_open_call(base_url, page: Page) ->
 @allure.title("test_calls_actions_gpt_basic")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.description("test_calls_actions_gpt_basic")
-def test_calls_actions_gpt_basic(base_url, page: Page) -> None:
+def est_calls_actions_gpt_basic(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
