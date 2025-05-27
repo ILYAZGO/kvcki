@@ -1266,9 +1266,6 @@ def test_check_communication_comment(base_url, page: Page) -> None:
 
     with allure.step("Choose and click (delete)"):
         communications.choose_from_menu_by_text_and_wait_for_modal("Удалить комментарий")
-        # page.locator(MENU).get_by_text("Удалить комментарий", exact=True).click()
-        # page.wait_for_timeout(500)
-        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Confirm deleting"):
         page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
@@ -1324,9 +1321,6 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
 
     with allure.step("Choose re-recognize in menu"):
         communications.choose_from_menu_by_text_and_wait_for_modal("Перераспознать")
-        # page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
-        # page.wait_for_timeout(1000)
-        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Check modal window content"):
         expect(page.locator('[class*="styles_sttAllFoudCalls_"]')).to_contain_text(" (количество коммуникаций:  1)")
@@ -1662,8 +1656,6 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
 
     with allure.step("Choose re-recognize in menu"):
         communications.choose_from_menu_by_text_and_wait_for_modal("Перераспознать")
-        # page.locator(MENU).get_by_text("Перераспознать", exact=True).click()
-        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Check modal window content"):
         expect(page.locator(SELECT_LANGUAGE)).to_contain_text("Русский")
@@ -2277,9 +2269,6 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
 
     with allure.step("Open meta info"):
         communications.choose_from_menu_by_text_and_wait_for_modal("Мета инфо")
-        # page.wait_for_timeout(500)
-        # page.locator(MENU).get_by_text("Мета инфо").click()
-        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Chek that no any processing info in meta info"):
         expect(page.locator(MODAL_WINDOW)).not_to_contain_text("Время добавления звонка")
@@ -2304,9 +2293,6 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
 
     with allure.step("Open meta info"):
         communications.choose_from_menu_by_text_and_wait_for_modal("Мета инфо")
-        # page.wait_for_timeout(500)
-        # page.locator(MENU).get_by_text("Мета инфо").click()
-        # page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Chek that processing info in meta info"):
         expect(page.locator(MODAL_WINDOW)).to_contain_text("Время добавления звонка")
@@ -2879,5 +2865,48 @@ def test_communication_and_deal_check_list_in_open_call(base_url, page: Page) ->
         expect(page.locator(BLOCK_CHECK_LISTS).locator(CHECK_LIST_MIN_MAX).nth(1)).to_have_text("мин: 0макс: 46")
         # check (?) for both check-list
         expect(page.locator(TOOLTIP_IN_CHECK_LIST)).to_have_count(2)
+
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_calls_actions_gpt_basic")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_calls_actions_gpt_basic")
+def test_calls_actions_gpt_basic(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+
+    with allure.step("Go to url"):
+        communications.navigate("http://192.168.10.101/feature-dev-3426-new/")
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
+
+    with allure.step("Press button (Calls action)"):
+        communications.press_calls_action_button_in_list(0)
+
+    with allure.step("Choose Apply gpt"):
+        communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
+
+    with allure.step("Check modal"):
+        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).not_to_be_checked()
+        expect(page.locator(MODAL_WINDOW).locator('[data-testid="addRuleBtn"]')).to_be_disabled()
+        #expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_disabled()
+
+    with allure.step("Choose rule"):
+        page.locator(MODAL_WINDOW).locator('[width="20"]').click()
+        page.wait_for_selector(MENU)
+        page.locator(MENU).get_by_text("auto_gpt_rule", exact=True).click()
+
+    with allure.step("Check modal"):
+        expect(page.locator(MODAL_WINDOW).get_by_text("auto_gpt_rule", exact=True)).to_have_count(1)
+        expect(page.locator(MODAL_WINDOW).locator('[data-testid="addRuleBtn"]')).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
 
