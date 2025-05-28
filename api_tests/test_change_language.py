@@ -14,7 +14,7 @@ langs = ["ru", "en", "es", "pt", "qq", "", " "]
 @pytest.mark.parametrize("language", langs)
 def test_change_lang_for_user(language):
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Get token for user"):
         user_token = get_token(API_URL, LOGIN, PASSWORD)

@@ -122,7 +122,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
     gpt = GPT(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         gpt.navigate(base_url)
@@ -199,7 +199,6 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.locator('[name="chat_gpt"]')).to_have_attribute("aria-pressed", "true")
         expect(page.locator('[placeholder="..."]')).to_have_text("SomeText")
 
-
     with allure.step("Press (Save) button"):
         gpt.press_save_in_gpt()
 
@@ -237,7 +236,7 @@ def test_additional_params_gpt_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         gpt.navigate(base_url)
@@ -366,7 +365,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         gpt.navigate(base_url)
@@ -445,7 +444,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Create user for import"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Give user for import to manager"):
         give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER, importFrom_user_id], TOKEN_MANAGER)
@@ -524,7 +523,7 @@ def test_import_gpt_rules_disabled_for_user(base_url, page: Page) -> None:
     gpt = GPT(page)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         gpt.navigate(base_url)

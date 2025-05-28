@@ -2769,7 +2769,7 @@ def test_communication_check_list_in_open_call(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
-        page.wait_for_timeout(12000)
+        page.wait_for_timeout(16000)
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)

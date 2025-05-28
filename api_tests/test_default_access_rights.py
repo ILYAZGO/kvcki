@@ -181,7 +181,7 @@ def test_check_default_access_rights_for_manager():
 def test_check_default_access_rights_for_user():
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Get token for user"):
         user_token = get_token(API_URL, LOGIN, PASSWORD)
@@ -266,7 +266,7 @@ def test_check_default_access_rights_for_user():
 def test_check_default_access_rights_for_operator():
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Create operator"):
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)

@@ -17,7 +17,7 @@ period = ["yesterday", "today", "this_week", "last_week", "this_month", "last_mo
 @pytest.mark.parametrize("period_type", period)
 def test_periods(period_type):
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Get token for user"):
         user_token = get_token(API_URL, LOGIN, PASSWORD)

@@ -16,7 +16,7 @@ def test_communications_requests_by_user(base_url, page: Page) -> None:
     communications_requests = []
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)
@@ -36,7 +36,7 @@ def test_communications_requests_by_user(base_url, page: Page) -> None:
         page_requests.auth(LOGIN, PASSWORD)
 
     with allure.step("Check requests list"):
-        page.wait_for_timeout(7000)
+        page.wait_for_timeout(8000)
         assert len(communications_requests) == 20
         assert sum('/token' in entry.get('url', '') for entry in communications_requests) == 1
         assert sum('/user/me/access_rights' in entry.get('url', '') for entry in communications_requests) == 1
@@ -117,7 +117,7 @@ def test_markup_requests_by_user(base_url, page: Page) -> None:
     gpt_requests = []
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)
@@ -225,7 +225,7 @@ def test_markup_requests_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)
@@ -334,7 +334,7 @@ def test_notifications_requests_by_user(base_url, page: Page) -> None:
     notifications_requests = []
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)
@@ -381,7 +381,7 @@ def test_notifications_requests_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)
@@ -438,7 +438,7 @@ def test_settings_requests_by_user(base_url, page: Page) -> None:
     integrations_requests = []
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)
@@ -606,7 +606,7 @@ def test_settings_requests_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)
@@ -812,7 +812,7 @@ def test_settings_requests_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
 
     with allure.step("Go to url"):
         page_requests.navigate(base_url)

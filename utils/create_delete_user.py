@@ -15,7 +15,7 @@ for delete user write after test :
 delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
-def create_user(url: str, role: str, password: str, gpt_rule=False):
+def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=True):
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
         'accept': 'application/json',
@@ -223,32 +223,38 @@ def create_user(url: str, role: str, password: str, gpt_rule=False):
             pass
 
         # upload call
-        _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
-        current_time = datetime.now(timezone.utc)
+        if upload_call:
+            _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
+            current_time = datetime.now(timezone.utc)
 
-        _call_id = upload_call_to_imotio(
-            token=token_for_user,
-            unique_id=_unique_id,
-            call_time=datetime(
-                current_time.year,
-                current_time.month,
-                current_time.day,
-                current_time.hour,
-                current_time.minute,
-                current_time.second
-            ),
-            filename='stereo.opus',
-            client_phone='0987654321',
-            operator_phone='1234567890',
-            meta_data={'auto': 'test',
-                       #'ID сотрудника': 123,
-                       'upload': '',  # значение может быть пустым, это превратится в тег без значения
-                       })
+            _call_id = upload_call_to_imotio(
+                token=token_for_user,
+                unique_id=_unique_id,
+                call_time=datetime(
+                    current_time.year,
+                    current_time.month,
+                    current_time.day,
+                    current_time.hour,
+                    current_time.minute,
+                    current_time.second
+                ),
+                filename='stereo.opus',
+                client_phone='0987654321',
+                operator_phone='1234567890',
+                meta_data={'auto': 'test',
+                           #'ID сотрудника': 123,
+                           'upload': '',  # значение может быть пустым, это превратится в тег без значения
+                           })
 
-        if len(_call_id) == 24:
-            logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} uploaded to {url} <<<<<")
+            if len(_call_id) == 24:
+                logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} uploaded to {url} <<<<<")
+            else:
+                logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
+
+            time.sleep(25)
+
         else:
-            logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
+            pass
 
         #create groups
         rule_group = {
@@ -275,6 +281,7 @@ def create_user(url: str, role: str, password: str, gpt_rule=False):
                 f"\n>>>>> FOR USER {name} WITH user_id: {user_id} CREATED DICT GROUP {dict_group_id} <<<<<")
         else:
             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING DICT GROUP {add_dict_group.status_code} <<<<<")
+
         #create rule and dict in groups
         rule = {
             "owner": user_id,
@@ -430,7 +437,7 @@ def create_user(url: str, role: str, password: str, gpt_rule=False):
         else:
             logger.opt(depth=1).info(f"\nreport {report_name}_{report_id} creation failed with {create_report.status_code}")
 
-        time.sleep(25)
+        #time.sleep(25)
 
     return user_id, token, login
 

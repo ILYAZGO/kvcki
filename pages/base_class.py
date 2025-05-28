@@ -195,6 +195,7 @@ class BaseClass:
     def click_notifications(self):
         """Click Notifications"""
         self.page.wait_for_selector(BUTTON_NOTIFICATIONS, timeout=self.timeout)
+        self.page.wait_for_timeout(1000)
         self.page.locator(BUTTON_NOTIFICATIONS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
@@ -202,6 +203,7 @@ class BaseClass:
     def click_deals(self):
         """Click Deals"""
         self.page.wait_for_selector(BUTTON_DEALS, timeout=self.timeout)
+        self.page.wait_for_timeout(500)
         self.page.locator(BUTTON_DEALS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
@@ -209,6 +211,7 @@ class BaseClass:
     def click_settings(self):
         """Click Settings"""
         self.page.wait_for_selector(BUTTON_SETTINGS, timeout=self.timeout)
+        self.page.wait_for_timeout(500)
         self.page.locator(BUTTON_SETTINGS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
@@ -218,6 +221,7 @@ class BaseClass:
     def click_communications(self):
         """Click Communications"""
         self.page.wait_for_selector(BUTTON_COMMUNICATIONS, timeout=self.timeout)
+        self.page.wait_for_timeout(500)
         self.page.locator(BUTTON_COMMUNICATIONS).click()
         self.page.wait_for_timeout(500)
         self.page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
