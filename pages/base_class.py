@@ -255,9 +255,9 @@ class BaseClass:
         self.page.wait_for_timeout(500)
 
     def click_to_dicts(self):
-        self.page.wait_for_timeout(1000)
+        self.page.wait_for_timeout(1500)
         self.button_dicts.click()
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(1000)
         #self.page.wait_for_selector(BUTTON_ADD_DICT)
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
 

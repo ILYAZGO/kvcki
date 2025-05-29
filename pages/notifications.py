@@ -40,11 +40,13 @@ class Notifications(BaseClass):
         self.notification_name.type(notification_name, delay=5)
 
     def add_notification(self, notification_type: str):
+        self.page.wait_for_timeout(500)
         self.button_add_new_rule.click()
         self.page.wait_for_selector(INPUT_NOTIFICATION_NAME)
         self.block_main_area.locator('[class="css-8mmkcg"]').first.click()
         self.page.wait_for_timeout(500)
         self.block_main_area.locator(MENU).get_by_text(notification_type, exact=True).click()
+        self.page.wait_for_timeout(500)
 
     def fill_attr_for_email(self, letter_theme, email):
         self.page.wait_for_selector(INPUT_LETTER_THEME)

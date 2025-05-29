@@ -122,6 +122,7 @@ class Communications(BaseClass):
         self.page.wait_for_timeout(1000)
 
     def assert_communications_found(self, text: str):
+        self.page.wait_for_timeout(1000)
         expect(self.communications_found.nth(0)).to_have_text(text, timeout=self.timeout)
 
     def change_sort(self, sort_type: str):
