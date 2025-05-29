@@ -14,8 +14,6 @@ tests:
       - allure-report
   before_script:
 #    - cat /etc/apt/sources.list.d/ubuntu.sources
-#    - sed -E -i 's#http://archive\.ubuntu\.com/ubuntu#http://ru.archive.ubuntu.com/ubuntu#g' /etc/apt/sources.list.d/ubuntu.sources
-#    - sed -i 's|http://archive.ubuntu.com/ubuntu/|https://archive.ubuntu.com/ubuntu/|g; s|http://security.ubuntu.com/ubuntu/|https://security.ubuntu.com/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources
     - echo "Change http to https in /etc/apt/sources.list.d/ubuntu.sources"
     - sed -i 's|http://|https://|g' /etc/apt/sources.list.d/ubuntu.sources
     - echo "Download and install java"
@@ -32,7 +30,7 @@ tests:
     - echo "Execute api tests"
     - pytest -m api -n 100 --reruns=${RERUNS_NUMBER} --alluredir=allure-results || echo "API tests failed, but continuing"
     - echo "Execute E2E (by default 'chromium', choose from 'chromium', 'firefox', 'webkit')"
-    - pytest -m e2e -n 61 --base-url ${URL_FOR_TEST} --browser ${BROWSER} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m e2e -n 65 --base-url ${URL_FOR_TEST} --browser ${BROWSER} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
     - echo "Send notification to telegram"

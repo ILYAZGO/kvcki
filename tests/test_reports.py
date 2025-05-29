@@ -406,7 +406,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
     reports = Reports(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True, create_report=True)
 
     with allure.step("Go to url"):
         reports.navigate(base_url)
@@ -564,7 +564,7 @@ def test_report_send_email(base_url, page: Page) -> None:
     reports = Reports(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, create_report=True)
 
     with allure.step("Go to url"):
         reports.navigate(base_url)
@@ -675,7 +675,7 @@ def test_report_send_telegram(base_url, page: Page) -> None:
     reports = Reports(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, create_report=True)
 
     def handle_chat(route: Route):
         json_chat = [{"chatId":-4249734796,"botId":1724205115,"username":"","group":"AT_CHAT"}]

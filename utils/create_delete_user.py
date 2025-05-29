@@ -15,7 +15,7 @@ for delete user write after test :
 delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
-def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=False):
+def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=False, create_report=False):
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
         'accept': 'application/json',
@@ -328,116 +328,118 @@ def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=
                 f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT auto_dict<<<<<")
 
         # create report for user
+        if create_report:
+            report_name = f"auto_test_report_{random.randint(1000, 999999)}"
 
-        report_name = f"auto_test_report_{random.randint(1000, 999999)}"
-
-        json_for_create_report = {
-            "report_id": None,
-            "report_name": report_name,
-            "report_type": "calls",
-            "from_time": None,
-            "to_time": None,
-            "call_search_items": [],
-            "view_options": {
-                "show_table": True,
-                "show_chart": False,
-                "show_diff_report": False,
-                "show_zero_rows": True,
-                "show_zero_cols": True,
-                "show_zero_grouping_rows": True,
-                "show_zero_grouping_cols": True,
-                "show_row_calls_sum": True,
-                "show_col_calls_sum": True,
-                "show_row_all_calls_sum": False,
-                "show_col_all_calls_sum": False,
-                "show_row_calls_missed": False,
-                "show_col_calls_missed": False,
-                "chart_options": {
-                    "by_sub_column": "calls_count",
-                    "chart_type": "histogram"
-                }
-            },
-            "rows_group_by": [
-                {
-                    "group_by": "time",
-                    "value": "day" ,
-                    "view_options": {
-                        "show_calls_count": True,
-                        "show_minutes": False,
-                        "show_percentage": False,
-                        "show_operator_time": False,
-                        "show_percentage_from_all_calls_row": False,
-                        "show_percentage_from_all_calls_col": False,
-                        "show_percentage_from_sum_calls_row": False,
-                        "show_percentage_from_sum_calls_col": False,
-                        "show_client_time": False,
-                        "show_silence_time": False,
-                        "show_operator_time_percentage": False,
-                        "show_client_time_percentage": False,
-                        "show_silence_time_percentage": False,
-                        "show_call_dt": False,
-                        "show_tags_count": False,
-                        "show_deals": False,
-                        "show_checklist_average": False,
-                        "show_checklist_average_percent": False,
-                        "show_client_phones": False,
-                        "show_operator_phones": False,
-                        "show_points": False,
-                        "show_max_points": False,
-                        "show_from_services": False,
-                        "additional_params": []
+            json_for_create_report = {
+                "report_id": None,
+                "report_name": report_name,
+                "report_type": "calls",
+                "from_time": None,
+                "to_time": None,
+                "call_search_items": [],
+                "view_options": {
+                    "show_table": True,
+                    "show_chart": False,
+                    "show_diff_report": False,
+                    "show_zero_rows": True,
+                    "show_zero_cols": True,
+                    "show_zero_grouping_rows": True,
+                    "show_zero_grouping_cols": True,
+                    "show_row_calls_sum": True,
+                    "show_col_calls_sum": True,
+                    "show_row_all_calls_sum": False,
+                    "show_col_all_calls_sum": False,
+                    "show_row_calls_missed": False,
+                    "show_col_calls_missed": False,
+                    "chart_options": {
+                        "by_sub_column": "calls_count",
+                        "chart_type": "histogram"
                     }
-                }
-            ],
-            "cols_group_by": [
-                {
-                    "group_by": "calls_count",
-                    "view_options": {
-                        "show_calls_count": True,
-                        "show_minutes": False,
-                        "show_percentage": False,
-                        "show_operator_time": False,
-                        "show_percentage_from_all_calls_row": False,
-                        "show_percentage_from_all_calls_col": False,
-                        "show_percentage_from_sum_calls_row": False,
-                        "show_percentage_from_sum_calls_col": False,
-                        "show_client_time": False,
-                        "show_silence_time": False,
-                        "show_operator_time_percentage": False,
-                        "show_client_time_percentage": False,
-                        "show_silence_time_percentage": False,
-                        "show_call_dt": False,
-                        "show_tags_count": False,
-                        "show_deals": False,
-                        "show_checklist_average": False,
-                        "show_checklist_average_percent": False,
-                        "show_client_phones": False,
-                        "show_operator_phones": False,
-                        "show_points": False,
-                        "show_max_points": False,
-                        "show_from_services": False,
-                        "additional_params": []
+                },
+                "rows_group_by": [
+                    {
+                        "group_by": "time",
+                        "value": "day" ,
+                        "view_options": {
+                            "show_calls_count": True,
+                            "show_minutes": False,
+                            "show_percentage": False,
+                            "show_operator_time": False,
+                            "show_percentage_from_all_calls_row": False,
+                            "show_percentage_from_all_calls_col": False,
+                            "show_percentage_from_sum_calls_row": False,
+                            "show_percentage_from_sum_calls_col": False,
+                            "show_client_time": False,
+                            "show_silence_time": False,
+                            "show_operator_time_percentage": False,
+                            "show_client_time_percentage": False,
+                            "show_silence_time_percentage": False,
+                            "show_call_dt": False,
+                            "show_tags_count": False,
+                            "show_deals": False,
+                            "show_checklist_average": False,
+                            "show_checklist_average_percent": False,
+                            "show_client_phones": False,
+                            "show_operator_phones": False,
+                            "show_points": False,
+                            "show_max_points": False,
+                            "show_from_services": False,
+                            "additional_params": []
+                        }
                     }
-                }
-            ],
-            "period": "all_time",
-            "from_dt": None,
-            "to_dt": None
-        }
+                ],
+                "cols_group_by": [
+                    {
+                        "group_by": "calls_count",
+                        "view_options": {
+                            "show_calls_count": True,
+                            "show_minutes": False,
+                            "show_percentage": False,
+                            "show_operator_time": False,
+                            "show_percentage_from_all_calls_row": False,
+                            "show_percentage_from_all_calls_col": False,
+                            "show_percentage_from_sum_calls_row": False,
+                            "show_percentage_from_sum_calls_col": False,
+                            "show_client_time": False,
+                            "show_silence_time": False,
+                            "show_operator_time_percentage": False,
+                            "show_client_time_percentage": False,
+                            "show_silence_time_percentage": False,
+                            "show_call_dt": False,
+                            "show_tags_count": False,
+                            "show_deals": False,
+                            "show_checklist_average": False,
+                            "show_checklist_average_percent": False,
+                            "show_client_phones": False,
+                            "show_operator_phones": False,
+                            "show_points": False,
+                            "show_max_points": False,
+                            "show_from_services": False,
+                            "additional_params": []
+                        }
+                    }
+                ],
+                "period": "all_time",
+                "from_dt": None,
+                "to_dt": None
+            }
 
-        # create report
-        url_for_create_report = f'{url}/reports'
+            # create report
+            url_for_create_report = f'{url}/reports'
 
-        create_report = r.post(url_for_create_report, headers=headers_for_user, json=json_for_create_report)
+            create_report = r.post(url_for_create_report, headers=headers_for_user, json=json_for_create_report)
 
-        report_id = create_report.text.replace('"', '')
+            report_id = create_report.text.replace('"', '')
 
-        if create_report.status_code == 200:
-            logger.opt(depth=1).info(f"\n report {report_name} created for user {user_id} with report_id {report_id}")
+            if create_report.status_code == 200:
+                logger.opt(depth=1).info(f"\n report {report_name} created for user {user_id} with report_id {report_id}")
+            else:
+                logger.opt(depth=1).info(f"\nreport {report_name}_{report_id} creation failed with {create_report.status_code}")
         else:
-            logger.opt(depth=1).info(f"\nreport {report_name}_{report_id} creation failed with {create_report.status_code}")
+            pass
 
-        #time.sleep(25)
+        # time.sleep(25)
 
     return user_id, token, login
 
