@@ -2988,7 +2988,6 @@ def test_reports_additional_params_checkboxes_sum_deal_check_lists_points(base_u
         reports.press_generate_report()
 
     with allure.step("check"):
-        page.wait_for_timeout(30000)
         # check headers
         expect(page.locator('[aria-label="Сумма баллов по чек-листам в сделках"]')).to_have_count(2)
         expect(page.locator('[aria-label="Сумма максимальных баллов по чек-листам в сделках"]')).to_have_count(2)
