@@ -2407,7 +2407,7 @@ def test_open_other_pages_from_communications(base_url, page: Page, context: Bro
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, create_report=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)

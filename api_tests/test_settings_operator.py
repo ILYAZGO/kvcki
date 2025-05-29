@@ -180,7 +180,7 @@ def test_give_take_report_to_from_operator():
     NEW_OPERATOR_LOGIN = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, create_report=True)
 
     with allure.step("Get token for user"):
         user_token = get_token(API_URL, LOGIN, PASSWORD)
