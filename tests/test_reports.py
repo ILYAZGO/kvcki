@@ -2674,7 +2674,7 @@ def test_reports_additional_params_checkboxes_talk_time(base_url, page: Page) ->
         expect(page.locator('[aria-label="% разговора оператора"]')).to_have_count(2)
         expect(page.locator('[aria-label="% разговора клиента"]')).to_have_count(2)
         # check sum
-        page.wait_for_timeout(15000)
+        #page.wait_for_timeout(15000)
         expect(page.locator('[title="28:33:47"]')).to_have_count(2)
         expect(page.locator('[title="27:44:26"]')).to_have_count(2)
         expect(page.locator('[title="35.34 %"]')).to_have_count(2)
@@ -2837,7 +2837,6 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
         page.locator(CHECKBOX_FIRST_COMM_TIME_ADD_PARAMS).check()
         page.locator(CHECKBOX_LAST_COMM_TIME_ADD_PARAMS).check()
 
-
     with allure.step("Click (Apply)"):
         reports.click_apply_in_additional_params()
 
@@ -2871,6 +2870,133 @@ def test_reports_additional_params_checkboxes_sum_time_first_last_time(base_url,
         expect(page.locator('[title="80:48:49"]')).to_have_count(2)
         expect(page.locator('[title="08.02.2022, 00:12:20"]')).to_have_count(4)
         expect(page.locator('[title="16.05.2022, 18:21:38"]')).to_have_count(4)
+
+@pytest.mark.e2e
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_average_deal_check_lists_points")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_average_deal_check_lists_points. 2 checkboxes average deal check lists points and percents. For rows and columns")
+def test_reports_additional_params_checkboxes_average_deal_check_lists_points(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Go to url"):
+        reports.navigate(base_url)
+
+    with allure.step("Auth with ecotelecom"):
+        reports.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Press (Create report)"):
+        reports.press_create_report()
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        reports.choose_period_date("01/01/2022", "31/12/2022")
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        reports.click_gear_in_rows()
+
+    with allure.step("Unclick communications checkbox and click deal check list points and percent"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_AVERAGE_POINT_DEAL_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_AVERAGE_POINT_DEAL_CHECKLIST_PERCENT_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        reports.click_apply_in_additional_params()
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        reports.click_gear_in_columns("0")
+
+    with allure.step("Unclick communications checkbox and click deal check list points and percent"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_AVERAGE_POINT_DEAL_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_AVERAGE_POINT_DEAL_CHECKLIST_PERCENT_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        reports.click_apply_in_additional_params()
+
+    # generate report
+    with allure.step("Generate report"):
+        reports.press_generate_report()
+
+    with allure.step("check"):
+        # check headers
+        expect(page.locator('[aria-label="Средний балл по чек-листам в сделках"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Средний балл по чек-листам в % в сделках"]')).to_have_count(2)
+        # check sum
+        expect(page.locator('[title="12"]')).to_have_count(8)
+        expect(page.locator('[title="26.09"]')).to_have_count(8)
+        expect(page.locator('[title="—"]')).to_have_count(4)
+
+
+@pytest.mark.e2e
+@pytest.mark.reports
+@allure.title("test_reports_additional_params_checkboxes_sum_deal_check_lists_points")
+@allure.severity(allure.severity_level.CRITICAL)
+@allure.description("test_reports_additional_params_checkboxes_sum_deal_check_lists_points. sum points, sum min points, sum max points. For rows and columns")
+def test_reports_additional_params_checkboxes_sum_deal_check_lists_points(base_url, page: Page) -> None:
+    reports = Reports(page)
+
+    with allure.step("Go to url"):
+        reports.navigate(base_url)
+
+    with allure.step("Auth with ecotelecom"):
+        reports.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Go to reports"):
+        reports.click_reports()
+
+    with allure.step("Press (Create report)"):
+        reports.press_create_report()
+
+    with allure.step("Choose period 01/01/2022-31/12/2022"):
+        reports.choose_period_date("01/01/2022", "31/12/2022")
+
+    # for row
+    with allure.step("Click additional params for rows"):
+        reports.click_gear_in_rows()
+
+    with allure.step("Unclick communications checkbox and check sum points, sum min points, sum max points"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_SUM_POINTS_DEAL_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_SUM_MIN_POINTS_DEAL_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_SUM_MAX_POINTS_DEAL_CHECKLIST_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        reports.click_apply_in_additional_params()
+
+    # for column
+
+    with allure.step("Click additional params for column"):
+        reports.click_gear_in_columns("0")
+
+    with allure.step("Unclick communications checkbox and check sum points, sum min points, sum max points"):
+        page.locator(CHECKBOX_COMMUNICATIONS_ADD_PARAMS).uncheck()
+        page.locator(CHECKBOX_SUM_POINTS_DEAL_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_SUM_MIN_POINTS_DEAL_CHECKLIST_ADD_PARAMS).check()
+        page.locator(CHECKBOX_SUM_MAX_POINTS_DEAL_CHECKLIST_ADD_PARAMS).check()
+
+    with allure.step("Click (Apply)"):
+        reports.click_apply_in_additional_params()
+
+    # generate report
+    with allure.step("Generate report"):
+        reports.press_generate_report()
+
+    with allure.step("check"):
+        page.wait_for_timeout(30000)
+        # check headers
+        expect(page.locator('[aria-label="Сумма баллов по чек-листам в сделках"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Сумма максимальных баллов по чек-листам в сделках"]')).to_have_count(2)
+        expect(page.locator('[aria-label="Сумма минимальных баллов по чек-листам в сделках"]')).to_have_count(2)
+        # check sum
+        expect(page.locator('[title="12"]')).to_have_count(8)
+        expect(page.locator('[title="46"]')).to_have_count(8)
+        expect(page.locator('[title="0"]')).to_have_count(14)
 
 
 

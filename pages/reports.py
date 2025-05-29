@@ -50,6 +50,13 @@ CHECKBOX_LAST_COMM_TIME_ADD_PARAMS = '[data-testid="show_last_call_dt"]'
 CHECKBOX_POINTS_SUM_ADD_PARAMS = '[data-testid="show_points"]'
 CHECKBOX_POINTS_MAX_SUM_ADD_PARAMS = '[data-testid="show_max_points"]'
 
+CHECKBOX_AVERAGE_POINT_DEAL_CHECKLIST_ADD_PARAMS = '[data-testid="show_deal_checklist_average"]'
+CHECKBOX_AVERAGE_POINT_DEAL_CHECKLIST_PERCENT_ADD_PARAMS = '[data-testid="show_deal_checklist_average_percent"]'
+CHECKBOX_SUM_POINTS_DEAL_CHECKLIST_ADD_PARAMS = '[data-testid="show_deal_points"]'
+CHECKBOX_SUM_MIN_POINTS_DEAL_CHECKLIST_ADD_PARAMS = '[data-testid="show_deal_min_points"]'
+CHECKBOX_SUM_MAX_POINTS_DEAL_CHECKLIST_ADD_PARAMS = '[data-testid="show_deal_max_points"]'
+
+
 BUTTON_ADD_PARAMS_APPLY = '[data-testid="report_settings_apply"]'
 BUTTON_KORZINA_IN_ADD_PARAMS = '[data-testid*="delete_btn_view_"]'
 
