@@ -14,7 +14,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -85,7 +85,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -167,7 +167,7 @@ def test_add_rule_outside_group_disabled(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -194,7 +194,7 @@ def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -279,7 +279,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -423,7 +423,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -537,7 +537,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -659,7 +659,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -757,7 +757,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -860,7 +860,7 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -939,7 +939,7 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
         create_rules(API_URL, LOGIN, PASSWORD, USER_ID, 5)
 
     with allure.step("Go to url"):

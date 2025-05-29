@@ -15,7 +15,7 @@ def test_admin_bar_with_admin(base_url, page) -> None:
     admin_bar = AdminBar(page)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
@@ -60,10 +60,10 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
     admin_bar = AdminBar(page)
 
     with allure.step("Create user1"):
-        USER_ID_USER1, TOKEN_USER, LOGIN_USER1 = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER1, TOKEN_USER, LOGIN_USER1 = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Create user2"):
-        USER_ID_USER2, TOKEN_USER, LOGIN_USER2 = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER2, TOKEN_USER, LOGIN_USER2 = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Create manager"):
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
@@ -218,7 +218,7 @@ def test_language_change_by_user(base_url, page: Page) -> None:
     admin_bar = AdminBar(page)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         admin_bar.navigate(base_url)
@@ -267,7 +267,7 @@ def test_language_change_by_user_and_operator(base_url, page: Page) -> None:
     admin_bar = AdminBar(page)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Create operator"):
         USER_ID_OPERATOR, TOKEN_OPERATOR, LOGIN_OPERATOR = create_operator(API_URL, USER_ID_USER, PASSWORD)
@@ -360,7 +360,7 @@ def test_check_page_titles_by_user_itself(base_url, page: Page) -> None:
     admin_bar = AdminBar(page)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         admin_bar.navigate(base_url)

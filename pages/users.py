@@ -22,6 +22,7 @@ class Users(BaseClass):
         self.select_role = page.locator(SELECT_ROLE).locator("svg")
 
     def press_button_add_user(self):
+        self.page.wait_for_timeout(500)
         self.button_add_user.click()
         self.page.wait_for_selector(MODAL_WINDOW, timeout=self.timeout)
         self.page.wait_for_timeout(500)

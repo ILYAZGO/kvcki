@@ -17,7 +17,7 @@ def test_usedesk(base_url, page: Page) -> None:
     integrations = Integrations(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         integrations.navigate(base_url)
@@ -146,7 +146,7 @@ def test_search_string(base_url, page: Page) -> None:
     integrations = Integrations(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         integrations.navigate(base_url)
@@ -215,7 +215,7 @@ def test_integrations_api_token(base_url, page: Page) -> None:
     integrations = Integrations(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         integrations.navigate(base_url)
@@ -277,7 +277,7 @@ def test_integrations_api_token_list_if_500(base_url, page: Page) -> None:
     page.route("**/api_keys", handle_api_token_list)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         integrations.navigate(base_url)
@@ -313,7 +313,7 @@ def test_integrations_tag_translations(base_url, page: Page) -> None:
     integrations = Integrations(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         integrations.navigate(base_url)

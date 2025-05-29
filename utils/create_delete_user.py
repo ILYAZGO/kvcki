@@ -15,7 +15,7 @@ for delete user write after test :
 delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
-def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=True):
+def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=False):
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
         'accept': 'application/json',

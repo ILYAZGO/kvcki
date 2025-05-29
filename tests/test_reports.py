@@ -180,7 +180,7 @@ def test_reports_check_calendar_localization(base_url, page: Page) -> None:
     reports = Reports(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         reports.navigate(base_url)
@@ -406,7 +406,7 @@ def test_reports_management_check(base_url, page: Page) -> None:
     reports = Reports(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         reports.navigate(base_url)

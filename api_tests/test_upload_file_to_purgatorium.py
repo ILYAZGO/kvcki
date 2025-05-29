@@ -18,7 +18,7 @@ def test_upload_file_to_purgatorium():
     files = {"fileobject": ("stereo.opus", open(filename, 'rb'), 'audio/opus')}
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Get token for user"):
         user_token = get_token(API_URL, LOGIN, PASSWORD)

@@ -566,7 +566,7 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
     communications = Communications(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -618,7 +618,7 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -709,7 +709,7 @@ def test_check_content_button_calls_actions_for_user(base_url, page: Page) -> No
                     " книгуФильтр теговПеревыгрузить из интеграцииОбработать непрерывные записиВосстановить непрерывные записи")
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -899,7 +899,7 @@ def test_check_buttons_in_open_call(base_url, page: Page) -> None:
             "crmПеревыгрузить из интеграцииПоказать скрытые тегиМета инфоРедактировать правило оповещения")
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -940,7 +940,7 @@ def test_check_download_call_from_expanded_call(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -1185,7 +1185,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
     today = datetime.now().strftime("%d.%m.%Y, ")  # %H:%M can fail test if minutes changed while test running
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -1308,7 +1308,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Auth with admin"):
         communications.auth(LOGIN_ADMIN, PASSWORD)
@@ -1637,7 +1637,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -1953,7 +1953,7 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -2054,7 +2054,7 @@ def test_check_search_and_switch_to_other_user(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -2102,7 +2102,7 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to page"):
         communications.navigate(base_url)
@@ -2178,7 +2178,7 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to page"):
         communications.navigate(base_url)
@@ -2253,7 +2253,7 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to page"):
         communications.navigate(base_url)
@@ -2324,7 +2324,7 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
         USER_ID_MANAGER, TOKEN_MANAGER, LOGIN_MANAGER = create_user(API_URL, ROLE_MANAGER, PASSWORD)
 
     with allure.step("Create user for manager"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
         give_users_to_manager(API_URL, USER_ID_MANAGER, [USER_ID_USER, importFrom_user_id], TOKEN_MANAGER)
 
     with allure.step("Go to page"):
@@ -2530,7 +2530,7 @@ def test_go_to_gpt_from_call(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -2584,7 +2584,7 @@ def test_public_link_from_call_by_user(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -2634,7 +2634,7 @@ def test_public_link_from_call_by_admin(base_url, page: Page) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -2690,7 +2690,7 @@ def test_public_link_from_call_by_admin_to_not_logged_user(base_url, page: Page)
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -2765,7 +2765,7 @@ def test_communication_check_list_in_open_call(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
@@ -2877,7 +2877,7 @@ def test_calls_actions_gpt_basic(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, gpt_rule=True)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, gpt_rule=True, upload_call=True)
 
     with allure.step("Go to url"):
         communications.navigate("http://192.168.10.101/feature-dev-3426-new/")

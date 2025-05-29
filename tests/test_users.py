@@ -352,7 +352,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
     PHONE = str(random.randint(10000000000, 99999999999))
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=False)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
 
     with allure.step("Go to url"):
         users.navigate(base_url)
