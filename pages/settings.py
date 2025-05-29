@@ -82,6 +82,7 @@ class Settings(BaseClass):
 
     def assert_address_book_text(self, text: str):
         """Check address book text"""
+        self.page.wait_for_timeout(500)
         expect(self.input_address_book).to_contain_text([text])
 
     def click_personal_info(self):

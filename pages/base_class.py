@@ -306,6 +306,7 @@ class BaseClass:
 
     def click_address_book(self):
         """Click address book button"""
+        self.page.wait_for_timeout(500)
         self.button_address_book.click()
         self.page.wait_for_selector(INPUT_ADDRESS_BOOK)
 
