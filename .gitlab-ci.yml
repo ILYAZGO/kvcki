@@ -14,7 +14,7 @@ tests:
       - allure-report
   before_script:
     - cat /etc/apt/sources.list.d/ubuntu.sources
-    - sed -E -i 's#http://archive\.ubuntu\.com/ubuntu#http://ru.archive.ubuntu.com/ubuntu#g' /etc/apt/sources.list.d/ubuntu.sources'
+    - sed -E -i 's#http://archive\.ubuntu\.com/ubuntu#http://ru.archive.ubuntu.com/ubuntu#g' /etc/apt/sources.list.d/ubuntu.sources
     - echo "Download and install java"
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
     - echo "Download and install wget"
