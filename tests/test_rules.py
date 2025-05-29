@@ -882,7 +882,7 @@ def test_import_rule_disabled_for_user(base_url, page: Page) -> None:
 @pytest.mark.rules
 @allure.title("test_compare_rules_by_user")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.description("User has three rules with different parameters. when he switch between them, all parameters changing")
+@allure.description("User has three rules with different parameters. when he switch between them, all parameters changing.")
 def test_compare_rules_by_user(base_url, page: Page) -> None:
     rules = Rules(page)
 
