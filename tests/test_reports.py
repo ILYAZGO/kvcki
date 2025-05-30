@@ -2928,8 +2928,14 @@ def test_reports_additional_params_checkboxes_average_deal_check_lists_points(ba
         expect(page.locator('[aria-label="Средний балл по чек-листам в сделках"]')).to_have_count(2)
         expect(page.locator('[aria-label="Средний балл по чек-листам в % в сделках"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="12"]')).to_have_count(8)
-        expect(page.locator('[title="26.09"]')).to_have_count(8)
+        expect(page.locator('[title="18.91"]')).to_have_count(2)
+        expect(page.locator('[title="14.38"]')).to_have_count(2)
+        expect(page.locator('[title="18.54"]')).to_have_count(2)
+        expect(page.locator('[title="15.6"]')).to_have_count(2)
+        expect(page.locator('[title="41.11"]')).to_have_count(2)
+        expect(page.locator('[title="31.26"]')).to_have_count(2)
+        expect(page.locator('[title="40.31"]')).to_have_count(2)
+        expect(page.locator('[title="33.91"]')).to_have_count(2)
         expect(page.locator('[title="—"]')).to_have_count(4)
 
 
@@ -2993,8 +2999,14 @@ def test_reports_additional_params_checkboxes_sum_deal_check_lists_points(base_u
         expect(page.locator('[aria-label="Сумма максимальных баллов по чек-листам в сделках"]')).to_have_count(2)
         expect(page.locator('[aria-label="Сумма минимальных баллов по чек-листам в сделках"]')).to_have_count(2)
         # check sum
-        expect(page.locator('[title="12"]')).to_have_count(8)
-        expect(page.locator('[title="46"]')).to_have_count(8)
+        expect(page.locator('[title="8454"]')).to_have_count(2)
+        expect(page.locator('[title="22102"]')).to_have_count(2)
+        expect(page.locator('[title="5823"]')).to_have_count(2)
+        expect(page.locator('[title="33790"]')).to_have_count(2)
+        expect(page.locator('[title="20562"]')).to_have_count(2)
+        expect(page.locator('[title="70702"]')).to_have_count(2)
+        expect(page.locator('[title="14444"]')).to_have_count(2)
+        expect(page.locator('[title="99636"]')).to_have_count(2)
         expect(page.locator('[title="0"]')).to_have_count(14)
 
 
