@@ -227,7 +227,7 @@ class BaseClass:
         self.page.wait_for_selector(BUTTON_FIND_COMMUNICATIONS)
         self.page.wait_for_timeout(500)
 
-    def click_reportsclick_reports(self):
+    def click_reports(self):
         """Click Reports"""
         self.page.wait_for_selector(BUTTON_REPORTS, timeout=self.timeout)
         self.page.wait_for_timeout(500)
