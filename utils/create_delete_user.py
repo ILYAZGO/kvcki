@@ -15,7 +15,12 @@ for delete user write after test :
 delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
 
 
-def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=False, create_report=False):
+def create_user(url: str, role: str, password: str,
+                gpt_rule=False,
+                upload_call=False,
+                create_report=False,
+                deal_check_list=False):
+
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
         'accept': 'application/json',
@@ -46,6 +51,7 @@ def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=
         'login': login,
         'name': name,
         'password': password,
+        "makeDeals": True,
         "sttOptions": {
             "sttEngine": "nlab_speech",
             "sttEconomize": False,
@@ -149,44 +155,47 @@ def create_user(url: str, role: str, password: str, gpt_rule=False, upload_call=
                 f"\n>>>>> ERROR CREATING CHECKLIST {add_call_check_list.status_code} <<<<<")
 
 
-        # # create deal check list
-        # deal_check_list = {
-        #     "enabledUsers":[],
-        #     "title":"auto_deal_ch_list",
-        #     "entityType":"DEAL",
-        #     "enabled":True,
-        #     "priority":0,
-        #     "globalFilter":
-        #         {
-        #             "title":None,"items":[]
-        #         },
-        #     "questions":[
-        #         {"id":"",
-        #          "text":"q1",
-        #          "answerValues":["a1"],
-        #          "answerAutoSelectSearchFilters":{"a1":{"title":None,"items":[{"key":"any_of_tags","values":["auto_rule"]}]}},
-        #          "answerSelectedTaggingLogic":{"a1":[{"strategyOnSet":"ADD","strategyOnUnset":"REMOVE","tags":["auto_rule"]}]},
-        #          "answerPoints":{"a1":10}},
-        #         {"id":"",
-        #          "text":"q2",
-        #          "answerValues":["a2"],
-        #          "answerAutoSelectSearchFilters":{"a2":{"title":None,"items":[{"key":"any_of_tags","values":["auto_rule"]}]}},
-        #          "answerSelectedTaggingLogic":{"a2":[{"strategyOnSet":"ADD","strategyOnUnset":"REMOVE","tags":["auto_rule"]}]},
-        #          "answerPoints":{"a2":-10}}
-        #     ],
-        #     "appraisers":[],
-        #     "generateReport":False
-        # }
-        #
-        # add_deal_check_list = r.post(f"{url}/checklists/", headers=headers_for_user, json=deal_check_list)
-        # deal_check_list_id = add_deal_check_list.text.replace('"', '')
-        #
-        # if add_deal_check_list.status_code == 200:
-        #     logger.opt(depth=1).info(
-        #         f"\n>>>>> FOR USER {name} CREATED deal check list {deal_check_list_id}<<<<<")
-        # else:
-        #     logger.opt(depth=1).info(
-        #         f"\n>>>>> ERROR CREATING CHECKLIST {add_deal_check_list.status_code} <<<<<")
+        # create deal check list
+        if deal_check_list:
+            deal_check_list = {
+                "enabledUsers":[],
+                "title":"auto_deal_ch_list",
+                "entityType":"DEAL",
+                "enabled":True,
+                "priority":0,
+                "globalFilter":
+                    {
+                        "title":None,"items":[]
+                    },
+                "questions":[
+                    {"id":"",
+                     "text":"q1",
+                     "answerValues":["a1"],
+                     "answerAutoSelectSearchFilters":{"a1":{"title":None,"items":[{"key":"any_of_tags","values":["auto_rule"]}]}},
+                     "answerSelectedTaggingLogic":{"a1":[{"strategyOnSet":"ADD","strategyOnUnset":"REMOVE","tags":["auto_rule"]}]},
+                     "answerPoints":{"a1":10}},
+                    {"id":"",
+                     "text":"q2",
+                     "answerValues":["a2"],
+                     "answerAutoSelectSearchFilters":{"a2":{"title":None,"items":[{"key":"any_of_tags","values":["auto_rule"]}]}},
+                     "answerSelectedTaggingLogic":{"a2":[{"strategyOnSet":"ADD","strategyOnUnset":"REMOVE","tags":["auto_rule"]}]},
+                     "answerPoints":{"a2":-10}}
+                ],
+                "appraisers":[],
+                "generateReport":False
+            }
+
+            add_deal_check_list = r.post(f"{url}/checklists/", headers=headers_for_user, json=deal_check_list)
+            deal_check_list_id = add_deal_check_list.text.replace('"', '')
+
+            if add_deal_check_list.status_code == 200:
+                logger.opt(depth=1).info(
+                    f"\n>>>>> FOR USER {name} CREATED deal check list {deal_check_list_id}<<<<<")
+            else:
+                logger.opt(depth=1).info(
+                    f"\n>>>>> ERROR CREATING CHECKLIST {add_deal_check_list.status_code} <<<<<")
+        else:
+            pass
 
         # create gpt rule
         if gpt_rule:
