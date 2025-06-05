@@ -687,13 +687,13 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="markup_importNav_gpt"]')).not_to_be_visible()
 
     with allure.step("Import group with rule"):
-        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(1).click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator(CHECKBOX).nth(1).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
         page.wait_for_timeout(2000)
 
     with allure.step("Import rule"):
-        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(3).click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator(CHECKBOX).nth(3).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым правилам").click()
         page.wait_for_timeout(2000)
@@ -790,13 +790,13 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         expect(page.locator('[data-testid="markup_importNav_gpt"]')).not_to_be_visible()
 
     with allure.step("Import group with rule"):
-        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(1).click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator(CHECKBOX).nth(1).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="Продолжить").click()
         page.wait_for_timeout(2000)
 
     with allure.step("Import rule"):
-        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator('[type="checkbox"]').nth(3).click()
+        page.locator('[class*="CopyMode_copyModeView__popup_"]').locator(CHECKBOX).nth(3).click()
         page.wait_for_timeout(1000)
         page.get_by_role("button", name="К новым правилам").click()
         page.wait_for_timeout(2000)
@@ -1017,7 +1017,7 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
     with allure.step("Check first rule name"):
         rules.assert_first_group_name("test_search_and_sort1")
 
-    page.locator('[data-testid="test"]').locator('[type="checkbox"]').first.click()
+    page.locator('[data-testid="test"]').locator(CHECKBOX).first.click()
     page.wait_for_timeout(500)
 
     with allure.step("Check that button for import not visible"):

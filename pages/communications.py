@@ -33,6 +33,8 @@ BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
 BUTTON_RETAG = '[data-testid="calls_actions_retag"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 
+BUTTON_ADD_GPT_RULE = '[data-testid="addRuleBtn"]'
+
 BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"

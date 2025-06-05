@@ -1740,7 +1740,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         reports.click_gear_in_rows()
 
     with allure.step("Check content of modal window for rows. 21 checkbox, 7 add params, 2 buttons"):
-        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(29)
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).to_have_count(29)
         expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
         expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
         expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
@@ -1761,7 +1761,7 @@ def test_reports_additional_params_content(base_url, page: Page) -> None:
         reports.click_gear_in_columns("0")
 
     with allure.step("Check content of modal window for columns. 22 checkbox, 8 add params, 2 buttons"):
-        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_have_count(31)
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).to_have_count(31)
         expect(page.locator(BUTTON_TAG_VALUE_IN_ADDITIONAL_PARAMS)).to_have_count(1)
         expect(page.locator('[data-testid="checklistChange"]')).to_have_count(1)
         expect(page.locator('[data-testid="checklistChangePercent"]')).to_have_count(1)
@@ -3040,7 +3040,7 @@ def test_reports_diff(base_url, page: Page) -> None:
     with allure.step("Click diff report"):
         page.get_by_text("Настройка таблицы").click()
         page.wait_for_selector('[class="shown"]')
-        page.locator('[data-testid="show_diff_report"]').locator('[type="checkbox"]').click()
+        page.locator('[data-testid="show_diff_report"]').locator(CHECKBOX).click()
 
     with allure.step("Check"):
         expect(page.locator('[title="419 (-1673)"]')).to_have_count(3)

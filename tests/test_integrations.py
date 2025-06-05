@@ -50,7 +50,7 @@ def test_usedesk(base_url, page: Page) -> None:
         expect(page.locator('[class*="styles_statusTitleDisconnected_"]')).to_have_count(1)
 
     with allure.step("Make integration Active"):
-        page.locator('[type="checkbox"]').click()
+        page.locator(CHECKBOX).click()
 
     with allure.step("Check alert"):
         integrations.check_alert("Данные сохранены")
@@ -116,7 +116,7 @@ def test_usedesk(base_url, page: Page) -> None:
         page.wait_for_selector('[href*="/parameters"]')
 
     with allure.step("Make integration inActive"):
-        page.locator('[type="checkbox"]').click()
+        page.locator(CHECKBOX).click()
 
     with allure.step("Check alert"):
         integrations.check_alert("Данные сохранены")

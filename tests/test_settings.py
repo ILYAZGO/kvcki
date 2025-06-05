@@ -1306,10 +1306,10 @@ def test_giving_communications_quota_by_admin(base_url, page: Page) -> None:
         expect(page.locator(INPUT_QUOTA_TIME)).to_have_value("777")
 
     with allure.step("Click checkbox (bessro4no)"):
-        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').click()
+        page.locator(MODAL_WINDOW).locator(CHECKBOX).click()
 
     with allure.step("Check that checkbox was checked"):
-        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).to_be_checked()
 
     with allure.step("Check that dates disabled"):
         expect(page.locator('[class*="ant-picker-disabled"]')).to_be_visible()
@@ -2179,7 +2179,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2203,7 +2203,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2233,7 +2233,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2257,7 +2257,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2281,7 +2281,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(5)
+        expect(page.locator(CHECKBOX)).to_have_count(5)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2311,7 +2311,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 #
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2346,7 +2346,7 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(8)
+        expect(page.locator(CHECKBOX)).to_have_count(8)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
@@ -2460,7 +2460,7 @@ def test_check_word_processing_parameters_combination(base_url, page: Page) -> N
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(8)
+        expect(page.locator(CHECKBOX)).to_have_count(8)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
@@ -2559,7 +2559,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2583,7 +2583,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2613,7 +2613,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2637,7 +2637,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2661,7 +2661,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(5)
+        expect(page.locator(CHECKBOX)).to_have_count(5)
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2691,7 +2691,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
     #
     with allure.step("Click to engine"):
         settings.click_engine_select()
@@ -2726,7 +2726,7 @@ def test_check_re_recognize_in_actions_with_calls(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(8)
+        expect(page.locator(CHECKBOX)).to_have_count(8)
 
 #  check save combinations
     with allure.step("Choose dates"):

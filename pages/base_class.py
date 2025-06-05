@@ -40,6 +40,7 @@ BUTTON_PENCIL = '[aria-label="Изменить название"]'
 BUTTON_KORZINA = '[aria-label="Удалить"]'
 BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'
 INPUT_NEW_GROUP_NAME = '[name="groupName"]'
+CHECKBOX = '[type="checkbox"]'
 
 SELECT_LANGUAGE = '[data-testid="stt_language"]'
 SELECT_ENGINE = '[data-testid="stt_engine"]'

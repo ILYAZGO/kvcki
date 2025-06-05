@@ -218,7 +218,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Import first"):
         page.wait_for_timeout(1000)
-        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(0).check()
+        page.locator(MODAL_WINDOW).locator(CHECKBOX).nth(0).check()
         page.wait_for_timeout(1000)
 
     with allure.step("Press (Go on)"):
@@ -226,7 +226,7 @@ def test_import_check_list_by_admin(base_url, page: Page) -> None:
         page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
-        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(1).check()
+        page.locator(MODAL_WINDOW).locator(CHECKBOX).nth(1).check()
         page.wait_for_timeout(1000)
 
     with allure.step("Go to new check-lists"):
@@ -306,7 +306,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
 
     with allure.step("Import first"):
         page.wait_for_timeout(1000)
-        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(0).check()
+        page.locator(MODAL_WINDOW).locator(CHECKBOX).nth(0).check()
         page.wait_for_timeout(1000)
 
     with allure.step("Press (Go on)"):
@@ -314,7 +314,7 @@ def test_import_check_list_by_manager(base_url, page: Page) -> None:
         page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
-        page.locator(MODAL_WINDOW).locator('[type="checkbox"]').nth(1).check()
+        page.locator(MODAL_WINDOW).locator(CHECKBOX).nth(1).check()
         page.wait_for_timeout(1000)
 
     with allure.step("Go to new chec-lists"):

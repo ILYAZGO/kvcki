@@ -193,10 +193,10 @@ def test_notifications_api(base_url, page: Page) -> None:
         notifications.set_url_and_headers("https://www.google.com/", "someHeaders")
 
     with allure.step("Checkbox send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').click()
+        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "auto_rule", "1", page)
@@ -214,8 +214,8 @@ def test_notifications_api(base_url, page: Page) -> None:
         notifications.go_back_in_rule_after_save("auto-test-api")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
-        expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
+        expect(page.locator(BLOCK_RULES_LIST).locator(CHECKBOX)).to_be_checked()
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
         expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-api")
@@ -259,10 +259,10 @@ def test_notifications_email(base_url, page: Page) -> None:
         notifications.set_notification_name("auto-test-email")
 
     with allure.step("Checkbox send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').click()
+        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "auto_rule", "1", page)
@@ -283,8 +283,8 @@ def test_notifications_email(base_url, page: Page) -> None:
         notifications.go_back_in_rule_after_save("auto-test-email")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]')).to_be_checked()
-        expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
+        expect(page.locator(BLOCK_RULES_LIST).locator(CHECKBOX)).to_be_checked()
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
         expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-email")
@@ -328,16 +328,16 @@ def test_notifications_telegram(base_url,page: Page) -> None:
         notifications.set_notification_name("auto-test-telegram")
 
     with allure.step("Checkbox send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0).click()
+        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
 
     with allure.step("Checkbox send audio with message"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1).click()
+        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "auto_rule", "1", page)
@@ -355,10 +355,10 @@ def test_notifications_telegram(base_url,page: Page) -> None:
         notifications.go_back_in_rule_after_save("auto-test-telegram")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
-        expect(page.locator(BLOCK_RULES_LIST).locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator(BLOCK_RULES_LIST).locator(CHECKBOX)).to_be_checked()
         expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
         expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-telegram")
 
@@ -411,16 +411,16 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         notifications.set_notification_name("auto-test-amoCRM")
 
     with allure.step("Checkbox Send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0).click()
+        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
 
     with allure.step("Checkbox Allow overwriting fields from CRM"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1).click()
+        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "Бренд", "1", page)
@@ -438,8 +438,8 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         notifications.go_back_in_rule_after_save("auto-test-amoCRM")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(0)).to_be_checked()
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator('[type="checkbox"]').nth(1)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
+        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
         expect(page.locator('[aria-label="Remove Бренд"]')).to_have_count(1)
         expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
         expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-amoCRM")
@@ -494,13 +494,13 @@ def test_notifications_import_rules_by_admin(base_url, page: Page) -> None:
         page.wait_for_timeout(1000)
 
     with allure.step("Import first rule"):
-        page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(0).click()
+        page.locator('[aria-label="Импортировать"]').locator(CHECKBOX).nth(0).click()
 
     with allure.step("Press (Go on) button"):
         page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="Продолжить").click()
 
     with allure.step("Import second rule"):
-        page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(1).click()
+        page.locator('[aria-label="Импортировать"]').locator(CHECKBOX).nth(1).click()
 
     with allure.step("Go to new rules"):
         page.locator(BLOCK_AFTER_IMPORT).get_by_role("button", name="К новым правилам").click()
@@ -570,7 +570,7 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         page.wait_for_timeout(1000)
 
     with allure.step("Import first rule"):
-        page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(0).click()
+        page.locator('[aria-label="Импортировать"]').locator(CHECKBOX).nth(0).click()
         page.wait_for_timeout(500)
 
     with allure.step("Press (Go on) button"):
@@ -578,7 +578,7 @@ def test_notifications_import_rules_by_manager(base_url, page: Page) -> None:
         page.wait_for_timeout(500)
 
     with allure.step("Import second rule"):
-        page.locator('[aria-label="Импортировать"]').locator('[type="checkbox"]').nth(1).click()
+        page.locator('[aria-label="Импортировать"]').locator(CHECKBOX).nth(1).click()
         page.wait_for_timeout(500)
 
     with allure.step("Go to new rules"):

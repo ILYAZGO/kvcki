@@ -541,7 +541,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -565,7 +565,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -595,7 +595,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -619,7 +619,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -643,7 +643,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(5)
+        expect(page.locator(CHECKBOX)).to_have_count(5)
 
 
     with allure.step("Click to engine"):
@@ -674,7 +674,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -709,7 +709,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_PROFANITY_FILTER)).not_to_be_checked()
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(8)
+        expect(page.locator(CHECKBOX)).to_have_count(8)
 
     #  check save combinations
 

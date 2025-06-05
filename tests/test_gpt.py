@@ -33,8 +33,8 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.click_create_new_gpt_rule()
 
     with allure.step("Check check box comment and tag"):
-        expect(page.locator('[data-testid="gpt_isComment"]').locator('[type="checkbox"]')).not_to_be_checked()
-        expect(page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator('[data-testid="gpt_isComment"]').locator(CHECKBOX)).not_to_be_checked()
+        expect(page.locator('[data-testid="gpt_isTag"]').locator(CHECKBOX)).to_be_checked()
 
     with allure.step("Try to save empty rule"):
         gpt.press_save_in_gpt()
@@ -64,7 +64,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.turn_on_rule()
 
     with allure.step("Check that rule was turned on"):
-        expect(page.locator('[class*="styles_dpBothBox"]').locator('[type="checkbox"]')).to_be_checked()
+        expect(page.locator('[class*="styles_dpBothBox"]').locator(CHECKBOX)).to_be_checked()
 
     with allure.step("Delete 1 question"):
         page.get_by_role("button", name="Удалить вопрос").nth(1).click()
@@ -87,11 +87,11 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         expect(page.get_by_text("ruleGPT")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Uncheck all checkboxes"):
-        page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]').uncheck()
+        page.locator('[data-testid="gpt_isTag"]').locator(CHECKBOX).uncheck()
 
     with allure.step("Check check box comment and tag"):
-        expect(page.locator('[data-testid="gpt_isComment"]').locator('[type="checkbox"]')).not_to_be_checked()
-        expect(page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]')).not_to_be_checked()
+        expect(page.locator('[data-testid="gpt_isComment"]').locator(CHECKBOX)).not_to_be_checked()
+        expect(page.locator('[data-testid="gpt_isTag"]').locator(CHECKBOX)).not_to_be_checked()
 
     with allure.step("Try to save empty rule"):
         gpt.press_save_in_gpt()
@@ -390,7 +390,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         gpt.choose_user_import_from("importFrom")
 
     with allure.step("Import first"):
-        page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
+        page.locator('[data-testid="test"]').nth(0).locator(CHECKBOX).check()
 
     with allure.step("Press (Go on)"):
         page.wait_for_timeout(2000)
@@ -398,7 +398,7 @@ def test_import_gpt_rule_by_admin(base_url, page: Page) -> None:
         page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
-        page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()
+        page.locator('[data-testid="test"]').nth(1).locator(CHECKBOX).check()
 
     with allure.step("Go to new gpt rules"):
         page.get_by_role("button", name="К новым правилам GPT").click()
@@ -472,7 +472,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         gpt.choose_user_import_from("importFrom")
 
     with allure.step("Import first"):
-        page.locator('[data-testid="test"]').nth(0).locator('[type="checkbox"]').check()
+        page.locator('[data-testid="test"]').nth(0).locator(CHECKBOX).check()
 
     with allure.step("Press (Go on)"):
         page.wait_for_timeout(1000)
@@ -480,7 +480,7 @@ def test_import_gpt_rule_by_manager(base_url, page: Page) -> None:
         page.wait_for_timeout(1000)
 
     with allure.step("Import second"):
-        page.locator('[data-testid="test"]').nth(1).locator('[type="checkbox"]').check()
+        page.locator('[data-testid="test"]').nth(1).locator(CHECKBOX).check()
 
     with allure.step("Go to new gpt rules"):
         page.get_by_role("button", name="К новым правилам GPT").click()
@@ -602,12 +602,12 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
         expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1, timeout=wait_until_visible)
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("firsttag")
         expect(page.locator(INPUT_GPT_QUESTION).nth(0)).to_have_value("firstquestion")
-        expect(page.locator('[data-testid="gpt_isComment"]').locator('[type="checkbox"]').nth(0)).not_to_be_checked()
-        expect(page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]').nth(0)).to_be_checked()
+        expect(page.locator('[data-testid="gpt_isComment"]').locator(CHECKBOX).nth(0)).not_to_be_checked()
+        expect(page.locator('[data-testid="gpt_isTag"]').locator(CHECKBOX).nth(0)).to_be_checked()
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(1)).to_have_value("secondtag")
         expect(page.locator(INPUT_GPT_QUESTION).nth(1)).to_have_value("secondquestion")
-        expect(page.locator('[data-testid="gpt_isComment"]').locator('[type="checkbox"]').nth(1)).not_to_be_checked()
-        expect(page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]').nth(1)).to_be_checked()
+        expect(page.locator('[data-testid="gpt_isComment"]').locator(CHECKBOX).nth(1)).not_to_be_checked()
+        expect(page.locator('[data-testid="gpt_isTag"]').locator(CHECKBOX).nth(1)).to_be_checked()
 
     with allure.step("Check some amount checkboxes to be checked (include on/off rules)"):
         assert amount_checkboxes_to_be_checked(4, page) == True
@@ -620,8 +620,8 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
         expect(page.locator(INPUT_GPT_RULE_NAME)).to_have_value("secondgptrule")
         expect(page.locator('[class*="styles_entityType"]')).to_have_text("Тип правилаСделка")
         expect(page.locator('[aria-label="Remove >100"]')).to_have_count(1)
-        expect(page.locator('[data-testid="gpt_isComment"]').locator('[type="checkbox"]').nth(0)).to_be_checked()
-        expect(page.locator('[data-testid="gpt_isTag"]').locator('[type="checkbox"]').nth(0)).not_to_be_checked()
+        expect(page.locator('[data-testid="gpt_isComment"]').locator(CHECKBOX).nth(0)).to_be_checked()
+        expect(page.locator('[data-testid="gpt_isTag"]').locator(CHECKBOX).nth(0)).not_to_be_checked()
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("sadecesoru")
         expect(page.locator(INPUT_GPT_QUESTION).nth(0)).to_have_value("nasilsin")
 

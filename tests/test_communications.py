@@ -1202,7 +1202,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
     with allure.step("Check that comment form openned"):
         page.wait_for_timeout(1000)
         expect(page.locator(ALL_COMMENTS_AREA).locator('[type="button"]').nth(1)).to_be_disabled()
-        expect(page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]')).not_to_be_checked()
+        expect(page.locator(ALL_COMMENTS_AREA).locator(CHECKBOX)).not_to_be_checked()
 
     with allure.step("Check that we can close comment form with X"):
         page.locator(BUTTON_CLOSE).click()
@@ -1211,7 +1211,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         communications.press_add_comment()
 
     with allure.step("Check checkbox (hidden)"):
-        page.locator(ALL_COMMENTS_AREA).locator('[type="checkbox"]').check()
+        page.locator(ALL_COMMENTS_AREA).locator(CHECKBOX).check()
 
     with allure.step("Add title"):
         page.locator(BUTTON_ADD_COMMENT_TITLE).click()
@@ -1380,7 +1380,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1404,7 +1404,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1434,7 +1434,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1458,7 +1458,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1482,7 +1482,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(5)
+        expect(page.locator(CHECKBOX)).to_have_count(5)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1512,7 +1512,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1547,7 +1547,7 @@ def test_check_re_recognize_for_call_list(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(8)
+        expect(page.locator(CHECKBOX)).to_have_count(8)
 
 #  check save combinations
 
@@ -1713,7 +1713,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1737,7 +1737,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1767,7 +1767,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
     #
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1791,7 +1791,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1815,7 +1815,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(5)
+        expect(page.locator(CHECKBOX)).to_have_count(5)
 
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1845,7 +1845,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(RECOGNITION_PRIORITY).locator('[type="number"]')).to_have_value("1")
         expect(page.locator(CHECKBOX_DIARIZATION)).not_to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(3)
+        expect(page.locator(CHECKBOX)).to_have_count(3)
     #
     with allure.step("Click to engine"):
         communications.click_engine_select()
@@ -1880,7 +1880,7 @@ def test_check_re_recognize_for_expanded_call(base_url, page: Page) -> None:
         expect(page.locator(CHECKBOX_LITERATURE_STYLE)).not_to_be_checked()
         expect(page.locator(CHECKBOX_PHONE_FORMATTING)).to_be_checked()
         expect(page.locator(CHECKBOX_ECONOMIZE)).not_to_be_checked()
-        expect(page.locator('[type="checkbox"]')).to_have_count(8)
+        expect(page.locator(CHECKBOX)).to_have_count(8)
 
 #  check save combinations
 
@@ -2867,13 +2867,46 @@ def test_communication_and_deal_check_list_in_open_call(base_url, page: Page) ->
         expect(page.locator(TOOLTIP_IN_CHECK_LIST)).to_have_count(2)
 
 
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_calls_actions_apply_gpt_without_gpt_rule")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_calls_actions_apply_gpt_without_gpt_rule")
+def test_calls_actions_apply_gpt_without_gpt_rule(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
+
+    with allure.step("Go to url"):
+        communications.navigate("http://192.168.10.101/feature-dev-3426-new/")
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
+
+    with allure.step("Press button (Calls action)"):
+        communications.press_calls_action_button_in_list(0)
+
+    with allure.step("Choose Apply gpt"):
+        communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
+
+    with allure.step("Check modal"):
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).to_have_count(0)
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_have_count(0)
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW)).to_have_text("У вас пока нет правил GPT")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
+
 
 @pytest.mark.calls
 @pytest.mark.e2e
-@allure.title("test_calls_actions_gpt_basic")
+@allure.title("test_calls_actions_apply_gpt")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.description("test_calls_actions_gpt_basic")
-def test_calls_actions_gpt_basic(base_url, page: Page) -> None:
+@allure.description("test_calls_actions_apply_gpt. all rules and one rule")
+def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
     communications = Communications(page)
 
     with allure.step("Create user"):
@@ -2892,9 +2925,47 @@ def test_calls_actions_gpt_basic(base_url, page: Page) -> None:
         communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
 
     with allure.step("Check modal"):
-        expect(page.locator(MODAL_WINDOW).locator('[type="checkbox"]')).not_to_be_checked()
-        expect(page.locator(MODAL_WINDOW).locator('[data-testid="addRuleBtn"]')).to_be_disabled()
-        #expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).not_to_be_checked()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator('[id*="react-select-"]')).to_have_text("Все правила")
+
+    with allure.step("Press (accept) button"):
+        page.locator(BUTTON_ACCEPT).click()
+
+    with allure.step("Check warning in modal"):
+        warn = "Количество коммуникаций, к которым применятся все активные правила GPT"
+        count = "1 шт"
+
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_]')).to_have_text(warn)
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_]')).to_have_text(count)
+
+    with allure.step("press (cancel) and go to initial screen"):
+        page.locator(BUTTON_OTMENA).click()
+
+    with allure.step("Check modal"):
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).not_to_be_checked()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator('[id*="react-select-"]')).to_have_text("Все правила")
+
+    with allure.step("Press (accept) button"):
+        page.locator(BUTTON_ACCEPT).click()
+
+    with allure.step("Check warning in modal"):
+        warn = "Количество коммуникаций, к которым применятся все активные правила GPT"
+        count = "1 шт"
+
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_]')).to_have_text(warn)
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_]')).to_have_text(count)
+
+    with allure.step("AGAIN press (accept) button"):
+        page.locator(BUTTON_ACCEPT).click()
+
+    with allure.step("Check alert"):
+        communications.check_alert("Действие начато")
 
     with allure.step("Choose rule"):
         page.locator(MODAL_WINDOW).locator('[width="20"]').click()
@@ -2902,9 +2973,16 @@ def test_calls_actions_gpt_basic(base_url, page: Page) -> None:
         page.locator(MENU).get_by_text("auto_gpt_rule", exact=True).click()
 
     with allure.step("Check modal"):
-        expect(page.locator(MODAL_WINDOW).get_by_text("auto_gpt_rule", exact=True)).to_have_count(1)
-        expect(page.locator(MODAL_WINDOW).locator('[data-testid="addRuleBtn"]')).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator('[id*="react-select-"]')).to_have_text("auto_gpt_rule")
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+
+    with allure.step("AGAIN press (accept) button"):
+        page.locator(BUTTON_ACCEPT).click()
+
+    with allure.step("Check alert"):
+        communications.check_alert("Действие начато")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
