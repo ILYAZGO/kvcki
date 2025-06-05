@@ -39,9 +39,9 @@ def test_create_update_delete_operator_positive():
         create_operator = requests.post(url=API_URL + "/user", headers=headers, json=json)
         #operator_id = create_operator.text.replace('"', '')
 
-    with allure.step("Check status code == 409"):
-        assert create_operator.status_code == 409
-        assert create_operator.text == '{"detail":"User email is not a valid"}'
+    with allure.step("Check status code == 422"):
+        assert create_operator.status_code == 422
+        assert create_operator.text == '{"detail":"Некорректный email"}'
 
     with allure.step("Create operator with not valid email by user"):
         json = {

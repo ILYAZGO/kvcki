@@ -35,14 +35,11 @@ def test_change_lang_for_user(language):
         change_lang = r.patch(url=API_URL + f"/user/{USER_ID}", headers=headers, json=payload)
 
     with allure.step("Check status code == 204 or 403 if not valid"):
-        if language == langs[4]:
-            assert change_lang.status_code == 403
-            assert change_lang.text == '{"detail":"Switch to this language not supported, unknown language code"}'
+        if language == langs[4] or language == langs[6]:
+            assert change_lang.status_code == 422
+            assert change_lang.text == '{"detail":"Некорректный код языка пользователя"}'
         # elif language == langs[5]:  # 204 and lang and keep previous lang
         #     assert change_lang.status_code == 403
-        elif language == langs[6]:
-            assert change_lang.status_code == 403
-            assert change_lang.text == '{"detail":"Switch to this language not supported, unknown language code"}'
         else:
             assert change_lang.status_code == 204
 
