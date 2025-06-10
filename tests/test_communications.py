@@ -2897,7 +2897,7 @@ def test_calls_actions_apply_gpt_if_500(base_url, page: Page) -> None:
     with allure.step("Check modal"):
         expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).not_to_be_checked()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_disabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
         expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
 
@@ -2949,6 +2949,9 @@ def test_calls_actions_apply_gpt_without_gpt_rule(base_url, page: Page) -> None:
 def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
     communications = Communications(page)
 
+    warn = "Количество коммуникаций, к которым применятся все активные правила GPT"
+    count = "1 шт"
+
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, gpt_rule=True, upload_call=True)
 
@@ -2975,9 +2978,6 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         page.locator(BUTTON_ACCEPT).click()
 
     with allure.step("Check warning in modal"):
-        warn = "Количество коммуникаций, к которым применятся все активные правила GPT"
-        count = "1 шт"
-
         expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
         expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
 
@@ -2995,9 +2995,6 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         page.locator(BUTTON_ACCEPT).click()
 
     with allure.step("Check warning in modal"):
-        warn = "Количество коммуникаций, к которым применятся все активные правила GPT"
-        count = "1 шт"
-
         expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
         expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
 
