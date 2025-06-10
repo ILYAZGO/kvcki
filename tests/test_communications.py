@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright
+from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright, Route
 from utils.variables import *
 from pages.communications import *
 from utils.dates import *
@@ -2866,6 +2866,46 @@ def test_communication_and_deal_check_list_in_open_call(base_url, page: Page) ->
         # check (?) for both check-list
         expect(page.locator(TOOLTIP_IN_CHECK_LIST)).to_have_count(2)
 
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_calls_actions_apply_gpt_if_500")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_calls_actions_apply_gpt_if_500")
+def test_calls_actions_apply_gpt_if_500(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    def handle_gpt(route: Route):
+        route.fulfill(status=500, body="")
+    # Intercept the route
+    page.route("**/gpt/", handle_gpt)
+
+    with allure.step("Create user"):
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, gpt_rule=True, upload_call=True)
+
+    with allure.step("Go to url"):
+        communications.navigate("http://192.168.10.101/feature-dev-3426-new/")
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN, PASSWORD)
+
+    with allure.step("Press button (Calls action)"):
+        communications.press_calls_action_button_in_list(0)
+
+    with allure.step("Choose Apply gpt"):
+        communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
+
+    with allure.step("Check modal"):
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).not_to_be_checked()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
+
+    with allure.step("Check alert"):
+        communications.check_alert("Непредвиденная ошибка")
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN, USER_ID)
 
 @pytest.mark.calls
 @pytest.mark.e2e
