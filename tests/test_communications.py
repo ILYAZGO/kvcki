@@ -2883,7 +2883,7 @@ def test_calls_actions_apply_gpt_if_500(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, gpt_rule=True, upload_call=True)
 
     with allure.step("Go to url"):
-        communications.navigate("http://192.168.10.101/feature-dev-3426-new/")
+        communications.navigate(base_url)
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
@@ -2894,15 +2894,15 @@ def test_calls_actions_apply_gpt_if_500(base_url, page: Page) -> None:
     with allure.step("Choose Apply gpt"):
         communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
 
+    with allure.step("Check alert"):
+        communications.check_alert("Ошибка, попробуйте позднее")
+
     with allure.step("Check modal"):
-        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).not_to_be_checked()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).to_have_count(0)
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_have_count(0)
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_disabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
-
-    with allure.step("Check alert"):
-        communications.check_alert("Непредвиденная ошибка")
+        expect(page.locator(MODAL_WINDOW).locator('[class*="_empty__title_"]')).to_have_text("У вас пока нет правил GPT")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -2919,7 +2919,7 @@ def test_calls_actions_apply_gpt_without_gpt_rule(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True)
 
     with allure.step("Go to url"):
-        communications.navigate("http://192.168.10.101/feature-dev-3426-new/")
+        communications.navigate(base_url)
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
@@ -2956,7 +2956,7 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, gpt_rule=True, upload_call=True)
 
     with allure.step("Go to url"):
-        communications.navigate("http://192.168.10.101/feature-dev-3426-new/")
+        communications.navigate(base_url)
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
