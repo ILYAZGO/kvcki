@@ -55,6 +55,8 @@ def test_translate_communication_comment(language):
             assert translation_json["comment"] == comment_id
             assert translation_json["language"] == language
             assert translation_json["translatedTitle"] == translation_json["translatedMessage"]
+            assert len(translation_json["translatedTitle"]) > 2
+            assert len(translation_json["translatedMessage"]) > 2
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
