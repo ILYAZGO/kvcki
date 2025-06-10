@@ -2895,7 +2895,7 @@ def test_calls_actions_apply_gpt_without_gpt_rule(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_have_count(0)
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_disabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW)).to_have_text("У вас пока нет правил GPT")
+        expect(page.locator(MODAL_WINDOW).locator('[class*="_empty__title_"]')).to_have_text("У вас пока нет правил GPT")
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -2929,7 +2929,7 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator('[id*="react-select-"]')).to_have_text("Все правила")
+        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
 
     with allure.step("Press (accept) button"):
         page.locator(BUTTON_ACCEPT).click()
@@ -2938,8 +2938,8 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         warn = "Количество коммуникаций, к которым применятся все активные правила GPT"
         count = "1 шт"
 
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_]')).to_have_text(warn)
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_]')).to_have_text(count)
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
 
     with allure.step("press (cancel) and go to initial screen"):
         page.locator(BUTTON_OTMENA).click()
@@ -2949,7 +2949,7 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator('[id*="react-select-"]')).to_have_text("Все правила")
+        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
 
     with allure.step("Press (accept) button"):
         page.locator(BUTTON_ACCEPT).click()
@@ -2958,8 +2958,8 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         warn = "Количество коммуникаций, к которым применятся все активные правила GPT"
         count = "1 шт"
 
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_]')).to_have_text(warn)
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_]')).to_have_text(count)
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
+        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
 
     with allure.step("AGAIN press (accept) button"):
         page.locator(BUTTON_ACCEPT).click()
@@ -2967,16 +2967,30 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
     with allure.step("Check alert"):
         communications.check_alert("Действие начато")
 
+    with allure.step("Press button (Calls action)"):
+        communications.press_calls_action_button_in_list(0)
+
+    with allure.step("Choose Apply gpt"):
+        communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
+
     with allure.step("Choose rule"):
-        page.locator(MODAL_WINDOW).locator('[width="20"]').click()
+        page.locator(MODAL_WINDOW).locator('[viewBox="0 0 20 20"]').click()
         page.wait_for_selector(MENU)
         page.locator(MENU).get_by_text("auto_gpt_rule", exact=True).click()
 
     with allure.step("Check modal"):
-        expect(page.locator(MODAL_WINDOW).locator('[id*="react-select-"]')).to_have_text("auto_gpt_rule")
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
+        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("auto_gpt_rule")
+        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_enabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
         expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+
+    with allure.step("Add additional select"):
+        page.locator(BUTTON_ADD_GPT_RULE).click()
+        page.wait_for_selector('[class*="_additionalRuleSelect_"]')
+
+    with allure.step("Delete additional select"):
+        page.locator('[data-testid="deleteRuleBtn"]').click()
+        page.wait_for_selector('[class*="_additionalRuleSelect_"]', state="hidden")
 
     with allure.step("AGAIN press (accept) button"):
         page.locator(BUTTON_ACCEPT).click()
