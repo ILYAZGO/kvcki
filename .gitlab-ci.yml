@@ -30,7 +30,7 @@ tests:
     - echo "Execute api tests"
     - pytest -m api -n 101 --reruns=${RERUNS_NUMBER} --alluredir=allure-results || echo "API tests failed, but continuing"
     - echo "Execute E2E (by default 'chromium', choose from 'chromium', 'firefox', 'webkit')"
-    - pytest -m e2e -n 60 --base-url ${URL_FOR_TEST} --browser ${BROWSER} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - pytest -m e2e -n 61 --base-url ${URL_FOR_TEST} --browser ${BROWSER} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
 
   after_script:
     - echo "Send notification to telegram"
