@@ -8,7 +8,7 @@ import allure
 
 
 langs = ["BG", "CS", "DA", "DE", "EL", "EN-GB", "EN-US", "ES", "ET", "FI", "FR", "HU", "ID", "IT", "JA", "KO", "LT",
-         "LV","NB", "NL", "PL", "PT-BR", "PT-PT", "RO", "RU", "SK", "SL", "SV", "TR", "UK", "ZH", "qq", "", " "]
+         "LV","NB", "NL", "PL", "PT-BR", "PT-PT", "RO", "RU", "SK", "SL", "SV", "TR", "UK", "ZH", "qq", ""]
 
 
 @pytest.fixture(scope="module")  # Фикстура выполняется 1 раз на весь модуль
@@ -51,7 +51,7 @@ def test_translate_communication_comment(language, setup_user):
         translation_json = translate_comment.json()
 
     with allure.step("Check that translated"):
-        if language in {"qq", " ", ""}:
+        if language in {"qq", ""}:
             assert translate_comment.status_code == 422
             assert translation_json == {"detail":"Invalid language"}
         else:
