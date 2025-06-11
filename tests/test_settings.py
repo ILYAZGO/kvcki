@@ -2140,10 +2140,10 @@ def test_check_word_processing_russian_language(base_url, page: Page) -> None:
         page.locator('[class*="STT_order_"]').click()
 
     with allure.step("Check that engine not selected"):
-        expect(page.locator(SELECT_ENGINE)).to_contain_text("NLab Speech")
+        expect(page.locator(SELECT_ENGINE)).to_contain_text("IMOT.IO")
 
     with allure.step("Check that model not selected"):
-        expect(page.locator(SELECT_MODEL)).to_contain_text("Обобщённая")
+        expect(page.locator(SELECT_MODEL)).to_contain_text("Стандарт")
 
     with allure.step("Click to engine"):
         settings.click_engine_select()
