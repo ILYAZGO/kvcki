@@ -138,7 +138,7 @@ def test_markup_requests_by_user(base_url, page: Page) -> None:
         page_requests.click_markup()
 
     with allure.step("Check requests list"):
-        page.wait_for_timeout(7000)
+        page.wait_for_timeout(10000)
         assert len(rules_requests) == 6
         assert sum('/users/?with_childs=false&filter_only_users=true' in entry.get('url', '') for entry in rules_requests) == 1
         assert sum('/search_criterias/' in entry.get('url', '') for entry in rules_requests) == 1

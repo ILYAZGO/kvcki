@@ -141,6 +141,7 @@ class BaseClass:
 
     def go_to_user(self, name: str):
         """Change user"""
+        self.page.wait_for_timeout(2000)
         self.users_list.type(name, delay=10)
         self.page.get_by_text(name, exact=True).click()
         #self.page.wait_for_selector('[class*="CallsHeader"]')
@@ -256,7 +257,8 @@ class BaseClass:
         self.page.wait_for_timeout(500)
 
     def click_to_dicts(self):
-        self.page.wait_for_timeout(1500)
+        self.page.wait_for_timeout(1000)
+        self.page.wait_for_selector(BUTTON_DICTS, timeout=self.timeout)
         self.button_dicts.click()
         self.page.wait_for_timeout(1000)
         #self.page.wait_for_selector(BUTTON_ADD_DICT)
