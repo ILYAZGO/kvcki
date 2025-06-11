@@ -264,6 +264,8 @@ class BaseClass:
 
     def click_check_lists(self):
         """Go to check lists"""
+        self.page.wait_for_selector(BUTTON_CHECK_LIST)
+        self.page.wait_for_timeout(1000)
         self.button_check_list.click()
         self.page.wait_for_timeout(500)
         self.page.wait_for_load_state(state="load", timeout=self.timeout)

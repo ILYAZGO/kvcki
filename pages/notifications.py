@@ -31,6 +31,8 @@ class Notifications(BaseClass):
         self.button_import_rules = page.locator(BUTTON_IMPORT_RULES).locator('[type="button"]')
 
     def choose_block(self, block_number: int):
+        self.page.wait_for_selector(BUTTON_NOTIFICATIONS)
+        self.page.wait_for_timeout(1000)
         self.page.locator(BUTTON_NOTIFICATIONS).click()
         self.page.wait_for_timeout(1000)
         self.page.locator('[class*="notifyList"]').locator(".styles_root__cx1Gi").nth(block_number).click()

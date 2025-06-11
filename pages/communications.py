@@ -109,9 +109,9 @@ class Communications(BaseClass):
         """If more than 50, waiting pagination"""
         self.page.wait_for_timeout(1000)
         self.button_find_communications.click()
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(1000)
         self.page.wait_for_selector(NAYDENO_ZVONKOV, timeout=self.timeout)
-        self.page.wait_for_timeout(500)
+        self.page.wait_for_timeout(1000)
         self.page.wait_for_selector(FIRST_PAGE_PAGINATION, timeout=self.timeout)
         self.page.wait_for_timeout(1000)
 
@@ -208,7 +208,7 @@ class Communications(BaseClass):
         """Expand call"""
         self.page.wait_for_timeout(1000)
         self.page.wait_for_selector(BUTTON_EXPAND_CALL, timeout=self.timeout)
-        self.page.wait_for_timeout(2000)
+        self.page.wait_for_timeout(4000)
         self.button_expand_call.click()
         self.page.wait_for_timeout(1000)
         self.page.wait_for_selector(ALL_COMMENTS_AREA, timeout=self.timeout)
