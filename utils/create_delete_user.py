@@ -53,11 +53,11 @@ def create_user(url: str, role: str, password: str,
         'password': password,
         "makeDeals": True,
         "sttOptions": {
-            "sttEngine": "nlab_speech",
+            "sttEngine": "vosk",
             "sttEconomize": False,
             "sttOptionsMap":
                 {"language": "ru-RU",
-                 "model": "general",
+                 "model": "default",
                  "merge_all_to_one_audio": False,
                  "count_per_iteration": 1,
                  "diarization": False}
