@@ -30,9 +30,6 @@ you can add some parameteres:
 
     preconditions:
     admin : login-4adminIM name-adminIM
-    #user : login-1userIM name-userIM
-    #manager : login-3managerIM name-managerIM
-    #operator : login-2operatorIM name-operatorIM
 
     user for import : importFromLogin importFrom
     with group 11111 rule 22222 inside
