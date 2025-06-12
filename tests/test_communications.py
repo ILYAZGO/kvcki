@@ -2769,7 +2769,6 @@ def test_communication_check_list_in_open_call(base_url, page: Page) -> None:
 
     with allure.step("Go to url"):
         communications.navigate(base_url)
-        #page.wait_for_timeout(16000)
 
     with allure.step("Auth with user"):
         communications.auth(LOGIN, PASSWORD)
@@ -3039,3 +3038,66 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         delete_user(API_URL, TOKEN, USER_ID)
 
 
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_check_translation_in_communication")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_translation_in_communication. Also have api tests")
+def test_check_translation_in_communication(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    requests = []
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with Ecotelecom"):
+        communications.auth(ECOTELECOM, ECOPASS)
+
+    with allure.step("Choose period from 01/01/2022 to 31/12/2022"):
+        communications.choose_period_date("01/01/2022", "31/12/2022")
+
+    with allure.step("Fill ID to find call"):
+        communications.fill_id("1644268426.90181")
+
+    with allure.step("Press button (Find communications)"):
+        communications.press_find_communications_less_than_50()
+
+    with allure.step("Expand call"):
+        communications.expand_call()
+
+    with allure.step("Press tranlsation button"):
+        page.get_by_text("Перевод").click()
+        page.wait_for_selector(MENU)
+
+    with allure.step("Choose first language"):
+        communications.choose_option(1)
+
+    with allure.step("Check"):
+        expect(page.locator('[class*="styles_topTitleRight"]')).to_have_text("Переведенный текст")
+        expect(page.locator('[class*="styles_original_"]')).to_have_count(7)
+        expect(page.locator('[class*="styles_translated_"]')).to_have_count(7)
+
+    with allure.step("Press tranlsation button"):
+        page.get_by_text("Bulgarian").click()
+        page.wait_for_selector(MENU)
+
+    with allure.step("Request capture start"):
+        page.on("request", lambda request: (
+            requests.append({
+                'url': request.url,
+                'method': request.method
+            }) if request.resource_type in ['xhr', 'fetch'] else None
+        ))
+
+    with allure.step("Choose original language"):
+        communications.choose_option(0)
+
+    with allure.step("Check requests list. When original - no any requests"):
+        page.wait_for_timeout(5000)
+        assert len(requests) == 0
+
+    with allure.step("Check"):
+        expect(page.locator('[class*="styles_topTitleRight"]')).to_have_count(0)
+        expect(page.locator('[class*="styles_original_"]')).to_have_count(0)
+        expect(page.locator('[class*="styles_translated_"]')).to_have_count(0)
