@@ -3049,7 +3049,7 @@ def test_check_translation_in_communication(base_url, page: Page) -> None:
     requests = []
 
     with allure.step("Go to url"):
-        communications.navigate(base_url)
+        communications.navigate("http://192.168.10.101/feature-dev-3474/")
 
     with allure.step("Auth with Ecotelecom"):
         communications.auth(ECOTELECOM, ECOPASS)
