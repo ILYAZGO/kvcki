@@ -209,6 +209,7 @@ class BaseClass:
         self.page.locator(BUTTON_DEALS).click()
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
         self.page.wait_for_timeout(500)
+        self.page.wait_for_selector(BUTTON_FIND_DEALS)
 
     def click_settings(self):
         """Click Settings"""
