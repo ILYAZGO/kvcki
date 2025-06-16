@@ -104,7 +104,8 @@ def test_admin_can_change_login_for_manager(base_url, page: Page) -> None:
         settings.reload_page()
     
     with allure.step("Check that login changed"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
+        #expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
+        expect(settings.input_login).to_have_value(CHANGED_LOGIN)
     
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
@@ -159,7 +160,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.reload_page()
     
     with allure.step("Check that login changed"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(CHANGED_LOGIN)
+        expect(settings.input_login).to_have_value(CHANGED_LOGIN)
 
     # change for operator
     with allure.step("Go to employees from left menu"):
@@ -181,7 +182,7 @@ def test_admin_can_change_login_for_user_and_operator(base_url, page: Page) -> N
         settings.reload_page()
     
     with allure.step("Check that login changed"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN)
+        expect(settings.input_login).to_have_value(NEW_OPERATOR_LOGIN)
     
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
@@ -224,7 +225,7 @@ def test_user_cant_change_login_for_operator(base_url, page: Page) -> None:
         settings.go_to_operator_from_table()
 
     with allure.step("Check that login field in operators personal info disabled"):
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+        expect(settings.input_login).to_be_disabled()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN_USER, USER_ID_USER)
@@ -265,7 +266,7 @@ def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -
         settings.click_settings()
 
     with allure.step("Check that login field disabled"):
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+        expect(settings.input_login).to_be_disabled()
 
     with allure.step("Go to employees"):
         # check disabled for operator
@@ -275,7 +276,7 @@ def test_manager_cant_change_login_for_user_and_operator(base_url, page: Page) -
         settings.go_to_operator_from_table()
 
     with allure.step("Check that login field disabled"):
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
+        expect(settings.input_login).to_be_disabled()
 
     with allure.step("Delete manager"):
         delete_user(API_URL, TOKEN_MANAGER, USER_ID_MANAGER)
@@ -552,10 +553,10 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         settings.click_settings()
 
     with allure.step("Check that personal information changed"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(settings.input_login).to_have_value(NEW_LOGIN)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).to_have_value("someComment")
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -565,10 +566,10 @@ def test_change_personal_information_save_admin_itself(base_url, page: Page) -> 
         settings.reload_page()
 
     with allure.step("Check that personal information still have after reboot"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(settings.input_login).to_have_value(NEW_LOGIN)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).to_have_value("someComment")
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -624,11 +625,11 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         settings.click_settings()
 
     with allure.step("Check that personal information changed"):
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(settings.input_login).to_be_disabled()
+        expect(settings.input_name).to_have_value(NEW_NAME)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).to_have_value("someComment")
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -638,11 +639,11 @@ def test_change_personal_information_save_manager_itself(base_url, page: Page) -
         settings.reload_page()
 
     with allure.step("Check that personal information still have after reboot"):
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(settings.input_login).to_be_disabled()
+        expect(settings.input_name).to_have_value(NEW_NAME)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).to_have_value("someComment")
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -697,10 +698,10 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         settings.click_settings()
 
     with allure.step("Check that personal information changed"):
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
+        expect(settings.input_login).to_be_disabled()
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).not_to_be_visible()
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -712,10 +713,10 @@ def test_change_personal_information_save_user_itself(base_url, page: Page) -> N
         settings.reload_page()
 
     with allure.step("Check that personal information still have after reboot"):
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
+        expect(settings.input_login).to_be_disabled()
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).not_to_be_visible()
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -753,11 +754,11 @@ def test_change_personal_information_save_operator_itself(base_url, page: Page) 
         settings.click_settings()
 
     with allure.step("Check that operator cant change personal information"):
-        expect(page.locator(INPUT_EMAIL)).to_be_disabled()
-        expect(page.locator(INPUT_PHONE)).to_be_disabled()
-        expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
-        expect(page.locator(INPUT_LOGIN)).to_be_disabled()
-        expect(page.locator(INPUT_NAME)).to_be_disabled()
+        expect(settings.input_email).to_be_disabled()
+        expect(settings.input_phone).to_be_disabled()
+        expect(settings.input_comment).not_to_be_visible()
+        expect(settings.input_login).to_be_disabled()
+        expect(settings.input_name).to_be_disabled()
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_disabled()
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_disabled()
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -835,10 +836,10 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(settings.input_name).to_have_value(NEW_OPERATOR_NAME)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).to_have_value("someComment")
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -849,10 +850,10 @@ def test_change_personal_information_save_operator_by_admin(base_url, page: Page
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).to_have_value("someComment")
+        expect(settings.input_name).to_have_value(NEW_OPERATOR_NAME)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).to_have_value("someComment")
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -923,10 +924,10 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
+        expect(settings.input_name).to_have_value(NEW_OPERATOR_NAME)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).not_to_be_visible()
         expect(page.locator(SELECT_TIMEZONE)).to_have_text("Africa/Bamako", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
@@ -937,10 +938,10 @@ def test_change_personal_information_save_operator_by_user(base_url, page: Page)
 
     with allure.step("Check that personal information saved"):
         expect(page.locator(BLOCK_PERSONAL_INFO)).not_to_contain_text("Редактировать ")
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL)
-        expect(page.locator(INPUT_PHONE)).to_have_value("1234567890")
-        expect(page.locator(INPUT_COMMENT)).not_to_be_visible()
+        expect(settings.input_name).to_have_value(NEW_OPERATOR_NAME)
+        expect(settings.input_email).to_have_value(EMAIL)
+        expect(settings.input_phone).to_have_value("1234567890")
+        expect(settings.input_comment).not_to_be_visible()
         expect(page.locator(SELECT_TIMEZONE).get_by_text("Africa/Bamako")).to_be_visible()
         expect(page.locator(SELECT_INDUSTRY)).not_to_be_visible()
         expect(page.locator(SELECT_PARTNER)).not_to_be_visible()
