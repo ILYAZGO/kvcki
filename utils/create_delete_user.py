@@ -1,6 +1,7 @@
 import requests as r
 import random
 import time
+from utils.dates import today
 from send_file2 import upload_call_to_imotio
 from datetime import datetime, timedelta, timezone
 from loguru import logger
@@ -115,6 +116,41 @@ def create_user(url: str, role: str, password: str,
             'Authorization': token_for_user,
         }
 
+        # upload call
+        if upload_call:
+            _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
+            current_time = datetime.now(timezone.utc)
+
+            _call_id = upload_call_to_imotio(
+                token=token_for_user,
+                unique_id=_unique_id,
+                call_time=datetime(
+                    current_time.year,
+                    current_time.month,
+                    current_time.day,
+                    current_time.hour,
+                    current_time.minute,
+                    current_time.second
+                ),
+                filename='stereo.opus',
+                client_phone='0987654321',
+                operator_phone='1234567890',
+                meta_data={'auto': 'test',
+                           #'ID сотрудника': 123,
+                           'upload': '',  # значение может быть пустым, это превратится в тег без значения
+                           })
+
+            if len(_call_id) == 24:
+                logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} uploaded to {url} <<<<<")
+            else:
+                logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
+
+            time.sleep(25)
+
+        else:
+            pass
+
+
         # create communication check list
         call_check_list = {
             "enabledUsers":[],
@@ -173,7 +209,7 @@ def create_user(url: str, role: str, password: str,
                      "answerValues":["a1"],
                      "answerAutoSelectSearchFilters":{"a1":{"title":None,"items":[{"key":"any_of_tags","values":["auto_rule"]}]}},
                      "answerSelectedTaggingLogic":{"a1":[{"strategyOnSet":"ADD","strategyOnUnset":"REMOVE","tags":["auto_rule"]}]},
-                     "answerPoints":{"a1":10}},
+                     "answerPoints":{"a1":100}},
                     {"id":"",
                      "text":"q2",
                      "answerValues":["a2"],
@@ -194,6 +230,7 @@ def create_user(url: str, role: str, password: str,
             else:
                 logger.opt(depth=1).info(
                     f"\n>>>>> ERROR CREATING CHECKLIST {add_deal_check_list.status_code} <<<<<")
+
         else:
             pass
 
@@ -228,40 +265,6 @@ def create_user(url: str, role: str, password: str,
             else:
                 logger.opt(depth=1).info(
                     f"\n>>>>> ERROR CREATING CHECKLIST {add_gpt_rule.status_code} <<<<<")
-        else:
-            pass
-
-        # upload call
-        if upload_call:
-            _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
-            current_time = datetime.now(timezone.utc)
-
-            _call_id = upload_call_to_imotio(
-                token=token_for_user,
-                unique_id=_unique_id,
-                call_time=datetime(
-                    current_time.year,
-                    current_time.month,
-                    current_time.day,
-                    current_time.hour,
-                    current_time.minute,
-                    current_time.second
-                ),
-                filename='stereo.opus',
-                client_phone='0987654321',
-                operator_phone='1234567890',
-                meta_data={'auto': 'test',
-                           #'ID сотрудника': 123,
-                           'upload': '',  # значение может быть пустым, это превратится в тег без значения
-                           })
-
-            if len(_call_id) == 24:
-                logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} uploaded to {url} <<<<<")
-            else:
-                logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
-
-            time.sleep(25)
-
         else:
             pass
 
@@ -335,6 +338,20 @@ def create_user(url: str, role: str, password: str,
         else:
             logger.opt(depth=1).info(
                 f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT auto_dict<<<<<")
+
+        # do retag
+        analyze_data = {
+            "start_date": today.strftime("%Y-%m-%d"),
+            "end_date": today.strftime("%Y-%m-%d"),
+            "action": "analyze"
+        }
+        analyze_task = r.post(f"{url}/calls/action", headers=headers_for_user, json=analyze_data)
+
+        if analyze_task.status_code == 200:
+            logger.opt(depth=1).info(f"\n retag started")
+        else:
+            logger.opt(depth=1).info(
+                f"\n retag was not started {analyze_task.status_code}")
 
         # create report for user
         if create_report:
@@ -448,7 +465,6 @@ def create_user(url: str, role: str, password: str,
         else:
             pass
 
-        # time.sleep(25)
 
     return user_id, token, login
 

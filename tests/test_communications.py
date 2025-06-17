@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright, Route
+#from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright, Route
 from utils.variables import *
 from pages.communications import *
 from utils.dates import *
@@ -577,7 +577,8 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
-            page.locator(BUTTON_SHARE_CALL).locator('[type="button"]').click()
+            communications.button_share_call.click()
+            #page.locator(BUTTON_SHARE_CALL).locator('[type="button"]').click()
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
@@ -633,7 +634,8 @@ def test_check_open_call_in_new_tab_by_admin(base_url, page: Page, context: Brow
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
-            page.locator(BUTTON_SHARE_CALL).locator('[type="button"]').click()
+            communications.button_share_call.click()
+            #page.locator(BUTTON_SHARE_CALL).locator('[type="button"]').click()
             new_tab=new_tab_event.value
 
     with allure.step("Check"):

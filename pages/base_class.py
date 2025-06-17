@@ -1,6 +1,8 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, BrowserContext, Route
 
 BUTTON_COMMUNICATIONS = '[value="calls"]'
+BUTTON_SHARE_CALL = '[data-testid="call_share"]'
+BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 BUTTON_REPORTS = '[value="reports"]'
 BUTTON_CREATE_REPORT_IN_MENU = '[href*="/report/create"]'
 BUTTON_GENERATE_REPORT = '[data-testid="reportMake"]'
@@ -113,6 +115,8 @@ class BaseClass:
         self.button_integrations_in_menu = page.locator(BUTTON_INTEGRATIONS_IN_MENU)
         self.button_rights = page.locator(BUTTON_RIGHTS)
         self.button_word_pocessing = page.locator(BUTTON_WORD_PROCESSING)
+        self.button_share_call = page.locator(BUTTON_SHARE_CALL).locator('[type="button"]')
+        self.button_calls_list_download = page.locator(BUTTON_CALLS_LIST_DOWNLOAD)
 
     def navigate(self, url: str):
         """Opens main page"""

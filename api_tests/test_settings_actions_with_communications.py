@@ -85,7 +85,7 @@ def test_settings_actions_with_communications(task_type):
         assert isinstance(UUID(task_id), UUID)  # Ensure it's a UUID instance
         assert UUID(task_id).version == 4  # Check if it's a version 4 UUID
 
-    with allure.step("Sleep 5 sec"):
+    with allure.step("Sleep 10 sec"):
         time.sleep(10)
 
     with allure.step("Get tasks"):

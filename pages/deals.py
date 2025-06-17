@@ -8,9 +8,10 @@ class Deals(BaseClass):
         super().__init__(page)
 
         self.deals_found = page.locator(DEALS_FOUND)
-        self.deal_id_block = page.locator('[class*="_dealIdBlock_"]')
-
-
+        self.deal_date = page.locator('[class*="_dealDate_"]')
+        self.communications_count = page.locator('[class*="_communicationsCount_"]')
+        self.score_percent = page.locator('[class*="_scorePercent_"]')
+        self.deal_score = page.locator('[class*="_callScore_"]')
 
 
 

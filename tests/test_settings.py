@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect, Route
+#from playwright.sync_api import Page, expect, Route
 from openpyxl import load_workbook
 from utils.variables import *
 from pages.settings import *

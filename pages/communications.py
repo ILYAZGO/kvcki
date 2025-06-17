@@ -26,7 +26,7 @@ BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
 BUTTON_ADD_CONDITION = '[data-testid="addCondition_search_by_tags"]'
 BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_GPT = '[href*="/call/gpt?callId="]'
-BUTTON_SHARE_CALL = '[data-testid="call_share"]'
+# BUTTON_SHARE_CALL = '[data-testid="call_share"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'
@@ -34,8 +34,6 @@ BUTTON_RETAG = '[data-testid="calls_actions_retag"]'
 CURRENT_TEMPLATE_NAME = '[data-testid="templatesCalls"]'
 
 BUTTON_ADD_GPT_RULE = '[data-testid="addRuleBtn"]'
-
-BUTTON_CALLS_LIST_DOWNLOAD = '[data-testid="calls_actions_download"]'
 
 COMMUNICATIONS_SEARCH = "//h6[contains(text(),'Поиск по коммуникациям')]"
 
@@ -76,7 +74,7 @@ class Communications(BaseClass):
         self.button_submit_in_word_processing = page.locator(BLOCK_WITH_BUTTON).locator(BUTTON_SUBMIT)
         self.button_save_template = page.locator(BUTTON_SAVE_TEMPLATE)
         self.communications_found = page.locator('[class*="CallsHeader_callsTitleText"]')
-        self.button_calls_list_download = page.locator(BUTTON_CALLS_LIST_DOWNLOAD)
+
         self.sort = page.locator(CHANGE_SORT)
         self.tag_without_value = page.locator(TAG_WITHOUT_VALUE)
         self.tag_with_value = page.locator(TAG_WITH_VALUE)
