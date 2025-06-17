@@ -19,7 +19,7 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True, deal_check_list=True)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True, deal_check_list=True, retag=True)
 
     with allure.step("Go to url"):
         deals.navigate("http://192.168.10.101/feature-dev-3474/")
@@ -58,7 +58,6 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         # expect(new_tab_deal.deal_score).to_have_text("90 баллов")
         expect(new_tab.locator('[aria-label="Перетегировать"]')).to_have_count(1)
         expect(new_tab_deal.button_calls_list_download).to_have_count(1)
-
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)

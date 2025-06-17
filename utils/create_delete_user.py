@@ -20,7 +20,9 @@ def create_user(url: str, role: str, password: str,
                 gpt_rule=False,
                 upload_call=False,
                 create_report=False,
-                deal_check_list=False):
+                deal_check_list=False,
+                retag=False
+                ):
 
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
@@ -340,18 +342,21 @@ def create_user(url: str, role: str, password: str,
                 f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT auto_dict<<<<<")
 
         # do retag
-        analyze_data = {
-            "start_date": today.strftime("%Y-%m-%d"),
-            "end_date": today.strftime("%Y-%m-%d"),
-            "action": "analyze"
-        }
-        analyze_task = r.post(f"{url}/calls/action", headers=headers_for_user, json=analyze_data)
+        if retag:
+            analyze_data = {
+                "start_date": today.strftime("%Y-%m-%d"),
+                "end_date": today.strftime("%Y-%m-%d"),
+                "action": "analyze"
+            }
+            analyze_task = r.post(f"{url}/calls/action", headers=headers_for_user, json=analyze_data)
 
-        if analyze_task.status_code == 200:
-            logger.opt(depth=1).info(f"\n retag started")
+            if analyze_task.status_code == 200:
+                logger.opt(depth=1).info(f"\n retag started")
+            else:
+                logger.opt(depth=1).info(
+                    f"\n retag was not started {analyze_task.status_code}")
         else:
-            logger.opt(depth=1).info(
-                f"\n retag was not started {analyze_task.status_code}")
+            pass
 
         # create report for user
         if create_report:
