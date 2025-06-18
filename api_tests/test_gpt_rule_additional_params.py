@@ -29,11 +29,7 @@ chat_gpt = {
     },
     "properties": {
         "model": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/ChatGPTModel"
-                }
-            ],
+            "$ref": "#/$defs/ChatGPTModel",
             "default": "auto"
         },
         "temperature": {
@@ -76,11 +72,7 @@ yandex_gpt = {
     },
     "properties": {
         "model": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/YandexGPTModel"
-                }
-            ],
+            "$ref": "#/$defs/YandexGPTModel",
             "default": "yandexgpt-lite"
         },
         "temperature": {
@@ -98,7 +90,6 @@ yandex_gpt = {
 imotio_gpt = {
     "$defs": {
         "VLLMModel": {
-            "const": "auto",
             "enum": [
                 "auto"
             ],
@@ -108,11 +99,7 @@ imotio_gpt = {
     },
     "properties": {
         "model": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/VLLMModel"
-                }
-            ],
+            "$ref": "#/$defs/VLLMModel",
             "default": "auto"
         },
         "temperature": {
@@ -143,20 +130,6 @@ imotio_gpt = {
             "title": "Top K",
             "type": "number"
         },
-        # "max_tokens": {
-        #     "default": 1024,
-        #     "maximum": 8192,
-        #     "minimum": 128,
-        #     "title": "Max Tokens",
-        #     "type": "integer"
-        # },
-        # "repetition_penalty": {
-        #     "default": 1,
-        #     "maximum": 1.0,
-        #     "minimum": 2.0,
-        #     "title": "Repetition Penalty",
-        #     "type": "number"
-        # }
     },
     "title": "VLLMOptions",
     "type": "object"
