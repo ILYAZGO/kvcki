@@ -13,7 +13,15 @@ class Deals(BaseClass):
         self.score_percent = page.locator('[class*="_scorePercent_"]')
         self.deal_score = page.locator('[class*="_callScore_"]')
 
+        self.deal_communication_date = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_operatorTagsBlockData_"]')
+        self.deal_communication_score_percent = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_scorePercent_"]')
+        self.deal_communication_score = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_callScore_"]')
 
+        self.deal_communication_operator_phone = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_operatorPhone_"]')
+        self.deal_communication_client_phone = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_clientTagsBlockPhone_"]')
+        self.deal_communication_duration = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_clientTagsBlockDuration_"]')
+
+        self.deal_communication_score = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_callScore_"]')
 
 
 

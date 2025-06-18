@@ -1,7 +1,6 @@
 USEDESK_TOKEN = "979be5305c275d4e3bce559f3c563e5721e66c61"
 
 from pages.base_class import *
-from playwright.sync_api import Page, expect
 
 INPUT_API_TOKEN = '[data-testid="api_token"]'
 INPUT_CALLS_LIMIT = '[name="maxNewCalls"]'
