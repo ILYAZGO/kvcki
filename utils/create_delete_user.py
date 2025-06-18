@@ -467,7 +467,7 @@ def create_user(url: str, role: str, password: str,
             else:
                 logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
 
-            time.sleep(10)
+            time.sleep(20)
 
         else:
             pass
