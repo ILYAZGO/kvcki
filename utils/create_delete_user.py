@@ -485,13 +485,13 @@ def create_user(url: str, role: str, password: str,
                     logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} was not processed in 60 seconds <<<<<")
                     break
 
-                time.sleep(5)
+                time.sleep(3)
         else:
             pass
 
     return user_id, token, login
 
-#time.sleep(25)
+
 def create_operator(url: str, parent_user_id: str, password: str):
 
     name = login = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"
