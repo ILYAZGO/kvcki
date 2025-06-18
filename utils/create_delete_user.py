@@ -118,39 +118,6 @@ def create_user(url: str, role: str, password: str,
             'Authorization': token_for_user,
         }
 
-        # upload call
-        if upload_call:
-            _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
-            current_time = datetime.now(timezone.utc)
-
-            _call_id = upload_call_to_imotio(
-                token=token_for_user,
-                unique_id=_unique_id,
-                call_time=datetime(
-                    current_time.year,
-                    current_time.month,
-                    current_time.day,
-                    current_time.hour,
-                    current_time.minute,
-                    current_time.second
-                ),
-                filename='stereo.opus',
-                client_phone='0987654321',
-                operator_phone='1234567890',
-                meta_data={'auto': 'test',
-                           #'ID сотрудника': 123,
-                           'upload': '',  # значение может быть пустым, это превратится в тег без значения
-                           })
-
-            if len(_call_id) == 24:
-                logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} uploaded to {url} <<<<<")
-            else:
-                logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
-
-            time.sleep(25)
-
-        else:
-            pass
 
 
         # create communication check list
@@ -470,6 +437,40 @@ def create_user(url: str, role: str, password: str,
         else:
             pass
 
+
+        # upload call
+        if upload_call:
+            _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
+            current_time = datetime.now(timezone.utc)
+
+            _call_id = upload_call_to_imotio(
+                token=token_for_user,
+                unique_id=_unique_id,
+                call_time=datetime(
+                    current_time.year,
+                    current_time.month,
+                    current_time.day,
+                    current_time.hour,
+                    current_time.minute,
+                    current_time.second
+                ),
+                filename='stereo.opus',
+                client_phone='0987654321',
+                operator_phone='1234567890',
+                meta_data={'auto': 'test',
+                           #'ID сотрудника': 123,
+                           'upload': '',  # значение может быть пустым, это превратится в тег без значения
+                           })
+
+            if len(_call_id) == 24:
+                logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} uploaded to {url} <<<<<")
+            else:
+                logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
+
+            time.sleep(25)
+
+        else:
+            pass
 
     return user_id, token, login
 
