@@ -30,6 +30,7 @@ def test_translate_communication_comment(language, setup_user):
 
     with allure.step("Get call_id from today's search calls"):
         headers = {'Authorization': user_token}
+
         get_calls = r.post(url=API_URL + f'/search_calls/?start_date={today.strftime("%Y-%m-%d")}&end_date={today.strftime("%Y-%m-%d")}', headers=headers)
         call_id = get_calls.json()["call_ids"][0].replace('"', '')
 
