@@ -10,10 +10,12 @@ logger.remove()
 logger.add(sink='exec.log', level='INFO', rotation='10 MB', compression='zip', diagnose=True)
 
 '''for create user write before test :
-USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, {name}, {login}, PASSWORD)
+USER_ID, BEARER, ACCESS_TOKEN = create_user(API_URL, ROLE_..., PASSWORD)
+
+optional flags if needed
 
 for delete user write after test :
-delete_user(API_URL, USER_ID, BEARER, ACCESS_TOKEN)'''
+delete_user(API_URL, TOKEN, USER_ID)'''
 
 
 def create_user(url: str, role: str, password: str,
@@ -467,14 +469,29 @@ def create_user(url: str, role: str, password: str,
             else:
                 logger.opt(depth=1).info(f"\n>>>>> AUDIO upload error {_call_id} text  <<<<<")
 
-            time.sleep(25)
+            while True:
+                start_time = time.time()
+                check_is_processed = r.get(f"{url}/call/{_call_id}", headers=headers_for_user)
+                check_is_processed.raise_for_status()  # выбросить исключение, если ошибка
 
+                data = check_is_processed.json()
+                is_processed = data.get("isProcessed", False)
+
+                if is_processed:
+                    logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} was processed <<<<<")
+                    break
+
+                if time.time() - start_time > 60:
+                    logger.opt(depth=1).info(f"\n>>>>> AUDIO id: {_call_id} was not processed in 60 seconds <<<<<")
+                    break
+
+                time.sleep(5)
         else:
             pass
 
     return user_id, token, login
 
-
+#time.sleep(25)
 def create_operator(url: str, parent_user_id: str, password: str):
 
     name = login = f"auto_test_operator_{datetime.now().strftime('%m%d%H%M')}_{datetime.now().microsecond}"

@@ -24,7 +24,6 @@ INPUT_BY_TAGS = '[data-testid="filters_search_by_tags"]'
 BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) button
 BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
 BUTTON_ADD_CONDITION = '[data-testid="addCondition_search_by_tags"]'
-BUTTON_EXPAND_CALL = '[data-testid="call_expand"]'
 BUTTON_GPT = '[href*="/call/gpt?callId="]'
 # BUTTON_SHARE_CALL = '[data-testid="call_share"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
@@ -67,7 +66,7 @@ class Communications(BaseClass):
         self.template_name = page.locator(CURRENT_TEMPLATE_NAME)
         self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION).locator('[type="button"]')
-        self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
+
         self.button_ex_from_call = page.locator(OPEN_CALL_AREA).locator('[aria-label="Excel экспорт"]').locator('[type="button"]')
         self.button_add_comment = page.locator(BUTTON_ADD_COMMENT)
         self.button_cross_in_manual_tags = page.locator('[class*="_manualGroup_"]').locator('[type="button"]')

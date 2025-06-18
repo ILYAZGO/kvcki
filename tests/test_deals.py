@@ -1,9 +1,8 @@
-#from playwright.sync_api import Page, expect, BrowserContext, sync_playwright, Playwright, Route
 from utils.variables import *
 from pages.deals import *
 import pytest
 from utils.dates import today
-from utils.create_delete_user import create_user, delete_user, give_users_to_manager, create_operator, give_access_right
+from utils.create_delete_user import create_user, delete_user
 import allure
 
 
@@ -59,8 +58,12 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         expect(opened_deal.deal_communication_operator_phone).to_have_text("1234567890")
         expect(opened_deal.deal_communication_client_phone).to_have_text("0987654321")
         expect(opened_deal.deal_communication_duration).to_have_text("00:00:38")
+        expect(opened_deal.button_share_call).to_have_count(1)
+        expect(opened_deal.button_expand_call).to_have_count(1)
+        expect(opened_deal.blue_tag).to_have_count(3)
+
         # deal buttons
-        expect(open_deal.locator('[aria-label="Перетегировать"]')).to_have_count(1)
+        expect(opened_deal.deal_button_retag).to_have_count(1)
         expect(opened_deal.button_calls_list_download).to_have_count(1)
 
     with allure.step("Delete admin"):

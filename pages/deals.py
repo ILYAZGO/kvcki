@@ -23,6 +23,9 @@ class Deals(BaseClass):
 
         self.deal_communication_score = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_callScore_"]')
 
+        self.blue_tag = page.locator('[class*="_blueTag_"]')
+        self.deal_button_retag = page.locator('[aria-label="Перетегировать"]')
+
 
 
 
