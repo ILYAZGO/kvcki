@@ -29,7 +29,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         rules.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add group name"):
         rules.input_new_group_name("99999")
@@ -45,7 +45,7 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         rules.press_create_rule()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_rule_name("88888")
@@ -121,7 +121,7 @@ def test_add_group_of_rules_edit_name_delete(base_url, page: Page) -> None:
         rules.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_group_name("12345")
@@ -209,7 +209,7 @@ def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
         rules.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_group_name("auto_rule_group")
@@ -225,7 +225,7 @@ def test_add_group_and_rule_with_same_name(base_url, page: Page) -> None:
         rules.press_create_rule()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Try to create rule with same name"):
         rules.input_new_rule_name("auto_rule")
@@ -294,7 +294,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         rules.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_group_name("99999")
@@ -310,7 +310,7 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         rules.press_create_rule()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_rule_name("88888")
@@ -438,7 +438,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         rules.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_group_name("99999")
@@ -454,7 +454,7 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         rules.press_create_rule()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_rule_name("set_tags")
@@ -552,7 +552,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         rules.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_group_name("99999")
@@ -568,7 +568,7 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         rules.press_create_rule()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(rules.button_accept).to_be_disabled()
 
     with allure.step("Add rule name"):
         rules.input_new_rule_name("tag_seq")

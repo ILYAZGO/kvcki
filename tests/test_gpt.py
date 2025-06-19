@@ -55,7 +55,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that created and have 2 questions and filter"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled(timeout=wait_until_visible)
+        expect(gpt.button_accept).to_be_disabled(timeout=wait_until_visible)
         expect(page.locator(BUTTON_OTMENA)).to_be_disabled(timeout=wait_until_visible)
         expect(page.get_by_text("Вопрос 2")).to_have_count(1)
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
@@ -76,7 +76,7 @@ def test_create_rename_delete_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that question deleted"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled(timeout=wait_until_visible)
+        expect(gpt.button_accept).to_be_disabled(timeout=wait_until_visible)
         expect(page.locator(BUTTON_OTMENA)).to_be_disabled(timeout=wait_until_visible)
         expect(page.get_by_text("Вопрос 2")).to_have_count(0)
 
@@ -149,7 +149,7 @@ def test_additional_params_gpt_rule_by_user(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that saved"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(gpt.button_accept).to_be_disabled()
         expect(page.locator(BUTTON_OTMENA)).to_be_disabled()
 
     with allure.step("Fill Assistant text"):
@@ -266,7 +266,7 @@ def test_additional_params_gpt_rule_by_admin(base_url, page: Page) -> None:
         gpt.check_alert("Правило сохранено")
 
     with allure.step("Check that saved"):
-        expect(page.locator(BUTTON_ACCEPT)).to_be_disabled()
+        expect(gpt.button_accept).to_be_disabled()
         expect(page.locator(BUTTON_OTMENA)).to_be_disabled()
 
     with allure.step("Fill Assistant text"):

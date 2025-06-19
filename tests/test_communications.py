@@ -2970,7 +2970,7 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
 
     with allure.step("Press (accept) button"):
-        page.locator(BUTTON_ACCEPT).click()
+        communications.button_accept.click()
 
     with allure.step("Check warning in modal"):
         expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
@@ -2987,14 +2987,14 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
 
     with allure.step("Press (accept) button"):
-        page.locator(BUTTON_ACCEPT).click()
+        communications.button_accept.click()
 
     with allure.step("Check warning in modal"):
         expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
         expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
 
     with allure.step("AGAIN press (accept) button"):
-        page.locator(BUTTON_ACCEPT).click()
+        communications.button_accept.click()
 
     with allure.step("Check alert"):
         communications.check_alert("Действие начато")
@@ -3025,7 +3025,7 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         page.wait_for_selector('[class*="_additionalRuleSelect_"]', state="hidden")
 
     with allure.step("AGAIN press (accept) button"):
-        page.locator(BUTTON_ACCEPT).click()
+        communications.button_accept.click()
 
     with allure.step("Check alert"):
         communications.check_alert("Действие начато")

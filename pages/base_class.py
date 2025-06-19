@@ -76,6 +76,7 @@ class BaseClass:
         self.login = page.locator('[id="username"]')
         self.password = page.locator('[id="password"]')
         self.button_enter = page.locator(BUTTON_SUBMIT)
+        self.button_accept = page.locator(BUTTON_ACCEPT)
         self.menu = page.locator(MENU)
         self.modal_window = page.locator(MODAL_WINDOW)
         self.snackbar = page.locator('[class*="SnackbarItem-wrappedRoot"]')

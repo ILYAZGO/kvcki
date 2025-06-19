@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+#from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.users import *
 from datetime import datetime
@@ -50,14 +50,14 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         users.press_button_add_in_modal()
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(users.input_name).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(users.input_email).to_have_value(EMAIL, timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
+        expect(users.input_comment).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Администратор", timeout=wait_until_visible)
         page.wait_for_timeout(500)
-        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE, timeout=wait_until_visible)
+        expect(users.input_phone).to_have_value(PHONE, timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -69,7 +69,7 @@ def test_add_delete_admin_by_admin(base_url, page: Page) -> None:
         users.check_alert("Пользователь был удален")
 
     with allure.step("Check that admin 2 deleted"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(LOGIN, timeout=wait_until_visible)
 
     with allure.step("Delete admin 1"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -117,13 +117,13 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         users.press_button_add_in_modal()
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(users.input_name).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(users.input_email).to_have_value(EMAIL, timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
+        expect(users.input_comment).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Интегратор", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
+        expect(users.input_phone).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -135,7 +135,7 @@ def test_add_delete_manager_by_admin(base_url, page: Page) -> None:
         users.check_alert("Пользователь был удален")
 
     with allure.step("Check that manager deleted"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(LOGIN, timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -171,7 +171,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         page.locator(BUTTON_OTMENA).click()
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
+        expect(users.input_password).not_to_be_visible()
 
     with allure.step("Press button (Add User)"):
         users.press_button_add_user()
@@ -180,7 +180,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         page.locator(BUTTON_CROSS).click()
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_PASSWORD)).not_to_be_visible()
+        expect(users.input_password).not_to_be_visible()
     #
     with allure.step("Press button (Add User)"):
         users.press_button_add_user()
@@ -207,15 +207,15 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         users.press_button_add_in_modal()
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(users.input_name).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(users.input_email).to_have_value(EMAIL, timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
+        expect(users.input_comment).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_ROLE)).to_have_text("Компания", timeout=wait_until_visible)
         expect(page.locator(SELECT_INDUSTRY)).to_have_text("Недвижимость", timeout=wait_until_visible)
         expect(page.locator(SELECT_PARTNER)).to_have_text("managerIM", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
+        expect(users.input_phone).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -227,7 +227,7 @@ def test_add_delete_user_by_admin(base_url, page: Page) -> None:
         users.check_alert("Пользователь был удален")
 
     with allure.step("Check that user deleted"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(LOGIN, timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -254,7 +254,7 @@ def test_add_user_disabled_for_manager_without_right(base_url, page: Page) -> No
         users.go_to_users_list()
 
     with allure.step("Check"):
-        expect(page.locator(BUTTON_ADD_USER)).to_be_disabled()
+        expect(users.button_add_user).to_be_disabled()
         expect(page.locator('[class="rs-table-body-info"]')).to_contain_text("Информация отсутствует")
 
     with allure.step("Delete manager"):
@@ -316,14 +316,14 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         users.press_button_add_in_modal()
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(users.input_name).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(users.input_email).to_have_value(EMAIL, timeout=wait_until_visible)
         page.wait_for_timeout(3400)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         expect(page.get_by_text("Компания")).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text("Недвижимость")).to_have_count(1, timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
+        expect(users.input_phone).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -334,7 +334,7 @@ def test_add_delete_user_by_manager(base_url, page: Page) -> None:
         users.check_alert("Пользователь был удален")
 
     with allure.step("Check that user deleted"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(LOGIN, timeout=wait_until_visible)
 
     with allure.step("Delete manager"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -387,13 +387,13 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
         users.check_alert("Сотрудник успешно добавлен")
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_OPERATOR_NAME, timeout=wait_until_visible)
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_OPERATOR_LOGIN, timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(users.input_name).to_have_value(NEW_OPERATOR_NAME, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(NEW_OPERATOR_LOGIN, timeout=wait_until_visible)
+        expect(users.input_phone).to_have_value(PHONE, timeout=wait_until_visible)
+        expect(users.input_email).to_have_value(EMAIL, timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
         #expect(page.locator(INPUT_COMMENT)).to_have_text(EMAIL7, timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_be_visible(timeout=wait_until_visible)
+        expect(users.input_phone).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -406,7 +406,7 @@ def test_add_delete_operator_by_user(base_url, page: Page) -> None:
     #     page.locator(SNACKBAR).wait_for(state="hidden", timeout=wait_until_visible)
 
     with allure.step("Check that employee deleted"):
-        expect(page.locator(BUTTON_ADD_USER)).to_be_visible(timeout=wait_until_visible)
+        expect(users.button_add_user).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(USER_LOGIN_IN_LEFT_MENU)).to_have_text(LOGIN, timeout=wait_until_visible)
 
     with allure.step("Delete user"):
@@ -498,11 +498,11 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
     #  check all combinations of engines and models
 
     with allure.step("Click to language"):
-        page.locator(SELECT_LANGUAGE).locator('[type="text"]').click()
+        users.select_language.click()
         page.wait_for_selector(MENU)
 
     with allure.step("Check language list"):
-        expect(page.locator(MENU)).to_contain_text(fucking_stupidity)
+        expect(users.menu).to_contain_text(fucking_stupidity)
 
     with allure.step("Choose russian language"):
         users.choose_option(132)
@@ -511,7 +511,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_engine_select()
 
     with allure.step("Check engine list"):
-        expect(page.locator(MENU)).to_contain_text(expected_engines)
+        expect(users.menu).to_contain_text(expected_engines)
 
     with allure.step("Click to engine"):
         users.click_engine_select()
@@ -523,7 +523,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Обобщённаяwhisper")
+        expect(users.menu).to_contain_text("Обобщённаяwhisper")
 
     with allure.step("Select model Обобщённая"):
         users.choose_option(0)
@@ -553,7 +553,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Стандарт")
+        expect(users.menu).to_contain_text("Стандарт")
 
     with allure.step("Select model Стандарт"):
         users.choose_option(0)
@@ -577,7 +577,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("ОбобщённаяЖадный")
+        expect(users.menu).to_contain_text("ОбобщённаяЖадный")
 
     with allure.step("Select model Обобщённая"):
         users.choose_option(0)
@@ -656,7 +656,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(users.menu).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         users.choose_option(0)
@@ -686,7 +686,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.click_model_select()
 
     with allure.step("Check model list"):
-        expect(page.locator(MENU)).to_contain_text("Отложенная обобщённаяОбобщённая")
+        expect(users.menu).to_contain_text("Отложенная обобщённаяОбобщённая")
 
     with allure.step("Select model Отложенная обобщённая"):
         users.choose_option(0)
@@ -761,12 +761,12 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.check_alert(action_started)
 
     with allure.step("Check"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
-        expect(page.locator(INPUT_NAME)).to_have_value(NEW_NAME, timeout=wait_until_visible)
-        expect(page.locator(INPUT_EMAIL)).to_have_value(EMAIL, timeout=wait_until_visible)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someComment", timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(NEW_LOGIN, timeout=wait_until_visible)
+        expect(users.input_name).to_have_value(NEW_NAME, timeout=wait_until_visible)
+        expect(users.input_email).to_have_value(EMAIL, timeout=wait_until_visible)
+        expect(users.input_comment).to_have_text("someComment", timeout=wait_until_visible)
         expect(page.locator(SELECT_USER_LANG)).to_have_text("PT", timeout=wait_until_visible)
-        expect(page.locator(INPUT_PHONE)).to_have_value(PHONE)
+        expect(users.input_phone).to_have_value(PHONE)
         expect(page.locator(INPUT_NEW_PASSWORD)).to_be_visible(timeout=wait_until_visible)
         expect(page.locator(INPUT_NEW_PASSWORD_REPEAT)).to_be_visible(timeout=wait_until_visible)
 
@@ -774,7 +774,7 @@ def test_check_stt_parameters_when_adding_user(base_url, page: Page) -> None:
         users.delete_added_user()
 
     with allure.step("Check that user deleted"):
-        expect(page.locator(INPUT_LOGIN)).to_have_value(LOGIN, timeout=wait_until_visible)
+        expect(users.input_login).to_have_value(LOGIN, timeout=wait_until_visible)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
