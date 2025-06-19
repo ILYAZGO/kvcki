@@ -371,3 +371,8 @@ class BaseClass:
         self.modal_window.locator(BUTTON_ACCEPT).click()
         self.page.wait_for_timeout(500)
 
+    def close_export_modal(self):
+        self.page.wait_for_selector(BUTTON_CROSS, timeout=self.timeout)
+        self.page.locator(BUTTON_CROSS).click()
+        self.page.wait_for_selector(MODAL_WINDOW, state="hidden")
+

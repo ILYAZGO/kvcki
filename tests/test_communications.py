@@ -842,9 +842,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close modal with export"):
-        page.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
-        page.locator(BUTTON_CROSS).click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        communications.close_export_modal()
 
     with allure.step("Press button (Download)"):
         communications.press_calls_list_download_button(0)
@@ -883,9 +881,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close modal with export"):
-        page.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
-        page.locator(BUTTON_CROSS).click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        communications.close_export_modal()
 
 
 
@@ -1042,9 +1038,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close export modal"):
-        page.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
-        page.locator(BUTTON_CROSS).click()
-        page.wait_for_selector(MODAL_WINDOW, state="hidden")
+        communications.close_export_modal()
 
     with allure.step("Fill second ID to find call"):
         page.wait_for_selector(INPUT_ID, timeout=wait_until_visible)

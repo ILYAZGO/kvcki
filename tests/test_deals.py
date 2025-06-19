@@ -158,7 +158,7 @@ def test_check_download_button_in_open_deal(base_url, page: Page, context: Brows
     with allure.step("Check that export (zip) downloaded"):
         assert download.suggested_filename == "deal_audio_stereo.zip"
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 100 < os.path.getsize(path + download.suggested_filename) < 10000
+        assert 100 < os.path.getsize(path + download.suggested_filename) < 200
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
@@ -203,9 +203,7 @@ def test_check_download_button_in_open_deal(base_url, page: Page, context: Brows
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close modal with export"):
-        open_deal.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
-        open_deal.locator(BUTTON_CROSS).click()
-        open_deal.wait_for_selector(MODAL_WINDOW, state="hidden")
+        opened_deal.close_export_modal()
 
     with allure.step("Press button (Download)"):
         opened_deal.download_deal()
@@ -245,9 +243,7 @@ def test_check_download_button_in_open_deal(base_url, page: Page, context: Brows
         assert os.path.isfile(path + download.suggested_filename) == False
 
     with allure.step("Close modal with export"):
-        open_deal.wait_for_selector(BUTTON_CROSS, timeout=wait_until_visible)
-        open_deal.locator(BUTTON_CROSS).click()
-        open_deal.wait_for_selector(MODAL_WINDOW, state="hidden")
+        opened_deal.close_export_modal()
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN_ADMIN, USER_ID_ADMIN)
