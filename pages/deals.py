@@ -26,6 +26,10 @@ class Deals(BaseClass):
         self.blue_tag = page.locator('[class*="_blueTag_"]')
         self.deal_button_retag = page.locator('[aria-label="Перетегировать"]')
 
+    def download_deal(self):
+        self.button_calls_list_download.click()
+        self.page.wait_for_selector(MENU)
+
 
 
 
