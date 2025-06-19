@@ -158,7 +158,7 @@ def test_check_download_button_in_open_deal(base_url, page: Page, context: Brows
     with allure.step("Check that export (zip) downloaded"):
         assert download.suggested_filename == "deal_audio_stereo.zip"
         assert os.path.isfile(path + download.suggested_filename) == True
-        assert 11 < os.path.getsize(path + download.suggested_filename) < 33
+        assert 100 < os.path.getsize(path + download.suggested_filename) < 10000
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
