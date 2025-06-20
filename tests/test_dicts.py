@@ -33,7 +33,7 @@ def test_add_dict_inside_group(base_url, page: Page) -> None:
         dicts.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(rules.button_accept).to_be_disabled()
+        expect(dicts.button_accept).to_be_disabled()
 
     with allure.step("Add group name"):
         dicts.input_new_group_name("12345")
@@ -152,7 +152,7 @@ def test_add_group_and_dict_with_same_name(base_url, page: Page) -> None:
         dicts.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(rules.button_accept).to_be_disabled()
+        expect(dicts.button_accept).to_be_disabled()
 
     with allure.step("Create group with same name"):
         dicts.input_new_group_name("auto_dict_group")
@@ -226,7 +226,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         dicts.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(rules.button_accept).to_be_disabled()
+        expect(dicts.button_accept).to_be_disabled()
 
     with allure.step("Add group name"):
         dicts.input_new_group_name("12345")
@@ -287,7 +287,7 @@ def test_check_dict_type(base_url, page: Page) -> None:
         dicts.press_create_group()
 
     with allure.step("Check that (Add) button disabled"):
-        expect(rules.button_accept).to_be_disabled()
+        expect(dicts.button_accept).to_be_disabled()
 
     with allure.step("Add group name"):
         dicts.input_new_group_name("12345")
