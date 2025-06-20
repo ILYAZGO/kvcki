@@ -247,7 +247,7 @@ def test_add_dict_group_rename_delete(base_url, page: Page) -> None:
         expect(page.get_by_text("54321")).to_be_visible(timeout=wait_until_visible)
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        dicts.button_korzina.first.click()
 
     with allure.step("Wait and check snack bar"):
         dicts.check_alert("Группа удалена")
@@ -536,7 +536,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).nth(0).click()
+        dicts.button_korzina.nth(0).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -551,7 +551,7 @@ def test_import_group_and_dict_by_admin(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).nth(1).click()
+        dicts.button_korzina.nth(1).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -642,7 +642,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).nth(0).click()
+        dicts.button_korzina.nth(0).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -657,7 +657,7 @@ def test_import_group_and_dict_by_manager(base_url, page: Page) -> None:
         dicts.check_alert("Словарь удалён")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).nth(1).click()
+        dicts.button_korzina.nth(1).click()
 
     with allure.step("Wait for snackbar and check"):
         dicts.check_alert("Группа удалена")
@@ -741,22 +741,22 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
         dicts.click_to_dicts()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("test ", delay=10)
+        dicts.input_search.nth(1).type("test ", delay=10)
 
     with allure.step("Check that button for import not visible"):
-        expect(page.locator(INPUT_SEARCH).nth(1)).to_have_value("test ")
+        expect(dicts.input_search.nth(1)).to_have_value("test ")
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=20)
+        dicts.input_search.nth(1).type("AUTO", delay=20)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_dict", exact=True)).to_be_visible()
 
     with allure.step("Clear search"):
-        page.locator(INPUT_SEARCH).nth(1).clear()
+        dicts.input_search.nth(1).clear()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("sort", delay=20)
+        dicts.input_search.nth(1).type("sort", delay=20)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_dict", exact=True)).not_to_be_visible()

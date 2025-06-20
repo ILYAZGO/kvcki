@@ -54,8 +54,8 @@ def test_add_rule_inside_group(base_url, page: Page) -> None:
         rules.check_alert("Тег добавлен")
 
     with allure.step("Check that rule and group created"):
-        page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
-        expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
+        page.wait_for_selector(INPUT_TAG_RULE_NAME)
+        expect(rules.input_tag_rule_name).to_have_value("88888", timeout=wait_until_visible) #check rule
 
     with allure.step("Delete rule"):
         rules.delete_rule_or_dict()
@@ -266,7 +266,7 @@ def test_check_old_rule(base_url, page: Page) -> None:
         page.locator('[data-testid="test"]').first.click()
 
     with allure.step("Check that rule opened"):
-        page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
+        page.wait_for_selector(INPUT_TAG_RULE_NAME)
         expect(page.locator('[data-testid="fragmentRuleWhoSaid"]')).to_be_visible(timeout=wait_until_visible)
 
 
@@ -319,8 +319,8 @@ def test_add_rule_inside_group_check_fragment_rule(base_url, page: Page) -> None
         rules.check_alert("Тег добавлен")
 
     with allure.step("Check that group created"):
-        page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
-        expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("88888", timeout=wait_until_visible) #check rule
+        page.wait_for_selector(INPUT_TAG_RULE_NAME)
+        expect(rules.input_tag_rule_name).to_have_value("88888", timeout=wait_until_visible) #check rule
 
     with allure.step("Add fragment"):
         page.locator('[data-testid="fragmentRuleaddFragment"]').click()
@@ -463,8 +463,8 @@ def test_add_rule_inside_group_check_set_tag_block(base_url, page: Page) -> None
         rules.check_alert("Тег добавлен")
 
     with allure.step("Check rule name and tag name. Need be the same"):
-        page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
-        expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("set_tags", timeout=wait_until_visible) #check rule
+        page.wait_for_selector(INPUT_TAG_RULE_NAME)
+        expect(rules.input_tag_rule_name).to_have_value("set_tags", timeout=wait_until_visible) #check rule
         expect(page.locator('[data-testid="setTagsItem_name"]').locator('[name="name"]')).to_have_value("set_tags", timeout=wait_until_visible) #check tag
 
     with allure.step("Press button (Add teg)"):
@@ -577,8 +577,8 @@ def test_add_rule_inside_group_check_tag_sequence(base_url, page: Page) -> None:
         rules.check_alert("Тег добавлен")
 
     with allure.step("Check that rule created"):
-        page.wait_for_selector(NAZVANIE_PRAVILA_TEGIROVANIYA)
-        expect(page.locator(NAZVANIE_PRAVILA_TEGIROVANIYA)).to_have_value("tag_seq", timeout=wait_until_visible) #check rule
+        page.wait_for_selector(INPUT_TAG_RULE_NAME)
+        expect(rules.input_tag_rule_name).to_have_value("tag_seq", timeout=wait_until_visible) #check rule
 
     with allure.step("Add 2 rules for tag sequence and delete one"):
         page.locator(BUTTON_ADD_SEQUENCE).click()
@@ -715,7 +715,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        rules.button_korzina.first.click()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Группа удалена")
@@ -730,7 +730,7 @@ def test_import_group_and_rule_by_admin(base_url, page: Page) -> None:
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        rules.button_korzina.first.click()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Группа удалена")
@@ -818,7 +818,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        rules.button_korzina.first.click()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Группа удалена")
@@ -833,7 +833,7 @@ def test_import_group_and_rule_by_manager(base_url, page: Page) -> None:
         rules.check_alert("Правило удалено")
 
     with allure.step("Delete group"):
-        page.locator(BUTTON_KORZINA).first.click()
+        rules.button_korzina.first.click()
 
     with allure.step("Wait for snackbar and check"):
         rules.check_alert("Группа удалена")
@@ -952,25 +952,25 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         rules.click_markup()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("test ", delay=10)
+        rules.input_search.nth(1).type("test ", delay=10)
 
     with allure.step("Check that button for import not visible"):
-        expect(page.locator(INPUT_SEARCH).nth(1)).to_have_value("test ")
+        expect(rules.input_search.nth(1)).to_have_value("test ")
 
     with allure.step("Clear search"):
-        page.locator(INPUT_SEARCH).nth(1).clear()
+        rules.input_search.nth(1).clear()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("AUTO", delay=10)
+        rules.input_search.nth(1).type("AUTO", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_rule", exact=True)).to_be_visible()
 
     with allure.step("Clear search"):
-        page.locator(INPUT_SEARCH).nth(1).clear()
+        rules.input_search.nth(1).clear()
 
     with allure.step("Filter rules by sort"):
-        page.locator(INPUT_SEARCH).nth(1).type("sort", delay=10)
+        rules.input_search.nth(1).type("sort", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_rule", exact=True)).not_to_be_visible()

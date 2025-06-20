@@ -120,6 +120,7 @@ class BaseClass:
         self.button_share_call = page.locator(BUTTON_SHARE_CALL).locator('[type="button"]')
         self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
         self.button_calls_list_download = page.locator(BUTTON_CALLS_LIST_DOWNLOAD)
+        self.input_search = page.locator(INPUT_SEARCH)
 
     def navigate(self, url: str):
         """Opens main page"""

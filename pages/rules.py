@@ -3,6 +3,7 @@ from playwright.sync_api import Page, expect
 
 #BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'
 INPUT_NEW_GROUP_NAME = '[name="groupName"]'
+INPUT_TAG_RULE_NAME = '[name="title"]'
 ACTIVE_GROUP = '[class*="styles_isActive_"]'
 BUTTON_ADD_TAG = '[data-testid="markup_addTaggingRule"]'
 INPUT_TAG_NAME = '[data-testid="markup_newRuleInput"]'
@@ -22,6 +23,7 @@ class Rules(BaseClass):
         super().__init__(page)
         self.button_add_tag = page.locator(BUTTON_ADD_TAG)
         self.input_tag_name = page.locator(INPUT_TAG_NAME)
+        self.input_tag_rule_name = page.locator('[name="title"]')
 
     def delete_group(self):
         self.page.locator(ACTIVE_GROUP).locator(BUTTON_KORZINA).click()
@@ -60,9 +62,6 @@ class Rules(BaseClass):
 
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
-
-# buttons
-NAZVANIE_PRAVILA_TEGIROVANIYA = '[name="title"]'
 
 
 def fill_what_said(text, page="page: Page"):
