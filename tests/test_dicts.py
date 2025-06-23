@@ -1,7 +1,7 @@
 #from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.dicts import *
-from utils.create_delete_user import create_user, delete_user, give_users_to_manager, create_dicts
+from utils.create_delete_user import create_user, delete_user, give_users_to_manager
 import pytest
 import allure
 
@@ -726,7 +726,6 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
 
     with allure.step("Create user"):
         USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, create_many_dicts=True)
-        # create_dicts(API_URL, LOGIN, PASSWORD, USER_ID, 5)
 
     with allure.step("Go to url"):
         dicts.navigate(base_url)

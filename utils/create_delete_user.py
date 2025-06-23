@@ -112,10 +112,7 @@ def create_user(url: str, role: str, password: str,
         ##get token
         data_for_user = {
             'username': name,
-            'password': password,
-            # 'scope': '',
-            # 'client_id': '',
-            # 'client_secret': '',
+            'password': password
         }
         get_token_for_user = r.post(f"{url}/token", headers=headers_for_get_token, data=data_for_user).json()
 
@@ -669,123 +666,6 @@ def give_manager_all_rights(url: str, user_id_manager: str, token: str):
     else:
         logger.opt(depth=1).info(f"\n>>>>> MANAGER {user_id_manager} FAILED TO GET ALL RIGHTS <<<<<")
 
-
-# # login: str, password: str
-# def create_rules(url: str, token: str, user_id: str, amount):
-#     #
-#     # headers_for_get_token = {
-#     #     'accept': 'application/json',
-#     #     'Content-Type': 'application/x-www-form-urlencoded',
-#     # }
-#     #
-#     # data_for_user = {
-#     #     'username': login,
-#     #     'password': password,
-#     # }
-#     # get_token_for_user = r.post(f"{url}/token", headers=headers_for_get_token, data=data_for_user).json()
-#     #
-#     # token_for_user = f"Bearer {get_token_for_user['access_token']}"
-#
-#     headers_for_user = {'Authorization': token}
-#
-#     rule_group = {
-#         "title": "auto_sort_group",
-#         "enabled": True
-#     }
-#     add_rule_group = r.post(f"{url}/tag_rule_group/", headers=headers_for_user, json=rule_group)
-#
-#     group_id = add_rule_group.text.replace('"', '')
-#
-#     if add_rule_group.status_code == 201:
-#         logger.opt(depth=1).info(f"\n>>>>> FOR USER {user_id} CREATED RULE GROUP {group_id} <<<<<")
-#     else:
-#         logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE GROUP {add_rule_group.status_code}<<<<<")
-#
-#     for i in range(1, amount + 1):
-#         rule = {
-#             "owner": user_id,
-#             "title": f"test_search_and_sort{i}",
-#             "entityType": "DEAL",
-#             "group": group_id,
-#             "enabled": True,
-#             "rulePriority": i,
-#             "calculatedRulePriority": i,
-#             "globalFilter": [],
-#             "fragmentRules": [{"phrasesAndDicts": [], "phrases": [], "dicts": [],
-#                                "direction": "", "fromStart": False, "silentBefore": "",
-#                                "silentAfter": "", "interruptTime": "", "talkBefore": "",
-#                                "talkAfter": "", "onlyFirstMatch": False, "fragmentsBefore": "",
-#                                "fragmentsAfter": "", "distancePrevRuleTime": "", "distancePrevRuleFragmentCount": "",
-#                                "orPhrasesAndDicts": [], "orPhrases": [], "orDicts": [], "orDirection": ""}],
-#             "setTags": [{"name": "auto_rule", "value": "", "visible": False}],
-#             "allowedActions": [],
-#             "timeTagRules": []}
-#
-#         add_rule = r.post(url=url + "/tag_rule/", headers=headers_for_user, json=rule)
-#         rule_id = add_rule.text.replace('"', '')
-#
-#         if add_rule.status_code == 201:
-#             logger.opt(depth=1).info(
-#                 f"\n>>>>> FOR USER {user_id} CREATED test_search_and_sort{i} {rule_id} INSIDE GROUP {group_id} <<<<<")
-#         else:
-#             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} RULE NAME test_search_and_sort{i}<<<<<")
-
-
-# def create_dicts(url: str, login: str, password: str, user_id: str, amount):
-#
-#     headers_for_get_token = {
-#         'accept': 'application/json',
-#         'Content-Type': 'application/x-www-form-urlencoded',
-#     }
-#
-#     data_for_user = {
-#         'username': login,
-#         'password': password,
-#         'scope': '',
-#         'client_id': '',
-#         'client_secret': '',
-#     }
-#     get_token_for_user = r.post(f"{url}/token", headers=headers_for_get_token, data=data_for_user).json()
-#
-#     #token_for_user = f"{get_token_for_user['token_type'].capitalize()} {get_token_for_user['access_token']}"
-#     token_for_user = f"Bearer {get_token_for_user['access_token']}"
-#
-#     headers_for_user = {
-#         'accept': 'application/json',
-#         'Content-Type': 'application/json',
-#         'Authorization': token_for_user,
-#     }
-#
-#     dict_group = {
-#         "title": "auto_sort_group",
-#         "enabled": True
-#     }
-#     add_dict_group = r.post(url=url + "/dict_group/", headers=headers_for_user, json=dict_group)
-#
-#     group_id = add_dict_group.text.replace('"', '')
-#
-#     if add_dict_group.status_code == 201:
-#         logger.opt(depth=1).info(f"\n>>>>> FOR USER {login} WITH user_id: {user_id} CREATED DICT GROUP {group_id} <<<<<")
-#     else:
-#         logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING DICT GROUP {add_dict_group.status_code} <<<<<")
-#
-#     for i in range(1, amount + 1):
-#         dict = {"title":f"test_search_and_sort{i}",
-#                 "owner":user_id,
-#                 "enabled":True,
-#                 "group":group_id,
-#                 "usedRules":[],
-#                 "allowedUsers":[],
-#                 "phrases":[f"test_search_and_sort{i}"]}
-#
-#         add_dict = r.post(url=url + "/dict/", headers=headers_for_user, json=dict)
-#         dict_id = add_dict.text.replace('"', '')
-#
-#         if add_dict.status_code == 201:
-#             logger.opt(depth=1).info(
-#                 f"\n>>>>> FOR USER {login} WITH user_id: {user_id} CREATED test_search_and_sort{i} {dict_id} INSIDE GROUP {group_id} <<<<<")
-#         else:
-#             logger.opt(depth=1).info(f"\n>>>>> ERROR CREATING DICT {add_dict.status_code} DICT NAME test_search_and_sort{i}<<<<<")
 
 
 def give_access_right(url: str, giver_token: str, recipient_id: str, access_right_list):
