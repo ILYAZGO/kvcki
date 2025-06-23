@@ -939,8 +939,7 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
     rules = Rules(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-        create_rules(API_URL, LOGIN, PASSWORD, USER_ID, 5)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, create_many_rules=True)
 
     with allure.step("Go to url"):
         rules.navigate(base_url)
@@ -970,7 +969,7 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         rules.input_search.nth(1).clear()
 
     with allure.step("Filter rules by sort"):
-        rules.input_search.nth(1).type("sort", delay=10)
+        rules.input_search.nth(1).type("many", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_rule", exact=True)).not_to_be_visible()
@@ -979,43 +978,43 @@ def test_check_rules_search_and_sort(base_url, page: Page) -> None:
         rules.change_sort("Сначала обновленные", "По алфавиту")
 
     with allure.step("Check first rule name"):
-        rules.assert_first_group_name("test_search_and_sort1")
+        rules.assert_first_group_name("AT_many_rules1")
 
     with allure.step("Change sort"):
         rules.change_sort("По алфавиту", "По алфавиту с конца")
 
     with allure.step("Check first rule name"):
-        rules.assert_first_group_name("test_search_and_sort5")
+        rules.assert_first_group_name("AT_many_rules5")
 
     with allure.step("Change sort"):
         rules.change_sort("По алфавиту с конца", "Сначала новые")
 
     with allure.step("Check first rule name"):
-        rules.assert_first_group_name("test_search_and_sort5")
+        rules.assert_first_group_name("AT_many_rules5")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала новые", "Сначала старые")
 
     with allure.step("Check first rule name"):
-        rules.assert_first_group_name("test_search_and_sort1")
+        rules.assert_first_group_name("AT_many_rules1")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала старые", "Сначала обновленные")
 
     with allure.step("Check first rule name"):
-        rules.assert_first_group_name("test_search_and_sort5")
+        rules.assert_first_group_name("AT_many_rules5")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала обновленные", "Сначала не обновленные")
 
     with allure.step("Check first rule name"):
-        rules.assert_first_group_name("test_search_and_sort1")
+        rules.assert_first_group_name("AT_many_rules1")
 
     with allure.step("Change sort"):
         rules.change_sort("Сначала не обновленные", "По алфавиту")
 
     with allure.step("Check first rule name"):
-        rules.assert_first_group_name("test_search_and_sort1")
+        rules.assert_first_group_name("AT_many_rules1")
 
     page.locator('[data-testid="test"]').locator(CHECKBOX).first.click()
     page.wait_for_timeout(500)

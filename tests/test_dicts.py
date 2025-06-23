@@ -725,8 +725,8 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
     dicts = Dicts(page)
 
     with allure.step("Create user"):
-        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD)
-        create_dicts(API_URL, LOGIN, PASSWORD, USER_ID, 5)
+        USER_ID, TOKEN, LOGIN = create_user(API_URL, ROLE_USER, PASSWORD, create_many_dicts=True)
+        # create_dicts(API_URL, LOGIN, PASSWORD, USER_ID, 5)
 
     with allure.step("Go to url"):
         dicts.navigate(base_url)
@@ -747,7 +747,7 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
         expect(dicts.input_search.nth(1)).to_have_value("test ")
 
     with allure.step("Filter rules by sort"):
-        dicts.input_search.nth(1).type("AUTO", delay=20)
+        dicts.input_search.nth(1).type("AUTO", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_dict", exact=True)).to_be_visible()
@@ -756,7 +756,7 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
         dicts.input_search.nth(1).clear()
 
     with allure.step("Filter rules by sort"):
-        dicts.input_search.nth(1).type("sort", delay=20)
+        dicts.input_search.nth(1).type("many", delay=10)
 
     with allure.step("Check that button for import not visible"):
         expect(page.get_by_text("auto_dict", exact=True)).not_to_be_visible()
@@ -765,37 +765,37 @@ def test_check_dicts_search_and_sort(base_url, page: Page) -> None:
         dicts.change_sort("По алфавиту", "По алфавиту с конца")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("AT_many_dicts5")
 
     with allure.step("Change sort"):
         dicts.change_sort("По алфавиту с конца", "Сначала новые")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("AT_many_dicts5")
 
     with allure.step("Change sort"):
         dicts.change_sort("Сначала новые", "Сначала старые")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("AT_many_dicts1")
 
     with allure.step("Change sort"):
         dicts.change_sort("Сначала старые", "Сначала обновленные")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort5")
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("AT_many_dicts5")
 
     with allure.step("Change sort"):
         dicts.change_sort("Сначала обновленные", "Сначала не обновленные")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("AT_many_dicts1")
 
     with allure.step("Change sort"):
         dicts.change_sort("Сначала не обновленные", "По алфавиту")
 
     with allure.step("Check first rule name"):
-        expect(page.locator('[data-testid="test"]').first).to_contain_text("test_search_and_sort1")
+        expect(page.locator('[data-testid="test"]').first).to_contain_text("AT_many_dicts1")
 
     page.locator('[data-testid="test"]').locator(CHECKBOX).first.click()
     page.wait_for_timeout(500)

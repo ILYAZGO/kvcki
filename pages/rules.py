@@ -57,7 +57,7 @@ class Rules(BaseClass):
         self.page.wait_for_timeout(500)
 
     def assert_first_group_name(self, name: str):
-        self.page.wait_for_timeout(1000)
+        self.page.wait_for_timeout(500)
         expect(self.page.locator('[data-testid="test"]').first).to_contain_text(name)
 
 # inputs

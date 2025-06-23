@@ -20,7 +20,14 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
     with allure.step("Create user"):
-        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(API_URL, ROLE_USER, PASSWORD, upload_call=True, deal_check_list=True)
+        USER_ID_USER, TOKEN_USER, LOGIN_USER = create_user(
+            API_URL, ROLE_USER, PASSWORD,
+            upload_call=True,
+            deal_check_list=True,
+            create_many_rules=True,
+            rules_amount=11,
+            rules_entity="DEAL"
+        )
 
     with allure.step("Go to url"):
         deals.navigate("http://192.168.10.101/feature-dev-3474/")
@@ -41,6 +48,8 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         expect(deals.communications_count).to_have_text("1")
         expect(deals.score_percent).to_have_text("90%")
         expect(deals.deal_score).to_have_text("90 баллов")
+        expect(deals.deal_tag).to_have_count(10)
+        expect(deals.deal_tags_block.get_by_text("Показать еще 1")).to_have_count(1)
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
@@ -60,9 +69,13 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         expect(opened_deal.deal_communication_operator_phone).to_have_text("1234567890")
         expect(opened_deal.deal_communication_client_phone).to_have_text("0987654321")
         expect(opened_deal.deal_communication_duration).to_have_text("00:00:38")
+        expect(opened_deal.deal_communication_deal_tags_block.get_by_text("Показать еще 1")).to_have_count(1)
         expect(opened_deal.button_share_call).to_have_count(1)
         expect(opened_deal.button_expand_call).to_have_count(1)
         expect(opened_deal.blue_tag).to_have_count(3)
+        expect(opened_deal.deal_tag).to_have_count(20)
+
+        #expect(opened_deal.deal_communication_deal_tags_block.get_by_text("Показать еще 1")).to_have_count(1)
 
         # deal buttons
         expect(opened_deal.deal_button_retag).to_have_count(1)
