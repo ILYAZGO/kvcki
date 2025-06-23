@@ -17,13 +17,19 @@ tests:
     - echo "Change http to https in /etc/apt/sources.list.d/ubuntu.sources"
     - sed -i 's|http://|https://|g' /etc/apt/sources.list.d/ubuntu.sources
     - echo "Download and install java"
+    - date
     - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
+    - date
     - echo "Download and install wget"
     - apt-get install wget
     - echo "Download and install allure"
+    - date
     - wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz && tar -zxvf allure-${ALLURE_VERSION}.tgz -C /opt/ && ln -s /opt/allure-${ALLURE_VERSION}/bin/allure /usr/bin/allure
+    - date
     - echo "Download and install requirements"
+    - date
     - pip install -r requirements.txt --default-timeout=100
+    - date
 
   script:
     - echo $URL_FOR_TEST
