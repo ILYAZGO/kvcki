@@ -872,7 +872,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
 
         assert sheet["A1"].value == "Выгрузка списка звонков"
         assert sheet.max_row == 3
-        assert sheet.max_column == 34
+        assert sheet.max_column == 35
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
@@ -1004,15 +1004,15 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         communications.press_ex_button_in_expanded_call()
 
     with allure.step("Check content of modal window"):
-        expect(page.locator(MODAL_WINDOW).get_by_text("Теги без значений")).to_have_count(1)
-        expect(page.locator(MODAL_WINDOW).get_by_text("Теги со значениями")).to_have_count(1)
-        expect(page.locator(MODAL_WINDOW).get_by_text("Параметры коммуникаций")).to_have_count(1)
+        expect(communications.modal_window.get_by_text("Теги без значений")).to_have_count(1)
+        expect(communications.modal_window.get_by_text("Теги со значениями")).to_have_count(1)
+        expect(communications.modal_window.get_by_text("Параметры коммуникаций")).to_have_count(1)
 
     with allure.step(" and download excel"):
         # Start waiting for the download
         with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
-            page.locator(MODAL_WINDOW).locator('[class*="buttonsBlock_"]').get_by_role("button", name="Экспортировать").click()
+            communications.modal_window.locator('[class*="buttonsBlock_"]').get_by_role("button", name="Экспортировать").click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -1056,15 +1056,15 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         communications.press_ex_button_in_expanded_call()
 
     with allure.step("Check content of modal window"):
-        expect(page.locator(MODAL_WINDOW).get_by_text("Теги без значений")).to_have_count(1)
-        expect(page.locator(MODAL_WINDOW).get_by_text("Теги со значениями")).to_have_count(1)
-        expect(page.locator(MODAL_WINDOW).get_by_text("Параметры коммуникаций")).to_have_count(1)
+        expect(communications.modal_window.get_by_text("Теги без значений")).to_have_count(1)
+        expect(communications.modal_window.get_by_text("Теги со значениями")).to_have_count(1)
+        expect(communications.modal_window.get_by_text("Параметры коммуникаций")).to_have_count(1)
 
     with allure.step(" and download excel"):
         # Start waiting for the download
         with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
-            page.locator(MODAL_WINDOW).locator('[class*="buttonsBlock_"]').get_by_role("button", name="Экспортировать").click()
+            communications.modal_window.locator('[class*="buttonsBlock_"]').get_by_role("button", name="Экспортировать").click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -1237,7 +1237,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         page.locator('[class*="styles_optionsSelect_"]').click()
 
     with allure.step("Choose and click (edit)"):
-        page.locator(MENU).get_by_text("Редактировать", exact=True).click()
+        communications.menu.get_by_text("Редактировать", exact=True).click()
         page.wait_for_selector('[class*="styles_checkButton_"]')
         expect(page.locator('[class*="styles_checkButton_"]')).to_be_disabled()
 
@@ -1264,7 +1264,7 @@ def test_check_communication_comment(base_url, page: Page) -> None:
         communications.choose_from_menu_by_text_and_wait_for_modal("Удалить комментарий")
 
     with allure.step("Confirm deleting"):
-        page.locator(MODAL_WINDOW).get_by_role("button", name="Удалить").click()
+        communications.modal_window.get_by_role("button", name="Удалить").click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
         page.wait_for_timeout(500)
 
@@ -1984,10 +1984,8 @@ def test_check_communication_manual_tag(base_url, page: Page) -> None:
     with allure.step("Press (add comment)"):
         communications.press_key("Enter")
 
-
     with allure.step("Wait for alert and check alert message"):
         communications.check_alert("Тег успешно добавлен")
-
 
     with allure.step("Check that we can see tags"):
         expect(page.get_by_text("manual_tag")).to_have_count(2)
@@ -2113,7 +2111,7 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check that no any stt buttons in menu"):
-        expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
+        expect(communications.menu).not_to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
@@ -2122,7 +2120,7 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Check that no any stt buttons in menu"):
-        expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
+        expect(communications.menu).not_to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
@@ -2141,7 +2139,7 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check that stt buttons in menu"):
-        expect(page.locator(MENU)).to_contain_text("Перераспознать")
+        expect(communications.menu).to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
@@ -2150,7 +2148,7 @@ def test_access_right_restt_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Check that stt buttons in menu"):
-        expect(page.locator(MENU)).to_contain_text("Перераспознать")
+        expect(communications.menu).to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
@@ -2189,7 +2187,7 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check that no any delete buttons in menu"):
-        expect(page.locator(MENU)).not_to_contain_text("Удалить коммуникации")
+        expect(communications.menu).not_to_contain_text("Удалить коммуникации")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
@@ -2198,7 +2196,7 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Check that no any delete buttons in menu"):
-        expect(page.locator(MENU)).not_to_contain_text("Удалить коммуникацию")
+        expect(communications.menu).not_to_contain_text("Удалить коммуникацию")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
@@ -2217,7 +2215,7 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check that delete button in menu"):
-        expect(page.locator(MENU)).to_contain_text("Удалить коммуникации")
+        expect(communications.menu).to_contain_text("Удалить коммуникации")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
@@ -2226,7 +2224,7 @@ def test_access_right_delete_calls_for_user(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Check that delete button in menu"):
-        expect(page.locator(MENU)).to_contain_text("Удалить коммуникацию")
+        expect(communications.menu).to_contain_text("Удалить коммуникацию")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
@@ -2267,8 +2265,8 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
         communications.choose_from_menu_by_text_and_wait_for_modal("Мета инфо")
 
     with allure.step("Chek that no any processing info in meta info"):
-        expect(page.locator(MODAL_WINDOW)).not_to_contain_text("Время добавления звонка")
-        expect(page.locator(MODAL_WINDOW)).not_to_contain_text("Время завершения транскрибации")
+        expect(communications.modal_window).not_to_contain_text("Время добавления звонка")
+        expect(communications.modal_window).not_to_contain_text("Время завершения транскрибации")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CROSS).click()
@@ -2291,7 +2289,7 @@ def test_access_right_processing_info_for_user(base_url, page: Page) -> None:
         communications.choose_from_menu_by_text_and_wait_for_modal("Мета инфо")
 
     with allure.step("Chek that processing info in meta info"):
-        expect(page.locator(MODAL_WINDOW)).to_contain_text("Время добавления звонка")
+        expect(communications.modal_window).to_contain_text("Время добавления звонка")
         #expect(page.locator(MODAL_WINDOW)).to_contain_text("Время завершения транскрибации")
 
     with allure.step("Close menu"):
@@ -2339,7 +2337,7 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check that no any stt buttons in menu"):
-        expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
+        expect(communications.menu).not_to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
@@ -2348,7 +2346,7 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Check that no any stt buttons in menu"):
-        expect(page.locator(MENU)).not_to_contain_text("Перераспознать")
+        expect(communications.menu).not_to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
@@ -2367,7 +2365,7 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check that stt buttons in menu"):
-        expect(page.locator(MENU)).to_contain_text("Перераспознать")
+        expect(communications.menu).to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(0).click()
@@ -2376,7 +2374,7 @@ def test_access_right_restt_for_manager(base_url, page: Page) -> None:
         communications.press_calls_action_button_in_list(1)
 
     with allure.step("Check that stt buttons in menu"):
-        expect(page.locator(MENU)).to_contain_text("Перераспознать")
+        expect(communications.menu).to_contain_text("Перераспознать")
 
     with allure.step("Close menu"):
         page.locator(BUTTON_CALLS_ACTION).nth(1).click()
@@ -2963,35 +2961,35 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
 
     with allure.step("Check modal"):
-        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).not_to_be_checked()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
+        expect(communications.modal_window.locator(CHECKBOX)).not_to_be_checked()
+        expect(communications.modal_window.locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
+        expect(communications.modal_window.locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(communications.modal_window.locator(BUTTON_OTMENA)).to_be_enabled()
+        expect(communications.modal_window.locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
 
     with allure.step("Press (accept) button"):
         communications.button_accept.click()
 
     with allure.step("Check warning in modal"):
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
+        expect(communications.modal_window.locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
+        expect(communications.modal_window.locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
 
     with allure.step("press (cancel) and go to initial screen"):
         page.locator(BUTTON_OTMENA).click()
 
     with allure.step("Check modal"):
-        expect(page.locator(MODAL_WINDOW).locator(CHECKBOX)).not_to_be_checked()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
+        expect(communications.modal_window.locator(CHECKBOX)).not_to_be_checked()
+        expect(communications.modal_window.locator(BUTTON_ADD_GPT_RULE)).to_be_disabled()
+        expect(communications.modal_window.locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(communications.modal_window.locator(BUTTON_OTMENA)).to_be_enabled()
+        expect(communications.modal_window.locator('[class=" css-hlgwow"]')).to_have_text("Все правила")
 
     with allure.step("Press (accept) button"):
         communications.button_accept.click()
 
     with allure.step("Check warning in modal"):
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
-        expect(page.locator(MODAL_WINDOW).locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
+        expect(communications.modal_window.locator('[class*="styles_contentSubmit__title_"]')).to_have_text(warn)
+        expect(communications.modal_window.locator('[class*="styles_contentSubmit__count_"]')).to_have_text(count)
 
     with allure.step("AGAIN press (accept) button"):
         communications.button_accept.click()
@@ -3006,15 +3004,15 @@ def test_calls_actions_apply_gpt(base_url, page: Page) -> None:
         communications.choose_from_menu_by_text_and_wait_for_modal("Применить GPT")
 
     with allure.step("Choose rule"):
-        page.locator(MODAL_WINDOW).locator('[viewBox="0 0 20 20"]').click()
+        communications.modal_window.locator('[viewBox="0 0 20 20"]').click()
         page.wait_for_selector(MENU)
-        page.locator(MENU).get_by_text("auto_gpt_rule", exact=True).click()
+        communications.menu.get_by_text("auto_gpt_rule", exact=True).click()
 
     with allure.step("Check modal"):
-        expect(page.locator(MODAL_WINDOW).locator('[class=" css-hlgwow"]')).to_have_text("auto_gpt_rule")
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ADD_GPT_RULE)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_ACCEPT)).to_be_enabled()
-        expect(page.locator(MODAL_WINDOW).locator(BUTTON_OTMENA)).to_be_enabled()
+        expect(communications.modal_window.locator('[class=" css-hlgwow"]')).to_have_text("auto_gpt_rule")
+        expect(communications.modal_window.locator(BUTTON_ADD_GPT_RULE)).to_be_enabled()
+        expect(communications.modal_window.locator(BUTTON_ACCEPT)).to_be_enabled()
+        expect(communications.modal_window.locator(BUTTON_OTMENA)).to_be_enabled()
 
     with allure.step("Add additional select"):
         page.locator(BUTTON_ADD_GPT_RULE).click()
