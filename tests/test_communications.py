@@ -759,13 +759,13 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.press_calls_list_download_button(0)
 
     with allure.step("Check content of button download"):
-        expect(page.locator(MENU)).to_have_text("Экспорт аудиоЭкспорт аудио (многоканальное)Экспорт расшифровкиЭкспорт коммуникаций")
+        expect(communications.menu).to_have_text("Экспорт аудиоЭкспорт аудио (многоканальное)Экспорт расшифровкиЭкспорт коммуникаций")
 
     with allure.step("Choose (Export audio) option from opened menu"):
         # Start waiting for the download
         with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
-            page.locator(MENU).get_by_text("Экспорт аудио", exact=True).click()
+            communications.menu.get_by_text("Экспорт аудио", exact=True).click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -789,7 +789,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         # Start waiting for the download
         with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
-            page.locator(MENU).get_by_text("Экспорт аудио (многоканальное)", exact=True).click()
+            communications.menu.get_by_text("Экспорт аудио (многоканальное)", exact=True).click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -810,14 +810,14 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.press_calls_list_download_button(0)
 
     with allure.step("Press (Export)"):
-        page.locator(MENU).get_by_text("Экспорт расшифровки", exact=True).click()
+        communications.menu.get_by_text("Экспорт расшифровки", exact=True).click()
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Choose (Export transcribe) option from opened menu"):
         # Start waiting for the download
         with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
-            page.locator(MODAL_WINDOW).get_by_text("Экспортировать", exact=True).click()
+            communications.modal_window.get_by_text("Экспортировать", exact=True).click()
         download = download_info.value
         path = f'{os.getcwd()}/'
         # Wait for the download process to complete and save the downloaded file somewhere
@@ -832,7 +832,7 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         sheet = wb.active
 
         assert sheet["A1"].value == "Экспорт расшифровки звонков"
-        assert sheet.max_row == 54
+        assert sheet.max_row == 55
         assert sheet.max_column == 4
 
     with allure.step("Remove downloaded export (zip)"):
@@ -848,14 +848,14 @@ def test_check_download_button_in_calls_list(base_url, page: Page) -> None:
         communications.press_calls_list_download_button(0)
 
     with allure.step("Press (Export)"):
-        page.locator(MENU).get_by_text("Экспорт коммуникаций", exact=True).click()
+        communications.menu.get_by_text("Экспорт коммуникаций", exact=True).click()
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Choose (Export transcribe) option from opened menu"):
         # Start waiting for the download
         with page.expect_download(timeout=60000) as download_info:
             # Perform the action that initiates download
-            page.locator(MODAL_WINDOW).get_by_text("Экспортировать", exact=True).click()
+            communications.modal_window.get_by_text("Экспортировать", exact=True).click()
         download = download_info.value
         path = f'{os.getcwd()}/'
 
@@ -1028,7 +1028,7 @@ def test_check_download_excel_from_expanded_call(base_url, page: Page) -> None:
         sheet = wb.active
 
         assert sheet["A1"].value == "Экспорт расшифровки звонков"
-        assert sheet.max_row == 54
+        assert sheet.max_row == 55
         assert sheet.max_column == 4
 
     with allure.step("Remove downloaded excel export"):

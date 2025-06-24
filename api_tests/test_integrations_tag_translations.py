@@ -30,7 +30,7 @@ def test_integrations_create_update_delete_tag_translation():
 
     with allure.step("Check status code == 200 and not empty"):
         assert get_tags_list.status_code == 200
-        assert len(get_tags_list.json()) == 3
+        assert len(get_tags_list.json()) == 12
         assert "auto" in get_tags_list.text
         assert "auto_rule" in get_tags_list.text
 

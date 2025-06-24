@@ -70,9 +70,10 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         expect(opened_deal.deal_communication_client_phone).to_have_text("0987654321")
         expect(opened_deal.deal_communication_duration).to_have_text("00:00:38")
         expect(opened_deal.deal_communication_deal_tags_block.get_by_text("Показать еще 1")).to_have_count(1)
+        expect(opened_deal.deal_communication_deal_tags_block.get_by_text("Показать еще 2")).to_have_count(1)
         expect(opened_deal.button_share_call).to_have_count(1)
         expect(opened_deal.button_expand_call).to_have_count(1)
-        expect(opened_deal.communication_tag).to_have_count(3)
+        expect(opened_deal.communication_tag).to_have_count(10)
         expect(opened_deal.deal_tag).to_have_count(20)
 
         #expect(opened_deal.deal_communication_deal_tags_block.get_by_text("Показать еще 1")).to_have_count(1)
@@ -206,7 +207,7 @@ def test_check_download_button_in_open_deal(base_url, page: Page, context: Brows
         sheet = wb.active
 
         assert sheet["A1"].value == "Экспорт расшифровки звонков"
-        assert sheet.max_row == 33
+        assert sheet.max_row == 42
         assert sheet.max_column == 3
 
     with allure.step("Remove downloaded export (zip)"):
@@ -247,7 +248,7 @@ def test_check_download_button_in_open_deal(base_url, page: Page, context: Brows
 
         assert sheet["A1"].value == "Выгрузка списка звонков"
         assert sheet.max_row == 3
-        assert sheet.max_column == 14
+        assert sheet.max_column == 23
 
     with allure.step("Remove downloaded export (zip)"):
         os.remove(path + download.suggested_filename)
