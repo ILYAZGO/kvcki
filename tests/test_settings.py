@@ -3421,10 +3421,9 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Upload file"):
         page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
-        page.wait_for_timeout(6000)
 
     with allure.step("Check"):
-        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_enabled()
+        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_enabled(timeout=wait_until_visible)
         expect(page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)).to_be_enabled()
         expect(page.locator('[title="stereo.opus"]')).to_have_count(1)
 
@@ -3446,9 +3445,10 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
 
     with allure.step("Upload file"):
         page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
-        page.wait_for_timeout(8000)
+        #page.wait_for_timeout(8000)
 
     with allure.step("Delete from list"):
+        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_enabled(timeout=wait_until_visible)
         page.locator('[title="Remove file"]').click()
         page.wait_for_selector(MODAL_WINDOW)
 
