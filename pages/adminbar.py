@@ -1,13 +1,10 @@
-#from playwright.sync_api import Page, expect
 from pages.base_class import *
 
-BUTTON_USERS = '[data-testid="userLink"]'
 BLOCK_ADMIN_BAR = '[data-testid="adminBar"]'
 
 class AdminBar(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
-        self.button_users = page.locator(BUTTON_USERS)
         self.block_admin_bar = page.locator(BLOCK_ADMIN_BAR)
         self.back_arrow = page.locator(BLOCK_ADMIN_BAR).get_by_role("button")
         self.language = page.locator('[class*="styles_langHandler"]')

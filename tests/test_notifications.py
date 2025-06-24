@@ -1,4 +1,3 @@
-#from playwright.sync_api import Page, expect
 from utils.variables import *
 from pages.notifications import *
 from utils.create_delete_user import create_user, delete_user, give_users_to_manager
@@ -94,7 +93,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         page.wait_for_selector(BlOCK_API)
 
     with allure.step("Check that block API has GET text"):
-       expect(page.locator(BlOCK_API)).to_have_text("API*GET")
+       expect(notifications.block_api).to_have_text("API*GET")
 
     with allure.step("Change api method from GET to PUT"):
         notifications.change_api_method("GET", "PUT")
@@ -113,7 +112,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         page.wait_for_selector(BlOCK_API)
 
     with allure.step("Check that block API has PUT text"):
-        expect(page.locator(BlOCK_API)).to_have_text("API*PUT")
+        expect(notifications.block_api).to_have_text("API*PUT")
 
     with allure.step("Change api method from PUT to PATCH"):
         notifications.change_api_method("PUT", "PATCH")
@@ -132,7 +131,7 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         page.wait_for_selector(BlOCK_API)
 
     with allure.step("Check that block API has PATCH text"):
-        expect(page.locator(BlOCK_API)).to_have_text("API*PATCH")
+        expect(notifications.block_api).to_have_text("API*PATCH")
 
     with allure.step("Change api method from PATCH to POST"):
         notifications.change_api_method("PATCH", "POST")
@@ -151,13 +150,13 @@ def test_notifications_api_method_change(base_url, page: Page) -> None:
         page.wait_for_selector(BlOCK_API)
 
     with allure.step("Check that block API has POST text"):
-        expect(page.locator(BlOCK_API)).to_have_text("API*POST")
+        expect(notifications.block_api).to_have_text("API*POST")
 
     with allure.step("Delete rule"):
         delete_rule(page)
 
     with allure.step("Check that rule deleted"):
-        expect(page.locator(BUTTON_KORZINA)).not_to_be_visible()
+        expect(notifications.button_korzina).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -193,10 +192,10 @@ def test_notifications_api(base_url, page: Page) -> None:
         notifications.set_url_and_headers("https://www.google.com/", "someHeaders")
 
     with allure.step("Checkbox send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).click()
+        notifications.block_main_area.locator(CHECKBOX).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "auto_rule", "1", page)
@@ -214,19 +213,19 @@ def test_notifications_api(base_url, page: Page) -> None:
         notifications.go_back_in_rule_after_save("auto-test-api")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX)).to_be_checked()
         expect(page.locator(BLOCK_RULES_LIST).locator(CHECKBOX)).to_be_checked()
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
-        expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-api")
-        expect(page.locator(INPUT_URL)).to_have_value("https://www.google.com/")
-        expect(page.locator(INPUT_HEADERS)).to_have_value("someHeaders")
+        expect(notifications.input_comment).to_have_text("someText {{call_id}}")
+        expect(notifications.notification_name).to_have_value("auto-test-api")
+        expect(notifications.input_url).to_have_value("https://www.google.com/")
+        expect(notifications.input_headers).to_have_value("someHeaders")
 
     with allure.step("Delete rule"):
         delete_rule(page)
 
     with allure.step("Check that rule deleted"):
-        expect(page.locator(BUTTON_KORZINA)).not_to_be_visible()
+        expect(notifications.button_korzina).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -259,10 +258,10 @@ def test_notifications_email(base_url, page: Page) -> None:
         notifications.set_notification_name("auto-test-email")
 
     with allure.step("Checkbox send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).click()
+        notifications.block_main_area.locator(CHECKBOX).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "auto_rule", "1", page)
@@ -283,19 +282,19 @@ def test_notifications_email(base_url, page: Page) -> None:
         notifications.go_back_in_rule_after_save("auto-test-email")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX)).to_be_checked()
         expect(page.locator(BLOCK_RULES_LIST).locator(CHECKBOX)).to_be_checked()
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
-        expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-email")
-        expect(page.locator(INPUT_LETTER_THEME)).to_have_value("letterTheme")
-        expect(page.locator(INPUT_EMAIL)).to_have_value("mail@.mail.com")
+        expect(notifications.input_comment).to_have_text("someText {{call_id}}")
+        expect(notifications.notification_name).to_have_value("auto-test-email")
+        expect(notifications.input_letter_theme).to_have_value("letterTheme")
+        expect(notifications.input_email).to_have_value("mail@.mail.com")
 
     with allure.step("Delete rule"):
         delete_rule(page)
 
     with allure.step("Check that rule deleted"):
-        expect(page.locator(BUTTON_KORZINA)).not_to_be_visible()
+        expect(notifications.button_korzina).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -328,16 +327,16 @@ def test_notifications_telegram(base_url,page: Page) -> None:
         notifications.set_notification_name("auto-test-telegram")
 
     with allure.step("Checkbox send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0).click()
+        notifications.block_main_area.locator(CHECKBOX).nth(0).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(0)).to_be_checked()
 
     with allure.step("Checkbox send audio with message"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1).click()
+        notifications.block_main_area.locator(CHECKBOX).nth(1).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(1)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "auto_rule", "1", page)
@@ -355,18 +354,18 @@ def test_notifications_telegram(base_url,page: Page) -> None:
         notifications.go_back_in_rule_after_save("auto-test-telegram")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(0)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(1)).to_be_checked()
         expect(page.locator('[aria-label="Remove auto_rule"]')).to_have_count(1)
         expect(page.locator(BLOCK_RULES_LIST).locator(CHECKBOX)).to_be_checked()
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
-        expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-telegram")
+        expect(notifications.input_comment).to_have_text("someText {{call_id}}")
+        expect(notifications.notification_name).to_have_value("auto-test-telegram")
 
     with allure.step("Delete rule"):
         delete_rule(page)
 
     with allure.step("Check that rule deleted"):
-        expect(page.locator(BUTTON_KORZINA)).not_to_be_visible()
+        expect(notifications.button_korzina).not_to_be_visible()
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -411,16 +410,16 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         notifications.set_notification_name("auto-test-amoCRM")
 
     with allure.step("Checkbox Send again when rule changed"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0).click()
+        notifications.block_main_area.locator(CHECKBOX).nth(0).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(0)).to_be_checked()
 
     with allure.step("Checkbox Allow overwriting fields from CRM"):
-        page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1).click()
+        notifications.block_main_area.locator(CHECKBOX).nth(1).click()
 
     with allure.step("Check that checkbox clicked"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(1)).to_be_checked()
 
     with allure.step("add filter"):
         add_filter("По тегам", "Бренд", "1", page)
@@ -438,11 +437,11 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         notifications.go_back_in_rule_after_save("auto-test-amoCRM")
 
     with allure.step("Check"):
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(0)).to_be_checked()
-        expect(page.locator(BLOCK_RULE_MAIN_AREA).locator(CHECKBOX).nth(1)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(0)).to_be_checked()
+        expect(notifications.block_main_area.locator(CHECKBOX).nth(1)).to_be_checked()
         expect(page.locator('[aria-label="Remove Бренд"]')).to_have_count(1)
-        expect(page.locator(INPUT_COMMENT)).to_have_text("someText {{call_id}}")
-        expect(page.locator(INPUT_NOTIFICATION_NAME)).to_have_value("auto-test-amoCRM")
+        expect(notifications.input_comment).to_have_text("someText {{call_id}}")
+        expect(notifications.notification_name).to_have_value("auto-test-amoCRM")
 
     with allure.step("Delete rule"):
         #delete_rule(page)
@@ -452,7 +451,7 @@ def est_notifications_amo_crm(base_url, page: Page) -> None:  # turn on later
         page.wait_for_timeout(1000)
 
     with allure.step("Check that rule deleted"):
-        expect(page.locator(BUTTON_KORZINA)).to_have_count(2)
+        expect(notifications.button_korzina).to_have_count(2)
 
     with allure.step("Delete admin"):
         delete_user(API_URL, TOKEN, USER_ID)
@@ -632,5 +631,5 @@ def test_check_old_notification(base_url, page: Page) -> None:
         page.wait_for_selector(INPUT_COMMENT, timeout=wait_until_visible)
 
     with allure.step("Check that first Ecotelecom rule opened"):
-        expect(page.locator(INPUT_COMMENT)).to_be_visible()
-        expect(page.locator(BLOCK_RULE_MAIN_AREA)).to_be_visible()
+        expect(notifications.input_comment).to_be_visible()
+        expect(notifications.block_main_area).to_be_visible()

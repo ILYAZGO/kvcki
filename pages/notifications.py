@@ -23,11 +23,12 @@ class Notifications(BaseClass):
         self.notification_name = page.locator(INPUT_NOTIFICATION_NAME)
         self.button_add_new_rule = page.locator(BLOCK_ADD_NEW_RULE).locator('[type="button"]')
         self.block_main_area = page.locator(BLOCK_RULE_MAIN_AREA)
+        self.block_api = page.locator(BlOCK_API)
         self.input_letter_theme = page.locator(INPUT_LETTER_THEME)
         self.input_email = page.locator(INPUT_EMAIL)
         self.input_comment = page.locator(INPUT_COMMENT)
         self.input_url = page.locator(INPUT_URL)
-        self.input_header = page.locator(INPUT_HEADERS)
+        self.input_headers = page.locator(INPUT_HEADERS)
         self.button_import_rules = page.locator(BUTTON_IMPORT_RULES).locator('[type="button"]')
 
     def choose_block(self, block_number: int):
@@ -64,7 +65,7 @@ class Notifications(BaseClass):
     def set_url_and_headers(self, url, headers):
         self.input_url.fill(url)
         self.page.wait_for_timeout(500)
-        self.input_header.fill(headers)
+        self.input_headers.fill(headers)
 
     def go_back_in_rule_after_save(self, notification_name: str):
         self.page.wait_for_selector('[class*=notifyList]')
@@ -81,7 +82,7 @@ class Notifications(BaseClass):
 
     def change_api_method(self, current_method, new_method):
         """Change API method for API rules"""
-        self.page.locator(BlOCK_API).get_by_text(current_method).click()
+        self.block_api.get_by_text(current_method).click()
         self.page.wait_for_selector(MENU)
         self.menu.get_by_text(new_method, exact=True).click()
         self.page.wait_for_selector(MENU, state="hidden")

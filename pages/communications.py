@@ -50,7 +50,7 @@ CHECKBOX_LITERATURE_STYLE = '[name="literature_text"]'
 CHECKBOX_PHONE_FORMATTING = '[name="phone_formatting"]'
 BLOCK_WITH_BUTTON = '[class*="STT_controlButtonsBlock"]'
 AUDIO_PLAYER = '[class*="react-audio-player"]'
-BLOCK_ONE_COMMUNICATION = '[class*="MuiAccordionSummary-content"]'
+
 BLOCK_CHECK_LISTS = '[class*="_CallsCheckLists_"]'
 TOOLTIP_IN_CHECK_LIST = ('[aria-label="Если чек-лист имеет отрицательные значения, то процент будет считаться '
                          'по следующей формуле: (итог. балл - мин.балл) / (макс.балл - мин.балл) * 100"]')
@@ -64,7 +64,7 @@ class Communications(BaseClass):
     def __init__(self, page: Page):
         super().__init__(page)
         self.template_name = page.locator(CURRENT_TEMPLATE_NAME)
-        self.button_find_communications = page.locator('[data-testid="calls_btns_find"]')
+
         self.button_calls_action = page.locator(BUTTON_CALLS_ACTION).locator('[type="button"]')
 
         self.button_ex_from_call = page.locator(OPEN_CALL_AREA).locator('[aria-label="Excel экспорт"]').locator('[type="button"]')

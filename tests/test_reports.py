@@ -387,11 +387,11 @@ def test_reports_management_check_search(base_url, page: Page) -> None:
         reports.click_reports()
 
     with allure.step("Type тест1 in searchstring in menu an press magnifier"):
-        page.locator(INPUT_SEARCH).type("тест1", delay=10)
-        page.locator(BUTTON_SUBMIT).click()
+        reports.input_search.type("тест1", delay=10)
+        reports.button_enter.click()
 
     with allure.step("Check that search was successful"):
-        expect(page.locator(INPUT_SEARCH)).to_have_value("тест1")
+        expect(reports.input_search).to_have_value("тест1")
         expect(page.get_by_text("тест1")).to_have_count(1)
 
 
@@ -2976,7 +2976,6 @@ def test_reports_additional_params_checkboxes_sum_deal_check_lists_points(base_u
         reports.click_apply_in_additional_params()
 
     # for column
-
     with allure.step("Click additional params for column"):
         reports.click_gear_in_columns("0")
 

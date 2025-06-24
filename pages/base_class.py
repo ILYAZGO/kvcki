@@ -20,6 +20,7 @@ BUTTON_SETTINGS = '[value="settings"]'
 BUTTON_USERS = '[data-testid="userLink"]'
 BUTTON_RIGHTS = '[href*="/access-rights"]'
 BUTTON_FIND_COMMUNICATIONS = '[data-testid="calls_btns_find"]'
+BLOCK_ONE_COMMUNICATION = '[class*="MuiAccordionSummary-content"]'
 BUTTON_EMPLOYEES = '[href*="settings/employees"]'
 BUTTON_ACTIONS_WITH_CALLS = '[href*="/actions-with-calls"]'
 BLOCK_ACTION_SELECT = '[class="action-block"]'
@@ -121,6 +122,8 @@ class BaseClass:
         self.button_expand_call = page.locator(BUTTON_EXPAND_CALL)
         self.button_calls_list_download = page.locator(BUTTON_CALLS_LIST_DOWNLOAD)
         self.input_search = page.locator(INPUT_SEARCH)
+        self.button_find_communications = page.locator(BUTTON_FIND_COMMUNICATIONS)
+        self.block_one_communication = page.locator(BLOCK_ONE_COMMUNICATION)
 
     def navigate(self, url: str):
         """Opens main page"""

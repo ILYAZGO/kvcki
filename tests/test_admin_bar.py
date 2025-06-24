@@ -35,7 +35,7 @@ def test_admin_bar_with_admin(base_url, page) -> None:
     with allure.step("Check admin name have count 1 and user name have count 1 and users button have count 1"):
         expect(page.get_by_text(LOGIN_ADMIN)).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text(LOGIN_USER, exact=True)).to_have_count(1, timeout=wait_until_visible)
-        expect(page.locator(BUTTON_USERS)).to_be_visible()
+        expect(admin_bar.button_users).to_be_visible()
 
     with allure.step("Go back in admin"):
         admin_bar.back_arrow_click()
@@ -75,8 +75,8 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
         admin_bar.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Check manager name have count 2 and admin bar is visible"):
-        expect(page.locator(BLOCK_ADMIN_BAR)).to_be_visible()
-        expect(page.locator(BUTTON_USERS)).to_be_visible()
+        expect(admin_bar.block_admin_bar).to_be_visible()
+        expect(admin_bar.button_users).to_be_visible()
         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
 
     with allure.step("Check that users list is empty"):
@@ -101,8 +101,8 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
         admin_bar.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Check manager name have count 2 and admin bar is visible"):
-        expect(page.locator(BLOCK_ADMIN_BAR)).to_be_visible()
-        expect(page.locator(BUTTON_USERS)).to_be_visible()
+        expect(admin_bar.block_admin_bar).to_be_visible()
+        expect(admin_bar.button_users).to_be_visible()
         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
 
     with allure.step("Check that users list is empty"):
@@ -121,21 +121,21 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
         admin_bar.go_to_user(LOGIN_USER1)
 
     with allure.step("Check manager name have count 1 and user name have count 1 and users button have count 1"):
-        expect(page.locator(BLOCK_ADMIN_BAR)).to_be_visible()
-        expect(page.locator(BUTTON_USERS)).to_be_visible()
+        expect(admin_bar.block_admin_bar).to_be_visible()
+        expect(admin_bar.button_users).to_be_visible()
         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(1, timeout=wait_until_visible)
         expect(page.get_by_text(LOGIN_USER1, exact=True)).to_have_count(1, timeout=wait_until_visible)
 
-        expect(page.locator(BUTTON_FIND_COMMUNICATIONS)).to_be_visible()
-        expect(page.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
+        expect(admin_bar.button_find_communications).to_be_visible()
+        expect(admin_bar.block_one_communication).to_have_count(1)
 
     with allure.step("Go back in manager"):
         admin_bar.back_arrow_click()
 
     with allure.step("Check manager name have count 2"):
         expect(page.get_by_text(LOGIN_MANAGER)).to_have_count(2, timeout=wait_until_visible)
-        expect(page.locator(BUTTON_FIND_COMMUNICATIONS)).not_to_be_visible()
-        expect(page.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(0)
+        expect(admin_bar.button_find_communications).not_to_be_visible()
+        expect(admin_bar.block_one_communication).to_have_count(0)
 
     with allure.step("Quit from profile"):
         admin_bar.quit_from_profile()
@@ -156,10 +156,10 @@ def test_admin_bar_with_manager(base_url, page: Page) -> None:
         admin_bar.auth(LOGIN_MANAGER, PASSWORD)
 
     with allure.step("Check that admin bar not visible and we inside manager's user"):
-        expect(page.locator(BLOCK_ADMIN_BAR)).not_to_be_visible()
-        expect(page.locator(BUTTON_USERS)).not_to_be_visible()
-        expect(page.locator(BUTTON_FIND_COMMUNICATIONS)).to_be_visible()
-        expect(page.locator('[class*="MuiAccordionSummary-content"]')).to_have_count(1)
+        expect(admin_bar.block_admin_bar).not_to_be_visible()
+        expect(admin_bar.button_users).not_to_be_visible()
+        expect(admin_bar.button_find_communications).to_be_visible()
+        expect(admin_bar.block_one_communication).to_have_count(1)
 
     with allure.step("Quit from profile"):
         admin_bar.quit_from_profile()
