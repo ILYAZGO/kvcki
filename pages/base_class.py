@@ -65,9 +65,6 @@ INPUT_GPT_QUESTION = '[placeholder="Сформулируйте свой вопр
 
 ALERT_MESSAGE = '[class*="styles_firstLine__"]'
 
-FIRST_DATE = '[placeholder="Начальная дата"]'
-LAST_DATE = '[placeholder="Конечная дата"]'
-
 class BaseClass:
     def __init__(self, page: Page):
         self.page = page
@@ -101,6 +98,9 @@ class BaseClass:
         self.input_comment = page.locator(INPUT_COMMENT)
         self.input_password = page.locator(INPUT_PASSWORD)
         self.select_user_lang = page.locator(SELECT_USER_LANG).locator("svg")
+        '''Tags'''
+        self.communication_tag = page.locator('[class*="_blueTag_"]')
+        self.deal_tag = page.locator('[class*="_lightBlueTag_"]')
         '''Other'''
         self.button_markup = page.locator(BUTTON_MARKUP)
         self.button_dicts = page.locator(BUTTON_DICTS)

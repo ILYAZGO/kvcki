@@ -26,6 +26,7 @@ def create_user(url: str, role: str, password: str,
                 create_many_rules=False,
                 rules_name="AT_many_rules",
                 rules_entity="CALL",
+                rule_value="",
                 rules_amount=5,
                 create_many_dicts=False,
                 dicts_name="AT_many_dicts",
@@ -343,7 +344,7 @@ def create_user(url: str, role: str, password: str,
                                        "fragmentsAfter": "", "distancePrevRuleTime": "",
                                        "distancePrevRuleFragmentCount": "",
                                        "orPhrasesAndDicts": [], "orPhrases": [], "orDicts": [], "orDirection": ""}],
-                    "setTags": [{"name": f"{rules_name}{i}tag", "value": "", "visible": False}],
+                    "setTags": [{"name": f"{rules_name}{i}tag", "value": f"{rule_value}", "visible": False}],
                     "allowedActions": [],
                     "timeTagRules": []}
 
@@ -522,7 +523,6 @@ def create_user(url: str, role: str, password: str,
         else:
             pass
 
-
         # upload call
         if upload_call:
             _unique_id = f"2ceb{random.randint(1000, 9999)}bahg54d{random.randint(100000, 999999)}a96"
@@ -544,7 +544,17 @@ def create_user(url: str, role: str, password: str,
                 operator_phone='1234567890',
                 meta_data={'auto': 'test',
                            #'ID сотрудника': 123,
-                           'upload': '',  # значение может быть пустым, это превратится в тег без значения
+                           'upload': '',
+                           # значение может быть пустым, это превратится в тег без значения
+                           'communication_tag1': '1',
+                           'communication_tag2': '',
+                           'communication_tag3': '3',
+                           'communication_tag4': '',
+                           'communication_tag5': '5',
+                           'communication_tag6': '',
+                           'communication_tag7': '7',
+                           'communication_tag8': '',
+                           'communication_tag9': '9',
                            })
 
             if len(_call_id) == 24:

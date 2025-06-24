@@ -31,15 +31,15 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         reports.press_create_report()
 
     with allure.step("Check begin and end dates in view. today by default"):
-        expect(page.locator(FIRST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
-        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
+        expect(reports.first_date).to_have_value(today.strftime("%d/%m/%Y"))
+        expect(reports.last_date).to_have_value(today.strftime("%d/%m/%Y"))
 
     with allure.step("Switch to yesterday"):
         reports.yesterday.click()
 
     with allure.step("Check begin and end dates in view"):
-        expect(page.locator(FIRST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
-        expect(page.locator(LAST_DATE)).to_have_value(yesterday.strftime("%d/%m/%Y"))
+        expect(reports.first_date).to_have_value(yesterday.strftime("%d/%m/%Y"))
+        expect(reports.last_date).to_have_value(yesterday.strftime("%d/%m/%Y"))
 
     with allure.step("Click to week"):
         reports.week.click()
@@ -117,8 +117,8 @@ def test_reports_check_dates(base_url, page: Page) -> None:
         reports.all_time.click()
 
     with allure.step("Check begin and end dates is disabled"):
-        expect(page.locator(FIRST_DATE)).to_be_disabled()
-        expect(page.locator(LAST_DATE)).to_be_disabled()
+        expect(reports.first_date).to_be_disabled()
+        expect(reports.last_date).to_be_disabled()
 
 
 @pytest.mark.e2e
@@ -486,8 +486,8 @@ def test_reports_management_check(base_url, page: Page) -> None:
     with allure.step("Check that all changes saved"):
         page.wait_for_load_state(state="load", timeout=wait_until_visible)
         expect(page.locator('[aria-label="changedReportName"]')).to_have_count(1)
-        expect(page.locator(FIRST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
-        expect(page.locator(LAST_DATE)).to_have_value(today.strftime("%d/%m/%Y"))
+        expect(reports.first_date).to_have_value(today.strftime("%d/%m/%Y"))
+        expect(reports.last_date).to_have_value(today.strftime("%d/%m/%Y"))
 #
     with allure.step("Press (Download) and wait until file will be saved"):
         # Start waiting for the download

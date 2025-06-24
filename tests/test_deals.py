@@ -72,7 +72,7 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
         expect(opened_deal.deal_communication_deal_tags_block.get_by_text("Показать еще 1")).to_have_count(1)
         expect(opened_deal.button_share_call).to_have_count(1)
         expect(opened_deal.button_expand_call).to_have_count(1)
-        expect(opened_deal.blue_tag).to_have_count(3)
+        expect(opened_deal.communication_tag).to_have_count(3)
         expect(opened_deal.deal_tag).to_have_count(20)
 
         #expect(opened_deal.deal_communication_deal_tags_block.get_by_text("Показать еще 1")).to_have_count(1)

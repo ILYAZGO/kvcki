@@ -164,7 +164,7 @@ def test_check_search_all(base_url, page: Page) -> None:
         communications.assert_communications_found("Найдено коммуникаций 3130 из 3130")
 
     with allure.step("Check that 50 calls in one page"):
-        expect(page.locator(BUTTON_SHARE_CALL)).to_have_count(50)
+        expect(communications.button_share_call).to_have_count(50)
 
 
 @pytest.mark.calls
@@ -726,7 +726,7 @@ def test_check_content_button_calls_actions_for_user(base_url, page: Page) -> No
         communications.press_calls_action_button_in_list(0)
 
     with allure.step("Check content of button (...) calls action"):
-        expect(page.locator(MENU)).to_have_text(options_list)
+        expect(communications.menu).to_have_text(options_list)
 
     with allure.step("Delete user"):
         delete_user(API_URL, TOKEN, USER_ID)

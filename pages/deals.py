@@ -24,9 +24,8 @@ class Deals(BaseClass):
         self.deal_communication_score = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_callScore_"]')
         self.deal_communication_deal_tags_block = page.locator('[class*="_singleDealBlock_"]').locator('[class*="_dealTagsBlock_"]')
 
-        self.blue_tag = page.locator('[class*="_blueTag_"]')
+
         self.deal_tags_block = page.locator('[class*="_dealTagsBlock_"]')
-        self.deal_tag = page.locator('[class*="_lightBlueTag_"]')
         self.deal_button_retag = page.locator('[aria-label="Перетегировать"]')
 
     def download_deal(self):
