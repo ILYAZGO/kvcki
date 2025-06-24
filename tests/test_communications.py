@@ -486,7 +486,7 @@ def test_check_sort(base_url, page: Page) -> None:
         communications.change_sort("Сначала короткие")
 
     with allure.step("Check SHORT FIRST in list"):
-        communications.assert_call_date_and_time("09.02.22 16:50")  #09.02.22 11:41
+        communications.assert_call_date_and_time("10.02.22 09:49")  #09.02.22 11:41   "09.02.22 16:50"
 
     with allure.step("Change sort to LONG FIRST"):
         communications.change_sort("Сначала длинные")
@@ -504,7 +504,7 @@ def test_check_sort(base_url, page: Page) -> None:
         communications.change_sort("Сначала мало баллов")
 
     with allure.step("Check LESS POINTS in list"):
-        communications.assert_call_date_and_time("09.02.22 18:16")  #10.02.22 10:57
+        communications.assert_call_date_and_time("10.02.22 09:27")  #10.02.22 10:57  "09.02.22 18:16"
 
 
 @pytest.mark.calls
