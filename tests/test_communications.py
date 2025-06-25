@@ -578,7 +578,6 @@ def test_check_open_call_in_new_tab_by_user(base_url, page: Page, context: Brows
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
             communications.button_share_call.click()
-            #page.locator(BUTTON_SHARE_CALL).locator('[type="button"]').click()
             new_tab=new_tab_event.value
 
     with allure.step("Check"):
@@ -3095,3 +3094,123 @@ def test_check_translation_in_communication(base_url, page: Page) -> None:
         expect(page.locator('[class*="styles_topTitleRight"]')).to_have_count(0)
         expect(page.locator('[class*="styles_original_"]')).to_have_count(0)
         expect(page.locator('[class*="styles_translated_"]')).to_have_count(0)
+
+
+@pytest.mark.calls
+@pytest.mark.e2e
+@allure.title("test_check_tags_more")
+@allure.severity(allure.severity_level.NORMAL)
+@allure.description("test_check_tags_more")
+def test_check_tags_more(base_url, page: Page) -> None:
+    communications = Communications(page)
+
+    with allure.step("Create user"):
+        USER_ID_USER1, TOKEN_USER1, LOGIN_USER1 = create_user(API_URL, ROLE_USER, PASSWORD,
+                                                              upload_call=True,
+                                                              create_many_rules=True,
+                                                              rules_entity="DEAL",
+                                                              rules_amount=11,
+                                                              rule_value="deal"
+                                                              )
+        USER_ID_USER2, TOKEN_USER2, LOGIN_USER2 = create_user(API_URL, ROLE_USER, PASSWORD,
+                                                              upload_call=True,
+                                                              create_many_rules=True,
+                                                              phrases_and_dicts=["один"],
+                                                              rules_amount=11,
+                                                              rule_value="fragment"
+                                                              )
+
+    with allure.step("Go to url"):
+        communications.navigate(base_url)
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN_USER1, PASSWORD)
+
+    with allure.step("Check alll tags"):
+        expect(communications.deal_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще (1)")).to_have_count(1)
+        expect(communications.communication_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+
+    with allure.step("Open deal tags"):
+        page.get_by_text("Показать еще (1)").click()
+
+    with allure.step("Check that deal tags opened"):
+        expect(communications.deal_tag).to_have_count(11)
+        expect(communications.block_one_communication.get_by_text("Показать еще (1)")).to_have_count(0)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(1)
+
+    with allure.step("Close deal tags"):
+        page.get_by_text("Скрыть").click()
+
+    with allure.step("Check that deal tags closed"):
+        expect(communications.deal_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще (1)")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+
+    with allure.step("Open communication tags"):
+        page.get_by_text("Показать еще (2)").click()
+
+    with allure.step("Check that communication tags opened"):
+        expect(communications.communication_tag).to_have_count(12)
+        expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(0)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(1)
+
+    with allure.step("Close deal tags"):
+        page.get_by_text("Скрыть").click()
+
+    with allure.step("Check that deal tags closed"):
+        expect(communications.communication_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+
+    with allure.step("Quit from user1"):
+        communications.quit_from_profile()
+
+    with allure.step("Auth with user"):
+        communications.auth(LOGIN_USER2, PASSWORD)
+
+    with allure.step("Check alll tags"):
+        expect(communications.fragment_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще 1")).to_have_count(1)
+        expect(communications.communication_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+
+    with allure.step("Open fragment tags"):
+        page.get_by_text("Показать еще 1").click()
+
+    with allure.step("Check that fragment tags opened"):
+        expect(communications.fragment_tag).to_have_count(11)
+        expect(communications.block_one_communication.get_by_text("Показать еще 1")).to_have_count(0)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(1)
+
+    with allure.step("Close fragment tags"):
+        page.get_by_text("Скрыть").click()
+
+    with allure.step("Check that fragment tags closed"):
+        expect(communications.fragment_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще 1")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+
+    with allure.step("Open communication tags"):
+        page.get_by_text("Показать еще (2)").click()
+
+    with allure.step("Check that communication tags opened"):
+        expect(communications.communication_tag).to_have_count(12)
+        expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(0)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(1)
+
+    with allure.step("Close deal tags"):
+        page.get_by_text("Скрыть").click()
+
+    with allure.step("Check that deal tags closed"):
+        expect(communications.communication_tag).to_have_count(10)
+        expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+
+
+    with allure.step("Delete user"):
+        delete_user(API_URL, TOKEN_USER1, USER_ID_USER1)
+        delete_user(API_URL, TOKEN_USER2, USER_ID_USER2)

@@ -102,6 +102,7 @@ class BaseClass:
         '''Tags'''
         self.communication_tag = page.locator('[class*="_blueTag_"]')
         self.deal_tag = page.locator('[class*="_lightBlueTag_"]')
+        self.fragment_tag = page.locator('[class*="_purpleTag_"]')
         '''Other'''
         self.button_markup = page.locator(BUTTON_MARKUP)
         self.button_dicts = page.locator(BUTTON_DICTS)

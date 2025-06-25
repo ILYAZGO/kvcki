@@ -25,7 +25,6 @@ BUTTON_CALLS_ACTION = '[data-testid="calls_actions_actions-btn"]'    # (...) but
 BUTTON_CLEAR = '[data-testid="calls_btns_clear"]'
 BUTTON_ADD_CONDITION = '[data-testid="addCondition_search_by_tags"]'
 BUTTON_GPT = '[href*="/call/gpt?callId="]'
-# BUTTON_SHARE_CALL = '[data-testid="call_share"]'
 BUTTON_ADD_COMMENT = '[class*="styles_addButton"]'
 BUTTON_ADD_COMMENT_TITLE = '[class*="styles_addTitleButton"]'
 BUTTON_SAVE_TEMPLATE = '[data-testid="calls_btns_save-temp"]'

@@ -28,11 +28,15 @@ def create_user(url: str, role: str, password: str,
                 rules_entity="CALL",
                 rule_value="",
                 rules_amount=5,
+                phrases_and_dicts=None,
                 create_many_dicts=False,
                 dicts_name="AT_many_dicts",
                 dicts_amount=5,
                 retag=False
                 ):
+
+    if phrases_and_dicts is None:
+        phrases_and_dicts = []
 
     # get token for 4adminIM. All users will be created by 4adminIM
     headers_for_get_token = {
@@ -337,7 +341,7 @@ def create_user(url: str, role: str, password: str,
                     "rulePriority": i,
                     "calculatedRulePriority": i,
                     "globalFilter": [],
-                    "fragmentRules": [{"phrasesAndDicts": [], "phrases": [], "dicts": [],
+                    "fragmentRules": [{"phrasesAndDicts": phrases_and_dicts, "phrases": [], "dicts": [],
                                        "direction": "", "fromStart": False, "silentBefore": "",
                                        "silentAfter": "", "interruptTime": "", "talkBefore": "",
                                        "talkAfter": "", "onlyFirstMatch": False, "fragmentsBefore": "",
@@ -356,7 +360,7 @@ def create_user(url: str, role: str, password: str,
                         f"\n>>>>> FOR USER {name} CREATED {rules_name}{i} {rule_id} INSIDE GROUP {group_id} <<<<<")
                 else:
                     logger.opt(depth=1).info(
-                        f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} RULE NAME {rules_name}{i}<<<<<")
+                        f"\n>>>>> ERROR CREATING RULE {add_rule.status_code} RULE NAME {rules_name}{i} {add_rule.text}<<<<<")
 
         # create many dicts
         if create_many_dicts:
