@@ -597,7 +597,7 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
         page.wait_for_timeout(3000)
 
     with allure.step("Check parameters"):
-        expect(page.locator(INPUT_GPT_RULE_NAME)).to_have_value("firstgptrule")
+        expect(gpt.input_gpt_rule_name).to_have_value("firstgptrule")
         expect(page.locator('[class*="styles_entityType"]')).to_have_text("Тип правилаКоммуникация")
         expect(page.locator('[aria-label="Remove firstrule"]')).to_have_count(1, timeout=wait_until_visible)
         expect(page.locator(INPUT_GPT_TEG_NAME).nth(0)).to_have_value("firsttag")
@@ -617,7 +617,7 @@ def test_compare_gpt_rules_by_user(base_url, page: Page) -> None:
         page.wait_for_timeout(3000)
 
     with allure.step("Check that parameters changed"):
-        expect(page.locator(INPUT_GPT_RULE_NAME)).to_have_value("secondgptrule")
+        expect(gpt.input_gpt_rule_name).to_have_value("secondgptrule")
         expect(page.locator('[class*="styles_entityType"]')).to_have_text("Тип правилаСделка")
         expect(page.locator('[aria-label="Remove >100"]')).to_have_count(1)
         expect(page.locator('[data-testid="gpt_isComment"]').locator(CHECKBOX).nth(0)).to_be_checked()
