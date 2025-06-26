@@ -75,6 +75,8 @@ class Settings(BaseClass):
         self.button_create_communications = page.locator(BUTTON_CREATE_COMMUNICATIONS)
         self.button_delete_all_communications = page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)
         self.file_upload_requirements = page.locator('[class*="_requirements_"]')
+        self.delete_file_confirmation = page.locator(MODAL_WINDOW).locator('[data-testid="upload_delete_ok"]')
+        self.delete_files_confirmation = page.locator(MODAL_WINDOW).locator('[data-testid="upload_delete_all_ok"]')
 
     def fill_address_book(self, text: str):
         """Fill address book with text"""
@@ -229,7 +231,6 @@ class Settings(BaseClass):
     def set_input_files(self, file: str):
         self.page.locator('[name="audio"]').set_input_files(file)
         self.page.wait_for_timeout(2000)
-
 
 
 def all_checkboxes_to_be_checked(page="page: Page"):

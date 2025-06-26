@@ -3434,7 +3434,7 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Accept in modal window"):
-        page.locator(MODAL_WINDOW).locator('[data-testid="upload_delete_all_ok"]').click()
+        settings.delete_files_confirmation.click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check alert"):
@@ -3454,7 +3454,7 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Accept in modal window"):
-        page.locator(MODAL_WINDOW).locator('[data-testid="upload_delete_ok"]').click()
+        settings.delete_file_confirmation.click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check alert"):
@@ -3531,7 +3531,7 @@ def test_upload_errors_file_for_user_by_admin(base_url, page: Page) -> None:
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Accept in modal window"):
-        page.locator(MODAL_WINDOW).locator('[data-testid="upload_delete_all_ok"]').click()
+        settings.delete_files_confirmation.click()
         page.wait_for_selector(MODAL_WINDOW, state="hidden")
 
     with allure.step("Check alert"):
