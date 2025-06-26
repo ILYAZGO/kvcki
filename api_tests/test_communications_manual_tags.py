@@ -62,7 +62,22 @@ def test_communications_manual_tags():
     with allure.step("Check status code == 204"):
         assert delete_manual_tag.status_code == 204
 
-        time.sleep(23)
+        #time.sleep(23)
+
+    with allure.step("Wait until manual tags are cleared"):
+        timeout = 40
+        start_time = time.time()
+
+        while True:
+            get_manual_tags_list = r.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
+
+            if get_manual_tags_list.status_code == 200 and get_manual_tags_list.text == "[]":
+                break
+
+            if time.time() - start_time > timeout:
+                raise AssertionError(f"Manual tags not cleared after {timeout} seconds")
+
+            time.sleep(2)
 
     with allure.step("Check that call dont have any manual tags"):
         get_manual_tags_list = r.get(url=API_URL + "/tag_names?tag_group=manual", headers=headers)
