@@ -3394,6 +3394,8 @@ def test_change_role_for_user_by_admin(base_url, page: Page) -> None:
 def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
     settings = Settings(page)
 
+    requirements = "Требования к файламФормат: wav, mp3, opus, ogg, flac, aiffРазмер одного файла: до 1 гб"
+
     with allure.step("Create admin"):
         USER_ID_ADMIN, TOKEN_ADMIN, LOGIN_ADMIN = create_user(API_URL, ROLE_ADMIN, PASSWORD)
 
@@ -3416,19 +3418,19 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
         settings.click_to_upload_files()
 
     with allure.step("Check requirements text"):
-        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_disabled()
-        expect(page.locator('[class*="_requirements_"]')).to_have_text("Требования к файламФормат: wav, mp3, opus, ogg, flac, aiffРазмер одного файла: до 1 гб")
+        expect(settings.button_create_communications).to_be_disabled()
+        expect(settings.file_upload_requirements).to_have_text(requirements)
 
     with allure.step("Upload file"):
-        page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
+        settings.set_input_files("audio/stereo.opus")
 
     with allure.step("Check"):
-        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_enabled(timeout=wait_until_visible)
-        expect(page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)).to_be_enabled()
+        expect(settings.button_create_communications).to_be_enabled(timeout=wait_until_visible)
+        expect(settings.button_delete_all_communications).to_be_enabled()
         expect(page.locator('[title="stereo.opus"]')).to_have_count(1)
 
     with allure.step("Use (Delete all) button"):
-        page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS).click()
+        settings.button_delete_all_communications.click()
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Accept in modal window"):
@@ -3439,15 +3441,15 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
         settings.check_alert("Файлы успешно удалены")
 
     with allure.step("Check"):
-        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_disabled()
-        expect(page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)).not_to_be_visible()
+        expect(settings.button_create_communications).to_be_disabled()
+        expect(settings.button_delete_all_communications).not_to_be_visible()
         expect(page.locator('[title="stereo.opus"]')).to_have_count(0)
 
     with allure.step("Upload file"):
-        page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
+        settings.set_input_files("audio/stereo.opus")
 
     with allure.step("Delete from list"):
-        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_enabled(timeout=wait_until_visible)
+        expect(settings.button_create_communications).to_be_enabled(timeout=wait_until_visible)
         page.locator('[title="Remove file"]').click()
         page.wait_for_selector(MODAL_WINDOW)
 
@@ -3459,8 +3461,8 @@ def test_upload_file_for_user_by_admin(base_url, page: Page) -> None:
         settings.check_alert("Файл успешно удален")
 
     with allure.step("Check"):
-        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_disabled()
-        expect(page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)).not_to_be_visible()
+        expect(settings.button_create_communications).to_be_disabled()
+        expect(settings.button_delete_all_communications).not_to_be_visible()
         expect(page.locator('[title="stereo.opus"]')).to_have_count(0)
 
     with allure.step("Delete admin"):
@@ -3500,36 +3502,32 @@ def test_upload_errors_file_for_user_by_admin(base_url, page: Page) -> None:
         settings.click_to_upload_files()
 
     with allure.step("Upload file"):
-        page.locator('[name="audio"]').set_input_files("audio/2G.opus")
-        page.wait_for_timeout(2000)
+        settings.set_input_files("audio/2G.opus")
 
     with allure.step("Check alert for file more than 1G"):
         settings.check_alert("Размер загружаемого файла превышает  1 гб")
 
     with allure.step("Upload file with wrong format"):
-        page.locator('[name="audio"]').set_input_files("audio/text.txt")
-        page.wait_for_timeout(2000)
+        settings.set_input_files("audio/text.txt")
 
     with allure.step("Check alert for file with wrong format"):
         settings.check_alert("Формат файла не соответствует требованиям")
 
     with allure.step("Upload normal audio"):
-        page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
-        page.wait_for_timeout(2000)
+        settings.set_input_files("audio/stereo.opus")
 
     with allure.step("Check that normal audio downloaded"):
         expect(page.locator('[title="stereo.opus"]')).to_have_count(1)
 
     with allure.step("Upload normal audio again"):
-        page.locator('[name="audio"]').set_input_files("audio/stereo.opus")
-        page.wait_for_timeout(2000)
+        settings.set_input_files("audio/stereo.opus")
 
     with allure.step("Check alert for file which was already uploaded"):
         settings.check_alert("Загружен дубликат файла")
 
 # clear
     with allure.step("Use (Delete all) button"):
-        page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS).click()
+        settings.button_delete_all_communications.click()
         page.wait_for_selector(MODAL_WINDOW)
 
     with allure.step("Accept in modal window"):
@@ -3540,8 +3538,8 @@ def test_upload_errors_file_for_user_by_admin(base_url, page: Page) -> None:
         settings.check_alert("Файлы успешно удалены")
 
     with allure.step("Check"):
-        expect(page.locator(BUTTON_CREATE_COMMUNICATIONS)).to_be_disabled()
-        expect(page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)).not_to_be_visible()
+        expect(settings.button_create_communications).to_be_disabled()
+        expect(settings.button_delete_all_communications).not_to_be_visible()
         expect(page.locator('[title="2G.opus"]')).to_have_count(0)
         expect(page.locator('[title="text.txt"]')).to_have_count(0)
         expect(page.locator('[title="stereo.opus"]')).to_have_count(0)

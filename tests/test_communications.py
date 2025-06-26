@@ -3132,6 +3132,8 @@ def test_check_tags_more(base_url, page: Page) -> None:
         expect(communications.communication_tag).to_have_count(10)
         expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(1)
         expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+        expect(communications.block_one_communication.get_by_text("Теги сделки")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Теги коммуникации")).to_have_count(1)
 
     with allure.step("Open deal tags"):
         page.get_by_text("Показать еще (1)").click()
@@ -3177,6 +3179,8 @@ def test_check_tags_more(base_url, page: Page) -> None:
         expect(communications.communication_tag).to_have_count(10)
         expect(communications.block_one_communication.get_by_text("Показать еще (2)")).to_have_count(1)
         expect(communications.block_one_communication.get_by_text("Скрыть")).to_have_count(0)
+        expect(communications.block_one_communication.get_by_text("Теги фрагментов")).to_have_count(1)
+        expect(communications.block_one_communication.get_by_text("Теги коммуникации")).to_have_count(1)
 
     with allure.step("Open fragment tags"):
         page.get_by_text("Показать еще 1").click()

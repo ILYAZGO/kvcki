@@ -72,6 +72,9 @@ class Settings(BaseClass):
         self.select_industry = page.locator(SELECT_INDUSTRY)
         self.select_partner = page.locator(SELECT_PARTNER)
         self.select_role = page.locator(SELECT_ROLE).locator('[type="text"]')
+        self.button_create_communications = page.locator(BUTTON_CREATE_COMMUNICATIONS)
+        self.button_delete_all_communications = page.locator(BUTTON_DELETE_ALL_COMMUNICATIONS)
+        self.file_upload_requirements = page.locator('[class*="_requirements_"]')
 
     def fill_address_book(self, text: str):
         """Fill address book with text"""
@@ -222,6 +225,10 @@ class Settings(BaseClass):
     def click_to_upload_files(self):
         self.page.locator(BUTTON_UPLOAD).click()
         self.page.wait_for_selector(BUTTON_CREATE_COMMUNICATIONS, timeout=self.timeout)
+
+    def set_input_files(self, file: str):
+        self.page.locator('[name="audio"]').set_input_files(file)
+        self.page.wait_for_timeout(2000)
 
 
 
