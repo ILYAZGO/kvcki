@@ -44,7 +44,7 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
     with allure.step("Check deal in list"):
         expect(deals.deals_found).to_have_text("Найдено сделок 1 из 1")
         expect(page.get_by_text("0987654321")).to_have_count(1)
-        expect(deals.deal_date).to_contain_text(today.strftime("%d.%m.%Y"))
+        expect(deals.deal_date).to_contain_text(today.strftime("%d.%m.%y"))
         expect(deals.communications_count).to_have_text("1")
         expect(deals.score_percent).to_have_text("90%")
         expect(deals.deal_score).to_have_text("90 баллов")
@@ -53,7 +53,7 @@ def test_deal(base_url, page: Page, context: BrowserContext) -> None:
 
     with allure.step("Open new tab"):
         with context.expect_page() as new_tab_event:
-            deals.button_share_call.click()
+            deals.open_deal_in_new_tab.click()
             open_deal=new_tab_event.value
 
     with allure.step("Check"):
@@ -118,7 +118,7 @@ def test_check_download_button_in_open_deal(base_url, page: Page, context: Brows
 
     with allure.step("Open deal"):
         with context.expect_page() as new_tab_event:
-            deals.button_share_call.click()
+            deals.open_deal_in_new_tab.click()
             open_deal=new_tab_event.value
 
     with allure.step("Check"):

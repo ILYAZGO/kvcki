@@ -8,6 +8,7 @@ class Deals(BaseClass):
         super().__init__(page)
 
         self.deals_found = page.locator(DEALS_FOUND)
+        self.open_deal_in_new_tab = page.locator('[data-testid="deal-main-share"]')
         self.deal_date = page.locator('[class*="_dealDate_"]')
         self.communications_count = page.locator('[class*="_communicationsCount_"]')
         self.score_percent = page.locator('[class*="_scorePercent_"]')
