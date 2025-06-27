@@ -3502,7 +3502,7 @@ def test_upload_errors_file_for_user_by_admin(base_url, page: Page) -> None:
         settings.click_to_upload_files()
 
     with allure.step("Upload file"):
-        settings.set_input_files("audio/2G.opus")
+        settings.set_input_files("audio/1_2GB.opus")
 
     with allure.step("Check alert for file more than 1G"):
         settings.check_alert("Размер загружаемого файла превышает  1 гб")
@@ -3540,7 +3540,7 @@ def test_upload_errors_file_for_user_by_admin(base_url, page: Page) -> None:
     with allure.step("Check"):
         expect(settings.button_create_communications).to_be_disabled()
         expect(settings.button_delete_all_communications).not_to_be_visible()
-        expect(page.locator('[title="2G.opus"]')).to_have_count(0)
+        expect(page.locator('[title="1_2GB.opus"]')).to_have_count(0)
         expect(page.locator('[title="text.txt"]')).to_have_count(0)
         expect(page.locator('[title="stereo.opus"]')).to_have_count(0)
 
