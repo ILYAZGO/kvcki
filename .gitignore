@@ -6,7 +6,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+audio/*.opus
 # C extensions
 *.so
 
@@ -176,3 +176,5 @@ allure-results
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+audio/1_2GB.opus
+audio/2G.opus
