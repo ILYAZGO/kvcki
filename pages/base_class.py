@@ -189,6 +189,7 @@ class BaseClass:
         self.page.wait_for_timeout(300)
 
     def select_period_value(self, period: str):
+        """Select period"""
         self.page.wait_for_selector('[class*="shown"]')
         self.page.locator(f'[data-testid="{period}"]').click()
         self.page.wait_for_selector('[class*="shown"]', state="hidden")
@@ -269,6 +270,7 @@ class BaseClass:
         self.page.wait_for_timeout(500)
 
     def click_to_dicts(self):
+        """Go to dicts"""
         self.page.wait_for_timeout(1000)
         self.page.wait_for_selector(BUTTON_DICTS, timeout=self.timeout)
         self.button_dicts.click()
@@ -285,6 +287,7 @@ class BaseClass:
         self.page.wait_for_load_state(state="load", timeout=self.timeout)
 
     def click_gpt(self):
+        """Go to gpt"""
         self.page.wait_for_selector(BUTTON_GPT, timeout=self.timeout)
         self.button_gpt.click()
         self.page.wait_for_selector('[filter="url(#filter0_b_4973_59500)"]', timeout=self.timeout)

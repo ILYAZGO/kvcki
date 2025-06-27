@@ -1,7 +1,6 @@
 from pages.base_class import *
 from playwright.sync_api import Page, expect
 
-#BUTTON_ADD_GROUP = '[data-testid="markup_addGroup"]'
 INPUT_NEW_GROUP_NAME = '[name="groupName"]'
 INPUT_TAG_RULE_NAME = '[name="title"]'
 ACTIVE_GROUP = '[class*="styles_isActive_"]'
@@ -60,6 +59,9 @@ class Rules(BaseClass):
         self.page.wait_for_timeout(500)
         expect(self.page.locator('[data-testid="test"]').first).to_contain_text(name)
 
+
+
+# TO DO move up
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 

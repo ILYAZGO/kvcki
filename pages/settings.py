@@ -1,4 +1,3 @@
-#from playwright.sync_api import Page, expect
 from pages.base_class import *
 
 BUTTON_PERSONAL_INFO = '[href*="/profile"]'
@@ -67,7 +66,6 @@ class Settings(BaseClass):
         #self.input_yandex_gpt_quota_value = page.locator(BLOCK_YANDEX_GPT).locator(INPUT_NEW_QUOTA)
         self.button_save_in_rights = page.locator(BUTTON_ACCEPT)
         self.input_quota_time = page.locator(INPUT_QUOTA_TIME)
-        #self.input_login = page.locator(INPUT_LOGIN)
         self.input_timezone = page.locator(SELECT_TIMEZONE).locator('[type="text"]')
         self.select_industry = page.locator(SELECT_INDUSTRY)
         self.select_partner = page.locator(SELECT_PARTNER)
@@ -232,6 +230,7 @@ class Settings(BaseClass):
         self.page.locator('[name="audio"]').set_input_files(file)
         self.page.wait_for_timeout(2000)
 
+# TO DO move up
 
 def all_checkboxes_to_be_checked(page="page: Page"):
     page.wait_for_timeout(500)

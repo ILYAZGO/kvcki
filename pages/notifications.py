@@ -87,6 +87,7 @@ class Notifications(BaseClass):
         self.menu.get_by_text(new_method, exact=True).click()
         self.page.wait_for_selector(MENU, state="hidden")
 
+# TO DO need move up
 
 def add_filter(filterType, filterName, elementNumber, page="page: Page"):
     #  dobavit filtr

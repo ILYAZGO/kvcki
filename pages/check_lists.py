@@ -35,15 +35,6 @@ class Checklists(BaseClass):
         self.input_check_list_copy_name = page.locator(INPUT_CHECK_LIST_COPY_NAME)
         self.button_change_filters = page.locator(BUTTON_CHANGE_FILTERS)
 
-    # def click_check_lists(self):
-    #     """Go to check lists"""
-    #     # self.page.wait_for_selector(BUTTON_MARKUP)
-    #     # self.button_markup.click()
-    #     # self.page.wait_for_selector(BUTTON_CHECK_LIST)
-    #     # self.page.wait_for_timeout(500)
-    #     self.button_check_list.click()
-    #     self.page.wait_for_timeout(500)
-
     def create_check_list_with_questions_and_answers(self, check_list_name: str, first_question_title: str, second_question_title: str):
         """Creates 1st question with 2 answers and points and 2nd question with answer and points then delete 2nd question"""
         # creating check-list

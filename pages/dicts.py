@@ -40,17 +40,16 @@ class Dicts(BaseClass):
         self.page.wait_for_timeout(500)
 
 '''------locators for rules---------'''
+# TO DO need move up
+
 # inputs
 INPUT_EDIT_GROUP_NAME = "//input[@value='12345']"
 # buttons
-#BUTTON_OTMENA = "//html/body/div[2]/div[3]/div/div/div[2]/form/div[2]/button[2]"
-#BUTTON_LUPA = "//button[@type='submit']//*[name()='svg']"
 BUTTON_SAVE_EDITED_NAME = ".styles_root__4Hw2A"
 # other
 GROUP_LIST = '[class*="styles_dpBothBox_"]'
 ACTIVE_GROUP = '[class*="styles_isActive_"]'
 GROUP_ITEMS = '[class*="styles_groupItem_"]'
-#CLICK_NEW_GROUP = '//*[@id="root"]/div/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div'
 NAZVANIE_SLOVARYA = '[name="title"]'
 
 TOOLTIP_BUTTON_DOBAVIT_SLOVAR = '[aria-label="Чтобы добавить словарь, выберите или добавьте группу."]'

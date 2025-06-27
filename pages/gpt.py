@@ -71,6 +71,8 @@ class GPT(BaseClass):
         self.page.wait_for_timeout(500)
 
 
+# TO DO need move up
+
 def add_filter(filterType, filterName, page="page: Page"):
     page.locator('[style="margin-top: 5px;"]').get_by_role("button").click()
     page.locator('[class*="-menu"]').get_by_text(filterType, exact=True).nth(1).click()
