@@ -32,11 +32,17 @@ tests:
     - date
 
   script:
+    - echo "Create sparse file"
+    - dd if=/dev/zero of="$(pwd)/audio/1_2GB.opus" bs=1 count=0 seek=1200000000
+    - ls -l "$(pwd)/audio/"
     - echo $URL_FOR_TEST
     - echo "Execute api tests"
-    - pytest -m api -v -n 101 --reruns=${RERUNS_NUMBER} --alluredir=allure-results || echo "API tests failed, but continuing"
+    - pytest -m api -v -n 90 --reruns=${RERUNS_NUMBER} --alluredir=allure-results || echo "API tests failed, but continuing"
     - echo "Execute E2E (by default 'chromium', choose from 'chromium', 'firefox', 'webkit')"
     - pytest -m e2e -n 50 --base-url ${URL_FOR_TEST} --browser ${BROWSER} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+    - echo "Remove sparse file"
+    - rm -f "$(pwd)/audio/1_2GB.opus"
+    - ls -l "$(pwd)/audio/"
 
   after_script:
     - echo "Send notification to telegram"
