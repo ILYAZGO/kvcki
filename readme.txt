@@ -36,10 +36,6 @@ you can add some parameteres:
     with rule 33333 without group
 
 
-how to create sparse file
-dd if=/dev/zero of=1_2GB.opus bs=1 count=0 seek=1200000000
-
-
 
 
 
